@@ -5,4 +5,7 @@ API for communication and control of the RPiSoC through Python on the Raspberry 
 
 The PSoC Creator folder contains several PSoC Creator projects which include the API and examples, created in PSoC Creator 3.0 SP1:
 
-PSoC_2_Pi is the API project. Includes mem1.h and mem1.c files which define the API. It also places the components usable by the API into the schematic.
+	PSoC_2_Pi is the API project. Includes mem1.h and mem1.c files which define the API. It also places the components usable by the API into the schematic. Loading the RPiSoC with this project will allow you to run the API demos and use the API in the API_Python folder on your Raspberry Pi
+
+
+The API_Python folder contains the Python API for Raspberry Pi and example projects. They were created with Python 2.7 on Raspbian June 2014
