@@ -1,0 +1,55 @@
+from communication import *
+
+class RPiSoC(object):
+
+    DELSIG_ADC_CONTROL = 0x01
+    SAR_ADC0_CONTROL = DELSIG_ADC_CONTROL  +1
+    SAR_ADC1_CONTROL = SAR_ADC0_CONTROL +1
+
+    VDAC0_CONTROL = SAR_ADC1_CONTROL +1
+    VDAC1_CONTROL = VDAC0_CONTROL +1
+
+    IDAC0_CONTROL = VDAC1_CONTROL +1
+    IDAC1_CONTROL = IDAC0_CONTROL +1
+
+    WAVEDAC_CONTROL = IDAC1_CONTROL +1
+
+    PWM_REGISTER0 = WAVEDAC_CONTROL +1
+    PWM_REGISTER1 = PWM_REGISTER0 +1
+    PWM_REGISTER2 = PWM_REGISTER1 +1
+    PWM_REGISTER3 = PWM_REGISTER2 +1
+    PWM_REGISTER4 = PWM_REGISTER3 +1
+    PWM_REGISTER5 = PWM_REGISTER4 +1
+    PWM_REGISTER6 = PWM_REGISTER5 +1
+    PWM_REGISTER7 = PWM_REGISTER6 +1
+
+    DIGITAL_INPUT_REGISTER0 = PWM_REGISTER7 + 1
+    DIGITAL_INPUT_REGISTER1 = DIGITAL_INPUT_REGISTER0
+
+    DIGITAL_OUTPUT_REGISTER0 = DIGITAL_INPUT_REGISTER1 + 1
+    DIGITAL_OUTPUT_REGISTER0 = DIGITAL_OUTPUT_REGISTER0 + 1
+
+    def __new__ (self, commChannel):
+
+        if commChannel == 'I2C':
+            self.commChannel = I2C()
+        elif commChannel == 'UART':
+            self.commChannel = UART()
+        elif commChannel == 'SPI':
+            self.commChannel = SPI()
+        elif commChannel == 'USB':
+            self.commChannel = USB()
+        else:
+            raise ValueError('Invalid Communication Protocol selected: Choose "I2C" or "SPI" ')
+
+    def __del__():
+        print('hello')
+        self.commChannel.close()
+
+from digital import *
+from analog import *
+
+
+
+
+

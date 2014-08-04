@@ -1,0 +1,26 @@
+from rpisoc import *
+
+RPiSoC('SPI') #Establish connection to RPiSoC over SPI
+
+OutPin = DigitalOutput(4,0) #Initialize P4[0] to be an output pin called 'Outpin'
+PWM1 = PWM(0) #Initialize a PWM object
+
+OutPin.Write(1)#Write the output pin HIGH
+PWM1.Start() #Start the PWM
+PWM1.WritePeriod(255) #Write an initial period of 255 (always HIGH)
+
+try: #exception handling, not crucial but it is advised.
+    while True:
+
+        out = int(raw_input("Enter Pin State: [1] or [0] ")) #Ask for new pin state; waits for input
+        OutPin.Write(out) #Writes state of new pin (error handling for non-binary input is done internally)
+
+        if OutPin.Read(): #Read the current state of the output pin ; return type of OutPin.Read() is bool
+            PWM1.WriteCompare(255) #If the Pin is high, set the PWM period to 255 (always HIGH)
+            print ("Pin HIGH") #Print to terminal that the pin is on
+        else: #Pin is currently LOW
+            PWM1.WriteCompare(127) #Pin is low, set the PWM period to 127 (blinking)
+            print ("Pin LOW")#Print to terminal that pin is off
+
+except KeyboardInterrupt:
+    RPiSoC.commChannel.close()

@@ -1,0 +1,1044 @@
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDUHsm8.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"main.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.comm	cursor_x,2,2
+  19              		.comm	cursor_y,2,2
+  20              		.comm	textcolor,2,2
+  21              		.comm	textbgcolor,2,2
+  22              		.comm	textsize,1,1
+  23              		.comm	rotation,1,1
+  24              		.comm	wrap,1,1
+  25              		.comm	_width,4,4
+  26              		.comm	_height,4,4
+  27              		.section	.rodata
+  28              		.align	2
+  29              	.LC0:
+  30 0000 77616974 		.ascii	"waiting for SPI...\012\000"
+  30      696E6720 
+  30      666F7220 
+  30      5350492E 
+  30      2E2E0A00 
+  31              		.section	.text.main,"ax",%progbits
+  32              		.align	2
+  33              		.global	main
+  34              		.thumb
+  35              		.thumb_func
+  36              		.type	main, %function
+  37              	main:
+  38              	.LFB56:
+  39              		.file 1 ".\\main.c"
+   1:.\main.c      **** /* ========================================
+   2:.\main.c      ****  *
+   3:.\main.c      ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\main.c      ****  * All Rights Reserved
+   5:.\main.c      ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\main.c      ****  *
+   7:.\main.c      ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\main.c      ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\main.c      ****  *
+  10:.\main.c      ****  * ========================================
+  11:.\main.c      **** */
+  12:.\main.c      **** #include <project.h>
+  13:.\main.c      **** //#include <device.h>
+  14:.\main.c      **** #include <stdio.h>
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDUHsm8.s 			page 2
+
+
+  15:.\main.c      **** #include <mem1.h>
+  16:.\main.c      **** 
+  17:.\main.c      **** void TFT_INIT();
+  18:.\main.c      **** 
+  19:.\main.c      **** int main()
+  20:.\main.c      **** {
+  40              		.loc 1 20 0
+  41              		.cfi_startproc
+  42              		@ args = 0, pretend = 0, frame = 56
+  43              		@ frame_needed = 1, uses_anonymous_args = 0
+  44 0000 80B5     		push	{r7, lr}
+  45              	.LCFI0:
+  46              		.cfi_def_cfa_offset 8
+  47              		.cfi_offset 7, -8
+  48              		.cfi_offset 14, -4
+  49 0002 8EB0     		sub	sp, sp, #56
+  50              	.LCFI1:
+  51              		.cfi_def_cfa_offset 64
+  52 0004 00AF     		add	r7, sp, #0
+  53              	.LCFI2:
+  54              		.cfi_def_cfa_register 7
+  21:.\main.c      ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+  22:.\main.c      ****     SPIS_1_Start();
+  55              		.loc 1 22 0
+  56 0006 FFF7FEFF 		bl	SPIS_1_Start
+  23:.\main.c      ****     SPIS_1_ClearFIFO();
+  57              		.loc 1 23 0
+  58 000a FFF7FEFF 		bl	SPIS_1_ClearFIFO
+  24:.\main.c      ****     SPIS_1_ClearRxBuffer();
+  59              		.loc 1 24 0
+  60 000e FFF7FEFF 		bl	SPIS_1_ClearRxBuffer
+  25:.\main.c      ****     SPIS_1_ClearTxBuffer();
+  61              		.loc 1 25 0
+  62 0012 FFF7FEFF 		bl	SPIS_1_ClearTxBuffer
+  26:.\main.c      ****     /*Control_Reg_1_Write(1);
+  27:.\main.c      ****     CyDelay(10);
+  28:.\main.c      ****     Control_Reg_1_Write(0);*/
+  29:.\main.c      ****     CyDelay(1000);
+  63              		.loc 1 29 0
+  64 0016 4FF47A70 		mov	r0, #1000
+  65 001a FFF7FEFF 		bl	CyDelay
+  30:.\main.c      ****     
+  31:.\main.c      ****     
+  32:.\main.c      ****     char buffer[50];
+  33:.\main.c      ****    
+  34:.\main.c      ****     TFT_INIT();
+  66              		.loc 1 34 0
+  67 001e FFF7FEFF 		bl	TFT_INIT
+  35:.\main.c      **** 
+  36:.\main.c      ****     
+  37:.\main.c      ****     TFTSHIELD_1_PrintString("waiting for SPI...\n");
+  68              		.loc 1 37 0
+  69 0022 40F20000 		movw	r0, #:lower16:.LC0
+  70 0026 C0F20000 		movt	r0, #:upper16:.LC0
+  71 002a FFF7FEFF 		bl	TFTSHIELD_1_PrintString
+  38:.\main.c      ****     /* CyGlobalIntEnable; */ /* Uncomment this line to enable global interrupts. */
+  39:.\main.c      ****     
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDUHsm8.s 			page 3
+
+
+  40:.\main.c      ****     /*
+  41:.\main.c      ****     for(;;)
+  42:.\main.c      ****     {
+  43:.\main.c      ****       
+  44:.\main.c      ****         uint32 input = ReadFrom_Pi();
+  45:.\main.c      ****         
+  46:.\main.c      ****         uint8 addr = (input & 0xFF000000)>>24;
+  47:.\main.c      ****         uint8 cmd = (input & 0x00FF0000)>>16;
+  48:.\main.c      ****         uint8 dat_lo = (input & 0x0000FF00)>>8;
+  49:.\main.c      ****         uint8 dat_hi = input & 0x000000FF;
+  50:.\main.c      ****         uint16 dat = (dat_hi<<8) | dat_lo;
+  51:.\main.c      ****         
+  52:.\main.c      ****         
+  53:.\main.c      ****         sprintf(buffer,"in: %i %i %i %i: %i\n",addr, cmd, dat_lo, dat_hi, dat);
+  54:.\main.c      ****         TFTSHIELD_1_PrintString(buffer);
+  55:.\main.c      ****         
+  56:.\main.c      ****        
+  57:.\main.c      ****         
+  58:.\main.c      ****         readData(addr,cmd,dat); 
+  59:.\main.c      ****         
+  60:.\main.c      ****     }
+  61:.\main.c      ****     
+  62:.\main.c      ****     */
+  63:.\main.c      ****     
+  64:.\main.c      ****     readData(8,0,0); //Start WDAC
+  72              		.loc 1 64 0
+  73 002e 4FF00800 		mov	r0, #8
+  74 0032 4FF00001 		mov	r1, #0
+  75 0036 4FF00002 		mov	r2, #0
+  76 003a FFF7FEFF 		bl	readData
+  65:.\main.c      ****     readData(8,1,0);//Stop WDAC
+  77              		.loc 1 65 0
+  78 003e 4FF00800 		mov	r0, #8
+  79 0042 4FF00101 		mov	r1, #1
+  80 0046 4FF00002 		mov	r2, #0
+  81 004a FFF7FEFF 		bl	readData
+  66:.\main.c      ****     readData(8,0,0); 
+  82              		.loc 1 66 0
+  83 004e 4FF00800 		mov	r0, #8
+  84 0052 4FF00001 		mov	r1, #0
+  85 0056 4FF00002 		mov	r2, #0
+  86 005a FFF7FEFF 		bl	readData
+  67:.\main.c      ****     
+  68:.\main.c      ****     CyDelay(10000);//Wait for sine wave
+  87              		.loc 1 68 0
+  88 005e 42F21070 		movw	r0, #10000
+  89 0062 FFF7FEFF 		bl	CyDelay
+  69:.\main.c      ****     readData(8,1,0);//Stop WDAC
+  90              		.loc 1 69 0
+  91 0066 4FF00800 		mov	r0, #8
+  92 006a 4FF00101 		mov	r1, #1
+  93 006e 4FF00002 		mov	r2, #0
+  94 0072 FFF7FEFF 		bl	readData
+  70:.\main.c      ****     CyDelay(10);//Wait
+  95              		.loc 1 70 0
+  96 0076 4FF00A00 		mov	r0, #10
+  97 007a FFF7FEFF 		bl	CyDelay
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDUHsm8.s 			page 4
+
+
+  71:.\main.c      ****     readData(8,4,0);//Generate wave
+  98              		.loc 1 71 0
+  99 007e 4FF00800 		mov	r0, #8
+ 100 0082 4FF00401 		mov	r1, #4
+ 101 0086 4FF00002 		mov	r2, #0
+ 102 008a FFF7FEFF 		bl	readData
+  72:.\main.c      ****     readData(8,0,0);//Start WDAC
+ 103              		.loc 1 72 0
+ 104 008e 4FF00800 		mov	r0, #8
+ 105 0092 4FF00001 		mov	r1, #0
+ 106 0096 4FF00002 		mov	r2, #0
+ 107 009a FFF7FEFF 		bl	readData
+  73:.\main.c      ****     
+  74:.\main.c      ****     CyDelay(10000);
+ 108              		.loc 1 74 0
+ 109 009e 42F21070 		movw	r0, #10000
+ 110 00a2 FFF7FEFF 		bl	CyDelay
+  75:.\main.c      ****     readData(8,1,0);//Stop WDAC
+ 111              		.loc 1 75 0
+ 112 00a6 4FF00800 		mov	r0, #8
+ 113 00aa 4FF00101 		mov	r1, #1
+ 114 00ae 4FF00002 		mov	r2, #0
+ 115 00b2 FFF7FEFF 		bl	readData
+  76:.\main.c      ****     readData(8,4,0);//Generate wave
+ 116              		.loc 1 76 0
+ 117 00b6 4FF00800 		mov	r0, #8
+ 118 00ba 4FF00401 		mov	r1, #4
+ 119 00be 4FF00002 		mov	r2, #0
+ 120 00c2 FFF7FEFF 		bl	readData
+  77:.\main.c      ****     readData(8,0,0);//Start WDAC
+ 121              		.loc 1 77 0
+ 122 00c6 4FF00800 		mov	r0, #8
+ 123 00ca 4FF00001 		mov	r1, #0
+ 124 00ce 4FF00002 		mov	r2, #0
+ 125 00d2 FFF7FEFF 		bl	readData
+  78:.\main.c      ****     
+  79:.\main.c      ****     CyDelay(10000);
+ 126              		.loc 1 79 0
+ 127 00d6 42F21070 		movw	r0, #10000
+ 128 00da FFF7FEFF 		bl	CyDelay
+  80:.\main.c      ****     readData(8,1,0);//Stop WDAC
+ 129              		.loc 1 80 0
+ 130 00de 4FF00800 		mov	r0, #8
+ 131 00e2 4FF00101 		mov	r1, #1
+ 132 00e6 4FF00002 		mov	r2, #0
+ 133 00ea FFF7FEFF 		bl	readData
+  81:.\main.c      ****     readData(8,4,0);//Generate wave
+ 134              		.loc 1 81 0
+ 135 00ee 4FF00800 		mov	r0, #8
+ 136 00f2 4FF00401 		mov	r1, #4
+ 137 00f6 4FF00002 		mov	r2, #0
+ 138 00fa FFF7FEFF 		bl	readData
+  82:.\main.c      ****     readData(8,0,0);//Start WDAC
+ 139              		.loc 1 82 0
+ 140 00fe 4FF00800 		mov	r0, #8
+ 141 0102 4FF00001 		mov	r1, #0
+ 142 0106 4FF00002 		mov	r2, #0
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDUHsm8.s 			page 5
+
+
+ 143 010a FFF7FEFF 		bl	readData
+  83:.\main.c      ****     
+  84:.\main.c      ****     CyDelay(10000);
+ 144              		.loc 1 84 0
+ 145 010e 42F21070 		movw	r0, #10000
+ 146 0112 FFF7FEFF 		bl	CyDelay
+  85:.\main.c      ****     readData(8,1,0);//Stop WDAC
+ 147              		.loc 1 85 0
+ 148 0116 4FF00800 		mov	r0, #8
+ 149 011a 4FF00101 		mov	r1, #1
+ 150 011e 4FF00002 		mov	r2, #0
+ 151 0122 FFF7FEFF 		bl	readData
+  86:.\main.c      ****     readData(8,4,0);//Generate wave
+ 152              		.loc 1 86 0
+ 153 0126 4FF00800 		mov	r0, #8
+ 154 012a 4FF00401 		mov	r1, #4
+ 155 012e 4FF00002 		mov	r2, #0
+ 156 0132 FFF7FEFF 		bl	readData
+  87:.\main.c      ****     readData(8,0,0);//Start WDAC
+ 157              		.loc 1 87 0
+ 158 0136 4FF00800 		mov	r0, #8
+ 159 013a 4FF00001 		mov	r1, #0
+ 160 013e 4FF00002 		mov	r2, #0
+ 161 0142 FFF7FEFF 		bl	readData
+  88:.\main.c      ****     
+  89:.\main.c      ****     CyDelay(10000);
+ 162              		.loc 1 89 0
+ 163 0146 42F21070 		movw	r0, #10000
+ 164 014a FFF7FEFF 		bl	CyDelay
+  90:.\main.c      ****     readData(8,1,0);//Stop WDAC
+ 165              		.loc 1 90 0
+ 166 014e 4FF00800 		mov	r0, #8
+ 167 0152 4FF00101 		mov	r1, #1
+ 168 0156 4FF00002 		mov	r2, #0
+ 169 015a FFF7FEFF 		bl	readData
+  91:.\main.c      ****     readData(8,4,0);//Generate wave
+ 170              		.loc 1 91 0
+ 171 015e 4FF00800 		mov	r0, #8
+ 172 0162 4FF00401 		mov	r1, #4
+ 173 0166 4FF00002 		mov	r2, #0
+ 174 016a FFF7FEFF 		bl	readData
+  92:.\main.c      ****     readData(8,0,0);//Start WDAC
+ 175              		.loc 1 92 0
+ 176 016e 4FF00800 		mov	r0, #8
+ 177 0172 4FF00001 		mov	r1, #0
+ 178 0176 4FF00002 		mov	r2, #0
+ 179 017a FFF7FEFF 		bl	readData
+  93:.\main.c      ****     
+  94:.\main.c      ****     
+  95:.\main.c      **** }
+ 180              		.loc 1 95 0
+ 181 017e 1846     		mov	r0, r3
+ 182 0180 07F13807 		add	r7, r7, #56
+ 183 0184 BD46     		mov	sp, r7
+ 184 0186 80BD     		pop	{r7, pc}
+ 185              		.cfi_endproc
+ 186              	.LFE56:
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDUHsm8.s 			page 6
+
+
+ 187              		.size	main, .-main
+ 188              		.section	.text.TFT_INIT,"ax",%progbits
+ 189              		.align	2
+ 190              		.global	TFT_INIT
+ 191              		.thumb
+ 192              		.thumb_func
+ 193              		.type	TFT_INIT, %function
+ 194              	TFT_INIT:
+ 195              	.LFB57:
+  96:.\main.c      **** 
+  97:.\main.c      **** void TFT_INIT()
+  98:.\main.c      **** {
+ 196              		.loc 1 98 0
+ 197              		.cfi_startproc
+ 198              		@ args = 0, pretend = 0, frame = 0
+ 199              		@ frame_needed = 1, uses_anonymous_args = 0
+ 200 0000 80B5     		push	{r7, lr}
+ 201              	.LCFI3:
+ 202              		.cfi_def_cfa_offset 8
+ 203              		.cfi_offset 7, -8
+ 204              		.cfi_offset 14, -4
+ 205 0002 00AF     		add	r7, sp, #0
+ 206              	.LCFI4:
+ 207              		.cfi_def_cfa_register 7
+  99:.\main.c      ****     CyDelay(1000);
+ 208              		.loc 1 99 0
+ 209 0004 4FF47A70 		mov	r0, #1000
+ 210 0008 FFF7FEFF 		bl	CyDelay
+ 100:.\main.c      ****     Clock_1_SetDividerValue(24);
+ 211              		.loc 1 100 0
+ 212 000c 4FF01700 		mov	r0, #23
+ 213 0010 4FF00101 		mov	r1, #1
+ 214 0014 FFF7FEFF 		bl	Clock_1_SetDividerRegister
+ 101:.\main.c      ****     CyDelay(10);
+ 215              		.loc 1 101 0
+ 216 0018 4FF00A00 		mov	r0, #10
+ 217 001c FFF7FEFF 		bl	CyDelay
+ 102:.\main.c      ****     TFTSHIELD_1_StartTouch();
+ 218              		.loc 1 102 0
+ 219 0020 FFF7FEFF 		bl	TFTSHIELD_1_StartTouch
+ 103:.\main.c      ****     //while(!TFTSHIELD_1_StartTouch());
+ 104:.\main.c      ****     //if (TFTSHIELD_1_StartTouch()){}
+ 105:.\main.c      ****     Clock_1_SetDividerValue(1);
+ 220              		.loc 1 105 0
+ 221 0024 4FF00000 		mov	r0, #0
+ 222 0028 4FF00101 		mov	r1, #1
+ 223 002c FFF7FEFF 		bl	Clock_1_SetDividerRegister
+ 106:.\main.c      ****     CyDelay(10);
+ 224              		.loc 1 106 0
+ 225 0030 4FF00A00 		mov	r0, #10
+ 226 0034 FFF7FEFF 		bl	CyDelay
+ 107:.\main.c      ****     TFTSHIELD_1_Start();
+ 227              		.loc 1 107 0
+ 228 0038 FFF7FEFF 		bl	TFTSHIELD_1_Start
+ 108:.\main.c      ****     TFTSHIELD_1_FillScreen(BLACK);
+ 229              		.loc 1 108 0
+ 230 003c 4FF00000 		mov	r0, #0
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDUHsm8.s 			page 7
+
+
+ 231 0040 FFF7FEFF 		bl	TFTSHIELD_1_FillScreen
+ 109:.\main.c      ****     TFTSHIELD_1_SetCursor(0,0);//start at 0,0 for text
+ 232              		.loc 1 109 0
+ 233 0044 4FF00000 		mov	r0, #0
+ 234 0048 4FF00001 		mov	r1, #0
+ 235 004c FFF7FEFF 		bl	TFTSHIELD_1_SetCursor
+ 110:.\main.c      ****     TFTSHIELD_1_SetTextColor(WHITE);  
+ 236              		.loc 1 110 0
+ 237 0050 4FF6FF70 		movw	r0, #65535
+ 238 0054 FFF7FEFF 		bl	TFTSHIELD_1_SetTextColor
+ 111:.\main.c      ****     TFTSHIELD_1_SetTextSize(1);
+ 239              		.loc 1 111 0
+ 240 0058 4FF00100 		mov	r0, #1
+ 241 005c FFF7FEFF 		bl	TFTSHIELD_1_SetTextSize
+ 112:.\main.c      ****     TFTSHIELD_1_SetRotation(1);
+ 242              		.loc 1 112 0
+ 243 0060 4FF00100 		mov	r0, #1
+ 244 0064 FFF7FEFF 		bl	TFTSHIELD_1_SetRotation
+ 113:.\main.c      ****     CyDelay(10);
+ 245              		.loc 1 113 0
+ 246 0068 4FF00A00 		mov	r0, #10
+ 247 006c FFF7FEFF 		bl	CyDelay
+ 114:.\main.c      **** }
+ 248              		.loc 1 114 0
+ 249 0070 80BD     		pop	{r7, pc}
+ 250              		.cfi_endproc
+ 251              	.LFE57:
+ 252              		.size	TFT_INIT, .-TFT_INIT
+ 253 0072 00BF     		.text
+ 254              	.Letext0:
+ 255              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.0\\psoc creator\\import\\gnu_cs\\arm\\4
+ 256              		.file 3 "./Generated_Source/PSoC5/TFTSHIELD_1.h"
+ 257              		.file 4 "./Generated_Source/PSoC5/core_cm3.h"
+ 258              		.section	.debug_info,"",%progbits
+ 259              	.Ldebug_info0:
+ 260 0000 BA010000 		.4byte	0x1ba
+ 261 0004 0200     		.2byte	0x2
+ 262 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 263 000a 04       		.byte	0x4
+ 264 000b 01       		.uleb128 0x1
+ 265 000c 57010000 		.4byte	.LASF27
+ 266 0010 01       		.byte	0x1
+ 267 0011 64000000 		.4byte	.LASF28
+ 268 0015 07000000 		.4byte	.LASF29
+ 269 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 270 001d 00000000 		.4byte	0
+ 271 0021 00000000 		.4byte	0
+ 272 0025 00000000 		.4byte	.Ldebug_line0
+ 273 0029 02       		.uleb128 0x2
+ 274 002a 01       		.byte	0x1
+ 275 002b 06       		.byte	0x6
+ 276 002c BA010000 		.4byte	.LASF0
+ 277 0030 03       		.uleb128 0x3
+ 278 0031 FD000000 		.4byte	.LASF2
+ 279 0035 02       		.byte	0x2
+ 280 0036 2A       		.byte	0x2a
+ 281 0037 3B000000 		.4byte	0x3b
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDUHsm8.s 			page 8
+
+
+ 282 003b 02       		.uleb128 0x2
+ 283 003c 01       		.byte	0x1
+ 284 003d 08       		.byte	0x8
+ 285 003e 56000000 		.4byte	.LASF1
+ 286 0042 03       		.uleb128 0x3
+ 287 0043 05010000 		.4byte	.LASF3
+ 288 0047 02       		.byte	0x2
+ 289 0048 35       		.byte	0x35
+ 290 0049 4D000000 		.4byte	0x4d
+ 291 004d 02       		.uleb128 0x2
+ 292 004e 02       		.byte	0x2
+ 293 004f 05       		.byte	0x5
+ 294 0050 3D010000 		.4byte	.LASF4
+ 295 0054 03       		.uleb128 0x3
+ 296 0055 4E010000 		.4byte	.LASF5
+ 297 0059 02       		.byte	0x2
+ 298 005a 36       		.byte	0x36
+ 299 005b 5F000000 		.4byte	0x5f
+ 300 005f 02       		.uleb128 0x2
+ 301 0060 02       		.byte	0x2
+ 302 0061 07       		.byte	0x7
+ 303 0062 88000000 		.4byte	.LASF6
+ 304 0066 03       		.uleb128 0x3
+ 305 0067 0D010000 		.4byte	.LASF7
+ 306 006b 02       		.byte	0x2
+ 307 006c 4F       		.byte	0x4f
+ 308 006d 71000000 		.4byte	0x71
+ 309 0071 02       		.uleb128 0x2
+ 310 0072 04       		.byte	0x4
+ 311 0073 05       		.byte	0x5
+ 312 0074 AC010000 		.4byte	.LASF8
+ 313 0078 02       		.uleb128 0x2
+ 314 0079 04       		.byte	0x4
+ 315 007a 07       		.byte	0x7
+ 316 007b 76000000 		.4byte	.LASF9
+ 317 007f 02       		.uleb128 0x2
+ 318 0080 08       		.byte	0x8
+ 319 0081 05       		.byte	0x5
+ 320 0082 1E010000 		.4byte	.LASF10
+ 321 0086 02       		.uleb128 0x2
+ 322 0087 08       		.byte	0x8
+ 323 0088 07       		.byte	0x7
+ 324 0089 E6000000 		.4byte	.LASF11
+ 325 008d 04       		.uleb128 0x4
+ 326 008e 04       		.byte	0x4
+ 327 008f 05       		.byte	0x5
+ 328 0090 696E7400 		.ascii	"int\000"
+ 329 0094 02       		.uleb128 0x2
+ 330 0095 04       		.byte	0x4
+ 331 0096 07       		.byte	0x7
+ 332 0097 D0000000 		.4byte	.LASF12
+ 333 009b 02       		.uleb128 0x2
+ 334 009c 04       		.byte	0x4
+ 335 009d 04       		.byte	0x4
+ 336 009e 50000000 		.4byte	.LASF13
+ 337 00a2 02       		.uleb128 0x2
+ 338 00a3 08       		.byte	0x8
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDUHsm8.s 			page 9
+
+
+ 339 00a4 04       		.byte	0x4
+ 340 00a5 BA000000 		.4byte	.LASF14
+ 341 00a9 02       		.uleb128 0x2
+ 342 00aa 01       		.byte	0x1
+ 343 00ab 08       		.byte	0x8
+ 344 00ac B5010000 		.4byte	.LASF15
+ 345 00b0 02       		.uleb128 0x2
+ 346 00b1 04       		.byte	0x4
+ 347 00b2 07       		.byte	0x7
+ 348 00b3 15010000 		.4byte	.LASF16
+ 349 00b7 05       		.uleb128 0x5
+ 350 00b8 01       		.byte	0x1
+ 351 00b9 CB000000 		.4byte	.LASF30
+ 352 00bd 01       		.byte	0x1
+ 353 00be 13       		.byte	0x13
+ 354 00bf 8D000000 		.4byte	0x8d
+ 355 00c3 00000000 		.4byte	.LFB56
+ 356 00c7 88010000 		.4byte	.LFE56
+ 357 00cb 00000000 		.4byte	.LLST0
+ 358 00cf 01       		.byte	0x1
+ 359 00d0 E3000000 		.4byte	0xe3
+ 360 00d4 06       		.uleb128 0x6
+ 361 00d5 47010000 		.4byte	.LASF31
+ 362 00d9 01       		.byte	0x1
+ 363 00da 20       		.byte	0x20
+ 364 00db E3000000 		.4byte	0xe3
+ 365 00df 02       		.byte	0x2
+ 366 00e0 91       		.byte	0x91
+ 367 00e1 44       		.sleb128 -60
+ 368 00e2 00       		.byte	0
+ 369 00e3 07       		.uleb128 0x7
+ 370 00e4 A9000000 		.4byte	0xa9
+ 371 00e8 F3000000 		.4byte	0xf3
+ 372 00ec 08       		.uleb128 0x8
+ 373 00ed B0000000 		.4byte	0xb0
+ 374 00f1 31       		.byte	0x31
+ 375 00f2 00       		.byte	0
+ 376 00f3 09       		.uleb128 0x9
+ 377 00f4 01       		.byte	0x1
+ 378 00f5 6D000000 		.4byte	.LASF32
+ 379 00f9 01       		.byte	0x1
+ 380 00fa 61       		.byte	0x61
+ 381 00fb 00000000 		.4byte	.LFB57
+ 382 00ff 72000000 		.4byte	.LFE57
+ 383 0103 3A000000 		.4byte	.LLST1
+ 384 0107 01       		.byte	0x1
+ 385 0108 0A       		.uleb128 0xa
+ 386 0109 9B000000 		.4byte	.LASF17
+ 387 010d 03       		.byte	0x3
+ 388 010e 6D       		.byte	0x6d
+ 389 010f 42000000 		.4byte	0x42
+ 390 0113 01       		.byte	0x1
+ 391 0114 05       		.byte	0x5
+ 392 0115 03       		.byte	0x3
+ 393 0116 00000000 		.4byte	cursor_x
+ 394 011a 0A       		.uleb128 0xa
+ 395 011b A4000000 		.4byte	.LASF18
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDUHsm8.s 			page 10
+
+
+ 396 011f 03       		.byte	0x3
+ 397 0120 6E       		.byte	0x6e
+ 398 0121 42000000 		.4byte	0x42
+ 399 0125 01       		.byte	0x1
+ 400 0126 05       		.byte	0x5
+ 401 0127 03       		.byte	0x3
+ 402 0128 00000000 		.4byte	cursor_y
+ 403 012c 0A       		.uleb128 0xa
+ 404 012d C1000000 		.4byte	.LASF19
+ 405 0131 03       		.byte	0x3
+ 406 0132 6F       		.byte	0x6f
+ 407 0133 54000000 		.4byte	0x54
+ 408 0137 01       		.byte	0x1
+ 409 0138 05       		.byte	0x5
+ 410 0139 03       		.byte	0x3
+ 411 013a 00000000 		.4byte	textcolor
+ 412 013e 0A       		.uleb128 0xa
+ 413 013f A0010000 		.4byte	.LASF20
+ 414 0143 03       		.byte	0x3
+ 415 0144 70       		.byte	0x70
+ 416 0145 54000000 		.4byte	0x54
+ 417 0149 01       		.byte	0x1
+ 418 014a 05       		.byte	0x5
+ 419 014b 03       		.byte	0x3
+ 420 014c 00000000 		.4byte	textbgcolor
+ 421 0150 0A       		.uleb128 0xa
+ 422 0151 2C010000 		.4byte	.LASF21
+ 423 0155 03       		.byte	0x3
+ 424 0156 71       		.byte	0x71
+ 425 0157 30000000 		.4byte	0x30
+ 426 015b 01       		.byte	0x1
+ 427 015c 05       		.byte	0x5
+ 428 015d 03       		.byte	0x3
+ 429 015e 00000000 		.4byte	textsize
+ 430 0162 0A       		.uleb128 0xa
+ 431 0163 DD000000 		.4byte	.LASF22
+ 432 0167 03       		.byte	0x3
+ 433 0168 72       		.byte	0x72
+ 434 0169 30000000 		.4byte	0x30
+ 435 016d 01       		.byte	0x1
+ 436 016e 05       		.byte	0x5
+ 437 016f 03       		.byte	0x3
+ 438 0170 00000000 		.4byte	rotation
+ 439 0174 0A       		.uleb128 0xa
+ 440 0175 4B000000 		.4byte	.LASF23
+ 441 0179 03       		.byte	0x3
+ 442 017a 73       		.byte	0x73
+ 443 017b 30000000 		.4byte	0x30
+ 444 017f 01       		.byte	0x1
+ 445 0180 05       		.byte	0x5
+ 446 0181 03       		.byte	0x3
+ 447 0182 00000000 		.4byte	wrap
+ 448 0186 0A       		.uleb128 0xa
+ 449 0187 00000000 		.4byte	.LASF24
+ 450 018b 03       		.byte	0x3
+ 451 018c 74       		.byte	0x74
+ 452 018d 8D000000 		.4byte	0x8d
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDUHsm8.s 			page 11
+
+
+ 453 0191 01       		.byte	0x1
+ 454 0192 05       		.byte	0x5
+ 455 0193 03       		.byte	0x3
+ 456 0194 00000000 		.4byte	_width
+ 457 0198 0A       		.uleb128 0xa
+ 458 0199 35010000 		.4byte	.LASF25
+ 459 019d 03       		.byte	0x3
+ 460 019e 75       		.byte	0x75
+ 461 019f 8D000000 		.4byte	0x8d
+ 462 01a3 01       		.byte	0x1
+ 463 01a4 05       		.byte	0x5
+ 464 01a5 03       		.byte	0x3
+ 465 01a6 00000000 		.4byte	_height
+ 466 01aa 0B       		.uleb128 0xb
+ 467 01ab AD000000 		.4byte	.LASF26
+ 468 01af 04       		.byte	0x4
+ 469 01b0 1606     		.2byte	0x616
+ 470 01b2 B8010000 		.4byte	0x1b8
+ 471 01b6 01       		.byte	0x1
+ 472 01b7 01       		.byte	0x1
+ 473 01b8 0C       		.uleb128 0xc
+ 474 01b9 66000000 		.4byte	0x66
+ 475 01bd 00       		.byte	0
+ 476              		.section	.debug_abbrev,"",%progbits
+ 477              	.Ldebug_abbrev0:
+ 478 0000 01       		.uleb128 0x1
+ 479 0001 11       		.uleb128 0x11
+ 480 0002 01       		.byte	0x1
+ 481 0003 25       		.uleb128 0x25
+ 482 0004 0E       		.uleb128 0xe
+ 483 0005 13       		.uleb128 0x13
+ 484 0006 0B       		.uleb128 0xb
+ 485 0007 03       		.uleb128 0x3
+ 486 0008 0E       		.uleb128 0xe
+ 487 0009 1B       		.uleb128 0x1b
+ 488 000a 0E       		.uleb128 0xe
+ 489 000b 55       		.uleb128 0x55
+ 490 000c 06       		.uleb128 0x6
+ 491 000d 11       		.uleb128 0x11
+ 492 000e 01       		.uleb128 0x1
+ 493 000f 52       		.uleb128 0x52
+ 494 0010 01       		.uleb128 0x1
+ 495 0011 10       		.uleb128 0x10
+ 496 0012 06       		.uleb128 0x6
+ 497 0013 00       		.byte	0
+ 498 0014 00       		.byte	0
+ 499 0015 02       		.uleb128 0x2
+ 500 0016 24       		.uleb128 0x24
+ 501 0017 00       		.byte	0
+ 502 0018 0B       		.uleb128 0xb
+ 503 0019 0B       		.uleb128 0xb
+ 504 001a 3E       		.uleb128 0x3e
+ 505 001b 0B       		.uleb128 0xb
+ 506 001c 03       		.uleb128 0x3
+ 507 001d 0E       		.uleb128 0xe
+ 508 001e 00       		.byte	0
+ 509 001f 00       		.byte	0
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDUHsm8.s 			page 12
+
+
+ 510 0020 03       		.uleb128 0x3
+ 511 0021 16       		.uleb128 0x16
+ 512 0022 00       		.byte	0
+ 513 0023 03       		.uleb128 0x3
+ 514 0024 0E       		.uleb128 0xe
+ 515 0025 3A       		.uleb128 0x3a
+ 516 0026 0B       		.uleb128 0xb
+ 517 0027 3B       		.uleb128 0x3b
+ 518 0028 0B       		.uleb128 0xb
+ 519 0029 49       		.uleb128 0x49
+ 520 002a 13       		.uleb128 0x13
+ 521 002b 00       		.byte	0
+ 522 002c 00       		.byte	0
+ 523 002d 04       		.uleb128 0x4
+ 524 002e 24       		.uleb128 0x24
+ 525 002f 00       		.byte	0
+ 526 0030 0B       		.uleb128 0xb
+ 527 0031 0B       		.uleb128 0xb
+ 528 0032 3E       		.uleb128 0x3e
+ 529 0033 0B       		.uleb128 0xb
+ 530 0034 03       		.uleb128 0x3
+ 531 0035 08       		.uleb128 0x8
+ 532 0036 00       		.byte	0
+ 533 0037 00       		.byte	0
+ 534 0038 05       		.uleb128 0x5
+ 535 0039 2E       		.uleb128 0x2e
+ 536 003a 01       		.byte	0x1
+ 537 003b 3F       		.uleb128 0x3f
+ 538 003c 0C       		.uleb128 0xc
+ 539 003d 03       		.uleb128 0x3
+ 540 003e 0E       		.uleb128 0xe
+ 541 003f 3A       		.uleb128 0x3a
+ 542 0040 0B       		.uleb128 0xb
+ 543 0041 3B       		.uleb128 0x3b
+ 544 0042 0B       		.uleb128 0xb
+ 545 0043 49       		.uleb128 0x49
+ 546 0044 13       		.uleb128 0x13
+ 547 0045 11       		.uleb128 0x11
+ 548 0046 01       		.uleb128 0x1
+ 549 0047 12       		.uleb128 0x12
+ 550 0048 01       		.uleb128 0x1
+ 551 0049 40       		.uleb128 0x40
+ 552 004a 06       		.uleb128 0x6
+ 553 004b 9642     		.uleb128 0x2116
+ 554 004d 0C       		.uleb128 0xc
+ 555 004e 01       		.uleb128 0x1
+ 556 004f 13       		.uleb128 0x13
+ 557 0050 00       		.byte	0
+ 558 0051 00       		.byte	0
+ 559 0052 06       		.uleb128 0x6
+ 560 0053 34       		.uleb128 0x34
+ 561 0054 00       		.byte	0
+ 562 0055 03       		.uleb128 0x3
+ 563 0056 0E       		.uleb128 0xe
+ 564 0057 3A       		.uleb128 0x3a
+ 565 0058 0B       		.uleb128 0xb
+ 566 0059 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDUHsm8.s 			page 13
+
+
+ 567 005a 0B       		.uleb128 0xb
+ 568 005b 49       		.uleb128 0x49
+ 569 005c 13       		.uleb128 0x13
+ 570 005d 02       		.uleb128 0x2
+ 571 005e 0A       		.uleb128 0xa
+ 572 005f 00       		.byte	0
+ 573 0060 00       		.byte	0
+ 574 0061 07       		.uleb128 0x7
+ 575 0062 01       		.uleb128 0x1
+ 576 0063 01       		.byte	0x1
+ 577 0064 49       		.uleb128 0x49
+ 578 0065 13       		.uleb128 0x13
+ 579 0066 01       		.uleb128 0x1
+ 580 0067 13       		.uleb128 0x13
+ 581 0068 00       		.byte	0
+ 582 0069 00       		.byte	0
+ 583 006a 08       		.uleb128 0x8
+ 584 006b 21       		.uleb128 0x21
+ 585 006c 00       		.byte	0
+ 586 006d 49       		.uleb128 0x49
+ 587 006e 13       		.uleb128 0x13
+ 588 006f 2F       		.uleb128 0x2f
+ 589 0070 0B       		.uleb128 0xb
+ 590 0071 00       		.byte	0
+ 591 0072 00       		.byte	0
+ 592 0073 09       		.uleb128 0x9
+ 593 0074 2E       		.uleb128 0x2e
+ 594 0075 00       		.byte	0
+ 595 0076 3F       		.uleb128 0x3f
+ 596 0077 0C       		.uleb128 0xc
+ 597 0078 03       		.uleb128 0x3
+ 598 0079 0E       		.uleb128 0xe
+ 599 007a 3A       		.uleb128 0x3a
+ 600 007b 0B       		.uleb128 0xb
+ 601 007c 3B       		.uleb128 0x3b
+ 602 007d 0B       		.uleb128 0xb
+ 603 007e 11       		.uleb128 0x11
+ 604 007f 01       		.uleb128 0x1
+ 605 0080 12       		.uleb128 0x12
+ 606 0081 01       		.uleb128 0x1
+ 607 0082 40       		.uleb128 0x40
+ 608 0083 06       		.uleb128 0x6
+ 609 0084 9642     		.uleb128 0x2116
+ 610 0086 0C       		.uleb128 0xc
+ 611 0087 00       		.byte	0
+ 612 0088 00       		.byte	0
+ 613 0089 0A       		.uleb128 0xa
+ 614 008a 34       		.uleb128 0x34
+ 615 008b 00       		.byte	0
+ 616 008c 03       		.uleb128 0x3
+ 617 008d 0E       		.uleb128 0xe
+ 618 008e 3A       		.uleb128 0x3a
+ 619 008f 0B       		.uleb128 0xb
+ 620 0090 3B       		.uleb128 0x3b
+ 621 0091 0B       		.uleb128 0xb
+ 622 0092 49       		.uleb128 0x49
+ 623 0093 13       		.uleb128 0x13
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDUHsm8.s 			page 14
+
+
+ 624 0094 3F       		.uleb128 0x3f
+ 625 0095 0C       		.uleb128 0xc
+ 626 0096 02       		.uleb128 0x2
+ 627 0097 0A       		.uleb128 0xa
+ 628 0098 00       		.byte	0
+ 629 0099 00       		.byte	0
+ 630 009a 0B       		.uleb128 0xb
+ 631 009b 34       		.uleb128 0x34
+ 632 009c 00       		.byte	0
+ 633 009d 03       		.uleb128 0x3
+ 634 009e 0E       		.uleb128 0xe
+ 635 009f 3A       		.uleb128 0x3a
+ 636 00a0 0B       		.uleb128 0xb
+ 637 00a1 3B       		.uleb128 0x3b
+ 638 00a2 05       		.uleb128 0x5
+ 639 00a3 49       		.uleb128 0x49
+ 640 00a4 13       		.uleb128 0x13
+ 641 00a5 3F       		.uleb128 0x3f
+ 642 00a6 0C       		.uleb128 0xc
+ 643 00a7 3C       		.uleb128 0x3c
+ 644 00a8 0C       		.uleb128 0xc
+ 645 00a9 00       		.byte	0
+ 646 00aa 00       		.byte	0
+ 647 00ab 0C       		.uleb128 0xc
+ 648 00ac 35       		.uleb128 0x35
+ 649 00ad 00       		.byte	0
+ 650 00ae 49       		.uleb128 0x49
+ 651 00af 13       		.uleb128 0x13
+ 652 00b0 00       		.byte	0
+ 653 00b1 00       		.byte	0
+ 654 00b2 00       		.byte	0
+ 655              		.section	.debug_loc,"",%progbits
+ 656              	.Ldebug_loc0:
+ 657              	.LLST0:
+ 658 0000 00000000 		.4byte	.LFB56
+ 659 0004 02000000 		.4byte	.LCFI0
+ 660 0008 0200     		.2byte	0x2
+ 661 000a 7D       		.byte	0x7d
+ 662 000b 00       		.sleb128 0
+ 663 000c 02000000 		.4byte	.LCFI0
+ 664 0010 04000000 		.4byte	.LCFI1
+ 665 0014 0200     		.2byte	0x2
+ 666 0016 7D       		.byte	0x7d
+ 667 0017 08       		.sleb128 8
+ 668 0018 04000000 		.4byte	.LCFI1
+ 669 001c 06000000 		.4byte	.LCFI2
+ 670 0020 0300     		.2byte	0x3
+ 671 0022 7D       		.byte	0x7d
+ 672 0023 C000     		.sleb128 64
+ 673 0025 06000000 		.4byte	.LCFI2
+ 674 0029 88010000 		.4byte	.LFE56
+ 675 002d 0300     		.2byte	0x3
+ 676 002f 77       		.byte	0x77
+ 677 0030 C000     		.sleb128 64
+ 678 0032 00000000 		.4byte	0
+ 679 0036 00000000 		.4byte	0
+ 680              	.LLST1:
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDUHsm8.s 			page 15
+
+
+ 681 003a 00000000 		.4byte	.LFB57
+ 682 003e 02000000 		.4byte	.LCFI3
+ 683 0042 0200     		.2byte	0x2
+ 684 0044 7D       		.byte	0x7d
+ 685 0045 00       		.sleb128 0
+ 686 0046 02000000 		.4byte	.LCFI3
+ 687 004a 04000000 		.4byte	.LCFI4
+ 688 004e 0200     		.2byte	0x2
+ 689 0050 7D       		.byte	0x7d
+ 690 0051 08       		.sleb128 8
+ 691 0052 04000000 		.4byte	.LCFI4
+ 692 0056 72000000 		.4byte	.LFE57
+ 693 005a 0200     		.2byte	0x2
+ 694 005c 77       		.byte	0x77
+ 695 005d 08       		.sleb128 8
+ 696 005e 00000000 		.4byte	0
+ 697 0062 00000000 		.4byte	0
+ 698              		.section	.debug_aranges,"",%progbits
+ 699 0000 24000000 		.4byte	0x24
+ 700 0004 0200     		.2byte	0x2
+ 701 0006 00000000 		.4byte	.Ldebug_info0
+ 702 000a 04       		.byte	0x4
+ 703 000b 00       		.byte	0
+ 704 000c 0000     		.2byte	0
+ 705 000e 0000     		.2byte	0
+ 706 0010 00000000 		.4byte	.LFB56
+ 707 0014 88010000 		.4byte	.LFE56-.LFB56
+ 708 0018 00000000 		.4byte	.LFB57
+ 709 001c 72000000 		.4byte	.LFE57-.LFB57
+ 710 0020 00000000 		.4byte	0
+ 711 0024 00000000 		.4byte	0
+ 712              		.section	.debug_ranges,"",%progbits
+ 713              	.Ldebug_ranges0:
+ 714 0000 00000000 		.4byte	.LFB56
+ 715 0004 88010000 		.4byte	.LFE56
+ 716 0008 00000000 		.4byte	.LFB57
+ 717 000c 72000000 		.4byte	.LFE57
+ 718 0010 00000000 		.4byte	0
+ 719 0014 00000000 		.4byte	0
+ 720              		.section	.debug_line,"",%progbits
+ 721              	.Ldebug_line0:
+ 722 0000 52010000 		.section	.debug_str,"MS",%progbits,1
+ 722      0200FD00 
+ 722      00000201 
+ 722      FB0E0D00 
+ 722      01010101 
+ 723              	.LASF24:
+ 724 0000 5F776964 		.ascii	"_width\000"
+ 724      746800
+ 725              	.LASF29:
+ 726 0007 433A5C55 		.ascii	"C:\\Users\\Brian\\Dropbox\\RPiSoC\\Projects\\PSoC_2"
+ 726      73657273 
+ 726      5C427269 
+ 726      616E5C44 
+ 726      726F7062 
+ 727 0034 5F50695C 		.ascii	"_Pi\\Wavedac_test.cydsn\000"
+ 727      57617665 
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDUHsm8.s 			page 16
+
+
+ 727      6461635F 
+ 727      74657374 
+ 727      2E637964 
+ 728              	.LASF23:
+ 729 004b 77726170 		.ascii	"wrap\000"
+ 729      00
+ 730              	.LASF13:
+ 731 0050 666C6F61 		.ascii	"float\000"
+ 731      7400
+ 732              	.LASF1:
+ 733 0056 756E7369 		.ascii	"unsigned char\000"
+ 733      676E6564 
+ 733      20636861 
+ 733      7200
+ 734              	.LASF28:
+ 735 0064 2E5C6D61 		.ascii	".\\main.c\000"
+ 735      696E2E63 
+ 735      00
+ 736              	.LASF32:
+ 737 006d 5446545F 		.ascii	"TFT_INIT\000"
+ 737      494E4954 
+ 737      00
+ 738              	.LASF9:
+ 739 0076 6C6F6E67 		.ascii	"long unsigned int\000"
+ 739      20756E73 
+ 739      69676E65 
+ 739      6420696E 
+ 739      7400
+ 740              	.LASF6:
+ 741 0088 73686F72 		.ascii	"short unsigned int\000"
+ 741      7420756E 
+ 741      7369676E 
+ 741      65642069 
+ 741      6E7400
+ 742              	.LASF17:
+ 743 009b 63757273 		.ascii	"cursor_x\000"
+ 743      6F725F78 
+ 743      00
+ 744              	.LASF18:
+ 745 00a4 63757273 		.ascii	"cursor_y\000"
+ 745      6F725F79 
+ 745      00
+ 746              	.LASF26:
+ 747 00ad 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 747      52784275 
+ 747      66666572 
+ 747      00
+ 748              	.LASF14:
+ 749 00ba 646F7562 		.ascii	"double\000"
+ 749      6C6500
+ 750              	.LASF19:
+ 751 00c1 74657874 		.ascii	"textcolor\000"
+ 751      636F6C6F 
+ 751      7200
+ 752              	.LASF30:
+ 753 00cb 6D61696E 		.ascii	"main\000"
+ 753      00
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDUHsm8.s 			page 17
+
+
+ 754              	.LASF12:
+ 755 00d0 756E7369 		.ascii	"unsigned int\000"
+ 755      676E6564 
+ 755      20696E74 
+ 755      00
+ 756              	.LASF22:
+ 757 00dd 726F7461 		.ascii	"rotation\000"
+ 757      74696F6E 
+ 757      00
+ 758              	.LASF11:
+ 759 00e6 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 759      206C6F6E 
+ 759      6720756E 
+ 759      7369676E 
+ 759      65642069 
+ 760              	.LASF2:
+ 761 00fd 75696E74 		.ascii	"uint8_t\000"
+ 761      385F7400 
+ 762              	.LASF3:
+ 763 0105 696E7431 		.ascii	"int16_t\000"
+ 763      365F7400 
+ 764              	.LASF7:
+ 765 010d 696E7433 		.ascii	"int32_t\000"
+ 765      325F7400 
+ 766              	.LASF16:
+ 767 0115 73697A65 		.ascii	"sizetype\000"
+ 767      74797065 
+ 767      00
+ 768              	.LASF10:
+ 769 011e 6C6F6E67 		.ascii	"long long int\000"
+ 769      206C6F6E 
+ 769      6720696E 
+ 769      7400
+ 770              	.LASF21:
+ 771 012c 74657874 		.ascii	"textsize\000"
+ 771      73697A65 
+ 771      00
+ 772              	.LASF25:
+ 773 0135 5F686569 		.ascii	"_height\000"
+ 773      67687400 
+ 774              	.LASF4:
+ 775 013d 73686F72 		.ascii	"short int\000"
+ 775      7420696E 
+ 775      7400
+ 776              	.LASF31:
+ 777 0147 62756666 		.ascii	"buffer\000"
+ 777      657200
+ 778              	.LASF5:
+ 779 014e 75696E74 		.ascii	"uint16_t\000"
+ 779      31365F74 
+ 779      00
+ 780              	.LASF27:
+ 781 0157 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 781      4320342E 
+ 781      372E3320 
+ 781      32303133 
+ 781      30333132 
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDUHsm8.s 			page 18
+
+
+ 782 018a 616E6368 		.ascii	"anch revision 196615]\000"
+ 782      20726576 
+ 782      6973696F 
+ 782      6E203139 
+ 782      36363135 
+ 783              	.LASF20:
+ 784 01a0 74657874 		.ascii	"textbgcolor\000"
+ 784      6267636F 
+ 784      6C6F7200 
+ 785              	.LASF8:
+ 786 01ac 6C6F6E67 		.ascii	"long int\000"
+ 786      20696E74 
+ 786      00
+ 787              	.LASF15:
+ 788 01b5 63686172 		.ascii	"char\000"
+ 788      00
+ 789              	.LASF0:
+ 790 01ba 7369676E 		.ascii	"signed char\000"
+ 790      65642063 
+ 790      68617200 
+ 791              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

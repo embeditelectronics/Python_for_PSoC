@@ -1,0 +1,100 @@
+import smbus
+import math
+import spidev
+import time
+
+class I2C():
+
+    def __init__(self, bus_location = 1, f_address = 0x08):
+        self.f_address = f_address
+        self.bus = smbus.SMBus(bus_location)
+
+    def setAddress(self, f_address):
+        self.f_address = f_address
+
+    def sendData(self, address, data):
+        a =[]
+        a.append(data)
+        self.bus.write_i2c_block_data(self.f_address,address,a)
+        del a
+        time.sleep(.5)
+
+    def receieveData(self, address):
+        data = self.bus.read_i2c_block_data(self.f_address,register)
+        return data[0]
+
+    def close(self):
+        pass
+
+class SPI():
+
+    def __init__(self):
+        self.spi = spidev.SpiDev()
+        self.speed = 1000000
+        self.delay_us = 10000
+        self.bits_per_xfer_word = 8
+        self.spi.open(0,0)
+        self.spi.max_speed_hz = self.speed
+        time.sleep(0.5)
+
+    def PrepareData(self, dat):
+        dat_l = list(dat)
+
+        if len(dat_l)<2:
+            raise ValueError('Not enough arguments for SPI transfer: At least an address and a command are required')
+        if len(dat_l)<4:
+            for i in range(4):
+                if i>(len(dat_l)-1):
+                    dat_l.append(0x00)
+        addr = dat_l[0]
+        cmd = dat_l[1]
+       #if dat_l[2]<0:
+       #     dat_l[2]=-1
+        val = dat_l[2]
+
+        if addr > 0xFF or cmd > 0xFF:
+            raise ValueError('Data is the wrong size')
+
+        if val> 0xFFFF:
+            dat_l[3] = 0xFF
+            dat_l[2] = 0xFF
+
+        elif val > 0xFF:
+            dat_l[3] = (dat_l[2] & 0xFF00)>>8
+            dat_l[2] &= 0x00FF
+
+        return dat_l
+
+
+    def sendData(self, vals):
+
+        xfer_packet = self.PrepareData(vals)
+        print('sending: ', xfer_packet)
+        self.spi.writebytes(xfer_packet)
+        time.sleep(0.01) #This might need more time... needs more testing
+
+    def receiveData(self, vals):
+
+        xfer_packet = self.PrepareData(vals)
+        print('sending: ',xfer_packet, ' from: ',vals)
+
+        self.spi.writebytes(xfer_packet)
+        time.sleep(0.01) #This might need more time...
+
+        if len(xfer_packet)<=4:
+            data_packet = self.spi.readbytes(len(xfer_packet))
+
+        data = 0x00 #define data variable
+        for i in range(len(data_packet)):
+            data = data_packet[i]<<(8*i) | data
+        print('recieving: ', data_packet, data)
+        
+        if data > 0x00FFFFFF:
+            return data - 0xFFFFFFFF
+        else:
+            return data #return result
+
+    def close(self):
+        print('closing spi...')
+        self.spi.close()
+        print('closed')

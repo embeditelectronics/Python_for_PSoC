@@ -1,0 +1,3625 @@
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"cymetadata.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	cy_meta_loadable
+  19              		.section	.cyloadablemeta,"a",%progbits
+  20              		.align	2
+  21              		.type	cy_meta_loadable, %object
+  22              		.size	cy_meta_loadable, 64
+  23              	cy_meta_loadable:
+  24 0000 00       		.byte	0
+  25 0001 00       		.byte	0
+  26 0002 00       		.byte	0
+  27 0003 00       		.byte	0
+  28 0004 00       		.byte	0
+  29 0005 00       		.byte	0
+  30 0006 00       		.byte	0
+  31 0007 00       		.byte	0
+  32 0008 00       		.byte	0
+  33 0009 00       		.byte	0
+  34 000a 00       		.byte	0
+  35 000b 00       		.byte	0
+  36 000c 00       		.byte	0
+  37 000d 00       		.byte	0
+  38 000e 00       		.byte	0
+  39 000f 00       		.byte	0
+  40 0010 00       		.byte	0
+  41 0011 00       		.byte	0
+  42 0012 00       		.byte	0
+  43 0013 00       		.byte	0
+  44 0014 00       		.byte	0
+  45 0015 00       		.byte	0
+  46 0016 01       		.byte	1
+  47 0017 03       		.byte	3
+  48 0018 00       		.byte	0
+  49 0019 00       		.byte	0
+  50 001a 00       		.byte	0
+  51 001b 00       		.byte	0
+  52 001c 00       		.byte	0
+  53 001d 00       		.byte	0
+  54 001e 00       		.byte	0
+  55 001f 00       		.byte	0
+  56 0020 00       		.byte	0
+  57 0021 00       		.byte	0
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 2
+
+
+  58 0022 00       		.byte	0
+  59 0023 00       		.byte	0
+  60 0024 00       		.byte	0
+  61 0025 00       		.byte	0
+  62 0026 00       		.byte	0
+  63 0027 00       		.byte	0
+  64 0028 00       		.byte	0
+  65 0029 00       		.byte	0
+  66 002a 00       		.byte	0
+  67 002b 00       		.byte	0
+  68 002c 00       		.byte	0
+  69 002d 00       		.byte	0
+  70 002e 00       		.byte	0
+  71 002f 00       		.byte	0
+  72 0030 00       		.byte	0
+  73 0031 00       		.byte	0
+  74 0032 00       		.byte	0
+  75 0033 00       		.byte	0
+  76 0034 00       		.byte	0
+  77 0035 00       		.byte	0
+  78 0036 00       		.byte	0
+  79 0037 00       		.byte	0
+  80 0038 00       		.byte	0
+  81 0039 00       		.byte	0
+  82 003a 00       		.byte	0
+  83 003b 00       		.byte	0
+  84 003c 00       		.byte	0
+  85 003d 00       		.byte	0
+  86 003e 00       		.byte	0
+  87 003f 00       		.byte	0
+  88              		.global	cy_meta_configecc
+  89              		.section	.cyconfigecc,"a",%progbits
+  90              		.align	2
+  91              		.type	cy_meta_configecc, %object
+  92              		.size	cy_meta_configecc, 3012
+  93              	cy_meta_configecc:
+  94 0000 0C       		.byte	12
+  95 0001 52       		.byte	82
+  96 0002 00       		.byte	0
+  97 0003 40       		.byte	64
+  98 0004 01       		.byte	1
+  99 0005 5A       		.byte	90
+ 100 0006 00       		.byte	0
+ 101 0007 40       		.byte	64
+ 102 0008 01       		.byte	1
+ 103 0009 5B       		.byte	91
+ 104 000a 00       		.byte	0
+ 105 000b 40       		.byte	64
+ 106 000c 07       		.byte	7
+ 107 000d 64       		.byte	100
+ 108 000e 00       		.byte	0
+ 109 000f 40       		.byte	64
+ 110 0010 04       		.byte	4
+ 111 0011 65       		.byte	101
+ 112 0012 00       		.byte	0
+ 113 0013 40       		.byte	64
+ 114 0014 03       		.byte	3
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 3
+
+
+ 115 0015 01       		.byte	1
+ 116 0016 01       		.byte	1
+ 117 0017 40       		.byte	64
+ 118 0018 04       		.byte	4
+ 119 0019 02       		.byte	2
+ 120 001a 01       		.byte	1
+ 121 001b 40       		.byte	64
+ 122 001c 0C       		.byte	12
+ 123 001d 03       		.byte	3
+ 124 001e 01       		.byte	1
+ 125 001f 40       		.byte	64
+ 126 0020 41       		.byte	65
+ 127 0021 04       		.byte	4
+ 128 0022 01       		.byte	1
+ 129 0023 40       		.byte	64
+ 130 0024 2E       		.byte	46
+ 131 0025 05       		.byte	5
+ 132 0026 01       		.byte	1
+ 133 0027 40       		.byte	64
+ 134 0028 48       		.byte	72
+ 135 0029 06       		.byte	6
+ 136 002a 01       		.byte	1
+ 137 002b 40       		.byte	64
+ 138 002c 37       		.byte	55
+ 139 002d 07       		.byte	7
+ 140 002e 01       		.byte	1
+ 141 002f 40       		.byte	64
+ 142 0030 53       		.byte	83
+ 143 0031 08       		.byte	8
+ 144 0032 01       		.byte	1
+ 145 0033 40       		.byte	64
+ 146 0034 39       		.byte	57
+ 147 0035 09       		.byte	9
+ 148 0036 01       		.byte	1
+ 149 0037 40       		.byte	64
+ 150 0038 4C       		.byte	76
+ 151 0039 0A       		.byte	10
+ 152 003a 01       		.byte	1
+ 153 003b 40       		.byte	64
+ 154 003c 36       		.byte	54
+ 155 003d 0B       		.byte	11
+ 156 003e 01       		.byte	1
+ 157 003f 40       		.byte	64
+ 158 0040 38       		.byte	56
+ 159 0041 0C       		.byte	12
+ 160 0042 01       		.byte	1
+ 161 0043 40       		.byte	64
+ 162 0044 35       		.byte	53
+ 163 0045 0D       		.byte	13
+ 164 0046 01       		.byte	1
+ 165 0047 40       		.byte	64
+ 166 0048 04       		.byte	4
+ 167 0049 0F       		.byte	15
+ 168 004a 01       		.byte	1
+ 169 004b 40       		.byte	64
+ 170 004c 49       		.byte	73
+ 171 004d 14       		.byte	20
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 4
+
+
+ 172 004e 01       		.byte	1
+ 173 004f 40       		.byte	64
+ 174 0050 3C       		.byte	60
+ 175 0051 15       		.byte	21
+ 176 0052 01       		.byte	1
+ 177 0053 40       		.byte	64
+ 178 0054 44       		.byte	68
+ 179 0055 16       		.byte	22
+ 180 0056 01       		.byte	1
+ 181 0057 40       		.byte	64
+ 182 0058 40       		.byte	64
+ 183 0059 17       		.byte	23
+ 184 005a 01       		.byte	1
+ 185 005b 40       		.byte	64
+ 186 005c 48       		.byte	72
+ 187 005d 18       		.byte	24
+ 188 005e 01       		.byte	1
+ 189 005f 40       		.byte	64
+ 190 0060 3C       		.byte	60
+ 191 0061 19       		.byte	25
+ 192 0062 01       		.byte	1
+ 193 0063 40       		.byte	64
+ 194 0064 2C       		.byte	44
+ 195 0065 1A       		.byte	26
+ 196 0066 01       		.byte	1
+ 197 0067 40       		.byte	64
+ 198 0068 3A       		.byte	58
+ 199 0069 1B       		.byte	27
+ 200 006a 01       		.byte	1
+ 201 006b 40       		.byte	64
+ 202 006c 11       		.byte	17
+ 203 006d 40       		.byte	64
+ 204 006e 01       		.byte	1
+ 205 006f 40       		.byte	64
+ 206 0070 0F       		.byte	15
+ 207 0071 41       		.byte	65
+ 208 0072 01       		.byte	1
+ 209 0073 40       		.byte	64
+ 210 0074 07       		.byte	7
+ 211 0075 42       		.byte	66
+ 212 0076 01       		.byte	1
+ 213 0077 40       		.byte	64
+ 214 0078 08       		.byte	8
+ 215 0079 43       		.byte	67
+ 216 007a 01       		.byte	1
+ 217 007b 40       		.byte	64
+ 218 007c 13       		.byte	19
+ 219 007d 44       		.byte	68
+ 220 007e 01       		.byte	1
+ 221 007f 40       		.byte	64
+ 222 0080 18       		.byte	24
+ 223 0081 45       		.byte	69
+ 224 0082 01       		.byte	1
+ 225 0083 40       		.byte	64
+ 226 0084 13       		.byte	19
+ 227 0085 46       		.byte	70
+ 228 0086 01       		.byte	1
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 5
+
+
+ 229 0087 40       		.byte	64
+ 230 0088 06       		.byte	6
+ 231 0089 47       		.byte	71
+ 232 008a 01       		.byte	1
+ 233 008b 40       		.byte	64
+ 234 008c 0D       		.byte	13
+ 235 008d 48       		.byte	72
+ 236 008e 01       		.byte	1
+ 237 008f 40       		.byte	64
+ 238 0090 1F       		.byte	31
+ 239 0091 49       		.byte	73
+ 240 0092 01       		.byte	1
+ 241 0093 40       		.byte	64
+ 242 0094 13       		.byte	19
+ 243 0095 4C       		.byte	76
+ 244 0096 01       		.byte	1
+ 245 0097 40       		.byte	64
+ 246 0098 1F       		.byte	31
+ 247 0099 4D       		.byte	77
+ 248 009a 01       		.byte	1
+ 249 009b 40       		.byte	64
+ 250 009c 07       		.byte	7
+ 251 009d 50       		.byte	80
+ 252 009e 01       		.byte	1
+ 253 009f 40       		.byte	64
+ 254 00a0 02       		.byte	2
+ 255 00a1 51       		.byte	81
+ 256 00a2 01       		.byte	1
+ 257 00a3 40       		.byte	64
+ 258 00a4 0C       		.byte	12
+ 259 00a5 12       		.byte	18
+ 260 00a6 10       		.byte	16
+ 261 00a7 A5       		.byte	-91
+ 262 00a8 11       		.byte	17
+ 263 00a9 93       		.byte	-109
+ 264 00aa 18       		.byte	24
+ 265 00ab C6       		.byte	-58
+ 266 00ac 19       		.byte	25
+ 267 00ad 9C       		.byte	-100
+ 268 00ae 24       		.byte	36
+ 269 00af 7F       		.byte	127
+ 270 00b0 28       		.byte	40
+ 271 00b1 0C       		.byte	12
+ 272 00b2 29       		.byte	41
+ 273 00b3 05       		.byte	5
+ 274 00b4 2C       		.byte	44
+ 275 00b5 F0       		.byte	-16
+ 276 00b6 34       		.byte	52
+ 277 00b7 FF       		.byte	-1
+ 278 00b8 60       		.byte	96
+ 279 00b9 C9       		.byte	-55
+ 280 00ba 61       		.byte	97
+ 281 00bb AC       		.byte	-84
+ 282 00bc 97       		.byte	-105
+ 283 00bd 01       		.byte	1
+ 284 00be 2F       		.byte	47
+ 285 00bf 21       		.byte	33
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 6
+
+
+ 286 00c0 84       		.byte	-124
+ 287 00c1 2D       		.byte	45
+ 288 00c2 86       		.byte	-122
+ 289 00c3 2D       		.byte	45
+ 290 00c4 89       		.byte	-119
+ 291 00c5 2D       		.byte	45
+ 292 00c6 8A       		.byte	-118
+ 293 00c7 2D       		.byte	45
+ 294 00c8 8B       		.byte	-117
+ 295 00c9 2D       		.byte	45
+ 296 00ca 8C       		.byte	-116
+ 297 00cb 2D       		.byte	45
+ 298 00cc 8D       		.byte	-115
+ 299 00cd 07       		.byte	7
+ 300 00ce 84       		.byte	-124
+ 301 00cf 78       		.byte	120
+ 302 00d0 85       		.byte	-123
+ 303 00d1 2D       		.byte	45
+ 304 00d2 87       		.byte	-121
+ 305 00d3 2D       		.byte	45
+ 306 00d4 8B       		.byte	-117
+ 307 00d5 47       		.byte	71
+ 308 00d6 80       		.byte	-128
+ 309 00d7 02       		.byte	2
+ 310 00d8 8A       		.byte	-118
+ 311 00d9 08       		.byte	8
+ 312 00da E0       		.byte	-32
+ 313 00db 20       		.byte	32
+ 314 00dc 39       		.byte	57
+ 315 00dd 20       		.byte	32
+ 316 00de 3F       		.byte	63
+ 317 00df 10       		.byte	16
+ 318 00e0 59       		.byte	89
+ 319 00e1 04       		.byte	4
+ 320 00e2 5F       		.byte	95
+ 321 00e3 01       		.byte	1
+ 322 00e4 25       		.byte	37
+ 323 00e5 10       		.byte	16
+ 324 00e6 81       		.byte	-127
+ 325 00e7 10       		.byte	16
+ 326 00e8 82       		.byte	-126
+ 327 00e9 40       		.byte	64
+ 328 00ea 86       		.byte	-122
+ 329 00eb 10       		.byte	16
+ 330 00ec 87       		.byte	-121
+ 331 00ed 01       		.byte	1
+ 332 00ee 98       		.byte	-104
+ 333 00ef 02       		.byte	2
+ 334 00f0 9A       		.byte	-102
+ 335 00f1 28       		.byte	40
+ 336 00f2 9B       		.byte	-101
+ 337 00f3 08       		.byte	8
+ 338 00f4 AB       		.byte	-85
+ 339 00f5 08       		.byte	8
+ 340 00f6 AE       		.byte	-82
+ 341 00f7 20       		.byte	32
+ 342 00f8 E0       		.byte	-32
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 7
+
+
+ 343 00f9 03       		.byte	3
+ 344 00fa E2       		.byte	-30
+ 345 00fb 08       		.byte	8
+ 346 00fc 2E       		.byte	46
+ 347 00fd 01       		.byte	1
+ 348 00fe 32       		.byte	50
+ 349 00ff 01       		.byte	1
+ 350 0100 34       		.byte	52
+ 351 0101 01       		.byte	1
+ 352 0102 40       		.byte	64
+ 353 0103 30       		.byte	48
+ 354 0104 41       		.byte	65
+ 355 0105 02       		.byte	2
+ 356 0106 49       		.byte	73
+ 357 0107 FF       		.byte	-1
+ 358 0108 4A       		.byte	74
+ 359 0109 FF       		.byte	-1
+ 360 010a 4B       		.byte	75
+ 361 010b FF       		.byte	-1
+ 362 010c 4D       		.byte	77
+ 363 010d A0       		.byte	-96
+ 364 010e 4F       		.byte	79
+ 365 010f 04       		.byte	4
+ 366 0110 50       		.byte	80
+ 367 0111 18       		.byte	24
+ 368 0112 52       		.byte	82
+ 369 0113 80       		.byte	-128
+ 370 0114 54       		.byte	84
+ 371 0115 25       		.byte	37
+ 372 0116 58       		.byte	88
+ 373 0117 04       		.byte	4
+ 374 0118 5A       		.byte	90
+ 375 0119 04       		.byte	4
+ 376 011a 5B       		.byte	91
+ 377 011b 04       		.byte	4
+ 378 011c 5C       		.byte	92
+ 379 011d 04       		.byte	4
+ 380 011e 5D       		.byte	93
+ 381 011f 44       		.byte	68
+ 382 0120 5F       		.byte	95
+ 383 0121 01       		.byte	1
+ 384 0122 60       		.byte	96
+ 385 0123 40       		.byte	64
+ 386 0124 62       		.byte	98
+ 387 0125 C0       		.byte	-64
+ 388 0126 64       		.byte	100
+ 389 0127 40       		.byte	64
+ 390 0128 65       		.byte	101
+ 391 0129 40       		.byte	64
+ 392 012a 66       		.byte	102
+ 393 012b C0       		.byte	-64
+ 394 012c 68       		.byte	104
+ 395 012d C0       		.byte	-64
+ 396 012e 6A       		.byte	106
+ 397 012f C0       		.byte	-64
+ 398 0130 6C       		.byte	108
+ 399 0131 C0       		.byte	-64
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 8
+
+
+ 400 0132 6E       		.byte	110
+ 401 0133 C0       		.byte	-64
+ 402 0134 82       		.byte	-126
+ 403 0135 01       		.byte	1
+ 404 0136 83       		.byte	-125
+ 405 0137 01       		.byte	1
+ 406 0138 92       		.byte	-110
+ 407 0139 02       		.byte	2
+ 408 013a AD       		.byte	-83
+ 409 013b 01       		.byte	1
+ 410 013c B0       		.byte	-80
+ 411 013d 02       		.byte	2
+ 412 013e B1       		.byte	-79
+ 413 013f 01       		.byte	1
+ 414 0140 B2       		.byte	-78
+ 415 0141 01       		.byte	1
+ 416 0142 C0       		.byte	-64
+ 417 0143 30       		.byte	48
+ 418 0144 C1       		.byte	-63
+ 419 0145 02       		.byte	2
+ 420 0146 C5       		.byte	-59
+ 421 0147 D0       		.byte	-48
+ 422 0148 C6       		.byte	-58
+ 423 0149 20       		.byte	32
+ 424 014a C7       		.byte	-57
+ 425 014b 10       		.byte	16
+ 426 014c C8       		.byte	-56
+ 427 014d 2A       		.byte	42
+ 428 014e C9       		.byte	-55
+ 429 014f FF       		.byte	-1
+ 430 0150 CA       		.byte	-54
+ 431 0151 FF       		.byte	-1
+ 432 0152 CB       		.byte	-53
+ 433 0153 FF       		.byte	-1
+ 434 0154 CD       		.byte	-51
+ 435 0155 AF       		.byte	-81
+ 436 0156 CE       		.byte	-50
+ 437 0157 0F       		.byte	15
+ 438 0158 CF       		.byte	-49
+ 439 0159 04       		.byte	4
+ 440 015a D0       		.byte	-48
+ 441 015b 18       		.byte	24
+ 442 015c D2       		.byte	-46
+ 443 015d 80       		.byte	-128
+ 444 015e D8       		.byte	-40
+ 445 015f 04       		.byte	4
+ 446 0160 D9       		.byte	-39
+ 447 0161 04       		.byte	4
+ 448 0162 DA       		.byte	-38
+ 449 0163 04       		.byte	4
+ 450 0164 DB       		.byte	-37
+ 451 0165 04       		.byte	4
+ 452 0166 DC       		.byte	-36
+ 453 0167 44       		.byte	68
+ 454 0168 DD       		.byte	-35
+ 455 0169 44       		.byte	68
+ 456 016a DF       		.byte	-33
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 9
+
+
+ 457 016b 01       		.byte	1
+ 458 016c E0       		.byte	-32
+ 459 016d 40       		.byte	64
+ 460 016e E2       		.byte	-30
+ 461 016f C0       		.byte	-64
+ 462 0170 E4       		.byte	-28
+ 463 0171 40       		.byte	64
+ 464 0172 E5       		.byte	-27
+ 465 0173 40       		.byte	64
+ 466 0174 E6       		.byte	-26
+ 467 0175 C0       		.byte	-64
+ 468 0176 E8       		.byte	-24
+ 469 0177 C0       		.byte	-64
+ 470 0178 EA       		.byte	-22
+ 471 0179 C0       		.byte	-64
+ 472 017a EC       		.byte	-20
+ 473 017b C0       		.byte	-64
+ 474 017c EE       		.byte	-18
+ 475 017d C0       		.byte	-64
+ 476 017e 06       		.byte	6
+ 477 017f 80       		.byte	-128
+ 478 0180 0D       		.byte	13
+ 479 0181 02       		.byte	2
+ 480 0182 10       		.byte	16
+ 481 0183 02       		.byte	2
+ 482 0184 18       		.byte	24
+ 483 0185 10       		.byte	16
+ 484 0186 1B       		.byte	27
+ 485 0187 10       		.byte	16
+ 486 0188 1D       		.byte	29
+ 487 0189 08       		.byte	8
+ 488 018a 1F       		.byte	31
+ 489 018b 09       		.byte	9
+ 490 018c 27       		.byte	39
+ 491 018d 40       		.byte	64
+ 492 018e 2F       		.byte	47
+ 493 018f 01       		.byte	1
+ 494 0190 3C       		.byte	60
+ 495 0191 02       		.byte	2
+ 496 0192 40       		.byte	64
+ 497 0193 08       		.byte	8
+ 498 0194 41       		.byte	65
+ 499 0195 20       		.byte	32
+ 500 0196 43       		.byte	67
+ 501 0197 08       		.byte	8
+ 502 0198 45       		.byte	69
+ 503 0199 28       		.byte	40
+ 504 019a 4D       		.byte	77
+ 505 019b 02       		.byte	2
+ 506 019c 54       		.byte	84
+ 507 019d 01       		.byte	1
+ 508 019e 55       		.byte	85
+ 509 019f 22       		.byte	34
+ 510 01a0 58       		.byte	88
+ 511 01a1 08       		.byte	8
+ 512 01a2 59       		.byte	89
+ 513 01a3 02       		.byte	2
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 10
+
+
+ 514 01a4 5B       		.byte	91
+ 515 01a5 40       		.byte	64
+ 516 01a6 5C       		.byte	92
+ 517 01a7 42       		.byte	66
+ 518 01a8 5E       		.byte	94
+ 519 01a9 20       		.byte	32
+ 520 01aa 5F       		.byte	95
+ 521 01ab 08       		.byte	8
+ 522 01ac 62       		.byte	98
+ 523 01ad 20       		.byte	32
+ 524 01ae 65       		.byte	101
+ 525 01af 40       		.byte	64
+ 526 01b0 66       		.byte	102
+ 527 01b1 28       		.byte	40
+ 528 01b2 70       		.byte	112
+ 529 01b3 02       		.byte	2
+ 530 01b4 71       		.byte	113
+ 531 01b5 01       		.byte	1
+ 532 01b6 76       		.byte	118
+ 533 01b7 80       		.byte	-128
+ 534 01b8 96       		.byte	-106
+ 535 01b9 80       		.byte	-128
+ 536 01ba 98       		.byte	-104
+ 537 01bb 02       		.byte	2
+ 538 01bc 99       		.byte	-103
+ 539 01bd 40       		.byte	64
+ 540 01be 9A       		.byte	-102
+ 541 01bf 28       		.byte	40
+ 542 01c0 9B       		.byte	-101
+ 543 01c1 08       		.byte	8
+ 544 01c2 9F       		.byte	-97
+ 545 01c3 01       		.byte	1
+ 546 01c4 A2       		.byte	-94
+ 547 01c5 10       		.byte	16
+ 548 01c6 B1       		.byte	-79
+ 549 01c7 40       		.byte	64
+ 550 01c8 C0       		.byte	-64
+ 551 01c9 10       		.byte	16
+ 552 01ca C2       		.byte	-62
+ 553 01cb 10       		.byte	16
+ 554 01cc C4       		.byte	-60
+ 555 01cd 01       		.byte	1
+ 556 01ce CA       		.byte	-54
+ 557 01cf 10       		.byte	16
+ 558 01d0 CE       		.byte	-50
+ 559 01d1 80       		.byte	-128
+ 560 01d2 D0       		.byte	-48
+ 561 01d3 66       		.byte	102
+ 562 01d4 D6       		.byte	-42
+ 563 01d5 FB       		.byte	-5
+ 564 01d6 D8       		.byte	-40
+ 565 01d7 74       		.byte	116
+ 566 01d8 E8       		.byte	-24
+ 567 01d9 80       		.byte	-128
+ 568 01da 02       		.byte	2
+ 569 01db 01       		.byte	1
+ 570 01dc 12       		.byte	18
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 11
+
+
+ 571 01dd 01       		.byte	1
+ 572 01de 1A       		.byte	26
+ 573 01df 02       		.byte	2
+ 574 01e0 21       		.byte	33
+ 575 01e1 01       		.byte	1
+ 576 01e2 27       		.byte	39
+ 577 01e3 01       		.byte	1
+ 578 01e4 30       		.byte	48
+ 579 01e5 01       		.byte	1
+ 580 01e6 31       		.byte	49
+ 581 01e7 01       		.byte	1
+ 582 01e8 36       		.byte	54
+ 583 01e9 02       		.byte	2
+ 584 01ea 40       		.byte	64
+ 585 01eb 60       		.byte	96
+ 586 01ec 41       		.byte	65
+ 587 01ed 02       		.byte	2
+ 588 01ee 49       		.byte	73
+ 589 01ef FF       		.byte	-1
+ 590 01f0 4A       		.byte	74
+ 591 01f1 FF       		.byte	-1
+ 592 01f2 4B       		.byte	75
+ 593 01f3 FF       		.byte	-1
+ 594 01f4 4D       		.byte	77
+ 595 01f5 A0       		.byte	-96
+ 596 01f6 4F       		.byte	79
+ 597 01f7 04       		.byte	4
+ 598 01f8 50       		.byte	80
+ 599 01f9 18       		.byte	24
+ 600 01fa 54       		.byte	84
+ 601 01fb 25       		.byte	37
+ 602 01fc 58       		.byte	88
+ 603 01fd 04       		.byte	4
+ 604 01fe 59       		.byte	89
+ 605 01ff 04       		.byte	4
+ 606 0200 5A       		.byte	90
+ 607 0201 04       		.byte	4
+ 608 0202 5B       		.byte	91
+ 609 0203 04       		.byte	4
+ 610 0204 5C       		.byte	92
+ 611 0205 44       		.byte	68
+ 612 0206 5D       		.byte	93
+ 613 0207 44       		.byte	68
+ 614 0208 5F       		.byte	95
+ 615 0209 01       		.byte	1
+ 616 020a 60       		.byte	96
+ 617 020b 40       		.byte	64
+ 618 020c 62       		.byte	98
+ 619 020d C0       		.byte	-64
+ 620 020e 64       		.byte	100
+ 621 020f 40       		.byte	64
+ 622 0210 65       		.byte	101
+ 623 0211 40       		.byte	64
+ 624 0212 66       		.byte	102
+ 625 0213 C0       		.byte	-64
+ 626 0214 68       		.byte	104
+ 627 0215 C0       		.byte	-64
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 12
+
+
+ 628 0216 6A       		.byte	106
+ 629 0217 C0       		.byte	-64
+ 630 0218 6C       		.byte	108
+ 631 0219 C0       		.byte	-64
+ 632 021a 6E       		.byte	110
+ 633 021b C0       		.byte	-64
+ 634 021c 92       		.byte	-110
+ 635 021d 01       		.byte	1
+ 636 021e 93       		.byte	-109
+ 637 021f 02       		.byte	2
+ 638 0220 9B       		.byte	-101
+ 639 0221 02       		.byte	2
+ 640 0222 A5       		.byte	-91
+ 641 0223 01       		.byte	1
+ 642 0224 AF       		.byte	-81
+ 643 0225 01       		.byte	1
+ 644 0226 B1       		.byte	-79
+ 645 0227 02       		.byte	2
+ 646 0228 B2       		.byte	-78
+ 647 0229 01       		.byte	1
+ 648 022a B5       		.byte	-75
+ 649 022b 01       		.byte	1
+ 650 022c BF       		.byte	-65
+ 651 022d 10       		.byte	16
+ 652 022e C0       		.byte	-64
+ 653 022f 30       		.byte	48
+ 654 0230 C1       		.byte	-63
+ 655 0231 06       		.byte	6
+ 656 0232 C5       		.byte	-59
+ 657 0233 D0       		.byte	-48
+ 658 0234 C6       		.byte	-58
+ 659 0235 10       		.byte	16
+ 660 0236 C7       		.byte	-57
+ 661 0237 02       		.byte	2
+ 662 0238 C8       		.byte	-56
+ 663 0239 1A       		.byte	26
+ 664 023a C9       		.byte	-55
+ 665 023b FF       		.byte	-1
+ 666 023c CA       		.byte	-54
+ 667 023d FF       		.byte	-1
+ 668 023e CB       		.byte	-53
+ 669 023f FF       		.byte	-1
+ 670 0240 CD       		.byte	-51
+ 671 0241 AF       		.byte	-81
+ 672 0242 CE       		.byte	-50
+ 673 0243 0F       		.byte	15
+ 674 0244 CF       		.byte	-49
+ 675 0245 04       		.byte	4
+ 676 0246 D0       		.byte	-48
+ 677 0247 18       		.byte	24
+ 678 0248 D6       		.byte	-42
+ 679 0249 08       		.byte	8
+ 680 024a D8       		.byte	-40
+ 681 024b 04       		.byte	4
+ 682 024c D9       		.byte	-39
+ 683 024d 04       		.byte	4
+ 684 024e DA       		.byte	-38
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 13
+
+
+ 685 024f 04       		.byte	4
+ 686 0250 DB       		.byte	-37
+ 687 0251 04       		.byte	4
+ 688 0252 DC       		.byte	-36
+ 689 0253 43       		.byte	67
+ 690 0254 DD       		.byte	-35
+ 691 0255 34       		.byte	52
+ 692 0256 DF       		.byte	-33
+ 693 0257 01       		.byte	1
+ 694 0258 E0       		.byte	-32
+ 695 0259 40       		.byte	64
+ 696 025a E2       		.byte	-30
+ 697 025b C0       		.byte	-64
+ 698 025c E4       		.byte	-28
+ 699 025d 40       		.byte	64
+ 700 025e E5       		.byte	-27
+ 701 025f 40       		.byte	64
+ 702 0260 E6       		.byte	-26
+ 703 0261 C0       		.byte	-64
+ 704 0262 E8       		.byte	-24
+ 705 0263 C0       		.byte	-64
+ 706 0264 EA       		.byte	-22
+ 707 0265 C0       		.byte	-64
+ 708 0266 EC       		.byte	-20
+ 709 0267 C0       		.byte	-64
+ 710 0268 EE       		.byte	-18
+ 711 0269 C0       		.byte	-64
+ 712 026a 06       		.byte	6
+ 713 026b 80       		.byte	-128
+ 714 026c 08       		.byte	8
+ 715 026d 02       		.byte	2
+ 716 026e 0C       		.byte	12
+ 717 026f 20       		.byte	32
+ 718 0270 0D       		.byte	13
+ 719 0271 02       		.byte	2
+ 720 0272 19       		.byte	25
+ 721 0273 04       		.byte	4
+ 722 0274 1E       		.byte	30
+ 723 0275 40       		.byte	64
+ 724 0276 1F       		.byte	31
+ 725 0277 80       		.byte	-128
+ 726 0278 21       		.byte	33
+ 727 0279 20       		.byte	32
+ 728 027a 23       		.byte	35
+ 729 027b 40       		.byte	64
+ 730 027c 24       		.byte	36
+ 731 027d 40       		.byte	64
+ 732 027e 28       		.byte	40
+ 733 027f 02       		.byte	2
+ 734 0280 29       		.byte	41
+ 735 0281 04       		.byte	4
+ 736 0282 2C       		.byte	44
+ 737 0283 20       		.byte	32
+ 738 0284 2F       		.byte	47
+ 739 0285 80       		.byte	-128
+ 740 0286 30       		.byte	48
+ 741 0287 20       		.byte	32
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 14
+
+
+ 742 0288 31       		.byte	49
+ 743 0289 01       		.byte	1
+ 744 028a 40       		.byte	64
+ 745 028b 10       		.byte	16
+ 746 028c 44       		.byte	68
+ 747 028d 08       		.byte	8
+ 748 028e 46       		.byte	70
+ 749 028f 04       		.byte	4
+ 750 0290 48       		.byte	72
+ 751 0291 08       		.byte	8
+ 752 0292 49       		.byte	73
+ 753 0293 02       		.byte	2
+ 754 0294 4F       		.byte	79
+ 755 0295 20       		.byte	32
+ 756 0296 50       		.byte	80
+ 757 0297 28       		.byte	40
+ 758 0298 52       		.byte	82
+ 759 0299 04       		.byte	4
+ 760 029a 58       		.byte	88
+ 761 029b 80       		.byte	-128
+ 762 029c 5C       		.byte	92
+ 763 029d 48       		.byte	72
+ 764 029e 5D       		.byte	93
+ 765 029f 02       		.byte	2
+ 766 02a0 60       		.byte	96
+ 767 02a1 02       		.byte	2
+ 768 02a2 65       		.byte	101
+ 769 02a3 10       		.byte	16
+ 770 02a4 87       		.byte	-121
+ 771 02a5 20       		.byte	32
+ 772 02a6 8B       		.byte	-117
+ 773 02a7 40       		.byte	64
+ 774 02a8 90       		.byte	-112
+ 775 02a9 10       		.byte	16
+ 776 02aa 96       		.byte	-106
+ 777 02ab 80       		.byte	-128
+ 778 02ac 99       		.byte	-103
+ 779 02ad 01       		.byte	1
+ 780 02ae 9A       		.byte	-102
+ 781 02af 80       		.byte	-128
+ 782 02b0 9F       		.byte	-97
+ 783 02b1 01       		.byte	1
+ 784 02b2 A1       		.byte	-95
+ 785 02b3 02       		.byte	2
+ 786 02b4 A3       		.byte	-93
+ 787 02b5 10       		.byte	16
+ 788 02b6 A5       		.byte	-91
+ 789 02b7 04       		.byte	4
+ 790 02b8 A6       		.byte	-90
+ 791 02b9 20       		.byte	32
+ 792 02ba A9       		.byte	-87
+ 793 02bb 04       		.byte	4
+ 794 02bc B2       		.byte	-78
+ 795 02bd 20       		.byte	32
+ 796 02be B4       		.byte	-76
+ 797 02bf 40       		.byte	64
+ 798 02c0 C0       		.byte	-64
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 15
+
+
+ 799 02c1 10       		.byte	16
+ 800 02c2 C2       		.byte	-62
+ 801 02c3 58       		.byte	88
+ 802 02c4 CA       		.byte	-54
+ 803 02c5 CA       		.byte	-54
+ 804 02c6 CC       		.byte	-52
+ 805 02c7 05       		.byte	5
+ 806 02c8 D0       		.byte	-48
+ 807 02c9 22       		.byte	34
+ 808 02ca D2       		.byte	-46
+ 809 02cb 24       		.byte	36
+ 810 02cc D6       		.byte	-42
+ 811 02cd D8       		.byte	-40
+ 812 02ce D8       		.byte	-40
+ 813 02cf 28       		.byte	40
+ 814 02d0 E0       		.byte	-32
+ 815 02d1 02       		.byte	2
+ 816 02d2 E2       		.byte	-30
+ 817 02d3 20       		.byte	32
+ 818 02d4 E8       		.byte	-24
+ 819 02d5 40       		.byte	64
+ 820 02d6 EE       		.byte	-18
+ 821 02d7 01       		.byte	1
+ 822 02d8 07       		.byte	7
+ 823 02d9 02       		.byte	2
+ 824 02da 0B       		.byte	11
+ 825 02db 01       		.byte	1
+ 826 02dc 0C       		.byte	12
+ 827 02dd 01       		.byte	1
+ 828 02de 1A       		.byte	26
+ 829 02df 01       		.byte	1
+ 830 02e0 1F       		.byte	31
+ 831 02e1 01       		.byte	1
+ 832 02e2 30       		.byte	48
+ 833 02e3 01       		.byte	1
+ 834 02e4 33       		.byte	51
+ 835 02e5 01       		.byte	1
+ 836 02e6 37       		.byte	55
+ 837 02e7 02       		.byte	2
+ 838 02e8 40       		.byte	64
+ 839 02e9 30       		.byte	48
+ 840 02ea 41       		.byte	65
+ 841 02eb 02       		.byte	2
+ 842 02ec 49       		.byte	73
+ 843 02ed FF       		.byte	-1
+ 844 02ee 4A       		.byte	74
+ 845 02ef FF       		.byte	-1
+ 846 02f0 4B       		.byte	75
+ 847 02f1 FF       		.byte	-1
+ 848 02f2 4D       		.byte	77
+ 849 02f3 A0       		.byte	-96
+ 850 02f4 4F       		.byte	79
+ 851 02f5 04       		.byte	4
+ 852 02f6 50       		.byte	80
+ 853 02f7 18       		.byte	24
+ 854 02f8 52       		.byte	82
+ 855 02f9 80       		.byte	-128
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 16
+
+
+ 856 02fa 58       		.byte	88
+ 857 02fb 04       		.byte	4
+ 858 02fc 59       		.byte	89
+ 859 02fd 04       		.byte	4
+ 860 02fe 5A       		.byte	90
+ 861 02ff 04       		.byte	4
+ 862 0300 5B       		.byte	91
+ 863 0301 04       		.byte	4
+ 864 0302 5C       		.byte	92
+ 865 0303 44       		.byte	68
+ 866 0304 5D       		.byte	93
+ 867 0305 44       		.byte	68
+ 868 0306 5F       		.byte	95
+ 869 0307 01       		.byte	1
+ 870 0308 60       		.byte	96
+ 871 0309 40       		.byte	64
+ 872 030a 62       		.byte	98
+ 873 030b C0       		.byte	-64
+ 874 030c 64       		.byte	100
+ 875 030d 40       		.byte	64
+ 876 030e 65       		.byte	101
+ 877 030f 40       		.byte	64
+ 878 0310 66       		.byte	102
+ 879 0311 C0       		.byte	-64
+ 880 0312 68       		.byte	104
+ 881 0313 C0       		.byte	-64
+ 882 0314 6A       		.byte	106
+ 883 0315 C0       		.byte	-64
+ 884 0316 6C       		.byte	108
+ 885 0317 C0       		.byte	-64
+ 886 0318 6E       		.byte	110
+ 887 0319 C0       		.byte	-64
+ 888 031a 81       		.byte	-127
+ 889 031b 01       		.byte	1
+ 890 031c 85       		.byte	-123
+ 891 031d 01       		.byte	1
+ 892 031e 89       		.byte	-119
+ 893 031f 01       		.byte	1
+ 894 0320 8A       		.byte	-118
+ 895 0321 01       		.byte	1
+ 896 0322 8F       		.byte	-113
+ 897 0323 01       		.byte	1
+ 898 0324 9A       		.byte	-102
+ 899 0325 1E       		.byte	30
+ 900 0326 A0       		.byte	-96
+ 901 0327 01       		.byte	1
+ 902 0328 A2       		.byte	-94
+ 903 0329 02       		.byte	2
+ 904 032a A3       		.byte	-93
+ 905 032b 01       		.byte	1
+ 906 032c A4       		.byte	-92
+ 907 032d 01       		.byte	1
+ 908 032e A6       		.byte	-90
+ 909 032f 04       		.byte	4
+ 910 0330 A8       		.byte	-88
+ 911 0331 01       		.byte	1
+ 912 0332 AA       		.byte	-86
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 17
+
+
+ 913 0333 08       		.byte	8
+ 914 0334 AB       		.byte	-85
+ 915 0335 02       		.byte	2
+ 916 0336 AC       		.byte	-84
+ 917 0337 10       		.byte	16
+ 918 0338 AE       		.byte	-82
+ 919 0339 01       		.byte	1
+ 920 033a B1       		.byte	-79
+ 921 033b 01       		.byte	1
+ 922 033c B2       		.byte	-78
+ 923 033d 1F       		.byte	31
+ 924 033e B5       		.byte	-75
+ 925 033f 02       		.byte	2
+ 926 0340 BE       		.byte	-66
+ 927 0341 04       		.byte	4
+ 928 0342 BF       		.byte	-65
+ 929 0343 01       		.byte	1
+ 930 0344 C0       		.byte	-64
+ 931 0345 30       		.byte	48
+ 932 0346 C1       		.byte	-63
+ 933 0347 06       		.byte	6
+ 934 0348 C5       		.byte	-59
+ 935 0349 D1       		.byte	-47
+ 936 034a C7       		.byte	-57
+ 937 034b 02       		.byte	2
+ 938 034c C8       		.byte	-56
+ 939 034d 13       		.byte	19
+ 940 034e C9       		.byte	-55
+ 941 034f FF       		.byte	-1
+ 942 0350 CA       		.byte	-54
+ 943 0351 FF       		.byte	-1
+ 944 0352 CB       		.byte	-53
+ 945 0353 FF       		.byte	-1
+ 946 0354 CD       		.byte	-51
+ 947 0355 AF       		.byte	-81
+ 948 0356 CE       		.byte	-50
+ 949 0357 0F       		.byte	15
+ 950 0358 CF       		.byte	-49
+ 951 0359 04       		.byte	4
+ 952 035a D0       		.byte	-48
+ 953 035b 18       		.byte	24
+ 954 035c D4       		.byte	-44
+ 955 035d 25       		.byte	37
+ 956 035e D8       		.byte	-40
+ 957 035f 04       		.byte	4
+ 958 0360 D9       		.byte	-39
+ 959 0361 04       		.byte	4
+ 960 0362 DA       		.byte	-38
+ 961 0363 04       		.byte	4
+ 962 0364 DB       		.byte	-37
+ 963 0365 04       		.byte	4
+ 964 0366 DC       		.byte	-36
+ 965 0367 80       		.byte	-128
+ 966 0368 DD       		.byte	-35
+ 967 0369 44       		.byte	68
+ 968 036a DF       		.byte	-33
+ 969 036b 01       		.byte	1
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 18
+
+
+ 970 036c E0       		.byte	-32
+ 971 036d 40       		.byte	64
+ 972 036e E2       		.byte	-30
+ 973 036f C0       		.byte	-64
+ 974 0370 E4       		.byte	-28
+ 975 0371 40       		.byte	64
+ 976 0372 E5       		.byte	-27
+ 977 0373 40       		.byte	64
+ 978 0374 E6       		.byte	-26
+ 979 0375 C0       		.byte	-64
+ 980 0376 E8       		.byte	-24
+ 981 0377 C0       		.byte	-64
+ 982 0378 EA       		.byte	-22
+ 983 0379 C0       		.byte	-64
+ 984 037a EC       		.byte	-20
+ 985 037b C0       		.byte	-64
+ 986 037c EE       		.byte	-18
+ 987 037d C0       		.byte	-64
+ 988 037e 00       		.byte	0
+ 989 037f 20       		.byte	32
+ 990 0380 01       		.byte	1
+ 991 0381 20       		.byte	32
+ 992 0382 07       		.byte	7
+ 993 0383 02       		.byte	2
+ 994 0384 09       		.byte	9
+ 995 0385 20       		.byte	32
+ 996 0386 0F       		.byte	15
+ 997 0387 04       		.byte	4
+ 998 0388 10       		.byte	16
+ 999 0389 A8       		.byte	-88
+ 1000 038a 11       		.byte	17
+ 1001 038b 40       		.byte	64
+ 1002 038c 18       		.byte	24
+ 1003 038d 10       		.byte	16
+ 1004 038e 1E       		.byte	30
+ 1005 038f 40       		.byte	64
+ 1006 0390 21       		.byte	33
+ 1007 0391 20       		.byte	32
+ 1008 0392 23       		.byte	35
+ 1009 0393 40       		.byte	64
+ 1010 0394 25       		.byte	37
+ 1011 0395 04       		.byte	4
+ 1012 0396 27       		.byte	39
+ 1013 0397 02       		.byte	2
+ 1014 0398 29       		.byte	41
+ 1015 0399 20       		.byte	32
+ 1016 039a 2B       		.byte	43
+ 1017 039b 80       		.byte	-128
+ 1018 039c 37       		.byte	55
+ 1019 039d 40       		.byte	64
+ 1020 039e 39       		.byte	57
+ 1021 039f 55       		.byte	85
+ 1022 03a0 3F       		.byte	63
+ 1023 03a1 24       		.byte	36
+ 1024 03a2 42       		.byte	66
+ 1025 03a3 20       		.byte	32
+ 1026 03a4 44       		.byte	68
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 19
+
+
+ 1027 03a5 08       		.byte	8
+ 1028 03a6 46       		.byte	70
+ 1029 03a7 24       		.byte	36
+ 1030 03a8 47       		.byte	71
+ 1031 03a9 08       		.byte	8
+ 1032 03aa 49       		.byte	73
+ 1033 03ab 02       		.byte	2
+ 1034 03ac 4A       		.byte	74
+ 1035 03ad 08       		.byte	8
+ 1036 03ae 4B       		.byte	75
+ 1037 03af 04       		.byte	4
+ 1038 03b0 52       		.byte	82
+ 1039 03b1 0C       		.byte	12
+ 1040 03b2 58       		.byte	88
+ 1041 03b3 08       		.byte	8
+ 1042 03b4 59       		.byte	89
+ 1043 03b5 02       		.byte	2
+ 1044 03b6 5A       		.byte	90
+ 1045 03b7 40       		.byte	64
+ 1046 03b8 61       		.byte	97
+ 1047 03b9 10       		.byte	16
+ 1048 03ba 77       		.byte	119
+ 1049 03bb 40       		.byte	64
+ 1050 03bc 7B       		.byte	123
+ 1051 03bd 02       		.byte	2
+ 1052 03be 91       		.byte	-111
+ 1053 03bf D5       		.byte	-43
+ 1054 03c0 96       		.byte	-106
+ 1055 03c1 08       		.byte	8
+ 1056 03c2 99       		.byte	-103
+ 1057 03c3 10       		.byte	16
+ 1058 03c4 9B       		.byte	-101
+ 1059 03c5 80       		.byte	-128
+ 1060 03c6 9D       		.byte	-99
+ 1061 03c7 01       		.byte	1
+ 1062 03c8 9E       		.byte	-98
+ 1063 03c9 40       		.byte	64
+ 1064 03ca 9F       		.byte	-97
+ 1065 03cb 40       		.byte	64
+ 1066 03cc A0       		.byte	-96
+ 1067 03cd A9       		.byte	-87
+ 1068 03ce A2       		.byte	-94
+ 1069 03cf 10       		.byte	16
+ 1070 03d0 A3       		.byte	-93
+ 1071 03d1 12       		.byte	18
+ 1072 03d2 B1       		.byte	-79
+ 1073 03d3 20       		.byte	32
+ 1074 03d4 C0       		.byte	-64
+ 1075 03d5 82       		.byte	-126
+ 1076 03d6 C2       		.byte	-62
+ 1077 03d7 42       		.byte	66
+ 1078 03d8 C4       		.byte	-60
+ 1079 03d9 0F       		.byte	15
+ 1080 03da CA       		.byte	-54
+ 1081 03db 05       		.byte	5
+ 1082 03dc CC       		.byte	-52
+ 1083 03dd 10       		.byte	16
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 20
+
+
+ 1084 03de CE       		.byte	-50
+ 1085 03df 6F       		.byte	111
+ 1086 03e0 D0       		.byte	-48
+ 1087 03e1 62       		.byte	98
+ 1088 03e2 D2       		.byte	-46
+ 1089 03e3 04       		.byte	4
+ 1090 03e4 D6       		.byte	-42
+ 1091 03e5 0B       		.byte	11
+ 1092 03e6 D8       		.byte	-40
+ 1093 03e7 04       		.byte	4
+ 1094 03e8 DE       		.byte	-34
+ 1095 03e9 08       		.byte	8
+ 1096 03ea E0       		.byte	-32
+ 1097 03eb 02       		.byte	2
+ 1098 03ec E8       		.byte	-24
+ 1099 03ed 20       		.byte	32
+ 1100 03ee EE       		.byte	-18
+ 1101 03ef 01       		.byte	1
+ 1102 03f0 01       		.byte	1
+ 1103 03f1 01       		.byte	1
+ 1104 03f2 02       		.byte	2
+ 1105 03f3 01       		.byte	1
+ 1106 03f4 05       		.byte	5
+ 1107 03f5 01       		.byte	1
+ 1108 03f6 09       		.byte	9
+ 1109 03f7 01       		.byte	1
+ 1110 03f8 0F       		.byte	15
+ 1111 03f9 01       		.byte	1
+ 1112 03fa 14       		.byte	20
+ 1113 03fb 01       		.byte	1
+ 1114 03fc 2F       		.byte	47
+ 1115 03fd 02       		.byte	2
+ 1116 03fe 33       		.byte	51
+ 1117 03ff 02       		.byte	2
+ 1118 0400 36       		.byte	54
+ 1119 0401 01       		.byte	1
+ 1120 0402 37       		.byte	55
+ 1121 0403 01       		.byte	1
+ 1122 0404 3F       		.byte	63
+ 1123 0405 40       		.byte	64
+ 1124 0406 40       		.byte	64
+ 1125 0407 10       		.byte	16
+ 1126 0408 41       		.byte	65
+ 1127 0409 03       		.byte	3
+ 1128 040a 49       		.byte	73
+ 1129 040b FF       		.byte	-1
+ 1130 040c 4A       		.byte	74
+ 1131 040d FF       		.byte	-1
+ 1132 040e 4B       		.byte	75
+ 1133 040f FF       		.byte	-1
+ 1134 0410 4D       		.byte	77
+ 1135 0411 A0       		.byte	-96
+ 1136 0412 4F       		.byte	79
+ 1137 0413 04       		.byte	4
+ 1138 0414 50       		.byte	80
+ 1139 0415 18       		.byte	24
+ 1140 0416 54       		.byte	84
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 21
+
+
+ 1141 0417 25       		.byte	37
+ 1142 0418 58       		.byte	88
+ 1143 0419 04       		.byte	4
+ 1144 041a 59       		.byte	89
+ 1145 041b 04       		.byte	4
+ 1146 041c 5A       		.byte	90
+ 1147 041d 04       		.byte	4
+ 1148 041e 5B       		.byte	91
+ 1149 041f 04       		.byte	4
+ 1150 0420 5C       		.byte	92
+ 1151 0421 44       		.byte	68
+ 1152 0422 5D       		.byte	93
+ 1153 0423 44       		.byte	68
+ 1154 0424 5F       		.byte	95
+ 1155 0425 01       		.byte	1
+ 1156 0426 60       		.byte	96
+ 1157 0427 40       		.byte	64
+ 1158 0428 62       		.byte	98
+ 1159 0429 C0       		.byte	-64
+ 1160 042a 64       		.byte	100
+ 1161 042b 40       		.byte	64
+ 1162 042c 65       		.byte	101
+ 1163 042d 40       		.byte	64
+ 1164 042e 66       		.byte	102
+ 1165 042f C0       		.byte	-64
+ 1166 0430 68       		.byte	104
+ 1167 0431 C0       		.byte	-64
+ 1168 0432 6A       		.byte	106
+ 1169 0433 C0       		.byte	-64
+ 1170 0434 6C       		.byte	108
+ 1171 0435 C0       		.byte	-64
+ 1172 0436 6E       		.byte	110
+ 1173 0437 C0       		.byte	-64
+ 1174 0438 82       		.byte	-126
+ 1175 0439 01       		.byte	1
+ 1176 043a 8B       		.byte	-117
+ 1177 043b 02       		.byte	2
+ 1178 043c 96       		.byte	-106
+ 1179 043d 02       		.byte	2
+ 1180 043e 98       		.byte	-104
+ 1181 043f 02       		.byte	2
+ 1182 0440 9F       		.byte	-97
+ 1183 0441 01       		.byte	1
+ 1184 0442 B0       		.byte	-80
+ 1185 0443 02       		.byte	2
+ 1186 0444 B3       		.byte	-77
+ 1187 0445 02       		.byte	2
+ 1188 0446 B5       		.byte	-75
+ 1189 0447 01       		.byte	1
+ 1190 0448 B6       		.byte	-74
+ 1191 0449 01       		.byte	1
+ 1192 044a C0       		.byte	-64
+ 1193 044b 10       		.byte	16
+ 1194 044c C1       		.byte	-63
+ 1195 044d 02       		.byte	2
+ 1196 044e C5       		.byte	-59
+ 1197 044f D0       		.byte	-48
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 22
+
+
+ 1198 0450 C6       		.byte	-58
+ 1199 0451 10       		.byte	16
+ 1200 0452 C7       		.byte	-57
+ 1201 0453 02       		.byte	2
+ 1202 0454 C8       		.byte	-56
+ 1203 0455 1A       		.byte	26
+ 1204 0456 C9       		.byte	-55
+ 1205 0457 FF       		.byte	-1
+ 1206 0458 CA       		.byte	-54
+ 1207 0459 FF       		.byte	-1
+ 1208 045a CB       		.byte	-53
+ 1209 045b FF       		.byte	-1
+ 1210 045c CD       		.byte	-51
+ 1211 045d AF       		.byte	-81
+ 1212 045e CE       		.byte	-50
+ 1213 045f 0F       		.byte	15
+ 1214 0460 CF       		.byte	-49
+ 1215 0461 04       		.byte	4
+ 1216 0462 D0       		.byte	-48
+ 1217 0463 18       		.byte	24
+ 1218 0464 D2       		.byte	-46
+ 1219 0465 80       		.byte	-128
+ 1220 0466 D4       		.byte	-44
+ 1221 0467 25       		.byte	37
+ 1222 0468 D8       		.byte	-40
+ 1223 0469 04       		.byte	4
+ 1224 046a D9       		.byte	-39
+ 1225 046b 04       		.byte	4
+ 1226 046c DA       		.byte	-38
+ 1227 046d 04       		.byte	4
+ 1228 046e DB       		.byte	-37
+ 1229 046f 04       		.byte	4
+ 1230 0470 DC       		.byte	-36
+ 1231 0471 44       		.byte	68
+ 1232 0472 DD       		.byte	-35
+ 1233 0473 44       		.byte	68
+ 1234 0474 DF       		.byte	-33
+ 1235 0475 01       		.byte	1
+ 1236 0476 E0       		.byte	-32
+ 1237 0477 40       		.byte	64
+ 1238 0478 E2       		.byte	-30
+ 1239 0479 C0       		.byte	-64
+ 1240 047a E4       		.byte	-28
+ 1241 047b 40       		.byte	64
+ 1242 047c E5       		.byte	-27
+ 1243 047d 40       		.byte	64
+ 1244 047e E6       		.byte	-26
+ 1245 047f C0       		.byte	-64
+ 1246 0480 E8       		.byte	-24
+ 1247 0481 C0       		.byte	-64
+ 1248 0482 EA       		.byte	-22
+ 1249 0483 C0       		.byte	-64
+ 1250 0484 EC       		.byte	-20
+ 1251 0485 C0       		.byte	-64
+ 1252 0486 EE       		.byte	-18
+ 1253 0487 C0       		.byte	-64
+ 1254 0488 02       		.byte	2
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 23
+
+
+ 1255 0489 40       		.byte	64
+ 1256 048a 07       		.byte	7
+ 1257 048b 40       		.byte	64
+ 1258 048c 09       		.byte	9
+ 1259 048d 08       		.byte	8
+ 1260 048e 0E       		.byte	14
+ 1261 048f 08       		.byte	8
+ 1262 0490 0F       		.byte	15
+ 1263 0491 20       		.byte	32
+ 1264 0492 19       		.byte	25
+ 1265 0493 40       		.byte	64
+ 1266 0494 1E       		.byte	30
+ 1267 0495 40       		.byte	64
+ 1268 0496 1F       		.byte	31
+ 1269 0497 80       		.byte	-128
+ 1270 0498 20       		.byte	32
+ 1271 0499 02       		.byte	2
+ 1272 049a 21       		.byte	33
+ 1273 049b 08       		.byte	8
+ 1274 049c 25       		.byte	37
+ 1275 049d 10       		.byte	16
+ 1276 049e 26       		.byte	38
+ 1277 049f 04       		.byte	4
+ 1278 04a0 2A       		.byte	42
+ 1279 04a1 40       		.byte	64
+ 1280 04a2 37       		.byte	55
+ 1281 04a3 80       		.byte	-128
+ 1282 04a4 39       		.byte	57
+ 1283 04a5 55       		.byte	85
+ 1284 04a6 3F       		.byte	63
+ 1285 04a7 20       		.byte	32
+ 1286 04a8 42       		.byte	66
+ 1287 04a9 02       		.byte	2
+ 1288 04aa 43       		.byte	67
+ 1289 04ab 88       		.byte	-120
+ 1290 04ac 44       		.byte	68
+ 1291 04ad 08       		.byte	8
+ 1292 04ae 46       		.byte	70
+ 1293 04af 06       		.byte	6
+ 1294 04b0 4F       		.byte	79
+ 1295 04b1 01       		.byte	1
+ 1296 04b2 56       		.byte	86
+ 1297 04b3 04       		.byte	4
+ 1298 04b4 57       		.byte	87
+ 1299 04b5 18       		.byte	24
+ 1300 04b6 59       		.byte	89
+ 1301 04b7 71       		.byte	113
+ 1302 04b8 5A       		.byte	90
+ 1303 04b9 08       		.byte	8
+ 1304 04ba 5C       		.byte	92
+ 1305 04bb 08       		.byte	8
+ 1306 04bc 5E       		.byte	94
+ 1307 04bd 40       		.byte	64
+ 1308 04be 5F       		.byte	95
+ 1309 04bf 01       		.byte	1
+ 1310 04c0 61       		.byte	97
+ 1311 04c1 10       		.byte	16
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 24
+
+
+ 1312 04c2 65       		.byte	101
+ 1313 04c3 20       		.byte	32
+ 1314 04c4 77       		.byte	119
+ 1315 04c5 80       		.byte	-128
+ 1316 04c6 91       		.byte	-111
+ 1317 04c7 D5       		.byte	-43
+ 1318 04c8 9D       		.byte	-99
+ 1319 04c9 20       		.byte	32
+ 1320 04ca A0       		.byte	-96
+ 1321 04cb A8       		.byte	-88
+ 1322 04cc A2       		.byte	-94
+ 1323 04cd 10       		.byte	16
+ 1324 04ce A3       		.byte	-93
+ 1325 04cf 02       		.byte	2
+ 1326 04d0 A5       		.byte	-91
+ 1327 04d1 10       		.byte	16
+ 1328 04d2 A8       		.byte	-88
+ 1329 04d3 04       		.byte	4
+ 1330 04d4 A9       		.byte	-87
+ 1331 04d5 80       		.byte	-128
+ 1332 04d6 AC       		.byte	-84
+ 1333 04d7 04       		.byte	4
+ 1334 04d8 AE       		.byte	-82
+ 1335 04d9 81       		.byte	-127
+ 1336 04da B3       		.byte	-77
+ 1337 04db 02       		.byte	2
+ 1338 04dc B6       		.byte	-74
+ 1339 04dd 40       		.byte	64
+ 1340 04de B7       		.byte	-73
+ 1341 04df 04       		.byte	4
+ 1342 04e0 C0       		.byte	-64
+ 1343 04e1 18       		.byte	24
+ 1344 04e2 C2       		.byte	-62
+ 1345 04e3 64       		.byte	100
+ 1346 04e4 CA       		.byte	-54
+ 1347 04e5 08       		.byte	8
+ 1348 04e6 CC       		.byte	-52
+ 1349 04e7 10       		.byte	16
+ 1350 04e8 CE       		.byte	-50
+ 1351 04e9 2F       		.byte	47
+ 1352 04ea D0       		.byte	-48
+ 1353 04eb 3A       		.byte	58
+ 1354 04ec D6       		.byte	-42
+ 1355 04ed DB       		.byte	-37
+ 1356 04ee D8       		.byte	-40
+ 1357 04ef 24       		.byte	36
+ 1358 04f0 E8       		.byte	-24
+ 1359 04f1 0E       		.byte	14
+ 1360 04f2 EC       		.byte	-20
+ 1361 04f3 03       		.byte	3
+ 1362 04f4 16       		.byte	22
+ 1363 04f5 01       		.byte	1
+ 1364 04f6 1B       		.byte	27
+ 1365 04f7 01       		.byte	1
+ 1366 04f8 21       		.byte	33
+ 1367 04f9 01       		.byte	1
+ 1368 04fa 31       		.byte	49
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 25
+
+
+ 1369 04fb 01       		.byte	1
+ 1370 04fc 36       		.byte	54
+ 1371 04fd 01       		.byte	1
+ 1372 04fe 40       		.byte	64
+ 1373 04ff 20       		.byte	32
+ 1374 0500 41       		.byte	65
+ 1375 0501 03       		.byte	3
+ 1376 0502 49       		.byte	73
+ 1377 0503 FF       		.byte	-1
+ 1378 0504 4A       		.byte	74
+ 1379 0505 FF       		.byte	-1
+ 1380 0506 4B       		.byte	75
+ 1381 0507 FF       		.byte	-1
+ 1382 0508 4D       		.byte	77
+ 1383 0509 A0       		.byte	-96
+ 1384 050a 4F       		.byte	79
+ 1385 050b 04       		.byte	4
+ 1386 050c 50       		.byte	80
+ 1387 050d 18       		.byte	24
+ 1388 050e 54       		.byte	84
+ 1389 050f 25       		.byte	37
+ 1390 0510 58       		.byte	88
+ 1391 0511 04       		.byte	4
+ 1392 0512 59       		.byte	89
+ 1393 0513 04       		.byte	4
+ 1394 0514 5A       		.byte	90
+ 1395 0515 04       		.byte	4
+ 1396 0516 5B       		.byte	91
+ 1397 0517 04       		.byte	4
+ 1398 0518 5C       		.byte	92
+ 1399 0519 44       		.byte	68
+ 1400 051a 5D       		.byte	93
+ 1401 051b 44       		.byte	68
+ 1402 051c 5F       		.byte	95
+ 1403 051d 01       		.byte	1
+ 1404 051e 60       		.byte	96
+ 1405 051f 40       		.byte	64
+ 1406 0520 62       		.byte	98
+ 1407 0521 C0       		.byte	-64
+ 1408 0522 64       		.byte	100
+ 1409 0523 40       		.byte	64
+ 1410 0524 65       		.byte	101
+ 1411 0525 40       		.byte	64
+ 1412 0526 66       		.byte	102
+ 1413 0527 C0       		.byte	-64
+ 1414 0528 68       		.byte	104
+ 1415 0529 C0       		.byte	-64
+ 1416 052a 6A       		.byte	106
+ 1417 052b C0       		.byte	-64
+ 1418 052c 6C       		.byte	108
+ 1419 052d C0       		.byte	-64
+ 1420 052e 6E       		.byte	110
+ 1421 052f C0       		.byte	-64
+ 1422 0530 C0       		.byte	-64
+ 1423 0531 20       		.byte	32
+ 1424 0532 C1       		.byte	-63
+ 1425 0533 03       		.byte	3
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 26
+
+
+ 1426 0534 C5       		.byte	-59
+ 1427 0535 D1       		.byte	-47
+ 1428 0536 C7       		.byte	-57
+ 1429 0537 02       		.byte	2
+ 1430 0538 C8       		.byte	-56
+ 1431 0539 13       		.byte	19
+ 1432 053a C9       		.byte	-55
+ 1433 053b FF       		.byte	-1
+ 1434 053c CA       		.byte	-54
+ 1435 053d FF       		.byte	-1
+ 1436 053e CB       		.byte	-53
+ 1437 053f FF       		.byte	-1
+ 1438 0540 CD       		.byte	-51
+ 1439 0541 AF       		.byte	-81
+ 1440 0542 CE       		.byte	-50
+ 1441 0543 0F       		.byte	15
+ 1442 0544 CF       		.byte	-49
+ 1443 0545 04       		.byte	4
+ 1444 0546 D0       		.byte	-48
+ 1445 0547 18       		.byte	24
+ 1446 0548 D6       		.byte	-42
+ 1447 0549 02       		.byte	2
+ 1448 054a DA       		.byte	-38
+ 1449 054b 04       		.byte	4
+ 1450 054c DB       		.byte	-37
+ 1451 054d 24       		.byte	36
+ 1452 054e DD       		.byte	-35
+ 1453 054f 84       		.byte	-124
+ 1454 0550 DF       		.byte	-33
+ 1455 0551 01       		.byte	1
+ 1456 0552 E0       		.byte	-32
+ 1457 0553 40       		.byte	64
+ 1458 0554 E2       		.byte	-30
+ 1459 0555 C0       		.byte	-64
+ 1460 0556 E4       		.byte	-28
+ 1461 0557 40       		.byte	64
+ 1462 0558 E5       		.byte	-27
+ 1463 0559 40       		.byte	64
+ 1464 055a E6       		.byte	-26
+ 1465 055b C0       		.byte	-64
+ 1466 055c E8       		.byte	-24
+ 1467 055d C0       		.byte	-64
+ 1468 055e EA       		.byte	-22
+ 1469 055f C0       		.byte	-64
+ 1470 0560 EC       		.byte	-20
+ 1471 0561 C0       		.byte	-64
+ 1472 0562 EE       		.byte	-18
+ 1473 0563 C0       		.byte	-64
+ 1474 0564 0E       		.byte	14
+ 1475 0565 20       		.byte	32
+ 1476 0566 1F       		.byte	31
+ 1477 0567 80       		.byte	-128
+ 1478 0568 24       		.byte	36
+ 1479 0569 40       		.byte	64
+ 1480 056a 2F       		.byte	47
+ 1481 056b 80       		.byte	-128
+ 1482 056c 36       		.byte	54
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 27
+
+
+ 1483 056d 10       		.byte	16
+ 1484 056e 40       		.byte	64
+ 1485 056f 08       		.byte	8
+ 1486 0570 41       		.byte	65
+ 1487 0571 08       		.byte	8
+ 1488 0572 44       		.byte	68
+ 1489 0573 08       		.byte	8
+ 1490 0574 45       		.byte	69
+ 1491 0575 18       		.byte	24
+ 1492 0576 47       		.byte	71
+ 1493 0577 08       		.byte	8
+ 1494 0578 49       		.byte	73
+ 1495 0579 02       		.byte	2
+ 1496 057a 4A       		.byte	74
+ 1497 057b 10       		.byte	16
+ 1498 057c 51       		.byte	81
+ 1499 057d 08       		.byte	8
+ 1500 057e 59       		.byte	89
+ 1501 057f 08       		.byte	8
+ 1502 0580 5A       		.byte	90
+ 1503 0581 80       		.byte	-128
+ 1504 0582 5B       		.byte	91
+ 1505 0583 22       		.byte	34
+ 1506 0584 5C       		.byte	92
+ 1507 0585 40       		.byte	64
+ 1508 0586 5D       		.byte	93
+ 1509 0587 02       		.byte	2
+ 1510 0588 5F       		.byte	95
+ 1511 0589 08       		.byte	8
+ 1512 058a 60       		.byte	96
+ 1513 058b 14       		.byte	20
+ 1514 058c 62       		.byte	98
+ 1515 058d 82       		.byte	-126
+ 1516 058e 65       		.byte	101
+ 1517 058f 20       		.byte	32
+ 1518 0590 68       		.byte	104
+ 1519 0591 A8       		.byte	-88
+ 1520 0592 69       		.byte	105
+ 1521 0593 55       		.byte	85
+ 1522 0594 6C       		.byte	108
+ 1523 0595 14       		.byte	20
+ 1524 0596 6E       		.byte	110
+ 1525 0597 41       		.byte	65
+ 1526 0598 74       		.byte	116
+ 1527 0599 04       		.byte	4
+ 1528 059a 75       		.byte	117
+ 1529 059b 80       		.byte	-128
+ 1530 059c 76       		.byte	118
+ 1531 059d 80       		.byte	-128
+ 1532 059e 77       		.byte	119
+ 1533 059f 04       		.byte	4
+ 1534 05a0 7B       		.byte	123
+ 1535 05a1 02       		.byte	2
+ 1536 05a2 80       		.byte	-128
+ 1537 05a3 10       		.byte	16
+ 1538 05a4 81       		.byte	-127
+ 1539 05a5 40       		.byte	64
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 28
+
+
+ 1540 05a6 82       		.byte	-126
+ 1541 05a7 80       		.byte	-128
+ 1542 05a8 8C       		.byte	-116
+ 1543 05a9 10       		.byte	16
+ 1544 05aa 90       		.byte	-112
+ 1545 05ab 04       		.byte	4
+ 1546 05ac 92       		.byte	-110
+ 1547 05ad 80       		.byte	-128
+ 1548 05ae 99       		.byte	-103
+ 1549 05af 08       		.byte	8
+ 1550 05b0 9B       		.byte	-101
+ 1551 05b1 22       		.byte	34
+ 1552 05b2 A2       		.byte	-94
+ 1553 05b3 02       		.byte	2
+ 1554 05b4 B3       		.byte	-77
+ 1555 05b5 20       		.byte	32
+ 1556 05b6 B5       		.byte	-75
+ 1557 05b7 08       		.byte	8
+ 1558 05b8 B7       		.byte	-73
+ 1559 05b9 02       		.byte	2
+ 1560 05ba C2       		.byte	-62
+ 1561 05bb 20       		.byte	32
+ 1562 05bc CA       		.byte	-54
+ 1563 05bd 80       		.byte	-128
+ 1564 05be CC       		.byte	-52
+ 1565 05bf 20       		.byte	32
+ 1566 05c0 D0       		.byte	-48
+ 1567 05c1 66       		.byte	102
+ 1568 05c2 D6       		.byte	-42
+ 1569 05c3 DF       		.byte	-33
+ 1570 05c4 D8       		.byte	-40
+ 1571 05c5 2F       		.byte	47
+ 1572 05c6 DE       		.byte	-34
+ 1573 05c7 08       		.byte	8
+ 1574 05c8 E0       		.byte	-32
+ 1575 05c9 03       		.byte	3
+ 1576 05ca E2       		.byte	-30
+ 1577 05cb 08       		.byte	8
+ 1578 05cc E6       		.byte	-26
+ 1579 05cd 05       		.byte	5
+ 1580 05ce 82       		.byte	-126
+ 1581 05cf 40       		.byte	64
+ 1582 05d0 8A       		.byte	-118
+ 1583 05d1 02       		.byte	2
+ 1584 05d2 8C       		.byte	-116
+ 1585 05d3 04       		.byte	4
+ 1586 05d4 E6       		.byte	-26
+ 1587 05d5 01       		.byte	1
+ 1588 05d6 05       		.byte	5
+ 1589 05d7 01       		.byte	1
+ 1590 05d8 08       		.byte	8
+ 1591 05d9 01       		.byte	1
+ 1592 05da 0A       		.byte	10
+ 1593 05db 02       		.byte	2
+ 1594 05dc 0F       		.byte	15
+ 1595 05dd 02       		.byte	2
+ 1596 05de 13       		.byte	19
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 29
+
+
+ 1597 05df 02       		.byte	2
+ 1598 05e0 2A       		.byte	42
+ 1599 05e1 03       		.byte	3
+ 1600 05e2 30       		.byte	48
+ 1601 05e3 01       		.byte	1
+ 1602 05e4 31       		.byte	49
+ 1603 05e5 02       		.byte	2
+ 1604 05e6 36       		.byte	54
+ 1605 05e7 02       		.byte	2
+ 1606 05e8 37       		.byte	55
+ 1607 05e9 01       		.byte	1
+ 1608 05ea 38       		.byte	56
+ 1609 05eb 08       		.byte	8
+ 1610 05ec 3E       		.byte	62
+ 1611 05ed 41       		.byte	65
+ 1612 05ee 3F       		.byte	63
+ 1613 05ef 40       		.byte	64
+ 1614 05f0 40       		.byte	64
+ 1615 05f1 10       		.byte	16
+ 1616 05f2 41       		.byte	65
+ 1617 05f3 03       		.byte	3
+ 1618 05f4 49       		.byte	73
+ 1619 05f5 FF       		.byte	-1
+ 1620 05f6 4A       		.byte	74
+ 1621 05f7 FF       		.byte	-1
+ 1622 05f8 4B       		.byte	75
+ 1623 05f9 FF       		.byte	-1
+ 1624 05fa 4D       		.byte	77
+ 1625 05fb A0       		.byte	-96
+ 1626 05fc 4F       		.byte	79
+ 1627 05fd 04       		.byte	4
+ 1628 05fe 50       		.byte	80
+ 1629 05ff 18       		.byte	24
+ 1630 0600 54       		.byte	84
+ 1631 0601 20       		.byte	32
+ 1632 0602 58       		.byte	88
+ 1633 0603 04       		.byte	4
+ 1634 0604 59       		.byte	89
+ 1635 0605 04       		.byte	4
+ 1636 0606 5A       		.byte	90
+ 1637 0607 04       		.byte	4
+ 1638 0608 5B       		.byte	91
+ 1639 0609 04       		.byte	4
+ 1640 060a 5C       		.byte	92
+ 1641 060b 40       		.byte	64
+ 1642 060c 5D       		.byte	93
+ 1643 060d 34       		.byte	52
+ 1644 060e 5F       		.byte	95
+ 1645 060f 01       		.byte	1
+ 1646 0610 60       		.byte	96
+ 1647 0611 40       		.byte	64
+ 1648 0612 62       		.byte	98
+ 1649 0613 C0       		.byte	-64
+ 1650 0614 64       		.byte	100
+ 1651 0615 40       		.byte	64
+ 1652 0616 65       		.byte	101
+ 1653 0617 40       		.byte	64
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 30
+
+
+ 1654 0618 66       		.byte	102
+ 1655 0619 C0       		.byte	-64
+ 1656 061a 68       		.byte	104
+ 1657 061b C0       		.byte	-64
+ 1658 061c 6A       		.byte	106
+ 1659 061d C0       		.byte	-64
+ 1660 061e 6C       		.byte	108
+ 1661 061f C0       		.byte	-64
+ 1662 0620 6E       		.byte	110
+ 1663 0621 C0       		.byte	-64
+ 1664 0622 9E       		.byte	-98
+ 1665 0623 01       		.byte	1
+ 1666 0624 9F       		.byte	-97
+ 1667 0625 01       		.byte	1
+ 1668 0626 AE       		.byte	-82
+ 1669 0627 01       		.byte	1
+ 1670 0628 B6       		.byte	-74
+ 1671 0629 01       		.byte	1
+ 1672 062a B7       		.byte	-73
+ 1673 062b 01       		.byte	1
+ 1674 062c C0       		.byte	-64
+ 1675 062d 10       		.byte	16
+ 1676 062e C1       		.byte	-63
+ 1677 062f 02       		.byte	2
+ 1678 0630 C5       		.byte	-59
+ 1679 0631 D0       		.byte	-48
+ 1680 0632 C7       		.byte	-57
+ 1681 0633 12       		.byte	18
+ 1682 0634 C8       		.byte	-56
+ 1683 0635 32       		.byte	50
+ 1684 0636 C9       		.byte	-55
+ 1685 0637 FF       		.byte	-1
+ 1686 0638 CA       		.byte	-54
+ 1687 0639 FF       		.byte	-1
+ 1688 063a CB       		.byte	-53
+ 1689 063b FF       		.byte	-1
+ 1690 063c CD       		.byte	-51
+ 1691 063d AF       		.byte	-81
+ 1692 063e CE       		.byte	-50
+ 1693 063f 0F       		.byte	15
+ 1694 0640 CF       		.byte	-49
+ 1695 0641 04       		.byte	4
+ 1696 0642 D0       		.byte	-48
+ 1697 0643 18       		.byte	24
+ 1698 0644 D2       		.byte	-46
+ 1699 0645 80       		.byte	-128
+ 1700 0646 D4       		.byte	-44
+ 1701 0647 25       		.byte	37
+ 1702 0648 D8       		.byte	-40
+ 1703 0649 04       		.byte	4
+ 1704 064a D9       		.byte	-39
+ 1705 064b 04       		.byte	4
+ 1706 064c DA       		.byte	-38
+ 1707 064d 04       		.byte	4
+ 1708 064e DB       		.byte	-37
+ 1709 064f 04       		.byte	4
+ 1710 0650 DC       		.byte	-36
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 31
+
+
+ 1711 0651 44       		.byte	68
+ 1712 0652 DD       		.byte	-35
+ 1713 0653 44       		.byte	68
+ 1714 0654 DF       		.byte	-33
+ 1715 0655 01       		.byte	1
+ 1716 0656 E0       		.byte	-32
+ 1717 0657 40       		.byte	64
+ 1718 0658 E2       		.byte	-30
+ 1719 0659 C0       		.byte	-64
+ 1720 065a E4       		.byte	-28
+ 1721 065b 40       		.byte	64
+ 1722 065c E5       		.byte	-27
+ 1723 065d 40       		.byte	64
+ 1724 065e E6       		.byte	-26
+ 1725 065f C0       		.byte	-64
+ 1726 0660 E8       		.byte	-24
+ 1727 0661 C0       		.byte	-64
+ 1728 0662 EA       		.byte	-22
+ 1729 0663 C0       		.byte	-64
+ 1730 0664 EC       		.byte	-20
+ 1731 0665 C0       		.byte	-64
+ 1732 0666 EE       		.byte	-18
+ 1733 0667 C0       		.byte	-64
+ 1734 0668 00       		.byte	0
+ 1735 0669 10       		.byte	16
+ 1736 066a 0F       		.byte	15
+ 1737 066b 02       		.byte	2
+ 1738 066c 10       		.byte	16
+ 1739 066d 08       		.byte	8
+ 1740 066e 17       		.byte	23
+ 1741 066f 40       		.byte	64
+ 1742 0670 18       		.byte	24
+ 1743 0671 10       		.byte	16
+ 1744 0672 19       		.byte	25
+ 1745 0673 80       		.byte	-128
+ 1746 0674 1A       		.byte	26
+ 1747 0675 80       		.byte	-128
+ 1748 0676 1E       		.byte	30
+ 1749 0677 02       		.byte	2
+ 1750 0678 20       		.byte	32
+ 1751 0679 01       		.byte	1
+ 1752 067a 22       		.byte	34
+ 1753 067b 01       		.byte	1
+ 1754 067c 25       		.byte	37
+ 1755 067d 80       		.byte	-128
+ 1756 067e 31       		.byte	49
+ 1757 067f 02       		.byte	2
+ 1758 0680 37       		.byte	55
+ 1759 0681 40       		.byte	64
+ 1760 0682 39       		.byte	57
+ 1761 0683 80       		.byte	-128
+ 1762 0684 3A       		.byte	58
+ 1763 0685 08       		.byte	8
+ 1764 0686 41       		.byte	65
+ 1765 0687 80       		.byte	-128
+ 1766 0688 43       		.byte	67
+ 1767 0689 08       		.byte	8
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 32
+
+
+ 1768 068a 44       		.byte	68
+ 1769 068b 08       		.byte	8
+ 1770 068c 45       		.byte	69
+ 1771 068d 80       		.byte	-128
+ 1772 068e 46       		.byte	70
+ 1773 068f 04       		.byte	4
+ 1774 0690 4F       		.byte	79
+ 1775 0691 01       		.byte	1
+ 1776 0692 56       		.byte	86
+ 1777 0693 04       		.byte	4
+ 1778 0694 57       		.byte	87
+ 1779 0695 09       		.byte	9
+ 1780 0696 5B       		.byte	91
+ 1781 0697 02       		.byte	2
+ 1782 0698 5C       		.byte	92
+ 1783 0699 08       		.byte	8
+ 1784 069a 5E       		.byte	94
+ 1785 069b 80       		.byte	-128
+ 1786 069c 5F       		.byte	95
+ 1787 069d 01       		.byte	1
+ 1788 069e 60       		.byte	96
+ 1789 069f 01       		.byte	1
+ 1790 06a0 61       		.byte	97
+ 1791 06a1 20       		.byte	32
+ 1792 06a2 62       		.byte	98
+ 1793 06a3 08       		.byte	8
+ 1794 06a4 65       		.byte	101
+ 1795 06a5 10       		.byte	16
+ 1796 06a6 77       		.byte	119
+ 1797 06a7 40       		.byte	64
+ 1798 06a8 82       		.byte	-126
+ 1799 06a9 08       		.byte	8
+ 1800 06aa 83       		.byte	-125
+ 1801 06ab 02       		.byte	2
+ 1802 06ac 86       		.byte	-122
+ 1803 06ad 10       		.byte	16
+ 1804 06ae 8A       		.byte	-118
+ 1805 06af 01       		.byte	1
+ 1806 06b0 8E       		.byte	-114
+ 1807 06b1 41       		.byte	65
+ 1808 06b2 91       		.byte	-111
+ 1809 06b3 80       		.byte	-128
+ 1810 06b4 92       		.byte	-110
+ 1811 06b5 40       		.byte	64
+ 1812 06b6 96       		.byte	-106
+ 1813 06b7 80       		.byte	-128
+ 1814 06b8 99       		.byte	-103
+ 1815 06b9 10       		.byte	16
+ 1816 06ba 9D       		.byte	-99
+ 1817 06bb 80       		.byte	-128
+ 1818 06bc A0       		.byte	-96
+ 1819 06bd 08       		.byte	8
+ 1820 06be A1       		.byte	-95
+ 1821 06bf 22       		.byte	34
+ 1822 06c0 A2       		.byte	-94
+ 1823 06c1 58       		.byte	88
+ 1824 06c2 A7       		.byte	-89
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 33
+
+
+ 1825 06c3 01       		.byte	1
+ 1826 06c4 B4       		.byte	-76
+ 1827 06c5 80       		.byte	-128
+ 1828 06c6 C0       		.byte	-64
+ 1829 06c7 02       		.byte	2
+ 1830 06c8 C2       		.byte	-62
+ 1831 06c9 80       		.byte	-128
+ 1832 06ca C4       		.byte	-60
+ 1833 06cb 82       		.byte	-126
+ 1834 06cc CC       		.byte	-52
+ 1835 06cd 11       		.byte	17
+ 1836 06ce CE       		.byte	-50
+ 1837 06cf 0A       		.byte	10
+ 1838 06d0 D0       		.byte	-48
+ 1839 06d1 3A       		.byte	58
+ 1840 06d2 D6       		.byte	-42
+ 1841 06d3 D1       		.byte	-47
+ 1842 06d4 D8       		.byte	-40
+ 1843 06d5 2E       		.byte	46
+ 1844 06d6 E2       		.byte	-30
+ 1845 06d7 30       		.byte	48
+ 1846 06d8 E6       		.byte	-26
+ 1847 06d9 41       		.byte	65
+ 1848 06da E8       		.byte	-24
+ 1849 06db 20       		.byte	32
+ 1850 06dc EA       		.byte	-22
+ 1851 06dd 05       		.byte	5
+ 1852 06de EE       		.byte	-18
+ 1853 06df 40       		.byte	64
+ 1854 06e0 03       		.byte	3
+ 1855 06e1 01       		.byte	1
+ 1856 06e2 11       		.byte	17
+ 1857 06e3 01       		.byte	1
+ 1858 06e4 1E       		.byte	30
+ 1859 06e5 01       		.byte	1
+ 1860 06e6 36       		.byte	54
+ 1861 06e7 01       		.byte	1
+ 1862 06e8 37       		.byte	55
+ 1863 06e9 01       		.byte	1
+ 1864 06ea 40       		.byte	64
+ 1865 06eb 30       		.byte	48
+ 1866 06ec 41       		.byte	65
+ 1867 06ed 06       		.byte	6
+ 1868 06ee 49       		.byte	73
+ 1869 06ef FF       		.byte	-1
+ 1870 06f0 4A       		.byte	74
+ 1871 06f1 FF       		.byte	-1
+ 1872 06f2 4B       		.byte	75
+ 1873 06f3 FF       		.byte	-1
+ 1874 06f4 4D       		.byte	77
+ 1875 06f5 A0       		.byte	-96
+ 1876 06f6 4F       		.byte	79
+ 1877 06f7 04       		.byte	4
+ 1878 06f8 50       		.byte	80
+ 1879 06f9 18       		.byte	24
+ 1880 06fa 56       		.byte	86
+ 1881 06fb 08       		.byte	8
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 34
+
+
+ 1882 06fc 58       		.byte	88
+ 1883 06fd 04       		.byte	4
+ 1884 06fe 59       		.byte	89
+ 1885 06ff 04       		.byte	4
+ 1886 0700 5A       		.byte	90
+ 1887 0701 04       		.byte	4
+ 1888 0702 5B       		.byte	91
+ 1889 0703 04       		.byte	4
+ 1890 0704 5C       		.byte	92
+ 1891 0705 44       		.byte	68
+ 1892 0706 5D       		.byte	93
+ 1893 0707 34       		.byte	52
+ 1894 0708 5F       		.byte	95
+ 1895 0709 01       		.byte	1
+ 1896 070a 60       		.byte	96
+ 1897 070b 40       		.byte	64
+ 1898 070c 62       		.byte	98
+ 1899 070d C0       		.byte	-64
+ 1900 070e 64       		.byte	100
+ 1901 070f 40       		.byte	64
+ 1902 0710 65       		.byte	101
+ 1903 0711 40       		.byte	64
+ 1904 0712 66       		.byte	102
+ 1905 0713 C0       		.byte	-64
+ 1906 0714 68       		.byte	104
+ 1907 0715 C0       		.byte	-64
+ 1908 0716 6A       		.byte	106
+ 1909 0717 C0       		.byte	-64
+ 1910 0718 6C       		.byte	108
+ 1911 0719 C0       		.byte	-64
+ 1912 071a 6E       		.byte	110
+ 1913 071b C0       		.byte	-64
+ 1914 071c 82       		.byte	-126
+ 1915 071d 01       		.byte	1
+ 1916 071e 8F       		.byte	-113
+ 1917 071f 02       		.byte	2
+ 1918 0720 93       		.byte	-109
+ 1919 0721 01       		.byte	1
+ 1920 0722 A5       		.byte	-91
+ 1921 0723 02       		.byte	2
+ 1922 0724 B1       		.byte	-79
+ 1923 0725 02       		.byte	2
+ 1924 0726 B3       		.byte	-77
+ 1925 0727 01       		.byte	1
+ 1926 0728 B4       		.byte	-76
+ 1927 0729 01       		.byte	1
+ 1928 072a C0       		.byte	-64
+ 1929 072b 60       		.byte	96
+ 1930 072c C1       		.byte	-63
+ 1931 072d 03       		.byte	3
+ 1932 072e C5       		.byte	-59
+ 1933 072f D0       		.byte	-48
+ 1934 0730 C6       		.byte	-58
+ 1935 0731 01       		.byte	1
+ 1936 0732 C7       		.byte	-57
+ 1937 0733 02       		.byte	2
+ 1938 0734 C8       		.byte	-56
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 35
+
+
+ 1939 0735 16       		.byte	22
+ 1940 0736 C9       		.byte	-55
+ 1941 0737 FF       		.byte	-1
+ 1942 0738 CA       		.byte	-54
+ 1943 0739 FF       		.byte	-1
+ 1944 073a CB       		.byte	-53
+ 1945 073b FF       		.byte	-1
+ 1946 073c CD       		.byte	-51
+ 1947 073d AF       		.byte	-81
+ 1948 073e CE       		.byte	-50
+ 1949 073f 0F       		.byte	15
+ 1950 0740 CF       		.byte	-49
+ 1951 0741 04       		.byte	4
+ 1952 0742 D0       		.byte	-48
+ 1953 0743 18       		.byte	24
+ 1954 0744 D2       		.byte	-46
+ 1955 0745 80       		.byte	-128
+ 1956 0746 D4       		.byte	-44
+ 1957 0747 25       		.byte	37
+ 1958 0748 D8       		.byte	-40
+ 1959 0749 04       		.byte	4
+ 1960 074a D9       		.byte	-39
+ 1961 074b 04       		.byte	4
+ 1962 074c DA       		.byte	-38
+ 1963 074d 04       		.byte	4
+ 1964 074e DB       		.byte	-37
+ 1965 074f 04       		.byte	4
+ 1966 0750 DC       		.byte	-36
+ 1967 0751 44       		.byte	68
+ 1968 0752 DD       		.byte	-35
+ 1969 0753 44       		.byte	68
+ 1970 0754 DF       		.byte	-33
+ 1971 0755 01       		.byte	1
+ 1972 0756 E0       		.byte	-32
+ 1973 0757 40       		.byte	64
+ 1974 0758 E2       		.byte	-30
+ 1975 0759 C0       		.byte	-64
+ 1976 075a E4       		.byte	-28
+ 1977 075b 40       		.byte	64
+ 1978 075c E5       		.byte	-27
+ 1979 075d 40       		.byte	64
+ 1980 075e E6       		.byte	-26
+ 1981 075f C0       		.byte	-64
+ 1982 0760 E8       		.byte	-24
+ 1983 0761 C0       		.byte	-64
+ 1984 0762 EA       		.byte	-22
+ 1985 0763 C0       		.byte	-64
+ 1986 0764 EC       		.byte	-20
+ 1987 0765 C0       		.byte	-64
+ 1988 0766 EE       		.byte	-18
+ 1989 0767 C0       		.byte	-64
+ 1990 0768 02       		.byte	2
+ 1991 0769 80       		.byte	-128
+ 1992 076a 0F       		.byte	15
+ 1993 076b 02       		.byte	2
+ 1994 076c 1B       		.byte	27
+ 1995 076d 20       		.byte	32
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 36
+
+
+ 1996 076e 1E       		.byte	30
+ 1997 076f 02       		.byte	2
+ 1998 0770 21       		.byte	33
+ 1999 0771 08       		.byte	8
+ 2000 0772 23       		.byte	35
+ 2001 0773 90       		.byte	-112
+ 2002 0774 26       		.byte	38
+ 2003 0775 40       		.byte	64
+ 2004 0776 2B       		.byte	43
+ 2005 0777 20       		.byte	32
+ 2006 0778 31       		.byte	49
+ 2007 0779 02       		.byte	2
+ 2008 077a 36       		.byte	54
+ 2009 077b 01       		.byte	1
+ 2010 077c 39       		.byte	57
+ 2011 077d 80       		.byte	-128
+ 2012 077e 3F       		.byte	63
+ 2013 077f 02       		.byte	2
+ 2014 0780 43       		.byte	67
+ 2015 0781 08       		.byte	8
+ 2016 0782 45       		.byte	69
+ 2017 0783 08       		.byte	8
+ 2018 0784 49       		.byte	73
+ 2019 0785 02       		.byte	2
+ 2020 0786 4B       		.byte	75
+ 2021 0787 10       		.byte	16
+ 2022 0788 4C       		.byte	76
+ 2023 0789 04       		.byte	4
+ 2024 078a 4E       		.byte	78
+ 2025 078b 04       		.byte	4
+ 2026 078c 50       		.byte	80
+ 2027 078d 04       		.byte	4
+ 2028 078e 51       		.byte	81
+ 2029 078f 40       		.byte	64
+ 2030 0790 52       		.byte	82
+ 2031 0791 80       		.byte	-128
+ 2032 0792 53       		.byte	83
+ 2033 0793 08       		.byte	8
+ 2034 0794 59       		.byte	89
+ 2035 0795 02       		.byte	2
+ 2036 0796 5A       		.byte	90
+ 2037 0797 08       		.byte	8
+ 2038 0798 5B       		.byte	91
+ 2039 0799 80       		.byte	-128
+ 2040 079a 5C       		.byte	92
+ 2041 079b 40       		.byte	64
+ 2042 079c 61       		.byte	97
+ 2043 079d 10       		.byte	16
+ 2044 079e 62       		.byte	98
+ 2045 079f 20       		.byte	32
+ 2046 07a0 66       		.byte	102
+ 2047 07a1 40       		.byte	64
+ 2048 07a2 6C       		.byte	108
+ 2049 07a3 80       		.byte	-128
+ 2050 07a4 6D       		.byte	109
+ 2051 07a5 48       		.byte	72
+ 2052 07a6 6E       		.byte	110
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 37
+
+
+ 2053 07a7 20       		.byte	32
+ 2054 07a8 71       		.byte	113
+ 2055 07a9 02       		.byte	2
+ 2056 07aa 75       		.byte	117
+ 2057 07ab 20       		.byte	32
+ 2058 07ac 76       		.byte	118
+ 2059 07ad 80       		.byte	-128
+ 2060 07ae 77       		.byte	119
+ 2061 07af 21       		.byte	33
+ 2062 07b0 80       		.byte	-128
+ 2063 07b1 40       		.byte	64
+ 2064 07b2 86       		.byte	-122
+ 2065 07b3 68       		.byte	104
+ 2066 07b4 8A       		.byte	-118
+ 2067 07b5 80       		.byte	-128
+ 2068 07b6 8C       		.byte	-116
+ 2069 07b7 08       		.byte	8
+ 2070 07b8 8D       		.byte	-115
+ 2071 07b9 60       		.byte	96
+ 2072 07ba 92       		.byte	-110
+ 2073 07bb 40       		.byte	64
+ 2074 07bc 96       		.byte	-106
+ 2075 07bd 80       		.byte	-128
+ 2076 07be 9D       		.byte	-99
+ 2077 07bf 90       		.byte	-112
+ 2078 07c0 9F       		.byte	-97
+ 2079 07c1 21       		.byte	33
+ 2080 07c2 A1       		.byte	-95
+ 2081 07c3 20       		.byte	32
+ 2082 07c4 A5       		.byte	-91
+ 2083 07c5 04       		.byte	4
+ 2084 07c6 A6       		.byte	-90
+ 2085 07c7 20       		.byte	32
+ 2086 07c8 B0       		.byte	-80
+ 2087 07c9 80       		.byte	-128
+ 2088 07ca B1       		.byte	-79
+ 2089 07cb 80       		.byte	-128
+ 2090 07cc C0       		.byte	-64
+ 2091 07cd 08       		.byte	8
+ 2092 07ce C2       		.byte	-62
+ 2093 07cf 80       		.byte	-128
+ 2094 07d0 CA       		.byte	-54
+ 2095 07d1 02       		.byte	2
+ 2096 07d2 CC       		.byte	-52
+ 2097 07d3 81       		.byte	-127
+ 2098 07d4 CE       		.byte	-50
+ 2099 07d5 88       		.byte	-120
+ 2100 07d6 D0       		.byte	-48
+ 2101 07d7 42       		.byte	66
+ 2102 07d8 D2       		.byte	-46
+ 2103 07d9 24       		.byte	36
+ 2104 07da D6       		.byte	-42
+ 2105 07db 1B       		.byte	27
+ 2106 07dc D8       		.byte	-40
+ 2107 07dd 14       		.byte	20
+ 2108 07de E2       		.byte	-30
+ 2109 07df 40       		.byte	64
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 38
+
+
+ 2110 07e0 E4       		.byte	-28
+ 2111 07e1 10       		.byte	16
+ 2112 07e2 E6       		.byte	-26
+ 2113 07e3 0E       		.byte	14
+ 2114 07e4 EA       		.byte	-22
+ 2115 07e5 04       		.byte	4
+ 2116 07e6 EE       		.byte	-18
+ 2117 07e7 80       		.byte	-128
+ 2118 07e8 02       		.byte	2
+ 2119 07e9 02       		.byte	2
+ 2120 07ea 12       		.byte	18
+ 2121 07eb 01       		.byte	1
+ 2122 07ec 1A       		.byte	26
+ 2123 07ed 01       		.byte	1
+ 2124 07ee 1B       		.byte	27
+ 2125 07ef 02       		.byte	2
+ 2126 07f0 1F       		.byte	31
+ 2127 07f1 02       		.byte	2
+ 2128 07f2 22       		.byte	34
+ 2129 07f3 02       		.byte	2
+ 2130 07f4 2F       		.byte	47
+ 2131 07f5 01       		.byte	1
+ 2132 07f6 32       		.byte	50
+ 2133 07f7 01       		.byte	1
+ 2134 07f8 35       		.byte	53
+ 2135 07f9 02       		.byte	2
+ 2136 07fa 36       		.byte	54
+ 2137 07fb 02       		.byte	2
+ 2138 07fc 37       		.byte	55
+ 2139 07fd 01       		.byte	1
+ 2140 07fe 40       		.byte	64
+ 2141 07ff 40       		.byte	64
+ 2142 0800 41       		.byte	65
+ 2143 0801 06       		.byte	6
+ 2144 0802 49       		.byte	73
+ 2145 0803 FF       		.byte	-1
+ 2146 0804 4A       		.byte	74
+ 2147 0805 FF       		.byte	-1
+ 2148 0806 4B       		.byte	75
+ 2149 0807 FF       		.byte	-1
+ 2150 0808 4D       		.byte	77
+ 2151 0809 A0       		.byte	-96
+ 2152 080a 4F       		.byte	79
+ 2153 080b 04       		.byte	4
+ 2154 080c 50       		.byte	80
+ 2155 080d 18       		.byte	24
+ 2156 080e 52       		.byte	82
+ 2157 080f 80       		.byte	-128
+ 2158 0810 58       		.byte	88
+ 2159 0811 04       		.byte	4
+ 2160 0812 59       		.byte	89
+ 2161 0813 04       		.byte	4
+ 2162 0814 5A       		.byte	90
+ 2163 0815 04       		.byte	4
+ 2164 0816 5B       		.byte	91
+ 2165 0817 04       		.byte	4
+ 2166 0818 5C       		.byte	92
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 39
+
+
+ 2167 0819 44       		.byte	68
+ 2168 081a 5D       		.byte	93
+ 2169 081b 44       		.byte	68
+ 2170 081c 5F       		.byte	95
+ 2171 081d 01       		.byte	1
+ 2172 081e 60       		.byte	96
+ 2173 081f 40       		.byte	64
+ 2174 0820 62       		.byte	98
+ 2175 0821 C0       		.byte	-64
+ 2176 0822 64       		.byte	100
+ 2177 0823 40       		.byte	64
+ 2178 0824 65       		.byte	101
+ 2179 0825 40       		.byte	64
+ 2180 0826 66       		.byte	102
+ 2181 0827 C0       		.byte	-64
+ 2182 0828 68       		.byte	104
+ 2183 0829 C0       		.byte	-64
+ 2184 082a 6A       		.byte	106
+ 2185 082b C0       		.byte	-64
+ 2186 082c 6C       		.byte	108
+ 2187 082d C0       		.byte	-64
+ 2188 082e 6E       		.byte	110
+ 2189 082f C0       		.byte	-64
+ 2190 0830 93       		.byte	-109
+ 2191 0831 01       		.byte	1
+ 2192 0832 A9       		.byte	-87
+ 2193 0833 02       		.byte	2
+ 2194 0834 B1       		.byte	-79
+ 2195 0835 02       		.byte	2
+ 2196 0836 B5       		.byte	-75
+ 2197 0837 01       		.byte	1
+ 2198 0838 B8       		.byte	-72
+ 2199 0839 08       		.byte	8
+ 2200 083a BF       		.byte	-65
+ 2201 083b 01       		.byte	1
+ 2202 083c C0       		.byte	-64
+ 2203 083d 40       		.byte	64
+ 2204 083e C1       		.byte	-63
+ 2205 083f 03       		.byte	3
+ 2206 0840 C5       		.byte	-59
+ 2207 0841 D0       		.byte	-48
+ 2208 0842 C6       		.byte	-58
+ 2209 0843 01       		.byte	1
+ 2210 0844 C7       		.byte	-57
+ 2211 0845 02       		.byte	2
+ 2212 0846 C8       		.byte	-56
+ 2213 0847 16       		.byte	22
+ 2214 0848 C9       		.byte	-55
+ 2215 0849 FF       		.byte	-1
+ 2216 084a CA       		.byte	-54
+ 2217 084b FF       		.byte	-1
+ 2218 084c CB       		.byte	-53
+ 2219 084d FF       		.byte	-1
+ 2220 084e CD       		.byte	-51
+ 2221 084f AF       		.byte	-81
+ 2222 0850 CE       		.byte	-50
+ 2223 0851 0F       		.byte	15
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 40
+
+
+ 2224 0852 CF       		.byte	-49
+ 2225 0853 04       		.byte	4
+ 2226 0854 D0       		.byte	-48
+ 2227 0855 18       		.byte	24
+ 2228 0856 D2       		.byte	-46
+ 2229 0857 80       		.byte	-128
+ 2230 0858 D8       		.byte	-40
+ 2231 0859 04       		.byte	4
+ 2232 085a D9       		.byte	-39
+ 2233 085b 04       		.byte	4
+ 2234 085c DA       		.byte	-38
+ 2235 085d 04       		.byte	4
+ 2236 085e DB       		.byte	-37
+ 2237 085f 04       		.byte	4
+ 2238 0860 DC       		.byte	-36
+ 2239 0861 44       		.byte	68
+ 2240 0862 DD       		.byte	-35
+ 2241 0863 44       		.byte	68
+ 2242 0864 DF       		.byte	-33
+ 2243 0865 01       		.byte	1
+ 2244 0866 E0       		.byte	-32
+ 2245 0867 40       		.byte	64
+ 2246 0868 E2       		.byte	-30
+ 2247 0869 C0       		.byte	-64
+ 2248 086a E4       		.byte	-28
+ 2249 086b 40       		.byte	64
+ 2250 086c E5       		.byte	-27
+ 2251 086d 40       		.byte	64
+ 2252 086e E6       		.byte	-26
+ 2253 086f C0       		.byte	-64
+ 2254 0870 E8       		.byte	-24
+ 2255 0871 C0       		.byte	-64
+ 2256 0872 EA       		.byte	-22
+ 2257 0873 C0       		.byte	-64
+ 2258 0874 EC       		.byte	-20
+ 2259 0875 C0       		.byte	-64
+ 2260 0876 EE       		.byte	-18
+ 2261 0877 C0       		.byte	-64
+ 2262 0878 06       		.byte	6
+ 2263 0879 40       		.byte	64
+ 2264 087a 0D       		.byte	13
+ 2265 087b 02       		.byte	2
+ 2266 087c 0F       		.byte	15
+ 2267 087d 04       		.byte	4
+ 2268 087e 16       		.byte	22
+ 2269 087f 80       		.byte	-128
+ 2270 0880 1B       		.byte	27
+ 2271 0881 04       		.byte	4
+ 2272 0882 1D       		.byte	29
+ 2273 0883 40       		.byte	64
+ 2274 0884 1E       		.byte	30
+ 2275 0885 10       		.byte	16
+ 2276 0886 21       		.byte	33
+ 2277 0887 01       		.byte	1
+ 2278 0888 23       		.byte	35
+ 2279 0889 08       		.byte	8
+ 2280 088a 25       		.byte	37
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 41
+
+
+ 2281 088b 20       		.byte	32
+ 2282 088c 27       		.byte	39
+ 2283 088d 03       		.byte	3
+ 2284 088e 2B       		.byte	43
+ 2285 088f 04       		.byte	4
+ 2286 0890 2E       		.byte	46
+ 2287 0891 80       		.byte	-128
+ 2288 0892 31       		.byte	49
+ 2289 0893 02       		.byte	2
+ 2290 0894 36       		.byte	54
+ 2291 0895 10       		.byte	16
+ 2292 0896 37       		.byte	55
+ 2293 0897 80       		.byte	-128
+ 2294 0898 41       		.byte	65
+ 2295 0899 04       		.byte	4
+ 2296 089a 43       		.byte	67
+ 2297 089b 01       		.byte	1
+ 2298 089c 47       		.byte	71
+ 2299 089d 02       		.byte	2
+ 2300 089e 49       		.byte	73
+ 2301 089f 01       		.byte	1
+ 2302 08a0 4C       		.byte	76
+ 2303 08a1 04       		.byte	4
+ 2304 08a2 4E       		.byte	78
+ 2305 08a3 04       		.byte	4
+ 2306 08a4 50       		.byte	80
+ 2307 08a5 04       		.byte	4
+ 2308 08a6 51       		.byte	81
+ 2309 08a7 04       		.byte	4
+ 2310 08a8 52       		.byte	82
+ 2311 08a9 40       		.byte	64
+ 2312 08aa 58       		.byte	88
+ 2313 08ab 05       		.byte	5
+ 2314 08ac 5A       		.byte	90
+ 2315 08ad 40       		.byte	64
+ 2316 08ae 5B       		.byte	91
+ 2317 08af 20       		.byte	32
+ 2318 08b0 71       		.byte	113
+ 2319 08b1 02       		.byte	2
+ 2320 08b2 76       		.byte	118
+ 2321 08b3 80       		.byte	-128
+ 2322 08b4 83       		.byte	-125
+ 2323 08b5 80       		.byte	-128
+ 2324 08b6 85       		.byte	-123
+ 2325 08b7 41       		.byte	65
+ 2326 08b8 88       		.byte	-120
+ 2327 08b9 04       		.byte	4
+ 2328 08ba 8E       		.byte	-114
+ 2329 08bb 40       		.byte	64
+ 2330 08bc 90       		.byte	-112
+ 2331 08bd 10       		.byte	16
+ 2332 08be 91       		.byte	-111
+ 2333 08bf 80       		.byte	-128
+ 2334 08c0 93       		.byte	-109
+ 2335 08c1 04       		.byte	4
+ 2336 08c2 96       		.byte	-106
+ 2337 08c3 08       		.byte	8
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 42
+
+
+ 2338 08c4 9B       		.byte	-101
+ 2339 08c5 80       		.byte	-128
+ 2340 08c6 9D       		.byte	-99
+ 2341 08c7 01       		.byte	1
+ 2342 08c8 9E       		.byte	-98
+ 2343 08c9 40       		.byte	64
+ 2344 08ca 9F       		.byte	-97
+ 2345 08cb 08       		.byte	8
+ 2346 08cc A0       		.byte	-96
+ 2347 08cd 01       		.byte	1
+ 2348 08ce A2       		.byte	-94
+ 2349 08cf 10       		.byte	16
+ 2350 08d0 A3       		.byte	-93
+ 2351 08d1 02       		.byte	2
+ 2352 08d2 A4       		.byte	-92
+ 2353 08d3 10       		.byte	16
+ 2354 08d4 A7       		.byte	-89
+ 2355 08d5 80       		.byte	-128
+ 2356 08d6 A9       		.byte	-87
+ 2357 08d7 04       		.byte	4
+ 2358 08d8 B3       		.byte	-77
+ 2359 08d9 40       		.byte	64
+ 2360 08da C0       		.byte	-64
+ 2361 08db 10       		.byte	16
+ 2362 08dc C2       		.byte	-62
+ 2363 08dd 50       		.byte	80
+ 2364 08de C4       		.byte	-60
+ 2365 08df 10       		.byte	16
+ 2366 08e0 CA       		.byte	-54
+ 2367 08e1 14       		.byte	20
+ 2368 08e2 CC       		.byte	-52
+ 2369 08e3 31       		.byte	49
+ 2370 08e4 D0       		.byte	-48
+ 2371 08e5 83       		.byte	-125
+ 2372 08e6 D2       		.byte	-46
+ 2373 08e7 20       		.byte	32
+ 2374 08e8 D6       		.byte	-42
+ 2375 08e9 0F       		.byte	15
+ 2376 08ea E0       		.byte	-32
+ 2377 08eb 10       		.byte	16
+ 2378 08ec E4       		.byte	-28
+ 2379 08ed 30       		.byte	48
+ 2380 08ee EA       		.byte	-22
+ 2381 08ef 20       		.byte	32
+ 2382 08f0 12       		.byte	18
+ 2383 08f1 01       		.byte	1
+ 2384 08f2 32       		.byte	50
+ 2385 08f3 01       		.byte	1
+ 2386 08f4 40       		.byte	64
+ 2387 08f5 05       		.byte	5
+ 2388 08f6 41       		.byte	65
+ 2389 08f7 01       		.byte	1
+ 2390 08f8 42       		.byte	66
+ 2391 08f9 50       		.byte	80
+ 2392 08fa 44       		.byte	68
+ 2393 08fb 03       		.byte	3
+ 2394 08fc 45       		.byte	69
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 43
+
+
+ 2395 08fd BE       		.byte	-66
+ 2396 08fe 46       		.byte	70
+ 2397 08ff FD       		.byte	-3
+ 2398 0900 47       		.byte	71
+ 2399 0901 0C       		.byte	12
+ 2400 0902 48       		.byte	72
+ 2401 0903 1F       		.byte	31
+ 2402 0904 49       		.byte	73
+ 2403 0905 FF       		.byte	-1
+ 2404 0906 4A       		.byte	74
+ 2405 0907 FF       		.byte	-1
+ 2406 0908 4B       		.byte	75
+ 2407 0909 FF       		.byte	-1
+ 2408 090a 4C       		.byte	76
+ 2409 090b 22       		.byte	34
+ 2410 090c 4E       		.byte	78
+ 2411 090d F0       		.byte	-16
+ 2412 090e 4F       		.byte	79
+ 2413 090f 0C       		.byte	12
+ 2414 0910 50       		.byte	80
+ 2415 0911 8C       		.byte	-116
+ 2416 0912 51       		.byte	81
+ 2417 0913 10       		.byte	16
+ 2418 0914 56       		.byte	86
+ 2419 0915 08       		.byte	8
+ 2420 0916 58       		.byte	88
+ 2421 0917 04       		.byte	4
+ 2422 0918 5A       		.byte	90
+ 2423 0919 24       		.byte	36
+ 2424 091a 5B       		.byte	91
+ 2425 091b 04       		.byte	4
+ 2426 091c 5C       		.byte	92
+ 2427 091d 03       		.byte	3
+ 2428 091e 5D       		.byte	93
+ 2429 091f 38       		.byte	56
+ 2430 0920 5F       		.byte	95
+ 2431 0921 01       		.byte	1
+ 2432 0922 68       		.byte	104
+ 2433 0923 40       		.byte	64
+ 2434 0924 69       		.byte	105
+ 2435 0925 01       		.byte	1
+ 2436 0926 6A       		.byte	106
+ 2437 0927 C0       		.byte	-64
+ 2438 0928 6B       		.byte	107
+ 2439 0929 01       		.byte	1
+ 2440 092a 87       		.byte	-121
+ 2441 092b 01       		.byte	1
+ 2442 092c 89       		.byte	-119
+ 2443 092d 01       		.byte	1
+ 2444 092e 93       		.byte	-109
+ 2445 092f 01       		.byte	1
+ 2446 0930 94       		.byte	-108
+ 2447 0931 01       		.byte	1
+ 2448 0932 AE       		.byte	-82
+ 2449 0933 01       		.byte	1
+ 2450 0934 B1       		.byte	-79
+ 2451 0935 01       		.byte	1
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 44
+
+
+ 2452 0936 B4       		.byte	-76
+ 2453 0937 01       		.byte	1
+ 2454 0938 BE       		.byte	-66
+ 2455 0939 10       		.byte	16
+ 2456 093a BF       		.byte	-65
+ 2457 093b 01       		.byte	1
+ 2458 093c D4       		.byte	-44
+ 2459 093d 41       		.byte	65
+ 2460 093e D8       		.byte	-40
+ 2461 093f 04       		.byte	4
+ 2462 0940 D9       		.byte	-39
+ 2463 0941 04       		.byte	4
+ 2464 0942 DB       		.byte	-37
+ 2465 0943 04       		.byte	4
+ 2466 0944 DD       		.byte	-35
+ 2467 0945 30       		.byte	48
+ 2468 0946 DF       		.byte	-33
+ 2469 0947 01       		.byte	1
+ 2470 0948 08       		.byte	8
+ 2471 0949 02       		.byte	2
+ 2472 094a 0E       		.byte	14
+ 2473 094b 10       		.byte	16
+ 2474 094c 14       		.byte	20
+ 2475 094d 02       		.byte	2
+ 2476 094e 1A       		.byte	26
+ 2477 094f 10       		.byte	16
+ 2478 0950 1F       		.byte	31
+ 2479 0951 10       		.byte	16
+ 2480 0952 27       		.byte	39
+ 2481 0953 80       		.byte	-128
+ 2482 0954 34       		.byte	52
+ 2483 0955 02       		.byte	2
+ 2484 0956 3E       		.byte	62
+ 2485 0957 10       		.byte	16
+ 2486 0958 3F       		.byte	63
+ 2487 0959 08       		.byte	8
+ 2488 095a 40       		.byte	64
+ 2489 095b 10       		.byte	16
+ 2490 095c 41       		.byte	65
+ 2491 095d 40       		.byte	64
+ 2492 095e 48       		.byte	72
+ 2493 095f 81       		.byte	-127
+ 2494 0960 49       		.byte	73
+ 2495 0961 40       		.byte	64
+ 2496 0962 4A       		.byte	74
+ 2497 0963 10       		.byte	16
+ 2498 0964 52       		.byte	82
+ 2499 0965 20       		.byte	32
+ 2500 0966 53       		.byte	83
+ 2501 0967 88       		.byte	-120
+ 2502 0968 58       		.byte	88
+ 2503 0969 10       		.byte	16
+ 2504 096a 59       		.byte	89
+ 2505 096b 40       		.byte	64
+ 2506 096c 5E       		.byte	94
+ 2507 096d 20       		.byte	32
+ 2508 096e 5F       		.byte	95
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 45
+
+
+ 2509 096f 84       		.byte	-124
+ 2510 0970 60       		.byte	96
+ 2511 0971 02       		.byte	2
+ 2512 0972 63       		.byte	99
+ 2513 0973 0C       		.byte	12
+ 2514 0974 67       		.byte	103
+ 2515 0975 20       		.byte	32
+ 2516 0976 68       		.byte	104
+ 2517 0977 42       		.byte	66
+ 2518 0978 69       		.byte	105
+ 2519 0979 10       		.byte	16
+ 2520 097a 6B       		.byte	107
+ 2521 097b 10       		.byte	16
+ 2522 097c 7B       		.byte	123
+ 2523 097d 02       		.byte	2
+ 2524 097e 82       		.byte	-126
+ 2525 097f 20       		.byte	32
+ 2526 0980 83       		.byte	-125
+ 2527 0981 10       		.byte	16
+ 2528 0982 84       		.byte	-124
+ 2529 0983 90       		.byte	-112
+ 2530 0984 85       		.byte	-123
+ 2531 0985 10       		.byte	16
+ 2532 0986 87       		.byte	-121
+ 2533 0987 08       		.byte	8
+ 2534 0988 88       		.byte	-120
+ 2535 0989 40       		.byte	64
+ 2536 098a 8C       		.byte	-116
+ 2537 098b 02       		.byte	2
+ 2538 098c 8F       		.byte	-113
+ 2539 098d 20       		.byte	32
+ 2540 098e 90       		.byte	-112
+ 2541 098f 10       		.byte	16
+ 2542 0990 91       		.byte	-111
+ 2543 0991 80       		.byte	-128
+ 2544 0992 9F       		.byte	-97
+ 2545 0993 20       		.byte	32
+ 2546 0994 A0       		.byte	-96
+ 2547 0995 01       		.byte	1
+ 2548 0996 A3       		.byte	-93
+ 2549 0997 02       		.byte	2
+ 2550 0998 A7       		.byte	-89
+ 2551 0999 80       		.byte	-128
+ 2552 099a A9       		.byte	-87
+ 2553 099b 20       		.byte	32
+ 2554 099c AA       		.byte	-86
+ 2555 099d 10       		.byte	16
+ 2556 099e AC       		.byte	-84
+ 2557 099f 01       		.byte	1
+ 2558 09a0 B0       		.byte	-80
+ 2559 09a1 10       		.byte	16
+ 2560 09a2 C2       		.byte	-62
+ 2561 09a3 28       		.byte	40
+ 2562 09a4 C4       		.byte	-60
+ 2563 09a5 80       		.byte	-128
+ 2564 09a6 CC       		.byte	-52
+ 2565 09a7 80       		.byte	-128
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 46
+
+
+ 2566 09a8 CE       		.byte	-50
+ 2567 09a9 60       		.byte	96
+ 2568 09aa D0       		.byte	-48
+ 2569 09ab 0A       		.byte	10
+ 2570 09ac D2       		.byte	-46
+ 2571 09ad 08       		.byte	8
+ 2572 09ae D6       		.byte	-42
+ 2573 09af 7C       		.byte	124
+ 2574 09b0 D8       		.byte	-40
+ 2575 09b1 4C       		.byte	76
+ 2576 09b2 DE       		.byte	-34
+ 2577 09b3 08       		.byte	8
+ 2578 09b4 E0       		.byte	-32
+ 2579 09b5 0C       		.byte	12
+ 2580 09b6 E4       		.byte	-28
+ 2581 09b7 08       		.byte	8
+ 2582 09b8 E8       		.byte	-24
+ 2583 09b9 20       		.byte	32
+ 2584 09ba EA       		.byte	-22
+ 2585 09bb 02       		.byte	2
+ 2586 09bc 03       		.byte	3
+ 2587 09bd 82       		.byte	-126
+ 2588 09be 05       		.byte	5
+ 2589 09bf 02       		.byte	2
+ 2590 09c0 07       		.byte	7
+ 2591 09c1 02       		.byte	2
+ 2592 09c2 08       		.byte	8
+ 2593 09c3 08       		.byte	8
+ 2594 09c4 0A       		.byte	10
+ 2595 09c5 02       		.byte	2
+ 2596 09c6 0F       		.byte	15
+ 2597 09c7 10       		.byte	16
+ 2598 09c8 31       		.byte	49
+ 2599 09c9 20       		.byte	32
+ 2600 09ca 37       		.byte	55
+ 2601 09cb 40       		.byte	64
+ 2602 09cc 39       		.byte	57
+ 2603 09cd 01       		.byte	1
+ 2604 09ce 3C       		.byte	60
+ 2605 09cf 10       		.byte	16
+ 2606 09d0 83       		.byte	-125
+ 2607 09d1 02       		.byte	2
+ 2608 09d2 8A       		.byte	-118
+ 2609 09d3 01       		.byte	1
+ 2610 09d4 C0       		.byte	-64
+ 2611 09d5 F0       		.byte	-16
+ 2612 09d6 C2       		.byte	-62
+ 2613 09d7 70       		.byte	112
+ 2614 09d8 CC       		.byte	-52
+ 2615 09d9 30       		.byte	48
+ 2616 09da CE       		.byte	-50
+ 2617 09db 60       		.byte	96
+ 2618 09dc E4       		.byte	-28
+ 2619 09dd 80       		.byte	-128
+ 2620 09de 80       		.byte	-128
+ 2621 09df 10       		.byte	16
+ 2622 09e0 85       		.byte	-123
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 47
+
+
+ 2623 09e1 22       		.byte	34
+ 2624 09e2 94       		.byte	-108
+ 2625 09e3 10       		.byte	16
+ 2626 09e4 95       		.byte	-107
+ 2627 09e5 01       		.byte	1
+ 2628 09e6 98       		.byte	-104
+ 2629 09e7 08       		.byte	8
+ 2630 09e8 99       		.byte	-103
+ 2631 09e9 02       		.byte	2
+ 2632 09ea 9F       		.byte	-97
+ 2633 09eb 40       		.byte	64
+ 2634 09ec A3       		.byte	-93
+ 2635 09ed 80       		.byte	-128
+ 2636 09ee A5       		.byte	-91
+ 2637 09ef 20       		.byte	32
+ 2638 09f0 AB       		.byte	-85
+ 2639 09f1 02       		.byte	2
+ 2640 09f2 AF       		.byte	-81
+ 2641 09f3 10       		.byte	16
+ 2642 09f4 E2       		.byte	-30
+ 2643 09f5 10       		.byte	16
+ 2644 09f6 E4       		.byte	-28
+ 2645 09f7 10       		.byte	16
+ 2646 09f8 E6       		.byte	-26
+ 2647 09f9 80       		.byte	-128
+ 2648 09fa E8       		.byte	-24
+ 2649 09fb 30       		.byte	48
+ 2650 09fc 50       		.byte	80
+ 2651 09fd 80       		.byte	-128
+ 2652 09fe 55       		.byte	85
+ 2653 09ff 04       		.byte	4
+ 2654 0a00 95       		.byte	-107
+ 2655 0a01 01       		.byte	1
+ 2656 0a02 9F       		.byte	-97
+ 2657 0a03 40       		.byte	64
+ 2658 0a04 A3       		.byte	-93
+ 2659 0a05 80       		.byte	-128
+ 2660 0a06 B0       		.byte	-80
+ 2661 0a07 08       		.byte	8
+ 2662 0a08 D4       		.byte	-44
+ 2663 0a09 60       		.byte	96
+ 2664 0a0a 8B       		.byte	-117
+ 2665 0a0b 10       		.byte	16
+ 2666 0a0c 95       		.byte	-107
+ 2667 0a0d 01       		.byte	1
+ 2668 0a0e A5       		.byte	-91
+ 2669 0a0f 04       		.byte	4
+ 2670 0a10 A8       		.byte	-88
+ 2671 0a11 80       		.byte	-128
+ 2672 0a12 AB       		.byte	-85
+ 2673 0a13 40       		.byte	64
+ 2674 0a14 B7       		.byte	-73
+ 2675 0a15 80       		.byte	-128
+ 2676 0a16 EA       		.byte	-22
+ 2677 0a17 20       		.byte	32
+ 2678 0a18 EE       		.byte	-18
+ 2679 0a19 80       		.byte	-128
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 48
+
+
+ 2680 0a1a 00       		.byte	0
+ 2681 0a1b 40       		.byte	64
+ 2682 0a1c 03       		.byte	3
+ 2683 0a1d 40       		.byte	64
+ 2684 0a1e 04       		.byte	4
+ 2685 0a1f 10       		.byte	16
+ 2686 0a20 07       		.byte	7
+ 2687 0a21 80       		.byte	-128
+ 2688 0a22 08       		.byte	8
+ 2689 0a23 80       		.byte	-128
+ 2690 0a24 0A       		.byte	10
+ 2691 0a25 20       		.byte	32
+ 2692 0a26 0C       		.byte	12
+ 2693 0a27 02       		.byte	2
+ 2694 0a28 0D       		.byte	13
+ 2695 0a29 10       		.byte	16
+ 2696 0a2a 71       		.byte	113
+ 2697 0a2b 02       		.byte	2
+ 2698 0a2c 77       		.byte	119
+ 2699 0a2d 20       		.byte	32
+ 2700 0a2e 7D       		.byte	125
+ 2701 0a2f 20       		.byte	32
+ 2702 0a30 83       		.byte	-125
+ 2703 0a31 40       		.byte	64
+ 2704 0a32 89       		.byte	-119
+ 2705 0a33 10       		.byte	16
+ 2706 0a34 8C       		.byte	-116
+ 2707 0a35 02       		.byte	2
+ 2708 0a36 C0       		.byte	-64
+ 2709 0a37 0F       		.byte	15
+ 2710 0a38 C2       		.byte	-62
+ 2711 0a39 0F       		.byte	15
+ 2712 0a3a DC       		.byte	-36
+ 2713 0a3b 01       		.byte	1
+ 2714 0a3c DE       		.byte	-34
+ 2715 0a3d 05       		.byte	5
+ 2716 0a3e E6       		.byte	-26
+ 2717 0a3f 06       		.byte	6
+ 2718 0a40 52       		.byte	82
+ 2719 0a41 40       		.byte	64
+ 2720 0a42 54       		.byte	84
+ 2721 0a43 82       		.byte	-126
+ 2722 0a44 5A       		.byte	90
+ 2723 0a45 02       		.byte	2
+ 2724 0a46 5B       		.byte	91
+ 2725 0a47 40       		.byte	64
+ 2726 0a48 62       		.byte	98
+ 2727 0a49 08       		.byte	8
+ 2728 0a4a 66       		.byte	102
+ 2729 0a4b 90       		.byte	-112
+ 2730 0a4c 80       		.byte	-128
+ 2731 0a4d 80       		.byte	-128
+ 2732 0a4e 81       		.byte	-127
+ 2733 0a4f 10       		.byte	16
+ 2734 0a50 82       		.byte	-126
+ 2735 0a51 10       		.byte	16
+ 2736 0a52 85       		.byte	-123
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 49
+
+
+ 2737 0a53 02       		.byte	2
+ 2738 0a54 87       		.byte	-121
+ 2739 0a55 40       		.byte	64
+ 2740 0a56 8C       		.byte	-116
+ 2741 0a57 80       		.byte	-128
+ 2742 0a58 92       		.byte	-110
+ 2743 0a59 20       		.byte	32
+ 2744 0a5a 98       		.byte	-104
+ 2745 0a5b 80       		.byte	-128
+ 2746 0a5c 9F       		.byte	-97
+ 2747 0a5d 20       		.byte	32
+ 2748 0a5e A5       		.byte	-91
+ 2749 0a5f 12       		.byte	18
+ 2750 0a60 B3       		.byte	-77
+ 2751 0a61 80       		.byte	-128
+ 2752 0a62 B4       		.byte	-76
+ 2753 0a63 50       		.byte	80
+ 2754 0a64 D4       		.byte	-44
+ 2755 0a65 07       		.byte	7
+ 2756 0a66 D6       		.byte	-42
+ 2757 0a67 07       		.byte	7
+ 2758 0a68 D8       		.byte	-40
+ 2759 0a69 03       		.byte	3
+ 2760 0a6a E4       		.byte	-28
+ 2761 0a6b 02       		.byte	2
+ 2762 0a6c EA       		.byte	-22
+ 2763 0a6d 0A       		.byte	10
+ 2764 0a6e EE       		.byte	-18
+ 2765 0a6f 04       		.byte	4
+ 2766 0a70 1A       		.byte	26
+ 2767 0a71 80       		.byte	-128
+ 2768 0a72 30       		.byte	48
+ 2769 0a73 40       		.byte	64
+ 2770 0a74 44       		.byte	68
+ 2771 0a75 10       		.byte	16
+ 2772 0a76 64       		.byte	100
+ 2773 0a77 40       		.byte	64
+ 2774 0a78 66       		.byte	102
+ 2775 0a79 04       		.byte	4
+ 2776 0a7a 97       		.byte	-105
+ 2777 0a7b 80       		.byte	-128
+ 2778 0a7c 9E       		.byte	-98
+ 2779 0a7d 20       		.byte	32
+ 2780 0a7e 9F       		.byte	-97
+ 2781 0a7f 20       		.byte	32
+ 2782 0a80 AA       		.byte	-86
+ 2783 0a81 08       		.byte	8
+ 2784 0a82 AB       		.byte	-85
+ 2785 0a83 40       		.byte	64
+ 2786 0a84 AE       		.byte	-82
+ 2787 0a85 51       		.byte	81
+ 2788 0a86 B2       		.byte	-78
+ 2789 0a87 20       		.byte	32
+ 2790 0a88 B4       		.byte	-76
+ 2791 0a89 02       		.byte	2
+ 2792 0a8a B6       		.byte	-74
+ 2793 0a8b 80       		.byte	-128
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 50
+
+
+ 2794 0a8c C6       		.byte	-58
+ 2795 0a8d 08       		.byte	8
+ 2796 0a8e CC       		.byte	-52
+ 2797 0a8f 08       		.byte	8
+ 2798 0a90 D0       		.byte	-48
+ 2799 0a91 01       		.byte	1
+ 2800 0a92 EC       		.byte	-20
+ 2801 0a93 0A       		.byte	10
+ 2802 0a94 EE       		.byte	-18
+ 2803 0a95 01       		.byte	1
+ 2804 0a96 87       		.byte	-121
+ 2805 0a97 20       		.byte	32
+ 2806 0a98 97       		.byte	-105
+ 2807 0a99 80       		.byte	-128
+ 2808 0a9a 9C       		.byte	-100
+ 2809 0a9b 10       		.byte	16
+ 2810 0a9c 9E       		.byte	-98
+ 2811 0a9d 24       		.byte	36
+ 2812 0a9e 9F       		.byte	-97
+ 2813 0a9f 20       		.byte	32
+ 2814 0aa0 AA       		.byte	-86
+ 2815 0aa1 40       		.byte	64
+ 2816 0aa2 21       		.byte	33
+ 2817 0aa3 01       		.byte	1
+ 2818 0aa4 27       		.byte	39
+ 2819 0aa5 04       		.byte	4
+ 2820 0aa6 84       		.byte	-124
+ 2821 0aa7 20       		.byte	32
+ 2822 0aa8 8D       		.byte	-115
+ 2823 0aa9 02       		.byte	2
+ 2824 0aaa 8F       		.byte	-113
+ 2825 0aab 04       		.byte	4
+ 2826 0aac 93       		.byte	-109
+ 2827 0aad 20       		.byte	32
+ 2828 0aae A3       		.byte	-93
+ 2829 0aaf 40       		.byte	64
+ 2830 0ab0 A5       		.byte	-91
+ 2831 0ab1 04       		.byte	4
+ 2832 0ab2 AB       		.byte	-85
+ 2833 0ab3 40       		.byte	64
+ 2834 0ab4 B1       		.byte	-79
+ 2835 0ab5 01       		.byte	1
+ 2836 0ab6 C8       		.byte	-56
+ 2837 0ab7 60       		.byte	96
+ 2838 0ab8 E6       		.byte	-26
+ 2839 0ab9 10       		.byte	16
+ 2840 0aba EA       		.byte	-22
+ 2841 0abb 20       		.byte	32
+ 2842 0abc 53       		.byte	83
+ 2843 0abd 10       		.byte	16
+ 2844 0abe 57       		.byte	87
+ 2845 0abf 40       		.byte	64
+ 2846 0ac0 5A       		.byte	90
+ 2847 0ac1 40       		.byte	64
+ 2848 0ac2 5C       		.byte	92
+ 2849 0ac3 20       		.byte	32
+ 2850 0ac4 5F       		.byte	95
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 51
+
+
+ 2851 0ac5 02       		.byte	2
+ 2852 0ac6 60       		.byte	96
+ 2853 0ac7 01       		.byte	1
+ 2854 0ac8 63       		.byte	99
+ 2855 0ac9 20       		.byte	32
+ 2856 0aca 66       		.byte	102
+ 2857 0acb 01       		.byte	1
+ 2858 0acc 75       		.byte	117
+ 2859 0acd 02       		.byte	2
+ 2860 0ace 78       		.byte	120
+ 2861 0acf 40       		.byte	64
+ 2862 0ad0 84       		.byte	-124
+ 2863 0ad1 40       		.byte	64
+ 2864 0ad2 8B       		.byte	-117
+ 2865 0ad3 02       		.byte	2
+ 2866 0ad4 8E       		.byte	-114
+ 2867 0ad5 01       		.byte	1
+ 2868 0ad6 8F       		.byte	-113
+ 2869 0ad7 10       		.byte	16
+ 2870 0ad8 90       		.byte	-112
+ 2871 0ad9 01       		.byte	1
+ 2872 0ada 92       		.byte	-110
+ 2873 0adb 40       		.byte	64
+ 2874 0adc 93       		.byte	-109
+ 2875 0add 20       		.byte	32
+ 2876 0ade 98       		.byte	-104
+ 2877 0adf 20       		.byte	32
+ 2878 0ae0 99       		.byte	-103
+ 2879 0ae1 02       		.byte	2
+ 2880 0ae2 A3       		.byte	-93
+ 2881 0ae3 40       		.byte	64
+ 2882 0ae4 A8       		.byte	-88
+ 2883 0ae5 01       		.byte	1
+ 2884 0ae6 AA       		.byte	-86
+ 2885 0ae7 40       		.byte	64
+ 2886 0ae8 B1       		.byte	-79
+ 2887 0ae9 01       		.byte	1
+ 2888 0aea B5       		.byte	-75
+ 2889 0aeb 04       		.byte	4
+ 2890 0aec D4       		.byte	-44
+ 2891 0aed E0       		.byte	-32
+ 2892 0aee D6       		.byte	-42
+ 2893 0aef E0       		.byte	-32
+ 2894 0af0 D8       		.byte	-40
+ 2895 0af1 C0       		.byte	-64
+ 2896 0af2 DC       		.byte	-36
+ 2897 0af3 80       		.byte	-128
+ 2898 0af4 DE       		.byte	-34
+ 2899 0af5 20       		.byte	32
+ 2900 0af6 E6       		.byte	-26
+ 2901 0af7 10       		.byte	16
+ 2902 0af8 EA       		.byte	-22
+ 2903 0af9 A0       		.byte	-96
+ 2904 0afa 06       		.byte	6
+ 2905 0afb 20       		.byte	32
+ 2906 0afc 08       		.byte	8
+ 2907 0afd 04       		.byte	4
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 52
+
+
+ 2908 0afe 1F       		.byte	31
+ 2909 0aff 40       		.byte	64
+ 2910 0b00 51       		.byte	81
+ 2911 0b01 04       		.byte	4
+ 2912 0b02 8A       		.byte	-118
+ 2913 0b03 01       		.byte	1
+ 2914 0b04 8B       		.byte	-117
+ 2915 0b05 20       		.byte	32
+ 2916 0b06 8C       		.byte	-116
+ 2917 0b07 80       		.byte	-128
+ 2918 0b08 8D       		.byte	-115
+ 2919 0b09 04       		.byte	4
+ 2920 0b0a 8E       		.byte	-114
+ 2921 0b0b 04       		.byte	4
+ 2922 0b0c 97       		.byte	-105
+ 2923 0b0d 80       		.byte	-128
+ 2924 0b0e 9C       		.byte	-100
+ 2925 0b0f 10       		.byte	16
+ 2926 0b10 9E       		.byte	-98
+ 2927 0b11 24       		.byte	36
+ 2928 0b12 C0       		.byte	-64
+ 2929 0b13 04       		.byte	4
+ 2930 0b14 C2       		.byte	-62
+ 2931 0b15 08       		.byte	8
+ 2932 0b16 C6       		.byte	-58
+ 2933 0b17 01       		.byte	1
+ 2934 0b18 D4       		.byte	-44
+ 2935 0b19 04       		.byte	4
+ 2936 0b1a E0       		.byte	-32
+ 2937 0b1b 08       		.byte	8
+ 2938 0b1c E4       		.byte	-28
+ 2939 0b1d 0C       		.byte	12
+ 2940 0b1e E6       		.byte	-26
+ 2941 0b1f 03       		.byte	3
+ 2942 0b20 09       		.byte	9
+ 2943 0b21 04       		.byte	4
+ 2944 0b22 0A       		.byte	10
+ 2945 0b23 01       		.byte	1
+ 2946 0b24 0D       		.byte	13
+ 2947 0b25 18       		.byte	24
+ 2948 0b26 53       		.byte	83
+ 2949 0b27 80       		.byte	-128
+ 2950 0b28 54       		.byte	84
+ 2951 0b29 02       		.byte	2
+ 2952 0b2a 56       		.byte	86
+ 2953 0b2b 10       		.byte	16
+ 2954 0b2c 5A       		.byte	90
+ 2955 0b2d 40       		.byte	64
+ 2956 0b2e 77       		.byte	119
+ 2957 0b2f 20       		.byte	32
+ 2958 0b30 78       		.byte	120
+ 2959 0b31 80       		.byte	-128
+ 2960 0b32 80       		.byte	-128
+ 2961 0b33 02       		.byte	2
+ 2962 0b34 85       		.byte	-123
+ 2963 0b35 04       		.byte	4
+ 2964 0b36 87       		.byte	-121
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 53
+
+
+ 2965 0b37 80       		.byte	-128
+ 2966 0b38 8A       		.byte	-118
+ 2967 0b39 10       		.byte	16
+ 2968 0b3a 8D       		.byte	-115
+ 2969 0b3b 08       		.byte	8
+ 2970 0b3c 8E       		.byte	-114
+ 2971 0b3d 40       		.byte	64
+ 2972 0b3e 95       		.byte	-107
+ 2973 0b3f 28       		.byte	40
+ 2974 0b40 96       		.byte	-106
+ 2975 0b41 01       		.byte	1
+ 2976 0b42 98       		.byte	-104
+ 2977 0b43 80       		.byte	-128
+ 2978 0b44 9B       		.byte	-101
+ 2979 0b45 20       		.byte	32
+ 2980 0b46 A5       		.byte	-91
+ 2981 0b47 04       		.byte	4
+ 2982 0b48 AD       		.byte	-83
+ 2983 0b49 10       		.byte	16
+ 2984 0b4a B0       		.byte	-80
+ 2985 0b4b 14       		.byte	20
+ 2986 0b4c C2       		.byte	-62
+ 2987 0b4d 0F       		.byte	15
+ 2988 0b4e D4       		.byte	-44
+ 2989 0b4f 07       		.byte	7
+ 2990 0b50 D6       		.byte	-42
+ 2991 0b51 04       		.byte	4
+ 2992 0b52 DC       		.byte	-36
+ 2993 0b53 01       		.byte	1
+ 2994 0b54 DE       		.byte	-34
+ 2995 0b55 04       		.byte	4
+ 2996 0b56 E4       		.byte	-28
+ 2997 0b57 06       		.byte	6
+ 2998 0b58 E6       		.byte	-26
+ 2999 0b59 08       		.byte	8
+ 3000 0b5a E8       		.byte	-24
+ 3001 0b5b 04       		.byte	4
+ 3002 0b5c EE       		.byte	-18
+ 3003 0b5d 01       		.byte	1
+ 3004 0b5e 00       		.byte	0
+ 3005 0b5f 18       		.byte	24
+ 3006 0b60 0A       		.byte	10
+ 3007 0b61 18       		.byte	24
+ 3008 0b62 0C       		.byte	12
+ 3009 0b63 10       		.byte	16
+ 3010 0b64 0E       		.byte	14
+ 3011 0b65 10       		.byte	16
+ 3012 0b66 10       		.byte	16
+ 3013 0b67 19       		.byte	25
+ 3014 0b68 1A       		.byte	26
+ 3015 0b69 19       		.byte	25
+ 3016 0b6a 1C       		.byte	28
+ 3017 0b6b 18       		.byte	24
+ 3018 0b6c 00       		.byte	0
+ 3019 0b6d 0F       		.byte	15
+ 3020 0b6e 10       		.byte	16
+ 3021 0b6f 0A       		.byte	10
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 54
+
+
+ 3022 0b70 00       		.byte	0
+ 3023 0b71 00       		.byte	0
+ 3024 0b72 00       		.byte	0
+ 3025 0b73 00       		.byte	0
+ 3026 0b74 00       		.byte	0
+ 3027 0b75 00       		.byte	0
+ 3028 0b76 7F       		.byte	127
+ 3029 0b77 00       		.byte	0
+ 3030 0b78 00       		.byte	0
+ 3031 0b79 FF       		.byte	-1
+ 3032 0b7a FF       		.byte	-1
+ 3033 0b7b 00       		.byte	0
+ 3034 0b7c FF       		.byte	-1
+ 3035 0b7d 00       		.byte	0
+ 3036 0b7e 00       		.byte	0
+ 3037 0b7f 00       		.byte	0
+ 3038 0b80 00       		.byte	0
+ 3039 0b81 00       		.byte	0
+ 3040 0b82 00       		.byte	0
+ 3041 0b83 00       		.byte	0
+ 3042 0b84 00       		.byte	0
+ 3043 0b85 00       		.byte	0
+ 3044 0b86 30       		.byte	48
+ 3045 0b87 00       		.byte	0
+ 3046 0b88 12       		.byte	18
+ 3047 0b89 08       		.byte	8
+ 3048 0b8a 08       		.byte	8
+ 3049 0b8b 00       		.byte	0
+ 3050 0b8c 08       		.byte	8
+ 3051 0b8d 00       		.byte	0
+ 3052 0b8e 00       		.byte	0
+ 3053 0b8f 00       		.byte	0
+ 3054 0b90 00       		.byte	0
+ 3055 0b91 FF       		.byte	-1
+ 3056 0b92 FF       		.byte	-1
+ 3057 0b93 00       		.byte	0
+ 3058 0b94 FF       		.byte	-1
+ 3059 0b95 00       		.byte	0
+ 3060 0b96 00       		.byte	0
+ 3061 0b97 00       		.byte	0
+ 3062 0b98 00       		.byte	0
+ 3063 0b99 FF       		.byte	-1
+ 3064 0b9a FF       		.byte	-1
+ 3065 0b9b 00       		.byte	0
+ 3066 0b9c FF       		.byte	-1
+ 3067 0b9d 00       		.byte	0
+ 3068 0b9e 00       		.byte	0
+ 3069 0b9f 00       		.byte	0
+ 3070 0ba0 7F       		.byte	127
+ 3071 0ba1 00       		.byte	0
+ 3072 0ba2 00       		.byte	0
+ 3073 0ba3 00       		.byte	0
+ 3074 0ba4 00       		.byte	0
+ 3075 0ba5 00       		.byte	0
+ 3076 0ba6 00       		.byte	0
+ 3077 0ba7 00       		.byte	0
+ 3078 0ba8 F0       		.byte	-16
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 55
+
+
+ 3079 0ba9 0F       		.byte	15
+ 3080 0baa 0F       		.byte	15
+ 3081 0bab 00       		.byte	0
+ 3082 0bac 0F       		.byte	15
+ 3083 0bad 00       		.byte	0
+ 3084 0bae 00       		.byte	0
+ 3085 0baf 00       		.byte	0
+ 3086 0bb0 FF       		.byte	-1
+ 3087 0bb1 00       		.byte	0
+ 3088 0bb2 00       		.byte	0
+ 3089 0bb3 00       		.byte	0
+ 3090 0bb4 00       		.byte	0
+ 3091 0bb5 00       		.byte	0
+ 3092 0bb6 00       		.byte	0
+ 3093 0bb7 00       		.byte	0
+ 3094 0bb8 01       		.byte	1
+ 3095 0bb9 00       		.byte	0
+ 3096 0bba 18       		.byte	24
+ 3097 0bbb 01       		.byte	1
+ 3098 0bbc 01       		.byte	1
+ 3099 0bbd 00       		.byte	0
+ 3100 0bbe 18       		.byte	24
+ 3101 0bbf 01       		.byte	1
+ 3102 0bc0 25       		.byte	37
+ 3103 0bc1 00       		.byte	0
+ 3104 0bc2 18       		.byte	24
+ 3105 0bc3 01       		.byte	1
+ 3106              		.text
+ 3107              	.Letext0:
+ 3108              		.file 1 ".\\Generated_Source\\PSoC5\\cymetadata.c"
+ 3109              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 3110              		.section	.debug_info,"",%progbits
+ 3111              	.Ldebug_info0:
+ 3112 0000 D6000000 		.4byte	0xd6
+ 3113 0004 0200     		.2byte	0x2
+ 3114 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 3115 000a 04       		.byte	0x4
+ 3116 000b 01       		.uleb128 0x1
+ 3117 000c 1A010000 		.4byte	.LASF15
+ 3118 0010 01       		.byte	0x1
+ 3119 0011 00000000 		.4byte	.LASF16
+ 3120 0015 5F000000 		.4byte	.LASF17
+ 3121 0019 00000000 		.4byte	.Ldebug_line0
+ 3122 001d 02       		.uleb128 0x2
+ 3123 001e 01       		.byte	0x1
+ 3124 001f 06       		.byte	0x6
+ 3125 0020 6C010000 		.4byte	.LASF0
+ 3126 0024 02       		.uleb128 0x2
+ 3127 0025 01       		.byte	0x1
+ 3128 0026 08       		.byte	0x8
+ 3129 0027 2C000000 		.4byte	.LASF1
+ 3130 002b 02       		.uleb128 0x2
+ 3131 002c 02       		.byte	0x2
+ 3132 002d 05       		.byte	0x5
+ 3133 002e 0A010000 		.4byte	.LASF2
+ 3134 0032 02       		.uleb128 0x2
+ 3135 0033 02       		.byte	0x2
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 56
+
+
+ 3136 0034 07       		.byte	0x7
+ 3137 0035 4C000000 		.4byte	.LASF3
+ 3138 0039 02       		.uleb128 0x2
+ 3139 003a 04       		.byte	0x4
+ 3140 003b 05       		.byte	0x5
+ 3141 003c 63010000 		.4byte	.LASF4
+ 3142 0040 02       		.uleb128 0x2
+ 3143 0041 04       		.byte	0x4
+ 3144 0042 07       		.byte	0x7
+ 3145 0043 3A000000 		.4byte	.LASF5
+ 3146 0047 02       		.uleb128 0x2
+ 3147 0048 08       		.byte	0x8
+ 3148 0049 05       		.byte	0x5
+ 3149 004a F7000000 		.4byte	.LASF6
+ 3150 004e 02       		.uleb128 0x2
+ 3151 004f 08       		.byte	0x8
+ 3152 0050 07       		.byte	0x7
+ 3153 0051 C6000000 		.4byte	.LASF7
+ 3154 0055 03       		.uleb128 0x3
+ 3155 0056 04       		.byte	0x4
+ 3156 0057 05       		.byte	0x5
+ 3157 0058 696E7400 		.ascii	"int\000"
+ 3158 005c 02       		.uleb128 0x2
+ 3159 005d 04       		.byte	0x4
+ 3160 005e 07       		.byte	0x7
+ 3161 005f B9000000 		.4byte	.LASF8
+ 3162 0063 04       		.uleb128 0x4
+ 3163 0064 14010000 		.4byte	.LASF18
+ 3164 0068 02       		.byte	0x2
+ 3165 0069 5B       		.byte	0x5b
+ 3166 006a 24000000 		.4byte	0x24
+ 3167 006e 02       		.uleb128 0x2
+ 3168 006f 04       		.byte	0x4
+ 3169 0070 04       		.byte	0x4
+ 3170 0071 26000000 		.4byte	.LASF9
+ 3171 0075 02       		.uleb128 0x2
+ 3172 0076 08       		.byte	0x8
+ 3173 0077 04       		.byte	0x4
+ 3174 0078 A0000000 		.4byte	.LASF10
+ 3175 007c 02       		.uleb128 0x2
+ 3176 007d 01       		.byte	0x1
+ 3177 007e 08       		.byte	0x8
+ 3178 007f 05010000 		.4byte	.LASF11
+ 3179 0083 05       		.uleb128 0x5
+ 3180 0084 63000000 		.4byte	0x63
+ 3181 0088 93000000 		.4byte	0x93
+ 3182 008c 06       		.uleb128 0x6
+ 3183 008d 93000000 		.4byte	0x93
+ 3184 0091 3F       		.byte	0x3f
+ 3185 0092 00       		.byte	0
+ 3186 0093 02       		.uleb128 0x2
+ 3187 0094 04       		.byte	0x4
+ 3188 0095 07       		.byte	0x7
+ 3189 0096 EE000000 		.4byte	.LASF12
+ 3190 009a 07       		.uleb128 0x7
+ 3191 009b DD000000 		.4byte	.LASF13
+ 3192 009f 01       		.byte	0x1
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 57
+
+
+ 3193 00a0 1C       		.byte	0x1c
+ 3194 00a1 AC000000 		.4byte	0xac
+ 3195 00a5 01       		.byte	0x1
+ 3196 00a6 05       		.byte	0x5
+ 3197 00a7 03       		.byte	0x3
+ 3198 00a8 00000000 		.4byte	cy_meta_loadable
+ 3199 00ac 08       		.uleb128 0x8
+ 3200 00ad 83000000 		.4byte	0x83
+ 3201 00b1 05       		.uleb128 0x5
+ 3202 00b2 63000000 		.4byte	0x63
+ 3203 00b6 C2000000 		.4byte	0xc2
+ 3204 00ba 09       		.uleb128 0x9
+ 3205 00bb 93000000 		.4byte	0x93
+ 3206 00bf C30B     		.2byte	0xbc3
+ 3207 00c1 00       		.byte	0
+ 3208 00c2 07       		.uleb128 0x7
+ 3209 00c3 A7000000 		.4byte	.LASF14
+ 3210 00c7 01       		.byte	0x1
+ 3211 00c8 2E       		.byte	0x2e
+ 3212 00c9 D4000000 		.4byte	0xd4
+ 3213 00cd 01       		.byte	0x1
+ 3214 00ce 05       		.byte	0x5
+ 3215 00cf 03       		.byte	0x3
+ 3216 00d0 00000000 		.4byte	cy_meta_configecc
+ 3217 00d4 08       		.uleb128 0x8
+ 3218 00d5 B1000000 		.4byte	0xb1
+ 3219 00d9 00       		.byte	0
+ 3220              		.section	.debug_abbrev,"",%progbits
+ 3221              	.Ldebug_abbrev0:
+ 3222 0000 01       		.uleb128 0x1
+ 3223 0001 11       		.uleb128 0x11
+ 3224 0002 01       		.byte	0x1
+ 3225 0003 25       		.uleb128 0x25
+ 3226 0004 0E       		.uleb128 0xe
+ 3227 0005 13       		.uleb128 0x13
+ 3228 0006 0B       		.uleb128 0xb
+ 3229 0007 03       		.uleb128 0x3
+ 3230 0008 0E       		.uleb128 0xe
+ 3231 0009 1B       		.uleb128 0x1b
+ 3232 000a 0E       		.uleb128 0xe
+ 3233 000b 10       		.uleb128 0x10
+ 3234 000c 06       		.uleb128 0x6
+ 3235 000d 00       		.byte	0
+ 3236 000e 00       		.byte	0
+ 3237 000f 02       		.uleb128 0x2
+ 3238 0010 24       		.uleb128 0x24
+ 3239 0011 00       		.byte	0
+ 3240 0012 0B       		.uleb128 0xb
+ 3241 0013 0B       		.uleb128 0xb
+ 3242 0014 3E       		.uleb128 0x3e
+ 3243 0015 0B       		.uleb128 0xb
+ 3244 0016 03       		.uleb128 0x3
+ 3245 0017 0E       		.uleb128 0xe
+ 3246 0018 00       		.byte	0
+ 3247 0019 00       		.byte	0
+ 3248 001a 03       		.uleb128 0x3
+ 3249 001b 24       		.uleb128 0x24
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 58
+
+
+ 3250 001c 00       		.byte	0
+ 3251 001d 0B       		.uleb128 0xb
+ 3252 001e 0B       		.uleb128 0xb
+ 3253 001f 3E       		.uleb128 0x3e
+ 3254 0020 0B       		.uleb128 0xb
+ 3255 0021 03       		.uleb128 0x3
+ 3256 0022 08       		.uleb128 0x8
+ 3257 0023 00       		.byte	0
+ 3258 0024 00       		.byte	0
+ 3259 0025 04       		.uleb128 0x4
+ 3260 0026 16       		.uleb128 0x16
+ 3261 0027 00       		.byte	0
+ 3262 0028 03       		.uleb128 0x3
+ 3263 0029 0E       		.uleb128 0xe
+ 3264 002a 3A       		.uleb128 0x3a
+ 3265 002b 0B       		.uleb128 0xb
+ 3266 002c 3B       		.uleb128 0x3b
+ 3267 002d 0B       		.uleb128 0xb
+ 3268 002e 49       		.uleb128 0x49
+ 3269 002f 13       		.uleb128 0x13
+ 3270 0030 00       		.byte	0
+ 3271 0031 00       		.byte	0
+ 3272 0032 05       		.uleb128 0x5
+ 3273 0033 01       		.uleb128 0x1
+ 3274 0034 01       		.byte	0x1
+ 3275 0035 49       		.uleb128 0x49
+ 3276 0036 13       		.uleb128 0x13
+ 3277 0037 01       		.uleb128 0x1
+ 3278 0038 13       		.uleb128 0x13
+ 3279 0039 00       		.byte	0
+ 3280 003a 00       		.byte	0
+ 3281 003b 06       		.uleb128 0x6
+ 3282 003c 21       		.uleb128 0x21
+ 3283 003d 00       		.byte	0
+ 3284 003e 49       		.uleb128 0x49
+ 3285 003f 13       		.uleb128 0x13
+ 3286 0040 2F       		.uleb128 0x2f
+ 3287 0041 0B       		.uleb128 0xb
+ 3288 0042 00       		.byte	0
+ 3289 0043 00       		.byte	0
+ 3290 0044 07       		.uleb128 0x7
+ 3291 0045 34       		.uleb128 0x34
+ 3292 0046 00       		.byte	0
+ 3293 0047 03       		.uleb128 0x3
+ 3294 0048 0E       		.uleb128 0xe
+ 3295 0049 3A       		.uleb128 0x3a
+ 3296 004a 0B       		.uleb128 0xb
+ 3297 004b 3B       		.uleb128 0x3b
+ 3298 004c 0B       		.uleb128 0xb
+ 3299 004d 49       		.uleb128 0x49
+ 3300 004e 13       		.uleb128 0x13
+ 3301 004f 3F       		.uleb128 0x3f
+ 3302 0050 0C       		.uleb128 0xc
+ 3303 0051 02       		.uleb128 0x2
+ 3304 0052 0A       		.uleb128 0xa
+ 3305 0053 00       		.byte	0
+ 3306 0054 00       		.byte	0
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 59
+
+
+ 3307 0055 08       		.uleb128 0x8
+ 3308 0056 26       		.uleb128 0x26
+ 3309 0057 00       		.byte	0
+ 3310 0058 49       		.uleb128 0x49
+ 3311 0059 13       		.uleb128 0x13
+ 3312 005a 00       		.byte	0
+ 3313 005b 00       		.byte	0
+ 3314 005c 09       		.uleb128 0x9
+ 3315 005d 21       		.uleb128 0x21
+ 3316 005e 00       		.byte	0
+ 3317 005f 49       		.uleb128 0x49
+ 3318 0060 13       		.uleb128 0x13
+ 3319 0061 2F       		.uleb128 0x2f
+ 3320 0062 05       		.uleb128 0x5
+ 3321 0063 00       		.byte	0
+ 3322 0064 00       		.byte	0
+ 3323 0065 00       		.byte	0
+ 3324              		.section	.debug_aranges,"",%progbits
+ 3325 0000 14000000 		.4byte	0x14
+ 3326 0004 0200     		.2byte	0x2
+ 3327 0006 00000000 		.4byte	.Ldebug_info0
+ 3328 000a 04       		.byte	0x4
+ 3329 000b 00       		.byte	0
+ 3330 000c 0000     		.2byte	0
+ 3331 000e 0000     		.2byte	0
+ 3332 0010 00000000 		.4byte	0
+ 3333 0014 00000000 		.4byte	0
+ 3334              		.section	.debug_line,"",%progbits
+ 3335              	.Ldebug_line0:
+ 3336 0000 4F000000 		.section	.debug_str,"MS",%progbits,1
+ 3336      02004900 
+ 3336      00000201 
+ 3336      FB0E0D00 
+ 3336      01010101 
+ 3337              	.LASF16:
+ 3338 0000 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\cymetadata.c\000"
+ 3338      6E657261 
+ 3338      7465645F 
+ 3338      536F7572 
+ 3338      63655C50 
+ 3339              	.LASF9:
+ 3340 0026 666C6F61 		.ascii	"float\000"
+ 3340      7400
+ 3341              	.LASF1:
+ 3342 002c 756E7369 		.ascii	"unsigned char\000"
+ 3342      676E6564 
+ 3342      20636861 
+ 3342      7200
+ 3343              	.LASF5:
+ 3344 003a 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3344      20756E73 
+ 3344      69676E65 
+ 3344      6420696E 
+ 3344      7400
+ 3345              	.LASF3:
+ 3346 004c 73686F72 		.ascii	"short unsigned int\000"
+ 3346      7420756E 
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 60
+
+
+ 3346      7369676E 
+ 3346      65642069 
+ 3346      6E7400
+ 3347              	.LASF17:
+ 3348 005f 433A5C55 		.ascii	"C:\\Users\\Brian\\Dropbox\\RPiSoC\\Projects\\PSoC_2"
+ 3348      73657273 
+ 3348      5C427269 
+ 3348      616E5C44 
+ 3348      726F7062 
+ 3349 008c 5F50695C 		.ascii	"_Pi\\PSoC_2_Pi.cydsn\000"
+ 3349      50536F43 
+ 3349      5F325F50 
+ 3349      692E6379 
+ 3349      64736E00 
+ 3350              	.LASF10:
+ 3351 00a0 646F7562 		.ascii	"double\000"
+ 3351      6C6500
+ 3352              	.LASF14:
+ 3353 00a7 63795F6D 		.ascii	"cy_meta_configecc\000"
+ 3353      6574615F 
+ 3353      636F6E66 
+ 3353      69676563 
+ 3353      6300
+ 3354              	.LASF8:
+ 3355 00b9 756E7369 		.ascii	"unsigned int\000"
+ 3355      676E6564 
+ 3355      20696E74 
+ 3355      00
+ 3356              	.LASF7:
+ 3357 00c6 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 3357      206C6F6E 
+ 3357      6720756E 
+ 3357      7369676E 
+ 3357      65642069 
+ 3358              	.LASF13:
+ 3359 00dd 63795F6D 		.ascii	"cy_meta_loadable\000"
+ 3359      6574615F 
+ 3359      6C6F6164 
+ 3359      61626C65 
+ 3359      00
+ 3360              	.LASF12:
+ 3361 00ee 73697A65 		.ascii	"sizetype\000"
+ 3361      74797065 
+ 3361      00
+ 3362              	.LASF6:
+ 3363 00f7 6C6F6E67 		.ascii	"long long int\000"
+ 3363      206C6F6E 
+ 3363      6720696E 
+ 3363      7400
+ 3364              	.LASF11:
+ 3365 0105 63686172 		.ascii	"char\000"
+ 3365      00
+ 3366              	.LASF2:
+ 3367 010a 73686F72 		.ascii	"short int\000"
+ 3367      7420696E 
+ 3367      7400
+ 3368              	.LASF18:
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjfO4v.s 			page 61
+
+
+ 3369 0114 75696E74 		.ascii	"uint8\000"
+ 3369      3800
+ 3370              	.LASF15:
+ 3371 011a 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 3371      4320342E 
+ 3371      372E3320 
+ 3371      32303133 
+ 3371      30333132 
+ 3372 014d 616E6368 		.ascii	"anch revision 196615]\000"
+ 3372      20726576 
+ 3372      6973696F 
+ 3372      6E203139 
+ 3372      36363135 
+ 3373              	.LASF4:
+ 3374 0163 6C6F6E67 		.ascii	"long int\000"
+ 3374      20696E74 
+ 3374      00
+ 3375              	.LASF0:
+ 3376 016c 7369676E 		.ascii	"signed char\000"
+ 3376      65642063 
+ 3376      68617200 
+ 3377              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

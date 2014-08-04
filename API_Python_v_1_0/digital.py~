@@ -1,0 +1,135 @@
+from rpisoc import *
+
+class DigitalInput(object):
+
+   def __init__(self, Port, Pin):
+
+      if Port == 3:
+        self.address = RPiSoC.DIGITAL_INPUT_REGISTER0
+        self.pin = Pin
+        if Pin not in range(8):
+           raise ValueError('This pin is not available as a digital input')
+      elif Port ==5:
+        self.address = RPiSoC.DIGITAL_INPUT_REGISTER1
+        self.pin = Pin - 4
+        if Pin not in range(4,8):
+           raise ValueError('This pin is not available as a digital input')
+      else:
+        raise ValueError('This Port is not available as a digital input register. ')
+
+   def Read(self):
+      cmd = 0x00
+      reg_status = RPiSoC.commChannel.receiveData((self.address, cmd))
+      return bool(reg_status&(0x01<<self.pin))
+
+
+class DigitalOutput(object):
+
+   def __init__(self, Port, Pin):
+
+      if Port == 4:
+         self.address = RPiSoC.DIGITAL_OUTPUT_REGISTER0
+         if Pin not in range(8):
+            raise ValueError('This pin is not available as a digital input')
+      elif Port ==5:
+        self.address = RPiSoC.DIGITAL_OUTPUT_REGISTER1
+        if Pin not in range (3):
+           raise ValueError('This pion is not available as a digital input')
+      else:
+        raise ValueError('Invalid port number: Only Ports 4 and 5 available for output. ')
+
+      self.pin = Pin
+
+   def Read(self):
+      cmd = 0x00
+      reg_status = RPiSoC.commChannel.receiveData((self.address, cmd))
+      return bool(reg_status&(0x01<<self.pin))
+
+   def Write(self, val):
+      cmd_write_reg = 0x01
+      cmd_read_reg = 0x00
+      if val == 1:
+         print('reading pin; writing ', val)
+         prev_reg_status = RPiSoC.commChannel.receiveData((self.address, cmd_read_reg))
+         new_reg_status = prev_reg_status | (0x01<<self.pin)
+      elif val == 0:
+         print('reading pin; writing ',val)
+         prev_reg_status = RPiSoC.commChannel.receiveData((self.address, cmd_read_reg))
+         new_reg_status = (prev_reg_status&(~(0x01<<self.pin)))
+      else:
+         raise ValueError('Invalid value specified: Digital Output Write operation supports binary input only.')
+      
+      time.sleep(.1)
+      cur_val = ((prev_reg_status&(0x01<<self.pin))>>self.pin)
+      print (val, cur_val)
+      if val != cur_val:
+         print('sending')
+         RPiSoC.commChannel.sendData((self.address, cmd_write_reg, new_reg_status))
+
+class PWM(object):
+   def __init__(self, portNumber):
+
+      if portNumber == 0:
+         self.address = RPiSoC.PWM_REGISTER0
+      elif portNumber == 1:
+         self.address = RPiSoC.PWM_REGISTER1
+      elif portNumber == 2:
+         self.address = RPiSoC.PWM_REGISTER2
+      elif portNumber == 3:
+         self.address = RPiSoC.PWM_REGISTER3
+      elif portNumber == 4:
+         self.address = RPiSoC.PWM_REGISTER4
+      elif portNumber == 5:
+         self.address = RPiSoC.PWM_REGISTER5
+      elif portNumber == 6:
+         self.address = RPiSoC.PWM_REGISTER6
+      elif portNumber == 7:
+         self.address = RPiSoC.PWM_REGISTER7
+      else:
+         raise ValueError('Invalid PWM channel specified: Choose an integer value between 0 and 7.')
+
+   def Start(self):
+      cmd = 0x00
+      RPiSoC.commChannel.sendData((self.address, cmd))
+
+   def Stop(self):
+      cmd = 0x01
+      RPiSoC.commChannel.sendData((self.address, cmd))
+
+   def WritePeriod(self, period):
+      cmd = 0x0C
+      RPiSoC.commChannel.sendData((self.address, cmd, period))
+
+   def ReadPeriod(self):
+      cmd = 0x0D
+      return RPiSoC.commChannel.receiveData((self.address, cmd))
+
+   def WriteCompare(self, cmp):
+      cmd = 0x0E
+      RPiSoC.commChannel.sendData((self.address, cmd, cmp))
+
+   def ReadCompare(self):
+      cmd = 0x0F
+      return RPiSoC.commChannel.receiveData((self.address, cmd))
+
+   def ClearFIFO(self):
+      cmd = 0x18
+      RPiSoC.commChannel.sendData((self.address, cmd))
+
+   def Sleep(self):
+      cmd = 0x19
+      RPiSoC.commChannel.sendData((self.address, cmd))
+
+   def Wakeup(self):
+      cmd = 0x1A
+      RPiSoC.commChannel.sendData((self.address, cmd))
+
+   def SetFrequency(self,frequency):
+      period = 1.0/frequency
+      self.WritePeriod(int(period))
+
+   def SetDutyCycle(self,duty_cycle):
+      cmp = self.period * (float(duty_cyle)/100.0)
+      self.WriteCompare(cmp)
+
+

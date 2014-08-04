@@ -1,0 +1,13 @@
+API changes for V1.1
+
+Add support for max number of components (58 pins/24 PWM's, etc.)
+
+Add class attributes to RPiSoC to indicate whether an address is in use or not, bring up a run-time error if a component tries to get re-initialized.
+
+Add frequency modification to the PWM clocks
+
+Add frequency READING to the PWM clocks and WaveDAC clocks
+
+Add I2C support
+
+use micro Volts instead of milli for Voltage conversion (more decimal places)...

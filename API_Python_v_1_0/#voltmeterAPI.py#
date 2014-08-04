@@ -1,0 +1,20 @@
+from rpisoc import * #import contents of rpisoc module ; includes all dependencies
+
+RPiSoC('SPI') #Establish connection to RPiSoC over SPI
+ADC1  = ADC('DELSIG') #initialize a DELSIG ADC with an object named ADC1
+
+try: #exception handling, not crucial but it is advised.
+    while True:
+
+        ADC1.Start()#Start ADC initialized by object ADC1
+        ADC_counts = ADC1.Read()#Get output of ADC1
+        Voltage = ADC1.CountsTo_Volts(ADC_counts)#Convert output to a Voltage
+        ADC1.Stop()#Stop ADC
+
+        print(ADC_counts, Voltage) #Print Counts and Voltage
+
+        time.sleep(.1)#wait 100ms before retreiving the voltage again
+
+except KeyboardInterrupt:
+    RPiSoC.close_comm()
+

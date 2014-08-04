@@ -1,0 +1,33 @@
+'''
+
+'''
+
+from rpisoc import *
+
+RPiSoC('SPI')
+
+My_SAR_ADC = ADC('SAR0')
+
+out_3v3 = DigitalOutput(5,0)
+out_3v3.Write(1)
+
+try:
+    while True:
+        My_SAR_ADC.Start()
+        My_SAR_ADC.StartConvert()
+
+        while not My_SAR_ADC.IsEndConversion():
+            pass
+
+        Counts = My_SAR_ADC.Read()
+        My_SAR_ADC.StopConvert()
+        My_SAR_ADC.Stop()
+
+        Volts = My_SAR_ADC.CountsTo_Volts(Counts)
+        print (Counts, Volts)
+
+        time.sleep(0.1)
+
+
+except KeyboardInterrupt:
+    RPiSoC.commChannel.close()

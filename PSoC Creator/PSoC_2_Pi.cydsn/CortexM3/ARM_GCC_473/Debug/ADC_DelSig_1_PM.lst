@@ -1,0 +1,988 @@
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccsBR0TZ.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"ADC_DelSig_1_PM.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.data
+  19              		.align	2
+  20              		.type	ADC_DelSig_1_backup, %object
+  21              		.size	ADC_DelSig_1_backup, 2
+  22              	ADC_DelSig_1_backup:
+  23 0000 00       		.byte	0
+  24 0001 38       		.byte	56
+  25 0002 0000     		.section	.text.ADC_DelSig_1_SaveConfig,"ax",%progbits
+  26              		.align	2
+  27              		.global	ADC_DelSig_1_SaveConfig
+  28              		.thumb
+  29              		.thumb_func
+  30              		.type	ADC_DelSig_1_SaveConfig, %function
+  31              	ADC_DelSig_1_SaveConfig:
+  32              	.LFB0:
+  33              		.file 1 ".\\Generated_Source\\PSoC5\\ADC_DelSig_1_PM.c"
+   1:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * File Name: ADC_DelSig_1_PM.c
+   3:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * Version 3.0
+   4:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *
+   5:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * Description:
+   6:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *  This file provides the power manager source code to the API for the
+   7:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *  Delta-Sigma ADC Component.
+   8:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *
+   9:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * Note:
+  10:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *
+  11:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** ********************************************************************************
+  12:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * Copyright 2008-2013, Cypress Semiconductor Corporation.  All rights reserved.
+  13:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  14:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * the software package with which this file was provided.
+  16:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *******************************************************************************/
+  17:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** 
+  18:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** #include "ADC_DelSig_1.h"
+  19:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** 
+  20:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** static ADC_DelSig_1_BACKUP_STRUCT ADC_DelSig_1_backup =
+  21:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** {
+  22:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****     ADC_DelSig_1_DISABLED,
+  23:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****     ADC_DelSig_1_CFG1_DEC_CR
+  24:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** };
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccsBR0TZ.s 			page 2
+
+
+  25:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** 
+  26:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** 
+  27:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** /*******************************************************************************
+  28:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * Function Name: ADC_DelSig_1_SaveConfig
+  29:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** ********************************************************************************
+  30:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *
+  31:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * Summary:
+  32:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *  Save the register configuration which are not retention.
+  33:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *
+  34:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * Parameters:
+  35:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *  None
+  36:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *
+  37:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * Return:
+  38:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *  None
+  39:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *
+  40:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * Global variables:
+  41:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *  ADC_DelSig_1_backup:  This global structure variable is used to store
+  42:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *  configuration registers which are non retention whenever user wants to go
+  43:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *  sleep mode by calling Sleep() API.
+  44:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *
+  45:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *******************************************************************************/
+  46:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** void ADC_DelSig_1_SaveConfig(void) 
+  47:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** {
+  34              		.loc 1 47 0
+  35              		.cfi_startproc
+  36              		@ args = 0, pretend = 0, frame = 0
+  37              		@ frame_needed = 1, uses_anonymous_args = 0
+  38              		@ link register save eliminated.
+  39 0000 80B4     		push	{r7}
+  40              	.LCFI0:
+  41              		.cfi_def_cfa_offset 4
+  42              		.cfi_offset 7, -4
+  43 0002 00AF     		add	r7, sp, #0
+  44              	.LCFI1:
+  45              		.cfi_def_cfa_register 7
+  48:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****     ADC_DelSig_1_backup.deccr = ADC_DelSig_1_DEC_CR_REG;
+  46              		.loc 1 48 0
+  47 0004 4FF49C43 		mov	r3, #19968
+  48 0008 C4F20003 		movt	r3, 16384
+  49 000c 1B78     		ldrb	r3, [r3, #0]
+  50 000e DAB2     		uxtb	r2, r3
+  51 0010 40F20003 		movw	r3, #:lower16:ADC_DelSig_1_backup
+  52 0014 C0F20003 		movt	r3, #:upper16:ADC_DelSig_1_backup
+  53 0018 5A70     		strb	r2, [r3, #1]
+  49:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** }
+  54              		.loc 1 49 0
+  55 001a BD46     		mov	sp, r7
+  56 001c 80BC     		pop	{r7}
+  57 001e 7047     		bx	lr
+  58              		.cfi_endproc
+  59              	.LFE0:
+  60              		.size	ADC_DelSig_1_SaveConfig, .-ADC_DelSig_1_SaveConfig
+  61              		.section	.text.ADC_DelSig_1_RestoreConfig,"ax",%progbits
+  62              		.align	2
+  63              		.global	ADC_DelSig_1_RestoreConfig
+  64              		.thumb
+  65              		.thumb_func
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccsBR0TZ.s 			page 3
+
+
+  66              		.type	ADC_DelSig_1_RestoreConfig, %function
+  67              	ADC_DelSig_1_RestoreConfig:
+  68              	.LFB1:
+  50:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** 
+  51:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** 
+  52:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** /*******************************************************************************
+  53:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * Function Name: ADC_DelSig_1_RestoreConfig
+  54:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** ********************************************************************************
+  55:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *
+  56:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * Summary:
+  57:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *  Restore the register configurations which are not retention.
+  58:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *
+  59:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * Parameters:
+  60:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *  None
+  61:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *
+  62:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * Return:
+  63:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *  None
+  64:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *
+  65:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * Global variables:
+  66:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *  ADC_DelSig_1_backup:  This global structure variable is used to restore
+  67:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *  configuration registers which are non retention whenever user wants to switch
+  68:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *  to active power mode by calling Wakeup() API.
+  69:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *
+  70:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *******************************************************************************/
+  71:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** void ADC_DelSig_1_RestoreConfig(void) 
+  72:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** {
+  69              		.loc 1 72 0
+  70              		.cfi_startproc
+  71              		@ args = 0, pretend = 0, frame = 0
+  72              		@ frame_needed = 1, uses_anonymous_args = 0
+  73              		@ link register save eliminated.
+  74 0000 80B4     		push	{r7}
+  75              	.LCFI2:
+  76              		.cfi_def_cfa_offset 4
+  77              		.cfi_offset 7, -4
+  78 0002 00AF     		add	r7, sp, #0
+  79              	.LCFI3:
+  80              		.cfi_def_cfa_register 7
+  73:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****     ADC_DelSig_1_DEC_CR_REG = ADC_DelSig_1_backup.deccr;
+  81              		.loc 1 73 0
+  82 0004 4FF49C43 		mov	r3, #19968
+  83 0008 C4F20003 		movt	r3, 16384
+  84 000c 40F20002 		movw	r2, #:lower16:ADC_DelSig_1_backup
+  85 0010 C0F20002 		movt	r2, #:upper16:ADC_DelSig_1_backup
+  86 0014 5278     		ldrb	r2, [r2, #1]	@ zero_extendqisi2
+  87 0016 1A70     		strb	r2, [r3, #0]
+  74:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** }
+  88              		.loc 1 74 0
+  89 0018 BD46     		mov	sp, r7
+  90 001a 80BC     		pop	{r7}
+  91 001c 7047     		bx	lr
+  92              		.cfi_endproc
+  93              	.LFE1:
+  94              		.size	ADC_DelSig_1_RestoreConfig, .-ADC_DelSig_1_RestoreConfig
+  95 001e 00BF     		.section	.text.ADC_DelSig_1_Sleep,"ax",%progbits
+  96              		.align	2
+  97              		.global	ADC_DelSig_1_Sleep
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccsBR0TZ.s 			page 4
+
+
+  98              		.thumb
+  99              		.thumb_func
+ 100              		.type	ADC_DelSig_1_Sleep, %function
+ 101              	ADC_DelSig_1_Sleep:
+ 102              	.LFB2:
+  75:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** 
+  76:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** 
+  77:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** /*******************************************************************************
+  78:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * Function Name: ADC_DelSig_1_Sleep
+  79:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** ********************************************************************************
+  80:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *
+  81:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * Summary:
+  82:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *  Stops the operation of the block and saves the user configuration.
+  83:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *
+  84:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * Parameters:
+  85:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *  None
+  86:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *
+  87:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * Return:
+  88:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *  None
+  89:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *
+  90:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * Global variables:
+  91:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *  ADC_DelSig_1_backup:  The structure field 'enableState' is modified
+  92:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *  depending on the enable state of the block before entering to sleep mode.
+  93:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *
+  94:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *******************************************************************************/
+  95:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** void ADC_DelSig_1_Sleep(void) 
+  96:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** {
+ 103              		.loc 1 96 0
+ 104              		.cfi_startproc
+ 105              		@ args = 0, pretend = 0, frame = 0
+ 106              		@ frame_needed = 1, uses_anonymous_args = 0
+ 107 0000 80B5     		push	{r7, lr}
+ 108              	.LCFI4:
+ 109              		.cfi_def_cfa_offset 8
+ 110              		.cfi_offset 7, -8
+ 111              		.cfi_offset 14, -4
+ 112 0002 00AF     		add	r7, sp, #0
+ 113              	.LCFI5:
+ 114              		.cfi_def_cfa_register 7
+  97:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****     /* Save ADC enable state */
+  98:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****     if((ADC_DelSig_1_ACT_PWR_DEC_EN == (ADC_DelSig_1_PWRMGR_DEC_REG & ADC_DelSig_1_ACT_PWR_DEC_EN))
+ 115              		.loc 1 98 0
+ 116 0004 44F2AA33 		movw	r3, #17322
+ 117 0008 C4F20003 		movt	r3, 16384
+ 118 000c 1B78     		ldrb	r3, [r3, #0]
+ 119 000e DBB2     		uxtb	r3, r3
+ 120 0010 03F00103 		and	r3, r3, #1
+ 121 0014 002B     		cmp	r3, #0
+ 122 0016 2AD0     		beq	.L4
+  99:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****        (ADC_DelSig_1_ACT_PWR_DSM_EN == (ADC_DelSig_1_PWRMGR_DSM_REG & ADC_DelSig_1_ACT_PWR_DSM_EN))
+ 123              		.loc 1 99 0 discriminator 1
+ 124 0018 44F2AA33 		movw	r3, #17322
+ 125 001c C4F20003 		movt	r3, 16384
+ 126 0020 1B78     		ldrb	r3, [r3, #0]
+ 127 0022 DBB2     		uxtb	r3, r3
+ 128 0024 03F01003 		and	r3, r3, #16
+  98:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****     if((ADC_DelSig_1_ACT_PWR_DEC_EN == (ADC_DelSig_1_PWRMGR_DEC_REG & ADC_DelSig_1_ACT_PWR_DEC_EN))
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccsBR0TZ.s 			page 5
+
+
+ 129              		.loc 1 98 0 discriminator 1
+ 130 0028 002B     		cmp	r3, #0
+ 131 002a 20D0     		beq	.L4
+ 100:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****     {
+ 101:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****         /* Component is enabled */
+ 102:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****         ADC_DelSig_1_backup.enableState = ADC_DelSig_1_ENABLED;
+ 132              		.loc 1 102 0
+ 133 002c 40F20003 		movw	r3, #:lower16:ADC_DelSig_1_backup
+ 134 0030 C0F20003 		movt	r3, #:upper16:ADC_DelSig_1_backup
+ 135 0034 4FF00102 		mov	r2, #1
+ 136 0038 1A70     		strb	r2, [r3, #0]
+ 103:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****         if((ADC_DelSig_1_DEC_CR_REG & ADC_DelSig_1_DEC_START_CONV) != 0u)
+ 137              		.loc 1 103 0
+ 138 003a 4FF49C43 		mov	r3, #19968
+ 139 003e C4F20003 		movt	r3, 16384
+ 140 0042 1B78     		ldrb	r3, [r3, #0]
+ 141 0044 DBB2     		uxtb	r3, r3
+ 142 0046 03F00103 		and	r3, r3, #1
+ 143 004a 002B     		cmp	r3, #0
+ 144 004c 0CD0     		beq	.L5
+ 104:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****         {   
+ 105:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****             /* Conversion is started */
+ 106:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****             ADC_DelSig_1_backup.enableState |= ADC_DelSig_1_STARTED;
+ 145              		.loc 1 106 0
+ 146 004e 40F20003 		movw	r3, #:lower16:ADC_DelSig_1_backup
+ 147 0052 C0F20003 		movt	r3, #:upper16:ADC_DelSig_1_backup
+ 148 0056 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 149 0058 43F00203 		orr	r3, r3, #2
+ 150 005c DAB2     		uxtb	r2, r3
+ 151 005e 40F20003 		movw	r3, #:lower16:ADC_DelSig_1_backup
+ 152 0062 C0F20003 		movt	r3, #:upper16:ADC_DelSig_1_backup
+ 153 0066 1A70     		strb	r2, [r3, #0]
+ 154              	.L5:
+ 107:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****         }
+ 108:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** 		
+ 109:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****         /* Stop the configuration */
+ 110:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****         ADC_DelSig_1_Stop();
+ 155              		.loc 1 110 0
+ 156 0068 FFF7FEFF 		bl	ADC_DelSig_1_Stop
+ 157 006c 06E0     		b	.L6
+ 158              	.L4:
+ 111:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****     }
+ 112:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****     else
+ 113:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****     {
+ 114:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****         /* Component is disabled */
+ 115:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****         ADC_DelSig_1_backup.enableState = ADC_DelSig_1_DISABLED;
+ 159              		.loc 1 115 0
+ 160 006e 40F20003 		movw	r3, #:lower16:ADC_DelSig_1_backup
+ 161 0072 C0F20003 		movt	r3, #:upper16:ADC_DelSig_1_backup
+ 162 0076 4FF00002 		mov	r2, #0
+ 163 007a 1A70     		strb	r2, [r3, #0]
+ 164              	.L6:
+ 116:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****     }
+ 117:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** 
+ 118:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****     /* Save the user configuration */
+ 119:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****     ADC_DelSig_1_SaveConfig();
+ 165              		.loc 1 119 0
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccsBR0TZ.s 			page 6
+
+
+ 166 007c FFF7FEFF 		bl	ADC_DelSig_1_SaveConfig
+ 120:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** }
+ 167              		.loc 1 120 0
+ 168 0080 80BD     		pop	{r7, pc}
+ 169              		.cfi_endproc
+ 170              	.LFE2:
+ 171              		.size	ADC_DelSig_1_Sleep, .-ADC_DelSig_1_Sleep
+ 172 0082 00BF     		.section	.text.ADC_DelSig_1_Wakeup,"ax",%progbits
+ 173              		.align	2
+ 174              		.global	ADC_DelSig_1_Wakeup
+ 175              		.thumb
+ 176              		.thumb_func
+ 177              		.type	ADC_DelSig_1_Wakeup, %function
+ 178              	ADC_DelSig_1_Wakeup:
+ 179              	.LFB3:
+ 121:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** 
+ 122:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** 
+ 123:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** /*******************************************************************************
+ 124:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * Function Name: ADC_DelSig_1_Wakeup
+ 125:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** ********************************************************************************
+ 126:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *
+ 127:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * Summary:
+ 128:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *  Restores the user configuration and enables the power to the block.
+ 129:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *
+ 130:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * Parameters:
+ 131:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *  None
+ 132:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *
+ 133:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * Return:
+ 134:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *  None
+ 135:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *
+ 136:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** * Global variables:
+ 137:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *  ADC_DelSig_1_backup:  The structure field 'enableState' is used to
+ 138:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *  restore the enable state of block after wakeup from sleep mode.
+ 139:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *
+ 140:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** *******************************************************************************/
+ 141:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** void ADC_DelSig_1_Wakeup(void) 
+ 142:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** {
+ 180              		.loc 1 142 0
+ 181              		.cfi_startproc
+ 182              		@ args = 0, pretend = 0, frame = 0
+ 183              		@ frame_needed = 1, uses_anonymous_args = 0
+ 184 0000 80B5     		push	{r7, lr}
+ 185              	.LCFI6:
+ 186              		.cfi_def_cfa_offset 8
+ 187              		.cfi_offset 7, -8
+ 188              		.cfi_offset 14, -4
+ 189 0002 00AF     		add	r7, sp, #0
+ 190              	.LCFI7:
+ 191              		.cfi_def_cfa_register 7
+ 143:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****     /* Restore the configuration */
+ 144:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****     ADC_DelSig_1_RestoreConfig();
+ 192              		.loc 1 144 0
+ 193 0004 FFF7FEFF 		bl	ADC_DelSig_1_RestoreConfig
+ 145:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** 
+ 146:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****     /* Enables the component operation */
+ 147:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****     if(ADC_DelSig_1_backup.enableState != ADC_DelSig_1_DISABLED)
+ 194              		.loc 1 147 0
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccsBR0TZ.s 			page 7
+
+
+ 195 0008 40F20003 		movw	r3, #:lower16:ADC_DelSig_1_backup
+ 196 000c C0F20003 		movt	r3, #:upper16:ADC_DelSig_1_backup
+ 197 0010 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 198 0012 002B     		cmp	r3, #0
+ 199 0014 0CD0     		beq	.L7
+ 148:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****     {
+ 149:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****         ADC_DelSig_1_Enable();
+ 200              		.loc 1 149 0
+ 201 0016 FFF7FEFF 		bl	ADC_DelSig_1_Enable
+ 150:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****         if((ADC_DelSig_1_backup.enableState & ADC_DelSig_1_STARTED) != 0u)
+ 202              		.loc 1 150 0
+ 203 001a 40F20003 		movw	r3, #:lower16:ADC_DelSig_1_backup
+ 204 001e C0F20003 		movt	r3, #:upper16:ADC_DelSig_1_backup
+ 205 0022 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 206 0024 03F00203 		and	r3, r3, #2
+ 207 0028 002B     		cmp	r3, #0
+ 208 002a 01D0     		beq	.L7
+ 151:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****         {
+ 152:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****             ADC_DelSig_1_StartConvert();
+ 209              		.loc 1 152 0
+ 210 002c FFF7FEFF 		bl	ADC_DelSig_1_StartConvert
+ 211              	.L7:
+ 153:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****         }
+ 154:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c ****     } /* Do nothing if component was disable before */
+ 155:.\Generated_Source\PSoC5/ADC_DelSig_1_PM.c **** }
+ 212              		.loc 1 155 0
+ 213 0030 80BD     		pop	{r7, pc}
+ 214              		.cfi_endproc
+ 215              	.LFE3:
+ 216              		.size	ADC_DelSig_1_Wakeup, .-ADC_DelSig_1_Wakeup
+ 217 0032 00BF     		.text
+ 218              	.Letext0:
+ 219              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 220              		.file 3 ".\\Generated_Source\\PSoC5\\ADC_DelSig_1.h"
+ 221              		.section	.debug_info,"",%progbits
+ 222              	.Ldebug_info0:
+ 223 0000 3C010000 		.4byte	0x13c
+ 224 0004 0200     		.2byte	0x2
+ 225 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 226 000a 04       		.byte	0x4
+ 227 000b 01       		.uleb128 0x1
+ 228 000c 40000000 		.4byte	.LASF22
+ 229 0010 01       		.byte	0x1
+ 230 0011 0A010000 		.4byte	.LASF23
+ 231 0015 41010000 		.4byte	.LASF24
+ 232 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 233 001d 00000000 		.4byte	0
+ 234 0021 00000000 		.4byte	0
+ 235 0025 00000000 		.4byte	.Ldebug_line0
+ 236 0029 02       		.uleb128 0x2
+ 237 002a 01       		.byte	0x1
+ 238 002b 06       		.byte	0x6
+ 239 002c 35010000 		.4byte	.LASF0
+ 240 0030 02       		.uleb128 0x2
+ 241 0031 01       		.byte	0x1
+ 242 0032 08       		.byte	0x8
+ 243 0033 B8000000 		.4byte	.LASF1
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccsBR0TZ.s 			page 8
+
+
+ 244 0037 02       		.uleb128 0x2
+ 245 0038 02       		.byte	0x2
+ 246 0039 05       		.byte	0x5
+ 247 003a A0010000 		.4byte	.LASF2
+ 248 003e 02       		.uleb128 0x2
+ 249 003f 02       		.byte	0x2
+ 250 0040 07       		.byte	0x7
+ 251 0041 0E000000 		.4byte	.LASF3
+ 252 0045 02       		.uleb128 0x2
+ 253 0046 04       		.byte	0x4
+ 254 0047 05       		.byte	0x5
+ 255 0048 E6000000 		.4byte	.LASF4
+ 256 004c 02       		.uleb128 0x2
+ 257 004d 04       		.byte	0x4
+ 258 004e 07       		.byte	0x7
+ 259 004f 8F000000 		.4byte	.LASF5
+ 260 0053 02       		.uleb128 0x2
+ 261 0054 08       		.byte	0x8
+ 262 0055 05       		.byte	0x5
+ 263 0056 00000000 		.4byte	.LASF6
+ 264 005a 02       		.uleb128 0x2
+ 265 005b 08       		.byte	0x8
+ 266 005c 07       		.byte	0x7
+ 267 005d A1000000 		.4byte	.LASF7
+ 268 0061 03       		.uleb128 0x3
+ 269 0062 04       		.byte	0x4
+ 270 0063 05       		.byte	0x5
+ 271 0064 696E7400 		.ascii	"int\000"
+ 272 0068 02       		.uleb128 0x2
+ 273 0069 04       		.byte	0x4
+ 274 006a 07       		.byte	0x7
+ 275 006b 2D000000 		.4byte	.LASF8
+ 276 006f 04       		.uleb128 0x4
+ 277 0070 89000000 		.4byte	.LASF12
+ 278 0074 02       		.byte	0x2
+ 279 0075 5B       		.byte	0x5b
+ 280 0076 30000000 		.4byte	0x30
+ 281 007a 02       		.uleb128 0x2
+ 282 007b 04       		.byte	0x4
+ 283 007c 04       		.byte	0x4
+ 284 007d 82010000 		.4byte	.LASF9
+ 285 0081 02       		.uleb128 0x2
+ 286 0082 08       		.byte	0x8
+ 287 0083 04       		.byte	0x4
+ 288 0084 03010000 		.4byte	.LASF10
+ 289 0088 02       		.uleb128 0x2
+ 290 0089 01       		.byte	0x1
+ 291 008a 08       		.byte	0x8
+ 292 008b C6000000 		.4byte	.LASF11
+ 293 008f 04       		.uleb128 0x4
+ 294 0090 AA010000 		.4byte	.LASF13
+ 295 0094 02       		.byte	0x2
+ 296 0095 F0       		.byte	0xf0
+ 297 0096 9A000000 		.4byte	0x9a
+ 298 009a 05       		.uleb128 0x5
+ 299 009b 6F000000 		.4byte	0x6f
+ 300 009f 02       		.uleb128 0x2
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccsBR0TZ.s 			page 9
+
+
+ 301 00a0 04       		.byte	0x4
+ 302 00a1 07       		.byte	0x7
+ 303 00a2 F1010000 		.4byte	.LASF14
+ 304 00a6 06       		.uleb128 0x6
+ 305 00a7 02       		.byte	0x2
+ 306 00a8 03       		.byte	0x3
+ 307 00a9 28       		.byte	0x28
+ 308 00aa CB000000 		.4byte	0xcb
+ 309 00ae 07       		.uleb128 0x7
+ 310 00af 21000000 		.4byte	.LASF15
+ 311 00b3 03       		.byte	0x3
+ 312 00b4 2A       		.byte	0x2a
+ 313 00b5 6F000000 		.4byte	0x6f
+ 314 00b9 02       		.byte	0x2
+ 315 00ba 23       		.byte	0x23
+ 316 00bb 00       		.uleb128 0
+ 317 00bc 07       		.uleb128 0x7
+ 318 00bd 3A000000 		.4byte	.LASF16
+ 319 00c1 03       		.byte	0x3
+ 320 00c2 2B       		.byte	0x2b
+ 321 00c3 6F000000 		.4byte	0x6f
+ 322 00c7 02       		.byte	0x2
+ 323 00c8 23       		.byte	0x23
+ 324 00c9 01       		.uleb128 0x1
+ 325 00ca 00       		.byte	0
+ 326 00cb 04       		.uleb128 0x4
+ 327 00cc AF010000 		.4byte	.LASF17
+ 328 00d0 03       		.byte	0x3
+ 329 00d1 2C       		.byte	0x2c
+ 330 00d2 A6000000 		.4byte	0xa6
+ 331 00d6 08       		.uleb128 0x8
+ 332 00d7 01       		.byte	0x1
+ 333 00d8 88010000 		.4byte	.LASF18
+ 334 00dc 01       		.byte	0x1
+ 335 00dd 2E       		.byte	0x2e
+ 336 00de 01       		.byte	0x1
+ 337 00df 00000000 		.4byte	.LFB0
+ 338 00e3 20000000 		.4byte	.LFE0
+ 339 00e7 00000000 		.4byte	.LLST0
+ 340 00eb 01       		.byte	0x1
+ 341 00ec 08       		.uleb128 0x8
+ 342 00ed 01       		.byte	0x1
+ 343 00ee CB000000 		.4byte	.LASF19
+ 344 00f2 01       		.byte	0x1
+ 345 00f3 47       		.byte	0x47
+ 346 00f4 01       		.byte	0x1
+ 347 00f5 00000000 		.4byte	.LFB1
+ 348 00f9 1E000000 		.4byte	.LFE1
+ 349 00fd 2C000000 		.4byte	.LLST1
+ 350 0101 01       		.byte	0x1
+ 351 0102 09       		.uleb128 0x9
+ 352 0103 01       		.byte	0x1
+ 353 0104 DE010000 		.4byte	.LASF20
+ 354 0108 01       		.byte	0x1
+ 355 0109 5F       		.byte	0x5f
+ 356 010a 01       		.byte	0x1
+ 357 010b 00000000 		.4byte	.LFB2
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccsBR0TZ.s 			page 10
+
+
+ 358 010f 82000000 		.4byte	.LFE2
+ 359 0113 58000000 		.4byte	.LLST2
+ 360 0117 01       		.byte	0x1
+ 361 0118 09       		.uleb128 0x9
+ 362 0119 01       		.byte	0x1
+ 363 011a CA010000 		.4byte	.LASF21
+ 364 011e 01       		.byte	0x1
+ 365 011f 8D       		.byte	0x8d
+ 366 0120 01       		.byte	0x1
+ 367 0121 00000000 		.4byte	.LFB3
+ 368 0125 32000000 		.4byte	.LFE3
+ 369 0129 84000000 		.4byte	.LLST3
+ 370 012d 01       		.byte	0x1
+ 371 012e 0A       		.uleb128 0xa
+ 372 012f EF000000 		.4byte	.LASF25
+ 373 0133 01       		.byte	0x1
+ 374 0134 14       		.byte	0x14
+ 375 0135 CB000000 		.4byte	0xcb
+ 376 0139 05       		.byte	0x5
+ 377 013a 03       		.byte	0x3
+ 378 013b 00000000 		.4byte	ADC_DelSig_1_backup
+ 379 013f 00       		.byte	0
+ 380              		.section	.debug_abbrev,"",%progbits
+ 381              	.Ldebug_abbrev0:
+ 382 0000 01       		.uleb128 0x1
+ 383 0001 11       		.uleb128 0x11
+ 384 0002 01       		.byte	0x1
+ 385 0003 25       		.uleb128 0x25
+ 386 0004 0E       		.uleb128 0xe
+ 387 0005 13       		.uleb128 0x13
+ 388 0006 0B       		.uleb128 0xb
+ 389 0007 03       		.uleb128 0x3
+ 390 0008 0E       		.uleb128 0xe
+ 391 0009 1B       		.uleb128 0x1b
+ 392 000a 0E       		.uleb128 0xe
+ 393 000b 55       		.uleb128 0x55
+ 394 000c 06       		.uleb128 0x6
+ 395 000d 11       		.uleb128 0x11
+ 396 000e 01       		.uleb128 0x1
+ 397 000f 52       		.uleb128 0x52
+ 398 0010 01       		.uleb128 0x1
+ 399 0011 10       		.uleb128 0x10
+ 400 0012 06       		.uleb128 0x6
+ 401 0013 00       		.byte	0
+ 402 0014 00       		.byte	0
+ 403 0015 02       		.uleb128 0x2
+ 404 0016 24       		.uleb128 0x24
+ 405 0017 00       		.byte	0
+ 406 0018 0B       		.uleb128 0xb
+ 407 0019 0B       		.uleb128 0xb
+ 408 001a 3E       		.uleb128 0x3e
+ 409 001b 0B       		.uleb128 0xb
+ 410 001c 03       		.uleb128 0x3
+ 411 001d 0E       		.uleb128 0xe
+ 412 001e 00       		.byte	0
+ 413 001f 00       		.byte	0
+ 414 0020 03       		.uleb128 0x3
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccsBR0TZ.s 			page 11
+
+
+ 415 0021 24       		.uleb128 0x24
+ 416 0022 00       		.byte	0
+ 417 0023 0B       		.uleb128 0xb
+ 418 0024 0B       		.uleb128 0xb
+ 419 0025 3E       		.uleb128 0x3e
+ 420 0026 0B       		.uleb128 0xb
+ 421 0027 03       		.uleb128 0x3
+ 422 0028 08       		.uleb128 0x8
+ 423 0029 00       		.byte	0
+ 424 002a 00       		.byte	0
+ 425 002b 04       		.uleb128 0x4
+ 426 002c 16       		.uleb128 0x16
+ 427 002d 00       		.byte	0
+ 428 002e 03       		.uleb128 0x3
+ 429 002f 0E       		.uleb128 0xe
+ 430 0030 3A       		.uleb128 0x3a
+ 431 0031 0B       		.uleb128 0xb
+ 432 0032 3B       		.uleb128 0x3b
+ 433 0033 0B       		.uleb128 0xb
+ 434 0034 49       		.uleb128 0x49
+ 435 0035 13       		.uleb128 0x13
+ 436 0036 00       		.byte	0
+ 437 0037 00       		.byte	0
+ 438 0038 05       		.uleb128 0x5
+ 439 0039 35       		.uleb128 0x35
+ 440 003a 00       		.byte	0
+ 441 003b 49       		.uleb128 0x49
+ 442 003c 13       		.uleb128 0x13
+ 443 003d 00       		.byte	0
+ 444 003e 00       		.byte	0
+ 445 003f 06       		.uleb128 0x6
+ 446 0040 13       		.uleb128 0x13
+ 447 0041 01       		.byte	0x1
+ 448 0042 0B       		.uleb128 0xb
+ 449 0043 0B       		.uleb128 0xb
+ 450 0044 3A       		.uleb128 0x3a
+ 451 0045 0B       		.uleb128 0xb
+ 452 0046 3B       		.uleb128 0x3b
+ 453 0047 0B       		.uleb128 0xb
+ 454 0048 01       		.uleb128 0x1
+ 455 0049 13       		.uleb128 0x13
+ 456 004a 00       		.byte	0
+ 457 004b 00       		.byte	0
+ 458 004c 07       		.uleb128 0x7
+ 459 004d 0D       		.uleb128 0xd
+ 460 004e 00       		.byte	0
+ 461 004f 03       		.uleb128 0x3
+ 462 0050 0E       		.uleb128 0xe
+ 463 0051 3A       		.uleb128 0x3a
+ 464 0052 0B       		.uleb128 0xb
+ 465 0053 3B       		.uleb128 0x3b
+ 466 0054 0B       		.uleb128 0xb
+ 467 0055 49       		.uleb128 0x49
+ 468 0056 13       		.uleb128 0x13
+ 469 0057 38       		.uleb128 0x38
+ 470 0058 0A       		.uleb128 0xa
+ 471 0059 00       		.byte	0
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccsBR0TZ.s 			page 12
+
+
+ 472 005a 00       		.byte	0
+ 473 005b 08       		.uleb128 0x8
+ 474 005c 2E       		.uleb128 0x2e
+ 475 005d 00       		.byte	0
+ 476 005e 3F       		.uleb128 0x3f
+ 477 005f 0C       		.uleb128 0xc
+ 478 0060 03       		.uleb128 0x3
+ 479 0061 0E       		.uleb128 0xe
+ 480 0062 3A       		.uleb128 0x3a
+ 481 0063 0B       		.uleb128 0xb
+ 482 0064 3B       		.uleb128 0x3b
+ 483 0065 0B       		.uleb128 0xb
+ 484 0066 27       		.uleb128 0x27
+ 485 0067 0C       		.uleb128 0xc
+ 486 0068 11       		.uleb128 0x11
+ 487 0069 01       		.uleb128 0x1
+ 488 006a 12       		.uleb128 0x12
+ 489 006b 01       		.uleb128 0x1
+ 490 006c 40       		.uleb128 0x40
+ 491 006d 06       		.uleb128 0x6
+ 492 006e 9742     		.uleb128 0x2117
+ 493 0070 0C       		.uleb128 0xc
+ 494 0071 00       		.byte	0
+ 495 0072 00       		.byte	0
+ 496 0073 09       		.uleb128 0x9
+ 497 0074 2E       		.uleb128 0x2e
+ 498 0075 00       		.byte	0
+ 499 0076 3F       		.uleb128 0x3f
+ 500 0077 0C       		.uleb128 0xc
+ 501 0078 03       		.uleb128 0x3
+ 502 0079 0E       		.uleb128 0xe
+ 503 007a 3A       		.uleb128 0x3a
+ 504 007b 0B       		.uleb128 0xb
+ 505 007c 3B       		.uleb128 0x3b
+ 506 007d 0B       		.uleb128 0xb
+ 507 007e 27       		.uleb128 0x27
+ 508 007f 0C       		.uleb128 0xc
+ 509 0080 11       		.uleb128 0x11
+ 510 0081 01       		.uleb128 0x1
+ 511 0082 12       		.uleb128 0x12
+ 512 0083 01       		.uleb128 0x1
+ 513 0084 40       		.uleb128 0x40
+ 514 0085 06       		.uleb128 0x6
+ 515 0086 9642     		.uleb128 0x2116
+ 516 0088 0C       		.uleb128 0xc
+ 517 0089 00       		.byte	0
+ 518 008a 00       		.byte	0
+ 519 008b 0A       		.uleb128 0xa
+ 520 008c 34       		.uleb128 0x34
+ 521 008d 00       		.byte	0
+ 522 008e 03       		.uleb128 0x3
+ 523 008f 0E       		.uleb128 0xe
+ 524 0090 3A       		.uleb128 0x3a
+ 525 0091 0B       		.uleb128 0xb
+ 526 0092 3B       		.uleb128 0x3b
+ 527 0093 0B       		.uleb128 0xb
+ 528 0094 49       		.uleb128 0x49
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccsBR0TZ.s 			page 13
+
+
+ 529 0095 13       		.uleb128 0x13
+ 530 0096 02       		.uleb128 0x2
+ 531 0097 0A       		.uleb128 0xa
+ 532 0098 00       		.byte	0
+ 533 0099 00       		.byte	0
+ 534 009a 00       		.byte	0
+ 535              		.section	.debug_loc,"",%progbits
+ 536              	.Ldebug_loc0:
+ 537              	.LLST0:
+ 538 0000 00000000 		.4byte	.LFB0
+ 539 0004 02000000 		.4byte	.LCFI0
+ 540 0008 0200     		.2byte	0x2
+ 541 000a 7D       		.byte	0x7d
+ 542 000b 00       		.sleb128 0
+ 543 000c 02000000 		.4byte	.LCFI0
+ 544 0010 04000000 		.4byte	.LCFI1
+ 545 0014 0200     		.2byte	0x2
+ 546 0016 7D       		.byte	0x7d
+ 547 0017 04       		.sleb128 4
+ 548 0018 04000000 		.4byte	.LCFI1
+ 549 001c 20000000 		.4byte	.LFE0
+ 550 0020 0200     		.2byte	0x2
+ 551 0022 77       		.byte	0x77
+ 552 0023 04       		.sleb128 4
+ 553 0024 00000000 		.4byte	0
+ 554 0028 00000000 		.4byte	0
+ 555              	.LLST1:
+ 556 002c 00000000 		.4byte	.LFB1
+ 557 0030 02000000 		.4byte	.LCFI2
+ 558 0034 0200     		.2byte	0x2
+ 559 0036 7D       		.byte	0x7d
+ 560 0037 00       		.sleb128 0
+ 561 0038 02000000 		.4byte	.LCFI2
+ 562 003c 04000000 		.4byte	.LCFI3
+ 563 0040 0200     		.2byte	0x2
+ 564 0042 7D       		.byte	0x7d
+ 565 0043 04       		.sleb128 4
+ 566 0044 04000000 		.4byte	.LCFI3
+ 567 0048 1E000000 		.4byte	.LFE1
+ 568 004c 0200     		.2byte	0x2
+ 569 004e 77       		.byte	0x77
+ 570 004f 04       		.sleb128 4
+ 571 0050 00000000 		.4byte	0
+ 572 0054 00000000 		.4byte	0
+ 573              	.LLST2:
+ 574 0058 00000000 		.4byte	.LFB2
+ 575 005c 02000000 		.4byte	.LCFI4
+ 576 0060 0200     		.2byte	0x2
+ 577 0062 7D       		.byte	0x7d
+ 578 0063 00       		.sleb128 0
+ 579 0064 02000000 		.4byte	.LCFI4
+ 580 0068 04000000 		.4byte	.LCFI5
+ 581 006c 0200     		.2byte	0x2
+ 582 006e 7D       		.byte	0x7d
+ 583 006f 08       		.sleb128 8
+ 584 0070 04000000 		.4byte	.LCFI5
+ 585 0074 82000000 		.4byte	.LFE2
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccsBR0TZ.s 			page 14
+
+
+ 586 0078 0200     		.2byte	0x2
+ 587 007a 77       		.byte	0x77
+ 588 007b 08       		.sleb128 8
+ 589 007c 00000000 		.4byte	0
+ 590 0080 00000000 		.4byte	0
+ 591              	.LLST3:
+ 592 0084 00000000 		.4byte	.LFB3
+ 593 0088 02000000 		.4byte	.LCFI6
+ 594 008c 0200     		.2byte	0x2
+ 595 008e 7D       		.byte	0x7d
+ 596 008f 00       		.sleb128 0
+ 597 0090 02000000 		.4byte	.LCFI6
+ 598 0094 04000000 		.4byte	.LCFI7
+ 599 0098 0200     		.2byte	0x2
+ 600 009a 7D       		.byte	0x7d
+ 601 009b 08       		.sleb128 8
+ 602 009c 04000000 		.4byte	.LCFI7
+ 603 00a0 32000000 		.4byte	.LFE3
+ 604 00a4 0200     		.2byte	0x2
+ 605 00a6 77       		.byte	0x77
+ 606 00a7 08       		.sleb128 8
+ 607 00a8 00000000 		.4byte	0
+ 608 00ac 00000000 		.4byte	0
+ 609              		.section	.debug_aranges,"",%progbits
+ 610 0000 34000000 		.4byte	0x34
+ 611 0004 0200     		.2byte	0x2
+ 612 0006 00000000 		.4byte	.Ldebug_info0
+ 613 000a 04       		.byte	0x4
+ 614 000b 00       		.byte	0
+ 615 000c 0000     		.2byte	0
+ 616 000e 0000     		.2byte	0
+ 617 0010 00000000 		.4byte	.LFB0
+ 618 0014 20000000 		.4byte	.LFE0-.LFB0
+ 619 0018 00000000 		.4byte	.LFB1
+ 620 001c 1E000000 		.4byte	.LFE1-.LFB1
+ 621 0020 00000000 		.4byte	.LFB2
+ 622 0024 82000000 		.4byte	.LFE2-.LFB2
+ 623 0028 00000000 		.4byte	.LFB3
+ 624 002c 32000000 		.4byte	.LFE3-.LFB3
+ 625 0030 00000000 		.4byte	0
+ 626 0034 00000000 		.4byte	0
+ 627              		.section	.debug_ranges,"",%progbits
+ 628              	.Ldebug_ranges0:
+ 629 0000 00000000 		.4byte	.LFB0
+ 630 0004 20000000 		.4byte	.LFE0
+ 631 0008 00000000 		.4byte	.LFB1
+ 632 000c 1E000000 		.4byte	.LFE1
+ 633 0010 00000000 		.4byte	.LFB2
+ 634 0014 82000000 		.4byte	.LFE2
+ 635 0018 00000000 		.4byte	.LFB3
+ 636 001c 32000000 		.4byte	.LFE3
+ 637 0020 00000000 		.4byte	0
+ 638 0024 00000000 		.4byte	0
+ 639              		.section	.debug_line,"",%progbits
+ 640              	.Ldebug_line0:
+ 641 0000 C1000000 		.section	.debug_str,"MS",%progbits,1
+ 641      02006000 
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccsBR0TZ.s 			page 15
+
+
+ 641      00000201 
+ 641      FB0E0D00 
+ 641      01010101 
+ 642              	.LASF6:
+ 643 0000 6C6F6E67 		.ascii	"long long int\000"
+ 643      206C6F6E 
+ 643      6720696E 
+ 643      7400
+ 644              	.LASF3:
+ 645 000e 73686F72 		.ascii	"short unsigned int\000"
+ 645      7420756E 
+ 645      7369676E 
+ 645      65642069 
+ 645      6E7400
+ 646              	.LASF15:
+ 647 0021 656E6162 		.ascii	"enableState\000"
+ 647      6C655374 
+ 647      61746500 
+ 648              	.LASF8:
+ 649 002d 756E7369 		.ascii	"unsigned int\000"
+ 649      676E6564 
+ 649      20696E74 
+ 649      00
+ 650              	.LASF16:
+ 651 003a 64656363 		.ascii	"deccr\000"
+ 651      7200
+ 652              	.LASF22:
+ 653 0040 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 653      4320342E 
+ 653      372E3320 
+ 653      32303133 
+ 653      30333132 
+ 654 0073 616E6368 		.ascii	"anch revision 196615]\000"
+ 654      20726576 
+ 654      6973696F 
+ 654      6E203139 
+ 654      36363135 
+ 655              	.LASF12:
+ 656 0089 75696E74 		.ascii	"uint8\000"
+ 656      3800
+ 657              	.LASF5:
+ 658 008f 6C6F6E67 		.ascii	"long unsigned int\000"
+ 658      20756E73 
+ 658      69676E65 
+ 658      6420696E 
+ 658      7400
+ 659              	.LASF7:
+ 660 00a1 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 660      206C6F6E 
+ 660      6720756E 
+ 660      7369676E 
+ 660      65642069 
+ 661              	.LASF1:
+ 662 00b8 756E7369 		.ascii	"unsigned char\000"
+ 662      676E6564 
+ 662      20636861 
+ 662      7200
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccsBR0TZ.s 			page 16
+
+
+ 663              	.LASF11:
+ 664 00c6 63686172 		.ascii	"char\000"
+ 664      00
+ 665              	.LASF19:
+ 666 00cb 4144435F 		.ascii	"ADC_DelSig_1_RestoreConfig\000"
+ 666      44656C53 
+ 666      69675F31 
+ 666      5F526573 
+ 666      746F7265 
+ 667              	.LASF4:
+ 668 00e6 6C6F6E67 		.ascii	"long int\000"
+ 668      20696E74 
+ 668      00
+ 669              	.LASF25:
+ 670 00ef 4144435F 		.ascii	"ADC_DelSig_1_backup\000"
+ 670      44656C53 
+ 670      69675F31 
+ 670      5F626163 
+ 670      6B757000 
+ 671              	.LASF10:
+ 672 0103 646F7562 		.ascii	"double\000"
+ 672      6C6500
+ 673              	.LASF23:
+ 674 010a 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\ADC_DelSig_1_PM.c\000"
+ 674      6E657261 
+ 674      7465645F 
+ 674      536F7572 
+ 674      63655C50 
+ 675              	.LASF0:
+ 676 0135 7369676E 		.ascii	"signed char\000"
+ 676      65642063 
+ 676      68617200 
+ 677              	.LASF24:
+ 678 0141 433A5C55 		.ascii	"C:\\Users\\Brian\\Dropbox\\RPiSoC\\Projects\\PSoC_2"
+ 678      73657273 
+ 678      5C427269 
+ 678      616E5C44 
+ 678      726F7062 
+ 679 016e 5F50695C 		.ascii	"_Pi\\PSoC_2_Pi.cydsn\000"
+ 679      50536F43 
+ 679      5F325F50 
+ 679      692E6379 
+ 679      64736E00 
+ 680              	.LASF9:
+ 681 0182 666C6F61 		.ascii	"float\000"
+ 681      7400
+ 682              	.LASF18:
+ 683 0188 4144435F 		.ascii	"ADC_DelSig_1_SaveConfig\000"
+ 683      44656C53 
+ 683      69675F31 
+ 683      5F536176 
+ 683      65436F6E 
+ 684              	.LASF2:
+ 685 01a0 73686F72 		.ascii	"short int\000"
+ 685      7420696E 
+ 685      7400
+ 686              	.LASF13:
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccsBR0TZ.s 			page 17
+
+
+ 687 01aa 72656738 		.ascii	"reg8\000"
+ 687      00
+ 688              	.LASF17:
+ 689 01af 4144435F 		.ascii	"ADC_DelSig_1_BACKUP_STRUCT\000"
+ 689      44656C53 
+ 689      69675F31 
+ 689      5F424143 
+ 689      4B55505F 
+ 690              	.LASF21:
+ 691 01ca 4144435F 		.ascii	"ADC_DelSig_1_Wakeup\000"
+ 691      44656C53 
+ 691      69675F31 
+ 691      5F57616B 
+ 691      65757000 
+ 692              	.LASF20:
+ 693 01de 4144435F 		.ascii	"ADC_DelSig_1_Sleep\000"
+ 693      44656C53 
+ 693      69675F31 
+ 693      5F536C65 
+ 693      657000
+ 694              	.LASF14:
+ 695 01f1 73697A65 		.ascii	"sizetype\000"
+ 695      74797065 
+ 695      00
+ 696              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

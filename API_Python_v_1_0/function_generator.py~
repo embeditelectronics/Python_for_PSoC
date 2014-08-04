@@ -1,0 +1,34 @@
+from rpisoc import *
+
+RPiSoC('SPI') #Establish connection to RPiSoC over SPI
+Wave = waveDAC() #Initialize a waveform object
+Wave.Start()#start waveform with default setting
+
+
+try: #exception handling, not crucial but it is advised.
+    while True:
+        raw_input("Hit any key to generate new waveform") #wait for user input
+
+        w_type = raw_input("Input Wave Type (SINE TRIANGLE SAWTOOTH or SQUARE) ")
+        dcB = float(raw_input('Input DC Bias (0-4)'))
+        amp = float(raw_input('Input amplitude (0-4) ' ))
+        freq = int(raw_input('Input Frequency in Hz (10 - 2400) '))
+
+        Wave.setAmplitude(amp) #set amplitude of desired wave in Volts
+        Wave.setdcBias(dcB) #define a DC Bias for the desired wave in Volts
+        Wave.Stop() #Stop the previous wave
+        Wave.SetFrequency(freq) #Set the frequency for the new wave in Hz (using a clock divider...)
+       # raw_input("wait for freq...")
+        #Wave.Stop()
+        #raw_input("Wait for stop...")
+        # time.sleep(0.5)
+        Wave.Generate_Wave(w_type) #Generate new wave of defined type
+        #time.sleep(0.5)
+        #time.sleep(0.5)
+        Wave.Start() #Start the wave
+
+except KeyboardInterrupt:
+   RPiSoC. commChannel.close()
+
+
+

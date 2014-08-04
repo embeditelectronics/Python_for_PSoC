@@ -1,0 +1,953 @@
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccmWfef3.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"TFTSHIELD_1_SPIM_1_PM.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.data
+  19              		.align	2
+  20              		.type	TFTSHIELD_1_SPIM_1_backup, %object
+  21              		.size	TFTSHIELD_1_SPIM_1_backup, 2
+  22              	TFTSHIELD_1_SPIM_1_backup:
+  23 0000 00       		.byte	0
+  24 0001 0F       		.byte	15
+  25 0002 0000     		.section	.text.TFTSHIELD_1_SPIM_1_SaveConfig,"ax",%progbits
+  26              		.align	2
+  27              		.global	TFTSHIELD_1_SPIM_1_SaveConfig
+  28              		.thumb
+  29              		.thumb_func
+  30              		.type	TFTSHIELD_1_SPIM_1_SaveConfig, %function
+  31              	TFTSHIELD_1_SPIM_1_SaveConfig:
+  32              	.LFB0:
+  33              		.file 1 ".\\Generated_Source\\PSoC5\\TFTSHIELD_1_SPIM_1_PM.c"
+   1:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * File Name: TFTSHIELD_1_SPIM_1_PM.c
+   3:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Version 2.40
+   4:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+   5:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Description:
+   6:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  This file contains the setup, control and status commands to support
+   7:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  component operations in low power mode.
+   8:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+   9:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Note:
+  10:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+  11:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** ********************************************************************************
+  12:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  13:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  14:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * the software package with which this file was provided.
+  16:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *******************************************************************************/
+  17:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** 
+  18:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** #include "TFTSHIELD_1_SPIM_1_PVT.h"
+  19:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** 
+  20:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** static TFTSHIELD_1_SPIM_1_BACKUP_STRUCT TFTSHIELD_1_SPIM_1_backup =
+  21:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** {
+  22:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     TFTSHIELD_1_SPIM_1_DISABLED,
+  23:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     TFTSHIELD_1_SPIM_1_BITCTR_INIT,
+  24:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     #if(CY_UDB_V0)
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccmWfef3.s 			page 2
+
+
+  25:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****         TFTSHIELD_1_SPIM_1_TX_INIT_INTERRUPTS_MASK,
+  26:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****         TFTSHIELD_1_SPIM_1_RX_INIT_INTERRUPTS_MASK
+  27:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     #endif /* CY_UDB_V0 */
+  28:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** };
+  29:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** 
+  30:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** 
+  31:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** /*******************************************************************************
+  32:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Function Name: TFTSHIELD_1_SPIM_1_SaveConfig
+  33:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** ********************************************************************************
+  34:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+  35:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Summary:
+  36:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  Saves SPIM configuration.
+  37:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+  38:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Parameters:
+  39:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  None.
+  40:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+  41:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Return:
+  42:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  None.
+  43:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+  44:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Global Variables:
+  45:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  TFTSHIELD_1_SPIM_1_backup - modified when non-retention registers are saved.
+  46:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+  47:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Reentrant:
+  48:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  No.
+  49:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+  50:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *******************************************************************************/
+  51:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** void TFTSHIELD_1_SPIM_1_SaveConfig(void) 
+  52:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** {
+  34              		.loc 1 52 0
+  35              		.cfi_startproc
+  36              		@ args = 0, pretend = 0, frame = 0
+  37              		@ frame_needed = 1, uses_anonymous_args = 0
+  38              		@ link register save eliminated.
+  39 0000 80B4     		push	{r7}
+  40              	.LCFI0:
+  41              		.cfi_def_cfa_offset 4
+  42              		.cfi_offset 7, -4
+  43 0002 00AF     		add	r7, sp, #0
+  44              	.LCFI1:
+  45              		.cfi_def_cfa_register 7
+  53:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     /* Store Status Mask registers */
+  54:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     #if(CY_UDB_V0)
+  55:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****        TFTSHIELD_1_SPIM_1_backup.cntrPeriod      = TFTSHIELD_1_SPIM_1_COUNTER_PERIOD_REG;
+  56:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****        TFTSHIELD_1_SPIM_1_backup.saveSrTxIntMask = TFTSHIELD_1_SPIM_1_TX_STATUS_MASK_REG;
+  57:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****        TFTSHIELD_1_SPIM_1_backup.saveSrRxIntMask = TFTSHIELD_1_SPIM_1_RX_STATUS_MASK_REG;
+  58:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     #endif /* (CY_UDB_V0) */
+  59:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** }
+  46              		.loc 1 59 0
+  47 0004 BD46     		mov	sp, r7
+  48 0006 80BC     		pop	{r7}
+  49 0008 7047     		bx	lr
+  50              		.cfi_endproc
+  51              	.LFE0:
+  52              		.size	TFTSHIELD_1_SPIM_1_SaveConfig, .-TFTSHIELD_1_SPIM_1_SaveConfig
+  53 000a 00BF     		.section	.text.TFTSHIELD_1_SPIM_1_RestoreConfig,"ax",%progbits
+  54              		.align	2
+  55              		.global	TFTSHIELD_1_SPIM_1_RestoreConfig
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccmWfef3.s 			page 3
+
+
+  56              		.thumb
+  57              		.thumb_func
+  58              		.type	TFTSHIELD_1_SPIM_1_RestoreConfig, %function
+  59              	TFTSHIELD_1_SPIM_1_RestoreConfig:
+  60              	.LFB1:
+  60:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** 
+  61:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** 
+  62:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** /*******************************************************************************
+  63:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Function Name: TFTSHIELD_1_SPIM_1_RestoreConfig
+  64:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** ********************************************************************************
+  65:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+  66:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Summary:
+  67:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  Restores SPIM configuration.
+  68:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+  69:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Parameters:
+  70:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  None.
+  71:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+  72:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Return:
+  73:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  None.
+  74:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+  75:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Global Variables:
+  76:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  TFTSHIELD_1_SPIM_1_backup - used when non-retention registers are restored.
+  77:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+  78:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Side Effects:
+  79:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  If this API is called without first calling SaveConfig then in the following
+  80:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  registers will be default values from Customizer:
+  81:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  TFTSHIELD_1_SPIM_1_STATUS_MASK_REG and TFTSHIELD_1_SPIM_1_COUNTER_PERIOD_REG.
+  82:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+  83:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *******************************************************************************/
+  84:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** void TFTSHIELD_1_SPIM_1_RestoreConfig(void) 
+  85:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** {
+  61              		.loc 1 85 0
+  62              		.cfi_startproc
+  63              		@ args = 0, pretend = 0, frame = 0
+  64              		@ frame_needed = 1, uses_anonymous_args = 0
+  65              		@ link register save eliminated.
+  66 0000 80B4     		push	{r7}
+  67              	.LCFI2:
+  68              		.cfi_def_cfa_offset 4
+  69              		.cfi_offset 7, -4
+  70 0002 00AF     		add	r7, sp, #0
+  71              	.LCFI3:
+  72              		.cfi_def_cfa_register 7
+  86:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     /* Restore the data, saved by SaveConfig() function */
+  87:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     #if(CY_UDB_V0)
+  88:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****         TFTSHIELD_1_SPIM_1_COUNTER_PERIOD_REG = TFTSHIELD_1_SPIM_1_backup.cntrPeriod;
+  89:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****         TFTSHIELD_1_SPIM_1_TX_STATUS_MASK_REG = ((uint8) TFTSHIELD_1_SPIM_1_backup.saveSrTxIntMask)
+  90:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****         TFTSHIELD_1_SPIM_1_RX_STATUS_MASK_REG = ((uint8) TFTSHIELD_1_SPIM_1_backup.saveSrRxIntMask)
+  91:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     #endif /* (CY_UDB_V0) */
+  92:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** }
+  73              		.loc 1 92 0
+  74 0004 BD46     		mov	sp, r7
+  75 0006 80BC     		pop	{r7}
+  76 0008 7047     		bx	lr
+  77              		.cfi_endproc
+  78              	.LFE1:
+  79              		.size	TFTSHIELD_1_SPIM_1_RestoreConfig, .-TFTSHIELD_1_SPIM_1_RestoreConfig
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccmWfef3.s 			page 4
+
+
+  80 000a 00BF     		.section	.text.TFTSHIELD_1_SPIM_1_Sleep,"ax",%progbits
+  81              		.align	2
+  82              		.global	TFTSHIELD_1_SPIM_1_Sleep
+  83              		.thumb
+  84              		.thumb_func
+  85              		.type	TFTSHIELD_1_SPIM_1_Sleep, %function
+  86              	TFTSHIELD_1_SPIM_1_Sleep:
+  87              	.LFB2:
+  93:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** 
+  94:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** 
+  95:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** /*******************************************************************************
+  96:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Function Name: TFTSHIELD_1_SPIM_1_Sleep
+  97:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** ********************************************************************************
+  98:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+  99:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Summary:
+ 100:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  Prepare SPIM Component goes to sleep.
+ 101:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+ 102:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Parameters:
+ 103:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  None.
+ 104:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+ 105:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Return:
+ 106:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  None.
+ 107:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+ 108:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Global Variables:
+ 109:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  TFTSHIELD_1_SPIM_1_backup - modified when non-retention registers are saved.
+ 110:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+ 111:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Reentrant:
+ 112:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  No.
+ 113:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+ 114:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *******************************************************************************/
+ 115:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** void TFTSHIELD_1_SPIM_1_Sleep(void) 
+ 116:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** {
+  88              		.loc 1 116 0
+  89              		.cfi_startproc
+  90              		@ args = 0, pretend = 0, frame = 0
+  91              		@ frame_needed = 1, uses_anonymous_args = 0
+  92 0000 80B5     		push	{r7, lr}
+  93              	.LCFI4:
+  94              		.cfi_def_cfa_offset 8
+  95              		.cfi_offset 7, -8
+  96              		.cfi_offset 14, -4
+  97 0002 00AF     		add	r7, sp, #0
+  98              	.LCFI5:
+  99              		.cfi_def_cfa_register 7
+ 117:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     /* Save components enable state */
+ 118:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     TFTSHIELD_1_SPIM_1_backup.enableState = ((uint8) TFTSHIELD_1_SPIM_1_IS_ENABLED);
+ 100              		.loc 1 118 0
+ 101 0004 46F29E43 		movw	r3, #25758
+ 102 0008 C4F20003 		movt	r3, 16384
+ 103 000c 1B78     		ldrb	r3, [r3, #0]
+ 104 000e DBB2     		uxtb	r3, r3
+ 105 0010 03F01003 		and	r3, r3, #16
+ 106 0014 002B     		cmp	r3, #0
+ 107 0016 0CBF     		ite	eq
+ 108 0018 0023     		moveq	r3, #0
+ 109 001a 0123     		movne	r3, #1
+ 110 001c DBB2     		uxtb	r3, r3
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccmWfef3.s 			page 5
+
+
+ 111 001e 1A46     		mov	r2, r3
+ 112 0020 40F20003 		movw	r3, #:lower16:TFTSHIELD_1_SPIM_1_backup
+ 113 0024 C0F20003 		movt	r3, #:upper16:TFTSHIELD_1_SPIM_1_backup
+ 114 0028 1A70     		strb	r2, [r3, #0]
+ 119:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** 
+ 120:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     TFTSHIELD_1_SPIM_1_Stop();
+ 115              		.loc 1 120 0
+ 116 002a FFF7FEFF 		bl	TFTSHIELD_1_SPIM_1_Stop
+ 121:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     TFTSHIELD_1_SPIM_1_SaveConfig();
+ 117              		.loc 1 121 0
+ 118 002e FFF7FEFF 		bl	TFTSHIELD_1_SPIM_1_SaveConfig
+ 122:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** }
+ 119              		.loc 1 122 0
+ 120 0032 80BD     		pop	{r7, pc}
+ 121              		.cfi_endproc
+ 122              	.LFE2:
+ 123              		.size	TFTSHIELD_1_SPIM_1_Sleep, .-TFTSHIELD_1_SPIM_1_Sleep
+ 124              		.section	.text.TFTSHIELD_1_SPIM_1_Wakeup,"ax",%progbits
+ 125              		.align	2
+ 126              		.global	TFTSHIELD_1_SPIM_1_Wakeup
+ 127              		.thumb
+ 128              		.thumb_func
+ 129              		.type	TFTSHIELD_1_SPIM_1_Wakeup, %function
+ 130              	TFTSHIELD_1_SPIM_1_Wakeup:
+ 131              	.LFB3:
+ 123:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** 
+ 124:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** 
+ 125:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** /*******************************************************************************
+ 126:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Function Name: TFTSHIELD_1_SPIM_1_Wakeup
+ 127:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** ********************************************************************************
+ 128:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+ 129:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Summary:
+ 130:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  Prepare SPIM Component to wake up.
+ 131:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+ 132:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Parameters:
+ 133:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  None.
+ 134:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+ 135:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Return:
+ 136:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  None.
+ 137:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+ 138:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Global Variables:
+ 139:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  TFTSHIELD_1_SPIM_1_backup - used when non-retention registers are restored.
+ 140:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  TFTSHIELD_1_SPIM_1_txBufferWrite - modified every function call - resets to
+ 141:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  zero.
+ 142:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  TFTSHIELD_1_SPIM_1_txBufferRead - modified every function call - resets to
+ 143:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  zero.
+ 144:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  TFTSHIELD_1_SPIM_1_rxBufferWrite - modified every function call - resets to
+ 145:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  zero.
+ 146:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  TFTSHIELD_1_SPIM_1_rxBufferRead - modified every function call - resets to
+ 147:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  zero.
+ 148:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+ 149:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** * Reentrant:
+ 150:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *  No.
+ 151:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *
+ 152:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** *******************************************************************************/
+ 153:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** void TFTSHIELD_1_SPIM_1_Wakeup(void) 
+ 154:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** {
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccmWfef3.s 			page 6
+
+
+ 132              		.loc 1 154 0
+ 133              		.cfi_startproc
+ 134              		@ args = 0, pretend = 0, frame = 0
+ 135              		@ frame_needed = 1, uses_anonymous_args = 0
+ 136 0000 80B5     		push	{r7, lr}
+ 137              	.LCFI6:
+ 138              		.cfi_def_cfa_offset 8
+ 139              		.cfi_offset 7, -8
+ 140              		.cfi_offset 14, -4
+ 141 0002 00AF     		add	r7, sp, #0
+ 142              	.LCFI7:
+ 143              		.cfi_def_cfa_register 7
+ 155:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     TFTSHIELD_1_SPIM_1_RestoreConfig();
+ 144              		.loc 1 155 0
+ 145 0004 FFF7FEFF 		bl	TFTSHIELD_1_SPIM_1_RestoreConfig
+ 156:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** 
+ 157:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     #if(TFTSHIELD_1_SPIM_1_RX_SOFTWARE_BUF_ENABLED)
+ 158:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****         TFTSHIELD_1_SPIM_1_rxBufferFull  = 0u;
+ 159:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****         TFTSHIELD_1_SPIM_1_rxBufferRead  = 0u;
+ 160:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****         TFTSHIELD_1_SPIM_1_rxBufferWrite = 0u;
+ 161:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     #endif /* (TFTSHIELD_1_SPIM_1_RX_SOFTWARE_BUF_ENABLED) */
+ 162:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** 
+ 163:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     #if(TFTSHIELD_1_SPIM_1_TX_SOFTWARE_BUF_ENABLED)
+ 164:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****         TFTSHIELD_1_SPIM_1_txBufferFull  = 0u;
+ 165:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****         TFTSHIELD_1_SPIM_1_txBufferRead  = 0u;
+ 166:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****         TFTSHIELD_1_SPIM_1_txBufferWrite = 0u;
+ 167:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     #endif /* (TFTSHIELD_1_SPIM_1_TX_SOFTWARE_BUF_ENABLED) */
+ 168:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** 
+ 169:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     /* Clear any data from the RX and TX FIFO */
+ 170:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     TFTSHIELD_1_SPIM_1_ClearFIFO();
+ 146              		.loc 1 170 0
+ 147 0008 FFF7FEFF 		bl	TFTSHIELD_1_SPIM_1_ClearFIFO
+ 171:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** 
+ 172:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     /* Restore components block enable state */
+ 173:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     if(0u != TFTSHIELD_1_SPIM_1_backup.enableState)
+ 148              		.loc 1 173 0
+ 149 000c 40F20003 		movw	r3, #:lower16:TFTSHIELD_1_SPIM_1_backup
+ 150 0010 C0F20003 		movt	r3, #:upper16:TFTSHIELD_1_SPIM_1_backup
+ 151 0014 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 152 0016 002B     		cmp	r3, #0
+ 153 0018 01D0     		beq	.L4
+ 174:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     {
+ 175:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****         TFTSHIELD_1_SPIM_1_Enable();
+ 154              		.loc 1 175 0
+ 155 001a FFF7FEFF 		bl	TFTSHIELD_1_SPIM_1_Enable
+ 156              	.L4:
+ 176:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c ****     }
+ 177:.\Generated_Source\PSoC5/TFTSHIELD_1_SPIM_1_PM.c **** }
+ 157              		.loc 1 177 0
+ 158 001e 80BD     		pop	{r7, pc}
+ 159              		.cfi_endproc
+ 160              	.LFE3:
+ 161              		.size	TFTSHIELD_1_SPIM_1_Wakeup, .-TFTSHIELD_1_SPIM_1_Wakeup
+ 162              		.text
+ 163              	.Letext0:
+ 164              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 165              		.file 3 ".\\Generated_Source\\PSoC5\\TFTSHIELD_1_SPIM_1.h"
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccmWfef3.s 			page 7
+
+
+ 166              		.section	.debug_info,"",%progbits
+ 167              	.Ldebug_info0:
+ 168 0000 3C010000 		.4byte	0x13c
+ 169 0004 0200     		.2byte	0x2
+ 170 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 171 000a 04       		.byte	0x4
+ 172 000b 01       		.uleb128 0x1
+ 173 000c 53000000 		.4byte	.LASF22
+ 174 0010 01       		.byte	0x1
+ 175 0011 B9010000 		.4byte	.LASF23
+ 176 0015 78010000 		.4byte	.LASF24
+ 177 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 178 001d 00000000 		.4byte	0
+ 179 0021 00000000 		.4byte	0
+ 180 0025 00000000 		.4byte	.Ldebug_line0
+ 181 0029 02       		.uleb128 0x2
+ 182 002a 01       		.byte	0x1
+ 183 002b 06       		.byte	0x6
+ 184 002c 52010000 		.4byte	.LASF0
+ 185 0030 02       		.uleb128 0x2
+ 186 0031 01       		.byte	0x1
+ 187 0032 08       		.byte	0x8
+ 188 0033 EC000000 		.4byte	.LASF1
+ 189 0037 02       		.uleb128 0x2
+ 190 0038 02       		.byte	0x2
+ 191 0039 05       		.byte	0x5
+ 192 003a F0010000 		.4byte	.LASF2
+ 193 003e 02       		.uleb128 0x2
+ 194 003f 02       		.byte	0x2
+ 195 0040 07       		.byte	0x7
+ 196 0041 0E000000 		.4byte	.LASF3
+ 197 0045 02       		.uleb128 0x2
+ 198 0046 04       		.byte	0x4
+ 199 0047 05       		.byte	0x5
+ 200 0048 FF000000 		.4byte	.LASF4
+ 201 004c 02       		.uleb128 0x2
+ 202 004d 04       		.byte	0x4
+ 203 004e 07       		.byte	0x7
+ 204 004f A2000000 		.4byte	.LASF5
+ 205 0053 02       		.uleb128 0x2
+ 206 0054 08       		.byte	0x8
+ 207 0055 05       		.byte	0x5
+ 208 0056 00000000 		.4byte	.LASF6
+ 209 005a 02       		.uleb128 0x2
+ 210 005b 08       		.byte	0x8
+ 211 005c 07       		.byte	0x7
+ 212 005d B4000000 		.4byte	.LASF7
+ 213 0061 03       		.uleb128 0x3
+ 214 0062 04       		.byte	0x4
+ 215 0063 05       		.byte	0x5
+ 216 0064 696E7400 		.ascii	"int\000"
+ 217 0068 02       		.uleb128 0x2
+ 218 0069 04       		.byte	0x4
+ 219 006a 07       		.byte	0x7
+ 220 006b 2D000000 		.4byte	.LASF8
+ 221 006f 04       		.uleb128 0x4
+ 222 0070 9C000000 		.4byte	.LASF12
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccmWfef3.s 			page 8
+
+
+ 223 0074 02       		.byte	0x2
+ 224 0075 5B       		.byte	0x5b
+ 225 0076 30000000 		.4byte	0x30
+ 226 007a 02       		.uleb128 0x2
+ 227 007b 04       		.byte	0x4
+ 228 007c 04       		.byte	0x4
+ 229 007d EA010000 		.4byte	.LASF9
+ 230 0081 02       		.uleb128 0x2
+ 231 0082 08       		.byte	0x8
+ 232 0083 04       		.byte	0x4
+ 233 0084 22010000 		.4byte	.LASF10
+ 234 0088 02       		.uleb128 0x2
+ 235 0089 01       		.byte	0x1
+ 236 008a 08       		.byte	0x8
+ 237 008b FA000000 		.4byte	.LASF11
+ 238 008f 04       		.uleb128 0x4
+ 239 0090 FA010000 		.4byte	.LASF13
+ 240 0094 02       		.byte	0x2
+ 241 0095 F0       		.byte	0xf0
+ 242 0096 9A000000 		.4byte	0x9a
+ 243 009a 05       		.uleb128 0x5
+ 244 009b 6F000000 		.4byte	0x6f
+ 245 009f 02       		.uleb128 0x2
+ 246 00a0 04       		.byte	0x4
+ 247 00a1 07       		.byte	0x7
+ 248 00a2 20020000 		.4byte	.LASF14
+ 249 00a6 06       		.uleb128 0x6
+ 250 00a7 02       		.byte	0x2
+ 251 00a8 03       		.byte	0x3
+ 252 00a9 46       		.byte	0x46
+ 253 00aa CB000000 		.4byte	0xcb
+ 254 00ae 07       		.uleb128 0x7
+ 255 00af 21000000 		.4byte	.LASF15
+ 256 00b3 03       		.byte	0x3
+ 257 00b4 48       		.byte	0x48
+ 258 00b5 6F000000 		.4byte	0x6f
+ 259 00b9 02       		.byte	0x2
+ 260 00ba 23       		.byte	0x23
+ 261 00bb 00       		.uleb128 0
+ 262 00bc 07       		.uleb128 0x7
+ 263 00bd 29010000 		.4byte	.LASF16
+ 264 00c1 03       		.byte	0x3
+ 265 00c2 49       		.byte	0x49
+ 266 00c3 6F000000 		.4byte	0x6f
+ 267 00c7 02       		.byte	0x2
+ 268 00c8 23       		.byte	0x23
+ 269 00c9 01       		.uleb128 0x1
+ 270 00ca 00       		.byte	0
+ 271 00cb 04       		.uleb128 0x4
+ 272 00cc CB000000 		.4byte	.LASF17
+ 273 00d0 03       		.byte	0x3
+ 274 00d1 4F       		.byte	0x4f
+ 275 00d2 A6000000 		.4byte	0xa6
+ 276 00d6 08       		.uleb128 0x8
+ 277 00d7 01       		.byte	0x1
+ 278 00d8 34010000 		.4byte	.LASF18
+ 279 00dc 01       		.byte	0x1
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccmWfef3.s 			page 9
+
+
+ 280 00dd 33       		.byte	0x33
+ 281 00de 01       		.byte	0x1
+ 282 00df 00000000 		.4byte	.LFB0
+ 283 00e3 0A000000 		.4byte	.LFE0
+ 284 00e7 00000000 		.4byte	.LLST0
+ 285 00eb 01       		.byte	0x1
+ 286 00ec 08       		.uleb128 0x8
+ 287 00ed 01       		.byte	0x1
+ 288 00ee FF010000 		.4byte	.LASF19
+ 289 00f2 01       		.byte	0x1
+ 290 00f3 54       		.byte	0x54
+ 291 00f4 01       		.byte	0x1
+ 292 00f5 00000000 		.4byte	.LFB1
+ 293 00f9 0A000000 		.4byte	.LFE1
+ 294 00fd 2C000000 		.4byte	.LLST1
+ 295 0101 01       		.byte	0x1
+ 296 0102 09       		.uleb128 0x9
+ 297 0103 01       		.byte	0x1
+ 298 0104 3A000000 		.4byte	.LASF20
+ 299 0108 01       		.byte	0x1
+ 300 0109 73       		.byte	0x73
+ 301 010a 01       		.byte	0x1
+ 302 010b 00000000 		.4byte	.LFB2
+ 303 010f 34000000 		.4byte	.LFE2
+ 304 0113 58000000 		.4byte	.LLST2
+ 305 0117 01       		.byte	0x1
+ 306 0118 09       		.uleb128 0x9
+ 307 0119 01       		.byte	0x1
+ 308 011a 08010000 		.4byte	.LASF21
+ 309 011e 01       		.byte	0x1
+ 310 011f 99       		.byte	0x99
+ 311 0120 01       		.byte	0x1
+ 312 0121 00000000 		.4byte	.LFB3
+ 313 0125 20000000 		.4byte	.LFE3
+ 314 0129 84000000 		.4byte	.LLST3
+ 315 012d 01       		.byte	0x1
+ 316 012e 0A       		.uleb128 0xa
+ 317 012f 5E010000 		.4byte	.LASF25
+ 318 0133 01       		.byte	0x1
+ 319 0134 14       		.byte	0x14
+ 320 0135 CB000000 		.4byte	0xcb
+ 321 0139 05       		.byte	0x5
+ 322 013a 03       		.byte	0x3
+ 323 013b 00000000 		.4byte	TFTSHIELD_1_SPIM_1_backup
+ 324 013f 00       		.byte	0
+ 325              		.section	.debug_abbrev,"",%progbits
+ 326              	.Ldebug_abbrev0:
+ 327 0000 01       		.uleb128 0x1
+ 328 0001 11       		.uleb128 0x11
+ 329 0002 01       		.byte	0x1
+ 330 0003 25       		.uleb128 0x25
+ 331 0004 0E       		.uleb128 0xe
+ 332 0005 13       		.uleb128 0x13
+ 333 0006 0B       		.uleb128 0xb
+ 334 0007 03       		.uleb128 0x3
+ 335 0008 0E       		.uleb128 0xe
+ 336 0009 1B       		.uleb128 0x1b
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccmWfef3.s 			page 10
+
+
+ 337 000a 0E       		.uleb128 0xe
+ 338 000b 55       		.uleb128 0x55
+ 339 000c 06       		.uleb128 0x6
+ 340 000d 11       		.uleb128 0x11
+ 341 000e 01       		.uleb128 0x1
+ 342 000f 52       		.uleb128 0x52
+ 343 0010 01       		.uleb128 0x1
+ 344 0011 10       		.uleb128 0x10
+ 345 0012 06       		.uleb128 0x6
+ 346 0013 00       		.byte	0
+ 347 0014 00       		.byte	0
+ 348 0015 02       		.uleb128 0x2
+ 349 0016 24       		.uleb128 0x24
+ 350 0017 00       		.byte	0
+ 351 0018 0B       		.uleb128 0xb
+ 352 0019 0B       		.uleb128 0xb
+ 353 001a 3E       		.uleb128 0x3e
+ 354 001b 0B       		.uleb128 0xb
+ 355 001c 03       		.uleb128 0x3
+ 356 001d 0E       		.uleb128 0xe
+ 357 001e 00       		.byte	0
+ 358 001f 00       		.byte	0
+ 359 0020 03       		.uleb128 0x3
+ 360 0021 24       		.uleb128 0x24
+ 361 0022 00       		.byte	0
+ 362 0023 0B       		.uleb128 0xb
+ 363 0024 0B       		.uleb128 0xb
+ 364 0025 3E       		.uleb128 0x3e
+ 365 0026 0B       		.uleb128 0xb
+ 366 0027 03       		.uleb128 0x3
+ 367 0028 08       		.uleb128 0x8
+ 368 0029 00       		.byte	0
+ 369 002a 00       		.byte	0
+ 370 002b 04       		.uleb128 0x4
+ 371 002c 16       		.uleb128 0x16
+ 372 002d 00       		.byte	0
+ 373 002e 03       		.uleb128 0x3
+ 374 002f 0E       		.uleb128 0xe
+ 375 0030 3A       		.uleb128 0x3a
+ 376 0031 0B       		.uleb128 0xb
+ 377 0032 3B       		.uleb128 0x3b
+ 378 0033 0B       		.uleb128 0xb
+ 379 0034 49       		.uleb128 0x49
+ 380 0035 13       		.uleb128 0x13
+ 381 0036 00       		.byte	0
+ 382 0037 00       		.byte	0
+ 383 0038 05       		.uleb128 0x5
+ 384 0039 35       		.uleb128 0x35
+ 385 003a 00       		.byte	0
+ 386 003b 49       		.uleb128 0x49
+ 387 003c 13       		.uleb128 0x13
+ 388 003d 00       		.byte	0
+ 389 003e 00       		.byte	0
+ 390 003f 06       		.uleb128 0x6
+ 391 0040 13       		.uleb128 0x13
+ 392 0041 01       		.byte	0x1
+ 393 0042 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccmWfef3.s 			page 11
+
+
+ 394 0043 0B       		.uleb128 0xb
+ 395 0044 3A       		.uleb128 0x3a
+ 396 0045 0B       		.uleb128 0xb
+ 397 0046 3B       		.uleb128 0x3b
+ 398 0047 0B       		.uleb128 0xb
+ 399 0048 01       		.uleb128 0x1
+ 400 0049 13       		.uleb128 0x13
+ 401 004a 00       		.byte	0
+ 402 004b 00       		.byte	0
+ 403 004c 07       		.uleb128 0x7
+ 404 004d 0D       		.uleb128 0xd
+ 405 004e 00       		.byte	0
+ 406 004f 03       		.uleb128 0x3
+ 407 0050 0E       		.uleb128 0xe
+ 408 0051 3A       		.uleb128 0x3a
+ 409 0052 0B       		.uleb128 0xb
+ 410 0053 3B       		.uleb128 0x3b
+ 411 0054 0B       		.uleb128 0xb
+ 412 0055 49       		.uleb128 0x49
+ 413 0056 13       		.uleb128 0x13
+ 414 0057 38       		.uleb128 0x38
+ 415 0058 0A       		.uleb128 0xa
+ 416 0059 00       		.byte	0
+ 417 005a 00       		.byte	0
+ 418 005b 08       		.uleb128 0x8
+ 419 005c 2E       		.uleb128 0x2e
+ 420 005d 00       		.byte	0
+ 421 005e 3F       		.uleb128 0x3f
+ 422 005f 0C       		.uleb128 0xc
+ 423 0060 03       		.uleb128 0x3
+ 424 0061 0E       		.uleb128 0xe
+ 425 0062 3A       		.uleb128 0x3a
+ 426 0063 0B       		.uleb128 0xb
+ 427 0064 3B       		.uleb128 0x3b
+ 428 0065 0B       		.uleb128 0xb
+ 429 0066 27       		.uleb128 0x27
+ 430 0067 0C       		.uleb128 0xc
+ 431 0068 11       		.uleb128 0x11
+ 432 0069 01       		.uleb128 0x1
+ 433 006a 12       		.uleb128 0x12
+ 434 006b 01       		.uleb128 0x1
+ 435 006c 40       		.uleb128 0x40
+ 436 006d 06       		.uleb128 0x6
+ 437 006e 9742     		.uleb128 0x2117
+ 438 0070 0C       		.uleb128 0xc
+ 439 0071 00       		.byte	0
+ 440 0072 00       		.byte	0
+ 441 0073 09       		.uleb128 0x9
+ 442 0074 2E       		.uleb128 0x2e
+ 443 0075 00       		.byte	0
+ 444 0076 3F       		.uleb128 0x3f
+ 445 0077 0C       		.uleb128 0xc
+ 446 0078 03       		.uleb128 0x3
+ 447 0079 0E       		.uleb128 0xe
+ 448 007a 3A       		.uleb128 0x3a
+ 449 007b 0B       		.uleb128 0xb
+ 450 007c 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccmWfef3.s 			page 12
+
+
+ 451 007d 0B       		.uleb128 0xb
+ 452 007e 27       		.uleb128 0x27
+ 453 007f 0C       		.uleb128 0xc
+ 454 0080 11       		.uleb128 0x11
+ 455 0081 01       		.uleb128 0x1
+ 456 0082 12       		.uleb128 0x12
+ 457 0083 01       		.uleb128 0x1
+ 458 0084 40       		.uleb128 0x40
+ 459 0085 06       		.uleb128 0x6
+ 460 0086 9642     		.uleb128 0x2116
+ 461 0088 0C       		.uleb128 0xc
+ 462 0089 00       		.byte	0
+ 463 008a 00       		.byte	0
+ 464 008b 0A       		.uleb128 0xa
+ 465 008c 34       		.uleb128 0x34
+ 466 008d 00       		.byte	0
+ 467 008e 03       		.uleb128 0x3
+ 468 008f 0E       		.uleb128 0xe
+ 469 0090 3A       		.uleb128 0x3a
+ 470 0091 0B       		.uleb128 0xb
+ 471 0092 3B       		.uleb128 0x3b
+ 472 0093 0B       		.uleb128 0xb
+ 473 0094 49       		.uleb128 0x49
+ 474 0095 13       		.uleb128 0x13
+ 475 0096 02       		.uleb128 0x2
+ 476 0097 0A       		.uleb128 0xa
+ 477 0098 00       		.byte	0
+ 478 0099 00       		.byte	0
+ 479 009a 00       		.byte	0
+ 480              		.section	.debug_loc,"",%progbits
+ 481              	.Ldebug_loc0:
+ 482              	.LLST0:
+ 483 0000 00000000 		.4byte	.LFB0
+ 484 0004 02000000 		.4byte	.LCFI0
+ 485 0008 0200     		.2byte	0x2
+ 486 000a 7D       		.byte	0x7d
+ 487 000b 00       		.sleb128 0
+ 488 000c 02000000 		.4byte	.LCFI0
+ 489 0010 04000000 		.4byte	.LCFI1
+ 490 0014 0200     		.2byte	0x2
+ 491 0016 7D       		.byte	0x7d
+ 492 0017 04       		.sleb128 4
+ 493 0018 04000000 		.4byte	.LCFI1
+ 494 001c 0A000000 		.4byte	.LFE0
+ 495 0020 0200     		.2byte	0x2
+ 496 0022 77       		.byte	0x77
+ 497 0023 04       		.sleb128 4
+ 498 0024 00000000 		.4byte	0
+ 499 0028 00000000 		.4byte	0
+ 500              	.LLST1:
+ 501 002c 00000000 		.4byte	.LFB1
+ 502 0030 02000000 		.4byte	.LCFI2
+ 503 0034 0200     		.2byte	0x2
+ 504 0036 7D       		.byte	0x7d
+ 505 0037 00       		.sleb128 0
+ 506 0038 02000000 		.4byte	.LCFI2
+ 507 003c 04000000 		.4byte	.LCFI3
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccmWfef3.s 			page 13
+
+
+ 508 0040 0200     		.2byte	0x2
+ 509 0042 7D       		.byte	0x7d
+ 510 0043 04       		.sleb128 4
+ 511 0044 04000000 		.4byte	.LCFI3
+ 512 0048 0A000000 		.4byte	.LFE1
+ 513 004c 0200     		.2byte	0x2
+ 514 004e 77       		.byte	0x77
+ 515 004f 04       		.sleb128 4
+ 516 0050 00000000 		.4byte	0
+ 517 0054 00000000 		.4byte	0
+ 518              	.LLST2:
+ 519 0058 00000000 		.4byte	.LFB2
+ 520 005c 02000000 		.4byte	.LCFI4
+ 521 0060 0200     		.2byte	0x2
+ 522 0062 7D       		.byte	0x7d
+ 523 0063 00       		.sleb128 0
+ 524 0064 02000000 		.4byte	.LCFI4
+ 525 0068 04000000 		.4byte	.LCFI5
+ 526 006c 0200     		.2byte	0x2
+ 527 006e 7D       		.byte	0x7d
+ 528 006f 08       		.sleb128 8
+ 529 0070 04000000 		.4byte	.LCFI5
+ 530 0074 34000000 		.4byte	.LFE2
+ 531 0078 0200     		.2byte	0x2
+ 532 007a 77       		.byte	0x77
+ 533 007b 08       		.sleb128 8
+ 534 007c 00000000 		.4byte	0
+ 535 0080 00000000 		.4byte	0
+ 536              	.LLST3:
+ 537 0084 00000000 		.4byte	.LFB3
+ 538 0088 02000000 		.4byte	.LCFI6
+ 539 008c 0200     		.2byte	0x2
+ 540 008e 7D       		.byte	0x7d
+ 541 008f 00       		.sleb128 0
+ 542 0090 02000000 		.4byte	.LCFI6
+ 543 0094 04000000 		.4byte	.LCFI7
+ 544 0098 0200     		.2byte	0x2
+ 545 009a 7D       		.byte	0x7d
+ 546 009b 08       		.sleb128 8
+ 547 009c 04000000 		.4byte	.LCFI7
+ 548 00a0 20000000 		.4byte	.LFE3
+ 549 00a4 0200     		.2byte	0x2
+ 550 00a6 77       		.byte	0x77
+ 551 00a7 08       		.sleb128 8
+ 552 00a8 00000000 		.4byte	0
+ 553 00ac 00000000 		.4byte	0
+ 554              		.section	.debug_aranges,"",%progbits
+ 555 0000 34000000 		.4byte	0x34
+ 556 0004 0200     		.2byte	0x2
+ 557 0006 00000000 		.4byte	.Ldebug_info0
+ 558 000a 04       		.byte	0x4
+ 559 000b 00       		.byte	0
+ 560 000c 0000     		.2byte	0
+ 561 000e 0000     		.2byte	0
+ 562 0010 00000000 		.4byte	.LFB0
+ 563 0014 0A000000 		.4byte	.LFE0-.LFB0
+ 564 0018 00000000 		.4byte	.LFB1
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccmWfef3.s 			page 14
+
+
+ 565 001c 0A000000 		.4byte	.LFE1-.LFB1
+ 566 0020 00000000 		.4byte	.LFB2
+ 567 0024 34000000 		.4byte	.LFE2-.LFB2
+ 568 0028 00000000 		.4byte	.LFB3
+ 569 002c 20000000 		.4byte	.LFE3-.LFB3
+ 570 0030 00000000 		.4byte	0
+ 571 0034 00000000 		.4byte	0
+ 572              		.section	.debug_ranges,"",%progbits
+ 573              	.Ldebug_ranges0:
+ 574 0000 00000000 		.4byte	.LFB0
+ 575 0004 0A000000 		.4byte	.LFE0
+ 576 0008 00000000 		.4byte	.LFB1
+ 577 000c 0A000000 		.4byte	.LFE1
+ 578 0010 00000000 		.4byte	.LFB2
+ 579 0014 34000000 		.4byte	.LFE2
+ 580 0018 00000000 		.4byte	.LFB3
+ 581 001c 20000000 		.4byte	.LFE3
+ 582 0020 00000000 		.4byte	0
+ 583 0024 00000000 		.4byte	0
+ 584              		.section	.debug_line,"",%progbits
+ 585              	.Ldebug_line0:
+ 586 0000 BF000000 		.section	.debug_str,"MS",%progbits,1
+ 586      02006C00 
+ 586      00000201 
+ 586      FB0E0D00 
+ 586      01010101 
+ 587              	.LASF6:
+ 588 0000 6C6F6E67 		.ascii	"long long int\000"
+ 588      206C6F6E 
+ 588      6720696E 
+ 588      7400
+ 589              	.LASF3:
+ 590 000e 73686F72 		.ascii	"short unsigned int\000"
+ 590      7420756E 
+ 590      7369676E 
+ 590      65642069 
+ 590      6E7400
+ 591              	.LASF15:
+ 592 0021 656E6162 		.ascii	"enableState\000"
+ 592      6C655374 
+ 592      61746500 
+ 593              	.LASF8:
+ 594 002d 756E7369 		.ascii	"unsigned int\000"
+ 594      676E6564 
+ 594      20696E74 
+ 594      00
+ 595              	.LASF20:
+ 596 003a 54465453 		.ascii	"TFTSHIELD_1_SPIM_1_Sleep\000"
+ 596      4849454C 
+ 596      445F315F 
+ 596      5350494D 
+ 596      5F315F53 
+ 597              	.LASF22:
+ 598 0053 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 598      4320342E 
+ 598      372E3320 
+ 598      32303133 
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccmWfef3.s 			page 15
+
+
+ 598      30333132 
+ 599 0086 616E6368 		.ascii	"anch revision 196615]\000"
+ 599      20726576 
+ 599      6973696F 
+ 599      6E203139 
+ 599      36363135 
+ 600              	.LASF12:
+ 601 009c 75696E74 		.ascii	"uint8\000"
+ 601      3800
+ 602              	.LASF5:
+ 603 00a2 6C6F6E67 		.ascii	"long unsigned int\000"
+ 603      20756E73 
+ 603      69676E65 
+ 603      6420696E 
+ 603      7400
+ 604              	.LASF7:
+ 605 00b4 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 605      206C6F6E 
+ 605      6720756E 
+ 605      7369676E 
+ 605      65642069 
+ 606              	.LASF17:
+ 607 00cb 54465453 		.ascii	"TFTSHIELD_1_SPIM_1_BACKUP_STRUCT\000"
+ 607      4849454C 
+ 607      445F315F 
+ 607      5350494D 
+ 607      5F315F42 
+ 608              	.LASF1:
+ 609 00ec 756E7369 		.ascii	"unsigned char\000"
+ 609      676E6564 
+ 609      20636861 
+ 609      7200
+ 610              	.LASF11:
+ 611 00fa 63686172 		.ascii	"char\000"
+ 611      00
+ 612              	.LASF4:
+ 613 00ff 6C6F6E67 		.ascii	"long int\000"
+ 613      20696E74 
+ 613      00
+ 614              	.LASF21:
+ 615 0108 54465453 		.ascii	"TFTSHIELD_1_SPIM_1_Wakeup\000"
+ 615      4849454C 
+ 615      445F315F 
+ 615      5350494D 
+ 615      5F315F57 
+ 616              	.LASF10:
+ 617 0122 646F7562 		.ascii	"double\000"
+ 617      6C6500
+ 618              	.LASF16:
+ 619 0129 636E7472 		.ascii	"cntrPeriod\000"
+ 619      50657269 
+ 619      6F6400
+ 620              	.LASF18:
+ 621 0134 54465453 		.ascii	"TFTSHIELD_1_SPIM_1_SaveConfig\000"
+ 621      4849454C 
+ 621      445F315F 
+ 621      5350494D 
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccmWfef3.s 			page 16
+
+
+ 621      5F315F53 
+ 622              	.LASF0:
+ 623 0152 7369676E 		.ascii	"signed char\000"
+ 623      65642063 
+ 623      68617200 
+ 624              	.LASF25:
+ 625 015e 54465453 		.ascii	"TFTSHIELD_1_SPIM_1_backup\000"
+ 625      4849454C 
+ 625      445F315F 
+ 625      5350494D 
+ 625      5F315F62 
+ 626              	.LASF24:
+ 627 0178 433A5C55 		.ascii	"C:\\Users\\Brian\\Dropbox\\RPiSoC\\Projects\\PSoC_2"
+ 627      73657273 
+ 627      5C427269 
+ 627      616E5C44 
+ 627      726F7062 
+ 628 01a5 5F50695C 		.ascii	"_Pi\\PSoC_2_Pi.cydsn\000"
+ 628      50536F43 
+ 628      5F325F50 
+ 628      692E6379 
+ 628      64736E00 
+ 629              	.LASF23:
+ 630 01b9 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\TFTSHIELD_1_SPIM_1_PM.c"
+ 630      6E657261 
+ 630      7465645F 
+ 630      536F7572 
+ 630      63655C50 
+ 631 01e9 00       		.ascii	"\000"
+ 632              	.LASF9:
+ 633 01ea 666C6F61 		.ascii	"float\000"
+ 633      7400
+ 634              	.LASF2:
+ 635 01f0 73686F72 		.ascii	"short int\000"
+ 635      7420696E 
+ 635      7400
+ 636              	.LASF13:
+ 637 01fa 72656738 		.ascii	"reg8\000"
+ 637      00
+ 638              	.LASF19:
+ 639 01ff 54465453 		.ascii	"TFTSHIELD_1_SPIM_1_RestoreConfig\000"
+ 639      4849454C 
+ 639      445F315F 
+ 639      5350494D 
+ 639      5F315F52 
+ 640              	.LASF14:
+ 641 0220 73697A65 		.ascii	"sizetype\000"
+ 641      74797065 
+ 641      00
+ 642              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br
