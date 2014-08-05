@@ -2,7 +2,7 @@
 --	Conversion of PSoC_2_Pi.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Mon Aug 04 12:14:08 2014
+--	Tue Aug 05 17:14:04 2014
 --
 
 USE cypress.cypress.all;

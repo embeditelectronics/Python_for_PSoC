@@ -1,6 +1,6 @@
 -- ======================================================================
 -- PSoC_2_Pi.ctl generated from PSoC_2_Pi
--- 08/04/2014 at 12:13
+-- 08/05/2014 at 17:13
 -- This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 -- ======================================================================
 

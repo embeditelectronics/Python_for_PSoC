@@ -1,13 +1,13 @@
-Loading plugins phase: Elapsed time ==> 0s.716ms
-Initializing data phase: Elapsed time ==> 7s.074ms
+Loading plugins phase: Elapsed time ==> 0s.176ms
+Initializing data phase: Elapsed time ==> 1s.364ms
 <CYPRESSTAG name="CyDsfit arguments...">
-cydsfit arguments: -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -p C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC_2_Pi.cydsn\PSoC_2_Pi.cyprj -d CY8C5868AXI-LP035 -s C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC_2_Pi.cydsn\Generated_Source\PSoC5 -- -yv2 -v3 -ygs -q10 -o2 -.fftcfgtype=LE</CYPRESSTAG>
+cydsfit arguments: -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -p C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn\PSoC_2_Pi.cyprj -d CY8C5868AXI-LP035 -s C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn\Generated_Source\PSoC5 -- -yv2 -v3 -ygs -q10 -o2 -.fftcfgtype=LE</CYPRESSTAG>
 <CYPRESSTAG name="Design elaboration results...">
 </CYPRESSTAG>
-Elaboration phase: Elapsed time ==> 18s.659ms
+Elaboration phase: Elapsed time ==> 5s.933ms
 <CYPRESSTAG name="HDL generation results...">
 </CYPRESSTAG>
-HDL generation phase: Elapsed time ==> 0s.765ms
+HDL generation phase: Elapsed time ==> 0s.242ms
 <CYPRESSTAG name="Synthesis results...">
 
      | | | | | | |
@@ -25,23 +25,23 @@ HDL generation phase: Elapsed time ==> 0s.765ms
 ======================================================================
 Compiling:  PSoC_2_Pi.v
 Program  :   C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp\bin/warp.exe
-Options  :    -yv2 -v3 -ygs -q10 -o2 -.fftcfgtype=LE -ya -.fftprj=C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC_2_Pi.cydsn\PSoC_2_Pi.cyprj -dcpsoc3 PSoC_2_Pi.v -verilog
+Options  :    -yv2 -v3 -ygs -q10 -o2 -.fftcfgtype=LE -ya -.fftprj=C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn\PSoC_2_Pi.cyprj -dcpsoc3 PSoC_2_Pi.v -verilog
 ======================================================================
 
 ======================================================================
 Compiling:  PSoC_2_Pi.v
 Program  :   C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp\bin/warp.exe
-Options  :    -yv2 -v3 -ygs -q10 -o2 -.fftcfgtype=LE -ya -.fftprj=C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC_2_Pi.cydsn\PSoC_2_Pi.cyprj -dcpsoc3 PSoC_2_Pi.v -verilog
+Options  :    -yv2 -v3 -ygs -q10 -o2 -.fftcfgtype=LE -ya -.fftprj=C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn\PSoC_2_Pi.cyprj -dcpsoc3 PSoC_2_Pi.v -verilog
 ======================================================================
 
 ======================================================================
 Compiling:  PSoC_2_Pi.v
 Program  :   vlogfe
-Options  :    -yv2 -v3 -ygs -q10 -o2 -.fftcfgtype=LE -ya -.fftprj=C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC_2_Pi.cydsn\PSoC_2_Pi.cyprj -dcpsoc3 -verilog PSoC_2_Pi.v
+Options  :    -yv2 -v3 -ygs -q10 -o2 -.fftcfgtype=LE -ya -.fftprj=C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn\PSoC_2_Pi.cyprj -dcpsoc3 -verilog PSoC_2_Pi.v
 ======================================================================
 
 vlogfe V6.3 IR 41:  Verilog parser
-Mon Aug 04 12:13:45 2014
+Tue Aug 05 17:13:56 2014
 
 
 ======================================================================
@@ -51,7 +51,7 @@ Options  :    -yv2 -q10 PSoC_2_Pi.v
 ======================================================================
 
 vpp V6.3 IR 41:  Verilog Pre-Processor
-Mon Aug 04 12:13:45 2014
+Tue Aug 05 17:13:56 2014
 
 Flattening file 'C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp\..\psoc\content\cyprimitives\CyPrimitives.cylib\cy_constant_v1_0\cy_constant_v1_0.v'
 Flattening file 'C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp\..\psoc\content\cyprimitives\CyPrimitives.cylib\CyControlReg_v1_70\CyControlReg_v1_70.v'
@@ -101,11 +101,11 @@ vlogfe:  No errors.
 ======================================================================
 Compiling:  PSoC_2_Pi.v
 Program  :   tovif
-Options  :    -yv2 -v3 -ygs -q10 -o2 -.fftcfgtype=LE -ya -.fftprj=C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC_2_Pi.cydsn\PSoC_2_Pi.cyprj -dcpsoc3 -verilog PSoC_2_Pi.v
+Options  :    -yv2 -v3 -ygs -q10 -o2 -.fftcfgtype=LE -ya -.fftprj=C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn\PSoC_2_Pi.cyprj -dcpsoc3 -verilog PSoC_2_Pi.v
 ======================================================================
 
 tovif V6.3 IR 41:  High-level synthesis
-Mon Aug 04 12:13:47 2014
+Tue Aug 05 17:13:57 2014
 
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp\lib\common\std.vhd'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp\lib\common\cypress.vhd'.
@@ -116,9 +116,9 @@ Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp\lib\c
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp\lib\common\stdlogic\mod_cnst.vif'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp\lib\common\stdlogic\mod_mthv.vif'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp\lib\common\stdlogic\mod_genv.vif'.
-Linking 'C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC_2_Pi.cydsn\codegentemp\PSoC_2_Pi.ctl'.
+Linking 'C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn\codegentemp\PSoC_2_Pi.ctl'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_constant_v1_0\cy_constant_v1_0.v'.
-Linking 'C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC_2_Pi.cydsn\codegentemp\PSoC_2_Pi.v'.
+Linking 'C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn\codegentemp\PSoC_2_Pi.v'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyControlReg_v1_70\CyControlReg_v1_70.v'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp\lib\common\cypress.v'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp\lib\common\cy_psoc3_inc.v'.
@@ -145,11 +145,11 @@ tovif:  No errors.
 ======================================================================
 Compiling:  PSoC_2_Pi.v
 Program  :   topld
-Options  :    -yv2 -v3 -ygs -q10 -o2 -.fftcfgtype=LE -ya -.fftprj=C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC_2_Pi.cydsn\PSoC_2_Pi.cyprj -dcpsoc3 -verilog PSoC_2_Pi.v
+Options  :    -yv2 -v3 -ygs -q10 -o2 -.fftcfgtype=LE -ya -.fftprj=C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn\PSoC_2_Pi.cyprj -dcpsoc3 -verilog PSoC_2_Pi.v
 ======================================================================
 
 topld V6.3 IR 41:  Synthesis and optimization
-Mon Aug 04 12:14:03 2014
+Tue Aug 05 17:14:02 2014
 
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp\lib\common\std.vhd'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp\lib\common\cypress.vhd'.
@@ -160,9 +160,9 @@ Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp\lib\c
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp\lib\common\stdlogic\mod_cnst.vif'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp\lib\common\stdlogic\mod_mthv.vif'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp\lib\common\stdlogic\mod_genv.vif'.
-Linking 'C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC_2_Pi.cydsn\codegentemp\PSoC_2_Pi.ctl'.
+Linking 'C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn\codegentemp\PSoC_2_Pi.ctl'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\cy_constant_v1_0\cy_constant_v1_0.v'.
-Linking 'C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC_2_Pi.cydsn\codegentemp\PSoC_2_Pi.v'.
+Linking 'C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn\codegentemp\PSoC_2_Pi.v'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyControlReg_v1_70\CyControlReg_v1_70.v'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp\lib\common\cypress.v'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp\lib\common\cy_psoc3_inc.v'.
@@ -3674,16 +3674,16 @@ topld:  No errors.
 
 CYPRESS_DIR    : C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp
 Warp Program   : C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\warp\bin/warp.exe
-Warp Arguments : -yv2 -v3 -ygs -q10 -o2 -.fftcfgtype=LE -ya -.fftprj=C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC_2_Pi.cydsn\PSoC_2_Pi.cyprj -dcpsoc3 PSoC_2_Pi.v -verilog
+Warp Arguments : -yv2 -v3 -ygs -q10 -o2 -.fftcfgtype=LE -ya "-.fftprj=C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn\PSoC_2_Pi.cyprj" -dcpsoc3 PSoC_2_Pi.v -verilog
 </CYPRESSTAG>
-Warp synthesis phase: Elapsed time ==> 23s.403ms
+Warp synthesis phase: Elapsed time ==> 8s.801ms
 <CYPRESSTAG name="Fitter results...">
 <CYPRESSTAG name="Fitter startup details...">
-cyp3fit: V3.0.0.3023, Family: PSoC3, Started at: Monday, 04 August 2014 12:14:08
-Options: -yv2 -v3 -ygs -q10 -o2 -.fftcfgtype=LE -ya -.fftprj=C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC_2_Pi.cydsn\PSoC_2_Pi.cyprj -d CY8C5868AXI-LP035 PSoC_2_Pi.v -verilog
+cyp3fit: V3.0.0.3023, Family: PSoC3, Started at: Tuesday, 05 August 2014 17:14:04
+Options: -yv2 -v3 -ygs -q10 -o2 -.fftcfgtype=LE -ya -.fftprj=C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn\PSoC_2_Pi.cyprj -d CY8C5868AXI-LP035 PSoC_2_Pi.v -verilog
 </CYPRESSTAG>
 <CYPRESSTAG name="Design parsing">
-Design parsing phase: Elapsed time ==> 0s.180ms
+Design parsing phase: Elapsed time ==> 0s.071ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Tech mapping">
 <CYPRESSTAG name="Initial Mapping" icon="FILE_RPT_TECHM">
@@ -8294,9 +8294,9 @@ EMIF Fixed Blocks             :    0 :    1 :    1 :   0.00%
 LPF Fixed Blocks              :    0 :    2 :    2 :   0.00%
 SAR Fixed Blocks              :    2 :    0 :    2 : 100.00%
 </CYPRESSTAG>
-Technology Mapping: Elapsed time ==> 1s.161ms
+Technology Mapping: Elapsed time ==> 0s.335ms
 Info: mpr.M0037: Unused pieces of the design have been optimized out. See the Tech mapping section of the report file for details. (App=cydsfit)
-Tech mapping phase: Elapsed time ==> 1s.387ms
+Tech mapping phase: Elapsed time ==> 0s.433ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Placement">
 Info: apr.M0002: Analog signal "\ADC_DelSig_1:Net_690\" is connected to one terminal only. (App=cydsfit)
@@ -8444,10 +8444,10 @@ VIDAC[3]@[FFB(VIDAC,3)] : \VDAC8_1:viDAC8\
 VIDAC[1]@[FFB(VIDAC,1)] : \VDAC8_2:viDAC8\
 VIDAC[2]@[FFB(VIDAC,2)] : \WaveDAC8_1:VDAC8:viDAC8\
 
-Analog Placement phase: Elapsed time ==> 4s.878ms
+Analog Placement phase: Elapsed time ==> 1s.668ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Routing">
-Analog Routing phase: Elapsed time ==> 0s.049ms
+Analog Routing phase: Elapsed time ==> 0s.019ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Code Generation">
 ============ Analog Final Answer Routes ============
@@ -8669,11 +8669,11 @@ Dump of CyP35AnalogRoutingResultsDB
 IsVddaHalfUsedForComp = False
 IsVddaHalfUsedForSar0 = True
 IsVddaHalfUsedForSar1 = True
-Analog Code Generation phase: Elapsed time ==> 1s.511ms
+Analog Code Generation phase: Elapsed time ==> 0s.331ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Digital Placement">
 <CYPRESSTAG name="Detailed placement messages">
-I2076: Total run-time: 5.1 sec.
+I2076: Total run-time: 1.8 sec.
 
 </CYPRESSTAG>
 <CYPRESSTAG name="PLD Packing">
@@ -8697,17 +8697,17 @@ PLD Packing Summary
 <CYPRESSTAG name="Packed PLD Contents">
 Packed PLD Contents not displayed at this verbose level.</CYPRESSTAG>
 </CYPRESSTAG>
-PLD Packing: Elapsed time ==> 0s.005ms
+PLD Packing: Elapsed time ==> 0s.008ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Partitioning">
 <CYPRESSTAG name="Initial Partitioning Summary">
 Initial Partitioning Summary not displayed at this verbose level.</CYPRESSTAG>
 <CYPRESSTAG name="Final Partitioning Summary">
 Final Partitioning Summary not displayed at this verbose level.</CYPRESSTAG>
-Partitioning: Elapsed time ==> 0s.987ms
+Partitioning: Elapsed time ==> 0s.299ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Simulated Annealing">
-Annealing: Elapsed time ==> 0s.005ms
+Annealing: Elapsed time ==> 0s.003ms
 <CYPRESSTAG name="Simulated Annealing Results">
 The seed used for moves was 114161200.
 Inital cost was 856, final cost is 856 (0.00% improvement).</CYPRESSTAG>
@@ -13560,33 +13560,33 @@ Info: plm.M0038: The pin named PWM_out_7(0) at location P3[6] prevents usage of 
 Info: plm.M0038: The pin named PWM_out_8(0) at location P3[7] prevents usage of special purposes: OpAmp:out. (App=cydsfit)
 </CYPRESSTAG>
 </CYPRESSTAG>
-Digital component placer commit/Report: Elapsed time ==> 0s.037ms
-Digital Placement phase: Elapsed time ==> 7s.217ms
+Digital component placer commit/Report: Elapsed time ==> 0s.013ms
+Digital Placement phase: Elapsed time ==> 2s.567ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Digital Routing">
 Routing successful.
-Digital Routing phase: Elapsed time ==> 7s.188ms
+Digital Routing phase: Elapsed time ==> 2s.658ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Bitstream and API generation">
-Bitstream and API generation phase: Elapsed time ==> 10s.992ms
+Bitstream and API generation phase: Elapsed time ==> 2s.977ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Bitstream verification">
-Bitstream verification phase: Elapsed time ==> 0s.364ms
+Bitstream verification phase: Elapsed time ==> 0s.103ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Static timing analysis">
-Warning: sta.M0019: PSoC_2_Pi_timing.html: Warning-1367: Hold time violation found in a path from clock ( CyBUS_CLK ) to clock ( sclk(0)/fb ). (File=C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC_2_Pi.cydsn\PSoC_2_Pi_timing.html)
+Warning: sta.M0019: PSoC_2_Pi_timing.html: Warning-1367: Hold time violation found in a path from clock ( CyBUS_CLK ) to clock ( sclk(0)/fb ). (File=C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn\PSoC_2_Pi_timing.html)
 Timing report is in PSoC_2_Pi_timing.html.
-Static timing analysis phase: Elapsed time ==> 2s.699ms
+Static timing analysis phase: Elapsed time ==> 0s.717ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Data reporting">
 Data reporting phase: Elapsed time ==> 0s.000ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Database update...">
-Design database save phase: Elapsed time ==> 0s.720ms
+Design database save phase: Elapsed time ==> 0s.315ms
 </CYPRESSTAG>
-cydsfit: Elapsed time ==> 37s.255ms
+cydsfit: Elapsed time ==> 11s.876ms
 </CYPRESSTAG>
-Fitter phase: Elapsed time ==> 37s.374ms
-API generation phase: Elapsed time ==> 10s.765ms
-Dependency generation phase: Elapsed time ==> 0s.045ms
-Cleanup phase: Elapsed time ==> 0s.003ms
+Fitter phase: Elapsed time ==> 11s.908ms
+API generation phase: Elapsed time ==> 3s.029ms
+Dependency generation phase: Elapsed time ==> 0s.014ms
+Cleanup phase: Elapsed time ==> 0s.001ms
