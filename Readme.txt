@@ -11,5 +11,3 @@ Documentation can be found here: http://embeditelectronics.github.io/psoc_2_pi/
 
 
 2. The API_Python folder contains the Python API for Raspberry Pi and example projects. They were created with Python 2.7 on Raspbian June 2014
-
-3. The Documentation folder includes html documentation of the Python API.
