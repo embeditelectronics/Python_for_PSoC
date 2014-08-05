@@ -1,28 +1,35 @@
-Contact
-=======
-.. codeauthor:: Brian Bradley <embedit@embeditelectronics.com>
-.. sectionauthor:: Brian Bradley <embedit@embeditelectronics.com>
+API modules
+===========
+Here is a quick look at what is under the hood of the RPiSoC Python API, as of *V1.0.0*
 
 rpisoc.py
-=============
++++++++++
 .. automodule:: rpisoc
    :members:
 
+At the beginning of each script, insert the following
+two lines::
+		from rpisoc import * #This will handle dependencies
+		RPiSoC('SPI')
+
 
 digital.py
-===========
+++++++++++
 
 .. automodule:: digital
    :members:
 
 analog.py
-==========
++++++++++
 
 .. automodule:: analog
    :members:
 
 communication.py
-=================
+++++++++++++++++
 
 .. automodule:: communication
    :members:
+
+.. codeauthor:: Brian Bradley <embedit@embeditelectronics.com>
+.. sectionauthor:: Brian Bradley <embedit@embeditelectronics.com>

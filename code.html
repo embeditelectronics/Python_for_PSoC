@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Contact &mdash; RPiSoC Python API 1.0.0 documentation</title>
+    <title>API modules &mdash; RPiSoC Python API 1.0.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -24,6 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="RPiSoC Python API 1.0.0 documentation" href="index.html" />
+    <link rel="next" title="Example Projects!" href="examples.html" />
     <link rel="prev" title="Welcome to the RPiSoC Python API documentation!" href="index.html" /> 
   </head>
   <body>
@@ -37,6 +38,9 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
+          <a href="examples.html" title="Example Projects!"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
           <a href="index.html" title="Welcome to the RPiSoC Python API documentation!"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">RPiSoC Python API 1.0.0 documentation</a> &raquo;</li> 
@@ -48,13 +52,11 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="contact">
-<h1>Contact<a class="headerlink" href="#contact" title="Permalink to this headline">¶</a></h1>
-<p><em>Code author: Brian Bradley &lt;<a class="reference external" href="mailto:embedit&#37;&#52;&#48;embeditelectronics&#46;com">embedit<span>&#64;</span>embeditelectronics<span>&#46;</span>com</a>&gt;</em></p>
-<p><em>Section author: Brian Bradley &lt;<a class="reference external" href="mailto:embedit&#37;&#52;&#48;embeditelectronics&#46;com">embedit<span>&#64;</span>embeditelectronics<span>&#46;</span>com</a>&gt;</em></p>
-</div>
+  <div class="section" id="api-modules">
+<h1>API modules<a class="headerlink" href="#api-modules" title="Permalink to this headline">¶</a></h1>
+<p>Here is a quick look at what is under the hood of the RPiSoC Python API, as of <em>V1.0.0</em></p>
 <div class="section" id="module-rpisoc">
-<span id="rpisoc-py"></span><h1>rpisoc.py<a class="headerlink" href="#module-rpisoc" title="Permalink to this headline">¶</a></h1>
+<span id="rpisoc-py"></span><h2>rpisoc.py<a class="headerlink" href="#module-rpisoc" title="Permalink to this headline">¶</a></h2>
 <p>This program is the highest level module for the RPiSoC API, which the user should
 import into their scripts for full use of the API.</p>
 <dl class="class">
@@ -62,28 +64,25 @@ import into their scripts for full use of the API.</p>
 <em class="property">class </em><tt class="descclassname">rpisoc.</tt><tt class="descname">RPiSoC</tt><a class="headerlink" href="#rpisoc.RPiSoC" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt><strong>Description:</strong></dt>
-<dd><p class="first">This class is used to define the register locations of each component on the
+<dd>This class is used to define the register locations of each component on the
 RPiSoC, and it defines which communication protocol will be utilized by the
 API. The class is not to be assigned to an object; it only needs to be called so
 that addresses can be defined and so that the communication protocol can
-be initialized.</p>
-<dl class="last docutils">
-<dt>At the beginning of each script, insert the following two lines:</dt>
-<dd><ul class="first last simple">
-<li>from rpisoc import *</li>
-<li>RPiSoC(<em>&#8216;SPI&#8217;</em>)</li>
-</ul>
-</dd>
-</dl>
-</dd>
+be initialized.</dd>
 <dt><strong>Note:</strong></dt>
 <dd><em>V1.0</em> only supports SPI; but the structure is in place for easy addition of I2C, UART, or USB, so this functionality will be rolled into <em>V1.1</em> This means the RPiSoC can still be slaved even if the SPI bus is busy.</dd>
 </dl>
 </dd></dl>
 
+<p>At the beginning of each script, insert the following
+two lines:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span> <span class="c">#This will handle dependencies</span>
+<span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="module-digital">
-<span id="digital-py"></span><h1>digital.py<a class="headerlink" href="#module-digital" title="Permalink to this headline">¶</a></h1>
+<span id="digital-py"></span><h2>digital.py<a class="headerlink" href="#module-digital" title="Permalink to this headline">¶</a></h2>
 <p>This module defines the usage for the digital functionality
 of the RPiSoC.</p>
 <dl class="class">
@@ -382,7 +381,7 @@ of the RPiSoC.</p>
 
 </div>
 <div class="section" id="module-analog">
-<span id="analog-py"></span><h1>analog.py<a class="headerlink" href="#module-analog" title="Permalink to this headline">¶</a></h1>
+<span id="analog-py"></span><h2>analog.py<a class="headerlink" href="#module-analog" title="Permalink to this headline">¶</a></h2>
 <p>This module defines the usage for the analog functionality
 of the RPiSoC.</p>
 <dl class="class">
@@ -1061,7 +1060,7 @@ restart the WaveDAC8 following a Stop() call, the current component parameter se
 
 </div>
 <div class="section" id="module-communication">
-<span id="communication-py"></span><h1>communication.py<a class="headerlink" href="#module-communication" title="Permalink to this headline">¶</a></h1>
+<span id="communication-py"></span><h2>communication.py<a class="headerlink" href="#module-communication" title="Permalink to this headline">¶</a></h2>
 <p>This module is used to send data to, and receive data from the RPiSoC using
 a user chosen communication protocol. <em>V1.0</em> only supports SPI communication, but
 structure for easy integration of different protocols is already in place,
@@ -1159,6 +1158,9 @@ structure for easy integration of different protocols is already in place,
 
 </dd></dl>
 
+<p><em>Code author: Brian Bradley &lt;<a class="reference external" href="mailto:embedit&#37;&#52;&#48;embeditelectronics&#46;com">embedit<span>&#64;</span>embeditelectronics<span>&#46;</span>com</a>&gt;</em></p>
+<p><em>Section author: Brian Bradley &lt;<a class="reference external" href="mailto:embedit&#37;&#52;&#48;embeditelectronics&#46;com">embedit<span>&#64;</span>embeditelectronics<span>&#46;</span>com</a>&gt;</em></p>
+</div>
 </div>
 
 
@@ -1172,16 +1174,21 @@ structure for easy integration of different protocols is already in place,
             </a></p>
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Contact</a></li>
+<li><a class="reference internal" href="#">API modules</a><ul>
 <li><a class="reference internal" href="#module-rpisoc">rpisoc.py</a></li>
 <li><a class="reference internal" href="#module-digital">digital.py</a></li>
 <li><a class="reference internal" href="#module-analog">analog.py</a></li>
 <li><a class="reference internal" href="#module-communication">communication.py</a></li>
 </ul>
+</li>
+</ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
                         title="previous chapter">Welcome to the RPiSoC Python API documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="examples.html"
+                        title="next chapter">Example Projects!</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/code.txt"
@@ -1213,6 +1220,9 @@ structure for easy integration of different protocols is already in place,
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="examples.html" title="Example Projects!"
+             >next</a> |</li>
         <li class="right" >
           <a href="index.html" title="Welcome to the RPiSoC Python API documentation!"
              >previous</a> |</li>

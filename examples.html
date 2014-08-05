@@ -1,0 +1,387 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Example Projects! &mdash; RPiSoC Python API 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="RPiSoC Python API 1.0.0 documentation" href="index.html" />
+    <link rel="prev" title="API modules" href="code.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="code.html" title="API modules"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">RPiSoC Python API 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="example-projects">
+<h1>Example Projects!<a class="headerlink" href="#example-projects" title="Permalink to this headline">¶</a></h1>
+<p>Here are a few example projects to show just how easy the API is to use.</p>
+<div class="section" id="voltmeter-using-the-16-bit-delta-sigma-adc">
+<h2>Voltmeter using the 16-bit Delta-Sigma ADC<a class="headerlink" href="#voltmeter-using-the-16-bit-delta-sigma-adc" title="Permalink to this headline">¶</a></h2>
+<p>This program demonstrates basic usage of the RPiSoC&#8217;s DELSIG ADC as a Voltmeter. It will output the voltage of whatever is connected to P15[5] every .1 seconds.</p>
+<p>Note that P5[0], which is a 3.3V pin (slightly higher when powering with the Pi)
+is initialized as HIGH, and so connecting P15[5] to P0[3] should show a steady output of between 3.2 and 3.5 Volts.</p>
+<dl class="docutils">
+<dt>The Power supply on each port should read close to 5V as well.</dt>
+<dd><ul class="first last simple">
+<li>You can (and should!) confirm the accuracy with a Voltmeter</li>
+</ul>
+</dd>
+</dl>
+<p>Note: Px[y] means Port x, Pin y on the RPiSoC</p>
+<p>code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span> <span class="c">#import contents of rpisoc module ; includes all dependencies</span>
+<span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span> <span class="c">#Establish connection to RPiSoC over SPI</span>
+
+<span class="n">My_DELSIG</span>  <span class="o">=</span> <span class="n">ADC</span><span class="p">(</span><span class="s">&#39;DELSIG&#39;</span><span class="p">)</span>
+
+<span class="n">out_3v3</span> <span class="o">=</span> <span class="n">DigitalOutput</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">out_3v3</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span> <span class="c">#exception handling, not crucial but it is advised.</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">My_DELSIG</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
+        <span class="n">ADC_counts</span> <span class="o">=</span> <span class="n">My_DELSIG</span><span class="o">.</span><span class="n">Read</span><span class="p">()</span>
+        <span class="n">Voltage</span> <span class="o">=</span> <span class="n">My_DELSIG</span><span class="o">.</span><span class="n">CountsTo_Volts</span><span class="p">(</span><span class="n">ADC_counts</span><span class="p">)</span>
+        <span class="n">My_DELSIG</span><span class="o">.</span><span class="n">Stop</span><span class="p">()</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;ADC OUTPUT: &#39;</span><span class="p">,</span><span class="n">ADC_counts</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;VOLTAGE:    &#39;</span><span class="p">,</span> <span class="n">Voltage</span><span class="p">)</span>
+
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="o">.</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="voltmeter-using-the-12-bit-successive-approximation-adc">
+<h2>Voltmeter using the 12-bit Successive Approximation ADC<a class="headerlink" href="#voltmeter-using-the-12-bit-successive-approximation-adc" title="Permalink to this headline">¶</a></h2>
+<p>This is the same concept as the previous example, except it is done in a totally different way using the SAR ADC. Here, we are using the <em>StartConvert()</em> and <em>StopConvert()</em> methods to manually control each conversion, instead of using <em>Read()</em> like in the above example, which hides that functionality.</p>
+<p>The program will also output the amount of time it took for the Pi to confirm a completed conversion from the RPiSoC (accounting for SPI transfer delay).</p>
+<p>Remember that the SAR ADC being used here is on P15[4] now, not P15[5] like in the previous example!</p>
+<p>code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span>
+
+<span class="n">My_SAR_ADC</span> <span class="o">=</span> <span class="n">ADC</span><span class="p">(</span><span class="s">&#39;SAR0&#39;</span><span class="p">)</span>
+
+<span class="n">out_3v3</span> <span class="o">=</span> <span class="n">DigitalOutput</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">out_3v3</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
+        <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">StartConvert</span><span class="p">()</span>
+
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">time_0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">IsEndConversion</span><span class="p">():</span>
+            <span class="n">count</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="n">time_final</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">count</span> <span class="c">#The Pi waits .1 seconds after the data transfer, so it must be accounted for</span>
+        <span class="n">conversion_time</span> <span class="o">=</span> <span class="n">time_final</span> <span class="o">-</span> <span class="n">time_0</span>
+
+        <span class="n">Counts</span> <span class="o">=</span> <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">GetResult</span><span class="p">()</span>
+        <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">StopConvert</span><span class="p">()</span>
+        <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">Stop</span><span class="p">()</span>
+
+        <span class="n">Volts</span> <span class="o">=</span> <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">CountsTo_Volts</span><span class="p">(</span><span class="n">Counts</span><span class="p">)</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;ADC OUTPUT: &#39;</span><span class="p">,</span><span class="n">Counts</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;VOLTAGE:    &#39;</span><span class="p">,</span> <span class="n">Volts</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;Conversion Time:    &#39;</span><span class="p">,</span> <span class="n">conversion_time</span><span class="p">)</span>
+
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+
+
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="simple-pwm-demo">
+<h2>Simple PWM Demo<a class="headerlink" href="#simple-pwm-demo" title="Permalink to this headline">¶</a></h2>
+<p>This program demonstrates basic use of the PWM channels on the RPiSoC. To see the desired output, connect an LED to P3[0] and P3[1]</p>
+<p>The program will initialize two PWM objects, one of which will remain blinking
+with the same duty cycle, the other will change according to user input</p>
+<p>While the program runs, the user will give terminal commands to modify the PWM&#8217;s
+period and comparison values, such that the duty cycle/period length is increased or reduced.</p>
+<p>code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span>
+
+<span class="n">My_PWM</span> <span class="o">=</span> <span class="n">PWM</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">My_other_PWM</span> <span class="o">=</span> <span class="n">PWM</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">My_PWM</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
+<span class="n">My_other_PWM</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">choice</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Change [P]eriod [D]uty Cycle or [C]omparison Value: &#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span><span class="s">&#39;P&#39;</span> <span class="ow">or</span> <span class="n">choice</span> <span class="o">==</span><span class="s">&#39;p&#39;</span><span class="p">:</span>
+            <span class="n">new_period</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;New Period: &#39;</span><span class="p">))</span>
+            <span class="n">My_PWM</span><span class="o">.</span><span class="n">Stop</span><span class="p">()</span>
+            <span class="n">My_PWM</span><span class="o">.</span><span class="n">WritePeriod</span><span class="p">(</span><span class="n">new_period</span><span class="p">)</span>
+            <span class="n">My_PWM</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s">&#39;C&#39;</span> <span class="ow">or</span> <span class="n">choice</span> <span class="o">==</span> <span class="s">&#39;c&#39;</span><span class="p">:</span>
+            <span class="n">new_compare</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;New Compare: &#39;</span><span class="p">))</span>
+            <span class="n">My_PWM</span><span class="o">.</span><span class="n">Stop</span><span class="p">()</span>
+            <span class="n">My_PWM</span><span class="o">.</span><span class="n">WriteCompare</span><span class="p">(</span><span class="n">new_compare</span><span class="p">)</span>
+            <span class="n">My_PWM</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s">&#39;D&#39;</span> <span class="ow">or</span> <span class="n">choice</span> <span class="o">==</span> <span class="s">&#39;d&#39;</span><span class="p">:</span>
+            <span class="n">new_DC</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;New Duty Cycle: &#39;</span><span class="p">))</span>
+            <span class="n">My_PWM</span><span class="o">.</span><span class="n">Stop</span><span class="p">()</span>
+            <span class="n">My_PWM</span><span class="o">.</span><span class="n">SetDutyCycle</span><span class="p">(</span><span class="n">new_DC</span><span class="p">)</span>
+            <span class="n">My_PWM</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span> <span class="p">(</span><span class="s">&#39;Invalid input!!!&#39;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;PERIOD ----- COMPARE&#39;</span><span class="p">)</span>
+
+        <span class="k">print</span><span class="p">(</span><span class="n">My_PWM</span><span class="o">.</span><span class="n">ReadPeriod</span><span class="p">(),</span> <span class="n">My_PWM</span><span class="o">.</span><span class="n">ReadCompare</span><span class="p">())</span>
+
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="simple-usage-of-digital-inputs-and-outputs">
+<h2>Simple usage of  digital inputs and outputs<a class="headerlink" href="#simple-usage-of-digital-inputs-and-outputs" title="Permalink to this headline">¶</a></h2>
+<p>To set this demo up, wire P2[0], P2[1], P5[0], and P5[1] to LEDs in series
+with a resistor. Also wire the outputs to one of the initialized inputs, in the following way:</p>
+<blockquote>
+<div><ul class="simple">
+<li>wire P2[0] to P6[0]</li>
+<li>wire P2[1] to P6[1]</li>
+<li>wire P5[0] to P5[4]</li>
+<li>wire P5[1] to P5[5]</li>
+</ul>
+</div></blockquote>
+<p>The demo should light the LEDS in forwards order, and then turn off the LEDs in
+reverse order</p>
+<p>The terminal will output the state of the inputs at each step, and they should
+correlate with the LEDs (if wired in the way noted above)</p>
+<dl class="docutils">
+<dt>The terminal will then print out the state of each input in the following way</dt>
+<dd><ul class="first last simple">
+<li>(Port number, Pin number, State)</li>
+<li>The state should be False since they were just turned off</li>
+</ul>
+</dd>
+</dl>
+<p>code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span>
+
+
+<span class="n">My_outputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">DigitalOutput</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">DigitalOutput</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">DigitalOutput</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">DigitalOutput</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span>
+<span class="n">My_inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">DigitalInput</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">DigitalInput</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">DigitalInput</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">DigitalInput</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)]</span>
+
+<span class="k">try</span><span class="p">:</span> <span class="c">#exception handling</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">My_outputs</span><span class="p">:</span> <span class="c">#Writes each output high, one by one, in forwards order</span>
+            <span class="n">i</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">My_inputs</span><span class="p">)):</span><span class="c">#Prints the state of each input</span>
+                <span class="n">status</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">My_inputs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">Read</span><span class="p">())</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">My_outputs</span><span class="p">):</span><span class="c">#Turns off the LEDs in reverse order</span>
+            <span class="n">i</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">My_inputs</span><span class="p">)):</span><span class="c">#Prints the state of each input</span>
+                <span class="n">status</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">My_inputs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">Read</span><span class="p">())</span>
+            <span class="k">print</span> <span class="p">(</span><span class="n">status</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">My_inputs</span><span class="p">:</span> <span class="c">#Prints the Port number, pin number, and state of each pin (should all be False since they were just turned off.)</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">port</span><span class="p">,</span> <span class="n">j</span><span class="o">.</span><span class="n">pin</span><span class="p">,</span> <span class="n">j</span><span class="o">.</span><span class="n">Read</span><span class="p">())</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="simple-usage-of-pins-and-pwm">
+<h2>Simple usage of Pins and PWM<a class="headerlink" href="#simple-usage-of-pins-and-pwm" title="Permalink to this headline">¶</a></h2>
+<p>This is just another quick example of the digital functionality of the RPiSoC for use in a simple terminal based program.</p>
+<p>It will wait for a terminal input of 1 or 0, then it will write that input to an
+output at P2[0]. At the same time, a PWM channel on P3[0] will be modulated according to
+the input. If a 1 is written to the output, the PWM will stay always high;
+If a 0 is written to the output, the PWM will blink.</p>
+<p>To see the desired visual ouput, connect an LED in series with a resistor to P2[0] and to P3[0].</p>
+<p>code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span> <span class="c">#Establish connection to RPiSoC over SPI</span>
+
+<span class="n">My_Output</span> <span class="o">=</span> <span class="n">DigitalOutput</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="c">#Initialize P2[0] to be an output pin called &#39;Outpin&#39;</span>
+<span class="n">My_PWM</span> <span class="o">=</span> <span class="n">PWM</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c">#Initialize a PWM object</span>
+
+<span class="n">My_Output</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">My_PWM</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
+<span class="n">My_PWM</span><span class="o">.</span><span class="n">WritePeriod</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span> <span class="c">#exception handling, not crucial but it is advised.</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+
+        <span class="n">out</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;Enter Pin State: [1] or [0] &quot;</span><span class="p">))</span>
+        <span class="n">My_Output</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">My_Output</span><span class="o">.</span><span class="n">Read</span><span class="p">():</span>
+            <span class="n">My_PWM</span><span class="o">.</span><span class="n">WriteCompare</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span>
+            <span class="k">print</span> <span class="p">(</span><span class="s">&quot;Pin HIGH&quot;</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">My_PWM</span><span class="o">.</span><span class="n">WriteCompare</span><span class="p">(</span><span class="mi">127</span><span class="p">)</span>
+            <span class="k">print</span> <span class="p">(</span><span class="s">&quot;Pin LOW&quot;</span><span class="p">)</span>
+
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="function-generator">
+<h2>Function Generator!<a class="headerlink" href="#function-generator" title="Permalink to this headline">¶</a></h2>
+<p>This program demonstrates the use of the RPiSoC&#8217;s WaveDAC.</p>
+<p>It will begin by initializing a WaveDAC object and generating it&#8217;s default wave, which happens to be a 4V 2.5kHz Sine wave, with no DC Bias. It will then wait for the user to choose to generate a new wave, and ask for
+the configuration details.</p>
+<p>Once it receives these values, it will stop the current wave, load the new configuration, and restart the wave to the users specifications!</p>
+<p>To see the desired functionality, connect P0[0] to an Oscilliscope(or to another RPiSoC with the Oscilliscope program running!)</p>
+<p>code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span> <span class="c">#Establish connection to RPiSoC over SPI</span>
+
+<span class="n">My_Wave</span> <span class="o">=</span> <span class="n">WaveDAC</span><span class="p">()</span>
+<span class="n">My_Wave</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span> <span class="c">#Starts the default wave</span>
+
+
+<span class="k">try</span><span class="p">:</span> <span class="c">#exception handling, not crucial but it is advised.</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+
+        <span class="n">w_type</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;Input Wave Type (SINE TRIANGLE SAWTOOTH or SQUARE) &quot;</span><span class="p">)</span>
+        <span class="n">dcB</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Input DC Bias in Volts (0-4)&#39;</span><span class="p">))</span>
+        <span class="n">amp</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Input amplitude in Volts (0-4) &#39;</span> <span class="p">))</span>
+        <span class="n">freq</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Input Frequency in Hz (10 - 2400) &#39;</span><span class="p">))</span>
+
+        <span class="n">My_Wave</span><span class="o">.</span><span class="n">setAmplitude</span><span class="p">(</span><span class="n">amp</span><span class="p">)</span>
+        <span class="n">My_Wave</span><span class="o">.</span><span class="n">setdcBias</span><span class="p">(</span><span class="n">dcB</span><span class="p">)</span>
+        <span class="n">My_Wave</span><span class="o">.</span><span class="n">SetFrequency</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span>
+
+        <span class="n">My_Wave</span><span class="o">.</span><span class="n">Stop</span><span class="p">()</span> <span class="c">#Stops waveform generator to prepare for loading a new one</span>
+        <span class="n">My_Wave</span><span class="o">.</span><span class="n">Generate_Wave</span><span class="p">(</span><span class="n">w_type</span><span class="p">)</span>
+        <span class="n">My_Wave</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span> <span class="c">#Restarts the waveDAC with the new wave loaded</span>
+
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+   <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><em>Code author: Brian Bradley &lt;<a class="reference external" href="mailto:embedit&#37;&#52;&#48;embeditelectronics&#46;com">embedit<span>&#64;</span>embeditelectronics<span>&#46;</span>com</a>&gt;</em></p>
+<p><em>Section author: Brian Bradley &lt;<a class="reference external" href="mailto:embedit&#37;&#52;&#48;embeditelectronics&#46;com">embedit<span>&#64;</span>embeditelectronics<span>&#46;</span>com</a>&gt;</em></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/Embedit_flat.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Example Projects!</a><ul>
+<li><a class="reference internal" href="#voltmeter-using-the-16-bit-delta-sigma-adc">Voltmeter using the 16-bit Delta-Sigma ADC</a></li>
+<li><a class="reference internal" href="#voltmeter-using-the-12-bit-successive-approximation-adc">Voltmeter using the 12-bit Successive Approximation ADC</a></li>
+<li><a class="reference internal" href="#simple-pwm-demo">Simple PWM Demo</a></li>
+<li><a class="reference internal" href="#simple-usage-of-digital-inputs-and-outputs">Simple usage of  digital inputs and outputs</a></li>
+<li><a class="reference internal" href="#simple-usage-of-pins-and-pwm">Simple usage of Pins and PWM</a></li>
+<li><a class="reference internal" href="#function-generator">Function Generator!</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="code.html"
+                        title="previous chapter">API modules</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/examples.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="code.html" title="API modules"
+             >previous</a> |</li>
+        <li><a href="index.html">RPiSoC Python API 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Embedit Electronics.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

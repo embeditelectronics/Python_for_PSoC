@@ -1,0 +1,275 @@
+Example Projects!
+=================
+Here are a few example projects to show just how easy the API is to use.
+
+Voltmeter using the 16-bit Delta-Sigma ADC
+++++++++++++++++++++++++++++++++++++++++++
+This program demonstrates basic usage of the RPiSoC's DELSIG ADC as a Voltmeter. It will output the voltage of whatever is connected to P15[5] every .1 seconds.
+
+Note that P5[0], which is a 3.3V pin (slightly higher when powering with the Pi)
+is initialized as HIGH, and so connecting P15[5] to P0[3] should show a steady output of between 3.2 and 3.5 Volts.
+
+The Power supply on each port should read close to 5V as well.
+	- You can (and should!) confirm the accuracy with a Voltmeter
+
+Note: Px[y] means Port x, Pin y on the RPiSoC
+
+code::
+
+    from rpisoc import * #import contents of rpisoc module ; includes all dependencies
+    RPiSoC('SPI') #Establish connection to RPiSoC over SPI
+
+    My_DELSIG  = ADC('DELSIG')
+
+    out_3v3 = DigitalOutput(5,0)
+    out_3v3.Write(1)
+
+    try: #exception handling, not crucial but it is advised.
+        while True:
+            My_DELSIG.Start()
+            ADC_counts = My_DELSIG.Read()
+            Voltage = My_DELSIG.CountsTo_Volts(ADC_counts)
+            My_DELSIG.Stop()
+
+            print('ADC OUTPUT: ',ADC_counts)
+            print('VOLTAGE:    ', Voltage)
+
+            time.sleep(.1)
+    except KeyboardInterrupt:
+        RPiSoC.commChannel.close()
+
+
+Voltmeter using the 12-bit Successive Approximation ADC
++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+This is the same concept as the previous example, except it is done in a totally different way using the SAR ADC. Here, we are using the *StartConvert()* and *StopConvert()* methods to manually control each conversion, instead of using *Read()* like in the above example, which hides that functionality. 
+
+The program will also output the amount of time it took for the Pi to confirm a completed conversion from the RPiSoC (accounting for SPI transfer delay). 
+
+Remember that the SAR ADC being used here is on P15[4] now, not P15[5] like in the previous example!
+
+code::
+
+    from rpisoc import *
+    RPiSoC('SPI')
+
+    My_SAR_ADC = ADC('SAR0')
+
+    out_3v3 = DigitalOutput(5,0)
+    out_3v3.Write(1)
+
+    try:
+        while True:
+            My_SAR_ADC.Start()
+            My_SAR_ADC.StartConvert()
+
+            count = 1
+            time_0 = time.time()
+            while not My_SAR_ADC.IsEndConversion():
+                count+=1
+            time_final = time.time() - 0.1*count #The Pi waits .1 seconds after the data transfer, so it must be accounted for
+            conversion_time = time_final - time_0
+
+            Counts = My_SAR_ADC.GetResult()
+            My_SAR_ADC.StopConvert()
+            My_SAR_ADC.Stop()
+
+            Volts = My_SAR_ADC.CountsTo_Volts(Counts)
+
+            print('ADC OUTPUT: ',Counts)
+            print('VOLTAGE:    ', Volts)
+            print('Conversion Time:    ', conversion_time)
+
+            time.sleep(0.1)
+
+
+    except KeyboardInterrupt:
+        RPiSoC.commChannel.close()
+
+
+
+Simple PWM Demo
++++++++++++++++
+This program demonstrates basic use of the PWM channels on the RPiSoC. To see the desired output, connect an LED to P3[0] and P3[1]
+
+The program will initialize two PWM objects, one of which will remain blinking
+with the same duty cycle, the other will change according to user input
+
+While the program runs, the user will give terminal commands to modify the PWM's
+period and comparison values, such that the duty cycle/period length is increased or reduced.
+
+code::
+
+    from rpisoc import *
+    RPiSoC('SPI')
+
+    My_PWM = PWM(0)
+    My_other_PWM = PWM(1)
+
+    My_PWM.Start()
+    My_other_PWM.Start()
+
+    try:
+        while True:
+            choice = raw_input('Change [P]eriod [D]uty Cycle or [C]omparison Value: ')
+            if choice =='P' or choice =='p':
+                new_period = int(raw_input('New Period: '))
+                My_PWM.Stop()
+                My_PWM.WritePeriod(new_period)
+                My_PWM.Start()
+            elif choice == 'C' or choice == 'c':
+                new_compare = int(raw_input('New Compare: '))
+                My_PWM.Stop()
+                My_PWM.WriteCompare(new_compare)
+                My_PWM.Start()
+            elif choice == 'D' or choice == 'd':
+                new_DC = int(raw_input('New Duty Cycle: '))
+                My_PWM.Stop()
+                My_PWM.SetDutyCycle(new_DC)
+                My_PWM.Start()
+            else:
+                print ('Invalid input!!!')
+            print('PERIOD ----- COMPARE')
+
+            print(My_PWM.ReadPeriod(), My_PWM.ReadCompare())
+
+    except KeyboardInterrupt:
+        RPiSoC.commChannel.close()
+
+
+Simple usage of  digital inputs and outputs
++++++++++++++++++++++++++++++++++++++++++++
+To set this demo up, wire P2[0], P2[1], P5[0], and P5[1] to LEDs in series
+with a resistor. Also wire the outputs to one of the initialized inputs, in the following way:
+	- wire P2[0] to P6[0]
+	- wire P2[1] to P6[1]
+	- wire P5[0] to P5[4]
+	- wire P5[1] to P5[5]
+
+The demo should light the LEDS in forwards order, and then turn off the LEDs in
+reverse order
+
+The terminal will output the state of the inputs at each step, and they should
+correlate with the LEDs (if wired in the way noted above)
+
+The terminal will then print out the state of each input in the following way
+	- (Port number, Pin number, State)
+	- The state should be False since they were just turned off
+code::
+
+    from rpisoc import *
+    RPiSoC('SPI')
+    
+
+    My_outputs = [DigitalOutput(2,0), DigitalOutput(2,1), DigitalOutput(5,0), DigitalOutput(5,1)]
+    My_inputs = [DigitalInput(6,0), DigitalInput(6,1), DigitalInput(5,4), DigitalInput(5,5)]
+
+    try: #exception handling
+        while True:
+            for i in My_outputs: #Writes each output high, one by one, in forwards order
+                i.Write(1)
+                time.sleep(1)
+                status = []
+                for k in range(len(My_inputs)):#Prints the state of each input
+                    status.append(My_inputs[k].Read())
+                print(status)
+
+            for i in reversed(My_outputs):#Turns off the LEDs in reverse order
+                i.Write(0)
+                time.sleep(1)
+                status = []
+                for k in range(len(My_inputs)):#Prints the state of each input
+                    status.append(My_inputs[k].Read())
+                print (status)
+
+            for j in My_inputs: #Prints the Port number, pin number, and state of each pin (should all be False since they were just turned off.)
+                print(j.port, j.pin, j.Read())
+                time.sleep(1)
+
+
+    except KeyboardInterrupt:
+        RPiSoC.commChannel.close()
+
+	
+
+Simple usage of Pins and PWM
+++++++++++++++++++++++++++++
+This is just another quick example of the digital functionality of the RPiSoC for use in a simple terminal based program. 
+
+It will wait for a terminal input of 1 or 0, then it will write that input to an
+output at P2[0]. At the same time, a PWM channel on P3[0] will be modulated according to
+the input. If a 1 is written to the output, the PWM will stay always high;
+If a 0 is written to the output, the PWM will blink.
+
+To see the desired visual ouput, connect an LED in series with a resistor to P2[0] and to P3[0].
+
+code::
+
+    from rpisoc import *
+    RPiSoC('SPI') #Establish connection to RPiSoC over SPI
+
+    My_Output = DigitalOutput(2,0) #Initialize P2[0] to be an output pin called 'Outpin'
+    My_PWM = PWM(0) #Initialize a PWM object
+
+    My_Output.Write(1)
+    My_PWM.Start()
+    My_PWM.WritePeriod(255)
+
+    try: #exception handling, not crucial but it is advised.
+        while True:
+
+            out = int(raw_input("Enter Pin State: [1] or [0] "))
+            My_Output.Write(out)
+
+            if My_Output.Read():
+                My_PWM.WriteCompare(255)
+                print ("Pin HIGH")
+
+            else:
+                My_PWM.WriteCompare(127)
+                print ("Pin LOW")
+
+    except KeyboardInterrupt:
+        RPiSoC.commChannel.close()
+
+
+Function Generator!
++++++++++++++++++++
+This program demonstrates the use of the RPiSoC's WaveDAC.
+
+It will begin by initializing a WaveDAC object and generating it's default wave, which happens to be a 4V 2.5kHz Sine wave, with no DC Bias. It will then wait for the user to choose to generate a new wave, and ask for
+the configuration details.
+
+Once it receives these values, it will stop the current wave, load the new configuration, and restart the wave to the users specifications!
+
+To see the desired functionality, connect P0[0] to an Oscilliscope(or to another RPiSoC with the Oscilliscope program running!)
+
+code::
+
+    from rpisoc import *
+    RPiSoC('SPI') #Establish connection to RPiSoC over SPI
+
+    My_Wave = WaveDAC()
+    My_Wave.Start() #Starts the default wave
+
+
+    try: #exception handling, not crucial but it is advised.
+        while True:
+
+            w_type = raw_input("Input Wave Type (SINE TRIANGLE SAWTOOTH or SQUARE) ")
+            dcB = float(raw_input('Input DC Bias in Volts (0-4)'))
+            amp = float(raw_input('Input amplitude in Volts (0-4) ' ))
+            freq = int(raw_input('Input Frequency in Hz (10 - 2400) '))
+
+            My_Wave.setAmplitude(amp)
+            My_Wave.setdcBias(dcB)
+            My_Wave.SetFrequency(freq)
+
+            My_Wave.Stop() #Stops waveform generator to prepare for loading a new one
+            My_Wave.Generate_Wave(w_type)
+            My_Wave.Start() #Restarts the waveDAC with the new wave loaded
+
+    except KeyboardInterrupt:
+       RPiSoC.commChannel.close()
+
+.. codeauthor:: Brian Bradley <embedit@embeditelectronics.com>
+.. sectionauthor:: Brian Bradley <embedit@embeditelectronics.com>

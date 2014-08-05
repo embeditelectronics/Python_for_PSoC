@@ -5,17 +5,17 @@
 
 Welcome to the RPiSoC Python API documentation!
 ===============================================
-
 This API intends to augment the functionality of the Raspberry Pi by introducing it to the RPiSoC.
 
 Version 1.0 currently only supports SPI communication between the devices, but the structure is in place for the addition of I2C, UART, or USB support in the near future, just in case your SPI bus is already in use.
 
-Contents:
-
+Contents
+++++++++
 .. toctree::
    :maxdepth: 2
 
    code
+   examples
 
 Tools
 ==================
