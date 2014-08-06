@@ -1,0 +1,66 @@
+Getting Started
+===============
+Here is everything you should need to get yourself moving with development on the RPiSoC through the Raspberry Pi! 
+
+Using the RPiSoC
+++++++++++++++++
+If you're new to the RPiSoC, it would greatly benefit you to read through its documentation before going any further. The documentation can be found here:
+
+	- https://github.com/EmbeditElectronics/RPiSoC_Bootloader/blob/master/RPiSoC_RevC_User_Guide.pdf
+
+Pay special attention to the sections discussing how to download a program to the board using the Bootloader Host Tool. 
+
+
+Program your RPiSoC
++++++++++++++++++++
+Once you know how to program the RPiSoC, you're ready to go! Just download the PSoC Creator project from git and download it to the RPiSoC. 
+
+	- https://github.com/EmbeditElectronics/psoc_2_pi/tree/master/PSoC%20Creator
+
+Download the Python files from git
+++++++++++++++++++++++++++++++++++
+First, make sure that you have git installed on your raspberry Pi. From the terminal
+window::
+	sudo apt-get install git-core
+
+Then, create a folder for the RPiSoC API, and download it from 
+git::
+	git clone https://github.com/EmbeditElectronics/psoc_2_pi.git
+
+Download spidev
++++++++++++++++
+
+Now, to use the API on the Raspberry Pi, you will need to have the SPI bus enabled, and you will need to have the spidev ibraries installed and in your working directory. Luckily, this is a very easy process. First though, you will need to do an update/upgrade on your pi. Open a new terminal window and enter the following 
+commands::
+	sudo apt-get update
+	sudo apt-get upgrade
+	sudo reboot
+
+Next, you will need to install the python-dev libraries, if they aren't already 
+installed::
+	sudo apt-get install python-dev
+
+Now you need to enable the SPI bus on your Pi, which is disabled by default to speed up the boot 
+process::
+	sudo nano /etc/modprobe.d/raspi-blacklist.conf
+
+This will bring up a text editor where you will find a line that 
+reads::
+	spi-bcm2708
+
+Simply comment this line out by adding a *#* to the front of it, and reboot your 
+pi::
+	sudo reboot
+
+Now, navigate to your working directory, the one with the API downloaded to it, and make a new directory for 
+spidev::
+	mkdir python-spi
+	cd python-spi
+	wget https://raw.github.com/doceme/py-spidev/master/setup.py
+	wget https://raw.github.com/doceme/py-spidev/master/spidev_module.c
+	sudo python setup.py install
+
+And now you should be good to go!
+
+
+

@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Getting Started &mdash; RPiSoC Python API 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="RPiSoC Python API 1.0.0 documentation" href="index.html" />
+    <link rel="next" title="API modules" href="code.html" />
+    <link rel="prev" title="Welcome to the RPiSoC Python API documentation!" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="code.html" title="API modules"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to the RPiSoC Python API documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">RPiSoC Python API 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>Here is everything you should need to get yourself moving with development on the RPiSoC through the Raspberry Pi!</p>
+<div class="section" id="using-the-rpisoc">
+<h2>Using the RPiSoC<a class="headerlink" href="#using-the-rpisoc" title="Permalink to this headline">¶</a></h2>
+<p>If you&#8217;re new to the RPiSoC, it would greatly benefit you to read through its documentation before going any further. The documentation can be found here:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://github.com/EmbeditElectronics/RPiSoC_Bootloader/blob/master/RPiSoC_RevC_User_Guide.pdf">https://github.com/EmbeditElectronics/RPiSoC_Bootloader/blob/master/RPiSoC_RevC_User_Guide.pdf</a></li>
+</ul>
+</div></blockquote>
+<p>Pay special attention to the sections discussing how to download a program to the board using the Bootloader Host Tool.</p>
+</div>
+<div class="section" id="program-your-rpisoc">
+<h2>Program your RPiSoC<a class="headerlink" href="#program-your-rpisoc" title="Permalink to this headline">¶</a></h2>
+<p>Once you know how to program the RPiSoC, you&#8217;re ready to go! Just download the PSoC Creator project from git and download it to the RPiSoC.</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://github.com/EmbeditElectronics/psoc_2_pi/tree/master/PSoC%20Creator">https://github.com/EmbeditElectronics/psoc_2_pi/tree/master/PSoC%20Creator</a></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="download-the-python-files-from-git">
+<h2>Download the Python files from git<a class="headerlink" href="#download-the-python-files-from-git" title="Permalink to this headline">¶</a></h2>
+<p>First, make sure that you have git installed on your raspberry Pi. From the terminal
+window:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install git-core
+</pre></div>
+</div>
+<p>Then, create a folder for the RPiSoC API, and download it from
+git:</p>
+<div class="highlight-python"><div class="highlight"><pre>git clone https://github.com/EmbeditElectronics/psoc_2_pi.git
+</pre></div>
+</div>
+</div>
+<div class="section" id="download-spidev">
+<h2>Download spidev<a class="headerlink" href="#download-spidev" title="Permalink to this headline">¶</a></h2>
+<p>Now, to use the API on the Raspberry Pi, you will need to have the SPI bus enabled, and you will need to have the spidev ibraries installed and in your working directory. Luckily, this is a very easy process. First though, you will need to do an update/upgrade on your pi. Open a new terminal window and enter the following
+commands:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get update
+sudo apt-get upgrade
+sudo reboot
+</pre></div>
+</div>
+<p>Next, you will need to install the python-dev libraries, if they aren&#8217;t already
+installed:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install python-dev
+</pre></div>
+</div>
+<p>Now you need to enable the SPI bus on your Pi, which is disabled by default to speed up the boot
+process:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo nano /etc/modprobe.d/raspi-blacklist.conf
+</pre></div>
+</div>
+<p>This will bring up a text editor where you will find a line that
+reads:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">spi</span><span class="o">-</span><span class="n">bcm2708</span>
+</pre></div>
+</div>
+<p>Simply comment this line out by adding a <em>#</em> to the front of it, and reboot your
+pi:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo reboot
+</pre></div>
+</div>
+<p>Now, navigate to your working directory, the one with the API downloaded to it, and make a new directory for
+spidev:</p>
+<div class="highlight-python"><div class="highlight"><pre>mkdir python-spi
+cd python-spi
+wget https://raw.github.com/doceme/py-spidev/master/setup.py
+wget https://raw.github.com/doceme/py-spidev/master/spidev_module.c
+sudo python setup.py install
+</pre></div>
+</div>
+<p>And now you should be good to go!</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/Embedit_flat.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Getting Started</a><ul>
+<li><a class="reference internal" href="#using-the-rpisoc">Using the RPiSoC</a></li>
+<li><a class="reference internal" href="#program-your-rpisoc">Program your RPiSoC</a></li>
+<li><a class="reference internal" href="#download-the-python-files-from-git">Download the Python files from git</a></li>
+<li><a class="reference internal" href="#download-spidev">Download spidev</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to the RPiSoC Python API documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="code.html"
+                        title="next chapter">API modules</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/getting_started.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="code.html" title="API modules"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to the RPiSoC Python API documentation!"
+             >previous</a> |</li>
+        <li><a href="index.html">RPiSoC Python API 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Embedit Electronics.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
