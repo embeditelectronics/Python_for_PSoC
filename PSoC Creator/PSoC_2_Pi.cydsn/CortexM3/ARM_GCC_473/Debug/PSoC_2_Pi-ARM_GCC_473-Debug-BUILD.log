@@ -1,8 +1,0 @@
---------------- Build Started: 08/05/2014 17:17:36 Project: PSoC_2_Pi, Configuration: ARM GCC 4.7.3 Debug ---------------
-The code generation step is up to date.
-The compile step is up to date, no work needs to be done.
-The link step is up to date, no work needs to be done.
-cyelftool.exe -S "C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn\CortexM3\ARM_GCC_473\Debug\PSoC_2_Pi.elf"
-Flash used: 54822 of 262144 bytes (20.9 %).
-SRAM used: 21005 of 65536 bytes (32.1 %).
---------------- Build Succeeded: 08/05/2014 17:17:37 ---------------
