@@ -1,0 +1,60 @@
+Revision History
+================
+
+Version 1.1.0
++++++++++++++
+This version provides the RPi with a lot more functionality, and use of the API is intended to be more flexible than in the previous version.
+
+New to V1.1.0:
+	In the RPiSoC code
+		- Added I2C support
+		- Added the ability to software reset the RPiSoC through the Raspberry Pi
+		- Removed unneeded delays, speeding up the init process
+		- changed which bootloader is used
+		- clocked the PWM's seperately, such that they aren't all sharing the same clock; they are only sharing their clock with one other PWM instead of 7, as was the case in *V1.0.0*
+		- Fixed a bug discovered in the WaveDAC class, which was generating waves that appeared to be very noisy. 
+
+	In class *PWM*
+		- Added ability to modify the frequency of the clocks which drive the PWM signals
+		- Added ability to read back the actual PWM clocking frequency.
+		- Added a warning when the clock range of the PWM clocks might be innacurate (since the frequencies are generated using clock dividers, and they can be innacurate at high frequencies)
+		- Changed the SetDutyCycle() method to be a float value instead of an int, for more precision
+		- Added a GetDutyCycle() method which will give back the percentage of time between 0 and 100 how long your PWM is high.
+		- Added a SetClockDivider() method which lets you give the PWM clock a specific divider value, so you don't have to be worried about an innacurate result using SetClocks()
+		- Added a GetClockDivder() method to see what the most recently confirmed clock divider value is
+		- Added the ability to modify the actual wave frequency of the PWM, between 0.006 Hz and 2.4MHz, without affecting the duty cycle too profoundly. 
+		- Added a GetFrequency() method which will return the actual frequency of the PWM wave
+		- Added class attributes to the RPiSoC class which indicate whether a register address is already in use. So if the user attempts to initialize an object that is already in use, a warning will be issued.
+
+	In class *ADC*
+		- Changed return value of CountsTo_Volts() method for the ADC's from a millivolt value to a microvolt value, so that precision is increased. The return value of the Python method when called is still in Volts.
+
+	In classes *DigitalInput* and *DigitalOutput*
+		- Moved the bit masking process of the digital inputs and outputs to the C code, where it can be executed more quickly, and with fewer data transfers
+	
+	In class *WaveDAC*
+		- Added a warning when the frequency might be out of range
+	New class *Servo*
+		- Added a servo class with the following methods:
+			* SetPulse() : Sets a PWM pulse in milliseconds
+			* ReadPulse(): Gets the actual pulse in milliseconds that is being applied to the servo
+			* SetAngle() : sets the servomotor to a designated angle based on the user defined minimum angle, maximum angle, minimum pulse width, and maximum pulse width. 
+			* ReadAngle(): Reads the actual angle based on the same parameter set as *SetAngle()*
+			* Stop(): Stops the PWM signal which is driving the servo
+			* Start(): Starts the PWM signal which will drive the servo
+
+
+Version 1.0.0
++++++++++++++
+The public release of the API. It exposes, most fundamentally, the following functionality to the Raspberry Pi through the RPiSoC
+
+	- 8 PWM channels
+	- 20 digital outputs
+	- 19 digital inputs
+	- 2 8-bit VDAC's
+	- 1 8-bit IDAC
+	- 1 8-bit WaveDAC
+	- 1 16-bit Delta Sigma ADC
+	- 2 12-bit SAR ADC's
+
+Communication to the RPiSoC requires use of SPI. No other communication protocol is yet supported, and the VDAC's and IDAC's are currently untested. 

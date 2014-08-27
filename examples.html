@@ -24,6 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="RPiSoC Python API 1.0.0 documentation" href="index.html" />
+    <link rel="next" title="Revision History" href="revision_history.html" />
     <link rel="prev" title="API modules" href="code.html" /> 
   </head>
   <body>
@@ -36,6 +37,9 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="revision_history.html" title="Revision History"
+             accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="code.html" title="API modules"
              accesskey="P">previous</a> |</li>
@@ -53,19 +57,18 @@
 <p>Here are a few example projects to show just how easy the API is to use.</p>
 <div class="section" id="voltmeter-using-the-16-bit-delta-sigma-adc">
 <h2>Voltmeter using the 16-bit Delta-Sigma ADC<a class="headerlink" href="#voltmeter-using-the-16-bit-delta-sigma-adc" title="Permalink to this headline">¶</a></h2>
-<p>This program demonstrates basic usage of the RPiSoC&#8217;s DELSIG ADC as a Voltmeter. It will output the voltage of whatever is connected to P15[5] every .1 seconds.</p>
+<p>This program demonstrates basic usage of the RPiSoC&#8217;s DELSIG ADC as a Voltmeter.</p>
+<p>The program will output the voltage of whatever is connected to P15[5] every .1
+seconds.</p>
 <p>Note that P5[0], which is a 3.3V pin (slightly higher when powering with the Pi)
-is initialized as HIGH, and so connecting P15[5] to P0[3] should show a steady output of between 3.2 and 3.5 Volts.</p>
-<dl class="docutils">
-<dt>The Power supply on each port should read close to 5V as well.</dt>
-<dd><ul class="first last simple">
-<li>You can (and should!) confirm the accuracy with a Voltmeter</li>
-</ul>
-</dd>
-</dl>
-<p>Note: Px[y] means Port x, Pin y on the RPiSoC</p>
-<p>code:</p>
+is initialized as HIGH, and so connecting to to P0[3] should show between 3.2
+and 3.5V.</p>
+<p>The Power supply on each port should read close to 5V as well.
+You can confirm the accuracy with a Voltmeter</p>
+<p>Note: Px[y] means Port x, Pin y.
+code:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span> <span class="c">#import contents of rpisoc module ; includes all dependencies</span>
+
 <span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span> <span class="c">#Establish connection to RPiSoC over SPI</span>
 
 <span class="n">My_DELSIG</span>  <span class="o">=</span> <span class="n">ADC</span><span class="p">(</span><span class="s">&#39;DELSIG&#39;</span><span class="p">)</span>
@@ -74,18 +77,18 @@ is initialized as HIGH, and so connecting P15[5] to P0[3] should show a steady o
 <span class="n">out_3v3</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="k">try</span><span class="p">:</span> <span class="c">#exception handling, not crucial but it is advised.</span>
-    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="n">My_DELSIG</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
-        <span class="n">ADC_counts</span> <span class="o">=</span> <span class="n">My_DELSIG</span><span class="o">.</span><span class="n">Read</span><span class="p">()</span>
-        <span class="n">Voltage</span> <span class="o">=</span> <span class="n">My_DELSIG</span><span class="o">.</span><span class="n">CountsTo_Volts</span><span class="p">(</span><span class="n">ADC_counts</span><span class="p">)</span>
-        <span class="n">My_DELSIG</span><span class="o">.</span><span class="n">Stop</span><span class="p">()</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="n">My_DELSIG</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
+                <span class="n">ADC_counts</span> <span class="o">=</span> <span class="n">My_DELSIG</span><span class="o">.</span><span class="n">Read</span><span class="p">()</span>
+                <span class="n">Voltage</span> <span class="o">=</span> <span class="n">My_DELSIG</span><span class="o">.</span><span class="n">CountsTo_Volts</span><span class="p">(</span><span class="n">ADC_counts</span><span class="p">)</span>
+                <span class="n">My_DELSIG</span><span class="o">.</span><span class="n">Stop</span><span class="p">()</span>
 
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;ADC OUTPUT: &#39;</span><span class="p">,</span><span class="n">ADC_counts</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;VOLTAGE:    &#39;</span><span class="p">,</span> <span class="n">Voltage</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&#39;ADC OUTPUT: </span><span class="si">%d</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">ADC_counts</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&#39;VOLTAGE:    </span><span class="si">%.3f</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">Voltage</span><span class="p">)</span>
 
-        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="o">.</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="o">.</span><span class="mi">1</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-    <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -96,6 +99,7 @@ is initialized as HIGH, and so connecting P15[5] to P0[3] should show a steady o
 <p>Remember that the SAR ADC being used here is on P15[4] now, not P15[5] like in the previous example!</p>
 <p>code:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span>
+
 <span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span>
 
 <span class="n">My_SAR_ADC</span> <span class="o">=</span> <span class="n">ADC</span><span class="p">(</span><span class="s">&#39;SAR0&#39;</span><span class="p">)</span>
@@ -106,13 +110,13 @@ is initialized as HIGH, and so connecting P15[5] to P0[3] should show a steady o
 <span class="k">try</span><span class="p">:</span>
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
         <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
+        <span class="c">#My_SAR_ADC.SetOffset(40)</span>
         <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">StartConvert</span><span class="p">()</span>
 
-        <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="n">time_0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
         <span class="k">while</span> <span class="ow">not</span> <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">IsEndConversion</span><span class="p">():</span>
-            <span class="n">count</span><span class="o">+=</span><span class="mi">1</span>
-        <span class="n">time_final</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">count</span> <span class="c">#The Pi waits .1 seconds after the data transfer, so it must be accounted for</span>
+            <span class="k">pass</span>
+        <span class="n">time_final</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.05</span> <span class="c">#The Pi waits .1 seconds after the data transfer, so it must be accounted for</span>
         <span class="n">conversion_time</span> <span class="o">=</span> <span class="n">time_final</span> <span class="o">-</span> <span class="n">time_0</span>
 
         <span class="n">Counts</span> <span class="o">=</span> <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">GetResult</span><span class="p">()</span>
@@ -120,62 +124,74 @@ is initialized as HIGH, and so connecting P15[5] to P0[3] should show a steady o
         <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">Stop</span><span class="p">()</span>
 
         <span class="n">Volts</span> <span class="o">=</span> <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">CountsTo_Volts</span><span class="p">(</span><span class="n">Counts</span><span class="p">)</span>
-
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;ADC OUTPUT: &#39;</span><span class="p">,</span><span class="n">Counts</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;VOLTAGE:    &#39;</span><span class="p">,</span> <span class="n">Volts</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;Conversion Time:    &#39;</span><span class="p">,</span> <span class="n">conversion_time</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;ADC OUTPUT:</span><span class="se">\t</span><span class="s"> </span><span class="si">%d</span><span class="s"> </span><span class="se">\n</span><span class="s">VOLTAGE:</span><span class="se">\t</span><span class="s"> </span><span class="si">%.5f</span><span class="s"> Volts </span><span class="se">\n</span><span class="s">CONVERT TIME:</span><span class="se">\t</span><span class="s"> </span><span class="si">%.5f</span><span class="s"> seconds </span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">Counts</span><span class="p">,</span> <span class="n">Volts</span><span class="p">,</span> <span class="n">conversion_time</span><span class="p">))</span>
 
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
 
 
 <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-    <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="simple-pwm-demo">
 <h2>Simple PWM Demo<a class="headerlink" href="#simple-pwm-demo" title="Permalink to this headline">¶</a></h2>
-<p>This program demonstrates basic use of the PWM channels on the RPiSoC. To see the desired output, connect an LED to P3[0] and P3[1]</p>
+<p>This program demonstrates basic use of the PWM channels on the RPiSoC.</p>
+<p>To see the desired output, connect an LED to P3[0] and P3[2]</p>
 <p>The program will initialize two PWM objects, one of which will remain blinking
-with the same duty cycle, the other will change according to user input</p>
+with the same duty cycle and frequency, while the other will change according to user input</p>
 <p>While the program runs, the user will give terminal commands to modify the PWM&#8217;s
-period and comparison values, such that the duty cycle/period length is increased or reduced.</p>
+period, comparison values, duty cycle, clock frequency, or wave frequency. These changes will then be read back by the RPiSoC, and displayed on the terminal.</p>
 <p>code:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span>
+
 <span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span>
 
 <span class="n">My_PWM</span> <span class="o">=</span> <span class="n">PWM</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">My_other_PWM</span> <span class="o">=</span> <span class="n">PWM</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">My_other_PWM</span> <span class="o">=</span> <span class="n">PWM</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="n">My_PWM</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
 <span class="n">My_other_PWM</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
+<span class="n">My_PWM</span><span class="o">.</span><span class="n">WritePeriod</span><span class="p">(</span><span class="mi">65535</span><span class="p">)</span>
+<span class="n">My_other_PWM</span><span class="o">.</span><span class="n">WritePeriod</span><span class="p">(</span><span class="mi">65535</span><span class="p">)</span>
+<span class="n">My_PWM</span><span class="o">.</span><span class="n">SetDutyCycle</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">My_other_PWM</span><span class="o">.</span><span class="n">SetDutyCycle</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="n">choice</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Change [P]eriod [D]uty Cycle or [C]omparison Value: &#39;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">My_PWM: </span><span class="se">\t\t\t</span><span class="s"> My_other_PWM: </span><span class="se">\n</span><span class="s">PERIOD: </span><span class="si">%d</span><span class="s"> </span><span class="se">\t\t\t</span><span class="s"> PERIOD: </span><span class="si">%d</span><span class="s"> </span><span class="se">\n</span><span class="s">COMPARE: </span><span class="si">%d</span><span class="s"> </span><span class="se">\t\t\t</span><span class="s"> COMPARE: </span><span class="si">%d</span><span class="s"> </span><span class="se">\n</span><span class="s">DUTY CYCLE: </span><span class="si">%.2f%s</span><span class="s"> </span><span class="se">\t\t</span><span class="s"> DUTY CYCLE: </span><span class="si">%.2f%s</span><span class="s"> </span><span class="se">\n</span><span class="s">CLOCK RATE: </span><span class="si">%d</span><span class="s"> Hz </span><span class="se">\t\t</span><span class="s"> CLOCK RATE: </span><span class="si">%d</span><span class="s"> Hz</span><span class="se">\n</span><span class="s">WAVE FREQ: </span><span class="si">%.3f</span><span class="s"> Hz </span><span class="se">\t\t</span><span class="s"> WAVE FREQ: </span><span class="si">%.3f</span><span class="s"> Hz&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">My_PWM</span><span class="o">.</span><span class="n">ReadPeriod</span><span class="p">(),</span> <span class="n">My_other_PWM</span><span class="o">.</span><span class="n">ReadPeriod</span><span class="p">(),</span><span class="n">My_PWM</span><span class="o">.</span><span class="n">ReadCompare</span><span class="p">(),</span> <span class="n">My_other_PWM</span><span class="o">.</span><span class="n">ReadCompare</span><span class="p">(),</span> <span class="n">My_PWM</span><span class="o">.</span><span class="n">GetDutyCycle</span><span class="p">(),</span> <span class="s">&#39;%&#39;</span><span class="p">,</span> <span class="n">My_other_PWM</span><span class="o">.</span><span class="n">GetDutyCycle</span><span class="p">(),</span> <span class="s">&#39;%&#39;</span><span class="p">,</span><span class="n">My_PWM</span><span class="o">.</span><span class="n">GetClocks</span><span class="p">(),</span> <span class="n">My_other_PWM</span><span class="o">.</span><span class="n">GetClocks</span><span class="p">(),</span> <span class="n">My_PWM</span><span class="o">.</span><span class="n">GetFrequency</span><span class="p">(),</span> <span class="n">My_other_PWM</span><span class="o">.</span><span class="n">GetFrequency</span><span class="p">()))</span>
+
+        <span class="n">choice</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">Change [P]eriod [D]uty Cycle [C]omparison Value or [F]requency: &#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span><span class="s">&#39;P&#39;</span> <span class="ow">or</span> <span class="n">choice</span> <span class="o">==</span><span class="s">&#39;p&#39;</span><span class="p">:</span>
             <span class="n">new_period</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;New Period: &#39;</span><span class="p">))</span>
-            <span class="n">My_PWM</span><span class="o">.</span><span class="n">Stop</span><span class="p">()</span>
             <span class="n">My_PWM</span><span class="o">.</span><span class="n">WritePeriod</span><span class="p">(</span><span class="n">new_period</span><span class="p">)</span>
-            <span class="n">My_PWM</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
+
         <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s">&#39;C&#39;</span> <span class="ow">or</span> <span class="n">choice</span> <span class="o">==</span> <span class="s">&#39;c&#39;</span><span class="p">:</span>
             <span class="n">new_compare</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;New Compare: &#39;</span><span class="p">))</span>
-            <span class="n">My_PWM</span><span class="o">.</span><span class="n">Stop</span><span class="p">()</span>
+
             <span class="n">My_PWM</span><span class="o">.</span><span class="n">WriteCompare</span><span class="p">(</span><span class="n">new_compare</span><span class="p">)</span>
-            <span class="n">My_PWM</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
+
         <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s">&#39;D&#39;</span> <span class="ow">or</span> <span class="n">choice</span> <span class="o">==</span> <span class="s">&#39;d&#39;</span><span class="p">:</span>
             <span class="n">new_DC</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;New Duty Cycle: &#39;</span><span class="p">))</span>
-            <span class="n">My_PWM</span><span class="o">.</span><span class="n">Stop</span><span class="p">()</span>
             <span class="n">My_PWM</span><span class="o">.</span><span class="n">SetDutyCycle</span><span class="p">(</span><span class="n">new_DC</span><span class="p">)</span>
-            <span class="n">My_PWM</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
+
+        <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s">&#39;F&#39;</span> <span class="ow">or</span> <span class="n">choice</span> <span class="o">==</span>  <span class="s">&#39;f&#39;</span><span class="p">:</span>
+            <span class="n">new_choice</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;[W]ave frequency or [C]lock frequency?&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">new_choice</span> <span class="o">==</span> <span class="s">&#39;C&#39;</span> <span class="ow">or</span> <span class="n">new_choice</span> <span class="o">==</span><span class="s">&#39;c&#39;</span><span class="p">:</span>
+                <span class="n">new_clk_freq</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;New clock frequency: &#39;</span><span class="p">))</span>
+                <span class="n">My_PWM</span><span class="o">.</span><span class="n">SetClocks</span><span class="p">(</span><span class="n">new_clk_freq</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">new_choice</span> <span class="o">==</span> <span class="s">&#39;W&#39;</span> <span class="ow">or</span> <span class="n">new_choice</span> <span class="o">==</span> <span class="s">&#39;w&#39;</span><span class="p">:</span>
+                <span class="n">new_wave_freq</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;New wave frequency: &#39;</span><span class="p">))</span>
+                <span class="n">My_PWM</span><span class="o">.</span><span class="n">SetFrequency</span><span class="p">(</span><span class="n">new_wave_freq</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span> <span class="p">(</span><span class="s">&#39;Invalid input!!!&#39;</span><span class="p">)</span>
+
         <span class="k">else</span><span class="p">:</span>
             <span class="k">print</span> <span class="p">(</span><span class="s">&#39;Invalid input!!!&#39;</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;PERIOD ----- COMPARE&#39;</span><span class="p">)</span>
 
-        <span class="k">print</span><span class="p">(</span><span class="n">My_PWM</span><span class="o">.</span><span class="n">ReadPeriod</span><span class="p">(),</span> <span class="n">My_PWM</span><span class="o">.</span><span class="n">ReadCompare</span><span class="p">())</span>
 
 <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-    <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -193,20 +209,12 @@ with a resistor. Also wire the outputs to one of the initialized inputs, in the 
 </div></blockquote>
 <p>The demo should light the LEDS in forwards order, and then turn off the LEDs in
 reverse order</p>
-<p>The terminal will output the state of the inputs at each step, and they should
+<p>The terminal will output the state of the inputs at each step, along with their port/pin number and they should
 correlate with the LEDs (if wired in the way noted above)</p>
-<dl class="docutils">
-<dt>The terminal will then print out the state of each input in the following way</dt>
-<dd><ul class="first last simple">
-<li>(Port number, Pin number, State)</li>
-<li>The state should be False since they were just turned off</li>
-</ul>
-</dd>
-</dl>
 <p>code:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">os</span>
 <span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span>
-
 
 <span class="n">My_outputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">DigitalOutput</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">DigitalOutput</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">DigitalOutput</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">DigitalOutput</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span>
 <span class="n">My_inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">DigitalInput</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">DigitalInput</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">DigitalInput</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">DigitalInput</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)]</span>
@@ -215,65 +223,23 @@ correlate with the LEDs (if wired in the way noted above)</p>
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">My_outputs</span><span class="p">:</span> <span class="c">#Writes each output high, one by one, in forwards order</span>
             <span class="n">i</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">&#39;clear&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">inputs</span> <span class="ow">in</span> <span class="n">My_inputs</span><span class="p">:</span><span class="c">#Prints the state of each input</span>
+                <span class="k">print</span> <span class="p">(</span><span class="s">&quot;P</span><span class="si">%d</span><span class="s">[</span><span class="si">%d</span><span class="s">]:</span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">inputs</span><span class="o">.</span><span class="n">port</span><span class="p">,</span> <span class="n">inputs</span><span class="o">.</span><span class="n">pin</span><span class="p">,</span> <span class="n">inputs</span><span class="o">.</span><span class="n">Read</span><span class="p">()))</span>
             <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">status</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">My_inputs</span><span class="p">)):</span><span class="c">#Prints the state of each input</span>
-                <span class="n">status</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">My_inputs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">Read</span><span class="p">())</span>
-            <span class="k">print</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">My_outputs</span><span class="p">):</span><span class="c">#Turns off the LEDs in reverse order</span>
             <span class="n">i</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">status</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">My_inputs</span><span class="p">)):</span><span class="c">#Prints the state of each input</span>
-                <span class="n">status</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">My_inputs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">Read</span><span class="p">())</span>
-            <span class="k">print</span> <span class="p">(</span><span class="n">status</span><span class="p">)</span>
-
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">My_inputs</span><span class="p">:</span> <span class="c">#Prints the Port number, pin number, and state of each pin (should all be False since they were just turned off.)</span>
-            <span class="k">print</span><span class="p">(</span><span class="n">j</span><span class="o">.</span><span class="n">port</span><span class="p">,</span> <span class="n">j</span><span class="o">.</span><span class="n">pin</span><span class="p">,</span> <span class="n">j</span><span class="o">.</span><span class="n">Read</span><span class="p">())</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">&#39;clear&#39;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">inputs</span> <span class="ow">in</span> <span class="n">My_inputs</span><span class="p">:</span><span class="c">#Prints the state of each input</span>
+                <span class="k">print</span> <span class="p">(</span><span class="s">&quot;P</span><span class="si">%d</span><span class="s">[</span><span class="si">%d</span><span class="s">]:</span><span class="si">%d</span><span class="s">&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">inputs</span><span class="o">.</span><span class="n">port</span><span class="p">,</span> <span class="n">inputs</span><span class="o">.</span><span class="n">pin</span><span class="p">,</span> <span class="n">inputs</span><span class="o">.</span><span class="n">Read</span><span class="p">()))</span>
             <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 
-<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-    <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="simple-usage-of-pins-and-pwm">
-<h2>Simple usage of Pins and PWM<a class="headerlink" href="#simple-usage-of-pins-and-pwm" title="Permalink to this headline">¶</a></h2>
-<p>This is just another quick example of the digital functionality of the RPiSoC for use in a simple terminal based program.</p>
-<p>It will wait for a terminal input of 1 or 0, then it will write that input to an
-output at P2[0]. At the same time, a PWM channel on P3[0] will be modulated according to
-the input. If a 1 is written to the output, the PWM will stay always high;
-If a 0 is written to the output, the PWM will blink.</p>
-<p>To see the desired visual ouput, connect an LED in series with a resistor to P2[0] and to P3[0].</p>
-<p>code:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span> <span class="c">#Establish connection to RPiSoC over SPI</span>
 
-<span class="n">My_Output</span> <span class="o">=</span> <span class="n">DigitalOutput</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="c">#Initialize P2[0] to be an output pin called &#39;Outpin&#39;</span>
-<span class="n">My_PWM</span> <span class="o">=</span> <span class="n">PWM</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c">#Initialize a PWM object</span>
-
-<span class="n">My_Output</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">My_PWM</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
-<span class="n">My_PWM</span><span class="o">.</span><span class="n">WritePeriod</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span>
-
-<span class="k">try</span><span class="p">:</span> <span class="c">#exception handling, not crucial but it is advised.</span>
-    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-
-        <span class="n">out</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;Enter Pin State: [1] or [0] &quot;</span><span class="p">))</span>
-        <span class="n">My_Output</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">My_Output</span><span class="o">.</span><span class="n">Read</span><span class="p">():</span>
-            <span class="n">My_PWM</span><span class="o">.</span><span class="n">WriteCompare</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span>
-            <span class="k">print</span> <span class="p">(</span><span class="s">&quot;Pin HIGH&quot;</span><span class="p">)</span>
-
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">My_PWM</span><span class="o">.</span><span class="n">WriteCompare</span><span class="p">(</span><span class="mi">127</span><span class="p">)</span>
-            <span class="k">print</span> <span class="p">(</span><span class="s">&quot;Pin LOW&quot;</span><span class="p">)</span>
 
 <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-    <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -286,6 +252,7 @@ the configuration details.</p>
 <p>To see the desired functionality, connect P0[0] to an Oscilliscope(or to another RPiSoC with the Oscilliscope program running!)</p>
 <p>code:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span>
+
 <span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span> <span class="c">#Establish connection to RPiSoC over SPI</span>
 
 <span class="n">My_Wave</span> <span class="o">=</span> <span class="n">WaveDAC</span><span class="p">()</span>
@@ -293,23 +260,59 @@ the configuration details.</p>
 
 
 <span class="k">try</span><span class="p">:</span> <span class="c">#exception handling, not crucial but it is advised.</span>
-    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">&#39;My_Wave Frequency: &#39;</span><span class="p">,</span> <span class="n">My_Wave</span><span class="o">.</span><span class="n">GetFrequency</span><span class="p">())</span>
+                <span class="n">w_type</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;Input Wave Type (SINE TRIANGLE SAWTOOTH or SQUARE) &quot;</span><span class="p">)</span>
+                <span class="n">dcB</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Input DC Bias in Volts (0-4)&#39;</span><span class="p">))</span>
+                <span class="n">amp</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Input amplitude in Volts (0-4) &#39;</span> <span class="p">))</span>
+                <span class="n">freq</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Input Frequency in Hz (46 - 2500) &#39;</span><span class="p">))</span>
 
-        <span class="n">w_type</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;Input Wave Type (SINE TRIANGLE SAWTOOTH or SQUARE) &quot;</span><span class="p">)</span>
-        <span class="n">dcB</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Input DC Bias in Volts (0-4)&#39;</span><span class="p">))</span>
-        <span class="n">amp</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Input amplitude in Volts (0-4) &#39;</span> <span class="p">))</span>
-        <span class="n">freq</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Input Frequency in Hz (10 - 2400) &#39;</span><span class="p">))</span>
+                <span class="n">My_Wave</span><span class="o">.</span><span class="n">setAmplitude</span><span class="p">(</span><span class="n">amp</span><span class="p">)</span>
+                <span class="n">My_Wave</span><span class="o">.</span><span class="n">setdcBias</span><span class="p">(</span><span class="n">dcB</span><span class="p">)</span>
+                <span class="n">My_Wave</span><span class="o">.</span><span class="n">SetFrequency</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span>
 
-        <span class="n">My_Wave</span><span class="o">.</span><span class="n">setAmplitude</span><span class="p">(</span><span class="n">amp</span><span class="p">)</span>
-        <span class="n">My_Wave</span><span class="o">.</span><span class="n">setdcBias</span><span class="p">(</span><span class="n">dcB</span><span class="p">)</span>
-        <span class="n">My_Wave</span><span class="o">.</span><span class="n">SetFrequency</span><span class="p">(</span><span class="n">freq</span><span class="p">)</span>
-
-        <span class="n">My_Wave</span><span class="o">.</span><span class="n">Stop</span><span class="p">()</span> <span class="c">#Stops waveform generator to prepare for loading a new one</span>
-        <span class="n">My_Wave</span><span class="o">.</span><span class="n">Generate_Wave</span><span class="p">(</span><span class="n">w_type</span><span class="p">)</span>
-        <span class="n">My_Wave</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span> <span class="c">#Restarts the waveDAC with the new wave loaded</span>
+                <span class="n">My_Wave</span><span class="o">.</span><span class="n">Stop</span><span class="p">()</span> <span class="c">#Stops waveform generator to prepare for loading a new one</span>
+                <span class="n">My_Wave</span><span class="o">.</span><span class="n">Generate_Wave</span><span class="p">(</span><span class="n">w_type</span><span class="p">)</span>
+                <span class="n">My_Wave</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span> <span class="c">#Restarts the waveDAC with the new wave loaded</span>
 
 <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-   <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="servo-testing">
+<h2>Servo testing<a class="headerlink" href="#servo-testing" title="Permalink to this headline">¶</a></h2>
+<p>This is a test for the Servo class. It will initialize three servo objects with default paramaters, and then the user will have the option to modify the first servo, and watch that the changes are reflected in the terminal
+as well as by the servomotor itself.</p>
+<p>Connect three servos to P3[0], P3[1], and P3[2] to see the desired results.
+P3[0] should be moved according to user input, while the other two should be
+held at a constant position.</p>
+<p>code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span>
+
+<span class="n">My_servo</span> <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">180</span><span class="p">)</span>
+<span class="n">My_other_servo</span> <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">180</span><span class="p">)</span>
+<span class="n">My_last_servo</span> <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">180</span><span class="p">)</span>
+
+<span class="n">My_servo</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
+<span class="n">My_other_servo</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
+<span class="n">My_last_servo</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">Servo</span><span class="se">\t</span><span class="s">Period</span><span class="se">\t\t</span><span class="s">Pulse Width</span><span class="se">\n</span><span class="s">1    :</span><span class="se">\t</span><span class="si">%.2f</span><span class="s"> ms</span><span class="se">\t</span><span class="si">%.2f</span><span class="s"> ms</span><span class="se">\n</span><span class="s">2    :</span><span class="se">\t</span><span class="si">%.2f</span><span class="s"> ms</span><span class="se">\t</span><span class="si">%.2f</span><span class="s"> ms</span><span class="se">\n</span><span class="s">3    :</span><span class="se">\t</span><span class="si">%.2f</span><span class="s"> ms</span><span class="se">\t</span><span class="si">%.2f</span><span class="s"> ms</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="mf">1000.0</span><span class="o">/</span><span class="n">My_servo</span><span class="o">.</span><span class="n">servo_PWM</span><span class="o">.</span><span class="n">GetFrequency</span><span class="p">(),</span> <span class="n">My_servo</span><span class="o">.</span><span class="n">servo_PWM</span><span class="o">.</span><span class="n">GetDutyCycle</span><span class="p">()</span><span class="o">*</span><span class="p">(</span><span class="mf">10.0</span><span class="o">/</span><span class="n">My_servo</span><span class="o">.</span><span class="n">servo_PWM</span><span class="o">.</span><span class="n">GetFrequency</span><span class="p">()),</span> <span class="mf">1000.0</span><span class="o">/</span><span class="n">My_other_servo</span><span class="o">.</span><span class="n">servo_PWM</span><span class="o">.</span><span class="n">GetFrequency</span><span class="p">(),</span> <span class="n">My_other_servo</span><span class="o">.</span><span class="n">servo_PWM</span><span class="o">.</span><span class="n">GetDutyCycle</span><span class="p">()</span><span class="o">*</span><span class="p">(</span><span class="mf">10.0</span><span class="o">/</span><span class="n">My_other_servo</span><span class="o">.</span><span class="n">servo_PWM</span><span class="o">.</span><span class="n">GetFrequency</span><span class="p">()),</span> <span class="mf">1000.0</span><span class="o">/</span><span class="n">My_last_servo</span><span class="o">.</span><span class="n">servo_PWM</span><span class="o">.</span><span class="n">GetFrequency</span><span class="p">(),</span> <span class="n">My_last_servo</span><span class="o">.</span><span class="n">servo_PWM</span><span class="o">.</span><span class="n">GetDutyCycle</span><span class="p">()</span><span class="o">*</span><span class="p">(</span><span class="mf">10.0</span><span class="o">/</span><span class="n">My_last_servo</span><span class="o">.</span><span class="n">servo_PWM</span><span class="o">.</span><span class="n">GetFrequency</span><span class="p">())</span> <span class="p">))</span>
+
+        <span class="n">choice</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Change [P]ulse width or [A]ngle&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="s">&#39;P&#39;</span> <span class="ow">or</span> <span class="n">choice</span> <span class="o">==</span> <span class="s">&#39;p&#39;</span><span class="p">:</span>
+            <span class="n">pulse_new</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;New pulse width: &#39;</span><span class="p">))</span>
+            <span class="n">My_servo</span><span class="o">.</span><span class="n">SetPulse</span><span class="p">(</span><span class="n">pulse_new</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s">&#39;A&#39;</span> <span class="ow">or</span> <span class="n">choice</span> <span class="o">==</span> <span class="s">&#39;a&#39;</span><span class="p">:</span>
+            <span class="n">angle_new</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;New angle: &#39;</span><span class="p">))</span>
+            <span class="n">My_servo</span><span class="o">.</span><span class="n">SetAngle</span><span class="p">(</span><span class="n">angle_new</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
 </pre></div>
 </div>
 <p><em>Code author: Brian Bradley &lt;<a class="reference external" href="mailto:embedit&#37;&#52;&#48;embeditelectronics&#46;com">embedit<span>&#64;</span>embeditelectronics<span>&#46;</span>com</a>&gt;</em></p>
@@ -333,8 +336,8 @@ the configuration details.</p>
 <li><a class="reference internal" href="#voltmeter-using-the-12-bit-successive-approximation-adc">Voltmeter using the 12-bit Successive Approximation ADC</a></li>
 <li><a class="reference internal" href="#simple-pwm-demo">Simple PWM Demo</a></li>
 <li><a class="reference internal" href="#simple-usage-of-digital-inputs-and-outputs">Simple usage of  digital inputs and outputs</a></li>
-<li><a class="reference internal" href="#simple-usage-of-pins-and-pwm">Simple usage of Pins and PWM</a></li>
 <li><a class="reference internal" href="#function-generator">Function Generator!</a></li>
+<li><a class="reference internal" href="#servo-testing">Servo testing</a></li>
 </ul>
 </li>
 </ul>
@@ -342,6 +345,9 @@ the configuration details.</p>
   <h4>Previous topic</h4>
   <p class="topless"><a href="code.html"
                         title="previous chapter">API modules</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="revision_history.html"
+                        title="next chapter">Revision History</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/examples.txt"
@@ -373,6 +379,9 @@ the configuration details.</p>
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
+        <li class="right" >
+          <a href="revision_history.html" title="Revision History"
+             >next</a> |</li>
         <li class="right" >
           <a href="code.html" title="API modules"
              >previous</a> |</li>

@@ -27,11 +27,11 @@ Then, create a folder for the RPiSoC API, and download it from
 git::
 	git clone https://github.com/EmbeditElectronics/psoc_2_pi.git
 
-Download spidev
-+++++++++++++++
-
-Now, to use the API on the Raspberry Pi, you will need to have the SPI bus enabled, and you will need to have the spidev ibraries installed and in your working directory. Luckily, this is a very easy process. First though, you will need to do an update/upgrade on your pi. Open a new terminal window and enter the following 
+Configure SPI and download spidev
++++++++++++++++++++++++++++++++++
+Now, if you want to use all of the API on the Raspberry Pi, you will need to have the SPI bus enabled, and you will need to have the spidev ibraries installed and in your working directory. Luckily, this is a very easy process. First though, you will need to do an update/upgrade on your pi. Open a new terminal window and enter the following 
 commands::
+	sudo apt-get clean
 	sudo apt-get update
 	sudo apt-get upgrade
 	sudo reboot
@@ -60,7 +60,92 @@ spidev::
 	wget https://raw.github.com/doceme/py-spidev/master/spidev_module.c
 	sudo python setup.py install
 
-And now you should be good to go!
+And now SPI should be good to go!
 
+Configure I2C and download smbus
+++++++++++++++++++++++++++++++++
+To use I2C for your communications between RPi and RPiSoC, you will need to configure your i2c bus, similarly to how it was done for SPI.
+
+Assuming you have done an update/upgrade recently, as you should have if you followed the previous step, you must now enable i2c. As was the case with SPI, I2C is disabled by the Pi by default. To change this, you must modify the blacklist 
+again::
+	sudo nano /etc/modprobe.d/raspi-blacklist.conf
+
+Now change the 
+line::
+	blacklist i2c-bcm2708 
+so that it instead 	
+reads::
+	#blacklist i2c-bcm2708
+
+Now you need to add the I2C module to the 
+kernel::
+	sudo nano /etc/modules
+And you should add to the end of this file the following 
+line::
+	i2c-dev
+Now you simply must install the needed 
+packages::
+	sudo apt-get install i2c-tools
+	sudo apt-get install python-smbus
+And to configure the software, you must add your username to the I2C access group. In this case I'll assume your username is *pi* 
+so::
+	sudo adduser pi i2c
+Now 
+reboot::
+	sudo reboot
+And when the pi boots back up, open the terminal, connect the RPiSoC with the program loaded, and test the i2c 
+bus::
+	i2cdetect -y 1
+This should display dashed lines where no address was identified, except for where it found an address, and this should read *08* in the case of the RPiSoC API. If you do not see any results, 
+try::
+	i2cdetect -y 0
+And if you see the 8, make sure to modify communication.py so that it reflects the usage of the correct bus.
+
+If in either case you find that the address 0x3b is being used, and reflected by the appearance of *UU*, then try adding one of these three lines to your 
+blacklist::
+	blacklist snd_soc_wm8804
+	blacklist snd_soc_bcm2708_i2s
+	blacklist snd_soc_pcm512x
+This will disable the pi's native audio driver, i2s support, and the stereo DAC driver, in that order, but it is likely that blacklisting one of them will fix the problem. 
+
+The final thing to change is the baudrate of the pi's I2C driver. I found that its default value was slightly error prone, and so I increased it, which resulted in error free results. To do this, you will need to create a config file in the modprobe.d folder; I called mine i2cbaud.conf. To create this file, simply enter into the 
+terminal::
+	sudo nano /etc/modprobe.d/i2cbaud.conf
+and add this single line to it from your text 
+editor::
+	options i2c_bcm2708 baudrate=500000
+Now just 
+reboot::
+	sudo reboot
+And you should be good to go!
+
+Changing communication protocol used by the API
++++++++++++++++++++++++++++++++++++++++++++++++
+By default, the API uses SPI. To change this to I2C, it is designed to be very simple, so don't fret!
+
+On the Pi Side, simply change your initialization of the RPiSoC object 
+from::
+	RPiSoC('SPI') 
+so that it instead 
+reads:: 
+	RPiSoC('I2C')
+
+Now, in the PSoC Creator program navigate to *mem1.h* and you will find two lines that look like 
+this::
+	//#undef CY_SPIS_SPIS_1_H     /* SPI */
+	#undef CY_I2C_I2C_1_H       /* I2C */
+This indicates that I2C is to be undefined, and so SPI is to be used. To reverse this, just change which one is commented 
+out::
+	#undef CY_SPIS_SPIS_1_H     /* SPI */
+	//#undef CY_I2C_I2C_1_H       /* I2C */
+
+Now, SPI will be undefined, and the RPiSoC will be expecting I2C communication.
+Now just compile the program, and redownload it to the RPiSoC using the Bootloader Host Tool. 
+
+And with that, you should be good to go without any problems! 
+	
+	
+
+	
 
 

@@ -51,7 +51,7 @@
   <div class="section" id="welcome-to-the-rpisoc-python-api-documentation">
 <h1>Welcome to the RPiSoC Python API documentation!<a class="headerlink" href="#welcome-to-the-rpisoc-python-api-documentation" title="Permalink to this headline">¶</a></h1>
 <p>This API intends to augment the functionality of the Raspberry Pi by introducing it to the RPiSoC.</p>
-<p>Version 1.0 currently only supports SPI communication between the devices, but the structure is in place for the addition of I2C, UART, or USB support in the near future, just in case your SPI bus is already in use.</p>
+<p>The latest version of the API is <em>V1.1</em></p>
 <div class="section" id="contents">
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -60,7 +60,9 @@
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#using-the-rpisoc">Using the RPiSoC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#program-your-rpisoc">Program your RPiSoC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="getting_started.html#download-the-python-files-from-git">Download the Python files from git</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#download-spidev">Download spidev</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#configure-spi-and-download-spidev">Configure SPI and download spidev</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#configure-i2c-and-download-smbus">Configure I2C and download smbus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#changing-communication-protocol-used-by-the-api">Changing communication protocol used by the API</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="code.html">API modules</a><ul>
@@ -75,8 +77,13 @@
 <li class="toctree-l2"><a class="reference internal" href="examples.html#voltmeter-using-the-12-bit-successive-approximation-adc">Voltmeter using the 12-bit Successive Approximation ADC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples.html#simple-pwm-demo">Simple PWM Demo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples.html#simple-usage-of-digital-inputs-and-outputs">Simple usage of  digital inputs and outputs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples.html#simple-usage-of-pins-and-pwm">Simple usage of Pins and PWM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples.html#function-generator">Function Generator!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#servo-testing">Servo testing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="revision_history.html">Revision History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="revision_history.html#version-1-1-0">Version 1.1.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="revision_history.html#version-1-0-0">Version 1.0.0</a></li>
 </ul>
 </li>
 </ul>

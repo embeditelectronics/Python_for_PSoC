@@ -1,6 +1,6 @@
 API modules
 ===========
-Here is a quick look at what is under the hood of the RPiSoC Python API, as of *V1.0.0*
+Here is a quick look at what is under the hood of the RPiSoC Python API, as of *V1.1.0*
 
 rpisoc.py
 +++++++++
@@ -10,7 +10,8 @@ rpisoc.py
 At the beginning of each script, insert the following
 two lines::
 		from rpisoc import * #This will handle dependencies
-		RPiSoC('SPI')
+		RPiSoC('SPI') 
+		#or RPiSoC('I2C')
 
 
 digital.py

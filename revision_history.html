@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Revision History &mdash; RPiSoC Python API 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="RPiSoC Python API 1.0.0 documentation" href="index.html" />
+    <link rel="prev" title="Example Projects!" href="examples.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="examples.html" title="Example Projects!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">RPiSoC Python API 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="revision-history">
+<h1>Revision History<a class="headerlink" href="#revision-history" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="version-1-1-0">
+<h2>Version 1.1.0<a class="headerlink" href="#version-1-1-0" title="Permalink to this headline">¶</a></h2>
+<p>This version provides the RPi with a lot more functionality, and use of the API is intended to be more flexible than in the previous version.</p>
+<dl class="docutils">
+<dt>New to V1.1.0:</dt>
+<dd><dl class="first last docutils">
+<dt>In the RPiSoC code</dt>
+<dd><ul class="first last simple">
+<li>Added I2C support</li>
+<li>Added the ability to software reset the RPiSoC through the Raspberry Pi</li>
+<li>Removed unneeded delays, speeding up the init process</li>
+<li>changed which bootloader is used</li>
+<li>clocked the PWM&#8217;s seperately, such that they aren&#8217;t all sharing the same clock; they are only sharing their clock with one other PWM instead of 7, as was the case in <em>V1.0.0</em></li>
+<li>Fixed a bug discovered in the WaveDAC class, which was generating waves that appeared to be very noisy.</li>
+</ul>
+</dd>
+<dt>In class <em>PWM</em></dt>
+<dd><ul class="first last simple">
+<li>Added ability to modify the frequency of the clocks which drive the PWM signals</li>
+<li>Added ability to read back the actual PWM clocking frequency.</li>
+<li>Added a warning when the clock range of the PWM clocks might be innacurate (since the frequencies are generated using clock dividers, and they can be innacurate at high frequencies)</li>
+<li>Changed the SetDutyCycle() method to be a float value instead of an int, for more precision</li>
+<li>Added a GetDutyCycle() method which will give back the percentage of time between 0 and 100 how long your PWM is high.</li>
+<li>Added a SetClockDivider() method which lets you give the PWM clock a specific divider value, so you don&#8217;t have to be worried about an innacurate result using SetClocks()</li>
+<li>Added a GetClockDivder() method to see what the most recently confirmed clock divider value is</li>
+<li>Added the ability to modify the actual wave frequency of the PWM, between 0.006 Hz and 2.4MHz, without affecting the duty cycle too profoundly.</li>
+<li>Added a GetFrequency() method which will return the actual frequency of the PWM wave</li>
+<li>Added class attributes to the RPiSoC class which indicate whether a register address is already in use. So if the user attempts to initialize an object that is already in use, a warning will be issued.</li>
+</ul>
+</dd>
+<dt>In class <em>ADC</em></dt>
+<dd><ul class="first last simple">
+<li>Changed return value of CountsTo_Volts() method for the ADC&#8217;s from a millivolt value to a microvolt value, so that precision is increased. The return value of the Python method when called is still in Volts.</li>
+</ul>
+</dd>
+<dt>In classes <em>DigitalInput</em> and <em>DigitalOutput</em></dt>
+<dd><ul class="first last simple">
+<li>Moved the bit masking process of the digital inputs and outputs to the C code, where it can be executed more quickly, and with fewer data transfers</li>
+</ul>
+</dd>
+<dt>In class <em>WaveDAC</em></dt>
+<dd><ul class="first last simple">
+<li>Added a warning when the frequency might be out of range</li>
+</ul>
+</dd>
+<dt>New class <em>Servo</em></dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Added a servo class with the following methods:</dt>
+<dd><ul class="first last simple">
+<li>SetPulse() : Sets a PWM pulse in milliseconds</li>
+<li>ReadPulse(): Gets the actual pulse in milliseconds that is being applied to the servo</li>
+<li>SetAngle() : sets the servomotor to a designated angle based on the user defined minimum angle, maximum angle, minimum pulse width, and maximum pulse width.</li>
+<li>ReadAngle(): Reads the actual angle based on the same parameter set as <em>SetAngle()</em></li>
+<li>Stop(): Stops the PWM signal which is driving the servo</li>
+<li>Start(): Starts the PWM signal which will drive the servo</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="version-1-0-0">
+<h2>Version 1.0.0<a class="headerlink" href="#version-1-0-0" title="Permalink to this headline">¶</a></h2>
+<p>The public release of the API. It exposes, most fundamentally, the following functionality to the Raspberry Pi through the RPiSoC</p>
+<blockquote>
+<div><ul class="simple">
+<li>8 PWM channels</li>
+<li>20 digital outputs</li>
+<li>19 digital inputs</li>
+<li>2 8-bit VDAC&#8217;s</li>
+<li>1 8-bit IDAC</li>
+<li>1 8-bit WaveDAC</li>
+<li>1 16-bit Delta Sigma ADC</li>
+<li>2 12-bit SAR ADC&#8217;s</li>
+</ul>
+</div></blockquote>
+<p>Communication to the RPiSoC requires use of SPI. No other communication protocol is yet supported, and the VDAC&#8217;s and IDAC&#8217;s are currently untested.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/Embedit_flat.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Revision History</a><ul>
+<li><a class="reference internal" href="#version-1-1-0">Version 1.1.0</a></li>
+<li><a class="reference internal" href="#version-1-0-0">Version 1.0.0</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="examples.html"
+                        title="previous chapter">Example Projects!</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/revision_history.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="examples.html" title="Example Projects!"
+             >previous</a> |</li>
+        <li><a href="index.html">RPiSoC Python API 1.0.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Embedit Electronics.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
