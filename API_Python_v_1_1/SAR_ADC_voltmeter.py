@@ -29,13 +29,13 @@ out_3v3.Write(1)
 try:
     while True:
         My_SAR_ADC.Start()
+        #My_SAR_ADC.SetOffset(40)
         My_SAR_ADC.StartConvert()
 
-        count = 1
         time_0 = time.time()
         while not My_SAR_ADC.IsEndConversion():
-            count+=1
-        time_final = time.time() - 0.1*count #The Pi waits .1 seconds after the data transfer, so it must be accounted for
+            pass
+        time_final = time.time() - 0.05 #The Pi waits .1 seconds after the data transfer, so it must be accounted for
         conversion_time = time_final - time_0
 
         Counts = My_SAR_ADC.GetResult()
@@ -43,13 +43,10 @@ try:
         My_SAR_ADC.Stop()
 
         Volts = My_SAR_ADC.CountsTo_Volts(Counts)
-
-        print('ADC OUTPUT: ',Counts)
-        print('VOLTAGE:    ', Volts)
-        print('Conversion Time:    ', conversion_time)
+        print('ADC OUTPUT:\t %d \nVOLTAGE:\t %.5f Volts \nCONVERT TIME:\t %.5f seconds \n' %(Counts, Volts, conversion_time))
 
         time.sleep(0.1)
 
 
 except KeyboardInterrupt:
-    RPiSoC.commChannel.close()
+    RPiSoC.commChannel.cleanup()

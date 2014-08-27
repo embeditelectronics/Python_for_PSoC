@@ -3,7 +3,7 @@ PSoC_2_Pi
 
 API for communication and control of the RPiSoC through Python on the Raspberry Pi
 
-Documentation can be found here: http://embeditelectronics.github.io/psoc_2_pi/
+Documentation and changelog can be found here: http://embeditelectronics.github.io/psoc_2_pi/
 
 This branch contains only the python API, so the Raspberry Pi can clone it without wasting space
 

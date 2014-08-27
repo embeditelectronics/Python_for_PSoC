@@ -30,11 +30,11 @@ try: #exception handling, not crucial but it is advised.
         Voltage = My_DELSIG.CountsTo_Volts(ADC_counts)
         My_DELSIG.Stop()
 
-        print('ADC OUTPUT: ',ADC_counts)
-        print('VOLTAGE:    ', Voltage)
+        print('ADC OUTPUT: %d' %ADC_counts)
+        print('VOLTAGE:    %.3f' %Voltage)
 
         time.sleep(.1)
 except KeyboardInterrupt:
-    RPiSoC.commChannel.close()
+    RPiSoC.commChannel.cleanup()
 
 

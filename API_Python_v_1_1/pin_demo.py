@@ -1,4 +1,3 @@
-from rpisoc import *
 """
 This script demonstrates usage of the digital input and output pins on the
 RPiSoC through this API.
@@ -19,14 +18,11 @@ Px[y] means PORT x PIN y
 The demo should light the LEDS in forwards order, and then turn off the LEDs in
 reverse order
 
-The terminal will output the state of the inputs at each step, and they should
+The terminal will output the state of the inputs at each step, along with their port/pin number and they should
 correlate with the LEDs (if wired in the way noted above)
-
-The terminal will then print out the state of each input in the following way
-(Port number, Pin number, State)
-(The state should be False since they were turned off)
 """
-
+from rpisoc import *
+import os
 RPiSoC('SPI')
 
 My_outputs = [DigitalOutput(2,0), DigitalOutput(2,1), DigitalOutput(5,0), DigitalOutput(5,1)]
@@ -36,24 +32,20 @@ try: #exception handling
     while True:
         for i in My_outputs: #Writes each output high, one by one, in forwards order
             i.Write(1)
+            os.system('clear')
+            for inputs in My_inputs:#Prints the state of each input
+                print ("P%d[%d]:%d" %(inputs.port, inputs.pin, inputs.Read()))
             time.sleep(1)
-            status = []
-            for k in range(len(My_inputs)):#Prints the state of each input
-                status.append(My_inputs[k].Read())
-            print(status)
 
         for i in reversed(My_outputs):#Turns off the LEDs in reverse order
             i.Write(0)
+            os.system('clear')
+            for inputs in My_inputs:#Prints the state of each input
+                print ("P%d[%d]:%d" %(inputs.port, inputs.pin, inputs.Read()))
             time.sleep(1)
-            status = []
-            for k in range(len(My_inputs)):#Prints the state of each input
-                status.append(My_inputs[k].Read())
-            print (status)
 
-        for j in My_inputs: #Prints the Port number, pin number, and state of each number (should all be False since they were just turned off.)
-            print(j.port, j.pin, j.Read())
-            time.sleep(1)
+
 
 
 except KeyboardInterrupt:
-    RPiSoC.commChannel.close()
+    RPiSoC.commChannel.cleanup()
