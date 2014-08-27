@@ -4,6 +4,10 @@ a user chosen communication protocol. *V1.1* supports SPI and I2C communication,
 structure for easy integration of different protocols is in place,
 *V1.2* will roll in UART support.
 """
+
+__author__ = 'Brian Bradley'
+__version__ = '1.1'
+
 import math
 import spidev
 import time

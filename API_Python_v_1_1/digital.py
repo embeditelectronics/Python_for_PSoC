@@ -1,4 +1,4 @@
-de__author__ = 'Brian Bradley'
+__author__ = 'Brian Bradley'
 __version__ = '1.1'
 
 from rpisoc import *
