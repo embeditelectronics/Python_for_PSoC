@@ -216,8 +216,8 @@ void PWM_5_RestoreConfig(void) ;
 /***************************************
 *         Initialization Values
 **************************************/
-#define PWM_5_INIT_PERIOD_VALUE        255u
-#define PWM_5_INIT_COMPARE_VALUE1      127u
+#define PWM_5_INIT_PERIOD_VALUE        65535u
+#define PWM_5_INIT_COMPARE_VALUE1      32767u
 #define PWM_5_INIT_COMPARE_VALUE2      63u
 #define PWM_5_INIT_INTERRUPTS_MODE     (uint8)(((uint8)(0u << PWM_5_STATUS_TC_INT_EN_MASK_SHIFT)) | \
                                                   (uint8)((uint8)(0u << PWM_5_STATUS_CMP2_INT_EN_MASK_SHIFT)) | \

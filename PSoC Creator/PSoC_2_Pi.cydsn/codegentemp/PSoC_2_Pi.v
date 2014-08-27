@@ -1,6 +1,6 @@
 // ======================================================================
 // PSoC_2_Pi.v generated from TopDesign.cysch
-// 08/05/2014 at 17:13
+// 08/26/2014 at 16:04
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -244,7 +244,7 @@ endmodule
 `include "C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\ZeroTerminal\ZeroTerminal.v"
 `endif
 
-// PWM_v3_0(CaptureMode=0, Compare1_16=true, Compare1_8=false, Compare2_16=false, Compare2_8=false, CompareStatusEdgeSense=true, CompareType1=1, CompareType1Software=0, CompareType2=1, CompareType2Software=0, CompareValue1=127, CompareValue2=63, CONTROL3=0, ControlReg=true, CtlModeReplacementString=SyncCtl, CyGetRegReplacementString=CY_GET_REG16, CySetRegReplacementString=CY_SET_REG16, DeadBand=0, DeadBand2_4=0, DeadBand256=0, DeadBandUsed=0, DeadTime=1, DitherOffset=0, EnableMode=0, FF16=false, FF8=false, FixedFunction=false, FixedFunctionUsed=0, InterruptOnCMP1=false, InterruptOnCMP2=false, InterruptOnKill=false, InterruptOnTC=false, IntOnCMP1=0, IntOnCMP2=0, IntOnKill=0, IntOnTC=0, KillMode=0, KillModeMinTime=0, MinimumKillTime=1, OneCompare=true, Period=255, PWMMode=0, PWMModeCenterAligned=0, RegDefReplacementString=reg16, RegSizeReplacementString=uint16, Resolution=16, RstStatusReplacementString=sSTSReg_rstSts, RunMode=0, Status=true, TriggerMode=0, UDB16=true, UDB8=false, UseControl=true, UseInterrupt=true, UseStatus=true, VerilogSectionReplacementString=sP16, CY_COMPONENT_NAME=PWM_v3_0, CY_CONTROL_FILE=<:default:>, CY_FITTER_NAME=PWM_1, CY_INSTANCE_SHORT_NAME=PWM_1, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=cydsfit No Version Information Found, INSTANCE_NAME=PWM_1, )
+// PWM_v3_0(CaptureMode=0, Compare1_16=true, Compare1_8=false, Compare2_16=false, Compare2_8=false, CompareStatusEdgeSense=true, CompareType1=1, CompareType1Software=0, CompareType2=1, CompareType2Software=0, CompareValue1=32767, CompareValue2=63, CONTROL3=0, ControlReg=true, CtlModeReplacementString=SyncCtl, CyGetRegReplacementString=CY_GET_REG16, CySetRegReplacementString=CY_SET_REG16, DeadBand=0, DeadBand2_4=0, DeadBand256=0, DeadBandUsed=0, DeadTime=1, DitherOffset=0, EnableMode=0, FF16=false, FF8=false, FixedFunction=false, FixedFunctionUsed=0, InterruptOnCMP1=false, InterruptOnCMP2=false, InterruptOnKill=false, InterruptOnTC=false, IntOnCMP1=0, IntOnCMP2=0, IntOnKill=0, IntOnTC=0, KillMode=0, KillModeMinTime=0, MinimumKillTime=1, OneCompare=true, Period=65535, PWMMode=0, PWMModeCenterAligned=0, RegDefReplacementString=reg16, RegSizeReplacementString=uint16, Resolution=16, RstStatusReplacementString=sSTSReg_rstSts, RunMode=0, Status=true, TriggerMode=0, UDB16=true, UDB8=false, UseControl=true, UseInterrupt=true, UseStatus=true, VerilogSectionReplacementString=sP16, CY_COMPONENT_NAME=PWM_v3_0, CY_CONTROL_FILE=<:default:>, CY_FITTER_NAME=PWM_1, CY_INSTANCE_SHORT_NAME=PWM_1, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=cydsfit No Version Information Found, INSTANCE_NAME=PWM_1, )
 module PWM_v3_0_1 (
     pwm2,
     tc,
@@ -1081,7 +1081,7 @@ module ADC_DelSig_v3_0_7 (
 
 endmodule
 
-// PWM_v3_0(CaptureMode=0, Compare1_16=true, Compare1_8=false, Compare2_16=false, Compare2_8=false, CompareStatusEdgeSense=true, CompareType1=1, CompareType1Software=0, CompareType2=1, CompareType2Software=0, CompareValue1=127, CompareValue2=63, CONTROL3=0, ControlReg=true, CtlModeReplacementString=SyncCtl, CyGetRegReplacementString=CY_GET_REG16, CySetRegReplacementString=CY_SET_REG16, DeadBand=0, DeadBand2_4=0, DeadBand256=0, DeadBandUsed=0, DeadTime=1, DitherOffset=0, EnableMode=0, FF16=false, FF8=false, FixedFunction=false, FixedFunctionUsed=0, InterruptOnCMP1=false, InterruptOnCMP2=false, InterruptOnKill=false, InterruptOnTC=false, IntOnCMP1=0, IntOnCMP2=0, IntOnKill=0, IntOnTC=0, KillMode=0, KillModeMinTime=0, MinimumKillTime=1, OneCompare=true, Period=255, PWMMode=0, PWMModeCenterAligned=0, RegDefReplacementString=reg16, RegSizeReplacementString=uint16, Resolution=16, RstStatusReplacementString=sSTSReg_rstSts, RunMode=0, Status=true, TriggerMode=0, UDB16=true, UDB8=false, UseControl=true, UseInterrupt=true, UseStatus=true, VerilogSectionReplacementString=sP16, CY_COMPONENT_NAME=PWM_v3_0, CY_CONTROL_FILE=<:default:>, CY_FITTER_NAME=PWM_2, CY_INSTANCE_SHORT_NAME=PWM_2, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=cydsfit No Version Information Found, INSTANCE_NAME=PWM_2, )
+// PWM_v3_0(CaptureMode=0, Compare1_16=true, Compare1_8=false, Compare2_16=false, Compare2_8=false, CompareStatusEdgeSense=true, CompareType1=1, CompareType1Software=0, CompareType2=1, CompareType2Software=0, CompareValue1=32767, CompareValue2=63, CONTROL3=0, ControlReg=true, CtlModeReplacementString=SyncCtl, CyGetRegReplacementString=CY_GET_REG16, CySetRegReplacementString=CY_SET_REG16, DeadBand=0, DeadBand2_4=0, DeadBand256=0, DeadBandUsed=0, DeadTime=1, DitherOffset=0, EnableMode=0, FF16=false, FF8=false, FixedFunction=false, FixedFunctionUsed=0, InterruptOnCMP1=false, InterruptOnCMP2=false, InterruptOnKill=false, InterruptOnTC=false, IntOnCMP1=0, IntOnCMP2=0, IntOnKill=0, IntOnTC=0, KillMode=0, KillModeMinTime=0, MinimumKillTime=1, OneCompare=true, Period=65535, PWMMode=0, PWMModeCenterAligned=0, RegDefReplacementString=reg16, RegSizeReplacementString=uint16, Resolution=16, RstStatusReplacementString=sSTSReg_rstSts, RunMode=0, Status=true, TriggerMode=0, UDB16=true, UDB8=false, UseControl=true, UseInterrupt=true, UseStatus=true, VerilogSectionReplacementString=sP16, CY_COMPONENT_NAME=PWM_v3_0, CY_CONTROL_FILE=<:default:>, CY_FITTER_NAME=PWM_2, CY_INSTANCE_SHORT_NAME=PWM_2, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=cydsfit No Version Information Found, INSTANCE_NAME=PWM_2, )
 module PWM_v3_0_8 (
     pwm2,
     tc,
@@ -1175,7 +1175,7 @@ module PWM_v3_0_8 (
 
 endmodule
 
-// PWM_v3_0(CaptureMode=0, Compare1_16=true, Compare1_8=false, Compare2_16=false, Compare2_8=false, CompareStatusEdgeSense=true, CompareType1=1, CompareType1Software=0, CompareType2=1, CompareType2Software=0, CompareValue1=127, CompareValue2=63, CONTROL3=0, ControlReg=true, CtlModeReplacementString=SyncCtl, CyGetRegReplacementString=CY_GET_REG16, CySetRegReplacementString=CY_SET_REG16, DeadBand=0, DeadBand2_4=0, DeadBand256=0, DeadBandUsed=0, DeadTime=1, DitherOffset=0, EnableMode=0, FF16=false, FF8=false, FixedFunction=false, FixedFunctionUsed=0, InterruptOnCMP1=false, InterruptOnCMP2=false, InterruptOnKill=false, InterruptOnTC=false, IntOnCMP1=0, IntOnCMP2=0, IntOnKill=0, IntOnTC=0, KillMode=0, KillModeMinTime=0, MinimumKillTime=1, OneCompare=true, Period=255, PWMMode=0, PWMModeCenterAligned=0, RegDefReplacementString=reg16, RegSizeReplacementString=uint16, Resolution=16, RstStatusReplacementString=sSTSReg_rstSts, RunMode=0, Status=true, TriggerMode=0, UDB16=true, UDB8=false, UseControl=true, UseInterrupt=true, UseStatus=true, VerilogSectionReplacementString=sP16, CY_COMPONENT_NAME=PWM_v3_0, CY_CONTROL_FILE=<:default:>, CY_FITTER_NAME=PWM_3, CY_INSTANCE_SHORT_NAME=PWM_3, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=cydsfit No Version Information Found, INSTANCE_NAME=PWM_3, )
+// PWM_v3_0(CaptureMode=0, Compare1_16=true, Compare1_8=false, Compare2_16=false, Compare2_8=false, CompareStatusEdgeSense=true, CompareType1=1, CompareType1Software=0, CompareType2=1, CompareType2Software=0, CompareValue1=32767, CompareValue2=63, CONTROL3=0, ControlReg=true, CtlModeReplacementString=SyncCtl, CyGetRegReplacementString=CY_GET_REG16, CySetRegReplacementString=CY_SET_REG16, DeadBand=0, DeadBand2_4=0, DeadBand256=0, DeadBandUsed=0, DeadTime=1, DitherOffset=0, EnableMode=0, FF16=false, FF8=false, FixedFunction=false, FixedFunctionUsed=0, InterruptOnCMP1=false, InterruptOnCMP2=false, InterruptOnKill=false, InterruptOnTC=false, IntOnCMP1=0, IntOnCMP2=0, IntOnKill=0, IntOnTC=0, KillMode=0, KillModeMinTime=0, MinimumKillTime=1, OneCompare=true, Period=65535, PWMMode=0, PWMModeCenterAligned=0, RegDefReplacementString=reg16, RegSizeReplacementString=uint16, Resolution=16, RstStatusReplacementString=sSTSReg_rstSts, RunMode=0, Status=true, TriggerMode=0, UDB16=true, UDB8=false, UseControl=true, UseInterrupt=true, UseStatus=true, VerilogSectionReplacementString=sP16, CY_COMPONENT_NAME=PWM_v3_0, CY_CONTROL_FILE=<:default:>, CY_FITTER_NAME=PWM_3, CY_INSTANCE_SHORT_NAME=PWM_3, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=cydsfit No Version Information Found, INSTANCE_NAME=PWM_3, )
 module PWM_v3_0_9 (
     pwm2,
     tc,
@@ -1269,7 +1269,7 @@ module PWM_v3_0_9 (
 
 endmodule
 
-// PWM_v3_0(CaptureMode=0, Compare1_16=true, Compare1_8=false, Compare2_16=false, Compare2_8=false, CompareStatusEdgeSense=true, CompareType1=1, CompareType1Software=0, CompareType2=1, CompareType2Software=0, CompareValue1=127, CompareValue2=63, CONTROL3=0, ControlReg=true, CtlModeReplacementString=SyncCtl, CyGetRegReplacementString=CY_GET_REG16, CySetRegReplacementString=CY_SET_REG16, DeadBand=0, DeadBand2_4=0, DeadBand256=0, DeadBandUsed=0, DeadTime=1, DitherOffset=0, EnableMode=0, FF16=false, FF8=false, FixedFunction=false, FixedFunctionUsed=0, InterruptOnCMP1=false, InterruptOnCMP2=false, InterruptOnKill=false, InterruptOnTC=false, IntOnCMP1=0, IntOnCMP2=0, IntOnKill=0, IntOnTC=0, KillMode=0, KillModeMinTime=0, MinimumKillTime=1, OneCompare=true, Period=255, PWMMode=0, PWMModeCenterAligned=0, RegDefReplacementString=reg16, RegSizeReplacementString=uint16, Resolution=16, RstStatusReplacementString=sSTSReg_rstSts, RunMode=0, Status=true, TriggerMode=0, UDB16=true, UDB8=false, UseControl=true, UseInterrupt=true, UseStatus=true, VerilogSectionReplacementString=sP16, CY_COMPONENT_NAME=PWM_v3_0, CY_CONTROL_FILE=<:default:>, CY_FITTER_NAME=PWM_4, CY_INSTANCE_SHORT_NAME=PWM_4, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=cydsfit No Version Information Found, INSTANCE_NAME=PWM_4, )
+// PWM_v3_0(CaptureMode=0, Compare1_16=true, Compare1_8=false, Compare2_16=false, Compare2_8=false, CompareStatusEdgeSense=true, CompareType1=1, CompareType1Software=0, CompareType2=1, CompareType2Software=0, CompareValue1=32767, CompareValue2=63, CONTROL3=0, ControlReg=true, CtlModeReplacementString=SyncCtl, CyGetRegReplacementString=CY_GET_REG16, CySetRegReplacementString=CY_SET_REG16, DeadBand=0, DeadBand2_4=0, DeadBand256=0, DeadBandUsed=0, DeadTime=1, DitherOffset=0, EnableMode=0, FF16=false, FF8=false, FixedFunction=false, FixedFunctionUsed=0, InterruptOnCMP1=false, InterruptOnCMP2=false, InterruptOnKill=false, InterruptOnTC=false, IntOnCMP1=0, IntOnCMP2=0, IntOnKill=0, IntOnTC=0, KillMode=0, KillModeMinTime=0, MinimumKillTime=1, OneCompare=true, Period=65535, PWMMode=0, PWMModeCenterAligned=0, RegDefReplacementString=reg16, RegSizeReplacementString=uint16, Resolution=16, RstStatusReplacementString=sSTSReg_rstSts, RunMode=0, Status=true, TriggerMode=0, UDB16=true, UDB8=false, UseControl=true, UseInterrupt=true, UseStatus=true, VerilogSectionReplacementString=sP16, CY_COMPONENT_NAME=PWM_v3_0, CY_CONTROL_FILE=<:default:>, CY_FITTER_NAME=PWM_4, CY_INSTANCE_SHORT_NAME=PWM_4, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=cydsfit No Version Information Found, INSTANCE_NAME=PWM_4, )
 module PWM_v3_0_10 (
     pwm2,
     tc,
@@ -1363,7 +1363,7 @@ module PWM_v3_0_10 (
 
 endmodule
 
-// PWM_v3_0(CaptureMode=0, Compare1_16=true, Compare1_8=false, Compare2_16=false, Compare2_8=false, CompareStatusEdgeSense=true, CompareType1=1, CompareType1Software=0, CompareType2=1, CompareType2Software=0, CompareValue1=127, CompareValue2=63, CONTROL3=0, ControlReg=true, CtlModeReplacementString=SyncCtl, CyGetRegReplacementString=CY_GET_REG16, CySetRegReplacementString=CY_SET_REG16, DeadBand=0, DeadBand2_4=0, DeadBand256=0, DeadBandUsed=0, DeadTime=1, DitherOffset=0, EnableMode=0, FF16=false, FF8=false, FixedFunction=false, FixedFunctionUsed=0, InterruptOnCMP1=false, InterruptOnCMP2=false, InterruptOnKill=false, InterruptOnTC=false, IntOnCMP1=0, IntOnCMP2=0, IntOnKill=0, IntOnTC=0, KillMode=0, KillModeMinTime=0, MinimumKillTime=1, OneCompare=true, Period=255, PWMMode=0, PWMModeCenterAligned=0, RegDefReplacementString=reg16, RegSizeReplacementString=uint16, Resolution=16, RstStatusReplacementString=sSTSReg_rstSts, RunMode=0, Status=true, TriggerMode=0, UDB16=true, UDB8=false, UseControl=true, UseInterrupt=true, UseStatus=true, VerilogSectionReplacementString=sP16, CY_COMPONENT_NAME=PWM_v3_0, CY_CONTROL_FILE=<:default:>, CY_FITTER_NAME=PWM_5, CY_INSTANCE_SHORT_NAME=PWM_5, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=cydsfit No Version Information Found, INSTANCE_NAME=PWM_5, )
+// PWM_v3_0(CaptureMode=0, Compare1_16=true, Compare1_8=false, Compare2_16=false, Compare2_8=false, CompareStatusEdgeSense=true, CompareType1=1, CompareType1Software=0, CompareType2=1, CompareType2Software=0, CompareValue1=32767, CompareValue2=63, CONTROL3=0, ControlReg=true, CtlModeReplacementString=SyncCtl, CyGetRegReplacementString=CY_GET_REG16, CySetRegReplacementString=CY_SET_REG16, DeadBand=0, DeadBand2_4=0, DeadBand256=0, DeadBandUsed=0, DeadTime=1, DitherOffset=0, EnableMode=0, FF16=false, FF8=false, FixedFunction=false, FixedFunctionUsed=0, InterruptOnCMP1=false, InterruptOnCMP2=false, InterruptOnKill=false, InterruptOnTC=false, IntOnCMP1=0, IntOnCMP2=0, IntOnKill=0, IntOnTC=0, KillMode=0, KillModeMinTime=0, MinimumKillTime=1, OneCompare=true, Period=65535, PWMMode=0, PWMModeCenterAligned=0, RegDefReplacementString=reg16, RegSizeReplacementString=uint16, Resolution=16, RstStatusReplacementString=sSTSReg_rstSts, RunMode=0, Status=true, TriggerMode=0, UDB16=true, UDB8=false, UseControl=true, UseInterrupt=true, UseStatus=true, VerilogSectionReplacementString=sP16, CY_COMPONENT_NAME=PWM_v3_0, CY_CONTROL_FILE=<:default:>, CY_FITTER_NAME=PWM_5, CY_INSTANCE_SHORT_NAME=PWM_5, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=cydsfit No Version Information Found, INSTANCE_NAME=PWM_5, )
 module PWM_v3_0_11 (
     pwm2,
     tc,
@@ -1457,7 +1457,7 @@ module PWM_v3_0_11 (
 
 endmodule
 
-// PWM_v3_0(CaptureMode=0, Compare1_16=true, Compare1_8=false, Compare2_16=false, Compare2_8=false, CompareStatusEdgeSense=true, CompareType1=1, CompareType1Software=0, CompareType2=1, CompareType2Software=0, CompareValue1=127, CompareValue2=63, CONTROL3=0, ControlReg=true, CtlModeReplacementString=SyncCtl, CyGetRegReplacementString=CY_GET_REG16, CySetRegReplacementString=CY_SET_REG16, DeadBand=0, DeadBand2_4=0, DeadBand256=0, DeadBandUsed=0, DeadTime=1, DitherOffset=0, EnableMode=0, FF16=false, FF8=false, FixedFunction=false, FixedFunctionUsed=0, InterruptOnCMP1=false, InterruptOnCMP2=false, InterruptOnKill=false, InterruptOnTC=false, IntOnCMP1=0, IntOnCMP2=0, IntOnKill=0, IntOnTC=0, KillMode=0, KillModeMinTime=0, MinimumKillTime=1, OneCompare=true, Period=255, PWMMode=0, PWMModeCenterAligned=0, RegDefReplacementString=reg16, RegSizeReplacementString=uint16, Resolution=16, RstStatusReplacementString=sSTSReg_rstSts, RunMode=0, Status=true, TriggerMode=0, UDB16=true, UDB8=false, UseControl=true, UseInterrupt=true, UseStatus=true, VerilogSectionReplacementString=sP16, CY_COMPONENT_NAME=PWM_v3_0, CY_CONTROL_FILE=<:default:>, CY_FITTER_NAME=PWM_6, CY_INSTANCE_SHORT_NAME=PWM_6, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=cydsfit No Version Information Found, INSTANCE_NAME=PWM_6, )
+// PWM_v3_0(CaptureMode=0, Compare1_16=true, Compare1_8=false, Compare2_16=false, Compare2_8=false, CompareStatusEdgeSense=true, CompareType1=1, CompareType1Software=0, CompareType2=1, CompareType2Software=0, CompareValue1=32767, CompareValue2=63, CONTROL3=0, ControlReg=true, CtlModeReplacementString=SyncCtl, CyGetRegReplacementString=CY_GET_REG16, CySetRegReplacementString=CY_SET_REG16, DeadBand=0, DeadBand2_4=0, DeadBand256=0, DeadBandUsed=0, DeadTime=1, DitherOffset=0, EnableMode=0, FF16=false, FF8=false, FixedFunction=false, FixedFunctionUsed=0, InterruptOnCMP1=false, InterruptOnCMP2=false, InterruptOnKill=false, InterruptOnTC=false, IntOnCMP1=0, IntOnCMP2=0, IntOnKill=0, IntOnTC=0, KillMode=0, KillModeMinTime=0, MinimumKillTime=1, OneCompare=true, Period=65535, PWMMode=0, PWMModeCenterAligned=0, RegDefReplacementString=reg16, RegSizeReplacementString=uint16, Resolution=16, RstStatusReplacementString=sSTSReg_rstSts, RunMode=0, Status=true, TriggerMode=0, UDB16=true, UDB8=false, UseControl=true, UseInterrupt=true, UseStatus=true, VerilogSectionReplacementString=sP16, CY_COMPONENT_NAME=PWM_v3_0, CY_CONTROL_FILE=<:default:>, CY_FITTER_NAME=PWM_6, CY_INSTANCE_SHORT_NAME=PWM_6, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=cydsfit No Version Information Found, INSTANCE_NAME=PWM_6, )
 module PWM_v3_0_12 (
     pwm2,
     tc,
@@ -1551,7 +1551,7 @@ module PWM_v3_0_12 (
 
 endmodule
 
-// PWM_v3_0(CaptureMode=0, Compare1_16=true, Compare1_8=false, Compare2_16=false, Compare2_8=false, CompareStatusEdgeSense=true, CompareType1=1, CompareType1Software=0, CompareType2=1, CompareType2Software=0, CompareValue1=127, CompareValue2=63, CONTROL3=0, ControlReg=true, CtlModeReplacementString=SyncCtl, CyGetRegReplacementString=CY_GET_REG16, CySetRegReplacementString=CY_SET_REG16, DeadBand=0, DeadBand2_4=0, DeadBand256=0, DeadBandUsed=0, DeadTime=1, DitherOffset=0, EnableMode=0, FF16=false, FF8=false, FixedFunction=false, FixedFunctionUsed=0, InterruptOnCMP1=false, InterruptOnCMP2=false, InterruptOnKill=false, InterruptOnTC=false, IntOnCMP1=0, IntOnCMP2=0, IntOnKill=0, IntOnTC=0, KillMode=0, KillModeMinTime=0, MinimumKillTime=1, OneCompare=true, Period=255, PWMMode=0, PWMModeCenterAligned=0, RegDefReplacementString=reg16, RegSizeReplacementString=uint16, Resolution=16, RstStatusReplacementString=sSTSReg_rstSts, RunMode=0, Status=true, TriggerMode=0, UDB16=true, UDB8=false, UseControl=true, UseInterrupt=true, UseStatus=true, VerilogSectionReplacementString=sP16, CY_COMPONENT_NAME=PWM_v3_0, CY_CONTROL_FILE=<:default:>, CY_FITTER_NAME=PWM_7, CY_INSTANCE_SHORT_NAME=PWM_7, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=cydsfit No Version Information Found, INSTANCE_NAME=PWM_7, )
+// PWM_v3_0(CaptureMode=0, Compare1_16=true, Compare1_8=false, Compare2_16=false, Compare2_8=false, CompareStatusEdgeSense=true, CompareType1=1, CompareType1Software=0, CompareType2=1, CompareType2Software=0, CompareValue1=32767, CompareValue2=63, CONTROL3=0, ControlReg=true, CtlModeReplacementString=SyncCtl, CyGetRegReplacementString=CY_GET_REG16, CySetRegReplacementString=CY_SET_REG16, DeadBand=0, DeadBand2_4=0, DeadBand256=0, DeadBandUsed=0, DeadTime=1, DitherOffset=0, EnableMode=0, FF16=false, FF8=false, FixedFunction=false, FixedFunctionUsed=0, InterruptOnCMP1=false, InterruptOnCMP2=false, InterruptOnKill=false, InterruptOnTC=false, IntOnCMP1=0, IntOnCMP2=0, IntOnKill=0, IntOnTC=0, KillMode=0, KillModeMinTime=0, MinimumKillTime=1, OneCompare=true, Period=65535, PWMMode=0, PWMModeCenterAligned=0, RegDefReplacementString=reg16, RegSizeReplacementString=uint16, Resolution=16, RstStatusReplacementString=sSTSReg_rstSts, RunMode=0, Status=true, TriggerMode=0, UDB16=true, UDB8=false, UseControl=true, UseInterrupt=true, UseStatus=true, VerilogSectionReplacementString=sP16, CY_COMPONENT_NAME=PWM_v3_0, CY_CONTROL_FILE=<:default:>, CY_FITTER_NAME=PWM_7, CY_INSTANCE_SHORT_NAME=PWM_7, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=cydsfit No Version Information Found, INSTANCE_NAME=PWM_7, )
 module PWM_v3_0_13 (
     pwm2,
     tc,
@@ -1645,7 +1645,7 @@ module PWM_v3_0_13 (
 
 endmodule
 
-// PWM_v3_0(CaptureMode=0, Compare1_16=true, Compare1_8=false, Compare2_16=false, Compare2_8=false, CompareStatusEdgeSense=true, CompareType1=1, CompareType1Software=0, CompareType2=1, CompareType2Software=0, CompareValue1=127, CompareValue2=63, CONTROL3=0, ControlReg=true, CtlModeReplacementString=SyncCtl, CyGetRegReplacementString=CY_GET_REG16, CySetRegReplacementString=CY_SET_REG16, DeadBand=0, DeadBand2_4=0, DeadBand256=0, DeadBandUsed=0, DeadTime=1, DitherOffset=0, EnableMode=0, FF16=false, FF8=false, FixedFunction=false, FixedFunctionUsed=0, InterruptOnCMP1=false, InterruptOnCMP2=false, InterruptOnKill=false, InterruptOnTC=false, IntOnCMP1=0, IntOnCMP2=0, IntOnKill=0, IntOnTC=0, KillMode=0, KillModeMinTime=0, MinimumKillTime=1, OneCompare=true, Period=255, PWMMode=0, PWMModeCenterAligned=0, RegDefReplacementString=reg16, RegSizeReplacementString=uint16, Resolution=16, RstStatusReplacementString=sSTSReg_rstSts, RunMode=0, Status=true, TriggerMode=0, UDB16=true, UDB8=false, UseControl=true, UseInterrupt=true, UseStatus=true, VerilogSectionReplacementString=sP16, CY_COMPONENT_NAME=PWM_v3_0, CY_CONTROL_FILE=<:default:>, CY_FITTER_NAME=PWM_8, CY_INSTANCE_SHORT_NAME=PWM_8, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=cydsfit No Version Information Found, INSTANCE_NAME=PWM_8, )
+// PWM_v3_0(CaptureMode=0, Compare1_16=true, Compare1_8=false, Compare2_16=false, Compare2_8=false, CompareStatusEdgeSense=true, CompareType1=1, CompareType1Software=0, CompareType2=1, CompareType2Software=0, CompareValue1=32767, CompareValue2=63, CONTROL3=0, ControlReg=true, CtlModeReplacementString=SyncCtl, CyGetRegReplacementString=CY_GET_REG16, CySetRegReplacementString=CY_SET_REG16, DeadBand=0, DeadBand2_4=0, DeadBand256=0, DeadBandUsed=0, DeadTime=1, DitherOffset=0, EnableMode=0, FF16=false, FF8=false, FixedFunction=false, FixedFunctionUsed=0, InterruptOnCMP1=false, InterruptOnCMP2=false, InterruptOnKill=false, InterruptOnTC=false, IntOnCMP1=0, IntOnCMP2=0, IntOnKill=0, IntOnTC=0, KillMode=0, KillModeMinTime=0, MinimumKillTime=1, OneCompare=true, Period=65535, PWMMode=0, PWMModeCenterAligned=0, RegDefReplacementString=reg16, RegSizeReplacementString=uint16, Resolution=16, RstStatusReplacementString=sSTSReg_rstSts, RunMode=0, Status=true, TriggerMode=0, UDB16=true, UDB8=false, UseControl=true, UseInterrupt=true, UseStatus=true, VerilogSectionReplacementString=sP16, CY_COMPONENT_NAME=PWM_v3_0, CY_CONTROL_FILE=<:default:>, CY_FITTER_NAME=PWM_8, CY_INSTANCE_SHORT_NAME=PWM_8, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=cydsfit No Version Information Found, INSTANCE_NAME=PWM_8, )
 module PWM_v3_0_14 (
     pwm2,
     tc,
@@ -2063,11 +2063,151 @@ module VDAC8_v1_90_17 (
 
 endmodule
 
-// RPiSoC(CY_COMPONENT_NAME=RPiSoC, CY_CONTROL_FILE=<:default:>, CY_FITTER_NAME=RPiSoC_1, CY_INSTANCE_SHORT_NAME=RPiSoC_1, CY_MAJOR_VERSION=0, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=cydsfit No Version Information Found, INSTANCE_NAME=RPiSoC_1, )
-module RPiSoC_18 ;
+// I2C_v3_30(Address_Decode=1, BusSpeed_kHz=1000, ClockInputVisibility=false, CtlModeReplacementString=SyncCtl, EnableWakeup=false, ExternalBuffer=false, Externi2cIntrHandler=false, ExternTmoutIntrHandler=false, FF=true, Hex=false, I2C_Mode=1, I2cBusPort=0, Implementation=1, InternalUdbClockToleranceMinus=5, InternalUdbClockTolerancePlus=50, NotSlaveClockMinusTolerance=25, NotSlaveClockPlusTolerance=5, PrescalerEnabled=false, PrescalerPeriod=3, Psoc3ffSelected=false, Psoc5AffSelected=false, Psoc5lpffSelected=true, RemoveI2cff=false, RemoveI2cUdb=true, RemoveIntClock=true, RemoveTimeoutTimer=true, SclTimeoutEnabled=false, SdaTimeoutEnabled=false, Slave_Address=8, SlaveClockMinusTolerance=5, SlaveClockPlusTolerance=50, TimeoutEnabled=false, TimeoutImplementation=0, TimeOutms=25, TimeoutPeriodff=39999, TimeoutPeriodUdb=39999, UDB_MSTR=false, UDB_MULTI_MASTER_SLAVE=false, UDB_SLV=false, UdbInternalClock=false, UdbRequiredClock=16000, UdbSlaveFixedPlacementEnable=false, CY_COMPONENT_NAME=I2C_v3_30, CY_CONTROL_FILE=I2C_Slave_DefaultPlacement.ctl, CY_FITTER_NAME=I2C_1, CY_INSTANCE_SHORT_NAME=I2C_1, CY_MAJOR_VERSION=3, CY_MINOR_VERSION=30, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=cydsfit No Version Information Found, INSTANCE_NAME=I2C_1, )
+module I2C_v3_30_18 (
+    sda_o,
+    scl_o,
+    sda_i,
+    scl_i,
+    iclk,
+    bclk,
+    reset,
+    clock,
+    scl,
+    sda,
+    itclk);
+    output      sda_o;
+    output      scl_o;
+    input       sda_i;
+    input       scl_i;
+    output      iclk;
+    output      bclk;
+    input       reset;
+    input       clock;
+    inout       scl;
+    inout       sda;
+    output      itclk;
+
+
+          wire  sda_x_wire;
+          wire  sda_yfb;
+          wire  udb_clk;
+          wire  Net_975;
+          wire  Net_974;
+          wire  Net_973;
+          wire  bus_clk;
+          wire  Net_972;
+          wire  Net_968;
+          wire  scl_yfb;
+          wire  Net_969;
+          wire  Net_971;
+          wire  Net_970;
+          wire  timeout_clk;
+          wire  Net_697;
+          wire  Net_1045;
+          wire [1:0] Net_1109;
+          wire [5:0] Net_643;
+          wire  scl_x_wire;
+
+	// Vmux_sda_out (cy_virtualmux_v1_0)
+	assign sda_x_wire = Net_643[1];
+
+
+	cy_isr_v1_0
+		#(.int_type(2'b00))
+		I2C_IRQ
+		 (.int_signal(Net_697));
+
+
+    cy_psoc3_i2c_v1_0 I2C_FF (
+        .clock(bus_clk),
+        .scl_in(Net_1109[0]),
+        .sda_in(Net_1109[1]),
+        .scl_out(Net_643[0]),
+        .sda_out(Net_643[1]),
+        .interrupt(Net_643[2]));
+    defparam I2C_FF.use_wakeup = 0;
+
+	// Vmux_interrupt (cy_virtualmux_v1_0)
+	assign Net_697 = Net_643[2];
+
+	// Vmux_scl_out (cy_virtualmux_v1_0)
+	assign scl_x_wire = Net_643[0];
+
+    OneTerminal OneTerminal_1 (
+        .o(Net_969));
+
+    OneTerminal OneTerminal_2 (
+        .o(Net_968));
+
+	// Vmux_clock (cy_virtualmux_v1_0)
+	assign udb_clk = clock;
+
+
+	cy_clock_v1_0
+		#(.id("c821e721-680c-4376-b857-e4a6ce23cab9/5ece924d-20ba-480e-9102-bc082dcdd926"),
+		  .source_clock_id("75C2148C-3656-4d8a-846D-0CAE99AB6FF7"),
+		  .divisor(0),
+		  .period("0"),
+		  .is_direct(1),
+		  .is_digital(1))
+		BusClock
+		 (.clock_out(bus_clk));
 
 
 
+    assign bclk = bus_clk | Net_973;
+
+    ZeroTerminal ZeroTerminal_1 (
+        .z(Net_973));
+
+
+    assign iclk = udb_clk | Net_974;
+
+    ZeroTerminal ZeroTerminal_2 (
+        .z(Net_974));
+
+	// Vmux_scl_in (cy_virtualmux_v1_0)
+	assign Net_1109[0] = scl_yfb;
+
+	// Vmux_sda_in (cy_virtualmux_v1_0)
+	assign Net_1109[1] = sda_yfb;
+
+	wire [0:0] tmpOE__Bufoe_scl_net;
+
+	cy_bufoe
+		Bufoe_scl
+		 (.x(scl_x_wire),
+		  .y(scl),
+		  .oe(tmpOE__Bufoe_scl_net),
+		  .yfb(scl_yfb));
+
+	assign tmpOE__Bufoe_scl_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{Net_969} : {Net_969};
+
+	wire [0:0] tmpOE__Bufoe_sda_net;
+
+	cy_bufoe
+		Bufoe_sda
+		 (.x(sda_x_wire),
+		  .y(sda),
+		  .oe(tmpOE__Bufoe_sda_net),
+		  .yfb(sda_yfb));
+
+	assign tmpOE__Bufoe_sda_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{Net_968} : {Net_968};
+
+	// Vmux_timeout_clock (cy_virtualmux_v1_0)
+	assign timeout_clk = clock;
+
+
+    assign itclk = timeout_clk | Net_975;
+
+    ZeroTerminal ZeroTerminal_3 (
+        .z(Net_975));
+
+
+    assign scl_o = scl_x_wire;
+
+    assign sda_o = sda_x_wire;
 
 
 endmodule
@@ -2075,6 +2215,20 @@ endmodule
 // top
 module top ;
 
+          wire  Net_1993;
+          wire  Net_1992;
+          wire  Net_1991;
+          wire  Net_1990;
+          wire  Net_1989;
+          wire  Net_1988;
+          wire  Net_1987;
+          wire  Net_1986;
+          wire  Net_1985;
+          wire  Net_1858;
+          wire  Net_1857;
+          wire  Net_1759;
+          wire  Net_1775;
+          wire  Net_1757;
           wire [7:0] Net_1325;
           wire  Net_1324;
           wire  Net_1323;
@@ -2284,11 +2438,14 @@ module top ;
           wire  Net_636;
           wire  Net_638;
           wire  Net_1595;
-          wire  Net_924;
+          wire  Net_1690;
+          wire  Net_1686;
+          wire  Net_1689;
+          wire  Net_1114;
+          wire  Net_1856;
     electrical  Net_822;
           wire  Net_977;
           wire  Net_963;
-          wire  Net_1114;
           wire  Net_637;
 
 	wire [0:0] tmpOE__Out_17_net;
@@ -3501,7 +3658,7 @@ module top ;
         .status_1(Net_1614),
         .status_2(Net_1615),
         .status_3(Net_1616),
-        .clock(Net_924),
+        .clock(Net_1856),
         .status_4(Net_1618),
         .status_5(Net_1619),
         .status_6(Net_1620),
@@ -3685,12 +3842,12 @@ module top ;
 
 	cy_clock_v1_0
 		#(.id("06f838a1-2f6d-4444-9c67-6857ac3a4b74"),
-		  .source_clock_id(""),
-		  .divisor(0),
-		  .period("4000000000000"),
+		  .source_clock_id("61737EF6-3B74-48f9-8B91-F7473A442AE7"),
+		  .divisor(24),
+		  .period("0"),
 		  .is_direct(0),
 		  .is_digital(1))
-		Clock_2
+		PWM_1_2_clk
 		 (.clock_out(Net_1114));
 
 
@@ -4390,7 +4547,7 @@ module top ;
 		  .is_direct(0),
 		  .is_digital(1))
 		Clock_3
-		 (.clock_out(Net_924));
+		 (.clock_out(Net_1856));
 
 
     CyStatusReg_v1_80 Status_Reg_1 (
@@ -4398,7 +4555,7 @@ module top ;
         .status_1(Net_1087),
         .status_2(Net_1088),
         .status_3(Net_1089),
-        .clock(Net_924),
+        .clock(Net_1856),
         .status_4(Net_1090),
         .status_5(Net_1091),
         .status_6(Net_1092),
@@ -4437,7 +4594,7 @@ module top ;
 
     PWM_v3_0_9 PWM_3 (
         .reset(1'b0),
-        .clock(Net_1114),
+        .clock(Net_1689),
         .tc(Net_954),
         .pwm1(Net_955),
         .pwm2(Net_956),
@@ -4454,7 +4611,7 @@ module top ;
 
     PWM_v3_0_10 PWM_4 (
         .reset(1'b0),
-        .clock(Net_1114),
+        .clock(Net_1689),
         .tc(Net_968),
         .pwm1(Net_969),
         .pwm2(Net_970),
@@ -4471,7 +4628,7 @@ module top ;
 
     PWM_v3_0_11 PWM_5 (
         .reset(1'b0),
-        .clock(Net_1114),
+        .clock(Net_1686),
         .tc(Net_982),
         .pwm1(Net_983),
         .pwm2(Net_984),
@@ -4488,7 +4645,7 @@ module top ;
 
     PWM_v3_0_12 PWM_6 (
         .reset(1'b0),
-        .clock(Net_1114),
+        .clock(Net_1686),
         .tc(Net_996),
         .pwm1(Net_997),
         .pwm2(Net_998),
@@ -4505,7 +4662,7 @@ module top ;
 
     PWM_v3_0_13 PWM_7 (
         .reset(1'b0),
-        .clock(Net_1114),
+        .clock(Net_1690),
         .tc(Net_1010),
         .pwm1(Net_1011),
         .pwm2(Net_1012),
@@ -4522,7 +4679,7 @@ module top ;
 
     PWM_v3_0_14 PWM_8 (
         .reset(1'b0),
-        .clock(Net_1114),
+        .clock(Net_1690),
         .tc(Net_1024),
         .pwm1(Net_1025),
         .pwm2(Net_1026),
@@ -5564,7 +5721,7 @@ module top ;
         .status_1(Net_1316),
         .status_2(Net_1317),
         .status_3(Net_1318),
-        .clock(Net_924),
+        .clock(Net_1856),
         .status_4(1'b0),
         .status_5(1'b0),
         .status_6(1'b0),
@@ -6132,8 +6289,6 @@ module top ;
 
 	assign tmpOE__In_11_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
 
-    RPiSoC_18 RPiSoC_1 ();
-
 	wire [0:0] tmpOE__In_13_net;
 	wire [0:0] tmpIO_0__In_13_net;
 	wire [0:0] tmpINTERRUPT_0__In_13_net;
@@ -6609,6 +6764,191 @@ module top ;
 		  .out_reset({1'b0}));
 
 	assign tmpOE__In_19_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
+
+
+	cy_clock_v1_0
+		#(.id("e959d357-308f-4b54-897c-e72ae776a6ed"),
+		  .source_clock_id("61737EF6-3B74-48f9-8B91-F7473A442AE7"),
+		  .divisor(24),
+		  .period("0"),
+		  .is_direct(0),
+		  .is_digital(1))
+		PWM_3_4_clk
+		 (.clock_out(Net_1689));
+
+
+
+	cy_clock_v1_0
+		#(.id("92a71496-8675-4a1b-b0cf-14eaa8a65d58"),
+		  .source_clock_id("61737EF6-3B74-48f9-8B91-F7473A442AE7"),
+		  .divisor(24),
+		  .period("0"),
+		  .is_direct(0),
+		  .is_digital(1))
+		PWM_5_6_clk
+		 (.clock_out(Net_1686));
+
+
+
+	cy_clock_v1_0
+		#(.id("8088094a-e868-46aa-9957-e8525481b158"),
+		  .source_clock_id("61737EF6-3B74-48f9-8B91-F7473A442AE7"),
+		  .divisor(24),
+		  .period("0"),
+		  .is_direct(0),
+		  .is_digital(1))
+		PWM_7_8_clk
+		 (.clock_out(Net_1690));
+
+
+    I2C_v3_30_18 I2C_1 (
+        .sda(Net_1857),
+        .scl(Net_1858),
+        .clock(1'b0),
+        .reset(1'b0),
+        .bclk(Net_1987),
+        .iclk(Net_1988),
+        .scl_i(1'b0),
+        .sda_i(1'b0),
+        .scl_o(Net_1991),
+        .sda_o(Net_1992),
+        .itclk(Net_1993));
+
+	wire [0:0] tmpOE__SCL_1_net;
+	wire [0:0] tmpFB_0__SCL_1_net;
+	wire [0:0] tmpINTERRUPT_0__SCL_1_net;
+	electrical [0:0] tmpSIOVREF__SCL_1_net;
+
+	cy_psoc3_pins_v1_10
+		#(.id("02f2cf2c-2c7a-49df-9246-7a3435c21be3"),
+		  .drive_mode(3'b100),
+		  .ibuf_enabled(1'b1),
+		  .init_dr_st(1'b1),
+		  .input_clk_en(0),
+		  .input_sync(1'b1),
+		  .input_sync_mode(1'b0),
+		  .intr_mode(2'b00),
+		  .invert_in_clock(0),
+		  .invert_in_clock_en(0),
+		  .invert_in_reset(0),
+		  .invert_out_clock(0),
+		  .invert_out_clock_en(0),
+		  .invert_out_reset(0),
+		  .io_voltage(""),
+		  .layout_mode("CONTIGUOUS"),
+		  .oe_conn(1'b0),
+		  .oe_reset(0),
+		  .oe_sync(1'b0),
+		  .output_clk_en(0),
+		  .output_clock_mode(1'b0),
+		  .output_conn(1'b0),
+		  .output_mode(1'b0),
+		  .output_reset(0),
+		  .output_sync(1'b0),
+		  .pa_in_clock(-1),
+		  .pa_in_clock_en(-1),
+		  .pa_in_reset(-1),
+		  .pa_out_clock(-1),
+		  .pa_out_clock_en(-1),
+		  .pa_out_reset(-1),
+		  .pin_aliases(""),
+		  .pin_mode("B"),
+		  .por_state(4),
+		  .sio_group_cnt(0),
+		  .sio_hyst(1'b0),
+		  .sio_ibuf(""),
+		  .sio_info(2'b00),
+		  .sio_obuf(""),
+		  .sio_refsel(""),
+		  .sio_vtrip(""),
+		  .slew_rate(1'b0),
+		  .spanning(0),
+		  .use_annotation(1'b0),
+		  .vtrip(2'b00),
+		  .width(1))
+		SCL_1
+		 (.oe(tmpOE__SCL_1_net),
+		  .y({1'b0}),
+		  .fb({tmpFB_0__SCL_1_net[0:0]}),
+		  .io({Net_1858}),
+		  .siovref(tmpSIOVREF__SCL_1_net),
+		  .interrupt({tmpINTERRUPT_0__SCL_1_net[0:0]}),
+		  .in_clock({1'b0}),
+		  .in_clock_en({1'b1}),
+		  .in_reset({1'b0}),
+		  .out_clock({1'b0}),
+		  .out_clock_en({1'b1}),
+		  .out_reset({1'b0}));
+
+	assign tmpOE__SCL_1_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
+
+	wire [0:0] tmpOE__SDA_1_net;
+	wire [0:0] tmpFB_0__SDA_1_net;
+	wire [0:0] tmpINTERRUPT_0__SDA_1_net;
+	electrical [0:0] tmpSIOVREF__SDA_1_net;
+
+	cy_psoc3_pins_v1_10
+		#(.id("22863ebe-a37b-476f-b252-6e49a8c00b12"),
+		  .drive_mode(3'b100),
+		  .ibuf_enabled(1'b1),
+		  .init_dr_st(1'b1),
+		  .input_clk_en(0),
+		  .input_sync(1'b1),
+		  .input_sync_mode(1'b0),
+		  .intr_mode(2'b00),
+		  .invert_in_clock(0),
+		  .invert_in_clock_en(0),
+		  .invert_in_reset(0),
+		  .invert_out_clock(0),
+		  .invert_out_clock_en(0),
+		  .invert_out_reset(0),
+		  .io_voltage(""),
+		  .layout_mode("CONTIGUOUS"),
+		  .oe_conn(1'b0),
+		  .oe_reset(0),
+		  .oe_sync(1'b0),
+		  .output_clk_en(0),
+		  .output_clock_mode(1'b0),
+		  .output_conn(1'b0),
+		  .output_mode(1'b0),
+		  .output_reset(0),
+		  .output_sync(1'b0),
+		  .pa_in_clock(-1),
+		  .pa_in_clock_en(-1),
+		  .pa_in_reset(-1),
+		  .pa_out_clock(-1),
+		  .pa_out_clock_en(-1),
+		  .pa_out_reset(-1),
+		  .pin_aliases(""),
+		  .pin_mode("B"),
+		  .por_state(4),
+		  .sio_group_cnt(0),
+		  .sio_hyst(1'b0),
+		  .sio_ibuf(""),
+		  .sio_info(2'b00),
+		  .sio_obuf(""),
+		  .sio_refsel(""),
+		  .sio_vtrip(""),
+		  .slew_rate(1'b0),
+		  .spanning(0),
+		  .use_annotation(1'b0),
+		  .vtrip(2'b00),
+		  .width(1))
+		SDA_1
+		 (.oe(tmpOE__SDA_1_net),
+		  .y({1'b0}),
+		  .fb({tmpFB_0__SDA_1_net[0:0]}),
+		  .io({Net_1857}),
+		  .siovref(tmpSIOVREF__SDA_1_net),
+		  .interrupt({tmpINTERRUPT_0__SDA_1_net[0:0]}),
+		  .in_clock({1'b0}),
+		  .in_clock_en({1'b1}),
+		  .in_reset({1'b0}),
+		  .out_clock({1'b0}),
+		  .out_clock_en({1'b1}),
+		  .out_reset({1'b0}));
+
+	assign tmpOE__SDA_1_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
 
 
 

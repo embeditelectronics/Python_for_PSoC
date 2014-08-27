@@ -1,5 +1,5 @@
 # PSoC_2_Pi
-# 2014-08-05 21:14:07Z
+# 2014-08-26 20:05:03Z
 
 set_io "DELSIG_in(0)" iocell 15 5
 set_io "IDAC_out_1(0)" iocell 0 6
@@ -52,6 +52,8 @@ set_io "PWM_out_7(0)" iocell 3 6
 set_io "PWM_out_8(0)" iocell 3 7
 set_io "SAR_in_1(0)" iocell 15 4
 set_io "SAR_in_2(0)" iocell 0 3
+set_io "SCL_1(0)" iocell 1 7
+set_io "SDA_1(0)" iocell 1 6
 set_io "VDAC_out_1(0)" iocell 0 1
 set_io "VDAC_out_2(0)" iocell 0 5
 set_io "WaveDAC_out(0)" iocell 0 0

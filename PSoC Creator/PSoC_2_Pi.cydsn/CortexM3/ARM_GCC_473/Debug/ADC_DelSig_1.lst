@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
   55              		.thumb_func
   56              		.type	ADC_DelSig_1_Init, %function
   57              	ADC_DelSig_1_Init:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 2
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 2
 
 
   58              	.LFB0:
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
   53:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** volatile int32 ADC_DelSig_1_CountsPerVolt;
   54:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** 
   55:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** 
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 3
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 3
 
 
   56:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** /***************************************
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
   75              		.loc 1 94 0
   76 0006 40F20003 		movw	r3, #:lower16:ADC_DelSig_1_Config
   77 000a C0F20003 		movt	r3, #:upper16:ADC_DelSig_1_Config
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 4
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 4
 
 
   78 000e 4FF00102 		mov	r2, #1
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  113 0070 45F60732 		movw	r2, #23303
  114 0074 C4F20002 		movt	r2, 16384
  115 0078 1278     		ldrb	r2, [r2, #0]
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 5
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 5
 
 
  116 007a D2B2     		uxtb	r2, r2
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  156 00e6 45F68903 		movw	r3, #22665
  157 00ea C4F20003 		movt	r3, 16384
  158 00ee 4FF05E02 		mov	r2, #94
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 6
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 6
 
 
  159 00f2 1A70     		strb	r2, [r3, #0]
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  179 012a 44F60E63 		movw	r3, #19982
  180 012e C4F20003 		movt	r3, 16384
  181 0132 40F20002 		movw	r2, #:lower16:ADC_DelSig_1_Config
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 7
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 7
 
 
  182 0136 C0F20002 		movt	r2, #:upper16:ADC_DelSig_1_Config
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  173:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** * Summary:
  174:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** *  Enables the ADC DelSig block operation.
  175:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** *
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 8
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 8
 
 
  176:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** *
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  259              		.loc 1 195 0
  260 0036 44F2AA33 		movw	r3, #17322
  261 003a C4F20003 		movt	r3, 16384
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 9
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 9
 
 
  262 003e 44F2AA32 		movw	r2, #17322
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  308 00c0 1A70     		strb	r2, [r3, #0]
  204:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** 
  205:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****     ADC_DelSig_1_DSM_CR17_REG |= (ADC_DelSig_1_DSM_EN_BUF_VREF | ADC_DelSig_1_DSM_EN_BUF_VCM);
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 10
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 10
 
 
  309              		.loc 1 205 0
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  250:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****              ((ADC_DelSig_1_CFG2_REFERENCE != ADC_DelSig_1_EXT_REF_ON_P03) &&
  251:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****              (ADC_DelSig_1_CFG2_REFERENCE != ADC_DelSig_1_EXT_REF_ON_P32))) ||
  252:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****              ((config == 3u) &&
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 11
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 11
 
 
  253:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****               (ADC_DelSig_1_CFG3_INPUT_RANGE == ADC_DelSig_1_IR_VSSA_TO_2VREF) &&
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  347 012e 1278     		ldrb	r2, [r2, #0]
  348 0130 D2B2     		uxtb	r2, r2
  349 0132 42F00602 		orr	r2, r2, #6
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 12
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 12
 
 
  350 0136 D2B2     		uxtb	r2, r2
@@ -707,7 +707,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  381 018c C4F20002 		movt	r2, 16384
  382 0190 1278     		ldrb	r2, [r2, #0]
  383 0192 D2B2     		uxtb	r2, r2
- 384 0194 42F00202 		orr	r2, r2, #2
+ 384 0194 42F01002 		orr	r2, r2, #16
  385 0198 D2B2     		uxtb	r2, r2
  386 019a 1A70     		strb	r2, [r3, #0]
  291:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****     ADC_DelSig_1_STBY_PWRMGR_CHARGE_PUMP_CLK_REG |= ADC_DelSig_1_STBY_PWR_CHARGE_PUMP_CLK_EN;
@@ -718,10 +718,10 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  391 01a8 C4F20002 		movt	r2, 16384
  392 01ac 1278     		ldrb	r2, [r2, #0]
  393 01ae D2B2     		uxtb	r2, r2
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 13
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 13
 
 
- 394 01b0 42F00202 		orr	r2, r2, #2
+ 394 01b0 42F01002 		orr	r2, r2, #16
  395 01b4 D2B2     		uxtb	r2, r2
  396 01b6 1A70     		strb	r2, [r3, #0]
  292:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** 
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  314:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** *  configure the ADC for configuration 1 by default, unless the
  315:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** *  ADC_DelSig_1_SelectConfiguration( ) function has been called to change
  316:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** *  the default setting.
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 14
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 14
 
 
  317:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** *
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  459              	.L4:
  338:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****     }
  339:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** 
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 15
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 15
 
 
  340:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****     /* Enable the ADC */
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  364:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****     uint8 enableInterrupts;
  365:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****     enableInterrupts = CyEnterCriticalSection();
  490              		.loc 1 365 0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 16
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 16
 
 
  491 0006 FFF7FEFF 		bl	CyEnterCriticalSection
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  534              		.loc 1 376 0
  535 007e 45F69103 		movw	r3, #22673
  536 0082 C4F20003 		movt	r3, 16384
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 17
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 17
 
 
  537 0086 45F69102 		movw	r2, #22673
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  580 00fe 44F2AA32 		movw	r2, #17322
  581 0102 C4F20002 		movt	r2, 16384
  582 0106 1278     		ldrb	r2, [r2, #0]
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 18
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 18
 
 
  583 0108 D2B2     		uxtb	r2, r2
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  398:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** 
  399:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****     /* This is only valid if there is an internal clock */
  400:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****     #if(ADC_DelSig_1_DEFAULT_INTERNAL_CLK)
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 19
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 19
 
 
  401:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****         ADC_DelSig_1_PWRMGR_CLK_REG &= (uint8)~ADC_DelSig_1_ACT_PWR_CLK_EN;
@@ -1126,7 +1126,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  661 01e2 C4F20002 		movt	r2, 16384
  662 01e6 1278     		ldrb	r2, [r2, #0]
  663 01e8 D2B2     		uxtb	r2, r2
- 664 01ea 22F00202 		bic	r2, r2, #2
+ 664 01ea 22F01002 		bic	r2, r2, #16
  665 01ee D2B2     		uxtb	r2, r2
  666 01f0 1A70     		strb	r2, [r3, #0]
  409:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****     ADC_DelSig_1_STBY_PWRMGR_CHARGE_PUMP_CLK_REG &= (uint8)~ADC_DelSig_1_STBY_PWR_CHARGE_PUMP_CLK_E
@@ -1137,8 +1137,8 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  671 01fe C4F20002 		movt	r2, 16384
  672 0202 1278     		ldrb	r2, [r2, #0]
  673 0204 D2B2     		uxtb	r2, r2
- 674 0206 22F00202 		bic	r2, r2, #2
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 20
+ 674 0206 22F01002 		bic	r2, r2, #16
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 20
 
 
  675 020a D2B2     		uxtb	r2, r2
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  708 0004 00AF     		add	r7, sp, #0
  709              	.LCFI13:
  710              		.cfi_def_cfa_register 7
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 21
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 21
 
 
  711 0006 0346     		mov	r3, r0
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  446:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** *  By default the LSB is the coherency byte for right alignment data format. 
  447:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** *  The middle or high byte is set automatically depend on left alignment 
  448:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** *  configuration for DMA data transfer.
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 22
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 22
 
 
  449:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** *  If DMA or if a custom API requires different byte to be read the last,
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  781              		.loc 1 471 0
  782 002a 44F61463 		movw	r3, #19988
  783 002e C4F20003 		movt	r3, 16384
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 23
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 23
 
 
  784 0032 FA7B     		ldrb	r2, [r7, #15]
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  502:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** *                be lost when the GCOR value is shifted 4 places to the right.
  503:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** *
  504:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** ******************************************************************************/
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 24
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 24
 
 
  505:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** uint8 ADC_DelSig_1_SetGCOR(float32 gainAdjust) 
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  851 004a B868     		ldr	r0, [r7, #8]	@ float
  852 004c FFF7FEFF 		bl	__aeabi_f2d
  853 0050 0246     		mov	r2, r0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 25
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 25
 
 
  854 0052 0B46     		mov	r3, r1
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  896 00b2 4FF00003 		mov	r3, #0
  897 00b6 FB73     		strb	r3, [r7, #15]
  898              	.L12:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 26
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 26
 
 
  528:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** 
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  927 0000 80B4     		push	{r7}
  928              	.LCFI20:
  929              		.cfi_def_cfa_offset 4
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 27
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 27
 
 
  930              		.cfi_offset 7, -4
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  971              		.global	ADC_DelSig_1_StartConvert
  972              		.thumb
  973              		.thumb_func
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 28
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 28
 
 
  974              		.type	ADC_DelSig_1_StartConvert, %function
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  1004              	.LFE8:
  1005              		.size	ADC_DelSig_1_StartConvert, .-ADC_DelSig_1_StartConvert
  1006 0026 00BF     		.section	.text.ADC_DelSig_1_StopConvert,"ax",%progbits
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 29
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 29
 
 
  1007              		.align	2
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  1038 0022 80BC     		pop	{r7}
  1039 0024 7047     		bx	lr
  1040              		.cfi_endproc
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 30
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 30
 
 
  1041              	.LFE9:
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  1063 0004 00AF     		add	r7, sp, #0
  1064              	.LCFI29:
  1065              		.cfi_def_cfa_register 7
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 31
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 31
 
 
  1066 0006 0346     		mov	r3, r0
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  664:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** }
  1102              		.loc 1 664 0
  1103 0048 1846     		mov	r0, r3
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 32
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 32
 
 
  1104 004a 07F11407 		add	r7, r7, #20
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  1130              		.cfi_def_cfa_offset 16
  1131 0004 00AF     		add	r7, sp, #0
  1132              	.LCFI32:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 33
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 33
 
 
  1133              		.cfi_def_cfa_register 7
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  1166              		.loc 1 713 0
  1167 0048 40F20003 		movw	r3, #:lower16:ADC_DelSig_1_stopConversion
  1168 004c C0F20003 		movt	r3, #:upper16:ADC_DelSig_1_stopConversion
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 34
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 34
 
 
  1169 0050 1B78     		ldrb	r3, [r3, #0]
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  738:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** *  int16:  ADC result.
  739:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** *
  740:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** * Global variables:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 35
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 35
 
 
  741:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** *  ADC_DelSig_1_convDone:  Cleared in single sample mode with resolution
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  762:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****     else /* MID or HIGH */
  763:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****     {   /* Read middle byte at the end */
  764:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****         #if (CY_PSOC3)
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 36
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 36
 
 
  765:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****             result = (CY_GET_REG16(ADC_DelSig_1_DEC_SAMP_16B_PTR));
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  781:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****     return ((int16)result);
  1270              		.loc 1 781 0
  1271 0080 FB88     		ldrh	r3, [r7, #6]
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 37
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 37
 
 
  1272 0082 1BB2     		sxth	r3, r3
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  1301              		.cfi_def_cfa_offset 16
  1302 0004 00AF     		add	r7, sp, #0
  1303              	.LCFI38:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 38
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 38
 
 
  1304              		.cfi_def_cfa_register 7
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  1333              		.loc 1 831 0
  1334 0044 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
  1335 0046 022B     		cmp	r3, #2
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 39
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 39
 
 
  1336 0048 1DD1     		bne	.L42
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  1363              		.loc 1 858 0
  1364 0086 44F61063 		movw	r3, #19984
  1365 008a C4F20003 		movt	r3, 16384
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 40
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 40
 
 
  1366 008e 1B88     		ldrh	r3, [r3, #0]	@ movhi
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  1409              	ADC_DelSig_1_SetOffset:
  1410              	.LFB14:
  870:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** 
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 41
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 41
 
 
  871:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** 
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  1433 0014 07F10C07 		add	r7, r7, #12
  1434 0018 BD46     		mov	sp, r7
  1435 001a 80BC     		pop	{r7}
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 42
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 42
 
 
  1436 001c 7047     		bx	lr
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  1458              	.LCFI43:
  1459              		.cfi_def_cfa_offset 16
  1460 0004 00AF     		add	r7, sp, #0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 43
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 43
 
 
  1461              	.LCFI44:
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  1488              		@ frame_needed = 1, uses_anonymous_args = 0
  1489              		@ link register save eliminated.
  1490 0000 80B4     		push	{r7}
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 44
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 44
 
 
  1491              	.LCFI45:
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  1512 0022 40F20003 		movw	r3, #:lower16:ADC_DelSig_1_CountsPerVolt
  1513 0026 C0F20003 		movt	r3, #:upper16:ADC_DelSig_1_CountsPerVolt
  1514 002a 1B68     		ldr	r3, [r3, #0]
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 45
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 45
 
 
  1515 002c 92FBF3F3 		sdiv	r3, r2, r3
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  1541              		@ frame_needed = 1, uses_anonymous_args = 0
  1542 0000 90B5     		push	{r4, r7, lr}
  1543              	.LCFI48:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 46
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 46
 
 
  1544              		.cfi_def_cfa_offset 12
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  1565 001e 0446     		mov	r4, r0
  1566 0020 40F20003 		movw	r3, #:lower16:ADC_DelSig_1_CountsPerVolt
  1567 0024 C0F20003 		movt	r3, #:upper16:ADC_DelSig_1_CountsPerVolt
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 47
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 47
 
 
  1568 0028 1B68     		ldr	r3, [r3, #0]
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
 1083:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** *
 1084:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** *  uVolts = ((A * adcCounts) / ((int32)ADC_DelSig_1_CountsPerVolt / B));
 1085:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** *
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 48
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 48
 
 
 1086:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** *******************************************************************************/
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
 1105:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****     {
 1106:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****         resolution = ADC_DelSig_1_CFG2_RESOLUTION;
  1630              		.loc 1 1106 0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 49
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 49
 
 
  1631 0030 4FF01003 		mov	r3, #16
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
 1136:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****         #endif /* ADC_DelSig_1__BITS_12 */    
 1137:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****         #if( (ADC_DelSig_1_CFG1_RESOLUTION == ADC_DelSig_1__BITS_13) || \
 1138:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****              (ADC_DelSig_1_CFG2_RESOLUTION == ADC_DelSig_1__BITS_13) || \
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 50
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 50
 
 
 1139:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****              (ADC_DelSig_1_CFG3_RESOLUTION == ADC_DelSig_1__BITS_13) || \
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
 1184:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****              (ADC_DelSig_1_CFG3_RESOLUTION == ADC_DelSig_1__BITS_18) || \
 1185:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****              (ADC_DelSig_1_CFG4_RESOLUTION == ADC_DelSig_1__BITS_18) )
 1186:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****             case (uint8)ADC_DelSig_1__BITS_18:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 51
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 51
 
 
 1187:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****                 coefA = ADC_DelSig_1_1UV_COUNTS / ADC_DelSig_1_DIVISOR_125;
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  1689 00a0 C0F20003 		movt	r3, #:upper16:ADC_DelSig_1_Offset
  1690 00a4 1B68     		ldr	r3, [r3, #0]
  1691 00a6 7969     		ldr	r1, [r7, #20]
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 52
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 52
 
 
  1692 00a8 01FB03F1 		mul	r1, r1, r3
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  1719 0000 80B5     		push	{r7, lr}
  1720              	.LCFI54:
  1721              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 53
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 53
 
 
  1722              		.cfi_offset 7, -8
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
 1254:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****         ADC_DelSig_1_DEC_DR1_REG     = ADC_DelSig_1_CFG1_DEC_DR1;
  1766              		.loc 1 1254 0
  1767 0066 44F60663 		movw	r3, #19974
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 54
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 54
 
 
  1768 006a C4F20003 		movt	r3, 16384
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  1812 00e4 45F68A03 		movw	r3, #22666
  1813 00e8 C4F20003 		movt	r3, 16384
  1814 00ec 4FF05502 		mov	r2, #85
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 55
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 55
 
 
  1815 00f0 1A70     		strb	r2, [r3, #0]
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
 1275:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** 
 1276:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****         ADC_DelSig_1_DSM_BUF0_REG    = ADC_DelSig_1_CFG1_DSM_BUF0;
  1859              		.loc 1 1276 0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 56
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 56
 
 
  1860 016a 45F69A03 		movw	r3, #22682
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  1888 01b8 4FF00800 		mov	r0, #8
  1889 01bc 4FF00101 		mov	r1, #1
  1890 01c0 FFF7FEFF 		bl	ADC_DelSig_1_Ext_CP_Clk_SetDividerRegister
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 57
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 57
 
 
 1303:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** 
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
 1347:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DSM_BUF1_REG    = ADC_DelSig_1_CFG2_DSM_BUF1;
 1348:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DSM_BUF2_REG    = ADC_DelSig_1_CFG2_DSM_BUF2;
 1349:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DSM_BUF3_REG    = ADC_DelSig_1_CFG2_DSM_BUF3;
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 58
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 58
 
 
 1350:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** 
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
 1404:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DSM_CR6_REG     = ADC_DelSig_1_CFG3_DSM_CR6;
 1405:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DSM_CR7_REG     = ADC_DelSig_1_CFG3_DSM_CR7;
 1406:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DSM_CR10_REG    = ADC_DelSig_1_CFG3_DSM_CR10;
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 59
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 59
 
 
 1407:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DSM_CR11_REG    = ADC_DelSig_1_CFG3_DSM_CR11;
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
 1461:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DEC_CR_REG      = ADC_DelSig_1_CFG4_DEC_CR;
 1462:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DEC_SHIFT1_REG  = ADC_DelSig_1_CFG4_DEC_SHIFT1;
 1463:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DEC_SHIFT2_REG  = ADC_DelSig_1_CFG4_DEC_SHIFT2;
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 60
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 60
 
 
 1464:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_DEC_DR2_REG     = ADC_DelSig_1_CFG4_DEC_DR2;
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
 1518:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****             #endif /* ADC_DelSig_1_DEFAULT_INTERNAL_CLK */
 1519:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** 
 1520:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****             #if(ADC_DelSig_1_IRQ_REMOVE == 0u)
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 61
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 61
 
 
 1521:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****                 /* Set interrupt vector */
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  1921              	.LCFI57:
  1922              		.cfi_def_cfa_offset 8
  1923              		.cfi_offset 7, -8
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 62
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 62
 
 
  1924              		.cfi_offset 14, -4
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
 1571:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** 
 1572:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****         /* Set the  ADC registers based on the configuration */
 1573:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****         ADC_DelSig_1_InitConfig(config);
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 63
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 63
 
 
  1962              		.loc 1 1573 0
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  1997              		.loc 1 1591 0 discriminator 1
  1998 009a 4FF00000 		mov	r0, #0
  1999 009e FFF7FEFF 		bl	CyHalt
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 64
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 64
 
 
  2000              	.L63:
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2026              		.cfi_def_cfa_offset 32
  2027 0004 00AF     		add	r7, sp, #0
  2028              	.LCFI62:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 65
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 65
 
 
  2029              		.cfi_def_cfa_register 7
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2068 0066 C4F60013 		movt	r3, 18688
  2069 006a 1B78     		ldrb	r3, [r3, #0]
  2070 006c DBB2     		uxtb	r3, r3
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 66
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 66
 
 
  2071 006e FB75     		strb	r3, [r7, #23]
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2105              	.L73:
 1653:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** 
 1654:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****             case ADC_DelSig_1_IR_VNEG_VREF_4_DIFF:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 67
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 67
 
 
 1655:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****                 /* Normalize the flash Value */
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
 1676:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****                 break;
  2138              		.loc 1 1676 0
  2139 00e2 0BE0     		b	.L78
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 68
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 68
 
 
  2140              	.L83:
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2179 012a 03F10F03 		add	r3, r3, #15
  2180 012e 42FA03F3 		asr	r3, r2, r3
  2181 0132 BB82     		strh	r3, [r7, #20]	@ movhi
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 69
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 69
 
 
 1691:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****             ADC_DelSig_1_gcor[config - 1u].gval = (resolution + 1u);
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2219              		.loc 1 1707 0
  2220 0194 07F11807 		add	r7, r7, #24
  2221 0198 BD46     		mov	sp, r7
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 70
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 70
 
 
  2222 019a 80BD     		pop	{r7, pc}
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
 1730:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****     ADC_DelSig_1_RESET_CR4_REG |= (ADC_DelSig_1_IGNORE_PRESA1 | ADC_DelSig_1_IGNORE_PRESD1);
  2254              		.loc 1 1730 0
  2255 0012 44F2F863 		movw	r3, #18168
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 71
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 71
 
 
  2256 0016 C4F20003 		movt	r3, 16384
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
 1739:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** 
 1740:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****     CyExitCriticalSection(enableInterrupts);
  2302              		.loc 1 1740 0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 72
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 72
 
 
  2303 0096 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2334              	.LCFI68:
  2335              		.cfi_def_cfa_register 7
 1764:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****     int8 result;
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 73
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 73
 
 
 1765:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** 
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
 1779:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** ********************************************************************************
 1780:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** *
 1781:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** * Summary:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 74
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 74
 
 
 1782:.\Generated_Source\PSoC5/ADC_DelSig_1.c **** *  This function simplifies getting results from the ADC when only a
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2408 0032 0346     		mov	r3, r0
  2409 0034 FB80     		strh	r3, [r7, #6]	@ movhi
 1804:.\Generated_Source\PSoC5/ADC_DelSig_1.c ****     ADC_DelSig_1_StopConvert();
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 75
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 75
 
 
  2410              		.loc 1 1804 0
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2439              		.cfi_offset 14, -4
  2440 0002 82B0     		sub	sp, sp, #8
  2441              	.LCFI73:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 76
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 76
 
 
  2442              		.cfi_def_cfa_offset 16
@@ -4557,13 +4557,13 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2484 0006 00000000 		.4byte	.Ldebug_abbrev0
  2485 000a 04       		.byte	0x4
  2486 000b 01       		.uleb128 0x1
- 2487 000c 03030000 		.4byte	.LASF89
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 77
+ 2487 000c 04030000 		.4byte	.LASF89
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 77
 
 
  2488 0010 01       		.byte	0x1
- 2489 0011 75010000 		.4byte	.LASF90
- 2490 0015 1A010000 		.4byte	.LASF91
+ 2489 0011 28010000 		.4byte	.LASF90
+ 2490 0015 B8010000 		.4byte	.LASF91
  2491 0019 00000000 		.4byte	.Ldebug_ranges0+0
  2492 001d 00000000 		.4byte	0
  2493 0021 00000000 		.4byte	0
@@ -4575,15 +4575,15 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2499 0030 02       		.uleb128 0x2
  2500 0031 01       		.byte	0x1
  2501 0032 08       		.byte	0x8
- 2502 0033 69030000 		.4byte	.LASF1
+ 2502 0033 6A030000 		.4byte	.LASF1
  2503 0037 02       		.uleb128 0x2
  2504 0038 02       		.byte	0x2
  2505 0039 05       		.byte	0x5
- 2506 003a 8E030000 		.4byte	.LASF2
+ 2506 003a 8F030000 		.4byte	.LASF2
  2507 003e 02       		.uleb128 0x2
  2508 003f 02       		.byte	0x2
  2509 0040 07       		.byte	0x7
- 2510 0041 ED010000 		.4byte	.LASF3
+ 2510 0041 A0010000 		.4byte	.LASF3
  2511 0045 02       		.uleb128 0x2
  2512 0046 04       		.byte	0x4
  2513 0047 05       		.byte	0x5
@@ -4591,7 +4591,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2515 004c 02       		.uleb128 0x2
  2516 004d 04       		.byte	0x4
  2517 004e 07       		.byte	0x7
- 2518 004f C6010000 		.4byte	.LASF5
+ 2518 004f 79010000 		.4byte	.LASF5
  2519 0053 02       		.uleb128 0x2
  2520 0054 08       		.byte	0x8
  2521 0055 05       		.byte	0x5
@@ -4607,7 +4607,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2531 0068 02       		.uleb128 0x2
  2532 0069 04       		.byte	0x4
  2533 006a 07       		.byte	0x7
- 2534 006b 9D010000 		.4byte	.LASF8
+ 2534 006b 50010000 		.4byte	.LASF8
  2535 006f 04       		.uleb128 0x4
  2536 0070 00010000 		.4byte	.LASF9
  2537 0074 02       		.byte	0x2
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2542 007f 02       		.byte	0x2
  2543 0080 5C       		.byte	0x5c
  2544 0081 3E000000 		.4byte	0x3e
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 78
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 78
 
 
  2545 0085 04       		.uleb128 0x4
@@ -4627,12 +4627,12 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2548 008b 5D       		.byte	0x5d
  2549 008c 4C000000 		.4byte	0x4c
  2550 0090 04       		.uleb128 0x4
- 2551 0091 00020000 		.4byte	.LASF12
+ 2551 0091 B3010000 		.4byte	.LASF12
  2552 0095 02       		.byte	0x2
  2553 0096 5E       		.byte	0x5e
  2554 0097 29000000 		.4byte	0x29
  2555 009b 04       		.uleb128 0x4
- 2556 009c FA040000 		.4byte	.LASF13
+ 2556 009c FB040000 		.4byte	.LASF13
  2557 00a0 02       		.byte	0x2
  2558 00a1 5F       		.byte	0x5f
  2559 00a2 37000000 		.4byte	0x37
@@ -4642,14 +4642,14 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2563 00ac 60       		.byte	0x60
  2564 00ad 45000000 		.4byte	0x45
  2565 00b1 04       		.uleb128 0x4
- 2566 00b2 3E020000 		.4byte	.LASF15
+ 2566 00b2 3F020000 		.4byte	.LASF15
  2567 00b6 02       		.byte	0x2
  2568 00b7 61       		.byte	0x61
  2569 00b8 BC000000 		.4byte	0xbc
  2570 00bc 02       		.uleb128 0x2
  2571 00bd 04       		.byte	0x4
  2572 00be 04       		.byte	0x4
- 2573 00bf E9020000 		.4byte	.LASF16
+ 2573 00bf EA020000 		.4byte	.LASF16
  2574 00c3 02       		.uleb128 0x2
  2575 00c4 08       		.byte	0x8
  2576 00c5 04       		.byte	0x4
@@ -4657,9 +4657,9 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2578 00ca 02       		.uleb128 0x2
  2579 00cb 01       		.byte	0x1
  2580 00cc 08       		.byte	0x8
- 2581 00cd EA030000 		.4byte	.LASF18
+ 2581 00cd EB030000 		.4byte	.LASF18
  2582 00d1 04       		.uleb128 0x4
- 2583 00d2 4C030000 		.4byte	.LASF19
+ 2583 00d2 4D030000 		.4byte	.LASF19
  2584 00d6 02       		.byte	0x2
  2585 00d7 F0       		.byte	0xf0
  2586 00d8 DC000000 		.4byte	0xdc
@@ -4673,19 +4673,19 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2594 00ec 05       		.uleb128 0x5
  2595 00ed 7A000000 		.4byte	0x7a
  2596 00f1 04       		.uleb128 0x4
- 2597 00f2 1C020000 		.4byte	.LASF21
+ 2597 00f2 1D020000 		.4byte	.LASF21
  2598 00f6 02       		.byte	0x2
  2599 00f7 F2       		.byte	0xf2
  2600 00f8 FC000000 		.4byte	0xfc
  2601 00fc 05       		.uleb128 0x5
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 79
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 79
 
 
  2602 00fd 85000000 		.4byte	0x85
  2603 0101 02       		.uleb128 0x2
  2604 0102 04       		.byte	0x4
  2605 0103 07       		.byte	0x7
- 2606 0104 5F020000 		.4byte	.LASF22
+ 2606 0104 60020000 		.4byte	.LASF22
  2607 0108 06       		.uleb128 0x6
  2608 0109 04       		.byte	0x4
  2609 010a 03       		.byte	0x3
@@ -4700,7 +4700,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2618 011c 23       		.byte	0x23
  2619 011d 00       		.uleb128 0
  2620 011e 07       		.uleb128 0x7
- 2621 011f 2B040000 		.4byte	.LASF24
+ 2621 011f 2C040000 		.4byte	.LASF24
  2622 0123 03       		.byte	0x3
  2623 0124 32       		.byte	0x32
  2624 0125 6F000000 		.4byte	0x6f
@@ -4709,13 +4709,13 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2627 012b 02       		.uleb128 0x2
  2628 012c 00       		.byte	0
  2629 012d 04       		.uleb128 0x4
- 2630 012e D0020000 		.4byte	.LASF25
+ 2630 012e D1020000 		.4byte	.LASF25
  2631 0132 03       		.byte	0x3
  2632 0133 33       		.byte	0x33
  2633 0134 08010000 		.4byte	0x108
  2634 0138 08       		.uleb128 0x8
  2635 0139 01       		.byte	0x1
- 2636 013a 7E020000 		.4byte	.LASF28
+ 2636 013a 7F020000 		.4byte	.LASF28
  2637 013e 01       		.byte	0x1
  2638 013f 5B       		.byte	0x5b
  2639 0140 01       		.byte	0x1
@@ -4735,10 +4735,10 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2653 0163 01       		.byte	0x1
  2654 0164 85010000 		.4byte	0x185
  2655 0168 0A       		.uleb128 0xa
- 2656 0169 24040000 		.4byte	.LASF26
+ 2656 0169 25040000 		.4byte	.LASF26
  2657 016d 01       		.byte	0x1
  2658 016e BA       		.byte	0xba
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 80
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 80
 
 
  2659 016f 6F000000 		.4byte	0x6f
@@ -4746,7 +4746,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2661 0174 91       		.byte	0x91
  2662 0175 76       		.sleb128 -10
  2663 0176 0A       		.uleb128 0xa
- 2664 0177 8B040000 		.4byte	.LASF27
+ 2664 0177 8C040000 		.4byte	.LASF27
  2665 017b 01       		.byte	0x1
  2666 017c BB       		.byte	0xbb
  2667 017d 6F000000 		.4byte	0x6f
@@ -4756,7 +4756,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2671 0184 00       		.byte	0
  2672 0185 0B       		.uleb128 0xb
  2673 0186 01       		.byte	0x1
- 2674 0187 E7040000 		.4byte	.LASF29
+ 2674 0187 E8040000 		.4byte	.LASF29
  2675 018b 01       		.byte	0x1
  2676 018c 4901     		.2byte	0x149
  2677 018e 01       		.byte	0x1
@@ -4776,7 +4776,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2691 01b2 01       		.byte	0x1
  2692 01b3 C7010000 		.4byte	0x1c7
  2693 01b7 0D       		.uleb128 0xd
- 2694 01b8 8B040000 		.4byte	.LASF27
+ 2694 01b8 8C040000 		.4byte	.LASF27
  2695 01bc 01       		.byte	0x1
  2696 01bd 6C01     		.2byte	0x16c
  2697 01bf 6F000000 		.4byte	0x6f
@@ -4786,7 +4786,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2701 01c6 00       		.byte	0
  2702 01c7 0E       		.uleb128 0xe
  2703 01c8 01       		.byte	0x1
- 2704 01c9 5F050000 		.4byte	.LASF32
+ 2704 01c9 60050000 		.4byte	.LASF32
  2705 01cd 01       		.byte	0x1
  2706 01ce AD01     		.2byte	0x1ad
  2707 01d0 01       		.byte	0x1
@@ -4796,9 +4796,9 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2711 01dd 01       		.byte	0x1
  2712 01de 01020000 		.4byte	0x201
  2713 01e2 0F       		.uleb128 0xf
- 2714 01e3 AD020000 		.4byte	.LASF35
+ 2714 01e3 AE020000 		.4byte	.LASF35
  2715 01e7 01       		.byte	0x1
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 81
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 81
 
 
  2716 01e8 AD01     		.2byte	0x1ad
@@ -4807,7 +4807,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2719 01ef 91       		.byte	0x91
  2720 01f0 6F       		.sleb128 -17
  2721 01f1 0D       		.uleb128 0xd
- 2722 01f2 7A050000 		.4byte	.LASF33
+ 2722 01f2 7B050000 		.4byte	.LASF33
  2723 01f6 01       		.byte	0x1
  2724 01f7 AF01     		.2byte	0x1af
  2725 01f9 6F000000 		.4byte	0x6f
@@ -4817,7 +4817,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2729 0200 00       		.byte	0
  2730 0201 0E       		.uleb128 0xe
  2731 0202 01       		.byte	0x1
- 2732 0203 EF030000 		.4byte	.LASF34
+ 2732 0203 F0030000 		.4byte	.LASF34
  2733 0207 01       		.byte	0x1
  2734 0208 D101     		.2byte	0x1d1
  2735 020a 01       		.byte	0x1
@@ -4827,7 +4827,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2739 0217 01       		.byte	0x1
  2740 0218 3B020000 		.4byte	0x23b
  2741 021c 0F       		.uleb128 0xf
- 2742 021d C6020000 		.4byte	.LASF36
+ 2742 021d C7020000 		.4byte	.LASF36
  2743 0221 01       		.byte	0x1
  2744 0222 D101     		.2byte	0x1d1
  2745 0224 6F000000 		.4byte	0x6f
@@ -4835,7 +4835,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2747 0229 91       		.byte	0x91
  2748 022a 6F       		.sleb128 -17
  2749 022b 0D       		.uleb128 0xd
- 2750 022c 7A050000 		.4byte	.LASF33
+ 2750 022c 7B050000 		.4byte	.LASF33
  2751 0230 01       		.byte	0x1
  2752 0231 D301     		.2byte	0x1d3
  2753 0233 6F000000 		.4byte	0x6f
@@ -4845,7 +4845,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2757 023a 00       		.byte	0
  2758 023b 10       		.uleb128 0x10
  2759 023c 01       		.byte	0x1
- 2760 023d B9040000 		.4byte	.LASF40
+ 2760 023d BA040000 		.4byte	.LASF40
  2761 0241 01       		.byte	0x1
  2762 0242 F901     		.2byte	0x1f9
  2763 0244 01       		.byte	0x1
@@ -4856,9 +4856,9 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2768 0255 01       		.byte	0x1
  2769 0256 97020000 		.4byte	0x297
  2770 025a 0F       		.uleb128 0xf
- 2771 025b DC040000 		.4byte	.LASF37
+ 2771 025b DD040000 		.4byte	.LASF37
  2772 025f 01       		.byte	0x1
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 82
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 82
 
 
  2773 0260 F901     		.2byte	0x1f9
@@ -4867,7 +4867,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2776 0267 91       		.byte	0x91
  2777 0268 6C       		.sleb128 -20
  2778 0269 0D       		.uleb128 0xd
- 2779 026a 7A050000 		.4byte	.LASF33
+ 2779 026a 7B050000 		.4byte	.LASF33
  2780 026e 01       		.byte	0x1
  2781 026f FB01     		.2byte	0x1fb
  2782 0271 7A000000 		.4byte	0x7a
@@ -4875,7 +4875,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2784 0276 91       		.byte	0x91
  2785 0277 74       		.sleb128 -12
  2786 0278 0D       		.uleb128 0xd
- 2787 0279 D5040000 		.4byte	.LASF38
+ 2787 0279 D6040000 		.4byte	.LASF38
  2788 027d 01       		.byte	0x1
  2789 027e FC01     		.2byte	0x1fc
  2790 0280 6F000000 		.4byte	0x6f
@@ -4883,7 +4883,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2792 0285 91       		.byte	0x91
  2793 0286 77       		.sleb128 -9
  2794 0287 0D       		.uleb128 0xd
- 2795 0288 38040000 		.4byte	.LASF39
+ 2795 0288 39040000 		.4byte	.LASF39
  2796 028c 01       		.byte	0x1
  2797 028d FD01     		.2byte	0x1fd
  2798 028f B1000000 		.4byte	0xb1
@@ -4893,7 +4893,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2802 0296 00       		.byte	0
  2803 0297 11       		.uleb128 0x11
  2804 0298 01       		.byte	0x1
- 2805 0299 B7050000 		.4byte	.LASF41
+ 2805 0299 B8050000 		.4byte	.LASF41
  2806 029d 01       		.byte	0x1
  2807 029e 2802     		.2byte	0x228
  2808 02a0 01       		.byte	0x1
@@ -4904,7 +4904,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2813 02b1 01       		.byte	0x1
  2814 02b2 D5020000 		.4byte	0x2d5
  2815 02b6 0D       		.uleb128 0xd
- 2816 02b7 CE040000 		.4byte	.LASF42
+ 2816 02b7 CF040000 		.4byte	.LASF42
  2817 02bb 01       		.byte	0x1
  2818 02bc 2A02     		.2byte	0x22a
  2819 02be 6F000000 		.4byte	0x6f
@@ -4912,20 +4912,20 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2821 02c3 91       		.byte	0x91
  2822 02c4 75       		.sleb128 -11
  2823 02c5 0D       		.uleb128 0xd
- 2824 02c6 05020000 		.4byte	.LASF43
+ 2824 02c6 06020000 		.4byte	.LASF43
  2825 02ca 01       		.byte	0x1
  2826 02cb 2B02     		.2byte	0x22b
  2827 02cd 7A000000 		.4byte	0x7a
  2828 02d1 02       		.byte	0x2
  2829 02d2 91       		.byte	0x91
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 83
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 83
 
 
  2830 02d3 76       		.sleb128 -10
  2831 02d4 00       		.byte	0
  2832 02d5 12       		.uleb128 0x12
  2833 02d6 01       		.byte	0x1
- 2834 02d7 A0030000 		.4byte	.LASF44
+ 2834 02d7 A1030000 		.4byte	.LASF44
  2835 02db 01       		.byte	0x1
  2836 02dc 4A02     		.2byte	0x24a
  2837 02de 01       		.byte	0x1
@@ -4935,7 +4935,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2841 02eb 01       		.byte	0x1
  2842 02ec 12       		.uleb128 0x12
  2843 02ed 01       		.byte	0x1
- 2844 02ee 00050000 		.4byte	.LASF45
+ 2844 02ee 01050000 		.4byte	.LASF45
  2845 02f2 01       		.byte	0x1
  2846 02f3 6102     		.2byte	0x261
  2847 02f5 01       		.byte	0x1
@@ -4945,7 +4945,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2851 0302 01       		.byte	0x1
  2852 0303 11       		.uleb128 0x11
  2853 0304 01       		.byte	0x1
- 2854 0305 9C040000 		.4byte	.LASF46
+ 2854 0305 9D040000 		.4byte	.LASF46
  2855 0309 01       		.byte	0x1
  2856 030a 8402     		.2byte	0x284
  2857 030c 01       		.byte	0x1
@@ -4956,7 +4956,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2862 031d 01       		.byte	0x1
  2863 031e 41030000 		.4byte	0x341
  2864 0322 0F       		.uleb128 0xf
- 2865 0323 6D010000 		.4byte	.LASF47
+ 2865 0323 20010000 		.4byte	.LASF47
  2866 0327 01       		.byte	0x1
  2867 0328 8402     		.2byte	0x284
  2868 032a 6F000000 		.4byte	0x6f
@@ -4964,7 +4964,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2870 032f 91       		.byte	0x91
  2871 0330 6F       		.sleb128 -17
  2872 0331 0D       		.uleb128 0xd
- 2873 0332 D5040000 		.4byte	.LASF38
+ 2873 0332 D6040000 		.4byte	.LASF38
  2874 0336 01       		.byte	0x1
  2875 0337 8602     		.2byte	0x286
  2876 0339 6F000000 		.4byte	0x6f
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2884 0347 01       		.byte	0x1
  2885 0348 B302     		.2byte	0x2b3
  2886 034a 01       		.byte	0x1
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 84
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 84
 
 
  2887 034b 90000000 		.4byte	0x90
@@ -4988,7 +4988,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2891 035b 01       		.byte	0x1
  2892 035c 7F030000 		.4byte	0x37f
  2893 0360 0D       		.uleb128 0xd
- 2894 0361 94050000 		.4byte	.LASF49
+ 2894 0361 95050000 		.4byte	.LASF49
  2895 0365 01       		.byte	0x1
  2896 0366 B502     		.2byte	0x2b5
  2897 0368 90000000 		.4byte	0x90
@@ -4996,7 +4996,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2899 036d 91       		.byte	0x91
  2900 036e 76       		.sleb128 -10
  2901 036f 0D       		.uleb128 0xd
- 2902 0370 C6020000 		.4byte	.LASF36
+ 2902 0370 C7020000 		.4byte	.LASF36
  2903 0374 01       		.byte	0x1
  2904 0375 B602     		.2byte	0x2b6
  2905 0377 6F000000 		.4byte	0x6f
@@ -5006,7 +5006,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2909 037e 00       		.byte	0
  2910 037f 11       		.uleb128 0x11
  2911 0380 01       		.byte	0x1
- 2912 0381 46020000 		.4byte	.LASF50
+ 2912 0381 47020000 		.4byte	.LASF50
  2913 0385 01       		.byte	0x1
  2914 0386 E902     		.2byte	0x2e9
  2915 0388 01       		.byte	0x1
@@ -5017,7 +5017,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2920 0399 01       		.byte	0x1
  2921 039a BD030000 		.4byte	0x3bd
  2922 039e 0D       		.uleb128 0xd
- 2923 039f 94050000 		.4byte	.LASF49
+ 2923 039f 95050000 		.4byte	.LASF49
  2924 03a3 01       		.byte	0x1
  2925 03a4 EB02     		.2byte	0x2eb
  2926 03a6 7A000000 		.4byte	0x7a
@@ -5025,7 +5025,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2928 03ab 91       		.byte	0x91
  2929 03ac 76       		.sleb128 -10
  2930 03ad 0D       		.uleb128 0xd
- 2931 03ae C6020000 		.4byte	.LASF36
+ 2931 03ae C7020000 		.4byte	.LASF36
  2932 03b2 01       		.byte	0x1
  2933 03b3 EC02     		.2byte	0x2ec
  2934 03b5 6F000000 		.4byte	0x6f
@@ -5035,10 +5035,10 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2938 03bc 00       		.byte	0
  2939 03bd 11       		.uleb128 0x11
  2940 03be 01       		.byte	0x1
- 2941 03bf D1030000 		.4byte	.LASF51
+ 2941 03bf D2030000 		.4byte	.LASF51
  2942 03c3 01       		.byte	0x1
  2943 03c4 2503     		.2byte	0x325
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 85
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 85
 
 
  2944 03c6 01       		.byte	0x1
@@ -5049,7 +5049,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2949 03d7 01       		.byte	0x1
  2950 03d8 FB030000 		.4byte	0x3fb
  2951 03dc 0D       		.uleb128 0xd
- 2952 03dd 94050000 		.4byte	.LASF49
+ 2952 03dd 95050000 		.4byte	.LASF49
  2953 03e1 01       		.byte	0x1
  2954 03e2 2703     		.2byte	0x327
  2955 03e4 85000000 		.4byte	0x85
@@ -5057,7 +5057,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2957 03e9 91       		.byte	0x91
  2958 03ea 74       		.sleb128 -12
  2959 03eb 0D       		.uleb128 0xd
- 2960 03ec C6020000 		.4byte	.LASF36
+ 2960 03ec C7020000 		.4byte	.LASF36
  2961 03f0 01       		.byte	0x1
  2962 03f1 2803     		.2byte	0x328
  2963 03f3 6F000000 		.4byte	0x6f
@@ -5067,7 +5067,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2967 03fa 00       		.byte	0
  2968 03fb 0E       		.uleb128 0xe
  2969 03fc 01       		.byte	0x1
- 2970 03fd 77030000 		.4byte	.LASF52
+ 2970 03fd 78030000 		.4byte	.LASF52
  2971 0401 01       		.byte	0x1
  2972 0402 8203     		.2byte	0x382
  2973 0404 01       		.byte	0x1
@@ -5077,7 +5077,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2977 0411 01       		.byte	0x1
  2978 0412 26040000 		.4byte	0x426
  2979 0416 0F       		.uleb128 0xf
- 2980 0417 5C040000 		.4byte	.LASF53
+ 2980 0417 5D040000 		.4byte	.LASF53
  2981 041b 01       		.byte	0x1
  2982 041c 8203     		.2byte	0x382
  2983 041e A6000000 		.4byte	0xa6
@@ -5087,7 +5087,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2987 0425 00       		.byte	0
  2988 0426 0E       		.uleb128 0xe
  2989 0427 01       		.byte	0x1
- 2990 0428 19050000 		.4byte	.LASF54
+ 2990 0428 1A050000 		.4byte	.LASF54
  2991 042c 01       		.byte	0x1
  2992 042d A503     		.2byte	0x3a5
  2993 042f 01       		.byte	0x1
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  2998 043d 51040000 		.4byte	0x451
  2999 0441 0F       		.uleb128 0xf
  3000 0442 07000000 		.4byte	.LASF55
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 86
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 86
 
 
  3001 0446 01       		.byte	0x1
@@ -5110,7 +5110,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3007 0450 00       		.byte	0
  3008 0451 11       		.uleb128 0x11
  3009 0452 01       		.byte	0x1
- 3010 0453 42050000 		.4byte	.LASF56
+ 3010 0453 43050000 		.4byte	.LASF56
  3011 0457 01       		.byte	0x1
  3012 0458 C003     		.2byte	0x3c0
  3013 045a 01       		.byte	0x1
@@ -5121,7 +5121,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3018 046b 01       		.byte	0x1
  3019 046c 8F040000 		.4byte	0x48f
  3020 0470 0F       		.uleb128 0xf
- 3021 0471 63040000 		.4byte	.LASF57
+ 3021 0471 64040000 		.4byte	.LASF57
  3022 0475 01       		.byte	0x1
  3023 0476 C003     		.2byte	0x3c0
  3024 0478 A6000000 		.4byte	0xa6
@@ -5129,7 +5129,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3026 047d 91       		.byte	0x91
  3027 047e 6C       		.sleb128 -20
  3028 047f 0D       		.uleb128 0xd
- 3029 0480 0F020000 		.4byte	.LASF58
+ 3029 0480 10020000 		.4byte	.LASF58
  3030 0484 01       		.byte	0x1
  3031 0485 C303     		.2byte	0x3c3
  3032 0487 9B000000 		.4byte	0x9b
@@ -5139,7 +5139,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3036 048e 00       		.byte	0
  3037 048f 10       		.uleb128 0x10
  3038 0490 01       		.byte	0x1
- 3039 0491 22020000 		.4byte	.LASF59
+ 3039 0491 23020000 		.4byte	.LASF59
  3040 0495 01       		.byte	0x1
  3041 0496 FD03     		.2byte	0x3fd
  3042 0498 01       		.byte	0x1
@@ -5150,7 +5150,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3047 04a9 01       		.byte	0x1
  3048 04aa CD040000 		.4byte	0x4cd
  3049 04ae 0F       		.uleb128 0xf
- 3050 04af 63040000 		.4byte	.LASF57
+ 3050 04af 64040000 		.4byte	.LASF57
  3051 04b3 01       		.byte	0x1
  3052 04b4 FD03     		.2byte	0x3fd
  3053 04b6 A6000000 		.4byte	0xa6
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3055 04bb 91       		.byte	0x91
  3056 04bc 64       		.sleb128 -28
  3057 04bd 0D       		.uleb128 0xd
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 87
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 87
 
 
  3058 04be 0D010000 		.4byte	.LASF60
@@ -5171,7 +5171,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3065 04cc 00       		.byte	0
  3066 04cd 11       		.uleb128 0x11
  3067 04ce 01       		.byte	0x1
- 3068 04cf 90020000 		.4byte	.LASF61
+ 3068 04cf 91020000 		.4byte	.LASF61
  3069 04d3 01       		.byte	0x1
  3070 04d4 3F04     		.2byte	0x43f
  3071 04d6 01       		.byte	0x1
@@ -5182,7 +5182,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3076 04e7 01       		.byte	0x1
  3077 04e8 38050000 		.4byte	0x538
  3078 04ec 0F       		.uleb128 0xf
- 3079 04ed 63040000 		.4byte	.LASF57
+ 3079 04ed 64040000 		.4byte	.LASF57
  3080 04f1 01       		.byte	0x1
  3081 04f2 3F04     		.2byte	0x43f
  3082 04f4 A6000000 		.4byte	0xa6
@@ -5190,7 +5190,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3084 04f9 91       		.byte	0x91
  3085 04fa 64       		.sleb128 -28
  3086 04fb 0D       		.uleb128 0xd
- 3087 04fc AA010000 		.4byte	.LASF62
+ 3087 04fc 5D010000 		.4byte	.LASF62
  3088 0500 01       		.byte	0x1
  3089 0501 4204     		.2byte	0x442
  3090 0503 A6000000 		.4byte	0xa6
@@ -5198,7 +5198,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3092 0508 91       		.byte	0x91
  3093 0509 68       		.sleb128 -24
  3094 050a 0D       		.uleb128 0xd
- 3095 050b C5030000 		.4byte	.LASF63
+ 3095 050b C6030000 		.4byte	.LASF63
  3096 050f 01       		.byte	0x1
  3097 0510 4304     		.2byte	0x443
  3098 0512 A6000000 		.4byte	0xa6
@@ -5206,7 +5206,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3100 0517 91       		.byte	0x91
  3101 0518 74       		.sleb128 -12
  3102 0519 0D       		.uleb128 0xd
- 3103 051a CB030000 		.4byte	.LASF64
+ 3103 051a CC030000 		.4byte	.LASF64
  3104 051e 01       		.byte	0x1
  3105 051f 4404     		.2byte	0x444
  3106 0521 A6000000 		.4byte	0xa6
@@ -5214,11 +5214,11 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3108 0526 91       		.byte	0x91
  3109 0527 70       		.sleb128 -16
  3110 0528 0D       		.uleb128 0xd
- 3111 0529 BA030000 		.4byte	.LASF65
+ 3111 0529 BB030000 		.4byte	.LASF65
  3112 052d 01       		.byte	0x1
  3113 052e 4504     		.2byte	0x445
  3114 0530 6F000000 		.4byte	0x6f
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 88
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 88
 
 
  3115 0534 02       		.byte	0x2
@@ -5236,7 +5236,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3127 054d 01       		.byte	0x1
  3128 054e 62050000 		.4byte	0x562
  3129 0552 0F       		.uleb128 0xf
- 3130 0553 24040000 		.4byte	.LASF26
+ 3130 0553 25040000 		.4byte	.LASF26
  3131 0557 01       		.byte	0x1
  3132 0558 DA04     		.2byte	0x4da
  3133 055a 6F000000 		.4byte	0x6f
@@ -5256,7 +5256,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3147 0578 01       		.byte	0x1
  3148 0579 9C050000 		.4byte	0x59c
  3149 057d 0F       		.uleb128 0xf
- 3150 057e 24040000 		.4byte	.LASF26
+ 3150 057e 25040000 		.4byte	.LASF26
  3151 0582 01       		.byte	0x1
  3152 0583 1006     		.2byte	0x610
  3153 0585 6F000000 		.4byte	0x6f
@@ -5264,7 +5264,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3155 058a 91       		.byte	0x91
  3156 058b 77       		.sleb128 -9
  3157 058c 0F       		.uleb128 0xf
- 3158 058d 30040000 		.4byte	.LASF67
+ 3158 058d 31040000 		.4byte	.LASF67
  3159 0591 01       		.byte	0x1
  3160 0592 1006     		.2byte	0x610
  3161 0594 6F000000 		.4byte	0x6f
@@ -5273,12 +5273,12 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3164 059a 76       		.sleb128 -10
  3165 059b 00       		.byte	0
  3166 059c 13       		.uleb128 0x13
- 3167 059d 6D040000 		.4byte	.LASF69
+ 3167 059d 6E040000 		.4byte	.LASF69
  3168 05a1 01       		.byte	0x1
  3169 05a2 5106     		.2byte	0x651
  3170 05a4 01       		.byte	0x1
  3171 05a5 00000000 		.4byte	.LFB21
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 89
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 89
 
 
  3172 05a9 9C010000 		.4byte	.LFE21
@@ -5294,7 +5294,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3182 05c3 91       		.byte	0x91
  3183 05c4 67       		.sleb128 -25
  3184 05c5 0F       		.uleb128 0xf
- 3185 05c6 51030000 		.4byte	.LASF71
+ 3185 05c6 52030000 		.4byte	.LASF71
  3186 05ca 01       		.byte	0x1
  3187 05cb 5106     		.2byte	0x651
  3188 05cd 7A000000 		.4byte	0x7a
@@ -5310,7 +5310,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3198 05e1 91       		.byte	0x91
  3199 05e2 62       		.sleb128 -30
  3200 05e3 0F       		.uleb128 0xf
- 3201 05e4 BA030000 		.4byte	.LASF65
+ 3201 05e4 BB030000 		.4byte	.LASF65
  3202 05e8 01       		.byte	0x1
  3203 05e9 5206     		.2byte	0x652
  3204 05eb 6F000000 		.4byte	0x6f
@@ -5318,7 +5318,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3206 05f0 91       		.byte	0x91
  3207 05f1 66       		.sleb128 -26
  3208 05f2 0F       		.uleb128 0xf
- 3209 05f3 24040000 		.4byte	.LASF26
+ 3209 05f3 25040000 		.4byte	.LASF26
  3210 05f7 01       		.byte	0x1
  3211 05f8 5206     		.2byte	0x652
  3212 05fa 6F000000 		.4byte	0x6f
@@ -5326,7 +5326,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3214 05ff 91       		.byte	0x91
  3215 0600 00       		.sleb128 0
  3216 0601 0D       		.uleb128 0xd
- 3217 0602 16020000 		.4byte	.LASF73
+ 3217 0602 17020000 		.4byte	.LASF73
  3218 0606 01       		.byte	0x1
  3219 0607 5406     		.2byte	0x654
  3220 0609 90000000 		.4byte	0x90
@@ -5334,18 +5334,18 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3222 060e 91       		.byte	0x91
  3223 060f 77       		.sleb128 -9
  3224 0610 0D       		.uleb128 0xd
- 3225 0611 5E030000 		.4byte	.LASF74
+ 3225 0611 5F030000 		.4byte	.LASF74
  3226 0615 01       		.byte	0x1
  3227 0616 5506     		.2byte	0x655
  3228 0618 A6000000 		.4byte	0xa6
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 90
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 90
 
 
  3229 061c 02       		.byte	0x2
  3230 061d 91       		.byte	0x91
  3231 061e 70       		.sleb128 -16
  3232 061f 0D       		.uleb128 0xd
- 3233 0620 05020000 		.4byte	.LASF43
+ 3233 0620 06020000 		.4byte	.LASF43
  3234 0624 01       		.byte	0x1
  3235 0625 5606     		.2byte	0x656
  3236 0627 7A000000 		.4byte	0x7a
@@ -5353,7 +5353,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3238 062c 91       		.byte	0x91
  3239 062d 74       		.sleb128 -12
  3240 062e 0D       		.uleb128 0xd
- 3241 062f 98030000 		.4byte	.LASF75
+ 3241 062f 99030000 		.4byte	.LASF75
  3242 0633 01       		.byte	0x1
  3243 0634 5706     		.2byte	0x657
  3244 0636 85000000 		.4byte	0x85
@@ -5362,7 +5362,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3247 063c 6C       		.sleb128 -20
  3248 063d 00       		.byte	0
  3249 063e 13       		.uleb128 0x13
- 3250 063f 41040000 		.4byte	.LASF76
+ 3250 063f 42040000 		.4byte	.LASF76
  3251 0643 01       		.byte	0x1
  3252 0644 BC06     		.2byte	0x6bc
  3253 0646 01       		.byte	0x1
@@ -5372,7 +5372,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3257 0653 01       		.byte	0x1
  3258 0654 77060000 		.4byte	0x677
  3259 0658 0F       		.uleb128 0xf
- 3260 0659 67010000 		.4byte	.LASF77
+ 3260 0659 1A010000 		.4byte	.LASF77
  3261 065d 01       		.byte	0x1
  3262 065e BC06     		.2byte	0x6bc
  3263 0660 6F000000 		.4byte	0x6f
@@ -5380,7 +5380,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3265 0665 91       		.byte	0x91
  3266 0666 6F       		.sleb128 -17
  3267 0667 0D       		.uleb128 0xd
- 3268 0668 8B040000 		.4byte	.LASF27
+ 3268 0668 8C040000 		.4byte	.LASF27
  3269 066c 01       		.byte	0x1
  3270 066d BE06     		.2byte	0x6be
  3271 066f 6F000000 		.4byte	0x6f
@@ -5390,7 +5390,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3275 0676 00       		.byte	0
  3276 0677 10       		.uleb128 0x10
  3277 0678 01       		.byte	0x1
- 3278 0679 81050000 		.4byte	.LASF78
+ 3278 0679 82050000 		.4byte	.LASF78
  3279 067d 01       		.byte	0x1
  3280 067e E206     		.2byte	0x6e2
  3281 0680 01       		.byte	0x1
@@ -5398,13 +5398,13 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3283 0685 00000000 		.4byte	.LFB23
  3284 0689 48000000 		.4byte	.LFE23
  3285 068d E4040000 		.4byte	.LLST23
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 91
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 91
 
 
  3286 0691 01       		.byte	0x1
  3287 0692 A6060000 		.4byte	0x6a6
  3288 0696 0D       		.uleb128 0xd
- 3289 0697 94050000 		.4byte	.LASF49
+ 3289 0697 95050000 		.4byte	.LASF49
  3290 069b 01       		.byte	0x1
  3291 069c E406     		.2byte	0x6e4
  3292 069e 90000000 		.4byte	0x90
@@ -5414,7 +5414,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3296 06a5 00       		.byte	0
  3297 06a6 10       		.uleb128 0x10
  3298 06a7 01       		.byte	0x1
- 3299 06a8 2E050000 		.4byte	.LASF79
+ 3299 06a8 2F050000 		.4byte	.LASF79
  3300 06ac 01       		.byte	0x1
  3301 06ad 0307     		.2byte	0x703
  3302 06af 01       		.byte	0x1
@@ -5425,7 +5425,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3307 06c0 01       		.byte	0x1
  3308 06c1 D5060000 		.4byte	0x6d5
  3309 06c5 0D       		.uleb128 0xd
- 3310 06c6 94050000 		.4byte	.LASF49
+ 3310 06c6 95050000 		.4byte	.LASF49
  3311 06ca 01       		.byte	0x1
  3312 06cb 0507     		.2byte	0x705
  3313 06cd 9B000000 		.4byte	0x9b
@@ -5446,7 +5446,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3328 06ef 01       		.byte	0x1
  3329 06f0 04070000 		.4byte	0x704
  3330 06f4 0D       		.uleb128 0xd
- 3331 06f5 94050000 		.4byte	.LASF49
+ 3331 06f5 95050000 		.4byte	.LASF49
  3332 06f9 01       		.byte	0x1
  3333 06fa 2607     		.2byte	0x726
  3334 06fc A6000000 		.4byte	0xa6
@@ -5458,14 +5458,14 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3340 0705 2D010000 		.4byte	0x12d
  3341 0709 14070000 		.4byte	0x714
  3342 070d 15       		.uleb128 0x15
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 92
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 92
 
 
  3343 070e 01010000 		.4byte	0x101
  3344 0712 00       		.byte	0
  3345 0713 00       		.byte	0
  3346 0714 0A       		.uleb128 0xa
- 3347 0715 CD050000 		.4byte	.LASF81
+ 3347 0715 CE050000 		.4byte	.LASF81
  3348 0719 01       		.byte	0x1
  3349 071a 3D       		.byte	0x3d
  3350 071b 04070000 		.4byte	0x704
@@ -5473,7 +5473,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3352 0720 03       		.byte	0x3
  3353 0721 04000000 		.4byte	ADC_DelSig_1_gcor
  3354 0725 16       		.uleb128 0x16
- 3355 0726 B1010000 		.4byte	.LASF82
+ 3355 0726 64010000 		.4byte	.LASF82
  3356 072a 01       		.byte	0x1
  3357 072b 2C       		.byte	0x2c
  3358 072c 6F000000 		.4byte	0x6f
@@ -5482,7 +5482,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3361 0732 03       		.byte	0x3
  3362 0733 00000000 		.4byte	ADC_DelSig_1_initVar
  3363 0737 16       		.uleb128 0x16
- 3364 0738 68020000 		.4byte	.LASF83
+ 3364 0738 69020000 		.4byte	.LASF83
  3365 073c 01       		.byte	0x1
  3366 073d 24       		.byte	0x24
  3367 073e DC000000 		.4byte	0xdc
@@ -5491,7 +5491,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3370 0744 03       		.byte	0x3
  3371 0745 00000000 		.4byte	ADC_DelSig_1_convDone
  3372 0749 16       		.uleb128 0x16
- 3373 074a 9B050000 		.4byte	.LASF84
+ 3373 074a 9C050000 		.4byte	.LASF84
  3374 074e 01       		.byte	0x1
  3375 074f 29       		.byte	0x29
  3376 0750 DC000000 		.4byte	0xdc
@@ -5500,7 +5500,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3379 0756 03       		.byte	0x3
  3380 0757 00000000 		.4byte	ADC_DelSig_1_stopConversion
  3381 075b 16       		.uleb128 0x16
- 3382 075c D8010000 		.4byte	.LASF85
+ 3382 075c 8B010000 		.4byte	.LASF85
  3383 0760 01       		.byte	0x1
  3384 0761 2F       		.byte	0x2f
  3385 0762 DC000000 		.4byte	0xdc
@@ -5509,7 +5509,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3388 0768 03       		.byte	0x3
  3389 0769 00000000 		.4byte	ADC_DelSig_1_started
  3390 076d 16       		.uleb128 0x16
- 3391 076e B2020000 		.4byte	.LASF86
+ 3391 076e B3020000 		.4byte	.LASF86
  3392 0772 01       		.byte	0x1
  3393 0773 32       		.byte	0x32
  3394 0774 DC000000 		.4byte	0xdc
@@ -5518,10 +5518,10 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3397 077a 03       		.byte	0x3
  3398 077b 00000000 		.4byte	ADC_DelSig_1_Config
  3399 077f 16       		.uleb128 0x16
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 93
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 93
 
 
- 3400 0780 EF020000 		.4byte	.LASF87
+ 3400 0780 F0020000 		.4byte	.LASF87
  3401 0784 01       		.byte	0x1
  3402 0785 34       		.byte	0x34
  3403 0786 91070000 		.4byte	0x791
@@ -5532,7 +5532,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3408 0791 05       		.uleb128 0x5
  3409 0792 A6000000 		.4byte	0xa6
  3410 0796 16       		.uleb128 0x16
- 3411 0797 09040000 		.4byte	.LASF88
+ 3411 0797 0A040000 		.4byte	.LASF88
  3412 079b 01       		.byte	0x1
  3413 079c 35       		.byte	0x35
  3414 079d 91070000 		.4byte	0x791
@@ -5578,7 +5578,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3454 0020 03       		.uleb128 0x3
  3455 0021 24       		.uleb128 0x24
  3456 0022 00       		.byte	0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 94
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 94
 
 
  3457 0023 0B       		.uleb128 0xb
@@ -5638,7 +5638,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3511 0059 00       		.byte	0
  3512 005a 00       		.byte	0
  3513 005b 08       		.uleb128 0x8
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 95
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 95
 
 
  3514 005c 2E       		.uleb128 0x2e
@@ -5698,7 +5698,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3568 0094 3B       		.uleb128 0x3b
  3569 0095 0B       		.uleb128 0xb
  3570 0096 49       		.uleb128 0x49
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 96
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 96
 
 
  3571 0097 13       		.uleb128 0x13
@@ -5758,7 +5758,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3625 00cf 34       		.uleb128 0x34
  3626 00d0 00       		.byte	0
  3627 00d1 03       		.uleb128 0x3
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 97
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 97
 
 
  3628 00d2 0E       		.uleb128 0xe
@@ -5818,7 +5818,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3682 0109 3F       		.uleb128 0x3f
  3683 010a 0C       		.uleb128 0xc
  3684 010b 03       		.uleb128 0x3
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 98
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 98
 
 
  3685 010c 0E       		.uleb128 0xe
@@ -5878,7 +5878,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3739 0144 0E       		.uleb128 0xe
  3740 0145 3A       		.uleb128 0x3a
  3741 0146 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 99
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 99
 
 
  3742 0147 3B       		.uleb128 0x3b
@@ -5938,7 +5938,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3796 017f 00       		.byte	0
  3797 0180 16       		.uleb128 0x16
  3798 0181 34       		.uleb128 0x34
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 100
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 100
 
 
  3799 0182 00       		.byte	0
@@ -5998,7 +5998,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3853 0058 0200     		.2byte	0x2
  3854 005a 7D       		.byte	0x7d
  3855 005b 10       		.sleb128 16
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 101
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 101
 
 
  3856 005c 06000000 		.4byte	.LCFI5
@@ -6058,7 +6058,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3910 00e0 02000000 		.4byte	.LCFI11
  3911 00e4 04000000 		.4byte	.LCFI12
  3912 00e8 0200     		.2byte	0x2
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 102
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 102
 
 
  3913 00ea 7D       		.byte	0x7d
@@ -6118,7 +6118,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  3967 016c D0000000 		.4byte	.LFE6
  3968 0170 0200     		.2byte	0x2
  3969 0172 77       		.byte	0x77
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 103
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 103
 
 
  3970 0173 18       		.sleb128 24
@@ -6178,7 +6178,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  4024 01f7 04       		.sleb128 4
  4025 01f8 04000000 		.4byte	.LCFI26
  4026 01fc 26000000 		.4byte	.LFE9
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 104
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 104
 
 
  4027 0200 0200     		.2byte	0x2
@@ -6238,7 +6238,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  4081 0284 0200     		.2byte	0x2
  4082 0286 7D       		.byte	0x7d
  4083 0287 00       		.sleb128 0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 105
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 105
 
 
  4084 0288 02000000 		.4byte	.LCFI33
@@ -6298,7 +6298,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  4138 030e 7D       		.byte	0x7d
  4139 030f 10       		.sleb128 16
  4140 0310 06000000 		.4byte	.LCFI41
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 106
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 106
 
 
  4141 0314 1E000000 		.4byte	.LFE14
@@ -6358,7 +6358,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  4195 0398 02000000 		.4byte	.LCFI48
  4196 039c 0200     		.2byte	0x2
  4197 039e 7D       		.byte	0x7d
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 107
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 107
 
 
  4198 039f 00       		.sleb128 0
@@ -6418,7 +6418,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  4252 0424 0200     		.2byte	0x2
  4253 0426 7D       		.byte	0x7d
  4254 0427 10       		.sleb128 16
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 108
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 108
 
 
  4255 0428 06000000 		.4byte	.LCFI56
@@ -6478,7 +6478,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  4309 04ac 00000000 		.4byte	.LFB22
  4310 04b0 02000000 		.4byte	.LCFI63
  4311 04b4 0200     		.2byte	0x2
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 109
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 109
 
 
  4312 04b6 7D       		.byte	0x7d
@@ -6538,7 +6538,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  4366 0538 06000000 		.4byte	.LCFI71
  4367 053c 0200     		.2byte	0x2
  4368 053e 7D       		.byte	0x7d
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 110
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 110
 
 
  4369 053f 10       		.sleb128 16
@@ -6598,7 +6598,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  4423 004c 40000000 		.4byte	.LFE7-.LFB7
  4424 0050 00000000 		.4byte	.LFB8
  4425 0054 26000000 		.4byte	.LFE8-.LFB8
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 111
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 111
 
 
  4426 0058 00000000 		.4byte	.LFB9
@@ -6658,7 +6658,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  4480 0040 00000000 		.4byte	.LFB8
  4481 0044 26000000 		.4byte	.LFE8
  4482 0048 00000000 		.4byte	.LFB9
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 112
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 112
 
 
  4483 004c 26000000 		.4byte	.LFE9
@@ -6718,7 +6718,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  4527              	.LASF70:
  4528 0023 696E7075 		.ascii	"inputRange\000"
  4528      7452616E 
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 113
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 113
 
 
  4528      676500
@@ -6778,7 +6778,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  4550      69675F31 
  4550      5F526561 
  4550      64333200 
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 114
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 114
 
 
  4551              	.LASF4:
@@ -6800,363 +6800,363 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 1
  4561              	.LASF11:
  4562 0113 75696E74 		.ascii	"uint32\000"
  4562      333200
- 4563              	.LASF91:
- 4564 011a 433A5C55 		.ascii	"C:\\Users\\Robert\\workspace\\embedit_git\\PSoC_2_P"
- 4564      73657273 
- 4564      5C526F62 
- 4564      6572745C 
- 4564      776F726B 
- 4565 0148 695C5053 		.ascii	"i\\PSoC Creator\\PSoC_2_Pi.cydsn\000"
- 4565      6F432043 
- 4565      72656174 
- 4565      6F725C50 
- 4565      536F435F 
- 4566              	.LASF77:
- 4567 0167 76616C75 		.ascii	"value\000"
- 4567      6500
- 4568              	.LASF47:
- 4569 016d 7265744D 		.ascii	"retMode\000"
- 4569      6F646500 
- 4570              	.LASF90:
- 4571 0175 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\ADC_DelSig_1.c\000"
- 4571      6E657261 
- 4571      7465645F 
- 4571      536F7572 
- 4571      63655C50 
- 4572              	.LASF8:
- 4573 019d 756E7369 		.ascii	"unsigned int\000"
- 4573      676E6564 
- 4573      20696E74 
- 4573      00
- 4574              	.LASF62:
- 4575 01aa 75566F6C 		.ascii	"uVolts\000"
- 4575      747300
- 4576              	.LASF82:
- 4577 01b1 4144435F 		.ascii	"ADC_DelSig_1_initVar\000"
- 4577      44656C53 
- 4577      69675F31 
- 4577      5F696E69 
- 4577      74566172 
- 4578              	.LASF5:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 115
+ 4563              	.LASF77:
+ 4564 011a 76616C75 		.ascii	"value\000"
+ 4564      6500
+ 4565              	.LASF47:
+ 4566 0120 7265744D 		.ascii	"retMode\000"
+ 4566      6F646500 
+ 4567              	.LASF90:
+ 4568 0128 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\ADC_DelSig_1.c\000"
+ 4568      6E657261 
+ 4568      7465645F 
+ 4568      536F7572 
+ 4568      63655C50 
+ 4569              	.LASF8:
+ 4570 0150 756E7369 		.ascii	"unsigned int\000"
+ 4570      676E6564 
+ 4570      20696E74 
+ 4570      00
+ 4571              	.LASF62:
+ 4572 015d 75566F6C 		.ascii	"uVolts\000"
+ 4572      747300
+ 4573              	.LASF82:
+ 4574 0164 4144435F 		.ascii	"ADC_DelSig_1_initVar\000"
+ 4574      44656C53 
+ 4574      69675F31 
+ 4574      5F696E69 
+ 4574      74566172 
+ 4575              	.LASF5:
+ 4576 0179 6C6F6E67 		.ascii	"long unsigned int\000"
+ 4576      20756E73 
+ 4576      69676E65 
+ 4576      6420696E 
+ 4576      7400
+ 4577              	.LASF85:
+ 4578 018b 4144435F 		.ascii	"ADC_DelSig_1_started\000"
+ 4578      44656C53 
+ 4578      69675F31 
+ 4578      5F737461 
+ 4578      72746564 
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 115
 
 
- 4579 01c6 6C6F6E67 		.ascii	"long unsigned int\000"
- 4579      20756E73 
- 4579      69676E65 
- 4579      6420696E 
- 4579      7400
- 4580              	.LASF85:
- 4581 01d8 4144435F 		.ascii	"ADC_DelSig_1_started\000"
- 4581      44656C53 
- 4581      69675F31 
- 4581      5F737461 
- 4581      72746564 
- 4582              	.LASF3:
- 4583 01ed 73686F72 		.ascii	"short unsigned int\000"
- 4583      7420756E 
- 4583      7369676E 
- 4583      65642069 
- 4583      6E7400
- 4584              	.LASF12:
- 4585 0200 696E7438 		.ascii	"int8\000"
- 4585      00
+ 4579              	.LASF3:
+ 4580 01a0 73686F72 		.ascii	"short unsigned int\000"
+ 4580      7420756E 
+ 4580      7369676E 
+ 4580      65642069 
+ 4580      6E7400
+ 4581              	.LASF12:
+ 4582 01b3 696E7438 		.ascii	"int8\000"
+ 4582      00
+ 4583              	.LASF91:
+ 4584 01b8 433A5C55 		.ascii	"C:\\Users\\Brian\\Dropbox\\RPiSoC\\Projects\\PSoC_2"
+ 4584      73657273 
+ 4584      5C427269 
+ 4584      616E5C44 
+ 4584      726F7062 
+ 4585 01e5 5F50695C 		.ascii	"_Pi\\PSoC Creator\\PSoC_2_Pi.cydsn\000"
+ 4585      50536F43 
+ 4585      20437265 
+ 4585      61746F72 
+ 4585      5C50536F 
  4586              	.LASF43:
- 4587 0205 67636F72 		.ascii	"gcorValue\000"
+ 4587 0206 67636F72 		.ascii	"gcorValue\000"
  4587      56616C75 
  4587      6500
  4588              	.LASF58:
- 4589 020f 6D566F6C 		.ascii	"mVolts\000"
+ 4589 0210 6D566F6C 		.ascii	"mVolts\000"
  4589      747300
  4590              	.LASF73:
- 4591 0216 666C6173 		.ascii	"flash\000"
+ 4591 0217 666C6173 		.ascii	"flash\000"
  4591      6800
  4592              	.LASF21:
- 4593 021c 72656733 		.ascii	"reg32\000"
+ 4593 021d 72656733 		.ascii	"reg32\000"
  4593      3200
  4594              	.LASF59:
- 4595 0222 4144435F 		.ascii	"ADC_DelSig_1_CountsTo_Volts\000"
+ 4595 0223 4144435F 		.ascii	"ADC_DelSig_1_CountsTo_Volts\000"
  4595      44656C53 
  4595      69675F31 
  4595      5F436F75 
  4595      6E747354 
  4596              	.LASF15:
- 4597 023e 666C6F61 		.ascii	"float32\000"
+ 4597 023f 666C6F61 		.ascii	"float32\000"
  4597      74333200 
  4598              	.LASF50:
- 4599 0246 4144435F 		.ascii	"ADC_DelSig_1_GetResult16\000"
+ 4599 0247 4144435F 		.ascii	"ADC_DelSig_1_GetResult16\000"
  4599      44656C53 
  4599      69675F31 
  4599      5F476574 
  4599      52657375 
  4600              	.LASF22:
- 4601 025f 73697A65 		.ascii	"sizetype\000"
+ 4601 0260 73697A65 		.ascii	"sizetype\000"
  4601      74797065 
  4601      00
  4602              	.LASF83:
- 4603 0268 4144435F 		.ascii	"ADC_DelSig_1_convDone\000"
+ 4603 0269 4144435F 		.ascii	"ADC_DelSig_1_convDone\000"
  4603      44656C53 
  4603      69675F31 
  4603      5F636F6E 
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 116
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 116
 
 
  4603      76446F6E 
  4604              	.LASF28:
- 4605 027e 4144435F 		.ascii	"ADC_DelSig_1_Init\000"
+ 4605 027f 4144435F 		.ascii	"ADC_DelSig_1_Init\000"
  4605      44656C53 
  4605      69675F31 
  4605      5F496E69 
  4605      7400
  4606              	.LASF61:
- 4607 0290 4144435F 		.ascii	"ADC_DelSig_1_CountsTo_uVolts\000"
+ 4607 0291 4144435F 		.ascii	"ADC_DelSig_1_CountsTo_uVolts\000"
  4607      44656C53 
  4607      69675F31 
  4607      5F436F75 
  4607      6E747354 
  4608              	.LASF35:
- 4609 02ad 6761696E 		.ascii	"gain\000"
+ 4609 02ae 6761696E 		.ascii	"gain\000"
  4609      00
  4610              	.LASF86:
- 4611 02b2 4144435F 		.ascii	"ADC_DelSig_1_Config\000"
+ 4611 02b3 4144435F 		.ascii	"ADC_DelSig_1_Config\000"
  4611      44656C53 
  4611      69675F31 
  4611      5F436F6E 
  4611      66696700 
  4612              	.LASF36:
- 4613 02c6 636F6865 		.ascii	"coherency\000"
+ 4613 02c7 636F6865 		.ascii	"coherency\000"
  4613      72656E63 
  4613      7900
  4614              	.LASF25:
- 4615 02d0 4144435F 		.ascii	"ADC_DelSig_1_GCOR_STRUCT\000"
+ 4615 02d1 4144435F 		.ascii	"ADC_DelSig_1_GCOR_STRUCT\000"
  4615      44656C53 
  4615      69675F31 
  4615      5F47434F 
  4615      525F5354 
  4616              	.LASF16:
- 4617 02e9 666C6F61 		.ascii	"float\000"
+ 4617 02ea 666C6F61 		.ascii	"float\000"
  4617      7400
  4618              	.LASF87:
- 4619 02ef 4144435F 		.ascii	"ADC_DelSig_1_Offset\000"
+ 4619 02f0 4144435F 		.ascii	"ADC_DelSig_1_Offset\000"
  4619      44656C53 
  4619      69675F31 
  4619      5F4F6666 
  4619      73657400 
  4620              	.LASF89:
- 4621 0303 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 4621 0304 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
  4621      4320342E 
  4621      372E3320 
  4621      32303133 
  4621      30333132 
- 4622 0336 616E6368 		.ascii	"anch revision 196615]\000"
+ 4622 0337 616E6368 		.ascii	"anch revision 196615]\000"
  4622      20726576 
  4622      6973696F 
  4622      6E203139 
  4622      36363135 
  4623              	.LASF19:
- 4624 034c 72656738 		.ascii	"reg8\000"
+ 4624 034d 72656738 		.ascii	"reg8\000"
  4624      00
  4625              	.LASF71:
- 4626 0351 69646561 		.ascii	"idealDecGain\000"
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 117
+ 4626 0352 69646561 		.ascii	"idealDecGain\000"
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 117
 
 
  4626      6C446563 
  4626      4761696E 
  4626      00
  4627              	.LASF74:
- 4628 035e 6E6F726D 		.ascii	"normalised\000"
+ 4628 035f 6E6F726D 		.ascii	"normalised\000"
  4628      616C6973 
  4628      656400
  4629              	.LASF1:
- 4630 0369 756E7369 		.ascii	"unsigned char\000"
+ 4630 036a 756E7369 		.ascii	"unsigned char\000"
  4630      676E6564 
  4630      20636861 
  4630      7200
  4631              	.LASF52:
- 4632 0377 4144435F 		.ascii	"ADC_DelSig_1_SetOffset\000"
+ 4632 0378 4144435F 		.ascii	"ADC_DelSig_1_SetOffset\000"
  4632      44656C53 
  4632      69675F31 
  4632      5F536574 
  4632      4F666673 
  4633              	.LASF2:
- 4634 038e 73686F72 		.ascii	"short int\000"
+ 4634 038f 73686F72 		.ascii	"short int\000"
  4634      7420696E 
  4634      7400
  4635              	.LASF75:
- 4636 0398 67636F72 		.ascii	"gcorTmp\000"
+ 4636 0399 67636F72 		.ascii	"gcorTmp\000"
  4636      546D7000 
  4637              	.LASF44:
- 4638 03a0 4144435F 		.ascii	"ADC_DelSig_1_StartConvert\000"
+ 4638 03a1 4144435F 		.ascii	"ADC_DelSig_1_StartConvert\000"
  4638      44656C53 
  4638      69675F31 
  4638      5F537461 
  4638      7274436F 
  4639              	.LASF65:
- 4640 03ba 7265736F 		.ascii	"resolution\000"
+ 4640 03bb 7265736F 		.ascii	"resolution\000"
  4640      6C757469 
  4640      6F6E00
  4641              	.LASF63:
- 4642 03c5 636F6566 		.ascii	"coefA\000"
+ 4642 03c6 636F6566 		.ascii	"coefA\000"
  4642      4100
  4643              	.LASF64:
- 4644 03cb 636F6566 		.ascii	"coefB\000"
+ 4644 03cc 636F6566 		.ascii	"coefB\000"
  4644      4200
  4645              	.LASF51:
- 4646 03d1 4144435F 		.ascii	"ADC_DelSig_1_GetResult32\000"
+ 4646 03d2 4144435F 		.ascii	"ADC_DelSig_1_GetResult32\000"
  4646      44656C53 
  4646      69675F31 
  4646      5F476574 
  4646      52657375 
  4647              	.LASF18:
- 4648 03ea 63686172 		.ascii	"char\000"
+ 4648 03eb 63686172 		.ascii	"char\000"
  4648      00
  4649              	.LASF34:
- 4650 03ef 4144435F 		.ascii	"ADC_DelSig_1_SetCoherency\000"
+ 4650 03f0 4144435F 		.ascii	"ADC_DelSig_1_SetCoherency\000"
  4650      44656C53 
  4650      69675F31 
  4650      5F536574 
  4650      436F6865 
  4651              	.LASF88:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 118
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 118
 
 
- 4652 0409 4144435F 		.ascii	"ADC_DelSig_1_CountsPerVolt\000"
+ 4652 040a 4144435F 		.ascii	"ADC_DelSig_1_CountsPerVolt\000"
  4652      44656C53 
  4652      69675F31 
  4652      5F436F75 
  4652      6E747350 
  4653              	.LASF26:
- 4654 0424 636F6E66 		.ascii	"config\000"
+ 4654 0425 636F6E66 		.ascii	"config\000"
  4654      696700
  4655              	.LASF24:
- 4656 042b 6776616C 		.ascii	"gval\000"
+ 4656 042c 6776616C 		.ascii	"gval\000"
  4656      00
  4657              	.LASF67:
- 4658 0430 72657374 		.ascii	"restart\000"
+ 4658 0431 72657374 		.ascii	"restart\000"
  4658      61727400 
  4659              	.LASF39:
- 4660 0438 746D7056 		.ascii	"tmpValue\000"
+ 4660 0439 746D7056 		.ascii	"tmpValue\000"
  4660      616C7565 
  4660      00
  4661              	.LASF76:
- 4662 0441 4144435F 		.ascii	"ADC_DelSig_1_SetDSMRef0Reg\000"
+ 4662 0442 4144435F 		.ascii	"ADC_DelSig_1_SetDSMRef0Reg\000"
  4662      44656C53 
  4662      69675F31 
  4662      5F536574 
  4662      44534D52 
  4663              	.LASF53:
- 4664 045c 6F666673 		.ascii	"offset\000"
+ 4664 045d 6F666673 		.ascii	"offset\000"
  4664      657400
  4665              	.LASF57:
- 4666 0463 61646343 		.ascii	"adcCounts\000"
+ 4666 0464 61646343 		.ascii	"adcCounts\000"
  4666      6F756E74 
  4666      7300
  4667              	.LASF69:
- 4668 046d 4144435F 		.ascii	"ADC_DelSig_1_GainCompensation\000"
+ 4668 046e 4144435F 		.ascii	"ADC_DelSig_1_GainCompensation\000"
  4668      44656C53 
  4668      69675F31 
  4668      5F476169 
  4668      6E436F6D 
  4669              	.LASF27:
- 4670 048b 656E6162 		.ascii	"enableInterrupts\000"
+ 4670 048c 656E6162 		.ascii	"enableInterrupts\000"
  4670      6C65496E 
  4670      74657272 
  4670      75707473 
  4670      00
  4671              	.LASF46:
- 4672 049c 4144435F 		.ascii	"ADC_DelSig_1_IsEndConversion\000"
+ 4672 049d 4144435F 		.ascii	"ADC_DelSig_1_IsEndConversion\000"
  4672      44656C53 
  4672      69675F31 
  4672      5F497345 
  4672      6E64436F 
  4673              	.LASF40:
- 4674 04b9 4144435F 		.ascii	"ADC_DelSig_1_SetGCOR\000"
+ 4674 04ba 4144435F 		.ascii	"ADC_DelSig_1_SetGCOR\000"
  4674      44656C53 
  4674      69675F31 
  4674      5F536574 
  4674      47434F52 
  4675              	.LASF42:
- 4676 04ce 6756616C 		.ascii	"gValue\000"
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 119
+ 4676 04cf 6756616C 		.ascii	"gValue\000"
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 119
 
 
  4676      756500
  4677              	.LASF38:
- 4678 04d5 73746174 		.ascii	"status\000"
+ 4678 04d6 73746174 		.ascii	"status\000"
  4678      757300
  4679              	.LASF37:
- 4680 04dc 6761696E 		.ascii	"gainAdjust\000"
+ 4680 04dd 6761696E 		.ascii	"gainAdjust\000"
  4680      41646A75 
  4680      737400
  4681              	.LASF29:
- 4682 04e7 4144435F 		.ascii	"ADC_DelSig_1_Start\000"
+ 4682 04e8 4144435F 		.ascii	"ADC_DelSig_1_Start\000"
  4682      44656C53 
  4682      69675F31 
  4682      5F537461 
  4682      727400
  4683              	.LASF13:
- 4684 04fa 696E7431 		.ascii	"int16\000"
+ 4684 04fb 696E7431 		.ascii	"int16\000"
  4684      3600
  4685              	.LASF45:
- 4686 0500 4144435F 		.ascii	"ADC_DelSig_1_StopConvert\000"
+ 4686 0501 4144435F 		.ascii	"ADC_DelSig_1_StopConvert\000"
  4686      44656C53 
  4686      69675F31 
  4686      5F53746F 
  4686      70436F6E 
  4687              	.LASF54:
- 4688 0519 4144435F 		.ascii	"ADC_DelSig_1_SetGain\000"
+ 4688 051a 4144435F 		.ascii	"ADC_DelSig_1_SetGain\000"
  4688      44656C53 
  4688      69675F31 
  4688      5F536574 
  4688      4761696E 
  4689              	.LASF79:
- 4690 052e 4144435F 		.ascii	"ADC_DelSig_1_Read16\000"
+ 4690 052f 4144435F 		.ascii	"ADC_DelSig_1_Read16\000"
  4690      44656C53 
  4690      69675F31 
  4690      5F526561 
  4690      64313600 
  4691              	.LASF56:
- 4692 0542 4144435F 		.ascii	"ADC_DelSig_1_CountsTo_mVolts\000"
+ 4692 0543 4144435F 		.ascii	"ADC_DelSig_1_CountsTo_mVolts\000"
  4692      44656C53 
  4692      69675F31 
  4692      5F436F75 
  4692      6E747354 
  4693              	.LASF32:
- 4694 055f 4144435F 		.ascii	"ADC_DelSig_1_SetBufferGain\000"
+ 4694 0560 4144435F 		.ascii	"ADC_DelSig_1_SetBufferGain\000"
  4694      44656C53 
  4694      69675F31 
  4694      5F536574 
  4694      42756666 
  4695              	.LASF33:
- 4696 057a 746D7052 		.ascii	"tmpReg\000"
+ 4696 057b 746D7052 		.ascii	"tmpReg\000"
  4696      656700
  4697              	.LASF78:
- 4698 0581 4144435F 		.ascii	"ADC_DelSig_1_Read8\000"
+ 4698 0582 4144435F 		.ascii	"ADC_DelSig_1_Read8\000"
  4698      44656C53 
  4698      69675F31 
  4698      5F526561 
  4698      643800
  4699              	.LASF49:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccw4gpwo.s 			page 120
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc1Nj0ZI.s 			page 120
 
 
- 4700 0594 72657375 		.ascii	"result\000"
+ 4700 0595 72657375 		.ascii	"result\000"
  4700      6C7400
  4701              	.LASF84:
- 4702 059b 4144435F 		.ascii	"ADC_DelSig_1_stopConversion\000"
+ 4702 059c 4144435F 		.ascii	"ADC_DelSig_1_stopConversion\000"
  4702      44656C53 
  4702      69675F31 
  4702      5F73746F 
  4702      70436F6E 
  4703              	.LASF41:
- 4704 05b7 4144435F 		.ascii	"ADC_DelSig_1_ReadGCOR\000"
+ 4704 05b8 4144435F 		.ascii	"ADC_DelSig_1_ReadGCOR\000"
  4704      44656C53 
  4704      69675F31 
  4704      5F526561 
  4704      6447434F 
  4705              	.LASF81:
- 4706 05cd 4144435F 		.ascii	"ADC_DelSig_1_gcor\000"
+ 4706 05ce 4144435F 		.ascii	"ADC_DelSig_1_gcor\000"
  4706      44656C53 
  4706      69675F31 
  4706      5F67636F 

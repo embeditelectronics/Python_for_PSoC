@@ -63,7 +63,7 @@
 #include <In_5.h>
 #include <PWM_out_1_aliases.h>
 #include <PWM_out_1.h>
-#include <Clock_2.h>
+#include <PWM_1_2_clk.h>
 #include <PWM_1.h>
 #include <VDAC8_2.h>
 #include <WaveDAC_out_aliases.h>
@@ -160,6 +160,15 @@
 #include <In_18.h>
 #include <In_19_aliases.h>
 #include <In_19.h>
+#include <PWM_3_4_clk.h>
+#include <PWM_5_6_clk.h>
+#include <PWM_7_8_clk.h>
+#include <I2C_1.h>
+#include <I2C_1_PVT.h>
+#include <SCL_1_aliases.h>
+#include <SCL_1.h>
+#include <SDA_1_aliases.h>
+#include <SDA_1.h>
 #include <SPIS_1_IntClock.h>
 #include <WaveDAC8_1_Wave1_DMA_dma.h>
 #include <WaveDAC8_1_Wave2_DMA_dma.h>

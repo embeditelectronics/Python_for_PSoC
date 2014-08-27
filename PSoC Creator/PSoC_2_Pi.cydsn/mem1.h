@@ -21,7 +21,8 @@
 #include "cytypes.h"
 #include "CyLib.h"
     
-#define MAX_32 (0xFFFFFFFF)
+#define MAX_32          (0xFFFFFFFF)
+#define I2C_BUFFER_SIZE (4u)
 
 #define DELSIG_ADC_CONTROL (0x01) //No 0x00 because the Pi's SPI readbytes function sends 0x00 every time it's called
 #define SAR_ADC0_CONTROL (DELSIG_ADC_CONTROL +1)
@@ -53,6 +54,13 @@
 #define DIGITAL_OUTPUT_REGISTER1 (DIGITAL_OUTPUT_REGISTER0 + 1)
 #define DIGITAL_OUTPUT_REGISTER2 (DIGITAL_OUTPUT_REGISTER1 + 1)
     
+#define RESET_ADDRESS (0xFF)
+
+/*UNDEFINE UNUSED PROTOCOLS*/
+//#undef CY_SPIS_SPIS_1_H     /* SPI */
+#undef CY_I2C_I2C_1_H       /* I2C */
+    
+    
 void WriteTo_Pi(uint32 dat);
 uint32 ReadFrom_Pi(void);
 
@@ -81,6 +89,8 @@ void Input_Control1(uint8 cmd);
 void Output_Control1(uint8 cmd, uint16 val);
 void Input_Control2(uint8 cmd);
 void Output_Control2(uint8 cmd, uint16 val);
+
+
 
 #endif
 /* [] END OF FILE */

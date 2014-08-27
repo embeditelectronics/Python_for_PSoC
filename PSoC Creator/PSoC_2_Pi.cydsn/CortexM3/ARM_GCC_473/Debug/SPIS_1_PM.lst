@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 1
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cczJniet.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 1
   22:.\Generated_Source\PSoC5/SPIS_1_PM.c ****     SPIS_1_DISABLED,
   23:.\Generated_Source\PSoC5/SPIS_1_PM.c ****     SPIS_1_BITCTR_INIT,
   24:.\Generated_Source\PSoC5/SPIS_1_PM.c ****     #if(CY_UDB_V0)
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 2
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cczJniet.s 			page 2
 
 
   25:.\Generated_Source\PSoC5/SPIS_1_PM.c ****         SPIS_1_TX_INIT_INTERRUPTS_MASK,
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 1
   51              	.LFE0:
   52              		.size	SPIS_1_SaveConfig, .-SPIS_1_SaveConfig
   53 000a 00BF     		.section	.text.SPIS_1_RestoreConfig,"ax",%progbits
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 3
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cczJniet.s 			page 3
 
 
   54              		.align	2
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 1
   73              		.loc 1 96 0
   74 0004 BD46     		mov	sp, r7
   75 0006 80BC     		pop	{r7}
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 4
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cczJniet.s 			page 4
 
 
   76 0008 7047     		bx	lr
@@ -232,13 +232,13 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 1
  121:.\Generated_Source\PSoC5/SPIS_1_PM.c ****     /* Save components enable state */
  122:.\Generated_Source\PSoC5/SPIS_1_PM.c ****     if ((SPIS_1_TX_STATUS_ACTL_REG & SPIS_1_INT_ENABLE) != 0u)
  100              		.loc 1 122 0
- 101 0004 46F29B53 		movw	r3, #26011
+ 101 0004 46F29953 		movw	r3, #26009
  102 0008 C4F20003 		movt	r3, 16384
  103 000c 1B78     		ldrb	r3, [r3, #0]
  104 000e DBB2     		uxtb	r3, r3
  105 0010 03F01003 		and	r3, r3, #16
  106 0014 002B     		cmp	r3, #0
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 5
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cczJniet.s 			page 5
 
 
  107 0016 07D0     		beq	.L4
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 1
  146:.\Generated_Source\PSoC5/SPIS_1_PM.c **** *
  147:.\Generated_Source\PSoC5/SPIS_1_PM.c **** * Return:
  148:.\Generated_Source\PSoC5/SPIS_1_PM.c **** *  None.
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 6
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cczJniet.s 			page 6
 
 
  149:.\Generated_Source\PSoC5/SPIS_1_PM.c **** *
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 1
  156 0010 C0F20003 		movt	r3, #:upper16:SPIS_1_backup
  157 0014 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
  158 0016 002B     		cmp	r3, #0
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 7
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cczJniet.s 			page 7
 
 
  159 0018 01D0     		beq	.L6
@@ -388,8 +388,8 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 1
  178 000b 01       		.uleb128 0x1
  179 000c 3C000000 		.4byte	.LASF22
  180 0010 01       		.byte	0x1
- 181 0011 95010000 		.4byte	.LASF23
- 182 0015 3F010000 		.4byte	.LASF24
+ 181 0011 A2010000 		.4byte	.LASF23
+ 182 0015 B4000000 		.4byte	.LASF24
  183 0019 00000000 		.4byte	.Ldebug_ranges0+0
  184 001d 00000000 		.4byte	0
  185 0021 00000000 		.4byte	0
@@ -397,28 +397,28 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 1
  187 0029 02       		.uleb128 0x2
  188 002a 01       		.byte	0x1
  189 002b 06       		.byte	0x6
- 190 002c 33010000 		.4byte	.LASF0
+ 190 002c 81010000 		.4byte	.LASF0
  191 0030 02       		.uleb128 0x2
  192 0031 01       		.byte	0x1
  193 0032 08       		.byte	0x8
- 194 0033 C9000000 		.4byte	.LASF1
+ 194 0033 17010000 		.4byte	.LASF1
  195 0037 02       		.uleb128 0x2
  196 0038 02       		.byte	0x2
  197 0039 05       		.byte	0x5
- 198 003a 86010000 		.4byte	.LASF2
+ 198 003a 93010000 		.4byte	.LASF2
  199 003e 02       		.uleb128 0x2
  200 003f 02       		.byte	0x2
  201 0040 07       		.byte	0x7
- 202 0041 20010000 		.4byte	.LASF3
+ 202 0041 6E010000 		.4byte	.LASF3
  203 0045 02       		.uleb128 0x2
  204 0046 04       		.byte	0x4
  205 0047 05       		.byte	0x5
- 206 0048 EA000000 		.4byte	.LASF4
+ 206 0048 38010000 		.4byte	.LASF4
  207 004c 02       		.uleb128 0x2
  208 004d 04       		.byte	0x4
  209 004e 07       		.byte	0x7
  210 004f 8B000000 		.4byte	.LASF5
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 8
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cczJniet.s 			page 8
 
 
  211 0053 02       		.uleb128 0x2
@@ -445,17 +445,17 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 1
  232 007a 02       		.uleb128 0x2
  233 007b 04       		.byte	0x4
  234 007c 04       		.byte	0x4
- 235 007d 80010000 		.4byte	.LASF9
+ 235 007d 8D010000 		.4byte	.LASF9
  236 0081 02       		.uleb128 0x2
  237 0082 08       		.byte	0x8
  238 0083 04       		.byte	0x4
- 239 0084 F3000000 		.4byte	.LASF10
+ 239 0084 41010000 		.4byte	.LASF10
  240 0088 02       		.uleb128 0x2
  241 0089 01       		.byte	0x1
  242 008a 08       		.byte	0x8
- 243 008b E5000000 		.4byte	.LASF11
+ 243 008b 33010000 		.4byte	.LASF11
  244 008f 04       		.uleb128 0x4
- 245 0090 90010000 		.4byte	.LASF13
+ 245 0090 9D010000 		.4byte	.LASF13
  246 0094 02       		.byte	0x2
  247 0095 F0       		.byte	0xf0
  248 0096 9A000000 		.4byte	0x9a
@@ -464,7 +464,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 1
  251 009f 02       		.uleb128 0x2
  252 00a0 04       		.byte	0x4
  253 00a1 07       		.byte	0x7
- 254 00a2 CC010000 		.4byte	.LASF14
+ 254 00a2 D9010000 		.4byte	.LASF14
  255 00a6 06       		.uleb128 0x6
  256 00a7 02       		.byte	0x2
  257 00a8 03       		.byte	0x3
@@ -478,11 +478,11 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 1
  265 00b9 02       		.byte	0x2
  266 00ba 23       		.byte	0x23
  267 00bb 00       		.uleb128 0
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 9
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cczJniet.s 			page 9
 
 
  268 00bc 07       		.uleb128 0x7
- 269 00bd 15010000 		.4byte	.LASF16
+ 269 00bd 63010000 		.4byte	.LASF16
  270 00c1 03       		.byte	0x3
  271 00c2 46       		.byte	0x46
  272 00c3 6F000000 		.4byte	0x6f
@@ -497,7 +497,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 1
  281 00d2 A6000000 		.4byte	0xa6
  282 00d6 08       		.uleb128 0x8
  283 00d7 01       		.byte	0x1
- 284 00d8 BA010000 		.4byte	.LASF18
+ 284 00d8 C7010000 		.4byte	.LASF18
  285 00dc 01       		.byte	0x1
  286 00dd 33       		.byte	0x33
  287 00de 01       		.byte	0x1
@@ -507,7 +507,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 1
  291 00eb 01       		.byte	0x1
  292 00ec 08       		.uleb128 0x8
  293 00ed 01       		.byte	0x1
- 294 00ee B4000000 		.4byte	.LASF19
+ 294 00ee 02010000 		.4byte	.LASF19
  295 00f2 01       		.byte	0x1
  296 00f3 56       		.byte	0x56
  297 00f4 01       		.byte	0x1
@@ -517,7 +517,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 1
  301 0101 01       		.byte	0x1
  302 0102 09       		.uleb128 0x9
  303 0103 01       		.byte	0x1
- 304 0104 FA000000 		.4byte	.LASF20
+ 304 0104 48010000 		.4byte	.LASF20
  305 0108 01       		.byte	0x1
  306 0109 77       		.byte	0x77
  307 010a 01       		.byte	0x1
@@ -527,7 +527,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 1
  311 0117 01       		.byte	0x1
  312 0118 09       		.uleb128 0x9
  313 0119 01       		.byte	0x1
- 314 011a 07010000 		.4byte	.LASF21
+ 314 011a 55010000 		.4byte	.LASF21
  315 011e 01       		.byte	0x1
  316 011f A5       		.byte	0xa5
  317 0120 01       		.byte	0x1
@@ -536,9 +536,9 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 1
  320 0129 84000000 		.4byte	.LLST3
  321 012d 01       		.byte	0x1
  322 012e 0A       		.uleb128 0xa
- 323 012f D7000000 		.4byte	.LASF25
+ 323 012f 25010000 		.4byte	.LASF25
  324 0133 01       		.byte	0x1
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 10
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cczJniet.s 			page 10
 
 
  325 0134 14       		.byte	0x14
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 1
  379 002e 03       		.uleb128 0x3
  380 002f 0E       		.uleb128 0xe
  381 0030 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 11
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cczJniet.s 			page 11
 
 
  382 0031 0B       		.uleb128 0xb
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 1
  436 0067 0C       		.uleb128 0xc
  437 0068 11       		.uleb128 0x11
  438 0069 01       		.uleb128 0x1
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 12
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cczJniet.s 			page 12
 
 
  439 006a 12       		.uleb128 0x12
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 1
  493 000b 00       		.sleb128 0
  494 000c 02000000 		.4byte	.LCFI0
  495 0010 04000000 		.4byte	.LCFI1
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 13
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cczJniet.s 			page 13
 
 
  496 0014 0200     		.2byte	0x2
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 1
  550 0098 0200     		.2byte	0x2
  551 009a 7D       		.byte	0x7d
  552 009b 08       		.sleb128 8
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 14
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cczJniet.s 			page 14
 
 
  553 009c 04000000 		.4byte	.LCFI7
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 1
  598 001a 756E7369 		.ascii	"unsigned int\000"
  598      676E6564 
  598      20696E74 
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 15
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cczJniet.s 			page 15
 
 
  598      00
@@ -874,97 +874,97 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 1
  609      6720756E 
  609      7369676E 
  609      65642069 
- 610              	.LASF19:
- 611 00b4 53504953 		.ascii	"SPIS_1_RestoreConfig\000"
- 611      5F315F52 
- 611      6573746F 
- 611      7265436F 
- 611      6E666967 
- 612              	.LASF1:
- 613 00c9 756E7369 		.ascii	"unsigned char\000"
- 613      676E6564 
- 613      20636861 
- 613      7200
- 614              	.LASF25:
- 615 00d7 53504953 		.ascii	"SPIS_1_backup\000"
- 615      5F315F62 
- 615      61636B75 
- 615      7000
- 616              	.LASF11:
- 617 00e5 63686172 		.ascii	"char\000"
- 617      00
- 618              	.LASF4:
- 619 00ea 6C6F6E67 		.ascii	"long int\000"
- 619      20696E74 
- 619      00
- 620              	.LASF10:
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 16
+ 610              	.LASF24:
+ 611 00b4 433A5C55 		.ascii	"C:\\Users\\Brian\\Dropbox\\RPiSoC\\Projects\\PSoC_2"
+ 611      73657273 
+ 611      5C427269 
+ 611      616E5C44 
+ 611      726F7062 
+ 612 00e1 5F50695C 		.ascii	"_Pi\\PSoC Creator\\PSoC_2_Pi.cydsn\000"
+ 612      50536F43 
+ 612      20437265 
+ 612      61746F72 
+ 612      5C50536F 
+ 613              	.LASF19:
+ 614 0102 53504953 		.ascii	"SPIS_1_RestoreConfig\000"
+ 614      5F315F52 
+ 614      6573746F 
+ 614      7265436F 
+ 614      6E666967 
+ 615              	.LASF1:
+ 616 0117 756E7369 		.ascii	"unsigned char\000"
+ 616      676E6564 
+ 616      20636861 
+ 616      7200
+ 617              	.LASF25:
+ 618 0125 53504953 		.ascii	"SPIS_1_backup\000"
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cczJniet.s 			page 16
 
 
- 621 00f3 646F7562 		.ascii	"double\000"
- 621      6C6500
- 622              	.LASF20:
- 623 00fa 53504953 		.ascii	"SPIS_1_Sleep\000"
- 623      5F315F53 
- 623      6C656570 
- 623      00
- 624              	.LASF21:
- 625 0107 53504953 		.ascii	"SPIS_1_Wakeup\000"
- 625      5F315F57 
- 625      616B6575 
- 625      7000
- 626              	.LASF16:
- 627 0115 636E7472 		.ascii	"cntrPeriod\000"
- 627      50657269 
- 627      6F6400
- 628              	.LASF3:
- 629 0120 73686F72 		.ascii	"short unsigned int\000"
- 629      7420756E 
- 629      7369676E 
- 629      65642069 
- 629      6E7400
- 630              	.LASF0:
- 631 0133 7369676E 		.ascii	"signed char\000"
- 631      65642063 
- 631      68617200 
- 632              	.LASF24:
- 633 013f 433A5C55 		.ascii	"C:\\Users\\Brian\\Dropbox\\RPiSoC\\Projects\\PSoC_2"
- 633      73657273 
- 633      5C427269 
- 633      616E5C44 
- 633      726F7062 
- 634 016c 5F50695C 		.ascii	"_Pi\\PSoC_2_Pi.cydsn\000"
- 634      50536F43 
- 634      5F325F50 
- 634      692E6379 
- 634      64736E00 
+ 618      5F315F62 
+ 618      61636B75 
+ 618      7000
+ 619              	.LASF11:
+ 620 0133 63686172 		.ascii	"char\000"
+ 620      00
+ 621              	.LASF4:
+ 622 0138 6C6F6E67 		.ascii	"long int\000"
+ 622      20696E74 
+ 622      00
+ 623              	.LASF10:
+ 624 0141 646F7562 		.ascii	"double\000"
+ 624      6C6500
+ 625              	.LASF20:
+ 626 0148 53504953 		.ascii	"SPIS_1_Sleep\000"
+ 626      5F315F53 
+ 626      6C656570 
+ 626      00
+ 627              	.LASF21:
+ 628 0155 53504953 		.ascii	"SPIS_1_Wakeup\000"
+ 628      5F315F57 
+ 628      616B6575 
+ 628      7000
+ 629              	.LASF16:
+ 630 0163 636E7472 		.ascii	"cntrPeriod\000"
+ 630      50657269 
+ 630      6F6400
+ 631              	.LASF3:
+ 632 016e 73686F72 		.ascii	"short unsigned int\000"
+ 632      7420756E 
+ 632      7369676E 
+ 632      65642069 
+ 632      6E7400
+ 633              	.LASF0:
+ 634 0181 7369676E 		.ascii	"signed char\000"
+ 634      65642063 
+ 634      68617200 
  635              	.LASF9:
- 636 0180 666C6F61 		.ascii	"float\000"
+ 636 018d 666C6F61 		.ascii	"float\000"
  636      7400
  637              	.LASF2:
- 638 0186 73686F72 		.ascii	"short int\000"
+ 638 0193 73686F72 		.ascii	"short int\000"
  638      7420696E 
  638      7400
  639              	.LASF13:
- 640 0190 72656738 		.ascii	"reg8\000"
+ 640 019d 72656738 		.ascii	"reg8\000"
  640      00
  641              	.LASF23:
- 642 0195 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\SPIS_1_PM.c\000"
+ 642 01a2 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\SPIS_1_PM.c\000"
  642      6E657261 
  642      7465645F 
  642      536F7572 
  642      63655C50 
  643              	.LASF18:
- 644 01ba 53504953 		.ascii	"SPIS_1_SaveConfig\000"
+ 644 01c7 53504953 		.ascii	"SPIS_1_SaveConfig\000"
  644      5F315F53 
  644      61766543 
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDyWMyf.s 			page 17
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cczJniet.s 			page 17
 
 
  644      6F6E6669 
  644      6700
  645              	.LASF14:
- 646 01cc 73697A65 		.ascii	"sizetype\000"
+ 646 01d9 73697A65 		.ascii	"sizetype\000"
  646      74797065 
  646      00
  647              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

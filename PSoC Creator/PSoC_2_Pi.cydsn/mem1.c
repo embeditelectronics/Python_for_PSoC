@@ -4,7 +4,7 @@
 *        all components included in the build. It will do so according to
 *        sets of instructions provided by a Master Device.
 *
-* Version 1.0
+* Version 1.0.5
 *
 * \author Brian Bradley
 *
@@ -158,6 +158,8 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
             #endif
         #endif
         
+        case RESET_ADDRESS: CySoftwareReset(); break;
+        
     }    
 }
 
@@ -183,10 +185,14 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
                 case 0x00: ADC_DelSig_1_Start();break;
                 case 0x01: ADC_DelSig_1_Stop(); break;
                 case 0x02: 
-                        if (val == 1 ){ADC_DelSig_1_SetBufferGain(ADC_DelSig_1_BUF_GAIN_1X); break;}
-                        else if (val == 2){ADC_DelSig_1_SetBufferGain(ADC_DelSig_1_BUF_GAIN_2X); break;}
-                        else if (val == 4){ADC_DelSig_1_SetBufferGain(ADC_DelSig_1_BUF_GAIN_4X); break;}
-                        else if (val == 8){ADC_DelSig_1_SetBufferGain(ADC_DelSig_1_BUF_GAIN_8X); break;}
+                    switch(val)
+                    {
+                        case 1: ADC_DelSig_1_SetBufferGain(ADC_DelSig_1_BUF_GAIN_1X); break;
+                        case 2: ADC_DelSig_1_SetBufferGain(ADC_DelSig_1_BUF_GAIN_2X); break;
+                        case 4: ADC_DelSig_1_SetBufferGain(ADC_DelSig_1_BUF_GAIN_4X); break;
+                        case 8: ADC_DelSig_1_SetBufferGain(ADC_DelSig_1_BUF_GAIN_8X); break;
+                    }
+                    break;
                 case 0x03: ADC_DelSig_1_StartConvert(); break;
                 case 0x04: ADC_DelSig_1_StopConvert(); break;
                 case 0x07: result = ADC_DelSig_1_IsEndConversion(ADC_DelSig_1_RETURN_STATUS); return_flag = 1; break;
@@ -194,7 +200,7 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
                 case 0x0D: result = ADC_DelSig_1_Read32(); return_flag = 1; break;
                 case 0x0E: ADC_DelSig_1_SetOffset(val); break;
                 case 0x0F: ADC_DelSig_1_SetGain(val); break;
-                case 0x11: result = ADC_DelSig_1_CountsTo_mVolts(val); return_flag = 1; break;
+                case 0x10: result = ADC_DelSig_1_CountsTo_uVolts(val); return_flag = 1; break;
                 case 0x14: ADC_DelSig_1_Sleep(); break;
                 case 0x15: ADC_DelSig_1_Wakeup(); break;
                     
@@ -229,16 +235,20 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
                 case 0x00: ADC_SAR_1_Start(); break;
                 case 0x01: ADC_SAR_1_Stop(); break;
                 case 0x03: 
-                    if (val == 8){ADC_SAR_1_SetResolution(ADC_SAR_1__BITS_8); break;}
-                    else if (val == 10){ADC_SAR_1_SetResolution(ADC_SAR_1__BITS_10); break;}
-                    else if (val == 12){ADC_SAR_1_SetResolution(ADC_SAR_1__BITS_12); break;}
+                    switch(val)
+                    {
+                        case 8: ADC_SAR_1_SetResolution(ADC_SAR_1__BITS_8); break;
+                        case 10: ADC_SAR_1_SetResolution(ADC_SAR_1__BITS_10); break;
+                        case 12: ADC_SAR_1_SetResolution(ADC_SAR_1__BITS_12); break;
+                    }
+                    break;
                 case 0x04: ADC_SAR_1_StartConvert(); break;
                 case 0x05: ADC_SAR_1_StopConvert(); break;
                 case 0x08: result = ADC_SAR_1_IsEndConversion(ADC_SAR_1_RETURN_STATUS); return_flag = 1; break;
                 case 0x0A: result = ADC_SAR_1_GetResult16(); return_flag = 1; break;
                 case 0x0B: ADC_SAR_1_SetOffset(val); break;
                 case 0x0C: ADC_SAR_1_SetGain(val); break;
-                case 0x0E: result = ADC_SAR_1_CountsTo_mVolts(val); return_flag = 1; break;
+                case 0x0D: result = ADC_SAR_1_CountsTo_uVolts(val); return_flag = 1; break;
                 case 0x10: ADC_SAR_1_Sleep(); break;
                 case 0x11: ADC_SAR_1_Wakeup(); break;       
             }
@@ -268,16 +278,20 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
                 case 0x00: ADC_SAR_2_Start(); break;
                 case 0x01: ADC_SAR_2_Stop(); break;
                 case 0x03: 
-                    if (val == 8){ADC_SAR_1_SetResolution(ADC_SAR_1__BITS_8); break;}
-                    else if (val == 10){ADC_SAR_1_SetResolution(ADC_SAR_1__BITS_10); break;}
-                    else if (val == 12){ADC_SAR_1_SetResolution(ADC_SAR_1__BITS_12); break;}
+                    switch(val)
+                    {
+                        case 8: ADC_SAR_2_SetResolution(ADC_SAR_2__BITS_8); break;
+                        case 10: ADC_SAR_2_SetResolution(ADC_SAR_2__BITS_10); break;
+                        case 12: ADC_SAR_2_SetResolution(ADC_SAR_2__BITS_12); break;
+                    }
+                    break;
                 case 0x04: ADC_SAR_2_StartConvert(); break;
                 case 0x05: ADC_SAR_2_StopConvert(); break;
-                case 0x08: result = ADC_SAR_2_IsEndConversion(ADC_SAR_1_RETURN_STATUS); return_flag = 1; break;
+                case 0x08: result = ADC_SAR_2_IsEndConversion(ADC_SAR_2_RETURN_STATUS); return_flag = 1; break;
                 case 0x0A: result = ADC_SAR_2_GetResult16(); return_flag = 1; break;
                 case 0x0B: ADC_SAR_2_SetOffset(val); break;
                 case 0x0C: ADC_SAR_2_SetGain(val); break;
-                case 0x0E: result = ADC_SAR_2_CountsTo_mVolts(val); return_flag = 1; break;//Change this cmd to reflect datasheet
+                case 0x0D: result = ADC_SAR_2_CountsTo_uVolts(val); return_flag = 1; break;//Change this cmd to reflect datasheet
                 case 0x10: ADC_SAR_2_Sleep(); break;
                 case 0x11: ADC_SAR_2_Wakeup(); break;     
                 
@@ -309,11 +323,19 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
                     case 0x00: VDAC8_1_Start(); break;
                     case 0x01: VDAC8_1_Stop(); break;
                     case 0x02: 
-                        if (val == 0){VDAC8_1_SetSpeed(VDAC8_1_LOWSPEED); break;}
-                        else if (val == 1){VDAC8_1_SetSpeed(VDAC8_1_HIGHSPEED); break;}
+                        switch(val)
+                        {
+                        case 0: VDAC8_1_SetSpeed(VDAC8_1_LOWSPEED); break;
+                        case 1: VDAC8_1_SetSpeed(VDAC8_1_HIGHSPEED); break;
+                        }
+                        break;
                     case 0x03:
-                        if (val == 0){VDAC8_1_SetRange(VDAC8_1_RANGE_1V); break;}
-                        else if (val == 1){VDAC8_1_SetRange(VDAC8_1_RANGE_4V); break;}
+                        switch(val)
+                        {
+                        case 0: VDAC8_1_SetRange(VDAC8_1_RANGE_1V); break;
+                        case 1: VDAC8_1_SetRange(VDAC8_1_RANGE_4V); break;
+                        }
+                        break;
                     case 0x04: VDAC8_1_SetValue(val); break; 
                     case 0x05: VDAC8_1_Sleep(); break;
                     case 0x06: VDAC8_1_Wakeup(); break;     
@@ -345,11 +367,19 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
                     case 0x00: VDAC8_2_Start(); break;
                     case 0x01: VDAC8_2_Stop(); break;
                     case 0x02: 
-                        if (val == 0){VDAC8_2_SetSpeed(VDAC8_2_LOWSPEED); break;}
-                        else if (val == 1){VDAC8_2_SetSpeed(VDAC8_2_HIGHSPEED); break;}
+                        switch(val)
+                        {
+                        case 0: VDAC8_2_SetSpeed(VDAC8_2_LOWSPEED); break;
+                        case 1: VDAC8_2_SetSpeed(VDAC8_2_HIGHSPEED); break;
+                        }
+                        break;
                     case 0x03:
-                        if (val == 0){VDAC8_2_SetRange(VDAC8_2_RANGE_1V); break;}
-                        else if (val == 1){VDAC8_2_SetRange(VDAC8_2_RANGE_4V); break;}
+                        switch(val)
+                        {
+                        case 0: VDAC8_2_SetRange(VDAC8_2_RANGE_1V); break;
+                        case 1: VDAC8_2_SetRange(VDAC8_2_RANGE_4V); break;
+                        }
+                        break;
                     case 0x04: VDAC8_2_SetValue(val); break; 
                     case 0x05: VDAC8_2_Sleep(); break;
                     case 0x06: VDAC8_2_Wakeup(); break;     
@@ -382,15 +412,27 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
                         case 0x00: IDAC8_1_Start(); break;
                         case 0x01: IDAC8_1_Stop(); break;
                         case 0x02: 
-                            if (val == 0){IDAC8_1_SetSpeed(IDAC8_1_LOWSPEED); break;}
-                            else if (val == 1){IDAC8_1_SetSpeed(IDAC8_1_HIGHSPEED); break;}
+                            switch(val)
+                            {
+                            case 0: IDAC8_1_SetSpeed(IDAC8_1_LOWSPEED); break;
+                            case 1: IDAC8_1_SetSpeed(IDAC8_1_HIGHSPEED); break;
+                            }
+                            break;
                         case 0x03:
-                            if (val == 0){IDAC8_1_SetPolarity(IDAC8_1_SOURCE); break;}
-                            else if (val == 1){IDAC8_1_SetPolarity(IDAC8_1_SINK); break;}
+                            switch(val)
+                            {
+                            case 0: IDAC8_1_SetPolarity(IDAC8_1_SOURCE); break;
+                            case 1: IDAC8_1_SetPolarity(IDAC8_1_SINK); break;
+                            }
+                            break;
                         case 0x04:
-                            if (val == 0){IDAC8_1_SetRange(IDAC8_1_RANGE_32uA); break;}
-                            else if (val == 1){IDAC8_1_SetRange(IDAC8_1_RANGE_255uA); break;}
-                            else if (val == 2){IDAC8_1_SetRange(IDAC8_1_RANGE_2mA); break;}
+                            switch(val)
+                            {
+                            case 0: IDAC8_1_SetRange(IDAC8_1_RANGE_32uA); break;
+                            case 1: IDAC8_1_SetRange(IDAC8_1_RANGE_255uA); break;
+                            case 2: IDAC8_1_SetRange(IDAC8_1_RANGE_2mA); break;
+                            }
+                            break;
                         case 0x05: IDAC8_1_SetValue(val); break;
                         case 0x06: IDAC8_1_Sleep(); break;
                         case 0x07: IDAC8_1_Wakeup(); break;     
@@ -423,15 +465,27 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
                     case 0x00: IDAC8_2_Start(); break;
                     case 0x01: IDAC8_2_Stop(); break;
                     case 0x02: 
-                        if (val == 0){IDAC8_2_SetSpeed(IDAC8_2_LOWSPEED); break;}
-                        else if (val == 1){IDAC8_2_SetSpeed(IDAC8_2_HIGHSPEED); break;}
-                    case 0x03:
-                        if (val == 0){IDAC8_2_SetPolarity(IDAC8_2_SOURCE); break;}
-                        else if (val == 1){IDAC8_2_SetPolarity(IDAC8_2_SINK); break;}
-                    case 0x04:
-                        if (val == 0){IDAC8_2_SetRange(IDAC8_2_RANGE_32uA); break;}
-                        else if (val == 1){IDAC8_2_SetRange(IDAC8_2_RANGE_255uA); break;}
-                        else if (val == 2){IDAC8_2_SetRange(IDAC8_2_RANGE_2mA); break;}
+                            switch(val)
+                            {
+                            case 0: IDAC8_2_SetSpeed(IDAC8_2_LOWSPEED); break;
+                            case 1: IDAC8_2_SetSpeed(IDAC8_2_HIGHSPEED); break;
+                            }
+                            break;
+                        case 0x03:
+                            switch(val)
+                            {
+                            case 0: IDAC8_2_SetPolarity(IDAC8_2_SOURCE); break;
+                            case 1: IDAC8_2_SetPolarity(IDAC8_2_SINK); break;
+                            }
+                            break;
+                        case 0x04:
+                            switch(val)
+                            {
+                            case 0: IDAC8_2_SetRange(IDAC8_2_RANGE_32uA); break;
+                            case 1: IDAC8_2_SetRange(IDAC8_2_RANGE_255uA); break;
+                            case 2: IDAC8_2_SetRange(IDAC8_2_RANGE_2mA); break;
+                            }
+                            break;
                     case 0x05: IDAC8_2_SetValue(val); break;
                     case 0x06: IDAC8_2_Sleep(); break;
                     case 0x07: IDAC8_2_Wakeup(); break;     
@@ -466,14 +520,18 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
                     case 0x01: WaveDAC8_1_Stop(); break;
                     case 0x04: Generate_Wave(); break;
                     case 0x07: 
-                        if (val == 0){WaveDAC8_1_SetSpeed(WaveDAC8_1_LOWSPEED); break;}
-                        else if (val == 1){WaveDAC8_1_SetSpeed(WaveDAC8_1_HIGHSPEED); break;}
+                        switch (val)
+                        {
+                        case 0: WaveDAC8_1_SetSpeed(WaveDAC8_1_LOWSPEED); break;
+                        case 1: WaveDAC8_1_SetSpeed(WaveDAC8_1_HIGHSPEED); break;
+                        }
+                        break;
                     case 0x09: WaveDAC8_1_SetValue(val); break;
                     case 0x0B: WaveDAC8_1_Sleep(); break;
                     case 0x0C: WaveDAC8_1_Wakeup(); break;
                     case 0xFD: WaveDAC_clk_Start(); break;
                     case 0xFE: WaveDAC_clk_Stop(); break;
-                    case 0xFF: WaveDAC_clk_SetDividerValue(val); break; 
+                    case 0xFF: WaveDAC_clk_SetDividerValue(val); result = WaveDAC_clk_GetDividerRegister(); return_flag = 1; break; 
                         
                     
                 }   
@@ -580,6 +638,7 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
                             247, 248, 249, 250, 251, 252, 253, 254,255
                     	};
             
+            /*
             if (waveType == SINE)
             {
               int i;
@@ -603,78 +662,66 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
                 WaveDAC8_1_Wave2Setup(newWave, WAVE_SIZE);
               
             }
+            */
+            
+            uint8 newWave[WAVE_SIZE];
+            memset(newWave, 0, WAVE_SIZE);
+            double val;
+            uint8 newVal = 0;
+            
+            if (waveType == SINE)
+            {
+              int i;
+              for(i = 0; i < WAVE_SIZE; i++)
+                {
+                    val = (((double)SINEWave[i]) * (((double)amp)/255.0)) + (double)dcB;
+                    if(val > 255){val = 255;}
+                    newVal = (uint8)val; 
+                    newWave[i] = newVal;
+    	        }
+                           
+            }
             
             else if (waveType == SQUARE)
             {
               int i;
-              uint8 newWave[WAVE_SIZE];
               for(i = 0; i < WAVE_SIZE; i++)
                 {
-                    double val;
-                    
                     val = (((double)SQUAREWave[i]) * (((double)amp)/255.0)) + (double)dcB;
-                    
                     if(val > 255){val = 255;}
-                    
-                    uint8 newVal = (uint8) val; 
-                    
+                    newVal = (uint8)val; 
                     newWave[i] = newVal;
-                    
     	        }
-                
-                uint8 Zeroes[WAVE_SIZE];
-                memset(Zeroes, 0, WAVE_SIZE);
-                
-                WaveDAC8_1_Wave2Setup(newWave, WAVE_SIZE);
-                
+                           
             }
             
-            else if (waveType == TRIANGLE)
+            if (waveType == TRIANGLE)
             {
               int i;
-              uint8 newWave[WAVE_SIZE];
               for(i = 0; i < WAVE_SIZE; i++)
                 {
-                    double val;
-                    
                     val = (((double)TRIANGLEWave[i]) * (((double)amp)/255.0)) + (double)dcB;
-                            
                     if(val > 255){val = 255;}
-                    
-                    uint8 newVal = (uint8) val; 
-                    
+                    newVal = (uint8)val; 
                     newWave[i] = newVal;
     	        }
-        
-                uint8 Zeroes[WAVE_SIZE];
-                memset(Zeroes, 0, WAVE_SIZE);
-                
-                WaveDAC8_1_Wave2Setup(newWave, WAVE_SIZE);
-                
+                           
             }
             
-            else if (waveType == SAWTOOTH)
+           if (waveType == SAWTOOTH)
             {
-                  int i;
-                  uint8 newWave[WAVE_SIZE];
-                  for(i = 0; i < WAVE_SIZE; i++)
-                    {
-                        double val;
-                        
-                        val = (((double)SAWTOOTHWave[i]) * (((double)amp)/255.0)) + (double)dcB;  
-                        
-                        if(val > 255){val = 255;}
-                        
-                        uint8 newVal = (uint8) val; 
-                        newWave[i] = newVal;
-        	        }
-            
-                    uint8 Zeroes[WAVE_SIZE];
-                    memset(Zeroes, 0, WAVE_SIZE);
-                    
-                    WaveDAC8_1_Wave2Setup(newWave, WAVE_SIZE);
-                    
+              int i;
+              for(i = 0; i < WAVE_SIZE; i++)
+                {
+                    val = (((double)SAWTOOTHWave[i]) * (((double)amp)/255.0)) + (double)dcB;
+                    if(val > 255){val = 255;}
+                    newVal = (uint8)val; 
+                    newWave[i] = newVal;
+    	        }
+                           
             }
+            
+            WaveDAC8_1_Wave2Setup(newWave, WAVE_SIZE);
             
             
             
@@ -712,6 +759,7 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
                 case 0x18: PWM_1_ClearFIFO(); break; 
                 case 0x19: PWM_1_Sleep(); break; 
                 case 0x1A: PWM_1_Wakeup(); break; 
+                case 0xFF: PWM_1_2_clk_SetDividerValue(val); result = PWM_1_2_clk_GetDividerRegister(); return_flag = 1; break; 
                 
             }
             
@@ -752,6 +800,7 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
                 case 0x18: PWM_2_ClearFIFO(); break; 
                 case 0x19: PWM_2_Sleep(); break; 
                 case 0x1A: PWM_2_Wakeup(); break; 
+                case 0xFF: PWM_1_2_clk_SetDividerValue(val); result = PWM_1_2_clk_GetDividerRegister(); return_flag = 1; break;
                 
             }
             
@@ -791,6 +840,7 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
                 case 0x18: PWM_3_ClearFIFO(); break; 
                 case 0x19: PWM_3_Sleep(); break; 
                 case 0x1A: PWM_3_Wakeup(); break; 
+                case 0xFF: PWM_3_4_clk_SetDividerValue(val); result = PWM_3_4_clk_GetDividerRegister(); return_flag = 1; break;
                 
             }
             
@@ -830,6 +880,7 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
                 case 0x18: PWM_4_ClearFIFO(); break; 
                 case 0x19: PWM_4_Sleep(); break; 
                 case 0x1A: PWM_4_Wakeup(); break; 
+                case 0xFF: PWM_3_4_clk_SetDividerValue(val); result = PWM_3_4_clk_GetDividerRegister(); return_flag = 1; break;
                 
             }
             
@@ -871,6 +922,7 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
                 case 0x18: PWM_5_ClearFIFO(); break; 
                 case 0x19: PWM_5_Sleep(); break; 
                 case 0x1A: PWM_5_Wakeup(); break; 
+                case 0xFF: PWM_5_6_clk_SetDividerValue(val); result = PWM_5_6_clk_GetDividerRegister(); return_flag = 1; break;
                 
             }
             
@@ -912,6 +964,7 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
                 case 0x18: PWM_6_ClearFIFO(); break; 
                 case 0x19: PWM_6_Sleep(); break; 
                 case 0x1A: PWM_6_Wakeup(); break; 
+                case 0xFF: PWM_5_6_clk_SetDividerValue(val); result = PWM_5_6_clk_GetDividerRegister(); return_flag = 1; break;
             }
             
             if (return_flag)
@@ -952,6 +1005,7 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
                 case 0x18: PWM_7_ClearFIFO(); break; 
                 case 0x19: PWM_7_Sleep(); break; 
                 case 0x1A: PWM_7_Wakeup(); break; 
+                case 0xFF: PWM_7_8_clk_SetDividerValue(val); result = PWM_7_8_clk_GetDividerRegister(); return_flag = 1; break;
             }
             
             if (return_flag)
@@ -990,6 +1044,7 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
                 case 0x18: PWM_8_ClearFIFO(); break; 
                 case 0x19: PWM_8_Sleep(); break; 
                 case 0x1A: PWM_8_Wakeup(); break;
+                case 0xFF: PWM_7_8_clk_SetDividerValue(val); result = PWM_7_8_clk_GetDividerRegister(); return_flag = 1; break;
             }
             
             if (return_flag)
@@ -1100,12 +1155,30 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
             {
                 uint32 result = MAX_32; 
                 bool return_flag = 0;
+                uint8 bit_num = 0;
+                uint8 new_reg_status = 0;
+                uint8 dat = 0;
               
                 
                 switch(cmd)
                 {
                     case 0x00: result = Control_Reg_1_Read(); return_flag = 1; break;
-                    case 0x01: Control_Reg_1_Write(val); break; 
+                    case 0x01: 
+                            bit_num = val>>8;
+                            dat = val&0x00FF;
+                            uint8 prev_reg_status = Control_Reg_1_Read();
+                            if (dat == 1)
+                            {
+                                new_reg_status = prev_reg_status | (0x01<<bit_num);
+                            }
+                            else if (dat == 0)
+                            {
+                                new_reg_status = (prev_reg_status&(~(0x01<<bit_num)));
+                            }
+                            
+                            Control_Reg_1_Write(new_reg_status);
+                            break;
+               
                 }
                 
                 if (return_flag)
@@ -1132,11 +1205,35 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
             {
                 uint32 result = MAX_32; 
                 bool return_flag = 0;
-                
+                uint8 bit_num = 0;
+                uint8 new_reg_status = 0;
+                uint8 dat = 0;
+                /*
                 switch(cmd)
                 {
                     case 0x00: result = Control_Reg_2_Read(); return_flag = 1; break;
                     case 0x01: Control_Reg_2_Write(val); break; 
+                }*/
+                
+                switch(cmd)
+                {
+                    case 0x00: result = Control_Reg_2_Read(); return_flag = 1; break;
+                    case 0x01: 
+                            bit_num = val>>8;
+                            dat = val&0x00FF;
+                            uint8 prev_reg_status = Control_Reg_2_Read();
+                            if (dat == 1)
+                            {
+                                new_reg_status = prev_reg_status | (0x01<<bit_num);
+                            }
+                            else if (dat == 0)
+                            {
+                                new_reg_status = (prev_reg_status&(~(0x01<<bit_num)));
+                            }
+                            
+                            Control_Reg_2_Write(new_reg_status);
+                            break;
+               
                 }
                 
                 if (return_flag)
@@ -1163,11 +1260,35 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
             {
                 uint32 result = MAX_32; 
                 bool return_flag = 0;
-                
+                uint8 bit_num = 0;
+                uint8 new_reg_status = 0;
+                uint8 dat = 0;
+                /*
                 switch(cmd)
                 {
                     case 0x00: result = Control_Reg_3_Read(); return_flag = 1; break;
                     case 0x01: Control_Reg_3_Write(val); break; 
+                }*/
+                
+                switch(cmd)
+                {
+                    case 0x00: result = Control_Reg_3_Read(); return_flag = 1; break;
+                    case 0x01: 
+                            bit_num = val>>8;
+                            dat = val&0x00FF;
+                            uint8 prev_reg_status = Control_Reg_3_Read();
+                            if (dat == 1)
+                            {
+                                new_reg_status = prev_reg_status | (0x01<<bit_num);
+                            }
+                            else if (dat == 0)
+                            {
+                                new_reg_status = (prev_reg_status&(~(0x01<<bit_num)));
+                            }
+                            
+                            Control_Reg_3_Write(new_reg_status);
+                            break;
+               
                 }
                 
                 if (return_flag)
@@ -1177,65 +1298,5 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
             }
         #endif
     #endif
-    
-/****************************************************************************************//**
-*  @brief receives 4 bytes of data from a Master Device, merges them into a 32 bit number, and
-*         returns the result
-*
-*  @return: 32-bit number which contains all 4 bytes of transferred data, where the MSB is the 
-            first item received.
-*
-*********************************************************************************************/
-    
-    uint32 ReadFrom_Pi(void)
-    {   
-        uint8 addr = 0;
-        uint8 cmd = 0;
-        uint8 dat_lo = 0;
-        uint8 dat_hi = 0;
-        
-        while(!SPIS_1_GetRxBufferSize()){/* Wait until the Rx buffer isn't empty */}
-            addr = SPIS_1_ReadRxData();
-	    while(!SPIS_1_GetRxBufferSize()){/* Wait until the Rx buffer isn't empty */}
-	        cmd = SPIS_1_ReadRxData();
-	    while(!SPIS_1_GetRxBufferSize()){/* Wait until the Rx buffer isn't empty */}
-	        dat_lo = SPIS_1_ReadRxData();
-        while(!SPIS_1_GetRxBufferSize()){/* Wait until the Rx buffer isn't empty */}
-	        dat_hi = SPIS_1_ReadRxData();
-        
-        uint32 input = (((addr<<24)|(cmd<<16))|(dat_lo<<8))|(dat_hi);
-        return input;
-    }
-    
-/****************************************************************************************//**
-*  @brief Writes data back to the Master device when appropriate. 
-*
-*  @param dat: 32-bit number which is to be sent to the Master device. It is split into 4
-*              individual bytes, and transferred one at a time starting with the lowest byte
-*
-*********************************************************************************************/
-    
-    void WriteTo_Pi(uint32 dat)
-    {
-        
-        #ifdef CY_SPIS_SPIS_1_H
-            uint8 out_hi = (dat & 0xFF000000)>>24;
-            uint8 out_mid_hi = (dat & 0x00FF0000)>>16;
-            uint8 out_mid_lo = (dat & 0x0000FF00)>>8;
-            uint8 out_lo = dat & 0x000000FF;
-            
 
-            SPIS_1_ClearTxBuffer();
-            SPIS_1_ClearFIFO();    //Clear the SPI buffers
-            SPIS_1_ClearRxBuffer();
-            
-            uint8 SPI_buffer[3] = {out_mid_lo, out_mid_hi, out_hi};
-            SPIS_1_WriteTxDataZero(out_lo);
-            SPIS_1_PutArray(SPI_buffer, 3);
-           
-            while(!(SPIS_1_ReadTxStatus() & SPIS_1_STS_SPI_DONE)); //Wait until Tx buffer empties
-            
-        #endif
-    }
-    
 /* [] END OF FILE */

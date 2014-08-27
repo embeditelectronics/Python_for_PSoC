@@ -13,16 +13,9 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="PSoC_2_Pi\PSoC_2_Pi\TopDesign.cysch">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="PSoC_2_Pi\PSoC_2_Pi\Source Files\mem1.c">
 <ExpandedNodeIds>
 <v>PSoC_2_Pi</v>
-<v>PSoC_2_Pi\Design01\TopDesign.cysch</v>
-<v>PSoC_2_Pi\Design01\Design01.cydwr</v>
-<v>PSoC_2_Pi\Design01\Header Files</v>
-<v>PSoC_2_Pi\Design01\Header Files\mem1.h</v>
-<v>PSoC_2_Pi\Design01\Source Files</v>
-<v>PSoC_2_Pi\Design01\Source Files\main.c</v>
-<v>PSoC_2_Pi\Design01\Source Files\mem1.c</v>
 <v>PSoC_2_Pi\PSoC_2_Pi</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\TopDesign.cysch</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\PSoC_2_Pi.cydwr</v>
@@ -83,12 +76,6 @@
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Bootloadable_1</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Bootloadable_1\Bootloadable_1.c</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Bootloadable_1\Bootloadable_1.h</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Clock_1</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Clock_1\Clock_1.c</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Clock_1\Clock_1.h</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Clock_2</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Clock_2\Clock_2.c</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Clock_2\Clock_2.h</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Clock_3</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Clock_3\Clock_3.c</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Clock_3\Clock_3.h</v>
@@ -98,10 +85,6 @@
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Control_Reg_2</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Control_Reg_2\Control_Reg_2.c</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Control_Reg_2\Control_Reg_2.h</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\cs_lcd</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\cs_lcd\cs_lcd.c</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\cs_lcd\cs_lcd.h</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\cs_lcd\cs_lcd_aliases.h</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\cy_boot</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\cy_boot\cm3gcc.ld</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\cy_boot\Cm3Iar.icf</v>
@@ -127,10 +110,6 @@
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\cy_boot\CySpc.h</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\cy_boot\cytypes.h</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\cy_boot\cyutils.c</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\dc_lcd</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\dc_lcd\dc_lcd.c</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\dc_lcd\dc_lcd.h</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\dc_lcd\dc_lcd_aliases.h</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\DELSIG_in</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\DELSIG_in\DELSIG_in.c</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\DELSIG_in\DELSIG_in.h</v>
@@ -195,18 +174,10 @@
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\miso\miso.c</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\miso\miso.h</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\miso\miso_aliases.h</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\miso_lcd</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\miso_lcd\miso_lcd.c</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\miso_lcd\miso_lcd.h</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\miso_lcd\miso_lcd_aliases.h</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\mosi</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\mosi\mosi.c</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\mosi\mosi.h</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\mosi\mosi_aliases.h</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\mosi_lcd</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\mosi_lcd\mosi_lcd.c</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\mosi_lcd\mosi_lcd.h</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\mosi_lcd\mosi_lcd_aliases.h</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Out_1</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Out_1\Out_1.c</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Out_1\Out_1.h</v>
@@ -319,10 +290,6 @@
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\PWM_out_8\PWM_out_8.c</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\PWM_out_8\PWM_out_8.h</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\PWM_out_8\PWM_out_8_aliases.h</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\rt_cs</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\rt_cs\rt_cs.c</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\rt_cs\rt_cs.h</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\rt_cs\rt_cs_aliases.h</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\SAR_in_1</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\SAR_in_1\SAR_in_1.c</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\SAR_in_1\SAR_in_1.h</v>
@@ -335,10 +302,6 @@
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\sclk\sclk.c</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\sclk\sclk.h</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\sclk\sclk_aliases.h</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\sclk_lcd</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\sclk_lcd\sclk_lcd.c</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\sclk_lcd\sclk_lcd.h</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\sclk_lcd\sclk_lcd_aliases.h</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\SPIS_1</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\SPIS_1\SPIS_1.c</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\SPIS_1\SPIS_1.h</v>
@@ -349,28 +312,12 @@
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\SPIS_1_IntClock</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\SPIS_1_IntClock\SPIS_1_IntClock.c</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\SPIS_1_IntClock\SPIS_1_IntClock.h</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\ss_lcd</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\ss_lcd\ss_lcd.c</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\ss_lcd\ss_lcd.h</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\ss_lcd\ss_lcd_aliases.h</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Status_Reg_1</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Status_Reg_1\Status_Reg_1.c</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Status_Reg_1\Status_Reg_1.h</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Status_Reg_2</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Status_Reg_2\Status_Reg_2.c</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Status_Reg_2\Status_Reg_2.h</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\TFTSHIELD_1</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\TFTSHIELD_1\TFTSHIELD_1.c</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\TFTSHIELD_1\TFTSHIELD_1.h</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\TFTSHIELD_1_CR_1</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\TFTSHIELD_1_CR_1\TFTSHIELD_1_CR_1.c</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\TFTSHIELD_1_CR_1\TFTSHIELD_1_CR_1.h</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\TFTSHIELD_1_SPIM_1</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\TFTSHIELD_1_SPIM_1\TFTSHIELD_1_SPIM_1.c</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\TFTSHIELD_1_SPIM_1\TFTSHIELD_1_SPIM_1.h</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\TFTSHIELD_1_SPIM_1\TFTSHIELD_1_SPIM_1_INT.c</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\TFTSHIELD_1_SPIM_1\TFTSHIELD_1_SPIM_1_PM.c</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\TFTSHIELD_1_SPIM_1\TFTSHIELD_1_SPIM_1_PVT.h</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\VDAC_out_1</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\VDAC_out_1\VDAC_out_1.c</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\VDAC_out_1\VDAC_out_1.h</v>
@@ -387,10 +334,6 @@
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\VDAC8_2\VDAC8_2.c</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\VDAC8_2\VDAC8_2.h</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\VDAC8_2\VDAC8_2_PM.c</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Wave_Buffer</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Wave_Buffer\Wave_Buffer.c</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Wave_Buffer\Wave_Buffer.h</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\Wave_Buffer\Wave_Buffer_PM.c</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\WaveDAC_clk</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\WaveDAC_clk\WaveDAC_clk.c</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\WaveDAC_clk\WaveDAC_clk.h</v>
@@ -434,7 +377,6 @@
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>PSoC_2_Pi</v>
-<v>PSoC_2_Pi\Design01</v>
 <v>PSoC_2_Pi\PSoC_2_Pi</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\TopDesign.cysch</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\PSoC_2_Pi.cydwr</v>
@@ -464,34 +406,34 @@
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\ADC_DelSig_1_theACLK\ADC_DelSig_1_theACLK.h</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\ADC_SAR_1</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\ADC_SAR_1\ADC_SAR_1.c</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\ADC_SAR_1\ADC_SAR_1.h</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\ADC_SAR_1\ADC_SAR_1_INT.c</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\ADC_SAR_1\ADC_SAR_1_PM.c</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\ADC_SAR_1_Bypass</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\ADC_SAR_1_Bypass\ADC_SAR_1_Bypass.c</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\ADC_SAR_1_Bypass\ADC_SAR_1_Bypass.h</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\ADC_SAR_1_Bypass\ADC_SAR_1_Bypass_aliases.h</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\Generated_Source\PSoC5\ADC_SAR_1_IRQ</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
 <ExpandedNodeIds>
 <v>PSoC_2_Pi</v>
-<v>PSoC_2_Pi\Design01</v>
-<v>PSoC_2_Pi\Design01\TopDesign</v>
-<v>PSoC_2_Pi\Design01\TopDesign\TopDesign.cysch</v>
 <v>PSoC_2_Pi\PSoC_2_Pi</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\TopDesign</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\TopDesign\TopDesign.cysch</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>PSoC_2_Pi</v>
-<v>PSoC_2_Pi\Design01</v>
-<v>PSoC_2_Pi\Design01\TopDesign</v>
-<v>PSoC_2_Pi\Design01\TopDesign\TopDesign.cysch</v>
 <v>PSoC_2_Pi\PSoC_2_Pi</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\TopDesign</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\TopDesign\TopDesign.cysch</v>
+<v>PSoC_2_Pi\Wavedac_test</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="PSoC_2_Pi\PSoC_2_Pi\PSoC_2_Pi.rpt">
 <ExpandedNodeIds>
 <v>PSoC_2_Pi</v>
-<v>PSoC_2_Pi\Design01</v>
-<v>PSoC_2_Pi\Design01\Design01.rpt</v>
-<v>PSoC_2_Pi\Design01\Design01_timing.html</v>
 <v>PSoC_2_Pi\PSoC_2_Pi</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473</v>
@@ -517,13 +459,11 @@
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_SAR_2_PM.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_SAR_2_theACLK.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Bootloadable_1.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Clock_1.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Clock_2.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Clock_3.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Cm3Start.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Control_Reg_1.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Control_Reg_2.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\cs_lcd.lst</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Control_Reg_3.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\CyBootAsmGnu.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\cybootloader.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\CyDmac.lst</v>
@@ -534,7 +474,6 @@
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\cyPm.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\CySpc.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\cyutils.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\dc_lcd.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\DELSIG_in.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\IDAC_out_1.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\IDAC8_1.lst</v>
@@ -543,6 +482,13 @@
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\In_10.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\In_11.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\In_12.lst</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\In_13.lst</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\In_14.lst</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\In_15.lst</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\In_16.lst</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\In_17.lst</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\In_18.lst</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\In_19.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\In_2.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\In_3.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\In_4.lst</v>
@@ -554,14 +500,20 @@
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\main.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\mem1.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\miso.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\miso_lcd.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\mosi.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\mosi_lcd.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Out_1.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Out_10.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Out_11.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Out_12.lst</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Out_13.lst</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Out_14.lst</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Out_15.lst</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Out_16.lst</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Out_17.lst</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Out_18.lst</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Out_19.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Out_2.lst</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Out_20.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Out_3.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Out_4.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Out_5.lst</v>
@@ -570,18 +522,22 @@
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Out_8.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Out_9.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\PWM_1.lst</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\PWM_1_2_clk.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\PWM_1_PM.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\PWM_2.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\PWM_2_PM.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\PWM_3.lst</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\PWM_3_4_clk.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\PWM_3_PM.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\PWM_4.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\PWM_4_PM.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\PWM_5.lst</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\PWM_5_6_clk.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\PWM_5_PM.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\PWM_6.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\PWM_6_PM.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\PWM_7.lst</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\PWM_7_8_clk.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\PWM_7_PM.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\PWM_8.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\PWM_8_PM.lst</v>
@@ -593,35 +549,28 @@
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\PWM_out_6.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\PWM_out_7.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\PWM_out_8.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\rt_cs.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\SAR_in_1.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\SAR_in_2.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\sclk.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\sclk_lcd.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\SPIS_1.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\SPIS_1_BOOT.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\SPIS_1_INT.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\SPIS_1_IntClock.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\SPIS_1_PM.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\ss_lcd.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Status_Reg_1.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Status_Reg_2.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\TFTSHIELD_1.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\TFTSHIELD_1_CR_1.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\TFTSHIELD_1_SPIM_1.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\TFTSHIELD_1_SPIM_1_INT.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\TFTSHIELD_1_SPIM_1_PM.lst</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Status_Reg_3.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\VDAC_out_1.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\VDAC_out_2.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\VDAC8_1.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\VDAC8_1_PM.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\VDAC8_2.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\VDAC8_2_PM.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Wave_Buffer.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Wave_Buffer_PM.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\WaveDAC_clk.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\WaveDAC_out.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\WaveDAC8_1.lst</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\WaveDAC8_1_BuffAmp.lst</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\WaveDAC8_1_BuffAmp_PM.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\WaveDAC8_1_PM.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\WaveDAC8_1_VDAC8.lst</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\WaveDAC8_1_VDAC8_PM.lst</v>
@@ -636,36 +585,7 @@
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>PSoC_2_Pi</v>
-<v>PSoC_2_Pi\Design01</v>
-<v>PSoC_2_Pi\Design01\Design01.rpt</v>
-<v>PSoC_2_Pi\Design01\Design01_timing.html</v>
 <v>PSoC_2_Pi\PSoC_2_Pi</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_DelSig_1.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_DelSig_1_AMux.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_DelSig_1_Ext_CP_Clk.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_DelSig_1_INT.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_DelSig_1_IRQ.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_DelSig_1_PM.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_DelSig_1_theACLK.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_SAR_1.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_SAR_1_Bypass.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_SAR_1_INT.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_SAR_1_IRQ.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_SAR_1_PM.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_SAR_1_theACLK.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_SAR_2.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_SAR_2_Bypass.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_SAR_2_INT.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_SAR_2_IRQ.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_SAR_2_PM.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_SAR_2_theACLK.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Bootloadable_1.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Clock_1.lst</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\CortexM3\ARM_GCC_473\Debug\Listing Files\Clock_2.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -676,53 +596,43 @@
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
 <ExpandedNodeIds>
 <v>PSoC_2_Pi</v>
-<v>PSoC_2_Pi\Design01</v>
-<v>PSoC_2_Pi\Design01\PSoC 5 Architecture TRM</v>
-<v>PSoC_2_Pi\Design01\CY8C58LP Family Datasheet</v>
-<v>PSoC_2_Pi\Design01\System Reference Guide v4_10</v>
 <v>PSoC_2_Pi\PSoC_2_Pi</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\PSoC 5 Architecture TRM</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CY8C58LP Family Datasheet</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\System Reference Guide v4_0</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\System Reference Guide v4_10</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\ADC_DelSig_v3_0</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\ADC_SAR_v2_10</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Bootloadable_v1_20</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\cy_clock_v2_10</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\cy_clock_v2_20</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\cy_constant_v1_0</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\cy_pins_v1_90</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\cy_pins_v2_0</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CyControlReg_v1_70</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CyStatusReg_v1_80</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\IDAC8_v2_0</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\OpAmp_v1_90</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\OneTerminal</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\PWM_v3_0</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\SPI_Slave_v2_60</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\TFTSHIELD</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\VDAC8_v1_90</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\WaveDAC8_v2_0</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>PSoC_2_Pi</v>
-<v>PSoC_2_Pi\Design01</v>
-<v>PSoC_2_Pi\Design01\PSoC 5 Architecture TRM</v>
-<v>PSoC_2_Pi\Design01\CY8C58LP Family Datasheet</v>
-<v>PSoC_2_Pi\Design01\System Reference Guide v4_10</v>
 <v>PSoC_2_Pi\PSoC_2_Pi</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\PSoC 5 Architecture TRM</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CY8C58LP Family Datasheet</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\System Reference Guide v4_0</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\System Reference Guide v4_10</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\ADC_DelSig_v3_0</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\ADC_SAR_v2_10</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\Bootloadable_v1_20</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\cy_clock_v2_10</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\cy_clock_v2_20</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\cy_constant_v1_0</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\cy_pins_v1_90</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\cy_pins_v2_0</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CyControlReg_v1_70</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\CyStatusReg_v1_80</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\IDAC8_v2_0</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\OpAmp_v1_90</v>
+<v>PSoC_2_Pi\PSoC_2_Pi\OneTerminal</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\PWM_v3_0</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\SPI_Slave_v2_60</v>
-<v>PSoC_2_Pi\PSoC_2_Pi\TFTSHIELD</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\VDAC8_v1_90</v>
 <v>PSoC_2_Pi\PSoC_2_Pi\WaveDAC8_v2_0</v>
 </VisibleNodeIds>
@@ -736,6 +646,8 @@
 <OpenDocs>
 <name v=".\PSoC_2_Pi.cydsn\TopDesign\TopDesign.cysch" />
 <name v=".\PSoC_2_Pi.cydsn\mem1.c" />
+<name v=".\PSoC_2_Pi.cydsn\main.c" />
+<name v=".\PSoC_2_Pi.cydsn\PSoC_2_Pi.cydwr" />
 </OpenDocs>
 <config v="" />
 <AutoUpdate v="true" />

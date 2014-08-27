@@ -18,7 +18,7 @@
       <Tool Name="postbuild" Command="" Options="" />
     </Toolchain>
   </Toolchains>
-  <Project Name="PSoC_2_Pi" Path="C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn" Version="4.10" Type="Bootloadable">
+  <Project Name="PSoC_2_Pi" Path="C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn" Version="4.10" Type="Bootloadable">
     <CMSIS_SVD_File>PSoC_2_Pi.svd</CMSIS_SVD_File>
     <Datasheet />
     <LinkerFiles>
@@ -27,15 +27,15 @@
       <LinkerFile Toolchain="IAR EWARM">.\Generated_Source\PSoC5\Cm3Iar.icf</LinkerFile>
     </LinkerFiles>
     <Folders>
-      <Folder BuildType="BUILD" Path="C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn">
-        <Files Root="C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn">
+      <Folder BuildType="BUILD" Path="C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn">
+        <Files Root="C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn">
           <File BuildType="BUILD" Toolchain="">.\main.c</File>
           <File BuildType="BUILD" Toolchain="">.\mem1.c</File>
           <File BuildType="BUILD" Toolchain="">.\mem1.h</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn\Generated_Source\PSoC5">
-        <Files Root="C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn">
+      <Folder BuildType="STRICT" Path="C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn\Generated_Source\PSoC5">
+        <Files Root="C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn">
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\cyfitter_cfg.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\cyfitter_cfg.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\cymetadata.c</File>
@@ -97,8 +97,6 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_1.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_1.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_1_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Clock_2.c</File>
-          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Clock_2.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_SAR_1.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_SAR_1.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_SAR_1_INT.c</File>
@@ -354,47 +352,69 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\In_19_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\In_19.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\In_19.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_1_2_clk.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_1_2_clk.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_3_4_clk.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_3_4_clk.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_5_6_clk.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_5_6_clk.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_7_8_clk.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\PWM_7_8_clk.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\I2C_1.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\I2C_1.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\I2C_1_BOOT.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\I2C_1_INT.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\I2C_1_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\I2C_1_SLAVE.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\I2C_1_MASTER.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\I2C_1_PVT.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SCL_1_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SCL_1.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SCL_1.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SDA_1_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SDA_1.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\SDA_1.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\prebuild.bat</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\postbuild.bat</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\CyElfTool.exe</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\libelf.dll</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn\Generated_Source\PSoC5\ARM_GCC">
-        <Files Root="C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn">
+      <Folder BuildType="STRICT" Path="C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn\Generated_Source\PSoC5\ARM_GCC">
+        <Files Root="C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn">
           <File BuildType="BUILD" Toolchain="ARM GCC">.\Generated_Source\PSoC5\ARM_GCC\CyComponentLibrary.a</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn\Generated_Source\PSoC5\ARM_Keil_MDK">
-        <Files Root="C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn">
+      <Folder BuildType="STRICT" Path="C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn\Generated_Source\PSoC5\ARM_Keil_MDK">
+        <Files Root="C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn">
           <File BuildType="BUILD" Toolchain="ARM Keil MDK">.\Generated_Source\PSoC5\ARM_Keil_MDK\CyComponentLibrary.a</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn\Generated_Source\PSoC5\IAR">
-        <Files Root="C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn">
+      <Folder BuildType="STRICT" Path="C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn\Generated_Source\PSoC5\IAR">
+        <Files Root="C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn">
           <File BuildType="BUILD" Toolchain="IAR">.\Generated_Source\PSoC5\IAR\CyComponentLibrary.a</File>
         </Files>
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\codegentemp">
-        <Files Root="C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn" />
+        <Files Root="C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\ARM_GCC_441">
-        <Files Root="C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn" />
+        <Files Root="C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\ARM_GCC_473">
-        <Files Root="C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn" />
+        <Files Root="C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\DP8051_Keil_951">
-        <Files Root="C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn" />
+        <Files Root="C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\DP8051">
-        <Files Root="C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn" />
+        <Files Root="C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM0">
-        <Files Root="C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn" />
+        <Files Root="C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM3">
-        <Files Root="C:\Users\Robert\workspace\embedit_git\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn" />
+        <Files Root="C:\Users\Brian\Dropbox\RPiSoC\Projects\PSoC_2_Pi\PSoC Creator\PSoC_2_Pi.cydsn" />
       </Folder>
     </Folders>
   </Project>

@@ -1,0 +1,16 @@
+; Send CMD_SET_RED and read back status 
+w 08 01 01 17 p
+r 08  x  x  x p
+[DELAY=500]
+; Send CMD_SET_GREEN and read back status 
+w 08 01 02 17 p
+r 08  x  x  x p
+[DELAY=500]
+; Send CMD_SET_BLUE and read back status
+w 08 01 03 17 p
+r 08  x  x  x p
+[DELAY=500]
+; Send CMD_SET_OFF and read back status
+w 08 01 00 17 p
+r 08  x  x  x p
+[DELAY=500]
