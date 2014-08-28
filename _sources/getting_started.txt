@@ -25,7 +25,11 @@ window::
 
 Then, create a folder for the RPiSoC API, and download it from 
 git::
-	git clone https://github.com/EmbeditElectronics/psoc_2_pi.git
+	git clone git://github.com/EmbeditElectronics/psoc_2_pi.git
+
+And navigate into the Python folder to get 
+started::
+	cd API_Python_v_1_1
 
 Configure SPI and download spidev
 +++++++++++++++++++++++++++++++++
@@ -46,7 +50,7 @@ process::
 
 This will bring up a text editor where you will find a line that 
 reads::
-	spi-bcm2708
+	blacklist spi-bcm2708
 
 Simply comment this line out by adding a *#* to the front of it, and reboot your 
 pi::
