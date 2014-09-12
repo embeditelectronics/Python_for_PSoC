@@ -1,3 +1,11 @@
+#!/usr/bin/python
+#-*- coding: utf-8
+
+"""
+This program is the highest level module for the RPiSoC API, which the user should
+import into their scripts for full use of the API.
+"""
+
 """
 This module is used to send data to, and receive data from the RPiSoC using
 a user chosen communication protocol. *V1.1* supports SPI and I2C communication, but
@@ -6,14 +14,14 @@ structure for easy integration of different protocols is in place,
 """
 
 __author__ = 'Brian Bradley'
-__version__ = '1.1'
+__version__ = '1.1.1'
 
 import math
 import spidev
 import time
 import smbus
 
-class SPI(object):
+class SPI():
     """
     **Description:**
         This class defines usage of the SPI bus for transfer between the RPi and the PSoC. __init__ is called as soon as an *RPiSoC* object is defined, and it opens and configures the SPI bus.
@@ -24,10 +32,13 @@ class SPI(object):
     """
 
     def __init__(self):
+        
         self.spi = spidev.SpiDev()
         self.speed = 1000000
         self.spi.open(0,0)
         self.spi.max_speed_hz = self.speed
+        
+        #spi.openSPI(speed = 100000)
 
     def PrepareData(self, dat):
         """
@@ -81,8 +92,8 @@ class SPI(object):
         xfer_packet = self.PrepareData(vals)
         #print('sending: ', xfer_packet)
         self.spi.writebytes(xfer_packet)
-        time.sleep(0.05) #This might be okay with less delay... needs more testing
-
+        #time.sleep(0.01) #This delay doesnt appear to be needed...
+ 
     def receiveData(self, vals):
         """
         **Description:**
@@ -99,18 +110,19 @@ class SPI(object):
 
         xfer_packet = self.PrepareData(vals)
         #print('sending: ',xfer_packet, ' from: ',vals)
-
+        
         self.spi.writebytes(xfer_packet)
-        time.sleep(0.05) #This might be okay with less delay...
+        time.sleep(0.01) #This might be okay with less delay...
 
         if len(xfer_packet)<=4:
             data_packet = self.spi.readbytes(len(xfer_packet))
-
+  
         data = 0x00 #define data variable
         for i in range(len(data_packet)):
             data = data_packet[i]<<(8*i) | data
 
         #print('recieving: ', data_packet, data)
+        
 
         if data > 0x00FFFFFF:
             return int(data - 0xFFFFFFFF)
@@ -124,11 +136,32 @@ class SPI(object):
         """
         print('\n\nCleaning up RPiSoC...')
         self.sendData((0xFF,0xFF))
+        RPiSoC.REGISTERS_IN_USE = []
+        RPiSoC.PWM_clks = dict((k,v) for k,v in RPiSoC.PWM_clks_copy.items())
         print('RPiSoC clean')
 
         print('\nclosing spi...')
         self.spi.close()
+        #spi.closeSPI()
         print('closed')
+        '''
+        obj_keys = ['analog.ADC object at 0x', 'analog.VDAC object at', 'analog.IDAC object at 0x', 'analog.WaveDAC object at 0x','digital.DigitalInput object at 0x', 'digital.DigitalOutput object at', 'digital.PWM object at 0x', 'digital.Servo object at']
+        for (k,v) in locals().items():
+            print (k)
+            if str(v).find('object')>=0 and k!= '__builtins__':
+                print(k, v)
+            for strings in obj_keys:
+                if k == 'PWM_1':
+                    print(k, v, strings)
+                
+                if str(v).find(strings) >= 0:
+                    print (k, strings, str(v).find(strings),str(v).find('PWM_1'))
+                    print (str(v)[str(v).find(strings) - 100:str(v).find(strings)+ 100])
+                    code = compile(("del("+k+")").replace("'",""),str(os.path).split('/')[-1].split("'>")[0],'exec')
+                    exec code
+        '''
+                    
+                    
 
 class I2C(object):
     """
@@ -257,4 +290,99 @@ class I2C(object):
         """
         print('\n\nCleaning up RPiSoC...')
         self.sendData((0xFF,0xFF))
+        RPiSoC.REGISTERS_IN_USE = []
+        RPiSoC.PWM_clks = dict((k,v) for k,v in RPiSoC.PWM_clks_copy.items())
         print('RPiSoC clean')
+
+
+class RPiSoC(object):
+    """
+    **Description:**
+        This class is used to define the register locations of each component on the
+        RPiSoC, and it defines which communication protocol will be utilized by the
+        API. The class is not to be assigned to an object; it only needs to be called so
+        that addresses can be defined and so that the communication protocol can
+        be initialized.
+
+    **Note:**
+        *V1.1* supports SPI and I2C only, support for UART will be rolled into *V1.2*
+
+    """
+
+    DELSIG_ADC_CONTROL = 0x01
+    SAR_ADC0_CONTROL = DELSIG_ADC_CONTROL  +1
+    SAR_ADC1_CONTROL = SAR_ADC0_CONTROL +1
+
+    VDAC0_CONTROL = SAR_ADC1_CONTROL +1
+    VDAC1_CONTROL = VDAC0_CONTROL +1
+
+    IDAC0_CONTROL = VDAC1_CONTROL +1
+    IDAC1_CONTROL = IDAC0_CONTROL +1
+
+    WAVEDAC_CONTROL = IDAC1_CONTROL +1
+
+    PWM_REGISTER0 = WAVEDAC_CONTROL +1
+    PWM_REGISTER1 = PWM_REGISTER0 +1
+    PWM_REGISTER2 = PWM_REGISTER1 +1
+    PWM_REGISTER3 = PWM_REGISTER2 +1
+    PWM_REGISTER4 = PWM_REGISTER3 +1
+    PWM_REGISTER5 = PWM_REGISTER4 +1
+    PWM_REGISTER6 = PWM_REGISTER5 +1
+    PWM_REGISTER7 = PWM_REGISTER6 +1
+
+    DIGITAL_INPUT_REGISTER0 = PWM_REGISTER7 + 1
+    DIGITAL_INPUT_REGISTER1 = DIGITAL_INPUT_REGISTER0 + 1
+    DIGITAL_INPUT_REGISTER2 = DIGITAL_INPUT_REGISTER1 + 1
+
+    DIGITAL_OUTPUT_REGISTER0 = DIGITAL_INPUT_REGISTER2 + 1
+    DIGITAL_OUTPUT_REGISTER1 = DIGITAL_OUTPUT_REGISTER0 + 1
+    DIGITAL_OUTPUT_REGISTER2 = DIGITAL_OUTPUT_REGISTER1 + 1
+
+    REGISTERS_IN_USE = []
+
+    RESET_ADDRESS = 0xFF
+
+
+
+    '''
+    Make sure this dictionary reflects the clocks in the PSoC Creator program.
+    The key is the clock number, which is assigned to the class attribute
+    self.clk_number in the PWM class. The value is a list with two entries:
+        the first entry is the default frequency and the second entry is the
+        default divider.
+
+    For example, if you were to add a fifth clock, with a 48MHz frequency and a
+    default clk divider of 96, you would simply add a fifth entry to the
+    dictionary as -> 5: [48000000,96]. Then you would go to the PWM method and
+    give any PWM's that use that clock the attribute self.clk_number = 5.
+    '''
+    PWM_clks = {1: [ 24000000 , 24 ], 2: [ 24000000, 24 ],  3: [24000000, 24] , 4: [24000000,24]}
+
+    
+
+    def __new__ (self, commChannel):
+        """
+        __new__ is called upon initialization of the class. It will decide the communication
+        protocol to be utilized by the API.
+
+        *Parameters:*
+
+            - commChannel: SPI or I2C
+        """
+        self.PWM_clks_copy  = dict((k,v) for k,v in RPiSoC.PWM_clks.items())
+
+        if commChannel == 'I2C':
+            self.commChannel = I2C()
+            #time.sleep(.2)
+        elif commChannel == 'SPI':
+            self.commChannel = SPI()
+        else:
+            raise ValueError('Invalid Communication Protocol selected: Choose "I2C" or "SPI" ')
+
+
+from digital import *
+from analog import *
+
+
+
+

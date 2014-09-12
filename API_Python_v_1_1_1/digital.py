@@ -138,6 +138,10 @@ class DigitalOutput(object):
         if val != self.state:
             RPiSoC.commChannel.sendData((self.address,cmd,dat))
             self.state = val
+        
+    def Toggle(self):
+        val = int(not (self.state==1))
+        self.Write(val)
 
 
 class PWM(object):
