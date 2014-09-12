@@ -57,8 +57,8 @@
 #define RESET_ADDRESS (0xFF)
 
 /*UNDEFINE UNUSED PROTOCOLS*/
-//#undef CY_SPIS_SPIS_1_H     /* SPI */
-#undef CY_I2C_I2C_1_H       /* I2C */
+#undef CY_SPIS_SPIS_1_H     /* SPI */
+//#undef CY_I2C_I2C_1_H       /* I2C */
     
     
 void WriteTo_Pi(uint32 dat);

@@ -1,5 +1,5 @@
 # PSoC_2_Pi
-# 2014-08-26 20:05:10Z
+# 2014-08-27 19:30:44Z
 
 set_location "ClockBlock" clockblockcell -1 -1 0
 set_io "DELSIG_in(0)" iocell 15 5

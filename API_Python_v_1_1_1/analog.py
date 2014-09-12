@@ -307,6 +307,8 @@ class IDAC(object):
             print('WARNING: Attempting to initialize object at register %d which is already in use.' %self.address)
         RPiSoC.REGISTERS_IN_USE.append(self.address)
 
+        self.full_range = 2
+
     def Start(self):
         """
         **Description:**
@@ -377,8 +379,14 @@ class IDAC(object):
         cmd = 0x04
         if mode not in range(3):
             raise ValueError('Invalid Mode Specified:\n"0" for 32uA range\n"1" for 255uA range\n"2" for 2mA range ')
-        else:
-            RPiSoC.commChannel.sendData((self.address, cmd, mode))
+        if mode == 0:
+            self.full_range = .031875
+        elif mode == 1:
+            self.full_range = .255
+        elif mode == 2:
+            self.full_range = 2
+        
+        RPiSoC.commChannel.sendData((self.address, cmd, mode))
 
 
     def SetValue(self, value):
@@ -396,6 +404,16 @@ class IDAC(object):
             raise ValueError('Invalid IDAC Value: Input integer values between 0(min) and 255(max)')
 
         RPiSoC.commChannel.sendData((self.address, cmd, value))
+
+    def SetCurrent(self, amps):
+
+        if amps <= self.full_range and amps>=0:
+            digital_val = int((float(amps)/self.full_range) * 255 + 0.5)
+        else:
+            digital_val = int(255*(amps>self.full_range))
+
+        self.SetValue(digital_val)
+        
 
     def Sleep(self):
         """
@@ -441,8 +459,10 @@ class VDAC(object):
 
         if self.channel == 0:
             self.address = RPiSoC.VDAC0_CONTROL
+            self.full_range = 4.08
         elif self.channel == 1:
             self.address = RPiSoC.VDAC1_CONTROL
+            self.full_range = 1.02
         else:
             raise ValueError('Invalid channel: Only two VDACs available; choose 0 or 1')
 
@@ -499,12 +519,22 @@ class VDAC(object):
         cmd = 0x03
         if Range =='LOW': #Range of 1.020 V
             val = 0
+            self.full_range = 1.02
         elif Range =='HIGH': #Range of 4V
             val = 1
+            self.full_range = 4.08
         else:
             raise ValueError('Invalid Range: Input "HIGH" for 4.080V range or "LOW" for 1.020V range')
 
         RPiSoC.commChannel.sendData((self.address, cmd, val))
+
+    def SetVoltage(self, volts):
+
+        if volts <= self.full_range and volts>=0:
+            digital_val = int((float(volts)/self.full_range) * 255 + 0.5)
+        else:
+            digital_val = int(255*(volts>self.full_range))
+        self.SetValue(digital_val)
 
     def SetValue(self, value):
         """

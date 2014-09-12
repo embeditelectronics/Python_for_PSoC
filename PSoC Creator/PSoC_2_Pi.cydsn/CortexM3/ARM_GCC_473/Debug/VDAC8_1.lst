@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
   23:.\Generated_Source\PSoC5/VDAC8_1.c **** #if (CY_PSOC5A)
   24:.\Generated_Source\PSoC5/VDAC8_1.c **** #include <CyLib.h>
   25:.\Generated_Source\PSoC5/VDAC8_1.c **** #endif /* CY_PSOC5A */
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 2
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 2
 
 
   26:.\Generated_Source\PSoC5/VDAC8_1.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
   63:.\Generated_Source\PSoC5/VDAC8_1.c ****         VDAC8_1_CR1 = (VDAC8_1_DEFAULT_CNTL | VDAC8_1_DACBUS_DISABLE) ;
   50              		.loc 1 63 0
   51 0012 45F62D03 		movw	r3, #22573
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 3
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 3
 
 
   52 0016 C4F20003 		movt	r3, 16384
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
   96:.\Generated_Source\PSoC5/VDAC8_1.c **** void VDAC8_1_Enable(void) 
   97:.\Generated_Source\PSoC5/VDAC8_1.c **** {
   74              		.loc 1 97 0
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 4
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 4
 
 
   75              		.cfi_startproc
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  116              		.thumb
  117              		.thumb_func
  118              		.type	VDAC8_1_Start, %function
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 5
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 5
 
 
  119              	VDAC8_1_Start:
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  144 001e 4FF00102 		mov	r2, #1
  145 0022 1A70     		strb	r2, [r3, #0]
  146              	.L4:
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 6
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 6
 
 
  140:.\Generated_Source\PSoC5/VDAC8_1.c ****     }
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  171              	.LCFI6:
  172              		.cfi_def_cfa_offset 4
  173              		.cfi_offset 7, -4
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 7
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 7
 
 
  174 0002 00AF     		add	r7, sp, #0
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  186:.\Generated_Source\PSoC5/VDAC8_1.c **** ********************************************************************************
  187:.\Generated_Source\PSoC5/VDAC8_1.c **** *
  188:.\Generated_Source\PSoC5/VDAC8_1.c **** * Summary:
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 8
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 8
 
 
  189:.\Generated_Source\PSoC5/VDAC8_1.c **** *  Set DAC speed
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  248 0040 D2B2     		uxtb	r2, r2
  249 0042 0A43     		orrs	r2, r2, r1
  250 0044 D2B2     		uxtb	r2, r2
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 9
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 9
 
 
  251 0046 1A70     		strb	r2, [r3, #0]
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  282              		.cfi_def_cfa_register 7
  283 0006 0346     		mov	r3, r0
  284 0008 FB71     		strb	r3, [r7, #7]
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 10
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 10
 
 
  230:.\Generated_Source\PSoC5/VDAC8_1.c ****     VDAC8_1_CR0 &= (uint8)(~VDAC8_1_RANGE_MASK);      /* Clear existing mode */
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  244:.\Generated_Source\PSoC5/VDAC8_1.c **** *  value:  Sets DAC value between 0 and 255.
  245:.\Generated_Source\PSoC5/VDAC8_1.c **** *
  246:.\Generated_Source\PSoC5/VDAC8_1.c **** * Return: 
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 11
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 11
 
 
  247:.\Generated_Source\PSoC5/VDAC8_1.c **** *  void 
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  357              		.global	VDAC8_1_DacTrim
  358              		.thumb
  359              		.thumb_func
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 12
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 12
 
 
  360              		.type	VDAC8_1_DacTrim, %function
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  388              		.loc 1 294 0
  389 0022 44F20B63 		movw	r3, #17931
  390 0026 C4F20003 		movt	r3, 16384
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 13
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 13
 
 
  391 002a FA79     		ldrb	r2, [r7, #7]	@ zero_extendqisi2
@@ -746,10 +746,10 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  412 0006 00000000 		.4byte	.Ldebug_abbrev0
  413 000a 04       		.byte	0x4
  414 000b 01       		.uleb128 0x1
- 415 000c 8D010000 		.4byte	.LASF25
+ 415 000c 8C010000 		.4byte	.LASF25
  416 0010 01       		.byte	0x1
- 417 0011 F7000000 		.4byte	.LASF26
- 418 0015 23000000 		.4byte	.LASF27
+ 417 0011 B7000000 		.4byte	.LASF26
+ 418 0015 0D010000 		.4byte	.LASF27
  419 0019 00000000 		.4byte	.Ldebug_ranges0+0
  420 001d 00000000 		.4byte	0
  421 0021 00000000 		.4byte	0
@@ -757,38 +757,38 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  423 0029 02       		.uleb128 0x2
  424 002a 01       		.byte	0x1
  425 002b 06       		.byte	0x6
- 426 002c DF010000 		.4byte	.LASF0
+ 426 002c DE010000 		.4byte	.LASF0
  427 0030 02       		.uleb128 0x2
  428 0031 01       		.byte	0x1
  429 0032 08       		.byte	0x8
- 430 0033 95000000 		.4byte	.LASF1
+ 430 0033 55000000 		.4byte	.LASF1
  431 0037 02       		.uleb128 0x2
  432 0038 02       		.byte	0x2
  433 0039 05       		.byte	0x5
- 434 003a 7D010000 		.4byte	.LASF2
+ 434 003a 7C010000 		.4byte	.LASF2
  435 003e 02       		.uleb128 0x2
  436 003f 02       		.byte	0x2
  437 0040 07       		.byte	0x7
- 438 0041 C9000000 		.4byte	.LASF3
+ 438 0041 89000000 		.4byte	.LASF3
  439 0045 02       		.uleb128 0x2
  440 0046 04       		.byte	0x4
  441 0047 05       		.byte	0x5
- 442 0048 D6010000 		.4byte	.LASF4
+ 442 0048 D5010000 		.4byte	.LASF4
  443 004c 02       		.uleb128 0x2
  444 004d 04       		.byte	0x4
  445 004e 07       		.byte	0x7
- 446 004f B7000000 		.4byte	.LASF5
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 14
+ 446 004f 77000000 		.4byte	.LASF5
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 14
 
 
  447 0053 02       		.uleb128 0x2
  448 0054 08       		.byte	0x8
  449 0055 05       		.byte	0x5
- 450 0056 4D010000 		.4byte	.LASF6
+ 450 0056 00000000 		.4byte	.LASF6
  451 005a 02       		.uleb128 0x2
  452 005b 08       		.byte	0x8
  453 005c 07       		.byte	0x7
- 454 005d 1A010000 		.4byte	.LASF7
+ 454 005d DA000000 		.4byte	.LASF7
  455 0061 03       		.uleb128 0x3
  456 0062 04       		.byte	0x4
  457 0063 05       		.byte	0x5
@@ -796,26 +796,26 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  459 0068 02       		.uleb128 0x2
  460 0069 04       		.byte	0x4
  461 006a 07       		.byte	0x7
- 462 006b 71000000 		.4byte	.LASF8
+ 462 006b 31000000 		.4byte	.LASF8
  463 006f 04       		.uleb128 0x4
- 464 0070 87010000 		.4byte	.LASF12
+ 464 0070 86010000 		.4byte	.LASF12
  465 0074 02       		.byte	0x2
  466 0075 5B       		.byte	0x5b
  467 0076 30000000 		.4byte	0x30
  468 007a 02       		.uleb128 0x2
  469 007b 04       		.byte	0x4
  470 007c 04       		.byte	0x4
- 471 007d 8F000000 		.4byte	.LASF9
+ 471 007d 4F000000 		.4byte	.LASF9
  472 0081 02       		.uleb128 0x2
  473 0082 08       		.byte	0x8
  474 0083 04       		.byte	0x4
- 475 0084 F0000000 		.4byte	.LASF10
+ 475 0084 B0000000 		.4byte	.LASF10
  476 0088 02       		.uleb128 0x2
  477 0089 01       		.byte	0x1
  478 008a 08       		.byte	0x8
- 479 008b 68010000 		.4byte	.LASF11
+ 479 008b 67010000 		.4byte	.LASF11
  480 008f 04       		.uleb128 0x4
- 481 0090 A3000000 		.4byte	.LASF13
+ 481 0090 63000000 		.4byte	.LASF13
  482 0094 02       		.byte	0x2
  483 0095 F0       		.byte	0xf0
  484 0096 9A000000 		.4byte	0x9a
@@ -823,7 +823,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  486 009b 6F000000 		.4byte	0x6f
  487 009f 06       		.uleb128 0x6
  488 00a0 01       		.byte	0x1
- 489 00a1 5B010000 		.4byte	.LASF14
+ 489 00a1 5A010000 		.4byte	.LASF14
  490 00a5 01       		.byte	0x1
  491 00a6 37       		.byte	0x37
  492 00a7 01       		.byte	0x1
@@ -833,12 +833,12 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  496 00b4 01       		.byte	0x1
  497 00b5 07       		.uleb128 0x7
  498 00b6 01       		.byte	0x1
- 499 00b7 A8000000 		.4byte	.LASF15
+ 499 00b7 68000000 		.4byte	.LASF15
  500 00bb 01       		.byte	0x1
  501 00bc 60       		.byte	0x60
  502 00bd 01       		.byte	0x1
  503 00be 00000000 		.4byte	.LFB1
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 15
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 15
 
 
  504 00c2 42000000 		.4byte	.LFE1
@@ -846,7 +846,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  506 00ca 01       		.byte	0x1
  507 00cb 06       		.uleb128 0x6
  508 00cc 01       		.byte	0x1
- 509 00cd E2000000 		.4byte	.LASF16
+ 509 00cd A2000000 		.4byte	.LASF16
  510 00d1 01       		.byte	0x1
  511 00d2 85       		.byte	0x85
  512 00d3 01       		.byte	0x1
@@ -856,7 +856,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  516 00e0 01       		.byte	0x1
  517 00e1 07       		.uleb128 0x7
  518 00e2 01       		.byte	0x1
- 519 00e3 10000000 		.4byte	.LASF17
+ 519 00e3 1E000000 		.4byte	.LASF17
  520 00e7 01       		.byte	0x1
  521 00e8 A8       		.byte	0xa8
  522 00e9 01       		.byte	0x1
@@ -866,7 +866,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  526 00f6 01       		.byte	0x1
  527 00f7 08       		.uleb128 0x8
  528 00f8 01       		.byte	0x1
- 529 00f9 7E000000 		.4byte	.LASF18
+ 529 00f9 3E000000 		.4byte	.LASF18
  530 00fd 01       		.byte	0x1
  531 00fe CA       		.byte	0xca
  532 00ff 01       		.byte	0x1
@@ -876,7 +876,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  536 010c 01       		.byte	0x1
  537 010d 20010000 		.4byte	0x120
  538 0111 09       		.uleb128 0x9
- 539 0112 47010000 		.4byte	.LASF20
+ 539 0112 07010000 		.4byte	.LASF20
  540 0116 01       		.byte	0x1
  541 0117 CA       		.byte	0xca
  542 0118 6F000000 		.4byte	0x6f
@@ -886,7 +886,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  546 011f 00       		.byte	0
  547 0120 0A       		.uleb128 0xa
  548 0121 01       		.byte	0x1
- 549 0122 EB010000 		.4byte	.LASF19
+ 549 0122 EA010000 		.4byte	.LASF19
  550 0126 01       		.byte	0x1
  551 0127 E4       		.byte	0xe4
  552 0128 01       		.byte	0x1
@@ -896,9 +896,9 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  556 0135 01       		.byte	0x1
  557 0136 49010000 		.4byte	0x149
  558 013a 09       		.uleb128 0x9
- 559 013b DC000000 		.4byte	.LASF21
+ 559 013b 9C000000 		.4byte	.LASF21
  560 013f 01       		.byte	0x1
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 16
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 16
 
 
  561 0140 E4       		.byte	0xe4
@@ -909,7 +909,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  566 0148 00       		.byte	0
  567 0149 08       		.uleb128 0x8
  568 014a 01       		.byte	0x1
- 569 014b 31010000 		.4byte	.LASF22
+ 569 014b F1000000 		.4byte	.LASF22
  570 014f 01       		.byte	0x1
  571 0150 FE       		.byte	0xfe
  572 0151 01       		.byte	0x1
@@ -919,7 +919,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  576 015e 01       		.byte	0x1
  577 015f 72010000 		.4byte	0x172
  578 0163 09       		.uleb128 0x9
- 579 0164 1D000000 		.4byte	.LASF23
+ 579 0164 2B000000 		.4byte	.LASF23
  580 0168 01       		.byte	0x1
  581 0169 FE       		.byte	0xfe
  582 016a 6F000000 		.4byte	0x6f
@@ -929,7 +929,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  586 0171 00       		.byte	0
  587 0172 0B       		.uleb128 0xb
  588 0173 01       		.byte	0x1
- 589 0174 00000000 		.4byte	.LASF24
+ 589 0174 0E000000 		.4byte	.LASF24
  590 0178 01       		.byte	0x1
  591 0179 2101     		.2byte	0x121
  592 017b 01       		.byte	0x1
@@ -939,7 +939,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  596 0188 01       		.byte	0x1
  597 0189 9D010000 		.4byte	0x19d
  598 018d 0C       		.uleb128 0xc
- 599 018e 42010000 		.4byte	.LASF28
+ 599 018e 02010000 		.4byte	.LASF28
  600 0192 01       		.byte	0x1
  601 0193 2301     		.2byte	0x123
  602 0195 6F000000 		.4byte	0x6f
@@ -948,7 +948,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  605 019b 77       		.sleb128 -9
  606 019c 00       		.byte	0
  607 019d 0D       		.uleb128 0xd
- 608 019e 6D010000 		.4byte	.LASF29
+ 608 019e 6C010000 		.4byte	.LASF29
  609 01a2 01       		.byte	0x1
  610 01a3 1B       		.byte	0x1b
  611 01a4 6F000000 		.4byte	0x6f
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  615 01ab 00000000 		.4byte	VDAC8_1_initVar
  616 01af 00       		.byte	0
  617              		.section	.debug_abbrev,"",%progbits
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 17
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 17
 
 
  618              	.Ldebug_abbrev0:
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  672 0035 13       		.uleb128 0x13
  673 0036 00       		.byte	0
  674 0037 00       		.byte	0
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 18
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 18
 
 
  675 0038 05       		.uleb128 0x5
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  729 0070 2E       		.uleb128 0x2e
  730 0071 01       		.byte	0x1
  731 0072 3F       		.uleb128 0x3f
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 19
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 19
 
 
  732 0073 0C       		.uleb128 0xc
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  786 00aa 06       		.uleb128 0x6
  787 00ab 9642     		.uleb128 0x2116
  788 00ad 0C       		.uleb128 0xc
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 20
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 20
 
 
  789 00ae 01       		.uleb128 0x1
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  843 00e5 13       		.uleb128 0x13
  844 00e6 3F       		.uleb128 0x3f
  845 00e7 0C       		.uleb128 0xc
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 21
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 21
 
 
  846 00e8 02       		.uleb128 0x2
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  900 0070 04000000 		.4byte	.LCFI5
  901 0074 32000000 		.4byte	.LFE2
  902 0078 0200     		.2byte	0x2
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 22
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 22
 
 
  903 007a 77       		.byte	0x77
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  957 00fe 7D       		.byte	0x7d
  958 00ff 08       		.sleb128 8
  959 0100 04000000 		.4byte	.LCFI12
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 23
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 23
 
 
  960 0104 06000000 		.4byte	.LCFI13
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  1014 0187 10       		.sleb128 16
  1015 0188 00000000 		.4byte	0
  1016 018c 00000000 		.4byte	0
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 24
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 24
 
 
  1017              		.section	.debug_aranges,"",%progbits
@@ -1434,159 +1434,159 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 1
  1065      00000201 
  1065      FB0E0D00 
  1065      01010101 
- 1066              	.LASF24:
- 1067 0000 56444143 		.ascii	"VDAC8_1_DacTrim\000"
- 1067      385F315F 
- 1067      44616354 
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 25
+ 1066              	.LASF6:
+ 1067 0000 6C6F6E67 		.ascii	"long long int\000"
+ 1067      206C6F6E 
+ 1067      6720696E 
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 25
 
 
- 1067      72696D00 
- 1068              	.LASF17:
- 1069 0010 56444143 		.ascii	"VDAC8_1_Stop\000"
+ 1067      7400
+ 1068              	.LASF24:
+ 1069 000e 56444143 		.ascii	"VDAC8_1_DacTrim\000"
  1069      385F315F 
- 1069      53746F70 
- 1069      00
- 1070              	.LASF23:
- 1071 001d 76616C75 		.ascii	"value\000"
- 1071      6500
- 1072              	.LASF27:
- 1073 0023 433A5C55 		.ascii	"C:\\Users\\Brian\\Dropbox\\RPiSoC\\Projects\\PSoC_2"
- 1073      73657273 
- 1073      5C427269 
- 1073      616E5C44 
- 1073      726F7062 
- 1074 0050 5F50695C 		.ascii	"_Pi\\PSoC Creator\\PSoC_2_Pi.cydsn\000"
- 1074      50536F43 
- 1074      20437265 
- 1074      61746F72 
- 1074      5C50536F 
- 1075              	.LASF8:
- 1076 0071 756E7369 		.ascii	"unsigned int\000"
- 1076      676E6564 
- 1076      20696E74 
- 1076      00
- 1077              	.LASF18:
- 1078 007e 56444143 		.ascii	"VDAC8_1_SetSpeed\000"
- 1078      385F315F 
- 1078      53657453 
- 1078      70656564 
- 1078      00
- 1079              	.LASF9:
- 1080 008f 666C6F61 		.ascii	"float\000"
- 1080      7400
- 1081              	.LASF1:
- 1082 0095 756E7369 		.ascii	"unsigned char\000"
- 1082      676E6564 
- 1082      20636861 
- 1082      7200
- 1083              	.LASF13:
- 1084 00a3 72656738 		.ascii	"reg8\000"
- 1084      00
- 1085              	.LASF15:
- 1086 00a8 56444143 		.ascii	"VDAC8_1_Enable\000"
- 1086      385F315F 
- 1086      456E6162 
- 1086      6C6500
- 1087              	.LASF5:
- 1088 00b7 6C6F6E67 		.ascii	"long unsigned int\000"
- 1088      20756E73 
- 1088      69676E65 
- 1088      6420696E 
- 1088      7400
- 1089              	.LASF3:
- 1090 00c9 73686F72 		.ascii	"short unsigned int\000"
- 1090      7420756E 
- 1090      7369676E 
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 26
+ 1069      44616354 
+ 1069      72696D00 
+ 1070              	.LASF17:
+ 1071 001e 56444143 		.ascii	"VDAC8_1_Stop\000"
+ 1071      385F315F 
+ 1071      53746F70 
+ 1071      00
+ 1072              	.LASF23:
+ 1073 002b 76616C75 		.ascii	"value\000"
+ 1073      6500
+ 1074              	.LASF8:
+ 1075 0031 756E7369 		.ascii	"unsigned int\000"
+ 1075      676E6564 
+ 1075      20696E74 
+ 1075      00
+ 1076              	.LASF18:
+ 1077 003e 56444143 		.ascii	"VDAC8_1_SetSpeed\000"
+ 1077      385F315F 
+ 1077      53657453 
+ 1077      70656564 
+ 1077      00
+ 1078              	.LASF9:
+ 1079 004f 666C6F61 		.ascii	"float\000"
+ 1079      7400
+ 1080              	.LASF1:
+ 1081 0055 756E7369 		.ascii	"unsigned char\000"
+ 1081      676E6564 
+ 1081      20636861 
+ 1081      7200
+ 1082              	.LASF13:
+ 1083 0063 72656738 		.ascii	"reg8\000"
+ 1083      00
+ 1084              	.LASF15:
+ 1085 0068 56444143 		.ascii	"VDAC8_1_Enable\000"
+ 1085      385F315F 
+ 1085      456E6162 
+ 1085      6C6500
+ 1086              	.LASF5:
+ 1087 0077 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1087      20756E73 
+ 1087      69676E65 
+ 1087      6420696E 
+ 1087      7400
+ 1088              	.LASF3:
+ 1089 0089 73686F72 		.ascii	"short unsigned int\000"
+ 1089      7420756E 
+ 1089      7369676E 
+ 1089      65642069 
+ 1089      6E7400
+ 1090              	.LASF21:
+ 1091 009c 72616E67 		.ascii	"range\000"
+ 1091      6500
+ 1092              	.LASF16:
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 26
 
 
- 1090      65642069 
- 1090      6E7400
- 1091              	.LASF21:
- 1092 00dc 72616E67 		.ascii	"range\000"
- 1092      6500
- 1093              	.LASF16:
- 1094 00e2 56444143 		.ascii	"VDAC8_1_Start\000"
- 1094      385F315F 
- 1094      53746172 
- 1094      7400
- 1095              	.LASF10:
- 1096 00f0 646F7562 		.ascii	"double\000"
- 1096      6C6500
- 1097              	.LASF26:
- 1098 00f7 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\VDAC8_1.c\000"
- 1098      6E657261 
- 1098      7465645F 
- 1098      536F7572 
- 1098      63655C50 
- 1099              	.LASF7:
- 1100 011a 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1100      206C6F6E 
- 1100      6720756E 
- 1100      7369676E 
- 1100      65642069 
- 1101              	.LASF22:
- 1102 0131 56444143 		.ascii	"VDAC8_1_SetValue\000"
- 1102      385F315F 
- 1102      53657456 
- 1102      616C7565 
- 1102      00
- 1103              	.LASF28:
- 1104 0142 6D6F6465 		.ascii	"mode\000"
- 1104      00
- 1105              	.LASF20:
- 1106 0147 73706565 		.ascii	"speed\000"
- 1106      6400
- 1107              	.LASF6:
- 1108 014d 6C6F6E67 		.ascii	"long long int\000"
- 1108      206C6F6E 
- 1108      6720696E 
- 1108      7400
+ 1093 00a2 56444143 		.ascii	"VDAC8_1_Start\000"
+ 1093      385F315F 
+ 1093      53746172 
+ 1093      7400
+ 1094              	.LASF10:
+ 1095 00b0 646F7562 		.ascii	"double\000"
+ 1095      6C6500
+ 1096              	.LASF26:
+ 1097 00b7 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\VDAC8_1.c\000"
+ 1097      6E657261 
+ 1097      7465645F 
+ 1097      536F7572 
+ 1097      63655C50 
+ 1098              	.LASF7:
+ 1099 00da 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1099      206C6F6E 
+ 1099      6720756E 
+ 1099      7369676E 
+ 1099      65642069 
+ 1100              	.LASF22:
+ 1101 00f1 56444143 		.ascii	"VDAC8_1_SetValue\000"
+ 1101      385F315F 
+ 1101      53657456 
+ 1101      616C7565 
+ 1101      00
+ 1102              	.LASF28:
+ 1103 0102 6D6F6465 		.ascii	"mode\000"
+ 1103      00
+ 1104              	.LASF20:
+ 1105 0107 73706565 		.ascii	"speed\000"
+ 1105      6400
+ 1106              	.LASF27:
+ 1107 010d 433A5C55 		.ascii	"C:\\Users\\Robert\\workspace\\embedit_git\\psoc_2_p"
+ 1107      73657273 
+ 1107      5C526F62 
+ 1107      6572745C 
+ 1107      776F726B 
+ 1108 013b 695C5053 		.ascii	"i\\PSoC Creator\\PSoC_2_Pi.cydsn\000"
+ 1108      6F432043 
+ 1108      72656174 
+ 1108      6F725C50 
+ 1108      536F435F 
  1109              	.LASF14:
- 1110 015b 56444143 		.ascii	"VDAC8_1_Init\000"
+ 1110 015a 56444143 		.ascii	"VDAC8_1_Init\000"
  1110      385F315F 
  1110      496E6974 
  1110      00
  1111              	.LASF11:
- 1112 0168 63686172 		.ascii	"char\000"
+ 1112 0167 63686172 		.ascii	"char\000"
  1112      00
  1113              	.LASF29:
- 1114 016d 56444143 		.ascii	"VDAC8_1_initVar\000"
+ 1114 016c 56444143 		.ascii	"VDAC8_1_initVar\000"
  1114      385F315F 
  1114      696E6974 
  1114      56617200 
  1115              	.LASF2:
- 1116 017d 73686F72 		.ascii	"short int\000"
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccuu0hBc.s 			page 27
+ 1116 017c 73686F72 		.ascii	"short int\000"
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\cce2RAco.s 			page 27
 
 
  1116      7420696E 
  1116      7400
  1117              	.LASF12:
- 1118 0187 75696E74 		.ascii	"uint8\000"
+ 1118 0186 75696E74 		.ascii	"uint8\000"
  1118      3800
  1119              	.LASF25:
- 1120 018d 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 1120 018c 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
  1120      4320342E 
  1120      372E3320 
  1120      32303133 
  1120      30333132 
- 1121 01c0 616E6368 		.ascii	"anch revision 196615]\000"
+ 1121 01bf 616E6368 		.ascii	"anch revision 196615]\000"
  1121      20726576 
  1121      6973696F 
  1121      6E203139 
  1121      36363135 
  1122              	.LASF4:
- 1123 01d6 6C6F6E67 		.ascii	"long int\000"
+ 1123 01d5 6C6F6E67 		.ascii	"long int\000"
  1123      20696E74 
  1123      00
  1124              	.LASF0:
- 1125 01df 7369676E 		.ascii	"signed char\000"
+ 1125 01de 7369676E 		.ascii	"signed char\000"
  1125      65642063 
  1125      68617200 
  1126              	.LASF19:
- 1127 01eb 56444143 		.ascii	"VDAC8_1_SetRange\000"
+ 1127 01ea 56444143 		.ascii	"VDAC8_1_SetRange\000"
  1127      385F315F 
  1127      53657452 
  1127      616E6765 

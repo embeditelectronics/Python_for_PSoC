@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 1
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccFthKIl.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 1
   25:.\Generated_Source\PSoC5/WaveDAC8_1_VDAC8_PM.c **** * Function Name: WaveDAC8_1_VDAC8_SaveConfig
   26:.\Generated_Source\PSoC5/WaveDAC8_1_VDAC8_PM.c **** ********************************************************************************
   27:.\Generated_Source\PSoC5/WaveDAC8_1_VDAC8_PM.c **** * Summary:
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 2
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccFthKIl.s 			page 2
 
 
   28:.\Generated_Source\PSoC5/WaveDAC8_1_VDAC8_PM.c **** *  Save the current user configuration
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 1
   69              		.global	WaveDAC8_1_VDAC8_RestoreConfig
   70              		.thumb
   71              		.thumb_func
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 3
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccFthKIl.s 			page 3
 
 
   72              		.type	WaveDAC8_1_VDAC8_RestoreConfig, %function
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 1
  103              		.loc 1 66 0
  104 002c 45F69723 		movw	r3, #23191
  105 0030 C4F20003 		movt	r3, 16384
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 4
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccFthKIl.s 			page 4
 
 
  106 0034 45F69722 		movw	r2, #23191
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 1
  151              		.thumb_func
  152              		.type	WaveDAC8_1_VDAC8_Sleep, %function
  153              	WaveDAC8_1_VDAC8_Sleep:
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 5
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccFthKIl.s 			page 5
 
 
  154              	.LFB2:
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 1
  102:.\Generated_Source\PSoC5/WaveDAC8_1_VDAC8_PM.c ****     }
  103:.\Generated_Source\PSoC5/WaveDAC8_1_VDAC8_PM.c ****     else
  104:.\Generated_Source\PSoC5/WaveDAC8_1_VDAC8_PM.c ****     {
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 6
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccFthKIl.s 			page 6
 
 
  105:.\Generated_Source\PSoC5/WaveDAC8_1_VDAC8_PM.c ****         /* VDAC8 is disabled */
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 1
  207              		@ args = 0, pretend = 0, frame = 0
  208              		@ frame_needed = 1, uses_anonymous_args = 0
  209 0000 80B5     		push	{r7, lr}
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 7
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccFthKIl.s 			page 7
 
 
  210              	.LCFI6:
@@ -413,12 +413,12 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 1
  248 0006 00000000 		.4byte	.Ldebug_abbrev0
  249 000a 04       		.byte	0x4
  250 000b 01       		.uleb128 0x1
- 251 000c 69010000 		.4byte	.LASF21
+ 251 000c 68010000 		.4byte	.LASF21
  252 0010 01       		.byte	0x1
- 253 0011 C7010000 		.4byte	.LASF22
- 254 0015 00000000 		.4byte	.LASF23
+ 253 0011 C6010000 		.4byte	.LASF22
+ 254 0015 06010000 		.4byte	.LASF23
  255 0019 00000000 		.4byte	.Ldebug_ranges0+0
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 8
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccFthKIl.s 			page 8
 
 
  256 001d 00000000 		.4byte	0
@@ -427,35 +427,35 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 1
  259 0029 02       		.uleb128 0x2
  260 002a 01       		.byte	0x1
  261 002b 06       		.byte	0x6
- 262 002c F6010000 		.4byte	.LASF0
+ 262 002c F5010000 		.4byte	.LASF0
  263 0030 02       		.uleb128 0x2
  264 0031 01       		.byte	0x1
  265 0032 08       		.byte	0x8
- 266 0033 94000000 		.4byte	.LASF1
+ 266 0033 54000000 		.4byte	.LASF1
  267 0037 02       		.uleb128 0x2
  268 0038 02       		.byte	0x2
  269 0039 05       		.byte	0x5
- 270 003a 59010000 		.4byte	.LASF2
+ 270 003a 58010000 		.4byte	.LASF2
  271 003e 02       		.uleb128 0x2
  272 003f 02       		.byte	0x2
  273 0040 07       		.byte	0x7
- 274 0041 B9000000 		.4byte	.LASF3
+ 274 0041 79000000 		.4byte	.LASF3
  275 0045 02       		.uleb128 0x2
  276 0046 04       		.byte	0x4
  277 0047 05       		.byte	0x5
- 278 0048 B2010000 		.4byte	.LASF4
+ 278 0048 B1010000 		.4byte	.LASF4
  279 004c 02       		.uleb128 0x2
  280 004d 04       		.byte	0x4
  281 004e 07       		.byte	0x7
- 282 004f A7000000 		.4byte	.LASF5
+ 282 004f 67000000 		.4byte	.LASF5
  283 0053 02       		.uleb128 0x2
  284 0054 08       		.byte	0x8
  285 0055 05       		.byte	0x5
- 286 0056 46010000 		.4byte	.LASF6
+ 286 0056 00000000 		.4byte	.LASF6
  287 005a 02       		.uleb128 0x2
  288 005b 08       		.byte	0x8
  289 005c 07       		.byte	0x7
- 290 005d 10010000 		.4byte	.LASF7
+ 290 005d D0000000 		.4byte	.LASF7
  291 0061 03       		.uleb128 0x3
  292 0062 04       		.byte	0x4
  293 0063 05       		.byte	0x5
@@ -463,29 +463,29 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 1
  295 0068 02       		.uleb128 0x2
  296 0069 04       		.byte	0x4
  297 006a 07       		.byte	0x7
- 298 006b 03010000 		.4byte	.LASF8
+ 298 006b C3000000 		.4byte	.LASF8
  299 006f 04       		.uleb128 0x4
- 300 0070 63010000 		.4byte	.LASF12
+ 300 0070 62010000 		.4byte	.LASF12
  301 0074 02       		.byte	0x2
  302 0075 5B       		.byte	0x5b
  303 0076 30000000 		.4byte	0x30
  304 007a 02       		.uleb128 0x2
  305 007b 04       		.byte	0x4
  306 007c 04       		.byte	0x4
- 307 007d 59000000 		.4byte	.LASF9
+ 307 007d 19000000 		.4byte	.LASF9
  308 0081 02       		.uleb128 0x2
  309 0082 08       		.byte	0x8
  310 0083 04       		.byte	0x4
- 311 0084 E4000000 		.4byte	.LASF10
+ 311 0084 A4000000 		.4byte	.LASF10
  312 0088 02       		.uleb128 0x2
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 9
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccFthKIl.s 			page 9
 
 
  313 0089 01       		.byte	0x1
  314 008a 08       		.byte	0x8
- 315 008b 54010000 		.4byte	.LASF11
+ 315 008b 53010000 		.4byte	.LASF11
  316 008f 04       		.uleb128 0x4
- 317 0090 A2000000 		.4byte	.LASF13
+ 317 0090 62000000 		.4byte	.LASF13
  318 0094 02       		.byte	0x2
  319 0095 F0       		.byte	0xf0
  320 0096 9A000000 		.4byte	0x9a
@@ -497,7 +497,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 1
  326 00a2 25       		.byte	0x25
  327 00a3 C4000000 		.4byte	0xc4
  328 00a7 07       		.uleb128 0x7
- 329 00a8 BB010000 		.4byte	.LASF14
+ 329 00a8 BA010000 		.4byte	.LASF14
  330 00ac 03       		.byte	0x3
  331 00ad 27       		.byte	0x27
  332 00ae 6F000000 		.4byte	0x6f
@@ -505,7 +505,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 1
  334 00b3 23       		.byte	0x23
  335 00b4 00       		.uleb128 0
  336 00b5 07       		.uleb128 0x7
- 337 00b6 4E000000 		.4byte	.LASF15
+ 337 00b6 0E000000 		.4byte	.LASF15
  338 00ba 03       		.byte	0x3
  339 00bb 28       		.byte	0x28
  340 00bc 6F000000 		.4byte	0x6f
@@ -514,13 +514,13 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 1
  343 00c2 01       		.uleb128 0x1
  344 00c3 00       		.byte	0
  345 00c4 04       		.uleb128 0x4
- 346 00c5 76000000 		.4byte	.LASF16
+ 346 00c5 36000000 		.4byte	.LASF16
  347 00c9 03       		.byte	0x3
  348 00ca 29       		.byte	0x29
  349 00cb 9F000000 		.4byte	0x9f
  350 00cf 08       		.uleb128 0x8
  351 00d0 01       		.byte	0x1
- 352 00d1 02020000 		.4byte	.LASF17
+ 352 00d1 01020000 		.4byte	.LASF17
  353 00d5 01       		.byte	0x1
  354 00d6 25       		.byte	0x25
  355 00d7 01       		.byte	0x1
@@ -530,7 +530,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 1
  359 00e4 01       		.byte	0x1
  360 00e5 08       		.uleb128 0x8
  361 00e6 01       		.byte	0x1
- 362 00e7 27010000 		.4byte	.LASF18
+ 362 00e7 E7000000 		.4byte	.LASF18
  363 00eb 01       		.byte	0x1
  364 00ec 3C       		.byte	0x3c
  365 00ed 01       		.byte	0x1
@@ -538,12 +538,12 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 1
  367 00f2 94000000 		.4byte	.LFE1
  368 00f6 2C000000 		.4byte	.LLST1
  369 00fa 01       		.byte	0x1
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 10
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccFthKIl.s 			page 10
 
 
  370 00fb 09       		.uleb128 0x9
  371 00fc 01       		.byte	0x1
- 372 00fd 5F000000 		.4byte	.LASF19
+ 372 00fd 1F000000 		.4byte	.LASF19
  373 0101 01       		.byte	0x1
  374 0102 5F       		.byte	0x5f
  375 0103 01       		.byte	0x1
@@ -553,7 +553,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 1
  379 0110 01       		.byte	0x1
  380 0111 09       		.uleb128 0x9
  381 0112 01       		.byte	0x1
- 382 0113 EB000000 		.4byte	.LASF20
+ 382 0113 AB000000 		.4byte	.LASF20
  383 0117 01       		.byte	0x1
  384 0118 84       		.byte	0x84
  385 0119 01       		.byte	0x1
@@ -562,7 +562,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 1
  388 0122 84000000 		.4byte	.LLST3
  389 0126 01       		.byte	0x1
  390 0127 0A       		.uleb128 0xa
- 391 0128 CC000000 		.4byte	.LASF24
+ 391 0128 8C000000 		.4byte	.LASF24
  392 012c 01       		.byte	0x1
  393 012d 15       		.byte	0x15
  394 012e C4000000 		.4byte	0xc4
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 1
  424 0017 00       		.byte	0
  425 0018 0B       		.uleb128 0xb
  426 0019 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 11
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccFthKIl.s 			page 11
 
 
  427 001a 3E       		.uleb128 0x3e
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 1
  481 0050 0E       		.uleb128 0xe
  482 0051 3A       		.uleb128 0x3a
  483 0052 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 12
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccFthKIl.s 			page 12
 
 
  484 0053 3B       		.uleb128 0x3b
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 1
  538 008b 0A       		.uleb128 0xa
  539 008c 34       		.uleb128 0x34
  540 008d 00       		.byte	0
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 13
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccFthKIl.s 			page 13
 
 
  541 008e 03       		.uleb128 0x3
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 1
  595 0060 0200     		.2byte	0x2
  596 0062 7D       		.byte	0x7d
  597 0063 00       		.sleb128 0
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 14
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccFthKIl.s 			page 14
 
 
  598 0064 02000000 		.4byte	.LCFI4
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 1
  652 0010 00000000 		.4byte	.LFB2
  653 0014 40000000 		.4byte	.LFE2
  654 0018 00000000 		.4byte	.LFB3
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 15
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccFthKIl.s 			page 15
 
 
  655 001c 2E000000 		.4byte	.LFE3
@@ -851,114 +851,114 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 1
  660      00000201 
  660      FB0E0D00 
  660      01010101 
- 661              	.LASF23:
- 662 0000 433A5C55 		.ascii	"C:\\Users\\Brian\\Dropbox\\RPiSoC\\Projects\\PSoC_2"
- 662      73657273 
- 662      5C427269 
- 662      616E5C44 
- 662      726F7062 
- 663 002d 5F50695C 		.ascii	"_Pi\\PSoC Creator\\PSoC_2_Pi.cydsn\000"
- 663      50536F43 
- 663      20437265 
- 663      61746F72 
- 663      5C50536F 
- 664              	.LASF15:
- 665 004e 64617461 		.ascii	"data_value\000"
- 665      5F76616C 
- 665      756500
- 666              	.LASF9:
- 667 0059 666C6F61 		.ascii	"float\000"
- 667      7400
- 668              	.LASF19:
- 669 005f 57617665 		.ascii	"WaveDAC8_1_VDAC8_Sleep\000"
- 669      44414338 
- 669      5F315F56 
- 669      44414338 
- 669      5F536C65 
- 670              	.LASF16:
- 671 0076 57617665 		.ascii	"WaveDAC8_1_VDAC8_backupStruct\000"
- 671      44414338 
- 671      5F315F56 
- 671      44414338 
- 671      5F626163 
- 672              	.LASF1:
- 673 0094 756E7369 		.ascii	"unsigned char\000"
- 673      676E6564 
- 673      20636861 
- 673      7200
- 674              	.LASF13:
- 675 00a2 72656738 		.ascii	"reg8\000"
- 675      00
- 676              	.LASF5:
- 677 00a7 6C6F6E67 		.ascii	"long unsigned int\000"
- 677      20756E73 
- 677      69676E65 
- 677      6420696E 
- 677      7400
- 678              	.LASF3:
- 679 00b9 73686F72 		.ascii	"short unsigned int\000"
- 679      7420756E 
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 16
+ 661              	.LASF6:
+ 662 0000 6C6F6E67 		.ascii	"long long int\000"
+ 662      206C6F6E 
+ 662      6720696E 
+ 662      7400
+ 663              	.LASF15:
+ 664 000e 64617461 		.ascii	"data_value\000"
+ 664      5F76616C 
+ 664      756500
+ 665              	.LASF9:
+ 666 0019 666C6F61 		.ascii	"float\000"
+ 666      7400
+ 667              	.LASF19:
+ 668 001f 57617665 		.ascii	"WaveDAC8_1_VDAC8_Sleep\000"
+ 668      44414338 
+ 668      5F315F56 
+ 668      44414338 
+ 668      5F536C65 
+ 669              	.LASF16:
+ 670 0036 57617665 		.ascii	"WaveDAC8_1_VDAC8_backupStruct\000"
+ 670      44414338 
+ 670      5F315F56 
+ 670      44414338 
+ 670      5F626163 
+ 671              	.LASF1:
+ 672 0054 756E7369 		.ascii	"unsigned char\000"
+ 672      676E6564 
+ 672      20636861 
+ 672      7200
+ 673              	.LASF13:
+ 674 0062 72656738 		.ascii	"reg8\000"
+ 674      00
+ 675              	.LASF5:
+ 676 0067 6C6F6E67 		.ascii	"long unsigned int\000"
+ 676      20756E73 
+ 676      69676E65 
+ 676      6420696E 
+ 676      7400
+ 677              	.LASF3:
+ 678 0079 73686F72 		.ascii	"short unsigned int\000"
+ 678      7420756E 
+ 678      7369676E 
+ 678      65642069 
+ 678      6E7400
+ 679              	.LASF24:
+ 680 008c 57617665 		.ascii	"WaveDAC8_1_VDAC8_backup\000"
+ 680      44414338 
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccFthKIl.s 			page 16
 
 
- 679      7369676E 
- 679      65642069 
- 679      6E7400
- 680              	.LASF24:
- 681 00cc 57617665 		.ascii	"WaveDAC8_1_VDAC8_backup\000"
- 681      44414338 
- 681      5F315F56 
- 681      44414338 
- 681      5F626163 
- 682              	.LASF10:
- 683 00e4 646F7562 		.ascii	"double\000"
- 683      6C6500
- 684              	.LASF20:
- 685 00eb 57617665 		.ascii	"WaveDAC8_1_VDAC8_Wakeup\000"
- 685      44414338 
- 685      5F315F56 
- 685      44414338 
- 685      5F57616B 
- 686              	.LASF8:
- 687 0103 756E7369 		.ascii	"unsigned int\000"
- 687      676E6564 
- 687      20696E74 
- 687      00
- 688              	.LASF7:
- 689 0110 6C6F6E67 		.ascii	"long long unsigned int\000"
- 689      206C6F6E 
- 689      6720756E 
- 689      7369676E 
- 689      65642069 
- 690              	.LASF18:
- 691 0127 57617665 		.ascii	"WaveDAC8_1_VDAC8_RestoreConfig\000"
- 691      44414338 
- 691      5F315F56 
- 691      44414338 
- 691      5F526573 
- 692              	.LASF6:
- 693 0146 6C6F6E67 		.ascii	"long long int\000"
- 693      206C6F6E 
- 693      6720696E 
- 693      7400
+ 680      5F315F56 
+ 680      44414338 
+ 680      5F626163 
+ 681              	.LASF10:
+ 682 00a4 646F7562 		.ascii	"double\000"
+ 682      6C6500
+ 683              	.LASF20:
+ 684 00ab 57617665 		.ascii	"WaveDAC8_1_VDAC8_Wakeup\000"
+ 684      44414338 
+ 684      5F315F56 
+ 684      44414338 
+ 684      5F57616B 
+ 685              	.LASF8:
+ 686 00c3 756E7369 		.ascii	"unsigned int\000"
+ 686      676E6564 
+ 686      20696E74 
+ 686      00
+ 687              	.LASF7:
+ 688 00d0 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 688      206C6F6E 
+ 688      6720756E 
+ 688      7369676E 
+ 688      65642069 
+ 689              	.LASF18:
+ 690 00e7 57617665 		.ascii	"WaveDAC8_1_VDAC8_RestoreConfig\000"
+ 690      44414338 
+ 690      5F315F56 
+ 690      44414338 
+ 690      5F526573 
+ 691              	.LASF23:
+ 692 0106 433A5C55 		.ascii	"C:\\Users\\Robert\\workspace\\embedit_git\\psoc_2_p"
+ 692      73657273 
+ 692      5C526F62 
+ 692      6572745C 
+ 692      776F726B 
+ 693 0134 695C5053 		.ascii	"i\\PSoC Creator\\PSoC_2_Pi.cydsn\000"
+ 693      6F432043 
+ 693      72656174 
+ 693      6F725C50 
+ 693      536F435F 
  694              	.LASF11:
- 695 0154 63686172 		.ascii	"char\000"
+ 695 0153 63686172 		.ascii	"char\000"
  695      00
  696              	.LASF2:
- 697 0159 73686F72 		.ascii	"short int\000"
+ 697 0158 73686F72 		.ascii	"short int\000"
  697      7420696E 
  697      7400
  698              	.LASF12:
- 699 0163 75696E74 		.ascii	"uint8\000"
+ 699 0162 75696E74 		.ascii	"uint8\000"
  699      3800
  700              	.LASF21:
- 701 0169 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 701 0168 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
  701      4320342E 
  701      372E3320 
  701      32303133 
  701      30333132 
- 702 019c 616E6368 		.ascii	"anch revision 196615]\000"
-ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 17
+ 702 019b 616E6368 		.ascii	"anch revision 196615]\000"
+ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccFthKIl.s 			page 17
 
 
  702      20726576 
@@ -966,25 +966,25 @@ ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccqiNeld.s 			page 1
  702      6E203139 
  702      36363135 
  703              	.LASF4:
- 704 01b2 6C6F6E67 		.ascii	"long int\000"
+ 704 01b1 6C6F6E67 		.ascii	"long int\000"
  704      20696E74 
  704      00
  705              	.LASF14:
- 706 01bb 656E6162 		.ascii	"enableState\000"
+ 706 01ba 656E6162 		.ascii	"enableState\000"
  706      6C655374 
  706      61746500 
  707              	.LASF22:
- 708 01c7 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\WaveDAC8_1_VDAC8_PM.c\000"
+ 708 01c6 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\WaveDAC8_1_VDAC8_PM.c\000"
  708      6E657261 
  708      7465645F 
  708      536F7572 
  708      63655C50 
  709              	.LASF0:
- 710 01f6 7369676E 		.ascii	"signed char\000"
+ 710 01f5 7369676E 		.ascii	"signed char\000"
  710      65642063 
  710      68617200 
  711              	.LASF17:
- 712 0202 57617665 		.ascii	"WaveDAC8_1_VDAC8_SaveConfig\000"
+ 712 0201 57617665 		.ascii	"WaveDAC8_1_VDAC8_SaveConfig\000"
  712      44414338 
  712      5F315F56 
  712      44414338 

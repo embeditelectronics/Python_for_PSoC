@@ -31,7 +31,7 @@ try: #exception handling, not crucial but it is advised.
         My_DELSIG.Stop()
 
         print('ADC OUTPUT: %d' %ADC_counts)
-        print('VOLTAGE:    %.3f' %Voltage)
+        print('VOLTAGE:    %.3f\n' %Voltage)
 
         time.sleep(.1)
 except KeyboardInterrupt:
