@@ -1,17 +1,29 @@
 API modules
 ===========
-Here is a quick look at what is under the hood of the RPiSoC Python API, as of *V1.1.0*
+Here is a quick look at what is under the hood of the RPiSoC Python API, as of *V1.1.1*
 
 rpisoc.py
 +++++++++
-.. automodule:: rpisoc
-   :members:
+This is the highest level module import for the RPiSoC API, which the user should
+ import into their scripts for full use of it.
+
+It is used to keep records of some globally used variables between all classes. 
+
+
+It is also used to send data to, and receive data from the RPiSoC using 
+a user chosen communication protocol. *V1.1* supports SPI and I2C communication, but
+structure for easy integration of different protocols is in place,
+*V1.2* will roll in UART support.
+
 
 At the beginning of each script, insert the following
 two lines::
 		from rpisoc import * #This will handle dependencies
 		RPiSoC('SPI') 
 		#or RPiSoC('I2C')
+
+.. automodule:: rpisoc
+   :members:
 
 
 digital.py
@@ -24,12 +36,6 @@ analog.py
 +++++++++
 
 .. automodule:: analog
-   :members:
-
-communication.py
-++++++++++++++++
-
-.. automodule:: communication
    :members:
 
 .. codeauthor:: Brian Bradley <embedit@embeditelectronics.com>

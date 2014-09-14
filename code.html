@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>API modules &mdash; RPiSoC Python API 1.1.0 documentation</title>
+    <title>API modules &mdash; RPiSoC Python API 1.1.1 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.1.0',
+        VERSION:     '1.1.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="RPiSoC Python API 1.1.0 documentation" href="index.html" />
+    <link rel="top" title="RPiSoC Python API 1.1.1 documentation" href="index.html" />
     <link rel="next" title="Example Projects!" href="examples.html" />
     <link rel="prev" title="Getting Started" href="getting_started.html" /> 
   </head>
@@ -43,7 +43,7 @@
         <li class="right" >
           <a href="getting_started.html" title="Getting Started"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.1.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.1.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -54,11 +54,134 @@
             
   <div class="section" id="api-modules">
 <h1>API modules<a class="headerlink" href="#api-modules" title="Permalink to this headline">¶</a></h1>
-<p>Here is a quick look at what is under the hood of the RPiSoC Python API, as of <em>V1.1.0</em></p>
-<div class="section" id="module-rpisoc">
-<span id="rpisoc-py"></span><h2>rpisoc.py<a class="headerlink" href="#module-rpisoc" title="Permalink to this headline">¶</a></h2>
-<p>This program is the highest level module for the RPiSoC API, which the user should
-import into their scripts for full use of the API.</p>
+<p>Here is a quick look at what is under the hood of the RPiSoC Python API, as of <em>V1.1.1</em></p>
+<div class="section" id="rpisoc-py">
+<h2>rpisoc.py<a class="headerlink" href="#rpisoc-py" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>This is the highest level module import for the RPiSoC API, which the user should</dt>
+<dd>import into their scripts for full use of it.</dd>
+</dl>
+<p>It is used to keep records of some globally used variables between all classes.</p>
+<p>It is also used to send data to, and receive data from the RPiSoC using
+a user chosen communication protocol. <em>V1.1</em> supports SPI and I2C communication, but
+structure for easy integration of different protocols is in place,
+<em>V1.2</em> will roll in UART support.</p>
+<p>At the beginning of each script, insert the following
+two lines:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span> <span class="c">#This will handle dependencies</span>
+<span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span>
+<span class="c">#or RPiSoC(&#39;I2C&#39;)</span>
+</pre></div>
+</div>
+<span class="target" id="module-rpisoc"></span><dl class="class">
+<dt id="rpisoc.I2C">
+<em class="property">class </em><tt class="descclassname">rpisoc.</tt><tt class="descname">I2C</tt><big>(</big><em>bus_location=1</em>, <em>f_address=8</em><big>)</big><a class="headerlink" href="#rpisoc.I2C" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>This class defines usage of the I2C bus for transfer between the RPi and the PSoC. __init__ is called as soon as an <em>RPiSoC</em> object is defined, and it opens and configures the bus.</dd>
+<dt><strong>Note:</strong></dt>
+<dd>i2c must be configured and the smbus libraries must be installed to call this class</dd>
+</dl>
+<p><strong>Parameters:</strong></p>
+<p><em>bus_location:</em> location of the smbus on the pi, it is defaulted to 1 but confirm
+with:</p>
+<div class="highlight-python"><div class="highlight"><pre>i2cdetect -y 1
+</pre></div>
+</div>
+<p>If this command is written to the terminal, and the addres <em>08</em> is not shows, then
+try:</p>
+<div class="highlight-python"><div class="highlight"><pre>i2cdetect -y 0
+</pre></div>
+</div>
+<p>If that successfully shows the RPiSoC&#8217;s address of <em>08</em>, then change this parameter to <em>0.</em>
+If neither command shows the correct address, verify your connection, and verify that you have
+correctly configured and enabled i2c.</p>
+<p><em>f_address:</em> The i2c address on the RPiSoC. It is set to 0x08 by default. If you change the address on the
+RPiSoC, that change must be reflected here.</p>
+<dl class="method">
+<dt id="rpisoc.I2C.PrepareData">
+<tt class="descname">PrepareData</tt><big>(</big><em>dat</em><big>)</big><a class="headerlink" href="#rpisoc.I2C.PrepareData" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Makes sure that the data being sent is correctly formatted, so that the RPiSoC is able to more easily decode the received words.</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt><em>dat:</em> A tuple of length 2 or 3</dt>
+<dd><ul class="first last simple">
+<li>The size of the first two items of the tuple must be less than or equal to one byte each.</li>
+<li>The size of the third item in the tuple, if applicable, must be less than or equal to two bytes.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt><strong>Returns:</strong></dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>A list of length 4, prepared for SPI transfer, with the following construction:</dt>
+<dd><ul class="first last simple">
+<li>[dat[0], dat[1], dat[2]__LOW_BYTE, dat[2]__HIGH_BYTE]</li>
+<li>The RPiSoC is expecting receipt of these 4 bytes, in this order.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="rpisoc.I2C.cleanup">
+<tt class="descname">cleanup</tt><big>(</big><big>)</big><a class="headerlink" href="#rpisoc.I2C.cleanup" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Forces a software reset on the RPiSoC to clean up its GPIO, and then resets any global data that might be tracked within the RPiSoC class.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="rpisoc.I2C.receiveData">
+<tt class="descname">receiveData</tt><big>(</big><em>vals</em><big>)</big><a class="headerlink" href="#rpisoc.I2C.receiveData" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>This function is called when the RPi desires a returned value from the RPiSoC. It will send a command, and then wait for a response.</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><em>vals:</em> A tuple which will be sent to the <em>PrepareData()</em> function to be restructured into a list of length 4 and then sent to the RPiSoC over I2C.</dd>
+<dt><strong>Returns:</strong></dt>
+<dd><dl class="first last docutils">
+<dt>The data packet received from the PSoC, which has been unpacked and reformatted.</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Since the largest possible value that the PSoC will send as of <em>V1.0</em> is a 20 bit number, if the RPi receives a number larger than 20 bits, it will assume that the number overflowed backwards because the PSoC tried to send a negative number.</dt>
+<dd><ul class="first last simple">
+<li>It will account for this by subtracting (2^32 - 1) from the received data, if that data is larger than (2^24 -1)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="rpisoc.I2C.sendData">
+<tt class="descname">sendData</tt><big>(</big><em>vals</em><big>)</big><a class="headerlink" href="#rpisoc.I2C.sendData" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>This function will send data to the RPiSoC, without waiting for a return</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><em>vals:</em> A tuple which will be sent to the <em>PrepareData()</em> method to be restructured into a list of length 4, and then sent to the RPiSoC over i2c.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="class">
 <dt id="rpisoc.RPiSoC">
 <em class="property">class </em><tt class="descclassname">rpisoc.</tt><tt class="descname">RPiSoC</tt><a class="headerlink" href="#rpisoc.RPiSoC" title="Permalink to this definition">¶</a></dt>
@@ -74,13 +197,99 @@ be initialized.</dd>
 </dl>
 </dd></dl>
 
-<p>At the beginning of each script, insert the following
-two lines:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span> <span class="c">#This will handle dependencies</span>
-<span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span>
-<span class="c">#or RPiSoC(&#39;I2C&#39;)</span>
-</pre></div>
-</div>
+<dl class="class">
+<dt id="rpisoc.SPI">
+<em class="property">class </em><tt class="descclassname">rpisoc.</tt><tt class="descname">SPI</tt><a class="headerlink" href="#rpisoc.SPI" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>This class defines usage of the SPI bus for transfer between the RPi and the PSoC. __init__ is called as soon as an <em>RPiSoC</em> object is defined, and it opens and configures the SPI bus.</dd>
+<dt><strong>Note:</strong></dt>
+<dd>The spidev libraries with its python wrapper must be installed to use this class.</dd>
+</dl>
+<dl class="method">
+<dt id="rpisoc.SPI.PrepareData">
+<tt class="descname">PrepareData</tt><big>(</big><em>dat</em><big>)</big><a class="headerlink" href="#rpisoc.SPI.PrepareData" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Makes sure that the data being sent is correctly formatted, so that the RPiSoC is able to more easily decode the received words.</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt><em>dat:</em> A tuple of length 2 or 3</dt>
+<dd><ul class="first last simple">
+<li>The size of the first two items of the tuple must be less than or equal to one byte each.</li>
+<li>The size of the third item in the tuple, if applicable, must be less than or equal to two bytes.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt><strong>Returns:</strong></dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>A list of length 4, prepared for SPI transfer, with the following construction:</dt>
+<dd><ul class="first last simple">
+<li>[dat[0], dat[1], dat[2]__LOW_BYTE, dat[2]__HIGH_BYTE]</li>
+<li>The RPiSoC is expecting receipt of these 4 bytes, in this order.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="rpisoc.SPI.cleanup">
+<tt class="descname">cleanup</tt><big>(</big><big>)</big><a class="headerlink" href="#rpisoc.SPI.cleanup" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Forces a software reset on the RPiSoC to clean up its GPIO, then it closes and cleans up the SPI bus. It then resets any global data that might be tracked within the RPiSoC class.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="rpisoc.SPI.receiveData">
+<tt class="descname">receiveData</tt><big>(</big><em>vals</em><big>)</big><a class="headerlink" href="#rpisoc.SPI.receiveData" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>This function is called when the RPi desires a returned value from the RPiSoC. It will send a command, and then wait for a response.</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><em>vals:</em> A tuple which will be sent to the <em>PrepareData()</em> function to be restructured into a list of length 4, and then sent to the RPiSoC over SPI.</dd>
+<dt><strong>Returns:</strong></dt>
+<dd><dl class="first last docutils">
+<dt>The data packet received from the PSoC, which has been unpacked and reformatted.</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Since the largest possible value that the PSoC will send as of <em>V1.1</em> is a 20 bit number, if the RPi receives a number larger than 20 bits, it will assume that the number overflowed backwards because the PSoC tried to send a negative number.</dt>
+<dd><ul class="first last simple">
+<li>It will account for this by subtracting (2^32 - 1) from the received data, if that data is larger than (2^24 -1)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="rpisoc.SPI.sendData">
+<tt class="descname">sendData</tt><big>(</big><em>vals</em><big>)</big><a class="headerlink" href="#rpisoc.SPI.sendData" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>This function will send data to the RPiSoC, without waiting for a return</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><em>vals:</em> A tuple which will be sent to the <em>PrepareData()</em> function to be restructured into a list of length 4, and then sent to the rpisoc over i2c.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-digital">
 <span id="digital-py"></span><h2>digital.py<a class="headerlink" href="#module-digital" title="Permalink to this headline">¶</a></h2>
@@ -168,6 +377,18 @@ way:</p>
 <dd><dl class="docutils">
 <dt><strong>Description:</strong></dt>
 <dd>Returns a boolean value (True/False) which correlates to the current state of the output.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.DigitalOutput.Toggle">
+<tt class="descname">Toggle</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.DigitalOutput.Toggle" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd><ul class="first last simple">
+<li>Toggles the state of the specified output and then writes the new value to the RPiSoC.</li>
+</ul>
+</dd>
 </dl>
 </dd></dl>
 
@@ -526,11 +747,12 @@ way:</p>
 <div><ul>
 <li><p class="first"><em>servo_id:</em> the pin which the servo will be connected to, relative to port 3 on the RPiSoC</p>
 </li>
-<li><p class="first"><em>min_pulse:</em> the pulse width necessary to obtain angular position min_angle.</p>
-</li>
 <li><dl class="first docutils">
-<dt><em>max_pulse:</em> the pulse width necessary to obtain angular position max_angle.</dt>
-<dd><ul class="first last simple">
+<dt><em>min_pulse:</em> the pulse width necessary to obtain angular position min_angle.</dt>
+<dd><ul class="first simple">
+<li><em>max_pulse:</em> the pulse width necessary to obtain angular position max_angle.</li>
+</ul>
+<ul class="last simple">
 <li>Pulse widths must be positive and greater than zero.</li>
 <li>Pulse width values are usually have maximum values of 2 to 2.3 and minimum values of 0.8 to 1.2</li>
 </ul>
@@ -787,9 +1009,12 @@ way:</p>
 </ul>
 </dd>
 <dt><strong>Side Effects:</strong></dt>
-<dd><ul class="first last simple">
-<li>The ADC resolution cannot be changed during a conversion cycle. The recommended bestpractice is to stop conversions with <em>StopConvert(),</em> change the resolution, then restart the conversions with <em>StartConvert().</em> If you decide not to stop conversions before calling this API, use <em>IsEndConversion()</em> to wait until conversion is complete before changing the resolution. If you call <em>SetResolution()</em> during a conversion, the resolution will not change until the current conversion is complete. Data will not be available in the new resolution for another 6 + <em>resolution</em> clock cycles. You may need add a delay of this number of clock cycles after <em>SetResolution()</em> is called before data is valid again.</li>
+<dd><ul class="first simple">
+<li>The ADC resolution cannot be changed during a conversion cycle. The recommended bestpractice is to stop conversions with <em>StopConvert(),</em> change the resolution, then restart the conversions with <em>StartConvert().</em> If you decide not to stop conversions before calling this API,</li>
 </ul>
+<p class="last">use <em>IsEndConversion()</em> to wait until conversion is complete before changing the resolution. If you call <em>SetResolution()</em> during a conversion,
+the resolution will not change until the current conversion is complete. Data will not be available in the new resolution
+for another 6 + <em>resolution</em> clock cycles. You may need add a delay of this number of clock cycles after <em>SetResolution()</em> is called before data is valid again.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -863,7 +1088,7 @@ way:</p>
 </div>
 </dd>
 </dl>
-<p><strong>Note:</strong> The default API configuration for <em>V1.1</em> only has one IDAC, but more can be included if the default configuration is modified on the RPiSoC. <em>V1.1</em> intends to include support for multiple configurations, each with a different emphasis.</p>
+<p><strong>Note:</strong> The default API configuration for <em>V1.0</em> only has one IDAC, but more can be included if the default configuration is modified on the RPiSoC. <em>V1.1</em> intends to include support for multiple configurations, each with a different emphasis.</p>
 <p><strong>Parameter:</strong></p>
 <ul>
 <li><dl class="first docutils">
@@ -876,6 +1101,27 @@ way:</p>
 </dl>
 </li>
 </ul>
+<dl class="method">
+<dt id="analog.IDAC.SetCurrent">
+<tt class="descname">SetCurrent</tt><big>(</big><em>amps</em><big>)</big><a class="headerlink" href="#analog.IDAC.SetCurrent" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Sets a current in milliamperes to be output on the specified IDAC. Valid values depend on the chosen full scale range</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt><em>amps</em>: number between 0 and the full scale range in milliamperes.</dt>
+<dd><ul class="first last simple">
+<li>The full scale value depends on the range, which is chosen with the SetRange() method.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="method">
 <dt id="analog.IDAC.SetPolarity">
 <tt class="descname">SetPolarity</tt><big>(</big><em>polarity</em><big>)</big><a class="headerlink" href="#analog.IDAC.SetPolarity" title="Permalink to this definition">¶</a></dt>
@@ -1098,6 +1344,27 @@ way:</p>
 </ul>
 </dd>
 </dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="analog.VDAC.SetVoltage">
+<tt class="descname">SetVoltage</tt><big>(</big><em>volts</em><big>)</big><a class="headerlink" href="#analog.VDAC.SetVoltage" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Sets a voltage in Volts to be output on the specified VDAC. Valid values depend on the chosen full scale range</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt><em>volts</em>: number between 0 and the full scale range in Volts.</dt>
+<dd><ul class="first last simple">
+<li>The full scale value depends on the range, which is chosen with the SetRange() method.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -1340,215 +1607,6 @@ restart the WaveDAC8 following a Stop() call, the current component parameter se
 
 </dd></dl>
 
-</div>
-<div class="section" id="module-communication">
-<span id="communication-py"></span><h2>communication.py<a class="headerlink" href="#module-communication" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="communication.I2C">
-<em class="property">class </em><tt class="descclassname">communication.</tt><tt class="descname">I2C</tt><big>(</big><em>bus_location=1</em>, <em>f_address=8</em><big>)</big><a class="headerlink" href="#communication.I2C" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt><strong>Description:</strong></dt>
-<dd>This class defines usage of the I2C bus for transfer between the RPi and the PSoC. __init__ is called as soon as an <em>RPiSoC</em> object is defined, and it opens and configures the bus.</dd>
-<dt><strong>Note:</strong></dt>
-<dd>i2c must be configured and the smbus libraries must be installed to call this class</dd>
-</dl>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><p class="first"><em>bus_location:</em> location of smbus on the Pi. It is defaulted to 1, but confirm the location
-with:</p>
-<div class="highlight-python"><div class="highlight"><pre>i2cdetect -y 1
-</pre></div>
-</div>
-<p>If this command is written to the terminal, and the addres <em>08</em> is not shows, then
-try:</p>
-<div class="highlight-python"><div class="highlight"><pre>i2cdetect -y 0
-</pre></div>
-</div>
-<p>If that successfully shows the RPiSoC&#8217;s address of <em>08</em>, then change this parameter to <em>0.</em>
-If neither command shows the correct address, verify your connection, and verify that you have
-correctly configured and enabled i2c.</p>
-</li>
-<li><p class="first"><em>f_address:</em> The i2c address on the RPiSoC. It is set to 0x08 by default. If you change the address on the
-RPiSoC, that change must be reflected here.</p>
-</li>
-</ul>
-<dl class="method">
-<dt id="communication.I2C.PrepareData">
-<tt class="descname">PrepareData</tt><big>(</big><em>dat</em><big>)</big><a class="headerlink" href="#communication.I2C.PrepareData" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt><strong>Description:</strong></dt>
-<dd>Makes sure that the data being sent is correctly formatted, so that the RPiSoC is able to more easily decode the received words.</dd>
-<dt><strong>Parameters:</strong></dt>
-<dd><ul class="first last">
-<li><dl class="first docutils">
-<dt><em>dat:</em> A tuple of length 2 or 3</dt>
-<dd><ul class="first last simple">
-<li>The size of the first two items of the tuple must be less than or equal to one byte each.</li>
-<li>The size of the third item in the tuple, if applicable, must be less than or equal to two bytes.</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-<dt><strong>Returns:</strong></dt>
-<dd><ul class="first last">
-<li><dl class="first docutils">
-<dt>A list of length 4, prepared for SPI transfer, with the following construction:</dt>
-<dd><ul class="first last simple">
-<li>[dat[0], dat[1], dat[2]__LOW_BYTE, dat[2]__HIGH_BYTE]</li>
-<li>The RPiSoC is expecting receipt of these 4 bytes, in this order.</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="communication.I2C.cleanup">
-<tt class="descname">cleanup</tt><big>(</big><big>)</big><a class="headerlink" href="#communication.I2C.cleanup" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt><strong>Description:</strong></dt>
-<dd>Forces a software reset on the RPiSoC to clean up its GPIO.</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="communication.I2C.receiveData">
-<tt class="descname">receiveData</tt><big>(</big><em>vals</em><big>)</big><a class="headerlink" href="#communication.I2C.receiveData" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt><strong>Description:</strong></dt>
-<dd>This function is called when the RPi desires a returned value from the RPiSoC. It will send a command, and then wait for a response.</dd>
-<dt><strong>Parameters:</strong></dt>
-<dd><em>vals:</em> A tuple which will be sent to the <em>PrepareData()</em> function to be restructured into a list of length 4 and then sent to the RPiSoC over I2C.</dd>
-<dt><strong>Returns:</strong></dt>
-<dd><dl class="first last docutils">
-<dt>The data packet received from the PSoC, which has been unpacked and reformatted.</dt>
-<dd><ul class="first last">
-<li><dl class="first docutils">
-<dt>Since the largest possible value that the PSoC will send as of <em>V1.1</em> is a 20 bit number, if the RPi receives a number larger than 20 bits, it will assume that the number overflowed backwards because the PSoC tried to send a negative number.</dt>
-<dd><ul class="first last simple">
-<li>It will account for this by subtracting (2^32 - 1) from the received data, if that data is larger than (2^24 -1)</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="communication.I2C.sendData">
-<tt class="descname">sendData</tt><big>(</big><em>vals</em><big>)</big><a class="headerlink" href="#communication.I2C.sendData" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt><strong>Description:</strong></dt>
-<dd>This function will send data to the RPiSoC, without waiting for a return</dd>
-<dt><strong>Parameters:</strong></dt>
-<dd><em>vals:</em> A tuple which will be sent to the <em>PrepareData()</em> method to be restructured into a list of length 4, and then sent to the RPiSoC over i2c.</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="communication.SPI">
-<em class="property">class </em><tt class="descclassname">communication.</tt><tt class="descname">SPI</tt><a class="headerlink" href="#communication.SPI" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt><strong>Description:</strong></dt>
-<dd>This class defines usage of the SPI bus for transfer between the RPi and the PSoC. __init__ is called as soon as an <em>RPiSoC</em> object is defined, and it opens and configures the SPI bus.</dd>
-<dt><strong>Note:</strong></dt>
-<dd>The spidev libraries with its python wrapper must be installed to use this class.</dd>
-</dl>
-<dl class="method">
-<dt id="communication.SPI.PrepareData">
-<tt class="descname">PrepareData</tt><big>(</big><em>dat</em><big>)</big><a class="headerlink" href="#communication.SPI.PrepareData" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt><strong>Description:</strong></dt>
-<dd>Makes sure that the data being sent is correctly formatted, so that the RPiSoC is able to more easily decode the received words.</dd>
-<dt><strong>Parameters:</strong></dt>
-<dd><ul class="first last">
-<li><dl class="first docutils">
-<dt><em>dat:</em> A tuple of length 2 or 3</dt>
-<dd><ul class="first last simple">
-<li>The size of the first two items of the tuple must be less than or equal to one byte each.</li>
-<li>The size of the third item in the tuple, if applicable, must be less than or equal to two bytes.</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-<dt><strong>Returns:</strong></dt>
-<dd><ul class="first last">
-<li><dl class="first docutils">
-<dt>A list of length 4, prepared for SPI transfer, with the following construction:</dt>
-<dd><ul class="first last simple">
-<li>[dat[0], dat[1], dat[2]__LOW_BYTE, dat[2]__HIGH_BYTE]</li>
-<li>The RPiSoC is expecting receipt of these 4 bytes, in this order.</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="communication.SPI.cleanup">
-<tt class="descname">cleanup</tt><big>(</big><big>)</big><a class="headerlink" href="#communication.SPI.cleanup" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt><strong>Description:</strong></dt>
-<dd>Forces a software reset on the RPiSoC to clean up its GPIO, then it closes and cleans up the SPI bus.</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="communication.SPI.receiveData">
-<tt class="descname">receiveData</tt><big>(</big><em>vals</em><big>)</big><a class="headerlink" href="#communication.SPI.receiveData" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt><strong>Description:</strong></dt>
-<dd>This function is called when the RPi desires a returned value from the RPiSoC. It will send a command, and then wait for a response.</dd>
-<dt><strong>Parameters:</strong></dt>
-<dd><em>vals:</em> A tuple which will be sent to the <em>PrepareData()</em> function to be restructured into a list of length 4, and then sent to the RPiSoC over SPI.</dd>
-<dt><strong>Returns:</strong></dt>
-<dd><dl class="first last docutils">
-<dt>The data packet received from the PSoC, which has been unpacked and reformatted.</dt>
-<dd><ul class="first last">
-<li><dl class="first docutils">
-<dt>Since the largest possible value that the PSoC will send as of <em>V1.1</em> is a 20 bit number, if the RPi receives a number larger than 20 bits, it will assume that the number overflowed backwards because the PSoC tried to send a negative number.</dt>
-<dd><ul class="first last simple">
-<li>It will account for this by subtracting (2^32 - 1) from the received data, if that data is larger than (2^24 -1)</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="communication.SPI.sendData">
-<tt class="descname">sendData</tt><big>(</big><em>vals</em><big>)</big><a class="headerlink" href="#communication.SPI.sendData" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt><strong>Description:</strong></dt>
-<dd>This function will send data to the RPiSoC, without waiting for a return</dd>
-<dt><strong>Parameters:</strong></dt>
-<dd><em>vals:</em> A tuple which will be sent to the <em>PrepareData()</em> function to be restructured into a list of length 4, and then sent to the rpisoc over i2c.</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 <p><em>Code author: Brian Bradley &lt;<a class="reference external" href="mailto:embedit&#37;&#52;&#48;embeditelectronics&#46;com">embedit<span>&#64;</span>embeditelectronics<span>&#46;</span>com</a>&gt;</em></p>
 <p><em>Section author: Brian Bradley &lt;<a class="reference external" href="mailto:embedit&#37;&#52;&#48;embeditelectronics&#46;com">embedit<span>&#64;</span>embeditelectronics<span>&#46;</span>com</a>&gt;</em></p>
 </div>
@@ -1566,10 +1624,9 @@ RPiSoC, that change must be reflected here.</p>
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">API modules</a><ul>
-<li><a class="reference internal" href="#module-rpisoc">rpisoc.py</a></li>
+<li><a class="reference internal" href="#rpisoc-py">rpisoc.py</a></li>
 <li><a class="reference internal" href="#module-digital">digital.py</a></li>
 <li><a class="reference internal" href="#module-analog">analog.py</a></li>
-<li><a class="reference internal" href="#module-communication">communication.py</a></li>
 </ul>
 </li>
 </ul>
@@ -1617,11 +1674,12 @@ RPiSoC, that change must be reflected here.</p>
         <li class="right" >
           <a href="getting_started.html" title="Getting Started"
              >previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.1.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.1.1 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2014, Embedit Electronics.
+      Last updated on Sep 14, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

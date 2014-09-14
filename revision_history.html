@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Revision History &mdash; RPiSoC Python API 1.1.0 documentation</title>
+    <title>Revision History &mdash; RPiSoC Python API 1.1.1 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.1.0',
+        VERSION:     '1.1.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="RPiSoC Python API 1.1.0 documentation" href="index.html" />
+    <link rel="top" title="RPiSoC Python API 1.1.1 documentation" href="index.html" />
     <link rel="prev" title="Example Projects!" href="examples.html" /> 
   </head>
   <body>
@@ -39,7 +39,7 @@
         <li class="right" >
           <a href="examples.html" title="Example Projects!"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.1.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.1.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -50,12 +50,46 @@
             
   <div class="section" id="revision-history">
 <h1>Revision History<a class="headerlink" href="#revision-history" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="version-1-1-0">
-<h2>Version 1.1.0<a class="headerlink" href="#version-1-1-0" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="version-1-1">
+<h2>Version 1.1<a class="headerlink" href="#version-1-1" title="Permalink to this headline">¶</a></h2>
 <p>This version provides the RPi with a lot more functionality, and use of the API is intended to be more flexible than in the previous version.</p>
-<dl class="docutils">
-<dt>New to V1.1.0:</dt>
-<dd><dl class="first last docutils">
+<div class="section" id="new-to-v1-1-1">
+<h3>New to V1.1.1<a class="headerlink" href="#new-to-v1-1-1" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><dl class="docutils">
+<dt>Code structure</dt>
+<dd><ul class="first last simple">
+<li>communication.py was removed and merged with rpisoc.py to simplify the overall structure.</li>
+</ul>
+</dd>
+<dt>In class <em>SPI</em></dt>
+<dd><ul class="first last simple">
+<li>Further minimized latency inherent to each SPI transfer.</li>
+<li><em>cleanup()</em> method will now reset any global data tracked within the RPiSoC class, in case cleanup is not called at termination (which is should be...)</li>
+</ul>
+</dd>
+<dt>In class <em>I2C</em></dt>
+<dd><ul class="first last simple">
+<li><em>cleanup()</em> method will now reset any global data tracked within the RPiSoC class, in case cleanup is not called at termination (which is should be...)</li>
+</ul>
+</dd>
+<dt>In class <em>VDAC</em></dt>
+<dd><ul class="first last simple">
+<li>Added a <em>SetVoltage()</em> method, so that the user can directly input a voltage within the specified DAC&#8217;s full scale range</li>
+</ul>
+</dd>
+<dt>In class <em>IDAC</em></dt>
+<dd><ul class="first last simple">
+<li>Added a <em>SetCurrent()</em> method, so that the user can directly input a current in milliamperes within the specified DAC&#8217;s full scale range</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="new-to-v1-1-0">
+<h3>New to V1.1.0<a class="headerlink" href="#new-to-v1-1-0" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><dl class="docutils">
 <dt>In the RPiSoC code</dt>
 <dd><ul class="first last simple">
 <li>Added I2C support</li>
@@ -113,11 +147,11 @@
 </ul>
 </dd>
 </dl>
-</dd>
-</dl>
+</div></blockquote>
 </div>
-<div class="section" id="version-1-0-0">
-<h2>Version 1.0.0<a class="headerlink" href="#version-1-0-0" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="version-1-0">
+<h2>Version 1.0<a class="headerlink" href="#version-1-0" title="Permalink to this headline">¶</a></h2>
 <p>The public release of the API. It exposes, most fundamentally, the following functionality to the Raspberry Pi through the RPiSoC</p>
 <blockquote>
 <div><ul class="simple">
@@ -147,8 +181,12 @@
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Revision History</a><ul>
-<li><a class="reference internal" href="#version-1-1-0">Version 1.1.0</a></li>
-<li><a class="reference internal" href="#version-1-0-0">Version 1.0.0</a></li>
+<li><a class="reference internal" href="#version-1-1">Version 1.1</a><ul>
+<li><a class="reference internal" href="#new-to-v1-1-1">New to V1.1.1</a></li>
+<li><a class="reference internal" href="#new-to-v1-1-0">New to V1.1.0</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#version-1-0">Version 1.0</a></li>
 </ul>
 </li>
 </ul>
@@ -190,11 +228,12 @@
         <li class="right" >
           <a href="examples.html" title="Example Projects!"
              >previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.1.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.1.1 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2014, Embedit Electronics.
+      Last updated on Sep 14, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

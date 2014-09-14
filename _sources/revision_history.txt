@@ -1,11 +1,27 @@
 Revision History
 ================
 
-Version 1.1.0
-+++++++++++++
+Version 1.1
++++++++++++
 This version provides the RPi with a lot more functionality, and use of the API is intended to be more flexible than in the previous version.
 
-New to V1.1.0:
+New to V1.1.1
+*************
+	Code structure
+		- communication.py was removed and merged with rpisoc.py to simplify the overall structure.	
+	In class *SPI*
+		- Further minimized latency inherent to each SPI transfer. 
+		- *cleanup()* method will now reset any global data tracked within the RPiSoC class, in case cleanup is not called at termination (which is should be...)
+	In class *I2C*
+		- *cleanup()* method will now reset any global data tracked within the RPiSoC class, in case cleanup is not called at termination (which is should be...) 
+	In class *VDAC*
+		- Added a *SetVoltage()* method, so that the user can directly input a voltage within the specified DAC's full scale range
+	In class *IDAC*
+		- Added a *SetCurrent()* method, so that the user can directly input a current in milliamperes within the specified DAC's full scale range
+	
+
+New to V1.1.0
+*************
 	In the RPiSoC code
 		- Added I2C support
 		- Added the ability to software reset the RPiSoC through the Raspberry Pi
@@ -44,8 +60,8 @@ New to V1.1.0:
 			* Start(): Starts the PWM signal which will drive the servo
 
 
-Version 1.0.0
-+++++++++++++
+Version 1.0
++++++++++++
 The public release of the API. It exposes, most fundamentally, the following functionality to the Raspberry Pi through the RPiSoC
 
 	- 8 PWM channels
