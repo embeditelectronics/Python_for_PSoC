@@ -2,13 +2,13 @@
 This script demonstrates usage of the digital input and output pins on the
 RPiSoC through this API.
 
-To set this demo up, wire P2[0], P2[1], P5[0], and P5[1] to LEDs in series
+To set this demo up, wire P12[0], P12[1], P5[0], and P5[1] to LEDs in series
 with a resistor.
 
 Also wire the outputs to one of the initialized inputs, in the following way:
 
-wire P2[0] to P6[0]
-wire P2[1] to P6[1]
+wire P12[0] to P4[0]
+wire P12[1] to P4[1]
 wire P5[0] to P5[4]
 wire P5[1] to P5[5]
 
@@ -25,8 +25,8 @@ from rpisoc import *
 import os
 RPiSoC('SPI')
 
-My_outputs = [DigitalOutput(2,0), DigitalOutput(2,1), DigitalOutput(5,0), DigitalOutput(5,1)]
-My_inputs = [DigitalInput(6,0), DigitalInput(6,1), DigitalInput(5,4), DigitalInput(5,5)]
+My_outputs = [digitalPin(12,0,'OUT'), digitalPin(12,1,'OUT'), digitalPin(5,0,'OUT'), digitalPin(5,1,'OUT')]
+My_inputs = [digitalPin(4,0,'IN'), digitalPin(4,1,'IN'), digitalPin(5,4,'IN'), digitalPin(5,5,'IN')]
 
 try: #exception handling
     while True:
@@ -43,9 +43,6 @@ try: #exception handling
             for inputs in My_inputs:#Prints the state of each input
                 print ("P%d[%d]:%d" %(inputs.port, inputs.pin, inputs.Read()))
             time.sleep(1)
-
-
-
 
 except KeyboardInterrupt:
     RPiSoC.commChannel.cleanup()

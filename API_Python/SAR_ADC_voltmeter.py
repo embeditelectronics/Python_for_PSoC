@@ -23,7 +23,7 @@ RPiSoC('SPI')
 
 My_SAR_ADC = ADC('SAR0')
 
-out_3v3 = DigitalOutput(5,0)
+out_3v3 = digitalPin(5,0,'OUT')
 out_3v3.Write(1)
 
 try:
@@ -32,18 +32,15 @@ try:
         #My_SAR_ADC.SetOffset(40)
         My_SAR_ADC.StartConvert()
 
-        time_0 = time.time()
         while not My_SAR_ADC.IsEndConversion():
             pass
-        time_final = time.time() - 0.05 #The Pi waits .1 seconds after the data transfer, so it must be accounted for
-        conversion_time = time_final - time_0
-
+        
         Counts = My_SAR_ADC.GetResult()
         My_SAR_ADC.StopConvert()
         My_SAR_ADC.Stop()
 
         Volts = My_SAR_ADC.CountsTo_Volts(Counts)
-        print('ADC OUTPUT:\t %d \nVOLTAGE:\t %.5f Volts \nCONVERT TIME:\t %.5f seconds \n' %(Counts, Volts, conversion_time))
+        print('ADC OUTPUT:\t %d \nVOLTAGE:\t %.5f Volts \n' %(Counts, Volts))
 
         time.sleep(0.1)
 

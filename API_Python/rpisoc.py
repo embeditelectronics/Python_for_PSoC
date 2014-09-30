@@ -17,9 +17,17 @@ __author__ = 'Brian Bradley'
 __version__ = '1.1.1'
 
 import math
-import spidev
 import time
-import smbus
+
+try:
+    import spidev
+except ImportError:
+    pass
+
+try:
+    import smbus
+except ImportError:
+    pass
 
 class SPI():
     """
@@ -32,12 +40,12 @@ class SPI():
     """
 
     def __init__(self):
-        
+
         self.spi = spidev.SpiDev()
         self.speed = 1000000
         self.spi.open(0,0)
         self.spi.max_speed_hz = self.speed
-        
+
         #spi.openSPI(speed = 100000)
 
     def PrepareData(self, dat):
@@ -93,7 +101,7 @@ class SPI():
         #print('sending: ', xfer_packet)
         self.spi.writebytes(xfer_packet)
         #time.sleep(0.01) #This delay doesnt appear to be needed...
- 
+
     def receiveData(self, vals):
         """
         **Description:**
@@ -110,19 +118,19 @@ class SPI():
 
         xfer_packet = self.PrepareData(vals)
         #print('sending: ',xfer_packet, ' from: ',vals)
-        
+
         self.spi.writebytes(xfer_packet)
         time.sleep(0.01) #This might be okay with less delay...
 
         if len(xfer_packet)<=4:
             data_packet = self.spi.readbytes(len(xfer_packet))
-  
+
         data = 0x00 #define data variable
         for i in range(len(data_packet)):
             data = data_packet[i]<<(8*i) | data
 
         #print('recieving: ', data_packet, data)
-        
+
 
         if data > 0x00FFFFFF:
             return int(data - 0xFFFFFFFF)
@@ -134,16 +142,16 @@ class SPI():
         **Description:**
             Forces a software reset on the RPiSoC to clean up its GPIO, then it closes and cleans up the SPI bus.
         """
-        print('\n\nCleaning up RPiSoC...')
+        #print('\n\nCleaning up RPiSoC...')
         self.sendData((0xFF,0xFF))
         RPiSoC.REGISTERS_IN_USE = []
         RPiSoC.PWM_clks = dict((k,v) for k,v in RPiSoC.PWM_clks_copy.items())
-        print('RPiSoC clean')
+        #print('RPiSoC clean')
 
-        print('\nclosing spi...')
+        #print('\nclosing spi...')
         self.spi.close()
         #spi.closeSPI()
-        print('closed')
+        #print('closed')
         '''
         obj_keys = ['analog.ADC object at 0x', 'analog.VDAC object at', 'analog.IDAC object at 0x', 'analog.WaveDAC object at 0x','digital.DigitalInput object at 0x', 'digital.DigitalOutput object at', 'digital.PWM object at 0x', 'digital.Servo object at']
         for (k,v) in locals().items():
@@ -153,15 +161,15 @@ class SPI():
             for strings in obj_keys:
                 if k == 'PWM_1':
                     print(k, v, strings)
-                
+
                 if str(v).find(strings) >= 0:
                     print (k, strings, str(v).find(strings),str(v).find('PWM_1'))
                     print (str(v)[str(v).find(strings) - 100:str(v).find(strings)+ 100])
                     code = compile(("del("+k+")").replace("'",""),str(os.path).split('/')[-1].split("'>")[0],'exec')
                     exec code
         '''
-                    
-                    
+
+
 
 class I2C(object):
     """
@@ -330,13 +338,8 @@ class RPiSoC(object):
     PWM_REGISTER6 = PWM_REGISTER5 +1
     PWM_REGISTER7 = PWM_REGISTER6 +1
 
-    DIGITAL_INPUT_REGISTER0 = PWM_REGISTER7 + 1
-    DIGITAL_INPUT_REGISTER1 = DIGITAL_INPUT_REGISTER0 + 1
-    DIGITAL_INPUT_REGISTER2 = DIGITAL_INPUT_REGISTER1 + 1
-
-    DIGITAL_OUTPUT_REGISTER0 = DIGITAL_INPUT_REGISTER2 + 1
-    DIGITAL_OUTPUT_REGISTER1 = DIGITAL_OUTPUT_REGISTER0 + 1
-    DIGITAL_OUTPUT_REGISTER2 = DIGITAL_OUTPUT_REGISTER1 + 1
+    GPIO_REGISTER = PWM_REGISTER7 + 1
+    ANALOG_IN_REGISTER = GPIO_REGISTER + 1
 
     REGISTERS_IN_USE = []
 
@@ -356,9 +359,9 @@ class RPiSoC(object):
     dictionary as -> 5: [48000000,96]. Then you would go to the PWM method and
     give any PWM's that use that clock the attribute self.clk_number = 5.
     '''
-    PWM_clks = {1: [ 24000000 , 24 ], 2: [ 24000000, 24 ],  3: [24000000, 24] , 4: [24000000,24]}
+    PWM_clks = {1: [ 24000000 , 8 ], 2: [ 24000000, 8 ],  3: [24000000, 8] , 4: [24000000,8]}
 
-    
+
 
     def __new__ (self, commChannel):
         """

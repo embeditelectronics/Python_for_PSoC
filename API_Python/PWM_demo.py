@@ -1,7 +1,7 @@
 """
 This program demonstrates basic use of the PWM channels on the RPiSoC.
 
-To see the desired output, connect an LED to P3[0] and P3[2]
+To see the desired output, connect an LED to P6[0] and P6[2]
 
 The program will initialize two PWM objects, one of which will remain blinking
 with the same duty cycle and frequency, while the other will change according to user input
@@ -23,8 +23,8 @@ My_other_PWM = PWM(2)
 
 My_PWM.Start()
 My_other_PWM.Start()
-My_PWM.WritePeriod(65535)
-My_other_PWM.WritePeriod(65535)
+#My_PWM.WritePeriod(65535)
+#My_other_PWM.WritePeriod(65535)
 My_PWM.SetDutyCycle(50)
 My_other_PWM.SetDutyCycle(50)
 

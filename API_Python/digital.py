@@ -3,125 +3,102 @@ __version__ = '1.1'
 
 from rpisoc import *
 
-class DigitalInput(object):
+class digitalPin(object):
+    """
+    **Description:**
+        Provides functionality for use of the GPIO on the RPiSoC as a digital input or output, with a number of different drive mode configurations. Define a digitalPin object in the following
+        way::
+            My_input = digitalPin(Port,Pin,'IN')
+            My_output = digitalPin(Port,Pin,'OUT')
+            '''or more generally'''
+            My_pin = digitalPin(Port,Pin,DRIVE_MODE)
     """
 
-    **Description:**
-        Provides functionality for use of the digital inputs defined on the RPiSoC. Define digital input objects in the following
-        way::
-            My_input = DigitalInput(Port,Pin)
-	"""
-
-    def __init__(self, Port, Pin):
+    def __init__(self,PORT, PIN, CONFIG):
         """
-
         **Parameters:**
 
-             - *Port*: Port on the RPiSoC.
-                    * Inputs are chosen by default as Ports *4, 5,* and *6.*
+             - *PORT*: Port on the RPiSoC.
+                    * GPIO Ports are chosen by default as Ports *2, 4, 5* and *12.*
                     * Port *4* does not contain Pin *7* (it is reserved)
-                    * Only Pins *4-7* are used on Port *5*, because it is split between input and output
                     * Port 5 uses 3.3V logic instead of 5V.
 
-             - *Pin*: Pin relative to the chosen Port.
+             - *PIN*: Pin relative to the chosen Port.
                     * Valid arguments are between *0* and *7*, unless noted to have a Port specific exception
+
+             - *CONFIG:* drive mode of the pin. Valid choices are:
+                    * 'IN' - sets pin as input
+                    * 'OUT' - sets pin as output
+                    * 'PULL_UP' - sets pin as resisitive pullup
+                    * 'PULL_DWN' - sets pin as resistive pulldown
+                    * 'OPEN_DRAIN_LO' - sets pin as open-drain (drives low)
+                    * 'OPEN_DRAIN_HI' - sets pin as open-drain (drives high)
+                    * 'PULL_UP_DWN' - sets pin as resistive pull-up/down
+                    * 'HIGH_Z_DIG' - sets pin as high impedence (digital)
+                    * 'STRONG_DRIVE' - sets pin as strong drive
+
         """
 
-        if Port == 4:
-            self.address = RPiSoC.DIGITAL_INPUT_REGISTER0
-            self.bit_num = Pin
-            if Pin not in range(7):
-                raise ValueError('This pin is not available as a digital input')
+        self.address = RPiSoC.GPIO_REGISTER
 
-        elif Port == 6:
-            self.address = RPiSoC.DIGITAL_INPUT_REGISTER2
-            self.bit_num = Pin
-            if Pin not in range(8):
-                raise ValueError('This pin is not available as a digital input')
-
-        elif Port == 5:
-            self.address = RPiSoC.DIGITAL_INPUT_REGISTER1
-            self.bit_num = Pin - 4
-            if Pin not in range(4,8):
-                raise ValueError('This pin is not available as a digital input')
+        if int(PORT) not in [2,4,5,12]:
+            raise ValueError('Invalid object instantiation: the first argument should be the Port number on the PSoC; valid entries are 2, 4, 5, 6, and 12')
         else:
-            raise ValueError('This Port is not available as a digital input register. ')
+            self.port = PORT
 
-        self.port = Port
-        self.pin = Pin
+        if int(PIN) not in range(8):
+            raise ValueError('Invalid object instantiation: the second argument should be the pin number relative to the desired port. Valid entries are 0-8. ')
+        elif int(PIN) == 7 and int(PORT) == 4:
+            raise ValueError('This pin (P4[7]) is reserved, and thus cannot be used as GPIO')
+        else:
+            self.pin = PIN
+
+        self.Configure(CONFIG)
+        self.state = self.Read()
 
 
-
-    def Read(self):
+    def Configure(self, CONFIG):
         """
         **Description:**
-            Returns a boolean value (True/False) which correlates to the current state of the input.
-        """
-        cmd = 0x00
-        reg_status = RPiSoC.commChannel.receiveData((self.address, cmd))
-        return bool(reg_status&(0x01<<self.bit_num))
-
-
-class DigitalOutput(object):
-    """
-
-    **Description:**
-        This class provides functionality for use of the digital outputs defined on the RPiSoC. Define digital output objects in the following
-        way::
-            My_output = DigitalOutput(Port,Pin)
-
-	"""
-
-    def __init__(self, Port, Pin):
-        """
+            Sets the drive mode of the pin as input (high impedence digital), resistive pullup, resistive pull down, open drain (drives low), open drain (drives high), output (strong drive), or resistive pull-up/down
 
         **Parameters:**
 
-             - *Port:* Port on the RPiSoC.
-                * Outputs are chosen by default as Ports *2, 5,* and *12*
-                * By default, only pins *0-3* are used on Port *5* because it is split between input and output.
-                * Port *5* uses 3.3V logic instead of 5V.
-
-             - *Pin:* Pin relative to the chosen Port
-                * Valid arguments are between *0* and *7*, unless noted to have a Port specific exception
+             - *CONFIG:* drive mode of the pin. Valid choices are:
+                    * 'IN' - sets pin as input
+                    * 'OUT' - sets pin as output
+                    * 'PULL_UP' - sets pin as resisitive pullup
+                    * 'PULL_DWN' - sets pin as resistive pulldown
+                    * 'OPEN_DRAIN_LO' - sets pin as open-drain (drives low)
+                    * 'OPEN_DRAIN_HI' - sets pin as open-drain (drives high)
+                    * 'PULL_UP_DWN' - sets pin as resistive pull-up/down
+                    * 'HIGH_Z_DIG' - sets pin as high impedence (digital)
+                    * 'STRONG_DRIVE' - sets pin as strong drive
         """
 
-        if Port == 12:
-            self.address = RPiSoC.DIGITAL_OUTPUT_REGISTER0
-            if Pin not in range(8):
-                raise ValueError('This pin is not available as a digital output')
-            self.bit_num = Pin
-
-        elif Port ==5:
-            self.address = RPiSoC.DIGITAL_OUTPUT_REGISTER1
-            if Pin not in range (3):
-                raise ValueError('This pion is not available as a digital output')
-            self.bit_num = Pin
-
-        elif Port == 2:
-            self.address = RPiSoC.DIGITAL_OUTPUT_REGISTER2
-            self.bit_num = Pin
-            if Pin not in range(8):
-                raise ValueError('This pin is not available as a digital output')
+        cmd = 0x03
+        if CONFIG == 'IN' or CONFIG == 'HIGH_Z_DIG':
+            self.config = 0x02
+        elif CONFIG == 'PULL_UP':
+            self.config = 0x03
+        elif CONFIG == 'PULL_DWN':
+            self.config = 0x04
+        elif CONFIG == 'OPEN_DRAIN_LO':
+            self.config = 0x05
+        elif CONFIG == 'OPEN_DRAIN_HI':
+            self.config = 0x06
+        elif CONFIG == 'OUT' or CONFIG == 'STRONG_DRIVE':
+            self.config = 0x07
+        elif CONFIG == 'PULL_UP_DWN':
+            self.config = 0x08
         else:
-            raise ValueError('Invalid port number: Only Ports 4 and 5 available for output. ')
+            raise ValueError('Invalid pin configuration: Choose one of the following\nIN\nOUT\nHIGH_Z_DIG\nPULL_UP\nPULL_DWN\nOPEN_DRAIN_LO\nOPEN_DRAIN_HI\n_STRONG_DRIVE\nPULL_IP_DWN')
 
-        self.pin = Pin
-        self.port = Port
-        self.state = 0
-
-    def Read(self):
-        """
-        **Description:**
-            Returns a boolean value (True/False) which correlates to the current state of the output.
-        """
-        cmd = 0x00
-        reg_status = RPiSoC.commChannel.receiveData((self.address, cmd))
-        return bool(reg_status&(0x01<<self.bit_num))
+        dat = (self.config<<8)|(self.port<<4) | (self.pin<<1)
+        RPiSoC.commChannel.sendData((self.address,cmd,dat))
 
     def Write(self, val):
         """
-
         **Description:**
             - Writes a new value to the output port, without affecting the other pins attached to that port.
             - Before committing the write operation, this function will confirm that the new value is different than the previous value.
@@ -131,18 +108,33 @@ class DigitalOutput(object):
 
             - *val:* Value to be written to the initialized Pin object.
                 * Accepts only *1* or *0* for writing the output HIGH or LOW, respectively.
-
         """
+
         cmd = 0x01
-        dat = (self.bit_num<<8 | int(val))
+        dat = (self.port<<4) | (self.pin<<1) | int(val)
         if val != self.state:
             RPiSoC.commChannel.sendData((self.address,cmd,dat))
             self.state = val
-        
+
     def Toggle(self):
+        """
+
+        **Description:**
+            - Toggles the state of the specified output and then writes the new value to the RPiSoC.
+
+        """
         val = int(not (self.state==1))
         self.Write(val)
 
+    def Read(self):
+        """
+        **Description:**
+            Returns a boolean value (True/False) which correlates to the current state of the input.
+        """
+        cmd = 0x00
+        dat = (self.port<<4) | (self.pin<<1)
+        reg_status = RPiSoC.commChannel.receiveData((self.address, cmd, dat))
+        return bool(reg_status&(0x01<<self.pin))
 
 class PWM(object):
     """
@@ -202,8 +194,9 @@ class PWM(object):
             raise ValueError('Invalid PWM channel specified')
 
         self.max_num = pow(2,self.resolution_in_bits) - 1
-        self.period = self.max_num
-        self.cmp = int(self.period/2)
+        self.period = self.ReadPeriod()
+        self.WriteCompare(4500)
+        self.cmp = self.ReadCompare() 
 
         if self.address in RPiSoC.REGISTERS_IN_USE:
             print('WARNING: Attempting to initialize object at register %d which is already in use.' %self.address)
@@ -515,7 +508,7 @@ class Servo:
                 '''etc etc...    '''
                 My_last_servo  = Servo(7, 1.0, 2.5, 0, 180)
     """
-    def __init__(self, servo_id, min_pulse, max_pulse, min_angle, max_angle):
+    def __init__(self, servo_id, min_pulse = 1.0, max_pulse = 2.0, min_angle = 0, max_angle = 180):
         """
         **Parameters:**
 
@@ -545,14 +538,14 @@ class Servo:
         self.pulse_range = float(max_pulse-min_pulse)
         self.angle_range = float(max_angle-min_angle)
 
-
+	
         self.servo_PWM = PWM(self.servo_id)
-
-        self.Start()
-        self.servo_PWM.SetClocks(3000000)
-        self.servo_PWM.WritePeriod(60000)
-        self.SetPulse((self.max_pulse + self.min_pulse)/2.0)
-        self.Stop()
+	
+        #self.Start()
+        #self.servo_PWM.SetClocks(3000000)
+        #self.servo_PWM.WritePeriod(60000)
+        #self.SetPulse((self.max_pulse + self.min_pulse)/2.0)
+        #self.Stop()
 
     def SetPulse(self, pulse_ms):
         """
@@ -575,7 +568,7 @@ class Servo:
         **Returns:**
             A pulse width in milliseconds, representative of the pulse being applied ot the servomotor
         """
-        return  (self.servo_PWM.GetDutyCycle()*(10.0/self.servo_PWM.GetFrequency()))
+        return  float(self.servo_PWM.GetDutyCycle()*(10.0/self.servo_PWM.GetFrequency()))
 
     def ReadAngle(self):
         """
