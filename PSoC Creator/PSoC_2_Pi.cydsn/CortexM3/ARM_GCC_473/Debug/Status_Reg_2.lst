@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 1
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc6WeiUf.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 1
   29:.\Generated_Source\PSoC5/Status_Reg_2.c **** *
   30:.\Generated_Source\PSoC5/Status_Reg_2.c **** * Parameters:
   31:.\Generated_Source\PSoC5/Status_Reg_2.c **** *  None.
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 2
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc6WeiUf.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/Status_Reg_2.c **** *
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 1
   53:.\Generated_Source\PSoC5/Status_Reg_2.c **** * Return:
   54:.\Generated_Source\PSoC5/Status_Reg_2.c **** *  None.
   55:.\Generated_Source\PSoC5/Status_Reg_2.c **** *
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 3
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc6WeiUf.s 			page 3
 
 
   56:.\Generated_Source\PSoC5/Status_Reg_2.c **** *******************************************************************************/
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 1
  106              	Status_Reg_2_InterruptDisable:
  107              	.LFB2:
   64:.\Generated_Source\PSoC5/Status_Reg_2.c **** 
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 4
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc6WeiUf.s 			page 4
 
 
   65:.\Generated_Source\PSoC5/Status_Reg_2.c **** 
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 1
   86:.\Generated_Source\PSoC5/Status_Reg_2.c **** }
  141              		.loc 1 86 0
  142 0032 07F10807 		add	r7, r7, #8
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 5
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc6WeiUf.s 			page 5
 
 
  143 0036 BD46     		mov	sp, r7
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 1
  107:.\Generated_Source\PSoC5/Status_Reg_2.c **** 	#endif /* End Status_Reg_2_INPUTS < 8u */
  108:.\Generated_Source\PSoC5/Status_Reg_2.c ****     Status_Reg_2_Status_Mask = mask;
  177              		.loc 1 108 0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 6
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc6WeiUf.s 			page 6
 
 
  178 0012 46F28A53 		movw	r3, #25994
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 1
  212 0008 C4F20003 		movt	r3, 16384
  213 000c 1B78     		ldrb	r3, [r3, #0]
  214 000e DBB2     		uxtb	r3, r3
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 7
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc6WeiUf.s 			page 7
 
 
  129:.\Generated_Source\PSoC5/Status_Reg_2.c **** }
@@ -383,7 +383,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 1
  233 000c 60000000 		.4byte	.LASF21
  234 0010 01       		.byte	0x1
  235 0011 DC000000 		.4byte	.LASF22
- 236 0015 75010000 		.4byte	.LASF23
+ 236 0015 04010000 		.4byte	.LASF23
  237 0019 00000000 		.4byte	.Ldebug_ranges0+0
  238 001d 00000000 		.4byte	0
  239 0021 00000000 		.4byte	0
@@ -391,34 +391,34 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 1
  241 0029 02       		.uleb128 0x2
  242 002a 01       		.byte	0x1
  243 002b 06       		.byte	0x6
- 244 002c 51010000 		.4byte	.LASF0
+ 244 002c 9F010000 		.4byte	.LASF0
  245 0030 02       		.uleb128 0x2
  246 0031 01       		.byte	0x1
  247 0032 08       		.byte	0x8
- 248 0033 09010000 		.4byte	.LASF1
+ 248 0033 57010000 		.4byte	.LASF1
  249 0037 02       		.uleb128 0x2
  250 0038 02       		.byte	0x2
  251 0039 05       		.byte	0x5
- 252 003a C2010000 		.4byte	.LASF2
+ 252 003a C3010000 		.4byte	.LASF2
  253 003e 02       		.uleb128 0x2
  254 003f 02       		.byte	0x2
  255 0040 07       		.byte	0x7
- 256 0041 3E010000 		.4byte	.LASF3
+ 256 0041 8C010000 		.4byte	.LASF3
  257 0045 02       		.uleb128 0x2
  258 0046 04       		.byte	0x4
  259 0047 05       		.byte	0x5
- 260 0048 1C010000 		.4byte	.LASF4
+ 260 0048 6A010000 		.4byte	.LASF4
  261 004c 02       		.uleb128 0x2
  262 004d 04       		.byte	0x4
  263 004e 07       		.byte	0x7
- 264 004f 25010000 		.4byte	.LASF5
+ 264 004f 73010000 		.4byte	.LASF5
  265 0053 02       		.uleb128 0x2
  266 0054 08       		.byte	0x8
  267 0055 05       		.byte	0x5
  268 0056 00000000 		.4byte	.LASF6
  269 005a 02       		.uleb128 0x2
  270 005b 08       		.byte	0x8
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 8
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc6WeiUf.s 			page 8
 
 
  271 005c 07       		.byte	0x7
@@ -430,7 +430,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 1
  277 0068 02       		.uleb128 0x2
  278 0069 04       		.byte	0x4
  279 006a 07       		.byte	0x7
- 280 006b D1010000 		.4byte	.LASF8
+ 280 006b D2010000 		.4byte	.LASF8
  281 006f 04       		.uleb128 0x4
  282 0070 A9000000 		.4byte	.LASF12
  283 0074 02       		.byte	0x2
@@ -439,17 +439,17 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 1
  286 007a 02       		.uleb128 0x2
  287 007b 04       		.byte	0x4
  288 007c 04       		.byte	0x4
- 289 007d 6F010000 		.4byte	.LASF9
+ 289 007d BD010000 		.4byte	.LASF9
  290 0081 02       		.uleb128 0x2
  291 0082 08       		.byte	0x8
  292 0083 04       		.byte	0x4
- 293 0084 37010000 		.4byte	.LASF10
+ 293 0084 85010000 		.4byte	.LASF10
  294 0088 02       		.uleb128 0x2
  295 0089 01       		.byte	0x1
  296 008a 08       		.byte	0x8
- 297 008b 17010000 		.4byte	.LASF11
+ 297 008b 65010000 		.4byte	.LASF11
  298 008f 04       		.uleb128 0x4
- 299 0090 CC010000 		.4byte	.LASF13
+ 299 0090 CD010000 		.4byte	.LASF13
  300 0094 02       		.byte	0x2
  301 0095 F0       		.byte	0xf0
  302 0096 9A000000 		.4byte	0x9a
@@ -458,10 +458,10 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 1
  305 009f 02       		.uleb128 0x2
  306 00a0 04       		.byte	0x4
  307 00a1 07       		.byte	0x7
- 308 00a2 DE010000 		.4byte	.LASF14
+ 308 00a2 DF010000 		.4byte	.LASF14
  309 00a6 06       		.uleb128 0x6
  310 00a7 01       		.byte	0x1
- 311 00a8 5D010000 		.4byte	.LASF19
+ 311 00a8 AB010000 		.4byte	.LASF19
  312 00ac 01       		.byte	0x1
  313 00ad 25       		.byte	0x25
  314 00ae 01       		.byte	0x1
@@ -478,14 +478,14 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 1
  325 00c8 01       		.byte	0x1
  326 00c9 00000000 		.4byte	.LFB1
  327 00cd 3A000000 		.4byte	.LFE1
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 9
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc6WeiUf.s 			page 9
 
 
  328 00d1 2C000000 		.4byte	.LLST1
  329 00d5 01       		.byte	0x1
  330 00d6 E9000000 		.4byte	0xe9
  331 00da 08       		.uleb128 0x8
- 332 00db E7010000 		.4byte	.LASF17
+ 332 00db E8010000 		.4byte	.LASF17
  333 00df 01       		.byte	0x1
  334 00e0 3B       		.byte	0x3b
  335 00e1 6F000000 		.4byte	0x6f
@@ -505,7 +505,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 1
  349 00fe 01       		.byte	0x1
  350 00ff 12010000 		.4byte	0x112
  351 0103 08       		.uleb128 0x8
- 352 0104 E7010000 		.4byte	.LASF17
+ 352 0104 E8010000 		.4byte	.LASF17
  353 0108 01       		.byte	0x1
  354 0109 52       		.byte	0x52
  355 010a 6F000000 		.4byte	0x6f
@@ -525,7 +525,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 1
  369 0127 01       		.byte	0x1
  370 0128 3B010000 		.4byte	0x13b
  371 012c 0A       		.uleb128 0xa
- 372 012d 04010000 		.4byte	.LASF24
+ 372 012d 52010000 		.4byte	.LASF24
  373 0131 01       		.byte	0x1
  374 0132 67       		.byte	0x67
  375 0133 6F000000 		.4byte	0x6f
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 1
  382 013d AF000000 		.4byte	.LASF20
  383 0141 01       		.byte	0x1
  384 0142 7E       		.byte	0x7e
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 10
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc6WeiUf.s 			page 10
 
 
  385 0143 01       		.byte	0x1
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 1
  439 002d 00       		.byte	0
  440 002e 03       		.uleb128 0x3
  441 002f 0E       		.uleb128 0xe
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 11
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc6WeiUf.s 			page 11
 
 
  442 0030 3A       		.uleb128 0x3a
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 1
  496 0067 01       		.uleb128 0x1
  497 0068 12       		.uleb128 0x12
  498 0069 01       		.uleb128 0x1
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 12
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc6WeiUf.s 			page 12
 
 
  499 006a 40       		.uleb128 0x40
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 1
  553 00a2 0B       		.uleb128 0xb
  554 00a3 3B       		.uleb128 0x3b
  555 00a4 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 13
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc6WeiUf.s 			page 13
 
 
  556 00a5 49       		.uleb128 0x49
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 1
  610 006e 7D       		.byte	0x7d
  611 006f 00       		.sleb128 0
  612 0070 02000000 		.4byte	.LCFI5
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 14
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc6WeiUf.s 			page 14
 
 
  613 0074 04000000 		.4byte	.LCFI6
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 1
  667 00f7 04       		.sleb128 4
  668 00f8 00000000 		.4byte	0
  669 00fc 00000000 		.4byte	0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 15
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc6WeiUf.s 			page 15
 
 
  670              		.section	.debug_aranges,"",%progbits
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 1
  712      75735F52 
  712      65675F32 
  712      5F577269 
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 16
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc6WeiUf.s 			page 16
 
 
  712      74654D61 
@@ -940,85 +940,85 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 1
  725      7465645F 
  725      536F7572 
  725      63655C50 
- 726              	.LASF24:
- 727 0104 6D61736B 		.ascii	"mask\000"
- 727      00
- 728              	.LASF1:
- 729 0109 756E7369 		.ascii	"unsigned char\000"
- 729      676E6564 
- 729      20636861 
- 729      7200
- 730              	.LASF11:
- 731 0117 63686172 		.ascii	"char\000"
- 731      00
- 732              	.LASF4:
- 733 011c 6C6F6E67 		.ascii	"long int\000"
- 733      20696E74 
- 733      00
- 734              	.LASF5:
- 735 0125 6C6F6E67 		.ascii	"long unsigned int\000"
- 735      20756E73 
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 17
+ 726              	.LASF23:
+ 727 0104 433A5C55 		.ascii	"C:\\Users\\Brian\\Dropbox\\RPiSoC\\Projects\\PSoC_2"
+ 727      73657273 
+ 727      5C427269 
+ 727      616E5C44 
+ 727      726F7062 
+ 728 0131 5F50695C 		.ascii	"_Pi\\PSoC Creator\\PSoC_2_Pi.cydsn\000"
+ 728      50536F43 
+ 728      20437265 
+ 728      61746F72 
+ 728      5C50536F 
+ 729              	.LASF24:
+ 730 0152 6D61736B 		.ascii	"mask\000"
+ 730      00
+ 731              	.LASF1:
+ 732 0157 756E7369 		.ascii	"unsigned char\000"
+ 732      676E6564 
+ 732      20636861 
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc6WeiUf.s 			page 17
 
 
- 735      69676E65 
- 735      6420696E 
- 735      7400
- 736              	.LASF10:
- 737 0137 646F7562 		.ascii	"double\000"
- 737      6C6500
- 738              	.LASF3:
- 739 013e 73686F72 		.ascii	"short unsigned int\000"
- 739      7420756E 
- 739      7369676E 
- 739      65642069 
- 739      6E7400
- 740              	.LASF0:
- 741 0151 7369676E 		.ascii	"signed char\000"
- 741      65642063 
- 741      68617200 
- 742              	.LASF19:
- 743 015d 53746174 		.ascii	"Status_Reg_2_Read\000"
- 743      75735F52 
- 743      65675F32 
- 743      5F526561 
- 743      6400
- 744              	.LASF9:
- 745 016f 666C6F61 		.ascii	"float\000"
- 745      7400
- 746              	.LASF23:
- 747 0175 433A5C55 		.ascii	"C:\\Users\\Robert\\workspace\\embedit_git\\psoc_2_p"
- 747      73657273 
- 747      5C526F62 
- 747      6572745C 
- 747      776F726B 
- 748 01a3 695C5053 		.ascii	"i\\PSoC Creator\\PSoC_2_Pi.cydsn\000"
- 748      6F432043 
- 748      72656174 
- 748      6F725C50 
- 748      536F435F 
+ 732      7200
+ 733              	.LASF11:
+ 734 0165 63686172 		.ascii	"char\000"
+ 734      00
+ 735              	.LASF4:
+ 736 016a 6C6F6E67 		.ascii	"long int\000"
+ 736      20696E74 
+ 736      00
+ 737              	.LASF5:
+ 738 0173 6C6F6E67 		.ascii	"long unsigned int\000"
+ 738      20756E73 
+ 738      69676E65 
+ 738      6420696E 
+ 738      7400
+ 739              	.LASF10:
+ 740 0185 646F7562 		.ascii	"double\000"
+ 740      6C6500
+ 741              	.LASF3:
+ 742 018c 73686F72 		.ascii	"short unsigned int\000"
+ 742      7420756E 
+ 742      7369676E 
+ 742      65642069 
+ 742      6E7400
+ 743              	.LASF0:
+ 744 019f 7369676E 		.ascii	"signed char\000"
+ 744      65642063 
+ 744      68617200 
+ 745              	.LASF19:
+ 746 01ab 53746174 		.ascii	"Status_Reg_2_Read\000"
+ 746      75735F52 
+ 746      65675F32 
+ 746      5F526561 
+ 746      6400
+ 747              	.LASF9:
+ 748 01bd 666C6F61 		.ascii	"float\000"
+ 748      7400
  749              	.LASF2:
- 750 01c2 73686F72 		.ascii	"short int\000"
+ 750 01c3 73686F72 		.ascii	"short int\000"
  750      7420696E 
  750      7400
  751              	.LASF13:
- 752 01cc 72656738 		.ascii	"reg8\000"
+ 752 01cd 72656738 		.ascii	"reg8\000"
  752      00
  753              	.LASF8:
- 754 01d1 756E7369 		.ascii	"unsigned int\000"
+ 754 01d2 756E7369 		.ascii	"unsigned int\000"
  754      676E6564 
  754      20696E74 
  754      00
  755              	.LASF14:
- 756 01de 73697A65 		.ascii	"sizetype\000"
+ 756 01df 73697A65 		.ascii	"sizetype\000"
  756      74797065 
  756      00
  757              	.LASF17:
- 758 01e7 696E7465 		.ascii	"interruptState\000"
+ 758 01e8 696E7465 		.ascii	"interruptState\000"
  758      72727570 
  758      74537461 
  758      746500
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc33Pf3w.s 			page 18
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc6WeiUf.s 			page 18
 
 
  759              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

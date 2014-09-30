@@ -1,188 +1,273 @@
-set_location "\PWM_1:PWMUDB:status_5\" macrocell 2 3 0 3
-set_location "\PWM_1:PWMUDB:genblk8:stsreg\" statusicell 2 0 4 
-set_location "\PWM_2:PWMUDB:genblk8:stsreg\" statusicell 2 1 4 
-set_location "\PWM_1:PWMUDB:status_0\" macrocell 2 0 1 3
-set_location "\PWM_2:PWMUDB:status_0\" macrocell 2 1 1 2
-set_location "\PWM_5:PWMUDB:status_0\" macrocell 2 2 0 0
-set_location "\PWM_6:PWMUDB:status_0\" macrocell 2 4 1 1
-set_location "\PWM_5:PWMUDB:genblk8:stsreg\" statusicell 2 2 4 
-set_location "\PWM_6:PWMUDB:genblk8:stsreg\" statusicell 2 4 4 
-set_location "\SPIS_1:BSPIS:es3:SPISlave:tx_load\" macrocell 0 2 0 3
-set_location "\SPIS_1:BSPIS:es3:SPISlave:tx_status_0\" macrocell 0 1 0 1
-set_location "\PWM_5:PWMUDB:prevCompare1\" macrocell 2 2 1 3
-set_location "\PWM_6:PWMUDB:prevCompare1\" macrocell 2 4 0 0
-set_location "\PWM_3:PWMUDB:prevCompare1\" macrocell 0 0 1 1
-set_location "\PWM_4:PWMUDB:prevCompare1\" macrocell 1 3 0 1
-set_location "\PWM_7:PWMUDB:final_kill_reg\" macrocell 3 4 1 0
-set_location "\PWM_7:PWMUDB:prevCompare1\" macrocell 3 3 1 2
-set_location "\PWM_8:PWMUDB:prevCompare1\" macrocell 0 4 1 1
-set_location "__ONE__" macrocell 1 3 0 0
-set_location "\SPIS_1:BSPIS:es3:SPISlave:rx_buf_overrun\" macrocell 0 3 1 1
-set_location "\PWM_3:PWMUDB:sP16:pwmdp:u1\" datapathcell 1 0 2 
-set_location "\PWM_4:PWMUDB:sP16:pwmdp:u1\" datapathcell 1 3 2 
-set_location "\PWM_1:PWMUDB:prevCompare1\" macrocell 2 0 0 0
-set_location "\PWM_2:PWMUDB:prevCompare1\" macrocell 2 1 0 0
-set_location "\PWM_3:PWMUDB:status_0\" macrocell 1 0 0 1
-set_location "\PWM_4:PWMUDB:status_0\" macrocell 1 3 1 0
-set_location "\PWM_5:PWMUDB:status_5\" macrocell 2 3 1 1
-set_location "\PWM_7:PWMUDB:status_5\" macrocell 3 4 1 1
-set_location "\SPIS_1:BSPIS:es3:SPISlave:mosi_buf_overrun_fin\" macrocell 0 3 0 0
-set_location "\PWM_7:PWMUDB:sP16:pwmdp:u0\" datapathcell 2 3 2 
-set_location "\PWM_8:PWMUDB:sP16:pwmdp:u0\" datapathcell 1 4 2 
-set_location "\WaveDAC8_1:Net_183\" macrocell 3 1 1 2
-set_location "\PWM_1:PWMUDB:runmode_enable\" macrocell 3 0 1 0
-set_location "\PWM_2:PWMUDB:runmode_enable\" macrocell 2 0 1 0
-set_location "\WaveDAC8_1:Net_107\" macrocell 3 1 1 0
-set_location "\PWM_7:PWMUDB:status_0\" macrocell 3 3 0 3
-set_location "\PWM_8:PWMUDB:status_0\" macrocell 0 4 0 2
-set_location "Net_977" macrocell 1 2 0 2
-set_location "Net_963" macrocell 1 0 1 1
-set_location "\PWM_7:PWMUDB:sP16:pwmdp:u1\" datapathcell 3 3 2 
-set_location "\PWM_8:PWMUDB:sP16:pwmdp:u1\" datapathcell 0 4 2 
+dont_use_io iocell 15 3
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_35\" macrocell 3 2 0 1
+set_location "\PWM_1:PWMUDB:status_5\" macrocell 3 4 1 3
+set_location "\PWM_7:PWMUDB:status_5\" macrocell 1 2 1 3
+set_location "\PWM_1:PWMUDB:genblk8:stsreg\" statusicell 3 3 4 
+set_location "\PWM_2:PWMUDB:genblk8:stsreg\" statusicell 2 4 4 
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_26\" macrocell 3 5 1 2
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_28\" macrocell 2 4 1 2
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_34\" macrocell 2 0 1 3
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_62\" macrocell 0 1 1 2
+set_location "\PWM_5:PWMUDB:genblk8:stsreg\" statusicell 2 0 4 
+set_location "\PWM_6:PWMUDB:genblk8:stsreg\" statusicell 1 5 4 
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_41\" macrocell 3 3 0 3
+set_location "\PWM_5:PWMUDB:runmode_enable\" macrocell 1 4 0 0
+set_location "\PWM_6:PWMUDB:runmode_enable\" macrocell 1 5 0 1
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_20\" macrocell 2 2 0 3
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_36\" macrocell 3 5 0 2
+set_location "\SPIS_1:BSPIS:es3:SPISlave:tx_load\" macrocell 0 1 0 0
+set_location "\SPIS_1:BSPIS:es3:SPISlave:mosi_buf_overrun\" macrocell 0 5 1 0
+set_location "\PWM_7:PWMUDB:status_0\" macrocell 1 4 1 1
+set_location "\PWM_8:PWMUDB:status_0\" macrocell 1 2 0 0
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_39\" macrocell 3 2 0 0
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_11\" macrocell 2 2 1 3
+set_location "\ADC_SAR_Seq_1:bSAR_SEQ:ChannelCounter\" count7cell 2 1 7 
 set_location "\PWM_3:PWMUDB:sP16:pwmdp:u0\" datapathcell 0 0 2 
-set_location "\PWM_4:PWMUDB:sP16:pwmdp:u0\" datapathcell 0 3 2 
-set_location "\PWM_1:PWMUDB:sP16:pwmdp:u0\" datapathcell 2 0 2 
-set_location "\PWM_2:PWMUDB:sP16:pwmdp:u0\" datapathcell 3 1 2 
-set_location "\PWM_5:PWMUDB:runmode_enable\" macrocell 2 2 0 3
-set_location "\PWM_6:PWMUDB:runmode_enable\" macrocell 2 4 0 2
-set_location "\SPIS_1:BSPIS:es3:SPISlave:mosi_tmp\" macrocell 0 1 1 1
-set_location "\SPIS_1:BSPIS:es3:SPISlave:mosi_buf_overrun\" macrocell 0 2 1 1
-set_location "\PWM_7:PWMUDB:runmode_enable\" macrocell 3 3 1 0
-set_location "\PWM_8:PWMUDB:runmode_enable\" macrocell 0 1 0 2
-set_location "\SPIS_1:BSPIS:es3:SPISlave:BitCounter\" count7cell 0 2 7 
-set_location "\PWM_7:PWMUDB:genblk8:stsreg\" statusicell 3 3 4 
-set_location "\PWM_8:PWMUDB:genblk8:stsreg\" statusicell 1 4 4 
-set_location "\WaveDAC8_1:Net_134\" macrocell 3 1 1 1
-set_location "\SPIS_1:BSPIS:es3:SPISlave:byte_complete\" macrocell 0 1 1 3
-set_location "\PWM_3:PWMUDB:runmode_enable\" macrocell 1 0 0 0
-set_location "\PWM_4:PWMUDB:runmode_enable\" macrocell 1 3 1 1
-set_location "\PWM_5:PWMUDB:final_kill_reg\" macrocell 2 3 0 2
+set_location "\PWM_4:PWMUDB:sP16:pwmdp:u0\" datapathcell 3 4 2 
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_23\" macrocell 3 5 0 3
+set_location "\WaveDAC8_1:Net_107\" macrocell 2 3 0 2
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_30\" macrocell 2 0 0 3
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_14\" macrocell 0 0 0 3
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_50\" macrocell 3 3 0 2
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_45\" macrocell 3 1 0 2
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_49\" macrocell 3 0 1 0
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_56\" macrocell 3 1 0 0
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_5\" macrocell 3 0 1 1
+set_location "__ONE__" macrocell 1 4 1 2
+set_location "\SPIS_1:BSPIS:es3:SPISlave:byte_complete\" macrocell 0 3 1 3
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_44\" macrocell 3 2 1 0
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_55\" macrocell 2 3 1 3
+set_location "\SPIS_1:BSPIS:es3:SPISlave:RxStsReg\" statusicell 1 3 4 
+set_location "\PWM_7:PWMUDB:sP16:pwmdp:u1\" datapathcell 1 3 2 
+set_location "\PWM_8:PWMUDB:sP16:pwmdp:u1\" datapathcell 2 2 2 
+set_location "\PWM_3:PWMUDB:status_0\" macrocell 1 0 0 3
+set_location "\PWM_4:PWMUDB:status_0\" macrocell 2 5 0 3
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_15\" macrocell 3 3 1 3
+set_location "\PWM_7:PWMUDB:final_kill_reg\" macrocell 1 2 0 2
+set_location "\PWM_5:PWMUDB:status_5\" macrocell 1 0 1 2
+set_location "\PWM_5:PWMUDB:sP16:pwmdp:u1\" datapathcell 3 0 2 
+set_location "\PWM_6:PWMUDB:sP16:pwmdp:u1\" datapathcell 1 5 2 
+set_location "\PWM_1:PWMUDB:status_0\" macrocell 0 4 1 1
+set_location "\PWM_2:PWMUDB:status_0\" macrocell 0 4 1 0
+set_location "\PWM_5:PWMUDB:status_0\" macrocell 1 5 0 2
+set_location "\PWM_6:PWMUDB:status_0\" macrocell 1 4 0 1
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_6\" macrocell 3 0 0 1
+set_location "\SPIS_1:BSPIS:es3:SPISlave:rx_status_4\" macrocell 1 3 0 3
+set_location "Net_991" macrocell 1 5 1 3
+set_location "Net_1005" macrocell 1 5 1 1
 set_location "\PWM_3:PWMUDB:genblk8:stsreg\" statusicell 1 0 4 
-set_location "\PWM_4:PWMUDB:genblk8:stsreg\" statusicell 1 3 4 
-set_location "\PWM_1:PWMUDB:final_kill_reg\" macrocell 2 3 1 3
-set_location "\PWM_3:PWMUDB:status_5\" macrocell 1 3 0 3
-set_location "\PWM_1:PWMUDB:sP16:pwmdp:u1\" datapathcell 3 0 2 
-set_location "\PWM_2:PWMUDB:sP16:pwmdp:u1\" datapathcell 2 1 2 
-set_location "\SPIS_1:BSPIS:es3:SPISlave:rx_status_4\" macrocell 1 2 0 1
-set_location "Net_991" macrocell 3 2 0 0
-set_location "Net_1005" macrocell 3 4 0 1
-set_location "\SPIS_1:BSPIS:es3:SPISlave:dpcounter_one_reg\" macrocell 1 1 1 1
-set_location "\PWM_5:PWMUDB:sP16:pwmdp:u0\" datapathcell 3 2 2 
-set_location "\PWM_6:PWMUDB:sP16:pwmdp:u0\" datapathcell 3 4 2 
-set_location "Net_1019" macrocell 3 2 1 1
-set_location "Net_1033" macrocell 0 0 0 0
-set_location "\SPIS_1:BSPIS:es3:SPISlave:mosi_to_dp\" macrocell 0 1 0 3
-set_location "\SPIS_1:BSPIS:es3:SPISlave:TxStsReg\" statusicell 0 1 4 
-set_location "\PWM_3:PWMUDB:final_kill_reg\" macrocell 1 3 1 2
-set_location "\SPIS_1:BSPIS:es3:SPISlave:RxStsReg\" statusicell 1 2 4 
-set_location "\PWM_5:PWMUDB:sP16:pwmdp:u1\" datapathcell 2 2 2 
-set_location "\PWM_6:PWMUDB:sP16:pwmdp:u1\" datapathcell 2 4 2 
-set_location "Net_949" macrocell 2 0 0 3
-set_location "Net_1063" macrocell 3 0 0 2
+set_location "\PWM_4:PWMUDB:genblk8:stsreg\" statusicell 2 2 4 
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_7\" macrocell 3 0 1 3
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_38\" macrocell 0 0 0 0
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_42\" macrocell 3 2 1 2
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_4\" macrocell 2 1 0 0
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_59\" macrocell 2 1 0 1
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_is_active\" macrocell 2 1 0 2
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_63\" macrocell 3 3 1 1
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_19\" macrocell 2 2 1 1
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_40\" macrocell 0 2 0 0
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_46\" macrocell 0 0 0 2
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_18\" macrocell 2 4 0 3
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_5\" macrocell 3 1 0 3
+set_location "\PWM_7:PWMUDB:sP16:pwmdp:u0\" datapathcell 0 3 2 
+set_location "\PWM_8:PWMUDB:sP16:pwmdp:u0\" datapathcell 3 2 2 
+set_location "\PWM_1:PWMUDB:sP16:pwmdp:u1\" datapathcell 3 5 2 
+set_location "\PWM_2:PWMUDB:sP16:pwmdp:u1\" datapathcell 0 4 2 
+set_location "Net_949" macrocell 0 5 1 1
+set_location "Net_1063" macrocell 2 5 1 0
+set_location "Net_3274" macrocell 2 5 0 1
+set_location "Net_963" macrocell 0 2 1 1
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_4\" macrocell 3 0 1 2
+set_location "\WaveDAC8_1:Net_183\" macrocell 1 3 0 0
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_2\" macrocell 3 0 0 0
+set_location "\PWM_3:PWMUDB:status_5\" macrocell 1 0 1 3
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_is_active_split\" macrocell 2 1 1 0
+set_location "\PWM_3:PWMUDB:prevCompare1\" macrocell 1 0 0 2
+set_location "\PWM_4:PWMUDB:prevCompare1\" macrocell 2 5 0 2
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_13\" macrocell 3 3 0 0
+set_location "\WaveDAC8_1:Net_134\" macrocell 2 1 1 1
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_48\" macrocell 3 2 1 1
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_51\" macrocell 2 2 1 0
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_60\" macrocell 0 0 0 1
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_0\" macrocell 3 1 0 1
+set_location "\SPIS_1:BSPIS:es3:SPISlave:mosi_tmp\" macrocell 0 0 1 3
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_12\" macrocell 2 0 0 2
+set_location "\SPIS_1:BSPIS:es3:SPISlave:tx_status_0\" macrocell 0 3 0 1
+set_location "\PWM_5:PWMUDB:prevCompare1\" macrocell 1 4 0 3
+set_location "\PWM_6:PWMUDB:prevCompare1\" macrocell 1 3 0 1
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_22\" macrocell 2 0 0 1
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_31\" macrocell 2 0 1 2
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_33\" macrocell 3 5 1 3
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_43\" macrocell 2 3 1 2
+set_location "\SPIS_1:BSPIS:es3:SPISlave:BitCounter\" count7cell 1 1 7 
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_10\" macrocell 2 3 1 1
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_32\" macrocell 3 5 1 1
+set_location "\PWM_1:PWMUDB:sP16:pwmdp:u0\" datapathcell 2 5 2 
+set_location "\PWM_2:PWMUDB:sP16:pwmdp:u0\" datapathcell 1 4 2 
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_25\" macrocell 3 3 0 1
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_8\" macrocell 3 4 1 1
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_21\" macrocell 3 3 1 0
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_3\" macrocell 3 0 0 2
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_57\" macrocell 3 5 0 1
+set_location "\PWM_7:PWMUDB:runmode_enable\" macrocell 1 4 1 0
+set_location "\PWM_8:PWMUDB:runmode_enable\" macrocell 1 2 0 3
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_9\" macrocell 3 4 0 1
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_61\" macrocell 0 3 1 0
+set_location "\PWM_1:PWMUDB:prevCompare1\" macrocell 0 3 0 3
+set_location "\PWM_2:PWMUDB:prevCompare1\" macrocell 0 5 0 2
+set_location "\PWM_3:PWMUDB:runmode_enable\" macrocell 1 0 0 0
+set_location "\PWM_4:PWMUDB:runmode_enable\" macrocell 2 5 0 0
+set_location "Net_3184" macrocell 2 3 1 0
+set_location "\ADC_SAR_Seq_1:bSAR_SEQ:cnt_enable\" macrocell 2 3 0 1
+set_location "\PWM_5:PWMUDB:final_kill_reg\" macrocell 1 3 0 2
+set_location "\PWM_7:PWMUDB:genblk8:stsreg\" statusicell 1 4 4 
+set_location "\PWM_8:PWMUDB:genblk8:stsreg\" statusicell 1 2 4 
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_17\" macrocell 1 2 1 2
+set_location "\PWM_3:PWMUDB:sP16:pwmdp:u1\" datapathcell 1 0 2 
+set_location "\PWM_4:PWMUDB:sP16:pwmdp:u1\" datapathcell 2 4 2 
+set_location "\PWM_1:PWMUDB:final_kill_reg\" macrocell 3 1 1 1
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_47\" macrocell 2 2 0 2
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_53\" macrocell 0 1 0 1
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_24\" macrocell 3 2 0 2
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_54\" macrocell 2 0 1 1
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_29\" macrocell 0 1 0 2
+set_location "\SPIS_1:BSPIS:es3:SPISlave:mosi_buf_overrun_fin\" macrocell 1 0 1 1
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_52\" macrocell 0 1 0 3
+set_location "Net_1033" macrocell 1 4 1 3
+set_location "Net_1019" macrocell 0 4 0 2
+set_location "\PWM_7:PWMUDB:prevCompare1\" macrocell 1 3 1 3
+set_location "\PWM_8:PWMUDB:prevCompare1\" macrocell 1 1 0 2
+set_location "\SPIS_1:BSPIS:es3:SPISlave:mosi_to_dp\" macrocell 0 2 1 3
+set_location "\PWM_1:PWMUDB:runmode_enable\" macrocell 0 5 1 2
+set_location "\PWM_2:PWMUDB:runmode_enable\" macrocell 0 5 0 0
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_16\" macrocell 2 0 1 0
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_2\" macrocell 2 1 0 3
+set_location "\PWM_3:PWMUDB:final_kill_reg\" macrocell 1 0 0 1
 set_location "\SPIS_1:BSPIS:es3:SPISlave:sR8:Dp:u0\" datapathcell 0 2 2 
-set_io "Out_16(0)" iocell 2 3
-# Note: port 12 is the logical name for port 7
-set_io "Out_6(0)" iocell 12 5
-set_io "Out_14(0)" iocell 2 1
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_58\" macrocell 2 2 0 1
+set_location "\SPIS_1:BSPIS:es3:SPISlave:TxStsReg\" statusicell 0 3 4 
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_37\" macrocell 3 3 1 2
+set_location "\SPIS_1:BSPIS:es3:SPISlave:rx_buf_overrun\" macrocell 1 1 1 3
+set_location "\ADC_SAR_Seq_1:bSAR_SEQ:bus_clk_reg\" macrocell 2 3 0 0
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_3\" macrocell 2 2 1 2
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_old_id_1\" macrocell 2 2 0 0
+set_location "\PWM_5:PWMUDB:sP16:pwmdp:u0\" datapathcell 2 0 2 
+set_location "\PWM_6:PWMUDB:sP16:pwmdp:u0\" datapathcell 0 5 2 
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_1\" macrocell 3 2 0 3
+set_location "\SPIS_1:BSPIS:es3:SPISlave:dpcounter_one_reg\" macrocell 1 0 1 0
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_0\" macrocell 3 2 1 3
+set_location "\ADC_SAR_Seq_1:AMuxHw_2_Decoder_one_hot_27\" macrocell 2 0 0 0
+set_location "\ADC_SAR_Seq_1:bSAR_SEQ:EOCSts\" statuscell 2 3 3 
+set_location "\ADC_SAR_Seq_1:IRQ\" interrupt -1 -1 1
 set_io "sclk(0)" iocell 1 1
-set_io "In_17(0)" iocell 6 5
-set_io "In_15(0)" iocell 6 3
-set_location "\SPIS_1:BSPIS:es3:SPISlave:sync_4\" synccell 0 3 5 0
+set_io "GPIO_4_5(0)" iocell 4 5
+set_io "GPIO_5_6(0)" iocell 5 6
+set_io "GPIO_4_1(0)" iocell 4 1
+set_io "GPIO_5_2(0)" iocell 5 2
+set_location "\SPIS_1:BSPIS:es3:SPISlave:sync_4\" synccell 0 4 5 0
 set_location "\I2C_1:I2C_FF\" i2ccell -1 -1 0
-set_io "In_10(0)" iocell 5 6
-set_io "Out_15(0)" iocell 2 2
-# Note: port 12 is the logical name for port 7
-set_io "Out_1(0)" iocell 12 0
-set_io "PWM_out_7(0)" iocell 3 6
-set_location "\Control_Reg_1:Sync:ctrl_reg\" controlcell 2 1 6 
-set_location "\Control_Reg_3:Sync:ctrl_reg\" controlcell 0 4 6 
-set_io "PWM_out_6(0)" iocell 3 5
-set_io "PWM_out_4(0)" iocell 3 3
-set_io "In_14(0)" iocell 6 2
-# Note: port 12 is the logical name for port 7
-set_io "Out_2(0)" iocell 12 1
+set_io "PWM_out_7(0)" iocell 6 6
+set_location "\Port_5_Control:Sync:ctrl_reg\" controlcell 0 1 6 
+set_location "\Port_12_Control:Sync:ctrl_reg\" controlcell 0 3 6 
+set_location "\Port_4_Control:Sync:ctrl_reg\" controlcell 3 5 6 
+set_location "\Port_2_Control:Sync:ctrl_reg\" controlcell 0 4 6 
+set_io "PWM_out_6(0)" iocell 6 5
+set_io "PWM_out_4(0)" iocell 6 3
+set_io "GPIO_2_6(0)" iocell 2 6
+set_location "\SPIS_1:BSPIS:es3:SPISlave:sync_1\" synccell 0 1 5 0
 set_location "\IDAC8_1:viDAC8\" vidaccell -1 -1 0
 set_location "\VDAC8_1:viDAC8\" vidaccell -1 -1 3
-set_location "\VDAC8_2:viDAC8\" vidaccell -1 -1 1
-set_location "\I2C_1:I2C_IRQ\" interrupt -1 -1 15
+set_location "\VDAC8_2:viDAC8\" vidaccell -1 -1 2
+# Note: port 12 is the logical name for port 7
+set_io "GPIO_12_5(0)" iocell 12 5
+set_io "GPIO_5_1(0)" iocell 5 1
 set_location "\ADC_DelSig_1:IRQ\" interrupt -1 -1 29
-set_location "\SPIS_1:BSPIS:es3:SPISlave:sync_1\" synccell 1 1 5 0
-set_location "\Status_Reg_1:sts:sts_reg\" statuscell 3 4 3 
-set_io "In_16(0)" iocell 6 4
-# Note: port 12 is the logical name for port 7
-set_io "Out_4(0)" iocell 12 3
-set_location "\PWM_5:PWMUDB:genblk1:ctrlreg\" controlcell 2 2 6 
-set_location "\PWM_6:PWMUDB:genblk1:ctrlreg\" controlcell 3 4 6 
-set_io "In_12(0)" iocell 6 0
-set_location "\ADC_DelSig_1:DSM\" dsmodcell -1 -1 0
-set_location "\ADC_SAR_2:IRQ\" interrupt -1 -1 1
+set_location "\I2C_1:I2C_IRQ\" interrupt -1 -1 15
+set_io "GPIO_2_1(0)" iocell 2 1
+set_location "\PWM_5:PWMUDB:genblk1:ctrlreg\" controlcell 1 5 6 
+set_location "\PWM_6:PWMUDB:genblk1:ctrlreg\" controlcell 0 0 6 
+set_location "\PWM_7:PWMUDB:genblk1:ctrlreg\" controlcell 1 4 6 
+set_location "\PWM_8:PWMUDB:genblk1:ctrlreg\" controlcell 1 2 6 
 set_location "\ADC_SAR_1:IRQ\" interrupt -1 -1 0
-set_location "\WaveDAC8_1:VDAC8:viDAC8\" vidaccell -1 -1 2
-set_io "In_2(0)" iocell 4 1
-set_io "Out_13(0)" iocell 2 0
-set_io "Out_12(0)" iocell 5 3
-set_io "In_13(0)" iocell 6 1
-set_location "\PWM_1:PWMUDB:genblk1:ctrlreg\" controlcell 3 0 6 
-set_location "\PWM_2:PWMUDB:genblk1:ctrlreg\" controlcell 2 0 6 
 # Note: port 12 is the logical name for port 7
-set_io "Out_3(0)" iocell 12 2
-set_io "In_5(0)" iocell 4 4
-set_location "\Status_Reg_2:sts:sts_reg\" statuscell 0 0 3 
-set_io "Out_11(0)" iocell 5 2
-set_io "PWM_out_2(0)" iocell 3 1
-set_io "SCL_1(0)" iocell 1 7
-set_location "\WaveDAC8_1:BuffAmp:ABuf\" abufcell -1 -1 2
-set_io "mosi(0)" iocell 1 4
+set_io "GPIO_12_0(0)" iocell 12 0
+set_location "\ADC_SAR_Seq_1:bSAR_SEQ:CtrlReg\" controlcell 2 3 6 
+set_location "\PWM_1:PWMUDB:genblk1:ctrlreg\" controlcell 2 4 6 
+set_location "\PWM_2:PWMUDB:genblk1:ctrlreg\" controlcell 0 5 6 
+set_io "GPIO_2_5(0)" iocell 2 5
+set_io "GPIO_4_7(0)" iocell 4 7
+set_io "GPIO_5_4(0)" iocell 5 4
+set_io "GPIO_4_0(0)" iocell 4 0
 set_location "\PWM_3:PWMUDB:genblk1:ctrlreg\" controlcell 1 0 6 
-set_location "\PWM_4:PWMUDB:genblk1:ctrlreg\" controlcell 1 3 6 
+set_location "\PWM_4:PWMUDB:genblk1:ctrlreg\" controlcell 3 4 6 
 # Note: port 12 is the logical name for port 7
-set_io "Out_8(0)" iocell 12 7
-set_io "Out_19(0)" iocell 2 6
-set_io "Out_18(0)" iocell 2 5
-set_io "In_3(0)" iocell 4 2
-set_io "In_11(0)" iocell 5 7
-set_io "Out_10(0)" iocell 5 1
-set_location "ClockBlock" clockblockcell -1 -1 0
-set_io "PWM_out_5(0)" iocell 3 4
-set_location "\WaveDAC8_1:Wave2_DMA\" drqcell -1 -1 1
-set_location "\WaveDAC8_1:Wave1_DMA\" drqcell -1 -1 0
-set_io "In_18(0)" iocell 6 6
-set_io "Out_9(0)" iocell 5 0
-set_location "\PWM_7:PWMUDB:genblk1:ctrlreg\" controlcell 3 3 6 
-set_location "\PWM_8:PWMUDB:genblk1:ctrlreg\" controlcell 0 0 6 
-set_io "PWM_out_8(0)" iocell 3 7
+set_io "GPIO_12_2(0)" iocell 12 2
+set_io "GPIO_5_0(0)" iocell 5 0
+# Note: port 12 is the logical name for port 7
+set_io "GPIO_12_3(0)" iocell 12 3
+set_io "GPIO_2_2(0)" iocell 2 2
+set_io "GPIO_4_3(0)" iocell 4 3
+set_location "\ADC_DelSig_1:DSM\" dsmodcell -1 -1 0
+set_io "PWM_out_2(0)" iocell 6 1
+set_location "\ADC_SAR_1:ADC_SAR\" sarcell -1 -1 1
+set_io "SCL_1(0)" iocell 1 7
+set_io "GPIO_2_4(0)" iocell 2 4
+set_io "GPIO_5_5(0)" iocell 5 5
+set_location "\SPIS_1:BSPIS:es3:SPISlave:sync_3\" synccell 0 4 5 1
+set_location "\WaveDAC8_1:BuffAmp:ABuf\" abufcell -1 -1 2
+set_io "GPIO_4_6(0)" iocell 4 6
+set_io "mosi(0)" iocell 1 4
+set_io "GPIO_2_0(0)" iocell 2 0
+# Note: port 12 is the logical name for port 7
+set_io "GPIO_12_7(0)" iocell 12 7
+set_io "GPIO_5_3(0)" iocell 5 3
+set_io "PWM_out_5(0)" iocell 6 4
+# Note: port 12 is the logical name for port 7
+set_io "GPIO_12_6(0)" iocell 12 6
+set_location "\ADC_SAR_Seq_1:FinalBuf\" drqcell -1 -1 0
+set_location "\WaveDAC8_1:Wave1_DMA\" drqcell -1 -1 2
+set_location "\WaveDAC8_1:Wave2_DMA\" drqcell -1 -1 3
+set_io "GPIO_4_2(0)" iocell 4 2
+set_io "PWM_out_8(0)" iocell 6 7
 set_io "SDA_1(0)" iocell 1 6
 set_location "\ADC_DelSig_1:DEC\" decimatorcell -1 -1 0
-set_io "In_9(0)" iocell 5 5
-set_io "In_6(0)" iocell 4 5
-set_io "In_7(0)" iocell 4 6
-set_io "PWM_out_1(0)" iocell 3 0
-set_location "\ADC_SAR_2:ADC_SAR\" sarcell -1 -1 0
-set_location "\SPIS_1:BSPIS:es3:SPISlave:sync_2\" synccell 0 3 5 1
-set_io "Out_20(0)" iocell 2 7
-set_location "\SPIS_1:BSPIS:es3:SPISlave:sync_3\" synccell 0 3 5 2
-set_location "\Control_Reg_2:Sync:ctrl_reg\" controlcell 0 1 6 
-set_location "\Status_Reg_3:sts:sts_reg\" statuscell 0 4 3 
-set_io "In_8(0)" iocell 5 4
-set_io "PWM_out_3(0)" iocell 3 2
 # Note: port 12 is the logical name for port 7
-set_io "Out_7(0)" iocell 12 6
+set_io "GPIO_12_4(0)" iocell 12 4
+set_io "PWM_out_1(0)" iocell 6 0
+# Note: port 12 is the logical name for port 7
+set_io "GPIO_12_1(0)" iocell 12 1
+set_io "GPIO_2_7(0)" iocell 2 7
+set_io "GPIO_4_4(0)" iocell 4 4
+set_location "\Port_4_Status:sts:sts_reg\" statuscell 3 5 3 
+set_location "\Port_12_Status:sts:sts_reg\" statuscell 1 1 3 
+set_location "\Port_2_Status:sts:sts_reg\" statuscell 0 5 3 
+set_location "\Port_5_Status:sts:sts_reg\" statuscell 0 0 3 
+set_location "\SPIS_1:BSPIS:es3:SPISlave:sync_2\" synccell 0 2 5 0
+set_io "PWM_out_3(0)" iocell 6 2
+set_io "analog_in_7(0)" iocell 3 6
+set_io "analog_in_5(0)" iocell 3 4
+set_io "analog_in_10(0)" iocell 0 7
+set_io "analog_in_1(0)" iocell 3 0
+set_io "analog_in_3(0)" iocell 3 2
+set_io "analog_in_4(0)" iocell 3 3
+set_io "analog_in_8(0)" iocell 3 7
+set_io "analog_in_2(0)" iocell 3 1
+set_io "analog_in_6(0)" iocell 3 5
+set_io "analog_in_9(0)" iocell 0 3
 # Note: port 15 is the logical name for port 8
-set_io "DELSIG_in(0)" iocell 15 5
+set_io "DELSIG_IN(0)" iocell 15 5
 # Note: port 15 is the logical name for port 8
 set_io "SAR_in_1(0)" iocell 15 4
 set_io "IDAC_out_1(0)" iocell 0 6
 set_io "VDAC_out_1(0)" iocell 0 1
-set_io "SAR_in_2(0)" iocell 0 3
 set_io "VDAC_out_2(0)" iocell 0 5
 set_io "WaveDAC_out(0)" iocell 0 0
 set_io "\ADC_SAR_1:Bypass(0)\" iocell 0 2
-set_io "\ADC_SAR_2:Bypass(0)\" iocell 0 4
-set_io "In_19(0)" iocell 6 7
+set_io "\ADC_SAR_Seq_1:SAR:Bypass(0)\" iocell 0 4
+set_io "GPIO_2_3(0)" iocell 2 3
 set_io "miso(0)" iocell 1 3
-set_io "Out_17(0)" iocell 2 4
-set_io "In_4(0)" iocell 4 3
-set_location "\ADC_SAR_1:ADC_SAR\" sarcell -1 -1 1
-# Note: port 12 is the logical name for port 7
-set_io "Out_5(0)" iocell 12 4
-set_io "In_1(0)" iocell 4 0
+set_location "\WaveDAC8_1:VDAC8:viDAC8\" vidaccell -1 -1 1
+set_location "\ADC_SAR_Seq_1:SAR:ADC_SAR\" sarcell -1 -1 0
+set_location "\ADC_SAR_Seq_1:TempBuf\" drqcell -1 -1 1
+set_location "ClockBlock" clockblockcell -1 -1 0
+set_io "GPIO_5_7(0)" iocell 5 7

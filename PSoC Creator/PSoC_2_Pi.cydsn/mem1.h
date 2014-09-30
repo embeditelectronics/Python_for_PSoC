@@ -3,11 +3,11 @@
 * \brief This file contains the defined register address information for each 
          supported component, and it provides the function prototypes for mem1.c
 *
-* Version 1.0
+* Version 1.1.2
 *
 * \author Brian Bradley
 *
-* \bug No known bugs, but the VDAC's and IDAC's are currently untested.
+* \bug No known bugs.
 *
 *
 * Copyright Embedit Electronics
@@ -46,19 +46,15 @@
 #define PWM_REGISTER6 (PWM_REGISTER5 +1)
 #define PWM_REGISTER7 (PWM_REGISTER6 +1)
 
-#define DIGITAL_INPUT_REGISTER0 (PWM_REGISTER7 + 1)
-#define DIGITAL_INPUT_REGISTER1 (DIGITAL_INPUT_REGISTER0 + 1)
-#define DIGITAL_INPUT_REGISTER2 (DIGITAL_INPUT_REGISTER1 + 1)
-    
-#define DIGITAL_OUTPUT_REGISTER0 (DIGITAL_INPUT_REGISTER2 + 1)
-#define DIGITAL_OUTPUT_REGISTER1 (DIGITAL_OUTPUT_REGISTER0 + 1)
-#define DIGITAL_OUTPUT_REGISTER2 (DIGITAL_OUTPUT_REGISTER1 + 1)
+#define GPIO_REGISTER (PWM_REGISTER7 + 1)
+#define ANALOG_IN_REGISTER (GPIO_REGISTER + 1)
+
     
 #define RESET_ADDRESS (0xFF)
 
 /*UNDEFINE UNUSED PROTOCOLS*/
-#undef CY_SPIS_SPIS_1_H     /* SPI */
-//#undef CY_I2C_I2C_1_H       /* I2C */
+//#undef CY_SPIS_SPIS_1_H     /* SPI */
+#undef CY_I2C_I2C_1_H       /* I2C */
     
     
 void WriteTo_Pi(uint32 dat);
@@ -83,13 +79,8 @@ void PWM_Control_4(uint8 cmd, uint16 val);
 void PWM_Control_5(uint8 cmd, uint16 val);
 void PWM_Control_6(uint8 cmd, uint16 val);
 void PWM_Control_7(uint8 cmd, uint16 val);
-void Input_Control0(uint8 cmd);
-void Output_Control0(uint8 cmd, uint16 val);
-void Input_Control1(uint8 cmd);
-void Output_Control1(uint8 cmd, uint16 val);
-void Input_Control2(uint8 cmd);
-void Output_Control2(uint8 cmd, uint16 val);
-
+void GPIO_Control(uint8 cmd, uint16 val);
+void Analog_Read(uint8 cmd, uint16 dat);
 
 
 #endif

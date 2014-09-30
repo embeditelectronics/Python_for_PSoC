@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 1
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccTtR3mE.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 1
   23:.\Generated_Source\PSoC5/WaveDAC8_1_Wave1_DMA_dma.c **** 
   24:.\Generated_Source\PSoC5/WaveDAC8_1_Wave1_DMA_dma.c **** 
   25:.\Generated_Source\PSoC5/WaveDAC8_1_Wave1_DMA_dma.c **** 
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 2
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccTtR3mE.s 			page 2
 
 
   26:.\Generated_Source\PSoC5/WaveDAC8_1_Wave1_DMA_dma.c **** /****************************************************************************
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 1
   80:.\Generated_Source\PSoC5/WaveDAC8_1_Wave1_DMA_dma.c **** *       
   81:.\Generated_Source\PSoC5/WaveDAC8_1_Wave1_DMA_dma.c **** *       
   82:.\Generated_Source\PSoC5/WaveDAC8_1_Wave1_DMA_dma.c **** *   ReqestPerBurst.
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 3
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccTtR3mE.s 			page 3
 
 
   83:.\Generated_Source\PSoC5/WaveDAC8_1_Wave1_DMA_dma.c **** *       
@@ -162,7 +162,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 1
   52              		.loc 1 101 0
   53 000e 40F20003 		movw	r3, #:lower16:WaveDAC8_1_Wave1_DMA_DmaHandle
   54 0012 C0F20003 		movt	r3, #:upper16:WaveDAC8_1_Wave1_DMA_DmaHandle
-  55 0016 4FF00002 		mov	r2, #0
+  55 0016 4FF00202 		mov	r2, #2
   56 001a 1A70     		strb	r2, [r3, #0]
  102:.\Generated_Source\PSoC5/WaveDAC8_1_Wave1_DMA_dma.c **** 
  103:.\Generated_Source\PSoC5/WaveDAC8_1_Wave1_DMA_dma.c ****     /* Configure the channel. */
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 1
   65 0030 4FF00000 		mov	r0, #0
   66 0034 0190     		str	r0, [sp, #4]
   67 0036 0846     		mov	r0, r1
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 4
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccTtR3mE.s 			page 4
 
 
   68 0038 1146     		mov	r1, r2
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 1
  108              	.LFB1:
  119:.\Generated_Source\PSoC5/WaveDAC8_1_Wave1_DMA_dma.c **** 
  120:.\Generated_Source\PSoC5/WaveDAC8_1_Wave1_DMA_dma.c **** /*********************************************************************
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 5
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccTtR3mE.s 			page 5
 
 
  121:.\Generated_Source\PSoC5/WaveDAC8_1_Wave1_DMA_dma.c **** * Function Name: void WaveDAC8_1_Wave1_DMA_DmaRelease
@@ -296,9 +296,9 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 1
  141 000b 01       		.uleb128 0x1
  142 000c 56000000 		.4byte	.LASF19
  143 0010 01       		.byte	0x1
- 144 0011 CE000000 		.4byte	.LASF20
- 145 0015 9B010000 		.4byte	.LASF21
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 6
+ 144 0011 B5010000 		.4byte	.LASF20
+ 145 0015 CE000000 		.4byte	.LASF21
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccTtR3mE.s 			page 6
 
 
  146 0019 00000000 		.4byte	.Ldebug_ranges0+0
@@ -308,19 +308,19 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 1
  150 0029 02       		.uleb128 0x2
  151 002a 01       		.byte	0x1
  152 002b 06       		.byte	0x6
- 153 002c 38010000 		.4byte	.LASF0
+ 153 002c 52010000 		.4byte	.LASF0
  154 0030 02       		.uleb128 0x2
  155 0031 01       		.byte	0x1
  156 0032 08       		.byte	0x8
- 157 0033 02010000 		.4byte	.LASF1
+ 157 0033 1C010000 		.4byte	.LASF1
  158 0037 02       		.uleb128 0x2
  159 0038 02       		.byte	0x2
  160 0039 05       		.byte	0x5
- 161 003a F9010000 		.4byte	.LASF2
+ 161 003a FA010000 		.4byte	.LASF2
  162 003e 02       		.uleb128 0x2
  163 003f 02       		.byte	0x2
  164 0040 07       		.byte	0x7
- 165 0041 25010000 		.4byte	.LASF3
+ 165 0041 3F010000 		.4byte	.LASF3
  166 0045 03       		.uleb128 0x3
  167 0046 04       		.byte	0x4
  168 0047 05       		.byte	0x5
@@ -340,11 +340,11 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 1
  182 0061 02       		.uleb128 0x2
  183 0062 04       		.byte	0x4
  184 0063 05       		.byte	0x5
- 185 0064 15010000 		.4byte	.LASF7
+ 185 0064 2F010000 		.4byte	.LASF7
  186 0068 02       		.uleb128 0x2
  187 0069 04       		.byte	0x4
  188 006a 07       		.byte	0x7
- 189 006b 0A020000 		.4byte	.LASF8
+ 189 006b 0B020000 		.4byte	.LASF8
  190 006f 02       		.uleb128 0x2
  191 0070 04       		.byte	0x4
  192 0071 07       		.byte	0x7
@@ -352,31 +352,31 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 1
  194 0076 02       		.uleb128 0x2
  195 0077 01       		.byte	0x1
  196 0078 08       		.byte	0x8
- 197 0079 10010000 		.4byte	.LASF10
+ 197 0079 2A010000 		.4byte	.LASF10
  198 007d 04       		.uleb128 0x4
  199 007e 9F000000 		.4byte	.LASF11
  200 0082 02       		.byte	0x2
  201 0083 5B       		.byte	0x5b
  202 0084 30000000 		.4byte	0x30
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 7
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccTtR3mE.s 			page 7
 
 
  203 0088 04       		.uleb128 0x4
- 204 0089 03020000 		.4byte	.LASF12
+ 204 0089 04020000 		.4byte	.LASF12
  205 008d 02       		.byte	0x2
  206 008e 5C       		.byte	0x5c
  207 008f 3E000000 		.4byte	0x3e
  208 0093 02       		.uleb128 0x2
  209 0094 04       		.byte	0x4
  210 0095 04       		.byte	0x4
- 211 0096 95010000 		.4byte	.LASF13
+ 211 0096 AF010000 		.4byte	.LASF13
  212 009a 02       		.uleb128 0x2
  213 009b 08       		.byte	0x8
  214 009c 04       		.byte	0x4
- 215 009d 1E010000 		.4byte	.LASF14
+ 215 009d 38010000 		.4byte	.LASF14
  216 00a1 05       		.uleb128 0x5
  217 00a2 01       		.byte	0x1
- 218 00a3 44010000 		.4byte	.LASF22
+ 218 00a3 5E010000 		.4byte	.LASF22
  219 00a7 01       		.byte	0x1
  220 00a8 61       		.byte	0x61
  221 00a9 01       		.byte	0x1
@@ -395,7 +395,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 1
  234 00cb 91       		.byte	0x91
  235 00cc 77       		.sleb128 -9
  236 00cd 06       		.uleb128 0x6
- 237 00ce 67010000 		.4byte	.LASF16
+ 237 00ce 81010000 		.4byte	.LASF16
  238 00d2 01       		.byte	0x1
  239 00d3 61       		.byte	0x61
  240 00d4 7D000000 		.4byte	0x7d
@@ -411,14 +411,14 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 1
  250 00e7 91       		.byte	0x91
  251 00e8 74       		.sleb128 -12
  252 00e9 06       		.uleb128 0x6
- 253 00ea E8010000 		.4byte	.LASF18
+ 253 00ea E9010000 		.4byte	.LASF18
  254 00ee 01       		.byte	0x1
  255 00ef 61       		.byte	0x61
  256 00f0 88000000 		.4byte	0x88
  257 00f4 02       		.byte	0x2
  258 00f5 91       		.byte	0x91
  259 00f6 72       		.sleb128 -14
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 8
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccTtR3mE.s 			page 8
 
 
  260 00f7 00       		.byte	0
@@ -433,7 +433,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 1
  269 0109 38000000 		.4byte	.LLST1
  270 010d 01       		.byte	0x1
  271 010e 08       		.uleb128 0x8
- 272 010f 76010000 		.4byte	.LASF24
+ 272 010f 90010000 		.4byte	.LASF24
  273 0113 01       		.byte	0x1
  274 0114 45       		.byte	0x45
  275 0115 7D000000 		.4byte	0x7d
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 1
  314 001f 00       		.byte	0
  315 0020 03       		.uleb128 0x3
  316 0021 24       		.uleb128 0x24
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 9
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccTtR3mE.s 			page 9
 
 
  317 0022 00       		.byte	0
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 1
  371 0059 3A       		.uleb128 0x3a
  372 005a 0B       		.uleb128 0xb
  373 005b 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 10
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccTtR3mE.s 			page 10
 
 
  374 005c 0B       		.uleb128 0xb
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 1
  428 000a 7D       		.byte	0x7d
  429 000b 00       		.sleb128 0
  430 000c 02000000 		.4byte	.LCFI0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 11
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccTtR3mE.s 			page 11
 
 
  431 0010 04000000 		.4byte	.LCFI1
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 1
  485 0010 00000000 		.4byte	0
  486 0014 00000000 		.4byte	0
  487              		.section	.debug_line,"",%progbits
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 12
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccTtR3mE.s 			page 12
 
 
  488              	.Ldebug_line0:
@@ -718,90 +718,90 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 1
  508      6720756E 
  508      7369676E 
  508      65642069 
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 13
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccTtR3mE.s 			page 13
 
 
- 509              	.LASF20:
- 510 00ce 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\WaveDAC8_1_Wave1_DMA_dm"
- 510      6E657261 
- 510      7465645F 
- 510      536F7572 
- 510      63655C50 
- 511 00fe 612E6300 		.ascii	"a.c\000"
+ 509              	.LASF21:
+ 510 00ce 433A5C55 		.ascii	"C:\\Users\\Brian\\Dropbox\\RPiSoC\\Projects\\PSoC_2"
+ 510      73657273 
+ 510      5C427269 
+ 510      616E5C44 
+ 510      726F7062 
+ 511 00fb 5F50695C 		.ascii	"_Pi\\PSoC Creator\\PSoC_2_Pi.cydsn\000"
+ 511      50536F43 
+ 511      20437265 
+ 511      61746F72 
+ 511      5C50536F 
  512              	.LASF1:
- 513 0102 756E7369 		.ascii	"unsigned char\000"
+ 513 011c 756E7369 		.ascii	"unsigned char\000"
  513      676E6564 
  513      20636861 
  513      7200
  514              	.LASF10:
- 515 0110 63686172 		.ascii	"char\000"
+ 515 012a 63686172 		.ascii	"char\000"
  515      00
  516              	.LASF7:
- 517 0115 6C6F6E67 		.ascii	"long int\000"
+ 517 012f 6C6F6E67 		.ascii	"long int\000"
  517      20696E74 
  517      00
  518              	.LASF14:
- 519 011e 646F7562 		.ascii	"double\000"
+ 519 0138 646F7562 		.ascii	"double\000"
  519      6C6500
  520              	.LASF3:
- 521 0125 73686F72 		.ascii	"short unsigned int\000"
+ 521 013f 73686F72 		.ascii	"short unsigned int\000"
  521      7420756E 
  521      7369676E 
  521      65642069 
  521      6E7400
  522              	.LASF0:
- 523 0138 7369676E 		.ascii	"signed char\000"
+ 523 0152 7369676E 		.ascii	"signed char\000"
  523      65642063 
  523      68617200 
  524              	.LASF22:
- 525 0144 57617665 		.ascii	"WaveDAC8_1_Wave1_DMA_DmaInitialize\000"
+ 525 015e 57617665 		.ascii	"WaveDAC8_1_Wave1_DMA_DmaInitialize\000"
  525      44414338 
  525      5F315F57 
  525      61766531 
  525      5F444D41 
  526              	.LASF16:
- 527 0167 52657165 		.ascii	"ReqestPerBurst\000"
+ 527 0181 52657165 		.ascii	"ReqestPerBurst\000"
  527      73745065 
  527      72427572 
  527      737400
  528              	.LASF24:
- 529 0176 57617665 		.ascii	"WaveDAC8_1_Wave1_DMA_DmaHandle\000"
+ 529 0190 57617665 		.ascii	"WaveDAC8_1_Wave1_DMA_DmaHandle\000"
  529      44414338 
  529      5F315F57 
  529      61766531 
  529      5F444D41 
  530              	.LASF13:
- 531 0195 666C6F61 		.ascii	"float\000"
+ 531 01af 666C6F61 		.ascii	"float\000"
  531      7400
- 532              	.LASF21:
- 533 019b 433A5C55 		.ascii	"C:\\Users\\Robert\\workspace\\embedit_git\\psoc_2_p"
- 533      73657273 
- 533      5C526F62 
- 533      6572745C 
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccmiqqgf.s 			page 14
+ 532              	.LASF20:
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccTtR3mE.s 			page 14
 
 
- 533      776F726B 
- 534 01c9 695C5053 		.ascii	"i\\PSoC Creator\\PSoC_2_Pi.cydsn\000"
- 534      6F432043 
- 534      72656174 
- 534      6F725C50 
- 534      536F435F 
+ 533 01b5 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\WaveDAC8_1_Wave1_DMA_dm"
+ 533      6E657261 
+ 533      7465645F 
+ 533      536F7572 
+ 533      63655C50 
+ 534 01e5 612E6300 		.ascii	"a.c\000"
  535              	.LASF18:
- 536 01e8 55707065 		.ascii	"UpperDestAddress\000"
+ 536 01e9 55707065 		.ascii	"UpperDestAddress\000"
  536      72446573 
  536      74416464 
  536      72657373 
  536      00
  537              	.LASF2:
- 538 01f9 73686F72 		.ascii	"short int\000"
+ 538 01fa 73686F72 		.ascii	"short int\000"
  538      7420696E 
  538      7400
  539              	.LASF12:
- 540 0203 75696E74 		.ascii	"uint16\000"
+ 540 0204 75696E74 		.ascii	"uint16\000"
  540      313600
  541              	.LASF8:
- 542 020a 73697A65 		.ascii	"sizetype\000"
+ 542 020b 73697A65 		.ascii	"sizetype\000"
  542      74797065 
  542      00
  543              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

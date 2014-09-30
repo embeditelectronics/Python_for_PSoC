@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
   22:.\Generated_Source\PSoC5/I2C_1.c **** /**********************************
   23:.\Generated_Source\PSoC5/I2C_1.c **** *      System variables
   24:.\Generated_Source\PSoC5/I2C_1.c **** **********************************/
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 2
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 2
 
 
   25:.\Generated_Source\PSoC5/I2C_1.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
   57:.\Generated_Source\PSoC5/I2C_1.c ****         #if(CY_PSOC5A)
   58:.\Generated_Source\PSoC5/I2C_1.c ****             I2C_1_CLKDIV_REG  = LO8(I2C_1_DEFAULT_DIVIDE_FACTOR);
   59:.\Generated_Source\PSoC5/I2C_1.c ****         #else
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 3
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 3
 
 
   60:.\Generated_Source\PSoC5/I2C_1.c ****             I2C_1_CLKDIV1_REG = LO8(I2C_1_DEFAULT_DIVIDE_FACTOR);
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
   75              		.loc 1 94 0
   76 0056 4FF00F00 		mov	r0, #15
   77 005a 40F20001 		movw	r1, #:lower16:I2C_1_ISR
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 4
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 4
 
 
   78 005e C0F20001 		movt	r1, #:upper16:I2C_1_ISR
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  109              	.LFB1:
  118:.\Generated_Source\PSoC5/I2C_1.c **** 
  119:.\Generated_Source\PSoC5/I2C_1.c **** 
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 5
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 5
 
 
  120:.\Generated_Source\PSoC5/I2C_1.c **** /*******************************************************************************
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  145:.\Generated_Source\PSoC5/I2C_1.c ****         I2C_1_STBY_PWRMGR_REG |= I2C_1_STBY_PWR_EN;
  139              		.loc 1 145 0
  140 002a 44F2B533 		movw	r3, #17333
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 6
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 6
 
 
  141 002e C4F20003 		movt	r3, 16384
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  173:.\Generated_Source\PSoC5/I2C_1.c **** ********************************************************************************
  174:.\Generated_Source\PSoC5/I2C_1.c **** *
  175:.\Generated_Source\PSoC5/I2C_1.c **** * Summary:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 7
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 7
 
 
  176:.\Generated_Source\PSoC5/I2C_1.c **** *  Starts the I2C hardware. Enables Active mode power template bits or clock
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  192 0022 1A70     		strb	r2, [r3, #0]
  193              	.L4:
  206:.\Generated_Source\PSoC5/I2C_1.c ****     }
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 8
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 8
 
 
  207:.\Generated_Source\PSoC5/I2C_1.c **** 
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  225              		.cfi_def_cfa_offset 16
  226 0004 00AF     		add	r7, sp, #0
  227              	.LCFI9:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 9
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 9
 
 
  228              		.cfi_def_cfa_register 7
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  259 0058 1B78     		ldrb	r3, [r3, #0]
  260 005a DAB2     		uxtb	r2, r3
  261 005c 40F20003 		movw	r3, #:lower16:I2C_1_backup
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 10
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 10
 
 
  262 0060 C0F20003 		movt	r3, #:upper16:I2C_1_backup
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  267:.\Generated_Source\PSoC5/I2C_1.c ****             I2C_1_CLKDIV1_REG = I2C_1_backup.clkDiv1;
  302              		.loc 1 267 0
  303 00d0 44F6DB13 		movw	r3, #18907
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 11
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 11
 
 
  304 00d4 C4F20003 		movt	r3, 16384
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  282:.\Generated_Source\PSoC5/I2C_1.c ****             enableInterrupts = CyEnterCriticalSection();
  283:.\Generated_Source\PSoC5/I2C_1.c ****             I2C_1_COUNTER_AUX_CTL_REG &= ((uint8) ~I2C_1_CNT7_ENABLE);
  284:.\Generated_Source\PSoC5/I2C_1.c ****             CyExitCriticalSection(enableInterrupts);
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 12
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 12
 
 
  285:.\Generated_Source\PSoC5/I2C_1.c ****         #endif /* (I2C_1_MODE_SLAVE_ENABLED) */
@@ -700,10 +700,10 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  370 0006 00000000 		.4byte	.Ldebug_abbrev0
  371 000a 04       		.byte	0x4
  372 000b 01       		.uleb128 0x1
- 373 000c BB010000 		.4byte	.LASF33
+ 373 000c B1010000 		.4byte	.LASF33
  374 0010 01       		.byte	0x1
- 375 0011 67010000 		.4byte	.LASF34
- 376 0015 03010000 		.4byte	.LASF35
+ 375 0011 5D010000 		.4byte	.LASF34
+ 376 0015 49000000 		.4byte	.LASF35
  377 0019 00000000 		.4byte	.Ldebug_ranges0+0
  378 001d 00000000 		.4byte	0
  379 0021 00000000 		.4byte	0
@@ -711,18 +711,18 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  381 0029 02       		.uleb128 0x2
  382 002a 01       		.byte	0x1
  383 002b 06       		.byte	0x6
- 384 002c 19020000 		.4byte	.LASF0
+ 384 002c 1A020000 		.4byte	.LASF0
  385 0030 02       		.uleb128 0x2
  386 0031 01       		.byte	0x1
  387 0032 08       		.byte	0x8
- 388 0033 5A000000 		.4byte	.LASF1
+ 388 0033 9D000000 		.4byte	.LASF1
  389 0037 02       		.uleb128 0x2
  390 0038 02       		.byte	0x2
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 13
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 13
 
 
  391 0039 05       		.byte	0x5
- 392 003a AB010000 		.4byte	.LASF2
+ 392 003a A1010000 		.4byte	.LASF2
  393 003e 02       		.uleb128 0x2
  394 003f 02       		.byte	0x2
  395 0040 07       		.byte	0x7
@@ -730,19 +730,19 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  397 0045 02       		.uleb128 0x2
  398 0046 04       		.byte	0x4
  399 0047 05       		.byte	0x5
- 400 0048 04020000 		.4byte	.LASF4
+ 400 0048 FA010000 		.4byte	.LASF4
  401 004c 02       		.uleb128 0x2
  402 004d 04       		.byte	0x4
  403 004e 07       		.byte	0x7
- 404 004f 6D000000 		.4byte	.LASF5
+ 404 004f B0000000 		.4byte	.LASF5
  405 0053 02       		.uleb128 0x2
  406 0054 08       		.byte	0x8
  407 0055 05       		.byte	0x5
- 408 0056 59010000 		.4byte	.LASF6
+ 408 0056 4F010000 		.4byte	.LASF6
  409 005a 02       		.uleb128 0x2
  410 005b 08       		.byte	0x8
  411 005c 07       		.byte	0x7
- 412 005d DC000000 		.4byte	.LASF7
+ 412 005d 1F010000 		.4byte	.LASF7
  413 0061 03       		.uleb128 0x3
  414 0062 04       		.byte	0x4
  415 0063 05       		.byte	0x5
@@ -750,39 +750,39 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  417 0068 02       		.uleb128 0x2
  418 0069 04       		.byte	0x4
  419 006a 07       		.byte	0x7
- 420 006b CF000000 		.4byte	.LASF8
+ 420 006b 12010000 		.4byte	.LASF8
  421 006f 04       		.uleb128 0x4
- 422 0070 B5010000 		.4byte	.LASF9
+ 422 0070 AB010000 		.4byte	.LASF9
  423 0074 02       		.byte	0x2
  424 0075 5B       		.byte	0x5b
  425 0076 30000000 		.4byte	0x30
  426 007a 04       		.uleb128 0x4
- 427 007b B5000000 		.4byte	.LASF10
+ 427 007b F8000000 		.4byte	.LASF10
  428 007f 02       		.byte	0x2
  429 0080 5C       		.byte	0x5c
  430 0081 3E000000 		.4byte	0x3e
  431 0085 04       		.uleb128 0x4
- 432 0086 BC000000 		.4byte	.LASF11
+ 432 0086 FF000000 		.4byte	.LASF11
  433 008a 02       		.byte	0x2
  434 008b 5D       		.byte	0x5d
  435 008c 4C000000 		.4byte	0x4c
  436 0090 02       		.uleb128 0x2
  437 0091 04       		.byte	0x4
  438 0092 04       		.byte	0x4
- 439 0093 54000000 		.4byte	.LASF12
+ 439 0093 97000000 		.4byte	.LASF12
  440 0097 02       		.uleb128 0x2
  441 0098 08       		.byte	0x8
  442 0099 04       		.byte	0x4
- 443 009a A3000000 		.4byte	.LASF13
+ 443 009a E6000000 		.4byte	.LASF13
  444 009e 02       		.uleb128 0x2
  445 009f 01       		.byte	0x1
  446 00a0 08       		.byte	0x8
- 447 00a1 88010000 		.4byte	.LASF14
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 14
+ 447 00a1 7E010000 		.4byte	.LASF14
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 14
 
 
  448 00a5 04       		.uleb128 0x4
- 449 00a6 68000000 		.4byte	.LASF15
+ 449 00a6 AB000000 		.4byte	.LASF15
  450 00aa 02       		.byte	0x2
  451 00ab F0       		.byte	0xf0
  452 00ac B0000000 		.4byte	0xb0
@@ -798,14 +798,14 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  462 00c5 02       		.uleb128 0x2
  463 00c6 04       		.byte	0x4
  464 00c7 07       		.byte	0x7
- 465 00c8 50010000 		.4byte	.LASF17
+ 465 00c8 46010000 		.4byte	.LASF17
  466 00cc 06       		.uleb128 0x6
  467 00cd 06       		.byte	0x6
  468 00ce 03       		.byte	0x3
  469 00cf 78       		.byte	0x78
  470 00d0 29010000 		.4byte	0x129
  471 00d4 07       		.uleb128 0x7
- 472 00d5 0D020000 		.4byte	.LASF18
+ 472 00d5 03020000 		.4byte	.LASF18
  473 00d9 03       		.byte	0x3
  474 00da 7A       		.byte	0x7a
  475 00db 6F000000 		.4byte	0x6f
@@ -813,7 +813,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  477 00e0 23       		.byte	0x23
  478 00e1 00       		.uleb128 0
  479 00e2 07       		.uleb128 0x7
- 480 00e3 9A010000 		.4byte	.LASF19
+ 480 00e3 90010000 		.4byte	.LASF19
  481 00e7 03       		.byte	0x3
  482 00e8 7D       		.byte	0x7d
  483 00e9 6F000000 		.4byte	0x6f
@@ -829,7 +829,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  493 00fc 23       		.byte	0x23
  494 00fd 02       		.uleb128 0x2
  495 00fe 07       		.uleb128 0x7
- 496 00ff 7F000000 		.4byte	.LASF20
+ 496 00ff C2000000 		.4byte	.LASF20
  497 0103 03       		.byte	0x3
  498 0104 81       		.byte	0x81
  499 0105 6F000000 		.4byte	0x6f
@@ -837,8 +837,8 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  501 010a 23       		.byte	0x23
  502 010b 03       		.uleb128 0x3
  503 010c 07       		.uleb128 0x7
- 504 010d F3000000 		.4byte	.LASF21
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 15
+ 504 010d 36010000 		.4byte	.LASF21
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 15
 
 
  505 0111 03       		.byte	0x3
@@ -848,7 +848,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  509 0118 23       		.byte	0x23
  510 0119 04       		.uleb128 0x4
  511 011a 07       		.uleb128 0x7
- 512 011b FB000000 		.4byte	.LASF22
+ 512 011b 3E010000 		.4byte	.LASF22
  513 011f 03       		.byte	0x3
  514 0120 88       		.byte	0x88
  515 0121 6F000000 		.4byte	0x6f
@@ -863,7 +863,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  524 0130 CC000000 		.4byte	0xcc
  525 0134 09       		.uleb128 0x9
  526 0135 01       		.byte	0x1
- 527 0136 49000000 		.4byte	.LASF24
+ 527 0136 0F020000 		.4byte	.LASF24
  528 013a 01       		.byte	0x1
  529 013b 33       		.byte	0x33
  530 013c 01       		.byte	0x1
@@ -873,7 +873,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  534 0149 01       		.byte	0x1
  535 014a 0A       		.uleb128 0xa
  536 014b 01       		.byte	0x1
- 537 014c 8D010000 		.4byte	.LASF26
+ 537 014c 83010000 		.4byte	.LASF26
  538 0150 01       		.byte	0x1
  539 0151 89       		.byte	0x89
  540 0152 01       		.byte	0x1
@@ -883,7 +883,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  544 015f 01       		.byte	0x1
  545 0160 73010000 		.4byte	0x173
  546 0164 0B       		.uleb128 0xb
- 547 0165 84000000 		.4byte	.LASF28
+ 547 0165 C7000000 		.4byte	.LASF28
  548 0169 01       		.byte	0x1
  549 016a 8C       		.byte	0x8c
  550 016b 6F000000 		.4byte	0x6f
@@ -893,12 +893,12 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  554 0172 00       		.byte	0
  555 0173 09       		.uleb128 0x9
  556 0174 01       		.byte	0x1
- 557 0175 9F010000 		.4byte	.LASF25
+ 557 0175 95010000 		.4byte	.LASF25
  558 0179 01       		.byte	0x1
  559 017a C7       		.byte	0xc7
  560 017b 01       		.byte	0x1
  561 017c 00000000 		.4byte	.LFB2
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 16
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 16
 
 
  562 0180 38000000 		.4byte	.LFE2
@@ -906,7 +906,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  564 0188 01       		.byte	0x1
  565 0189 0A       		.uleb128 0xa
  566 018a 01       		.byte	0x1
- 567 018b AA000000 		.4byte	.LASF27
+ 567 018b ED000000 		.4byte	.LASF27
  568 018f 01       		.byte	0x1
  569 0190 E4       		.byte	0xe4
  570 0191 01       		.byte	0x1
@@ -916,7 +916,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  574 019e 01       		.byte	0x1
  575 019f B2010000 		.4byte	0x1b2
  576 01a3 0B       		.uleb128 0xb
- 577 01a4 84000000 		.4byte	.LASF28
+ 577 01a4 C7000000 		.4byte	.LASF28
  578 01a8 01       		.byte	0x1
  579 01a9 E8       		.byte	0xe8
  580 01aa 6F000000 		.4byte	0x6f
@@ -925,7 +925,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  583 01b0 77       		.sleb128 -9
  584 01b1 00       		.byte	0
  585 01b2 0C       		.uleb128 0xc
- 586 01b3 95000000 		.4byte	.LASF29
+ 586 01b3 D8000000 		.4byte	.LASF29
  587 01b7 01       		.byte	0x1
  588 01b8 1A       		.byte	0x1a
  589 01b9 6F000000 		.4byte	0x6f
@@ -941,7 +941,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  599 01cf 01       		.byte	0x1
  600 01d0 01       		.byte	0x1
  601 01d1 0C       		.uleb128 0xc
- 602 01d2 C3000000 		.4byte	.LASF31
+ 602 01d2 06010000 		.4byte	.LASF31
  603 01d6 01       		.byte	0x1
  604 01d7 1C       		.byte	0x1c
  605 01d8 B0000000 		.4byte	0xb0
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  616 01ef 01       		.byte	0x1
  617 01f0 00       		.byte	0
  618              		.section	.debug_abbrev,"",%progbits
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 17
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 17
 
 
  619              	.Ldebug_abbrev0:
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  673 0035 13       		.uleb128 0x13
  674 0036 00       		.byte	0
  675 0037 00       		.byte	0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 18
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 18
 
 
  676 0038 05       		.uleb128 0x5
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  730 006e 0C       		.uleb128 0xc
  731 006f 03       		.uleb128 0x3
  732 0070 0E       		.uleb128 0xe
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 19
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 19
 
 
  733 0071 3A       		.uleb128 0x3a
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  787 00a9 00       		.byte	0
  788 00aa 00       		.byte	0
  789 00ab 0C       		.uleb128 0xc
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 20
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 20
 
 
  790 00ac 34       		.uleb128 0x34
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  844              	.LLST1:
  845 002c 00000000 		.4byte	.LFB1
  846 0030 02000000 		.4byte	.LCFI2
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 21
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 21
 
 
  847 0034 0200     		.2byte	0x2
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  901 00b4 06000000 		.4byte	.LCFI9
  902 00b8 64010000 		.4byte	.LFE3
  903 00bc 0200     		.2byte	0x2
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 22
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 22
 
 
  904 00be 77       		.byte	0x77
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  946      757300
  947              	.LASF30:
  948 0029 4932435F 		.ascii	"I2C_1_backup\000"
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 23
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 23
 
 
  948      315F6261 
@@ -1330,150 +1330,150 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 1
  950      7369676E 
  950      65642069 
  950      6E7400
- 951              	.LASF24:
- 952 0049 4932435F 		.ascii	"I2C_1_Init\000"
- 952      315F496E 
- 952      697400
- 953              	.LASF12:
- 954 0054 666C6F61 		.ascii	"float\000"
- 954      7400
- 955              	.LASF1:
- 956 005a 756E7369 		.ascii	"unsigned char\000"
- 956      676E6564 
- 956      20636861 
- 956      7200
- 957              	.LASF15:
- 958 0068 72656738 		.ascii	"reg8\000"
- 958      00
- 959              	.LASF5:
- 960 006d 6C6F6E67 		.ascii	"long unsigned int\000"
- 960      20756E73 
- 960      69676E65 
- 960      6420696E 
- 960      7400
- 961              	.LASF20:
- 962 007f 61646472 		.ascii	"addr\000"
- 962      00
- 963              	.LASF28:
- 964 0084 656E6162 		.ascii	"enableInterrupts\000"
- 964      6C65496E 
- 964      74657272 
- 964      75707473 
- 964      00
- 965              	.LASF29:
- 966 0095 4932435F 		.ascii	"I2C_1_initVar\000"
- 966      315F696E 
- 966      69745661 
- 966      7200
- 967              	.LASF13:
- 968 00a3 646F7562 		.ascii	"double\000"
- 968      6C6500
- 969              	.LASF27:
- 970 00aa 4932435F 		.ascii	"I2C_1_Stop\000"
- 970      315F5374 
- 970      6F7000
- 971              	.LASF10:
- 972 00b5 75696E74 		.ascii	"uint16\000"
- 972      313600
- 973              	.LASF11:
- 974 00bc 75696E74 		.ascii	"uint32\000"
- 974      333200
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 24
+ 951              	.LASF35:
+ 952 0049 433A5C55 		.ascii	"C:\\Users\\Brian\\Dropbox\\RPiSoC\\Projects\\PSoC_2"
+ 952      73657273 
+ 952      5C427269 
+ 952      616E5C44 
+ 952      726F7062 
+ 953 0076 5F50695C 		.ascii	"_Pi\\PSoC Creator\\PSoC_2_Pi.cydsn\000"
+ 953      50536F43 
+ 953      20437265 
+ 953      61746F72 
+ 953      5C50536F 
+ 954              	.LASF12:
+ 955 0097 666C6F61 		.ascii	"float\000"
+ 955      7400
+ 956              	.LASF1:
+ 957 009d 756E7369 		.ascii	"unsigned char\000"
+ 957      676E6564 
+ 957      20636861 
+ 957      7200
+ 958              	.LASF15:
+ 959 00ab 72656738 		.ascii	"reg8\000"
+ 959      00
+ 960              	.LASF5:
+ 961 00b0 6C6F6E67 		.ascii	"long unsigned int\000"
+ 961      20756E73 
+ 961      69676E65 
+ 961      6420696E 
+ 961      7400
+ 962              	.LASF20:
+ 963 00c2 61646472 		.ascii	"addr\000"
+ 963      00
+ 964              	.LASF28:
+ 965 00c7 656E6162 		.ascii	"enableInterrupts\000"
+ 965      6C65496E 
+ 965      74657272 
+ 965      75707473 
+ 965      00
+ 966              	.LASF29:
+ 967 00d8 4932435F 		.ascii	"I2C_1_initVar\000"
+ 967      315F696E 
+ 967      69745661 
+ 967      7200
+ 968              	.LASF13:
+ 969 00e6 646F7562 		.ascii	"double\000"
+ 969      6C6500
+ 970              	.LASF27:
+ 971 00ed 4932435F 		.ascii	"I2C_1_Stop\000"
+ 971      315F5374 
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 24
 
 
- 975              	.LASF31:
- 976 00c3 4932435F 		.ascii	"I2C_1_state\000"
- 976      315F7374 
- 976      61746500 
- 977              	.LASF8:
- 978 00cf 756E7369 		.ascii	"unsigned int\000"
- 978      676E6564 
- 978      20696E74 
- 978      00
- 979              	.LASF7:
- 980 00dc 6C6F6E67 		.ascii	"long long unsigned int\000"
- 980      206C6F6E 
- 980      6720756E 
- 980      7369676E 
- 980      65642069 
- 981              	.LASF21:
- 982 00f3 636C6B44 		.ascii	"clkDiv1\000"
- 982      69763100 
- 983              	.LASF22:
- 984 00fb 636C6B44 		.ascii	"clkDiv2\000"
- 984      69763200 
- 985              	.LASF35:
- 986 0103 433A5C55 		.ascii	"C:\\Users\\Robert\\workspace\\embedit_git\\psoc_2_p"
- 986      73657273 
- 986      5C526F62 
- 986      6572745C 
- 986      776F726B 
- 987 0131 695C5053 		.ascii	"i\\PSoC Creator\\PSoC_2_Pi.cydsn\000"
- 987      6F432043 
- 987      72656174 
- 987      6F725C50 
- 987      536F435F 
- 988              	.LASF17:
- 989 0150 73697A65 		.ascii	"sizetype\000"
- 989      74797065 
- 989      00
- 990              	.LASF6:
- 991 0159 6C6F6E67 		.ascii	"long long int\000"
- 991      206C6F6E 
- 991      6720696E 
- 991      7400
- 992              	.LASF34:
- 993 0167 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\I2C_1.c\000"
- 993      6E657261 
- 993      7465645F 
- 993      536F7572 
- 993      63655C50 
- 994              	.LASF14:
- 995 0188 63686172 		.ascii	"char\000"
+ 971      6F7000
+ 972              	.LASF10:
+ 973 00f8 75696E74 		.ascii	"uint16\000"
+ 973      313600
+ 974              	.LASF11:
+ 975 00ff 75696E74 		.ascii	"uint32\000"
+ 975      333200
+ 976              	.LASF31:
+ 977 0106 4932435F 		.ascii	"I2C_1_state\000"
+ 977      315F7374 
+ 977      61746500 
+ 978              	.LASF8:
+ 979 0112 756E7369 		.ascii	"unsigned int\000"
+ 979      676E6564 
+ 979      20696E74 
+ 979      00
+ 980              	.LASF7:
+ 981 011f 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 981      206C6F6E 
+ 981      6720756E 
+ 981      7369676E 
+ 981      65642069 
+ 982              	.LASF21:
+ 983 0136 636C6B44 		.ascii	"clkDiv1\000"
+ 983      69763100 
+ 984              	.LASF22:
+ 985 013e 636C6B44 		.ascii	"clkDiv2\000"
+ 985      69763200 
+ 986              	.LASF17:
+ 987 0146 73697A65 		.ascii	"sizetype\000"
+ 987      74797065 
+ 987      00
+ 988              	.LASF6:
+ 989 014f 6C6F6E67 		.ascii	"long long int\000"
+ 989      206C6F6E 
+ 989      6720696E 
+ 989      7400
+ 990              	.LASF34:
+ 991 015d 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\I2C_1.c\000"
+ 991      6E657261 
+ 991      7465645F 
+ 991      536F7572 
+ 991      63655C50 
+ 992              	.LASF14:
+ 993 017e 63686172 		.ascii	"char\000"
+ 993      00
+ 994              	.LASF26:
+ 995 0183 4932435F 		.ascii	"I2C_1_Enable\000"
+ 995      315F456E 
+ 995      61626C65 
  995      00
- 996              	.LASF26:
- 997 018d 4932435F 		.ascii	"I2C_1_Enable\000"
- 997      315F456E 
- 997      61626C65 
+ 996              	.LASF19:
+ 997 0190 78636667 		.ascii	"xcfg\000"
  997      00
- 998              	.LASF19:
- 999 019a 78636667 		.ascii	"xcfg\000"
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccQlQM2c.s 			page 25
+ 998              	.LASF25:
+ 999 0195 4932435F 		.ascii	"I2C_1_Start\000"
+ 999      315F5374 
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDjQECm.s 			page 25
 
 
- 999      00
- 1000              	.LASF25:
- 1001 019f 4932435F 		.ascii	"I2C_1_Start\000"
- 1001      315F5374 
- 1001      61727400 
- 1002              	.LASF2:
- 1003 01ab 73686F72 		.ascii	"short int\000"
- 1003      7420696E 
- 1003      7400
- 1004              	.LASF9:
- 1005 01b5 75696E74 		.ascii	"uint8\000"
- 1005      3800
- 1006              	.LASF33:
- 1007 01bb 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
- 1007      4320342E 
- 1007      372E3320 
- 1007      32303133 
- 1007      30333132 
- 1008 01ee 616E6368 		.ascii	"anch revision 196615]\000"
- 1008      20726576 
- 1008      6973696F 
- 1008      6E203139 
- 1008      36363135 
- 1009              	.LASF4:
- 1010 0204 6C6F6E67 		.ascii	"long int\000"
- 1010      20696E74 
- 1010      00
- 1011              	.LASF18:
- 1012 020d 656E6162 		.ascii	"enableState\000"
- 1012      6C655374 
- 1012      61746500 
+ 999      61727400 
+ 1000              	.LASF2:
+ 1001 01a1 73686F72 		.ascii	"short int\000"
+ 1001      7420696E 
+ 1001      7400
+ 1002              	.LASF9:
+ 1003 01ab 75696E74 		.ascii	"uint8\000"
+ 1003      3800
+ 1004              	.LASF33:
+ 1005 01b1 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 1005      4320342E 
+ 1005      372E3320 
+ 1005      32303133 
+ 1005      30333132 
+ 1006 01e4 616E6368 		.ascii	"anch revision 196615]\000"
+ 1006      20726576 
+ 1006      6973696F 
+ 1006      6E203139 
+ 1006      36363135 
+ 1007              	.LASF4:
+ 1008 01fa 6C6F6E67 		.ascii	"long int\000"
+ 1008      20696E74 
+ 1008      00
+ 1009              	.LASF18:
+ 1010 0203 656E6162 		.ascii	"enableState\000"
+ 1010      6C655374 
+ 1010      61746500 
+ 1011              	.LASF24:
+ 1012 020f 4932435F 		.ascii	"I2C_1_Init\000"
+ 1012      315F496E 
+ 1012      697400
  1013              	.LASF0:
- 1014 0219 7369676E 		.ascii	"signed char\000"
+ 1014 021a 7369676E 		.ascii	"signed char\000"
  1014      65642063 
  1014      68617200 
  1015              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

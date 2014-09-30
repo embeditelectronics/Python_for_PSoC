@@ -1,57 +1,51 @@
 # PSoC_2_Pi
-# 2014-08-27 19:30:42Z
+# 2014-09-17 15:51:30Z
 
-set_io "DELSIG_in(0)" iocell 15 5
+# IO_3@[IOP=(15)][IoId=(3)] is reserved: AnalogTrackJump
+dont_use_io iocell 15 3
+set_io "DELSIG_IN(0)" iocell 15 5
+set_io "GPIO_12_0(0)" iocell 12 0
+set_io "GPIO_12_1(0)" iocell 12 1
+set_io "GPIO_12_2(0)" iocell 12 2
+set_io "GPIO_12_3(0)" iocell 12 3
+set_io "GPIO_12_4(0)" iocell 12 4
+set_io "GPIO_12_5(0)" iocell 12 5
+set_io "GPIO_12_6(0)" iocell 12 6
+set_io "GPIO_12_7(0)" iocell 12 7
+set_io "GPIO_2_0(0)" iocell 2 0
+set_io "GPIO_2_1(0)" iocell 2 1
+set_io "GPIO_2_2(0)" iocell 2 2
+set_io "GPIO_2_3(0)" iocell 2 3
+set_io "GPIO_2_4(0)" iocell 2 4
+set_io "GPIO_2_5(0)" iocell 2 5
+set_io "GPIO_2_6(0)" iocell 2 6
+set_io "GPIO_2_7(0)" iocell 2 7
+set_io "GPIO_4_0(0)" iocell 4 0
+set_io "GPIO_4_1(0)" iocell 4 1
+set_io "GPIO_4_2(0)" iocell 4 2
+set_io "GPIO_4_3(0)" iocell 4 3
+set_io "GPIO_4_4(0)" iocell 4 4
+set_io "GPIO_4_5(0)" iocell 4 5
+set_io "GPIO_4_6(0)" iocell 4 6
+set_io "GPIO_4_7(0)" iocell 4 7
+set_io "GPIO_5_0(0)" iocell 5 0
+set_io "GPIO_5_1(0)" iocell 5 1
+set_io "GPIO_5_2(0)" iocell 5 2
+set_io "GPIO_5_3(0)" iocell 5 3
+set_io "GPIO_5_4(0)" iocell 5 4
+set_io "GPIO_5_5(0)" iocell 5 5
+set_io "GPIO_5_6(0)" iocell 5 6
+set_io "GPIO_5_7(0)" iocell 5 7
 set_io "IDAC_out_1(0)" iocell 0 6
-set_io "In_1(0)" iocell 4 0
-set_io "In_10(0)" iocell 5 6
-set_io "In_11(0)" iocell 5 7
-set_io "In_12(0)" iocell 6 0
-set_io "In_13(0)" iocell 6 1
-set_io "In_14(0)" iocell 6 2
-set_io "In_15(0)" iocell 6 3
-set_io "In_16(0)" iocell 6 4
-set_io "In_17(0)" iocell 6 5
-set_io "In_18(0)" iocell 6 6
-set_io "In_19(0)" iocell 6 7
-set_io "In_2(0)" iocell 4 1
-set_io "In_3(0)" iocell 4 2
-set_io "In_4(0)" iocell 4 3
-set_io "In_5(0)" iocell 4 4
-set_io "In_6(0)" iocell 4 5
-set_io "In_7(0)" iocell 4 6
-set_io "In_8(0)" iocell 5 4
-set_io "In_9(0)" iocell 5 5
-set_io "Out_1(0)" iocell 12 0
-set_io "Out_10(0)" iocell 5 1
-set_io "Out_11(0)" iocell 5 2
-set_io "Out_12(0)" iocell 5 3
-set_io "Out_13(0)" iocell 2 0
-set_io "Out_14(0)" iocell 2 1
-set_io "Out_15(0)" iocell 2 2
-set_io "Out_16(0)" iocell 2 3
-set_io "Out_17(0)" iocell 2 4
-set_io "Out_18(0)" iocell 2 5
-set_io "Out_19(0)" iocell 2 6
-set_io "Out_2(0)" iocell 12 1
-set_io "Out_20(0)" iocell 2 7
-set_io "Out_3(0)" iocell 12 2
-set_io "Out_4(0)" iocell 12 3
-set_io "Out_5(0)" iocell 12 4
-set_io "Out_6(0)" iocell 12 5
-set_io "Out_7(0)" iocell 12 6
-set_io "Out_8(0)" iocell 12 7
-set_io "Out_9(0)" iocell 5 0
-set_io "PWM_out_1(0)" iocell 3 0
-set_io "PWM_out_2(0)" iocell 3 1
-set_io "PWM_out_3(0)" iocell 3 2
-set_io "PWM_out_4(0)" iocell 3 3
-set_io "PWM_out_5(0)" iocell 3 4
-set_io "PWM_out_6(0)" iocell 3 5
-set_io "PWM_out_7(0)" iocell 3 6
-set_io "PWM_out_8(0)" iocell 3 7
+set_io "PWM_out_1(0)" iocell 6 0
+set_io "PWM_out_2(0)" iocell 6 1
+set_io "PWM_out_3(0)" iocell 6 2
+set_io "PWM_out_4(0)" iocell 6 3
+set_io "PWM_out_5(0)" iocell 6 4
+set_io "PWM_out_6(0)" iocell 6 5
+set_io "PWM_out_7(0)" iocell 6 6
+set_io "PWM_out_8(0)" iocell 6 7
 set_io "SAR_in_1(0)" iocell 15 4
-set_io "SAR_in_2(0)" iocell 0 3
 set_io "SCL_1(0)" iocell 1 7
 set_io "SDA_1(0)" iocell 1 6
 set_io "VDAC_out_1(0)" iocell 0 1
@@ -60,13 +54,23 @@ set_io "WaveDAC_out(0)" iocell 0 0
 set_location "\ADC_DelSig_1:DSM\" dsmodcell -1 -1 0
 set_location "\ADC_SAR_1:ADC_SAR\" sarcell -1 -1 1
 set_io "\ADC_SAR_1:Bypass(0)\" iocell 0 2
-set_location "\ADC_SAR_2:ADC_SAR\" sarcell -1 -1 0
-set_io "\ADC_SAR_2:Bypass(0)\" iocell 0 4
+set_location "\ADC_SAR_Seq_1:SAR:ADC_SAR\" sarcell -1 -1 0
+set_io "\ADC_SAR_Seq_1:SAR:Bypass(0)\" iocell 0 4
 set_location "\IDAC8_1:viDAC8\" vidaccell -1 -1 0
 set_location "\VDAC8_1:viDAC8\" vidaccell -1 -1 3
-set_location "\VDAC8_2:viDAC8\" vidaccell -1 -1 1
+set_location "\VDAC8_2:viDAC8\" vidaccell -1 -1 2
 set_location "\WaveDAC8_1:BuffAmp:ABuf\" abufcell -1 -1 2
-set_location "\WaveDAC8_1:VDAC8:viDAC8\" vidaccell -1 -1 2
+set_location "\WaveDAC8_1:VDAC8:viDAC8\" vidaccell -1 -1 1
+set_io "analog_in_1(0)" iocell 3 0
+set_io "analog_in_10(0)" iocell 0 7
+set_io "analog_in_2(0)" iocell 3 1
+set_io "analog_in_3(0)" iocell 3 2
+set_io "analog_in_4(0)" iocell 3 3
+set_io "analog_in_5(0)" iocell 3 4
+set_io "analog_in_6(0)" iocell 3 5
+set_io "analog_in_7(0)" iocell 3 6
+set_io "analog_in_8(0)" iocell 3 7
+set_io "analog_in_9(0)" iocell 0 3
 set_io "miso(0)" iocell 1 3
 set_io "mosi(0)" iocell 1 4
 set_io "sclk(0)" iocell 1 1

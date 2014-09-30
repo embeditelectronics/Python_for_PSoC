@@ -8,7 +8,6 @@
 <files />
 <projects>
 <name_val_pair name="PSoC_2_Pi" v=".\PSoC_2_Pi.cydsn\PSoC_2_Pi.cyprj" />
-<name_val_pair name="SCB_I2cCommSlave01" v=".\SCB_I2cCommSlave01.cydsn\SCB_I2cCommSlave01.cyprj" />
 </projects>
 <workspace_id v="5eb6082c-00b2-4c81-8701-42c4b5ab39b2" />
 <WriteAppVersionLastSavedWith v="3.0.0.3023" />

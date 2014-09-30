@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: DELSIG_in.h  
+* File Name: DELSIG_IN.h  
 * Version 2.0
 *
 * Description:
@@ -14,8 +14,8 @@
 * the software package with which this file was provided.
 *******************************************************************************/
 
-#if !defined(CY_PINS_DELSIG_in_ALIASES_H) /* Pins DELSIG_in_ALIASES_H */
-#define CY_PINS_DELSIG_in_ALIASES_H
+#if !defined(CY_PINS_DELSIG_IN_ALIASES_H) /* Pins DELSIG_IN_ALIASES_H */
+#define CY_PINS_DELSIG_IN_ALIASES_H
 
 #include "cytypes.h"
 #include "cyfitter.h"
@@ -25,8 +25,8 @@
 /***************************************
 *              Constants        
 ***************************************/
-#define DELSIG_in_0		DELSIG_in__0__PC
+#define DELSIG_IN_0		DELSIG_IN__0__PC
 
-#endif /* End Pins DELSIG_in_ALIASES_H */
+#endif /* End Pins DELSIG_IN_ALIASES_H */
 
 /* [] END OF FILE */

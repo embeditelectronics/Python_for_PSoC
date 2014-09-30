@@ -4,7 +4,7 @@
 *   to mem1.c where data will be returned to the SPI Master when applicable
 *   
 *
-* Version 1.1
+* Version 1.1.2
 *
 * \author Brian Bradley
 *
@@ -54,7 +54,7 @@ int main()
         uint8 dat_lo = (input & 0x0000FF00)>>8;
         uint8 dat_hi = input & 0x000000FF;
         uint16 dat = (dat_hi<<8) | dat_lo;
-        
+      
         readData(addr,cmd,dat); 
         
         /*          Add your code here            */

@@ -4,11 +4,11 @@
 *        all components included in the build. It will do so according to
 *        sets of instructions provided by a Master Device.
 *
-* Version 1.0.5
+* Version 1.1.2
 *
 * \author Brian Bradley
 *
-* \bug No known bugs, but the VDAC's and IDAC's are currently untested.
+* \bug No known bugs
 *
 *
 * Copyright Embedit Electronics
@@ -116,47 +116,11 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
             case PWM_REGISTER7: PWM_Control_7(cmd, dat); break;
         #endif
         
-        //first status register        
-        #ifdef CY_STATUS_REG_Status_Reg_1_H 
-            #if !defined(Status_Reg_1_sts_sts_reg__REMOVED)
-                case DIGITAL_INPUT_REGISTER0: Input_Control0(cmd); break; 
-            #endif
+        #ifdef CY_ADC_SAR_Seq_1_H
+            case ANALOG_IN_REGISTER: Analog_Read(cmd, dat); break;
         #endif
         
-        //first control register      
-        #ifdef CY_CONTROL_REG_Control_Reg_1_H 
-            #if !defined(Control_Reg_1_Sync_ctrl_reg__REMOVED)
-                case DIGITAL_OUTPUT_REGISTER0: Output_Control0(cmd, dat); break;   
-            #endif
-        #endif
-        
-        //second status register
-        #ifdef CY_STATUS_REG_Status_Reg_2_H
-            #if !defined(Status_Reg_2_sts_sts_reg__REMOVED)
-                case DIGITAL_INPUT_REGISTER1: Input_Control1(cmd); break; 
-            #endif
-        #endif
-        
-        //second control register
-        #ifdef CY_CONTROL_REG_Control_Reg_2_H 
-            #if !defined(Control_Reg_2_Sync_ctrl_reg__REMOVED)
-                case DIGITAL_OUTPUT_REGISTER1: Output_Control1(cmd, dat); break;   
-            #endif
-        #endif
-        
-        //third status register
-        #ifdef CY_STATUS_REG_Status_Reg_3_H
-            #if !defined(Status_Reg_3_sts_sts_reg__REMOVED)
-                case DIGITAL_INPUT_REGISTER2: Input_Control2(cmd); break; 
-            #endif
-        #endif
-        
-        //third control register
-        #ifdef CY_CONTROL_REG_Control_Reg_3_H 
-            #if !defined(Control_Reg_3_Sync_ctrl_reg__REMOVED)
-                case DIGITAL_OUTPUT_REGISTER2: Output_Control2(cmd, dat); break;   
-            #endif
-        #endif
+        case GPIO_REGISTER: GPIO_Control(cmd,dat); break;
         
         case RESET_ADDRESS: CySoftwareReset(); break;
         
@@ -1054,249 +1018,305 @@ void readData(uint8 addr, uint8 cmd, uint16 dat)
         }
     #endif
     
-/****************************************************************************************//**
-*  @brief Contains usage scenarios of the first status register for use by a Master device. 
-*
-*  @param cmd: 8-bit number describing a desired usage of a function associated 
-*              with the first status register
-*
-*********************************************************************************************/
-    
-    #ifdef CY_STATUS_REG_Status_Reg_1_H 
-        #if !defined(Status_Reg_1_sts_sts_reg__REMOVED)
-            void Input_Control0(uint8 cmd)
-            {
-                uint32 result = MAX_32; 
-                bool return_flag = 0;
-                
-                switch(cmd)
+    void GPIO_Control(uint8 cmd, uint16 dat)
+    {
+        uint8 val = dat&0x0001;
+        uint8 pin = (dat>>1)&0x0007;
+        uint8 port = (dat>>4)&0x000F;
+        uint8 config = (dat>>8)&0x000F;
+        
+        uint16 config_MASK = 0x00;
+        
+        uint32 result = MAX_32; 
+        bool return_flag = 0;
+        uint8 new_reg_status = 0;
+        uint8 prev_reg_status = 0;
+        
+        switch(cmd)
                 {
-                    case 0x00: result = Status_Reg_1_Read(); return_flag = 1; break;
-                }
-                
-                if (return_flag)
-                {
-                    WriteTo_Pi(result);
-                }
-            }
-        #endif
-    #endif
-    
- /****************************************************************************************//**
-*  @brief Contains usage scenarios of the second status register for use by a Master device. 
-*
-*  @param cmd: 8-bit number describing a desired usage of a function associated 
-*              with the second status register
-*
-*********************************************************************************************/
-    
-     #ifdef CY_STATUS_REG_Status_Reg_2_H 
-        #if !defined(Status_Reg_2_sts_sts_reg__REMOVED)
-            void Input_Control1(uint8 cmd)
-            {
-                uint32 result = MAX_32; 
-                bool return_flag = 0;
-                
-                switch(cmd)
-                {
-                    case 0x00: result = Status_Reg_2_Read(); return_flag = 1; break;
-                }
-                
-                if (return_flag)
-                {
-                    WriteTo_Pi(result);
-                } 
-            }
-        #endif
-    #endif
-    
-/****************************************************************************************//**
-*  @brief Contains usage scenarios of the third status register for use by a Master device. 
-*
-*  @param cmd: 8-bit number describing a desired usage of a function associated 
-*              with the third status register
-*
-*********************************************************************************************/
-    
-    #ifdef CY_STATUS_REG_Status_Reg_3_H 
-        #if !defined(Status_Reg_3_sts_sts_reg__REMOVED)
-            void Input_Control2(uint8 cmd)
-            {
-                uint32 result = MAX_32; 
-                bool return_flag = 0;
-                
-                switch(cmd)
-                {
-                    case 0x00: result = Status_Reg_3_Read(); return_flag = 1; break;
-                }
-                
-                if (return_flag)
-                {
-                    WriteTo_Pi(result);
-                } 
-            }
-        #endif
-    #endif
-    
-/****************************************************************************************//**
-*  @brief Contains usage scenarios of the first control register for use by a Master device. 
-*
-*  @param cmd: 8-bit number describing a desired usage of a function associated 
-*              with the first control register
-*  @param val: 16-bit number containing a value that is to be written to that 
-*              function, or modify the component's operation, if applicable.
-*
-*********************************************************************************************/
-    
-    
-    #ifdef CY_CONTROL_REG_Control_Reg_1_H
-        #if !defined(Control_Reg_1_Sync_ctrl_reg__REMOVED)
-            void Output_Control0(uint8 cmd, uint16 val)
-            {
-                uint32 result = MAX_32; 
-                bool return_flag = 0;
-                uint8 bit_num = 0;
-                uint8 new_reg_status = 0;
-                uint8 dat = 0;
-              
-                
-                switch(cmd)
-                {
-                    case 0x00: result = Control_Reg_1_Read(); return_flag = 1; break;
-                    case 0x01: 
-                            bit_num = val>>8;
-                            dat = val&0x00FF;
-                            uint8 prev_reg_status = Control_Reg_1_Read();
-                            if (dat == 1)
+                    
+                    case 0x00: //Read
+                            switch(port)
                             {
-                                new_reg_status = prev_reg_status | (0x01<<bit_num);
+                                #ifdef CY_STATUS_REG_Port_2_Status_H
+                                    case 0x02: result = Port_2_Status_Read(); return_flag = 1; break;
+                                #endif
+                                #ifdef CY_STATUS_REG_Port_4_Status_H
+                                    case 0x04: result = Port_4_Status_Read(); return_flag = 1; break;
+                                #endif
+                                #ifdef CY_STATUS_REG_Port_5_Status_H
+                                    case 0x05: result = Port_5_Status_Read(); return_flag = 1; break;
+                                #endif
+                                #ifdef CY_STATUS_REG_Port_6_Status_H
+                                    case 0x06: result = Port_6_Status_Read(); return_flag = 1; break;
+                                #endif
+                                #ifdef CY_STATUS_REG_Port_12_Status_H
+                                    case 0x0C: result = Port_12_Status_Read(); return_flag = 1; break;
+                                #endif
+                             }
+                            break;
+                            
+                    case 0x01: //Write
+                            
+                            switch(port)
+                            {
+                                #ifdef CY_CONTROL_REG_Port_2_Control_H
+                                    case 0x02: prev_reg_status = Port_2_Control_Read(); break;
+                                #endif
+                                #ifdef CY_CONTROL_REG_Port_4_Control_H
+                                    case 0x04: prev_reg_status = Port_4_Control_Read(); break;
+                                #endif
+                                #ifdef CY_CONTROL_REG_Port_5_Control_H
+                                    case 0x05: prev_reg_status = Port_5_Control_Read(); break;
+                                #endif
+                                #ifdef CY_CONTROL_REG_Port_6_Control_H
+                                    case 0x06: prev_reg_status = Port_6_Control_Read(); break;
+                                #endif
+                                #ifdef CY_CONTROL_REG_Port_12_Control_H
+                                    case 0x0C: prev_reg_status = Port_12_Control_Read(); break;
+                                #endif
                             }
-                            else if (dat == 0)
+                               
+                            if (val == 1)
                             {
-                                new_reg_status = (prev_reg_status&(~(0x01<<bit_num)));
+                                new_reg_status = prev_reg_status | (0x01<<pin);
+                            }
+                            else if (val == 0)
+                            {
+                                new_reg_status = (prev_reg_status&(~(0x01<<pin)));
                             }
                             
-                            Control_Reg_1_Write(new_reg_status);
-                            break;
-               
-                }
-                
-                if (return_flag)
-                {
-                    WriteTo_Pi(result);
-                } 
-            }
-        #endif
-    #endif
-    
-/****************************************************************************************//**
-*  @brief Contains usage scenarios of the second control register for use by a Master device. 
-*
-*  @param cmd: 8-bit number describing a desired usage of a function associated 
-*              with the second control register
-*  @param val: 16-bit number containing a value that is to be written to that 
-*              function, or modify the component's operation, if applicable.
-*
-*********************************************************************************************/
-    
-    #ifdef CY_CONTROL_REG_Control_Reg_2_H
-        #if !defined(Control_Reg_2_Sync_ctrl_reg__REMOVED)
-            void Output_Control1(uint8 cmd, uint16 val)
-            {
-                uint32 result = MAX_32; 
-                bool return_flag = 0;
-                uint8 bit_num = 0;
-                uint8 new_reg_status = 0;
-                uint8 dat = 0;
-                /*
-                switch(cmd)
-                {
-                    case 0x00: result = Control_Reg_2_Read(); return_flag = 1; break;
-                    case 0x01: Control_Reg_2_Write(val); break; 
-                }*/
-                
-                switch(cmd)
-                {
-                    case 0x00: result = Control_Reg_2_Read(); return_flag = 1; break;
-                    case 0x01: 
-                            bit_num = val>>8;
-                            dat = val&0x00FF;
-                            uint8 prev_reg_status = Control_Reg_2_Read();
-                            if (dat == 1)
+                           switch(port)
                             {
-                                new_reg_status = prev_reg_status | (0x01<<bit_num);
+                                #ifdef CY_CONTROL_REG_Port_2_Control_H
+                                    case 0x02: Port_2_Control_Write(new_reg_status); break;
+                                #endif
+                                #ifdef CY_CONTROL_REG_Port_4_Control_H
+                                    case 0x04: Port_4_Control_Write(new_reg_status); break;
+                                #endif
+                                #ifdef CY_CONTROL_REG_Port_5_Control_H
+                                    case 0x05: Port_5_Control_Write(new_reg_status); break;
+                                #endif
+                                #ifdef CY_CONTROL_REG_Port_6_Control_H
+                                    case 0x06: Port_6_Control_Write(new_reg_status); break;
+                                #endif
+                                #ifdef CY_CONTROL_REG_Port_12_Control_H
+                                    case 0x0C: Port_12_Control_Write(new_reg_status); break;
+                                #endif
+                                
                             }
-                            else if (dat == 0)
+                            break;
+                            
+                    case 0x03: //set drive mode
+                            switch(config)
                             {
-                                new_reg_status = (prev_reg_status&(~(0x01<<bit_num)));
+                                    case 0x01: config_MASK = PIN_DM_ALG_HIZ; break;
+                                    case 0x02: config_MASK = PIN_DM_DIG_HIZ; break;
+                                    case 0x03: config_MASK = PIN_DM_RES_UP; break;
+                                    case 0x04: config_MASK = PIN_DM_RES_DWN; break;
+                                    case 0x05: config_MASK = PIN_DM_OD_LO; break;
+                                    case 0x06: config_MASK = PIN_DM_OD_HI; break;
+                                    case 0x07: config_MASK = PIN_DM_STRONG; break;
+                                    case 0x08: config_MASK = PIN_DM_RES_UPDWN; break;
+                                    
+                                    
                             }
                             
-                            Control_Reg_2_Write(new_reg_status);
-                            break;
-               
-                }
-                
-                if (return_flag)
-                {
-                    WriteTo_Pi(result);
-                } 
-            }
-        #endif
-    #endif
-    
-/****************************************************************************************//**
-*  @brief Contains usage scenarios of the third control register for use by a Master device. 
-*
-*  @param cmd: 8-bit number describing a desired usage of a function associated 
-*              with the third control register
-*  @param val: 16-bit number containing a value that is to be written to that 
-*              function, or modify the component's operation, if applicable.
-*
-*********************************************************************************************/
-    
-    #ifdef CY_CONTROL_REG_Control_Reg_3_H
-        #if !defined(Control_Reg_3_Sync_ctrl_reg__REMOVED)
-            void Output_Control2(uint8 cmd, uint16 val)
-            {
-                uint32 result = MAX_32; 
-                bool return_flag = 0;
-                uint8 bit_num = 0;
-                uint8 new_reg_status = 0;
-                uint8 dat = 0;
-                /*
-                switch(cmd)
-                {
-                    case 0x00: result = Control_Reg_3_Read(); return_flag = 1; break;
-                    case 0x01: Control_Reg_3_Write(val); break; 
-                }*/
-                
-                switch(cmd)
-                {
-                    case 0x00: result = Control_Reg_3_Read(); return_flag = 1; break;
-                    case 0x01: 
-                            bit_num = val>>8;
-                            dat = val&0x00FF;
-                            uint8 prev_reg_status = Control_Reg_3_Read();
-                            if (dat == 1)
+                            switch(port)
                             {
-                                new_reg_status = prev_reg_status | (0x01<<bit_num);
+                                case 0x02: 
+                                        switch(pin)
+                                        {   
+                                            #ifdef CY_PINS_GPIO_2_0_H 
+                                                case 0x00: GPIO_2_0_SetDriveMode(config_MASK); break; 
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_2_1_H 
+                                                case 0x01: GPIO_2_1_SetDriveMode(config_MASK); break; 
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_2_2_H 
+                                                case 0x02: GPIO_2_2_SetDriveMode(config_MASK); break; 
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_2_3_H 
+                                                case 0x03: GPIO_2_3_SetDriveMode(config_MASK); break;
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_2_4_H 
+                                                case 0x04: GPIO_2_4_SetDriveMode(config_MASK); break;
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_2_5_H 
+                                                case 0x05: GPIO_2_5_SetDriveMode(config_MASK); break;
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_2_6_H 
+                                                case 0x06: GPIO_2_6_SetDriveMode(config_MASK); break;
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_2_7_H 
+                                                case 0x07: GPIO_2_7_SetDriveMode(config_MASK); break;
+                                            #endif
+                                        }
+                                        break;
+                                        
+                                case 0x04: 
+                                        switch(pin)
+                                        {   
+                                            #ifdef CY_PINS_GPIO_4_0_H 
+                                                case 0x00: GPIO_4_0_SetDriveMode(config_MASK); break; 
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_4_1_H 
+                                                case 0x01: GPIO_4_1_SetDriveMode(config_MASK); break; 
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_4_2_H 
+                                                case 0x02: GPIO_4_2_SetDriveMode(config_MASK); break; 
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_4_3_H 
+                                                case 0x03: GPIO_4_3_SetDriveMode(config_MASK); break;
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_4_4_H 
+                                                case 0x04: GPIO_4_4_SetDriveMode(config_MASK); break;
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_4_5_H 
+                                                case 0x05: GPIO_4_5_SetDriveMode(config_MASK); break;
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_4_6_H 
+                                                case 0x06: GPIO_4_6_SetDriveMode(config_MASK); break;
+                                            #endif
+                                        }
+                                        break;
+                                        
+                                case 0x05: 
+                                        switch(pin)
+                                        {   
+                                            #ifdef CY_PINS_GPIO_5_0_H 
+                                                case 0x00: GPIO_5_0_SetDriveMode(config_MASK); break; 
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_5_1_H 
+                                                case 0x01: GPIO_5_1_SetDriveMode(config_MASK); break; 
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_5_2_H 
+                                                case 0x02: GPIO_5_2_SetDriveMode(config_MASK); break; 
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_5_3_H 
+                                                case 0x03: GPIO_5_3_SetDriveMode(config_MASK); break;
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_5_4_H 
+                                                case 0x04: GPIO_5_4_SetDriveMode(config_MASK); break;
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_5_5_H 
+                                                case 0x05: GPIO_5_5_SetDriveMode(config_MASK); break;
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_5_6_H 
+                                                case 0x06: GPIO_5_6_SetDriveMode(config_MASK); break;
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_5_7_H 
+                                                case 0x07: GPIO_5_7_SetDriveMode(config_MASK); break;
+                                            #endif
+                                        }
+                                        break;
+                                        
+                                case 0x06: 
+                                        switch(pin)
+                                        {   
+                                            #ifdef CY_PINS_GPIO_6_0_H 
+                                                case 0x00: GPIO_6_0_SetDriveMode(config_MASK); break; 
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_6_1_H 
+                                                case 0x01: GPIO_6_1_SetDriveMode(config_MASK); break; 
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_6_2_H 
+                                                case 0x02: GPIO_6_2_SetDriveMode(config_MASK); break; 
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_6_3_H 
+                                                case 0x03: GPIO_6_3_SetDriveMode(config_MASK); break;
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_6_4_H 
+                                                case 0x04: GPIO_6_4_SetDriveMode(config_MASK); break;
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_6_5_H 
+                                                case 0x05: GPIO_6_5_SetDriveMode(config_MASK); break;
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_6_6_H 
+                                                case 0x06: GPIO_6_6_SetDriveMode(config_MASK); break;
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_6_7_H 
+                                                case 0x07: GPIO_6_7_SetDriveMode(config_MASK); break;
+                                            #endif
+                                        }
+                                        break;
+                                
+                                case 0x0C: 
+                                        switch(pin)
+                                        {   
+                                            #ifdef CY_PINS_GPIO_12_0_H 
+                                                case 0x00: GPIO_12_0_SetDriveMode(config_MASK); break; 
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_12_1_H 
+                                                case 0x01: GPIO_12_1_SetDriveMode(config_MASK); break; 
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_12_2_H 
+                                                case 0x02: GPIO_12_2_SetDriveMode(config_MASK); break; 
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_12_3_H 
+                                                case 0x03: GPIO_12_3_SetDriveMode(config_MASK); break;
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_12_4_H 
+                                                case 0x04: GPIO_12_4_SetDriveMode(config_MASK); break;
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_12_5_H 
+                                                case 0x05: GPIO_12_5_SetDriveMode(config_MASK); break;
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_12_6_H 
+                                                case 0x06: GPIO_12_6_SetDriveMode(config_MASK); break;
+                                            #endif
+                                            #ifdef CY_PINS_GPIO_12_7_H 
+                                                case 0x07: GPIO_12_7_SetDriveMode(config_MASK); break;
+                                            #endif
+                                        }
+                                        break;
+                                
                             }
-                            else if (dat == 0)
-                            {
-                                new_reg_status = (prev_reg_status&(~(0x01<<bit_num)));
-                            }
+                            break;        
                             
-                            Control_Reg_3_Write(new_reg_status);
-                            break;
-               
+                
                 }
                 
                 if (return_flag)
                 {
                     WriteTo_Pi(result);
                 } 
+        
+        
+    }
+    
+    #ifdef CY_ADC_SAR_Seq_1_H
+        void Analog_Read(uint8 cmd, uint16 dat)
+        {
+            uint16 result;
+            ADC_SAR_Seq_1_Start();
+            if (cmd == 0x00 || cmd == 0x01)
+            {
+                ADC_SAR_Seq_1_StartConvert();
+                ADC_SAR_Seq_1_IsEndConversion(ADC_SAR_Seq_1_WAIT_FOR_RESULT);
+                result = ADC_SAR_Seq_1_GetResult16(dat);
+                ADC_SAR_Seq_1_StopConvert();
+                ADC_SAR_Seq_1_Stop();
             }
-        #endif
+            
+            switch(cmd)
+            {
+                case 0x00: WriteTo_Pi(result); break;
+                case 0x01: WriteTo_Pi(ADC_SAR_Seq_1_CountsTo_uVolts(result)); break;
+                case 0x02: ADC_SAR_Seq_1_SetOffset(dat); ADC_SAR_Seq_1_Stop(); break;
+                case 0x03: 
+                    switch(dat)
+                    {   
+                        case 0x08: ADC_SAR_Seq_1_SetResolution(ADC_SAR_Seq_1_BITS_8); break;
+                        case 0x0A: ADC_SAR_Seq_1_SetResolution(ADC_SAR_Seq_1_BITS_10); break;
+                        case 0x0C: ADC_SAR_Seq_1_SetResolution(ADC_SAR_Seq_1_BITS_12); break;
+                        
+                    }
+                    ADC_SAR_Seq_1_Stop();
+                    break;
+            }
+            
+        }
     #endif
 
 /* [] END OF FILE */

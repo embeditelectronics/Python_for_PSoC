@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 1
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 1
   29:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
   30:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** /*******************************************************************************
   31:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** * Function Name: SPIS_1_IntClock_Start
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 2
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** ********************************************************************************
@@ -97,7 +97,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 1
   43 0010 C4F20002 		movt	r2, 16384
   44 0014 1278     		ldrb	r2, [r2, #0]
   45 0016 D2B2     		uxtb	r2, r2
-  46 0018 62F07F02 		orn	r2, r2, #127
+  46 0018 42F04002 		orr	r2, r2, #64
   47 001c D2B2     		uxtb	r2, r2
   48 001e 1A70     		strb	r2, [r3, #0]
   49:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 	SPIS_1_IntClock_CLKSTBY |= SPIS_1_IntClock_CLKSTBY_MASK;
@@ -108,7 +108,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 1
   53 002c C4F20002 		movt	r2, 16384
   54 0030 1278     		ldrb	r2, [r2, #0]
   55 0032 D2B2     		uxtb	r2, r2
-  56 0034 62F07F02 		orn	r2, r2, #127
+  56 0034 42F04002 		orr	r2, r2, #64
   57 0038 D2B2     		uxtb	r2, r2
   58 003a 1A70     		strb	r2, [r3, #0]
   50:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** }
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 1
   62 0040 7047     		bx	lr
   63              		.cfi_endproc
   64              	.LFE0:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 3
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 3
 
 
   65              		.size	SPIS_1_IntClock_Start, .-SPIS_1_IntClock_Start
@@ -173,12 +173,12 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 1
   90 0010 C4F20002 		movt	r2, 16384
   91 0014 1278     		ldrb	r2, [r2, #0]
   92 0016 D2B2     		uxtb	r2, r2
-  93 0018 02F07F02 		and	r2, r2, #127
+  93 0018 22F04002 		bic	r2, r2, #64
   94 001c D2B2     		uxtb	r2, r2
   95 001e 1A70     		strb	r2, [r3, #0]
   75:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 	SPIS_1_IntClock_CLKSTBY &= (uint8)(~SPIS_1_IntClock_CLKSTBY_MASK);
   96              		.loc 1 75 0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 4
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 4
 
 
   97 0020 44F2B233 		movw	r3, #17330
@@ -187,7 +187,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 1
  100 002c C4F20002 		movt	r2, 16384
  101 0030 1278     		ldrb	r2, [r2, #0]
  102 0032 D2B2     		uxtb	r2, r2
- 103 0034 02F07F02 		and	r2, r2, #127
+ 103 0034 22F04002 		bic	r2, r2, #64
  104 0038 D2B2     		uxtb	r2, r2
  105 003a 1A70     		strb	r2, [r3, #0]
   76:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** }
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 1
  125              		@ link register save eliminated.
  126 0000 80B4     		push	{r7}
  127              	.LCFI4:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 5
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 5
 
 
  128              		.cfi_def_cfa_offset 4
@@ -255,21 +255,20 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 1
  138 000a C4F20003 		movt	r3, 16384
  139 000e 1B78     		ldrb	r3, [r3, #0]
  140 0010 DBB2     		uxtb	r3, r3
- 141 0012 DBB2     		uxtb	r3, r3
- 142 0014 5BB2     		sxtb	r3, r3
- 143 0016 002B     		cmp	r3, #0
- 144 0018 69DA     		bge	.L3
- 145              	.LBB2:
+ 141 0012 03F04003 		and	r3, r3, #64
+ 142 0016 002B     		cmp	r3, #0
+ 143 0018 69D0     		beq	.L3
+ 144              	.LBB2:
  103:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     {
  104:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** #if HAS_CLKDIST_LD_DISABLE
  105:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         uint16 oldDivider;
  106:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  107:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         CLK_DIST_LD = 0u;
- 146              		.loc 1 107 0
- 147 001a 44F20103 		movw	r3, #16385
- 148 001e C4F20003 		movt	r3, 16384
- 149 0022 4FF00002 		mov	r2, #0
- 150 0026 1A70     		strb	r2, [r3, #0]
+ 145              		.loc 1 107 0
+ 146 001a 44F20103 		movw	r3, #16385
+ 147 001e C4F20003 		movt	r3, 16384
+ 148 0022 4FF00002 		mov	r2, #0
+ 149 0026 1A70     		strb	r2, [r3, #0]
  108:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  109:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         /* Clear all the mask bits except ours. */
  110:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** #if defined(SPIS_1_IntClock__CFG3)
@@ -277,131 +276,131 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 1
  112:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         CLK_DIST_DMASK = 0x00u;
  113:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** #else
  114:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         CLK_DIST_DMASK = SPIS_1_IntClock_CLKEN_MASK;
- 151              		.loc 1 114 0
- 152 0028 44F21003 		movw	r3, #16400
- 153 002c C4F20003 		movt	r3, 16384
- 154 0030 4FF08002 		mov	r2, #128
- 155 0034 1A70     		strb	r2, [r3, #0]
+ 150              		.loc 1 114 0
+ 151 0028 44F21003 		movw	r3, #16400
+ 152 002c C4F20003 		movt	r3, 16384
+ 153 0030 4FF04002 		mov	r2, #64
+ 154 0034 1A70     		strb	r2, [r3, #0]
  115:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         CLK_DIST_AMASK = 0x00u;
- 156              		.loc 1 115 0
- 157 0036 44F21403 		movw	r3, #16404
- 158 003a C4F20003 		movt	r3, 16384
- 159 003e 4FF00002 		mov	r2, #0
- 160 0042 1A70     		strb	r2, [r3, #0]
+ 155              		.loc 1 115 0
+ 156 0036 44F21403 		movw	r3, #16404
+ 157 003a C4F20003 		movt	r3, 16384
+ 158 003e 4FF00002 		mov	r2, #0
+ 159 0042 1A70     		strb	r2, [r3, #0]
  116:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** #endif /* SPIS_1_IntClock__CFG3 */
  117:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  118:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         /* Clear mask of bus clock. */
  119:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         CLK_DIST_BCFG2 &= (uint8)(~BCFG2_MASK);
- 161              		.loc 1 119 0
- 162 0044 44F20803 		movw	r3, #16392
- 163 0048 C4F20003 		movt	r3, 16384
- 164 004c 44F20802 		movw	r2, #16392
- 165 0050 C4F20002 		movt	r2, 16384
- 166 0054 1278     		ldrb	r2, [r2, #0]
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 6
+ 160              		.loc 1 119 0
+ 161 0044 44F20803 		movw	r3, #16392
+ 162 0048 C4F20003 		movt	r3, 16384
+ 163 004c 44F20802 		movw	r2, #16392
+ 164 0050 C4F20002 		movt	r2, 16384
+ 165 0054 1278     		ldrb	r2, [r2, #0]
+ 166 0056 D2B2     		uxtb	r2, r2
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 6
 
 
- 167 0056 D2B2     		uxtb	r2, r2
- 168 0058 02F07F02 		and	r2, r2, #127
- 169 005c D2B2     		uxtb	r2, r2
- 170 005e 1A70     		strb	r2, [r3, #0]
+ 167 0058 02F07F02 		and	r2, r2, #127
+ 168 005c D2B2     		uxtb	r2, r2
+ 169 005e 1A70     		strb	r2, [r3, #0]
  120:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  121:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         oldDivider = CY_GET_REG16(SPIS_1_IntClock_DIV_PTR);
- 171              		.loc 1 121 0
- 172 0060 44F29C03 		movw	r3, #16540
- 173 0064 C4F20003 		movt	r3, 16384
- 174 0068 1B88     		ldrh	r3, [r3, #0]	@ movhi
- 175 006a FB80     		strh	r3, [r7, #6]	@ movhi
+ 170              		.loc 1 121 0
+ 171 0060 44F29803 		movw	r3, #16536
+ 172 0064 C4F20003 		movt	r3, 16384
+ 173 0068 1B88     		ldrh	r3, [r3, #0]	@ movhi
+ 174 006a FB80     		strh	r3, [r7, #6]	@ movhi
  122:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         CY_SET_REG16(CYREG_CLKDIST_WRK0, oldDivider);
- 176              		.loc 1 122 0
- 177 006c 44F20203 		movw	r3, #16386
- 178 0070 C4F20003 		movt	r3, 16384
- 179 0074 FA88     		ldrh	r2, [r7, #6]	@ movhi
- 180 0076 1A80     		strh	r2, [r3, #0]	@ movhi
+ 175              		.loc 1 122 0
+ 176 006c 44F20203 		movw	r3, #16386
+ 177 0070 C4F20003 		movt	r3, 16384
+ 178 0074 FA88     		ldrh	r2, [r7, #6]	@ movhi
+ 179 0076 1A80     		strh	r2, [r3, #0]	@ movhi
  123:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         CLK_DIST_LD = CYCLK_LD_DISABLE | CYCLK_LD_SYNC_EN | CYCLK_LD_LOAD;
- 181              		.loc 1 123 0
- 182 0078 44F20103 		movw	r3, #16385
- 183 007c C4F20003 		movt	r3, 16384
- 184 0080 4FF00702 		mov	r2, #7
- 185 0084 1A70     		strb	r2, [r3, #0]
+ 180              		.loc 1 123 0
+ 181 0078 44F20103 		movw	r3, #16385
+ 182 007c C4F20003 		movt	r3, 16384
+ 183 0080 4FF00702 		mov	r2, #7
+ 184 0084 1A70     		strb	r2, [r3, #0]
  124:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  125:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         /* Wait for clock to be disabled */
  126:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         while ((CLK_DIST_LD & CYCLK_LD_LOAD) != 0u) { }
- 186              		.loc 1 126 0
- 187 0086 00BF     		nop
- 188              	.L5:
- 189              		.loc 1 126 0 is_stmt 0 discriminator 1
- 190 0088 44F20103 		movw	r3, #16385
- 191 008c C4F20003 		movt	r3, 16384
- 192 0090 1B78     		ldrb	r3, [r3, #0]
- 193 0092 DBB2     		uxtb	r3, r3
- 194 0094 03F00103 		and	r3, r3, #1
- 195 0098 002B     		cmp	r3, #0
- 196 009a F5D1     		bne	.L5
+ 185              		.loc 1 126 0
+ 186 0086 00BF     		nop
+ 187              	.L5:
+ 188              		.loc 1 126 0 is_stmt 0 discriminator 1
+ 189 0088 44F20103 		movw	r3, #16385
+ 190 008c C4F20003 		movt	r3, 16384
+ 191 0090 1B78     		ldrb	r3, [r3, #0]
+ 192 0092 DBB2     		uxtb	r3, r3
+ 193 0094 03F00103 		and	r3, r3, #1
+ 194 0098 002B     		cmp	r3, #0
+ 195 009a F5D1     		bne	.L5
  127:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** #endif /* HAS_CLKDIST_LD_DISABLE */
  128:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  129:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         /* Clear the bit to disable the clock. */
  130:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         SPIS_1_IntClock_CLKEN &= (uint8)(~SPIS_1_IntClock_CLKEN_MASK);
- 197              		.loc 1 130 0 is_stmt 1
- 198 009c 44F2A233 		movw	r3, #17314
- 199 00a0 C4F20003 		movt	r3, 16384
- 200 00a4 44F2A232 		movw	r2, #17314
- 201 00a8 C4F20002 		movt	r2, 16384
- 202 00ac 1278     		ldrb	r2, [r2, #0]
- 203 00ae D2B2     		uxtb	r2, r2
- 204 00b0 02F07F02 		and	r2, r2, #127
- 205 00b4 D2B2     		uxtb	r2, r2
- 206 00b6 1A70     		strb	r2, [r3, #0]
+ 196              		.loc 1 130 0 is_stmt 1
+ 197 009c 44F2A233 		movw	r3, #17314
+ 198 00a0 C4F20003 		movt	r3, 16384
+ 199 00a4 44F2A232 		movw	r2, #17314
+ 200 00a8 C4F20002 		movt	r2, 16384
+ 201 00ac 1278     		ldrb	r2, [r2, #0]
+ 202 00ae D2B2     		uxtb	r2, r2
+ 203 00b0 22F04002 		bic	r2, r2, #64
+ 204 00b4 D2B2     		uxtb	r2, r2
+ 205 00b6 1A70     		strb	r2, [r3, #0]
  131:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         SPIS_1_IntClock_CLKSTBY &= (uint8)(~SPIS_1_IntClock_CLKSTBY_MASK);
- 207              		.loc 1 131 0
- 208 00b8 44F2B233 		movw	r3, #17330
- 209 00bc C4F20003 		movt	r3, 16384
- 210 00c0 44F2B232 		movw	r2, #17330
- 211 00c4 C4F20002 		movt	r2, 16384
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 7
+ 206              		.loc 1 131 0
+ 207 00b8 44F2B233 		movw	r3, #17330
+ 208 00bc C4F20003 		movt	r3, 16384
+ 209 00c0 44F2B232 		movw	r2, #17330
+ 210 00c4 C4F20002 		movt	r2, 16384
+ 211 00c8 1278     		ldrb	r2, [r2, #0]
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 7
 
 
- 212 00c8 1278     		ldrb	r2, [r2, #0]
- 213 00ca D2B2     		uxtb	r2, r2
- 214 00cc 02F07F02 		and	r2, r2, #127
- 215 00d0 D2B2     		uxtb	r2, r2
- 216 00d2 1A70     		strb	r2, [r3, #0]
+ 212 00ca D2B2     		uxtb	r2, r2
+ 213 00cc 22F04002 		bic	r2, r2, #64
+ 214 00d0 D2B2     		uxtb	r2, r2
+ 215 00d2 1A70     		strb	r2, [r3, #0]
  132:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  133:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** #if HAS_CLKDIST_LD_DISABLE
  134:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         /* Clear the disable bit */
  135:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         CLK_DIST_LD = 0x00u;
- 217              		.loc 1 135 0
- 218 00d4 44F20103 		movw	r3, #16385
- 219 00d8 C4F20003 		movt	r3, 16384
- 220 00dc 4FF00002 		mov	r2, #0
- 221 00e0 1A70     		strb	r2, [r3, #0]
+ 216              		.loc 1 135 0
+ 217 00d4 44F20103 		movw	r3, #16385
+ 218 00d8 C4F20003 		movt	r3, 16384
+ 219 00dc 4FF00002 		mov	r2, #0
+ 220 00e0 1A70     		strb	r2, [r3, #0]
  136:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         CY_SET_REG16(SPIS_1_IntClock_DIV_PTR, oldDivider);
- 222              		.loc 1 136 0
- 223 00e2 44F29C03 		movw	r3, #16540
- 224 00e6 C4F20003 		movt	r3, 16384
- 225 00ea FA88     		ldrh	r2, [r7, #6]	@ movhi
- 226 00ec 1A80     		strh	r2, [r3, #0]	@ movhi
- 227              	.L3:
- 228              	.LBE2:
+ 221              		.loc 1 136 0
+ 222 00e2 44F29803 		movw	r3, #16536
+ 223 00e6 C4F20003 		movt	r3, 16384
+ 224 00ea FA88     		ldrh	r2, [r7, #6]	@ movhi
+ 225 00ec 1A80     		strh	r2, [r3, #0]	@ movhi
+ 226              	.L3:
+ 227              	.LBE2:
  137:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** #endif /* HAS_CLKDIST_LD_DISABLE */
  138:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     }
  139:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** }
- 229              		.loc 1 139 0
- 230 00ee 07F10C07 		add	r7, r7, #12
- 231 00f2 BD46     		mov	sp, r7
- 232 00f4 80BC     		pop	{r7}
- 233 00f6 7047     		bx	lr
- 234              		.cfi_endproc
- 235              	.LFE2:
- 236              		.size	SPIS_1_IntClock_StopBlock, .-SPIS_1_IntClock_StopBlock
- 237              		.section	.text.SPIS_1_IntClock_StandbyPower,"ax",%progbits
- 238              		.align	2
- 239              		.global	SPIS_1_IntClock_StandbyPower
- 240              		.thumb
- 241              		.thumb_func
- 242              		.type	SPIS_1_IntClock_StandbyPower, %function
- 243              	SPIS_1_IntClock_StandbyPower:
- 244              	.LFB3:
+ 228              		.loc 1 139 0
+ 229 00ee 07F10C07 		add	r7, r7, #12
+ 230 00f2 BD46     		mov	sp, r7
+ 231 00f4 80BC     		pop	{r7}
+ 232 00f6 7047     		bx	lr
+ 233              		.cfi_endproc
+ 234              	.LFE2:
+ 235              		.size	SPIS_1_IntClock_StopBlock, .-SPIS_1_IntClock_StopBlock
+ 236              		.section	.text.SPIS_1_IntClock_StandbyPower,"ax",%progbits
+ 237              		.align	2
+ 238              		.global	SPIS_1_IntClock_StandbyPower
+ 239              		.thumb
+ 240              		.thumb_func
+ 241              		.type	SPIS_1_IntClock_StandbyPower, %function
+ 242              	SPIS_1_IntClock_StandbyPower:
+ 243              	.LFB3:
  140:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** #endif /* (CY_PSOC3 || CY_PSOC5LP) */
  141:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  142:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
@@ -418,84 +417,84 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 1
  153:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** * Returns:
  154:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** *  None
  155:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** *
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 8
-
-
  156:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** *******************************************************************************/
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 8
+
+
  157:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** void SPIS_1_IntClock_StandbyPower(uint8 state) 
  158:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** {
- 245              		.loc 1 158 0
- 246              		.cfi_startproc
- 247              		@ args = 0, pretend = 0, frame = 8
- 248              		@ frame_needed = 1, uses_anonymous_args = 0
- 249              		@ link register save eliminated.
- 250 0000 80B4     		push	{r7}
- 251              	.LCFI7:
- 252              		.cfi_def_cfa_offset 4
- 253              		.cfi_offset 7, -4
- 254 0002 83B0     		sub	sp, sp, #12
- 255              	.LCFI8:
- 256              		.cfi_def_cfa_offset 16
- 257 0004 00AF     		add	r7, sp, #0
- 258              	.LCFI9:
- 259              		.cfi_def_cfa_register 7
- 260 0006 0346     		mov	r3, r0
- 261 0008 FB71     		strb	r3, [r7, #7]
+ 244              		.loc 1 158 0
+ 245              		.cfi_startproc
+ 246              		@ args = 0, pretend = 0, frame = 8
+ 247              		@ frame_needed = 1, uses_anonymous_args = 0
+ 248              		@ link register save eliminated.
+ 249 0000 80B4     		push	{r7}
+ 250              	.LCFI7:
+ 251              		.cfi_def_cfa_offset 4
+ 252              		.cfi_offset 7, -4
+ 253 0002 83B0     		sub	sp, sp, #12
+ 254              	.LCFI8:
+ 255              		.cfi_def_cfa_offset 16
+ 256 0004 00AF     		add	r7, sp, #0
+ 257              	.LCFI9:
+ 258              		.cfi_def_cfa_register 7
+ 259 0006 0346     		mov	r3, r0
+ 260 0008 FB71     		strb	r3, [r7, #7]
  159:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     if(state == 0u)
- 262              		.loc 1 159 0
- 263 000a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
- 264 000c 002B     		cmp	r3, #0
- 265 000e 0ED1     		bne	.L7
+ 261              		.loc 1 159 0
+ 262 000a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 263 000c 002B     		cmp	r3, #0
+ 264 000e 0ED1     		bne	.L7
  160:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     {
  161:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         SPIS_1_IntClock_CLKSTBY &= (uint8)(~SPIS_1_IntClock_CLKSTBY_MASK);
- 266              		.loc 1 161 0
- 267 0010 44F2B233 		movw	r3, #17330
- 268 0014 C4F20003 		movt	r3, 16384
- 269 0018 44F2B232 		movw	r2, #17330
- 270 001c C4F20002 		movt	r2, 16384
- 271 0020 1278     		ldrb	r2, [r2, #0]
- 272 0022 D2B2     		uxtb	r2, r2
- 273 0024 02F07F02 		and	r2, r2, #127
- 274 0028 D2B2     		uxtb	r2, r2
- 275 002a 1A70     		strb	r2, [r3, #0]
- 276 002c 0DE0     		b	.L6
- 277              	.L7:
+ 265              		.loc 1 161 0
+ 266 0010 44F2B233 		movw	r3, #17330
+ 267 0014 C4F20003 		movt	r3, 16384
+ 268 0018 44F2B232 		movw	r2, #17330
+ 269 001c C4F20002 		movt	r2, 16384
+ 270 0020 1278     		ldrb	r2, [r2, #0]
+ 271 0022 D2B2     		uxtb	r2, r2
+ 272 0024 22F04002 		bic	r2, r2, #64
+ 273 0028 D2B2     		uxtb	r2, r2
+ 274 002a 1A70     		strb	r2, [r3, #0]
+ 275 002c 0DE0     		b	.L6
+ 276              	.L7:
  162:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     }
  163:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     else
  164:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     {
  165:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         SPIS_1_IntClock_CLKSTBY |= SPIS_1_IntClock_CLKSTBY_MASK;
- 278              		.loc 1 165 0
- 279 002e 44F2B233 		movw	r3, #17330
- 280 0032 C4F20003 		movt	r3, 16384
- 281 0036 44F2B232 		movw	r2, #17330
- 282 003a C4F20002 		movt	r2, 16384
- 283 003e 1278     		ldrb	r2, [r2, #0]
- 284 0040 D2B2     		uxtb	r2, r2
- 285 0042 62F07F02 		orn	r2, r2, #127
- 286 0046 D2B2     		uxtb	r2, r2
- 287 0048 1A70     		strb	r2, [r3, #0]
- 288              	.L6:
+ 277              		.loc 1 165 0
+ 278 002e 44F2B233 		movw	r3, #17330
+ 279 0032 C4F20003 		movt	r3, 16384
+ 280 0036 44F2B232 		movw	r2, #17330
+ 281 003a C4F20002 		movt	r2, 16384
+ 282 003e 1278     		ldrb	r2, [r2, #0]
+ 283 0040 D2B2     		uxtb	r2, r2
+ 284 0042 42F04002 		orr	r2, r2, #64
+ 285 0046 D2B2     		uxtb	r2, r2
+ 286 0048 1A70     		strb	r2, [r3, #0]
+ 287              	.L6:
  166:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     }
  167:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** }
- 289              		.loc 1 167 0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 9
+ 288              		.loc 1 167 0
+ 289 004a 07F10C07 		add	r7, r7, #12
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 9
 
 
- 290 004a 07F10C07 		add	r7, r7, #12
- 291 004e BD46     		mov	sp, r7
- 292 0050 80BC     		pop	{r7}
- 293 0052 7047     		bx	lr
- 294              		.cfi_endproc
- 295              	.LFE3:
- 296              		.size	SPIS_1_IntClock_StandbyPower, .-SPIS_1_IntClock_StandbyPower
- 297              		.section	.text.SPIS_1_IntClock_SetDividerRegister,"ax",%progbits
- 298              		.align	2
- 299              		.global	SPIS_1_IntClock_SetDividerRegister
- 300              		.thumb
- 301              		.thumb_func
- 302              		.type	SPIS_1_IntClock_SetDividerRegister, %function
- 303              	SPIS_1_IntClock_SetDividerRegister:
- 304              	.LFB4:
+ 290 004e BD46     		mov	sp, r7
+ 291 0050 80BC     		pop	{r7}
+ 292 0052 7047     		bx	lr
+ 293              		.cfi_endproc
+ 294              	.LFE3:
+ 295              		.size	SPIS_1_IntClock_StandbyPower, .-SPIS_1_IntClock_StandbyPower
+ 296              		.section	.text.SPIS_1_IntClock_SetDividerRegister,"ax",%progbits
+ 297              		.align	2
+ 298              		.global	SPIS_1_IntClock_SetDividerRegister
+ 299              		.thumb
+ 300              		.thumb_func
+ 301              		.type	SPIS_1_IntClock_SetDividerRegister, %function
+ 302              	SPIS_1_IntClock_SetDividerRegister:
+ 303              	.LFB4:
  168:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  169:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  170:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** /*******************************************************************************
@@ -524,151 +523,151 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 1
  193:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** void SPIS_1_IntClock_SetDividerRegister(uint16 clkDivider, uint8 restart)
  194:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                                 
  195:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** {
- 305              		.loc 1 195 0
- 306              		.cfi_startproc
- 307              		@ args = 0, pretend = 0, frame = 16
- 308              		@ frame_needed = 1, uses_anonymous_args = 0
- 309 0000 80B5     		push	{r7, lr}
- 310              	.LCFI10:
- 311              		.cfi_def_cfa_offset 8
- 312              		.cfi_offset 7, -8
- 313              		.cfi_offset 14, -4
- 314 0002 84B0     		sub	sp, sp, #16
- 315              	.LCFI11:
- 316              		.cfi_def_cfa_offset 24
- 317 0004 00AF     		add	r7, sp, #0
- 318              	.LCFI12:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 10
+ 304              		.loc 1 195 0
+ 305              		.cfi_startproc
+ 306              		@ args = 0, pretend = 0, frame = 16
+ 307              		@ frame_needed = 1, uses_anonymous_args = 0
+ 308 0000 80B5     		push	{r7, lr}
+ 309              	.LCFI10:
+ 310              		.cfi_def_cfa_offset 8
+ 311              		.cfi_offset 7, -8
+ 312              		.cfi_offset 14, -4
+ 313 0002 84B0     		sub	sp, sp, #16
+ 314              	.LCFI11:
+ 315              		.cfi_def_cfa_offset 24
+ 316 0004 00AF     		add	r7, sp, #0
+ 317              	.LCFI12:
+ 318              		.cfi_def_cfa_register 7
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 10
 
 
- 319              		.cfi_def_cfa_register 7
- 320 0006 0246     		mov	r2, r0
- 321 0008 0B46     		mov	r3, r1
- 322 000a FA80     		strh	r2, [r7, #6]	@ movhi
- 323 000c 7B71     		strb	r3, [r7, #5]
+ 319 0006 0246     		mov	r2, r0
+ 320 0008 0B46     		mov	r3, r1
+ 321 000a FA80     		strh	r2, [r7, #6]	@ movhi
+ 322 000c 7B71     		strb	r3, [r7, #5]
  196:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     uint8 enabled;
  197:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  198:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     uint8 currSrc = SPIS_1_IntClock_GetSourceRegister();
- 324              		.loc 1 198 0
- 325 000e FFF7FEFF 		bl	SPIS_1_IntClock_GetSourceRegister
- 326 0012 0346     		mov	r3, r0
- 327 0014 FB73     		strb	r3, [r7, #15]
+ 323              		.loc 1 198 0
+ 324 000e FFF7FEFF 		bl	SPIS_1_IntClock_GetSourceRegister
+ 325 0012 0346     		mov	r3, r0
+ 326 0014 FB73     		strb	r3, [r7, #15]
  199:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     uint16 oldDivider = SPIS_1_IntClock_GetDividerRegister();
- 328              		.loc 1 199 0
- 329 0016 FFF7FEFF 		bl	SPIS_1_IntClock_GetDividerRegister
- 330 001a 0346     		mov	r3, r0
- 331 001c BB81     		strh	r3, [r7, #12]	@ movhi
+ 327              		.loc 1 199 0
+ 328 0016 FFF7FEFF 		bl	SPIS_1_IntClock_GetDividerRegister
+ 329 001a 0346     		mov	r3, r0
+ 330 001c BB81     		strh	r3, [r7, #12]	@ movhi
  200:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  201:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     if (clkDivider != oldDivider)
- 332              		.loc 1 201 0
- 333 001e FA88     		ldrh	r2, [r7, #6]
- 334 0020 BB89     		ldrh	r3, [r7, #12]
- 335 0022 9A42     		cmp	r2, r3
- 336 0024 00F0DC80 		beq	.L9
+ 331              		.loc 1 201 0
+ 332 001e FA88     		ldrh	r2, [r7, #6]
+ 333 0020 BB89     		ldrh	r3, [r7, #12]
+ 334 0022 9A42     		cmp	r2, r3
+ 335 0024 00F0DC80 		beq	.L9
  202:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     {
  203:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         enabled = SPIS_1_IntClock_CLKEN & SPIS_1_IntClock_CLKEN_MASK;
- 337              		.loc 1 203 0
- 338 0028 44F2A233 		movw	r3, #17314
- 339 002c C4F20003 		movt	r3, 16384
- 340 0030 1B78     		ldrb	r3, [r3, #0]
- 341 0032 DBB2     		uxtb	r3, r3
- 342 0034 23F07F03 		bic	r3, r3, #127
- 343 0038 FB72     		strb	r3, [r7, #11]
+ 336              		.loc 1 203 0
+ 337 0028 44F2A233 		movw	r3, #17314
+ 338 002c C4F20003 		movt	r3, 16384
+ 339 0030 1B78     		ldrb	r3, [r3, #0]
+ 340 0032 DBB2     		uxtb	r3, r3
+ 341 0034 03F04003 		and	r3, r3, #64
+ 342 0038 FB72     		strb	r3, [r7, #11]
  204:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  205:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         if ((currSrc == (uint8)CYCLK_SRC_SEL_CLK_SYNC_D) && ((oldDivider == 0u) || (clkDivider == 0
- 344              		.loc 1 205 0
- 345 003a FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
- 346 003c 002B     		cmp	r3, #0
- 347 003e 32D1     		bne	.L11
- 348              		.loc 1 205 0 is_stmt 0 discriminator 1
- 349 0040 BB89     		ldrh	r3, [r7, #12]
- 350 0042 002B     		cmp	r3, #0
- 351 0044 02D0     		beq	.L12
- 352 0046 FB88     		ldrh	r3, [r7, #6]
- 353 0048 002B     		cmp	r3, #0
- 354 004a 2CD1     		bne	.L11
- 355              	.L12:
+ 343              		.loc 1 205 0
+ 344 003a FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 345 003c 002B     		cmp	r3, #0
+ 346 003e 32D1     		bne	.L11
+ 347              		.loc 1 205 0 is_stmt 0 discriminator 1
+ 348 0040 BB89     		ldrh	r3, [r7, #12]
+ 349 0042 002B     		cmp	r3, #0
+ 350 0044 02D0     		beq	.L12
+ 351 0046 FB88     		ldrh	r3, [r7, #6]
+ 352 0048 002B     		cmp	r3, #0
+ 353 004a 2CD1     		bne	.L11
+ 354              	.L12:
  206:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         {
  207:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****             /* Moving to/from SSS requires correct ordering to prevent halting the clock    */
  208:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****             if (oldDivider == 0u)
- 356              		.loc 1 208 0 is_stmt 1
- 357 004c BB89     		ldrh	r3, [r7, #12]
- 358 004e 002B     		cmp	r3, #0
- 359 0050 14D1     		bne	.L13
+ 355              		.loc 1 208 0 is_stmt 1
+ 356 004c BB89     		ldrh	r3, [r7, #12]
+ 357 004e 002B     		cmp	r3, #0
+ 358 0050 14D1     		bne	.L13
  209:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****             {
  210:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 /* Moving away from SSS, set the divider first so when SSS is cleared we    */
  211:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 /* don't halt the clock.  Using the shadow load isn't required as the       */
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 11
-
-
  212:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 /* divider is ignored while SSS is set.                                     */
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 11
+
+
  213:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 CY_SET_REG16(SPIS_1_IntClock_DIV_PTR, clkDivider);
- 360              		.loc 1 213 0
- 361 0052 44F29C03 		movw	r3, #16540
- 362 0056 C4F20003 		movt	r3, 16384
- 363 005a FA88     		ldrh	r2, [r7, #6]	@ movhi
- 364 005c 1A80     		strh	r2, [r3, #0]	@ movhi
+ 359              		.loc 1 213 0
+ 360 0052 44F29803 		movw	r3, #16536
+ 361 0056 C4F20003 		movt	r3, 16384
+ 362 005a FA88     		ldrh	r2, [r7, #6]	@ movhi
+ 363 005c 1A80     		strh	r2, [r3, #0]	@ movhi
  214:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 SPIS_1_IntClock_MOD_SRC &= (uint8)(~CYCLK_SSS);
- 365              		.loc 1 214 0
- 366 005e 44F29E03 		movw	r3, #16542
- 367 0062 C4F20003 		movt	r3, 16384
- 368 0066 44F29E02 		movw	r2, #16542
- 369 006a C4F20002 		movt	r2, 16384
- 370 006e 1278     		ldrb	r2, [r2, #0]
- 371 0070 D2B2     		uxtb	r2, r2
- 372 0072 22F04002 		bic	r2, r2, #64
- 373 0076 D2B2     		uxtb	r2, r2
- 374 0078 1A70     		strb	r2, [r3, #0]
+ 364              		.loc 1 214 0
+ 365 005e 44F29A03 		movw	r3, #16538
+ 366 0062 C4F20003 		movt	r3, 16384
+ 367 0066 44F29A02 		movw	r2, #16538
+ 368 006a C4F20002 		movt	r2, 16384
+ 369 006e 1278     		ldrb	r2, [r2, #0]
+ 370 0070 D2B2     		uxtb	r2, r2
+ 371 0072 22F04002 		bic	r2, r2, #64
+ 372 0076 D2B2     		uxtb	r2, r2
+ 373 0078 1A70     		strb	r2, [r3, #0]
  208:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****             if (oldDivider == 0u)
- 375              		.loc 1 208 0
- 376 007a B1E0     		b	.L9
- 377              	.L13:
+ 374              		.loc 1 208 0
+ 375 007a B1E0     		b	.L9
+ 376              	.L13:
  215:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****             }
  216:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****             else
  217:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****             {
  218:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 /* Moving to SSS, set SSS which then ignores the divider and we can set     */
  219:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 /* it without bothering with the shadow load.                               */
  220:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 SPIS_1_IntClock_MOD_SRC |= CYCLK_SSS;
- 378              		.loc 1 220 0
- 379 007c 44F29E03 		movw	r3, #16542
- 380 0080 C4F20003 		movt	r3, 16384
- 381 0084 44F29E02 		movw	r2, #16542
- 382 0088 C4F20002 		movt	r2, 16384
- 383 008c 1278     		ldrb	r2, [r2, #0]
- 384 008e D2B2     		uxtb	r2, r2
- 385 0090 42F04002 		orr	r2, r2, #64
- 386 0094 D2B2     		uxtb	r2, r2
- 387 0096 1A70     		strb	r2, [r3, #0]
+ 377              		.loc 1 220 0
+ 378 007c 44F29A03 		movw	r3, #16538
+ 379 0080 C4F20003 		movt	r3, 16384
+ 380 0084 44F29A02 		movw	r2, #16538
+ 381 0088 C4F20002 		movt	r2, 16384
+ 382 008c 1278     		ldrb	r2, [r2, #0]
+ 383 008e D2B2     		uxtb	r2, r2
+ 384 0090 42F04002 		orr	r2, r2, #64
+ 385 0094 D2B2     		uxtb	r2, r2
+ 386 0096 1A70     		strb	r2, [r3, #0]
  221:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 CY_SET_REG16(SPIS_1_IntClock_DIV_PTR, clkDivider);
- 388              		.loc 1 221 0
- 389 0098 44F29C03 		movw	r3, #16540
- 390 009c C4F20003 		movt	r3, 16384
- 391 00a0 FA88     		ldrh	r2, [r7, #6]	@ movhi
- 392 00a2 1A80     		strh	r2, [r3, #0]	@ movhi
+ 387              		.loc 1 221 0
+ 388 0098 44F29803 		movw	r3, #16536
+ 389 009c C4F20003 		movt	r3, 16384
+ 390 00a0 FA88     		ldrh	r2, [r7, #6]	@ movhi
+ 391 00a2 1A80     		strh	r2, [r3, #0]	@ movhi
  208:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****             if (oldDivider == 0u)
- 393              		.loc 1 208 0
- 394 00a4 9CE0     		b	.L9
- 395              	.L11:
+ 392              		.loc 1 208 0
+ 393 00a4 9CE0     		b	.L9
+ 394              	.L11:
  222:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****             }
  223:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         }
  224:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         else
  225:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         {
  226:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 			
  227:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****             if (enabled != 0u)
- 396              		.loc 1 227 0
- 397 00a6 FB7A     		ldrb	r3, [r7, #11]	@ zero_extendqisi2
- 398 00a8 002B     		cmp	r3, #0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 12
+ 395              		.loc 1 227 0
+ 396 00a6 FB7A     		ldrb	r3, [r7, #11]	@ zero_extendqisi2
+ 397 00a8 002B     		cmp	r3, #0
+ 398 00aa 5CD0     		beq	.L15
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 12
 
 
- 399 00aa 5CD0     		beq	.L15
  228:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****             {
  229:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 CLK_DIST_LD = 0x00u;
- 400              		.loc 1 229 0
- 401 00ac 44F20103 		movw	r3, #16385
- 402 00b0 C4F20003 		movt	r3, 16384
- 403 00b4 4FF00002 		mov	r2, #0
- 404 00b8 1A70     		strb	r2, [r3, #0]
+ 399              		.loc 1 229 0
+ 400 00ac 44F20103 		movw	r3, #16385
+ 401 00b0 C4F20003 		movt	r3, 16384
+ 402 00b4 4FF00002 		mov	r2, #0
+ 403 00b8 1A70     		strb	r2, [r3, #0]
  230:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  231:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 /* Clear all the mask bits except ours. */
  232:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** #if defined(SPIS_1_IntClock__CFG3)
@@ -676,203 +675,202 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 1
  234:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 CLK_DIST_DMASK = 0x00u;
  235:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** #else
  236:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 CLK_DIST_DMASK = SPIS_1_IntClock_CLKEN_MASK;
- 405              		.loc 1 236 0
- 406 00ba 44F21003 		movw	r3, #16400
- 407 00be C4F20003 		movt	r3, 16384
- 408 00c2 4FF08002 		mov	r2, #128
- 409 00c6 1A70     		strb	r2, [r3, #0]
+ 404              		.loc 1 236 0
+ 405 00ba 44F21003 		movw	r3, #16400
+ 406 00be C4F20003 		movt	r3, 16384
+ 407 00c2 4FF04002 		mov	r2, #64
+ 408 00c6 1A70     		strb	r2, [r3, #0]
  237:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 CLK_DIST_AMASK = 0x00u;
- 410              		.loc 1 237 0
- 411 00c8 44F21403 		movw	r3, #16404
- 412 00cc C4F20003 		movt	r3, 16384
- 413 00d0 4FF00002 		mov	r2, #0
- 414 00d4 1A70     		strb	r2, [r3, #0]
+ 409              		.loc 1 237 0
+ 410 00c8 44F21403 		movw	r3, #16404
+ 411 00cc C4F20003 		movt	r3, 16384
+ 412 00d0 4FF00002 		mov	r2, #0
+ 413 00d4 1A70     		strb	r2, [r3, #0]
  238:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** #endif /* SPIS_1_IntClock__CFG3 */
  239:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 /* Clear mask of bus clock. */
  240:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 CLK_DIST_BCFG2 &= (uint8)(~BCFG2_MASK);
- 415              		.loc 1 240 0
- 416 00d6 44F20803 		movw	r3, #16392
- 417 00da C4F20003 		movt	r3, 16384
- 418 00de 44F20802 		movw	r2, #16392
- 419 00e2 C4F20002 		movt	r2, 16384
- 420 00e6 1278     		ldrb	r2, [r2, #0]
- 421 00e8 D2B2     		uxtb	r2, r2
- 422 00ea 02F07F02 		and	r2, r2, #127
- 423 00ee D2B2     		uxtb	r2, r2
- 424 00f0 1A70     		strb	r2, [r3, #0]
+ 414              		.loc 1 240 0
+ 415 00d6 44F20803 		movw	r3, #16392
+ 416 00da C4F20003 		movt	r3, 16384
+ 417 00de 44F20802 		movw	r2, #16392
+ 418 00e2 C4F20002 		movt	r2, 16384
+ 419 00e6 1278     		ldrb	r2, [r2, #0]
+ 420 00e8 D2B2     		uxtb	r2, r2
+ 421 00ea 02F07F02 		and	r2, r2, #127
+ 422 00ee D2B2     		uxtb	r2, r2
+ 423 00f0 1A70     		strb	r2, [r3, #0]
  241:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  242:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 /* If clock is currently enabled, disable it if async or going from N-to-1*/
  243:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 if (((SPIS_1_IntClock_MOD_SRC & CYCLK_SYNC) == 0u) || (clkDivider == 0u))
- 425              		.loc 1 243 0
- 426 00f2 44F29E03 		movw	r3, #16542
- 427 00f6 C4F20003 		movt	r3, 16384
- 428 00fa 1B78     		ldrb	r3, [r3, #0]
- 429 00fc DBB2     		uxtb	r3, r3
- 430 00fe 03F00803 		and	r3, r3, #8
- 431 0102 002B     		cmp	r3, #0
- 432 0104 02D0     		beq	.L16
- 433              		.loc 1 243 0 is_stmt 0 discriminator 1
- 434 0106 FB88     		ldrh	r3, [r7, #6]
- 435 0108 002B     		cmp	r3, #0
- 436 010a 2CD1     		bne	.L15
- 437              	.L16:
+ 424              		.loc 1 243 0
+ 425 00f2 44F29A03 		movw	r3, #16538
+ 426 00f6 C4F20003 		movt	r3, 16384
+ 427 00fa 1B78     		ldrb	r3, [r3, #0]
+ 428 00fc DBB2     		uxtb	r3, r3
+ 429 00fe 03F00803 		and	r3, r3, #8
+ 430 0102 002B     		cmp	r3, #0
+ 431 0104 02D0     		beq	.L16
+ 432              		.loc 1 243 0 is_stmt 0 discriminator 1
+ 433 0106 FB88     		ldrh	r3, [r7, #6]
+ 434 0108 002B     		cmp	r3, #0
+ 435 010a 2CD1     		bne	.L15
+ 436              	.L16:
  244:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 {
  245:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** #if HAS_CLKDIST_LD_DISABLE
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 13
-
-
  246:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                     CY_SET_REG16(CYREG_CLKDIST_WRK0, oldDivider);
- 438              		.loc 1 246 0 is_stmt 1
- 439 010c 44F20203 		movw	r3, #16386
- 440 0110 C4F20003 		movt	r3, 16384
- 441 0114 BA89     		ldrh	r2, [r7, #12]	@ movhi
- 442 0116 1A80     		strh	r2, [r3, #0]	@ movhi
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 13
+
+
+ 437              		.loc 1 246 0 is_stmt 1
+ 438 010c 44F20203 		movw	r3, #16386
+ 439 0110 C4F20003 		movt	r3, 16384
+ 440 0114 BA89     		ldrh	r2, [r7, #12]	@ movhi
+ 441 0116 1A80     		strh	r2, [r3, #0]	@ movhi
  247:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                     CLK_DIST_LD = CYCLK_LD_DISABLE|CYCLK_LD_SYNC_EN|CYCLK_LD_LOAD;
- 443              		.loc 1 247 0
- 444 0118 44F20103 		movw	r3, #16385
- 445 011c C4F20003 		movt	r3, 16384
- 446 0120 4FF00702 		mov	r2, #7
- 447 0124 1A70     		strb	r2, [r3, #0]
+ 442              		.loc 1 247 0
+ 443 0118 44F20103 		movw	r3, #16385
+ 444 011c C4F20003 		movt	r3, 16384
+ 445 0120 4FF00702 		mov	r2, #7
+ 446 0124 1A70     		strb	r2, [r3, #0]
  248:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  249:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                     /* Wait for clock to be disabled */
  250:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                     while ((CLK_DIST_LD & CYCLK_LD_LOAD) != 0u) { }
- 448              		.loc 1 250 0
- 449 0126 00BF     		nop
- 450              	.L17:
- 451              		.loc 1 250 0 is_stmt 0 discriminator 1
- 452 0128 44F20103 		movw	r3, #16385
- 453 012c C4F20003 		movt	r3, 16384
- 454 0130 1B78     		ldrb	r3, [r3, #0]
- 455 0132 DBB2     		uxtb	r3, r3
- 456 0134 03F00103 		and	r3, r3, #1
- 457 0138 002B     		cmp	r3, #0
- 458 013a F5D1     		bne	.L17
+ 447              		.loc 1 250 0
+ 448 0126 00BF     		nop
+ 449              	.L17:
+ 450              		.loc 1 250 0 is_stmt 0 discriminator 1
+ 451 0128 44F20103 		movw	r3, #16385
+ 452 012c C4F20003 		movt	r3, 16384
+ 453 0130 1B78     		ldrb	r3, [r3, #0]
+ 454 0132 DBB2     		uxtb	r3, r3
+ 455 0134 03F00103 		and	r3, r3, #1
+ 456 0138 002B     		cmp	r3, #0
+ 457 013a F5D1     		bne	.L17
  251:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** #endif /* HAS_CLKDIST_LD_DISABLE */
  252:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  253:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                     SPIS_1_IntClock_CLKEN &= (uint8)(~SPIS_1_IntClock_CLKEN_MASK);
- 459              		.loc 1 253 0 is_stmt 1
- 460 013c 44F2A233 		movw	r3, #17314
- 461 0140 C4F20003 		movt	r3, 16384
- 462 0144 44F2A232 		movw	r2, #17314
- 463 0148 C4F20002 		movt	r2, 16384
- 464 014c 1278     		ldrb	r2, [r2, #0]
- 465 014e D2B2     		uxtb	r2, r2
- 466 0150 02F07F02 		and	r2, r2, #127
- 467 0154 D2B2     		uxtb	r2, r2
- 468 0156 1A70     		strb	r2, [r3, #0]
+ 458              		.loc 1 253 0 is_stmt 1
+ 459 013c 44F2A233 		movw	r3, #17314
+ 460 0140 C4F20003 		movt	r3, 16384
+ 461 0144 44F2A232 		movw	r2, #17314
+ 462 0148 C4F20002 		movt	r2, 16384
+ 463 014c 1278     		ldrb	r2, [r2, #0]
+ 464 014e D2B2     		uxtb	r2, r2
+ 465 0150 22F04002 		bic	r2, r2, #64
+ 466 0154 D2B2     		uxtb	r2, r2
+ 467 0156 1A70     		strb	r2, [r3, #0]
  254:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  255:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** #if HAS_CLKDIST_LD_DISABLE
  256:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                     /* Clear the disable bit */
  257:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                     CLK_DIST_LD = 0x00u;
- 469              		.loc 1 257 0
- 470 0158 44F20103 		movw	r3, #16385
- 471 015c C4F20003 		movt	r3, 16384
- 472 0160 4FF00002 		mov	r2, #0
- 473 0164 1A70     		strb	r2, [r3, #0]
- 474              	.L15:
+ 468              		.loc 1 257 0
+ 469 0158 44F20103 		movw	r3, #16385
+ 470 015c C4F20003 		movt	r3, 16384
+ 471 0160 4FF00002 		mov	r2, #0
+ 472 0164 1A70     		strb	r2, [r3, #0]
+ 473              	.L15:
  258:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** #endif /* HAS_CLKDIST_LD_DISABLE */
  259:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 }
  260:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****             }
  261:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  262:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****             /* Load divide value. */
  263:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****             if ((SPIS_1_IntClock_CLKEN & SPIS_1_IntClock_CLKEN_MASK) != 0u)
- 475              		.loc 1 263 0
- 476 0166 44F2A233 		movw	r3, #17314
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 14
+ 474              		.loc 1 263 0
+ 475 0166 44F2A233 		movw	r3, #17314
+ 476 016a C4F20003 		movt	r3, 16384
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 14
 
 
- 477 016a C4F20003 		movt	r3, 16384
- 478 016e 1B78     		ldrb	r3, [r3, #0]
- 479 0170 DBB2     		uxtb	r3, r3
- 480 0172 DBB2     		uxtb	r3, r3
- 481 0174 5BB2     		sxtb	r3, r3
- 482 0176 002B     		cmp	r3, #0
- 483 0178 1EDA     		bge	.L18
+ 477 016e 1B78     		ldrb	r3, [r3, #0]
+ 478 0170 DBB2     		uxtb	r3, r3
+ 479 0172 03F04003 		and	r3, r3, #64
+ 480 0176 002B     		cmp	r3, #0
+ 481 0178 1ED0     		beq	.L18
  264:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****             {
  265:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 /* If the clock is still enabled, use the shadow registers */
  266:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 CY_SET_REG16(CYREG_CLKDIST_WRK0, clkDivider);
- 484              		.loc 1 266 0
- 485 017a 44F20203 		movw	r3, #16386
- 486 017e C4F20003 		movt	r3, 16384
- 487 0182 FA88     		ldrh	r2, [r7, #6]	@ movhi
- 488 0184 1A80     		strh	r2, [r3, #0]	@ movhi
+ 482              		.loc 1 266 0
+ 483 017a 44F20203 		movw	r3, #16386
+ 484 017e C4F20003 		movt	r3, 16384
+ 485 0182 FA88     		ldrh	r2, [r7, #6]	@ movhi
+ 486 0184 1A80     		strh	r2, [r3, #0]	@ movhi
  267:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  268:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 CLK_DIST_LD = (CYCLK_LD_LOAD | ((restart != 0u) ? CYCLK_LD_SYNC_EN : 0x00u));
- 489              		.loc 1 268 0
- 490 0186 44F20103 		movw	r3, #16385
- 491 018a C4F20003 		movt	r3, 16384
- 492 018e 7A79     		ldrb	r2, [r7, #5]	@ zero_extendqisi2
- 493 0190 002A     		cmp	r2, #0
- 494 0192 02D0     		beq	.L19
- 495              		.loc 1 268 0 is_stmt 0 discriminator 1
- 496 0194 4FF00302 		mov	r2, #3
- 497 0198 01E0     		b	.L20
- 498              	.L19:
- 499              		.loc 1 268 0 discriminator 2
- 500 019a 4FF00102 		mov	r2, #1
- 501              	.L20:
- 502              		.loc 1 268 0 discriminator 3
- 503 019e 1A70     		strb	r2, [r3, #0]
+ 487              		.loc 1 268 0
+ 488 0186 44F20103 		movw	r3, #16385
+ 489 018a C4F20003 		movt	r3, 16384
+ 490 018e 7A79     		ldrb	r2, [r7, #5]	@ zero_extendqisi2
+ 491 0190 002A     		cmp	r2, #0
+ 492 0192 02D0     		beq	.L19
+ 493              		.loc 1 268 0 is_stmt 0 discriminator 1
+ 494 0194 4FF00302 		mov	r2, #3
+ 495 0198 01E0     		b	.L20
+ 496              	.L19:
+ 497              		.loc 1 268 0 discriminator 2
+ 498 019a 4FF00102 		mov	r2, #1
+ 499              	.L20:
+ 500              		.loc 1 268 0 discriminator 3
+ 501 019e 1A70     		strb	r2, [r3, #0]
  269:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 while ((CLK_DIST_LD & CYCLK_LD_LOAD) != 0u) { }
- 504              		.loc 1 269 0 is_stmt 1
- 505 01a0 00BF     		nop
- 506              	.L21:
- 507              		.loc 1 269 0 is_stmt 0 discriminator 1
- 508 01a2 44F20103 		movw	r3, #16385
- 509 01a6 C4F20003 		movt	r3, 16384
- 510 01aa 1B78     		ldrb	r3, [r3, #0]
- 511 01ac DBB2     		uxtb	r3, r3
- 512 01ae 03F00103 		and	r3, r3, #1
- 513 01b2 002B     		cmp	r3, #0
- 514 01b4 F5D1     		bne	.L21
- 515              		.loc 1 269 0
- 516 01b6 13E0     		b	.L9
- 517              	.L18:
+ 502              		.loc 1 269 0 is_stmt 1
+ 503 01a0 00BF     		nop
+ 504              	.L21:
+ 505              		.loc 1 269 0 is_stmt 0 discriminator 1
+ 506 01a2 44F20103 		movw	r3, #16385
+ 507 01a6 C4F20003 		movt	r3, 16384
+ 508 01aa 1B78     		ldrb	r3, [r3, #0]
+ 509 01ac DBB2     		uxtb	r3, r3
+ 510 01ae 03F00103 		and	r3, r3, #1
+ 511 01b2 002B     		cmp	r3, #0
+ 512 01b4 F5D1     		bne	.L21
+ 513              		.loc 1 269 0
+ 514 01b6 13E0     		b	.L9
+ 515              	.L18:
  270:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****             }
  271:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****             else
  272:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****             {
  273:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 /* If the clock is disabled, set the divider directly */
  274:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****                 CY_SET_REG16(SPIS_1_IntClock_DIV_PTR, clkDivider);
- 518              		.loc 1 274 0 is_stmt 1
- 519 01b8 44F29C03 		movw	r3, #16540
- 520 01bc C4F20003 		movt	r3, 16384
- 521 01c0 FA88     		ldrh	r2, [r7, #6]	@ movhi
- 522 01c2 1A80     		strh	r2, [r3, #0]	@ movhi
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 15
-
-
+ 516              		.loc 1 274 0 is_stmt 1
+ 517 01b8 44F29803 		movw	r3, #16536
+ 518 01bc C4F20003 		movt	r3, 16384
+ 519 01c0 FA88     		ldrh	r2, [r7, #6]	@ movhi
+ 520 01c2 1A80     		strh	r2, [r3, #0]	@ movhi
  275:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 				SPIS_1_IntClock_CLKEN |= enabled;
- 523              		.loc 1 275 0
- 524 01c4 44F2A233 		movw	r3, #17314
- 525 01c8 C4F20003 		movt	r3, 16384
- 526 01cc 44F2A232 		movw	r2, #17314
- 527 01d0 C4F20002 		movt	r2, 16384
- 528 01d4 1278     		ldrb	r2, [r2, #0]
- 529 01d6 D1B2     		uxtb	r1, r2
- 530 01d8 FA7A     		ldrb	r2, [r7, #11]
- 531 01da 0A43     		orrs	r2, r2, r1
- 532 01dc D2B2     		uxtb	r2, r2
- 533 01de 1A70     		strb	r2, [r3, #0]
- 534              	.L9:
+ 521              		.loc 1 275 0
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 15
+
+
+ 522 01c4 44F2A233 		movw	r3, #17314
+ 523 01c8 C4F20003 		movt	r3, 16384
+ 524 01cc 44F2A232 		movw	r2, #17314
+ 525 01d0 C4F20002 		movt	r2, 16384
+ 526 01d4 1278     		ldrb	r2, [r2, #0]
+ 527 01d6 D1B2     		uxtb	r1, r2
+ 528 01d8 FA7A     		ldrb	r2, [r7, #11]
+ 529 01da 0A43     		orrs	r2, r2, r1
+ 530 01dc D2B2     		uxtb	r2, r2
+ 531 01de 1A70     		strb	r2, [r3, #0]
+ 532              	.L9:
  276:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****             }
  277:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         }
  278:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     }
  279:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** }
- 535              		.loc 1 279 0
- 536 01e0 07F11007 		add	r7, r7, #16
- 537 01e4 BD46     		mov	sp, r7
- 538 01e6 80BD     		pop	{r7, pc}
- 539              		.cfi_endproc
- 540              	.LFE4:
- 541              		.size	SPIS_1_IntClock_SetDividerRegister, .-SPIS_1_IntClock_SetDividerRegister
- 542              		.section	.text.SPIS_1_IntClock_GetDividerRegister,"ax",%progbits
- 543              		.align	2
- 544              		.global	SPIS_1_IntClock_GetDividerRegister
- 545              		.thumb
- 546              		.thumb_func
- 547              		.type	SPIS_1_IntClock_GetDividerRegister, %function
- 548              	SPIS_1_IntClock_GetDividerRegister:
- 549              	.LFB5:
+ 533              		.loc 1 279 0
+ 534 01e0 07F11007 		add	r7, r7, #16
+ 535 01e4 BD46     		mov	sp, r7
+ 536 01e6 80BD     		pop	{r7, pc}
+ 537              		.cfi_endproc
+ 538              	.LFE4:
+ 539              		.size	SPIS_1_IntClock_SetDividerRegister, .-SPIS_1_IntClock_SetDividerRegister
+ 540              		.section	.text.SPIS_1_IntClock_GetDividerRegister,"ax",%progbits
+ 541              		.align	2
+ 542              		.global	SPIS_1_IntClock_GetDividerRegister
+ 543              		.thumb
+ 544              		.thumb_func
+ 545              		.type	SPIS_1_IntClock_GetDividerRegister, %function
+ 546              	SPIS_1_IntClock_GetDividerRegister:
+ 547              	.LFB5:
  280:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  281:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  282:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** /*******************************************************************************
@@ -892,44 +890,44 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 1
  296:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** *******************************************************************************/
  297:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** uint16 SPIS_1_IntClock_GetDividerRegister(void) 
  298:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** {
- 550              		.loc 1 298 0
- 551              		.cfi_startproc
- 552              		@ args = 0, pretend = 0, frame = 0
- 553              		@ frame_needed = 1, uses_anonymous_args = 0
- 554              		@ link register save eliminated.
- 555 0000 80B4     		push	{r7}
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 16
+ 548              		.loc 1 298 0
+ 549              		.cfi_startproc
+ 550              		@ args = 0, pretend = 0, frame = 0
+ 551              		@ frame_needed = 1, uses_anonymous_args = 0
+ 552              		@ link register save eliminated.
+ 553 0000 80B4     		push	{r7}
+ 554              	.LCFI13:
+ 555              		.cfi_def_cfa_offset 4
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 16
 
 
- 556              	.LCFI13:
- 557              		.cfi_def_cfa_offset 4
- 558              		.cfi_offset 7, -4
- 559 0002 00AF     		add	r7, sp, #0
- 560              	.LCFI14:
- 561              		.cfi_def_cfa_register 7
+ 556              		.cfi_offset 7, -4
+ 557 0002 00AF     		add	r7, sp, #0
+ 558              	.LCFI14:
+ 559              		.cfi_def_cfa_register 7
  299:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     return CY_GET_REG16(SPIS_1_IntClock_DIV_PTR);
- 562              		.loc 1 299 0
- 563 0004 44F29C03 		movw	r3, #16540
- 564 0008 C4F20003 		movt	r3, 16384
- 565 000c 1B88     		ldrh	r3, [r3, #0]	@ movhi
- 566 000e 9BB2     		uxth	r3, r3
+ 560              		.loc 1 299 0
+ 561 0004 44F29803 		movw	r3, #16536
+ 562 0008 C4F20003 		movt	r3, 16384
+ 563 000c 1B88     		ldrh	r3, [r3, #0]	@ movhi
+ 564 000e 9BB2     		uxth	r3, r3
  300:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** }
- 567              		.loc 1 300 0
- 568 0010 1846     		mov	r0, r3
- 569 0012 BD46     		mov	sp, r7
- 570 0014 80BC     		pop	{r7}
- 571 0016 7047     		bx	lr
- 572              		.cfi_endproc
- 573              	.LFE5:
- 574              		.size	SPIS_1_IntClock_GetDividerRegister, .-SPIS_1_IntClock_GetDividerRegister
- 575              		.section	.text.SPIS_1_IntClock_SetModeRegister,"ax",%progbits
- 576              		.align	2
- 577              		.global	SPIS_1_IntClock_SetModeRegister
- 578              		.thumb
- 579              		.thumb_func
- 580              		.type	SPIS_1_IntClock_SetModeRegister, %function
- 581              	SPIS_1_IntClock_SetModeRegister:
- 582              	.LFB6:
+ 565              		.loc 1 300 0
+ 566 0010 1846     		mov	r0, r3
+ 567 0012 BD46     		mov	sp, r7
+ 568 0014 80BC     		pop	{r7}
+ 569 0016 7047     		bx	lr
+ 570              		.cfi_endproc
+ 571              	.LFE5:
+ 572              		.size	SPIS_1_IntClock_GetDividerRegister, .-SPIS_1_IntClock_GetDividerRegister
+ 573              		.section	.text.SPIS_1_IntClock_SetModeRegister,"ax",%progbits
+ 574              		.align	2
+ 575              		.global	SPIS_1_IntClock_SetModeRegister
+ 576              		.thumb
+ 577              		.thumb_func
+ 578              		.type	SPIS_1_IntClock_SetModeRegister, %function
+ 579              	SPIS_1_IntClock_SetModeRegister:
+ 580              	.LFB6:
  301:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  302:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  303:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** /*******************************************************************************
@@ -958,71 +956,71 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 1
  326:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** *   the clock. Specifically, see the CLKDIST.DCFG.CFG2 register.
  327:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** *
  328:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** * Returns:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 17
-
-
  329:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** *  None
  330:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** *
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 17
+
+
  331:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** *******************************************************************************/
  332:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** void SPIS_1_IntClock_SetModeRegister(uint8 modeBitMask) 
  333:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** {
- 583              		.loc 1 333 0
- 584              		.cfi_startproc
- 585              		@ args = 0, pretend = 0, frame = 8
- 586              		@ frame_needed = 1, uses_anonymous_args = 0
- 587              		@ link register save eliminated.
- 588 0000 80B4     		push	{r7}
- 589              	.LCFI15:
- 590              		.cfi_def_cfa_offset 4
- 591              		.cfi_offset 7, -4
- 592 0002 83B0     		sub	sp, sp, #12
- 593              	.LCFI16:
- 594              		.cfi_def_cfa_offset 16
- 595 0004 00AF     		add	r7, sp, #0
- 596              	.LCFI17:
- 597              		.cfi_def_cfa_register 7
- 598 0006 0346     		mov	r3, r0
- 599 0008 FB71     		strb	r3, [r7, #7]
+ 581              		.loc 1 333 0
+ 582              		.cfi_startproc
+ 583              		@ args = 0, pretend = 0, frame = 8
+ 584              		@ frame_needed = 1, uses_anonymous_args = 0
+ 585              		@ link register save eliminated.
+ 586 0000 80B4     		push	{r7}
+ 587              	.LCFI15:
+ 588              		.cfi_def_cfa_offset 4
+ 589              		.cfi_offset 7, -4
+ 590 0002 83B0     		sub	sp, sp, #12
+ 591              	.LCFI16:
+ 592              		.cfi_def_cfa_offset 16
+ 593 0004 00AF     		add	r7, sp, #0
+ 594              	.LCFI17:
+ 595              		.cfi_def_cfa_register 7
+ 596 0006 0346     		mov	r3, r0
+ 597 0008 FB71     		strb	r3, [r7, #7]
  334:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     SPIS_1_IntClock_MOD_SRC |= modeBitMask & (uint8)SPIS_1_IntClock_MODE_MASK;
- 600              		.loc 1 334 0
- 601 000a 44F29E03 		movw	r3, #16542
- 602 000e C4F20003 		movt	r3, 16384
- 603 0012 44F29E02 		movw	r2, #16542
- 604 0016 C4F20002 		movt	r2, 16384
- 605 001a 1278     		ldrb	r2, [r2, #0]
- 606 001c D2B2     		uxtb	r2, r2
- 607 001e D1B2     		uxtb	r1, r2
- 608 0020 FA79     		ldrb	r2, [r7, #7]	@ zero_extendqisi2
- 609 0022 22F00702 		bic	r2, r2, #7
- 610 0026 D2B2     		uxtb	r2, r2
- 611 0028 0A43     		orrs	r2, r2, r1
- 612 002a D2B2     		uxtb	r2, r2
- 613 002c D2B2     		uxtb	r2, r2
- 614 002e 1A70     		strb	r2, [r3, #0]
+ 598              		.loc 1 334 0
+ 599 000a 44F29A03 		movw	r3, #16538
+ 600 000e C4F20003 		movt	r3, 16384
+ 601 0012 44F29A02 		movw	r2, #16538
+ 602 0016 C4F20002 		movt	r2, 16384
+ 603 001a 1278     		ldrb	r2, [r2, #0]
+ 604 001c D2B2     		uxtb	r2, r2
+ 605 001e D1B2     		uxtb	r1, r2
+ 606 0020 FA79     		ldrb	r2, [r7, #7]	@ zero_extendqisi2
+ 607 0022 22F00702 		bic	r2, r2, #7
+ 608 0026 D2B2     		uxtb	r2, r2
+ 609 0028 0A43     		orrs	r2, r2, r1
+ 610 002a D2B2     		uxtb	r2, r2
+ 611 002c D2B2     		uxtb	r2, r2
+ 612 002e 1A70     		strb	r2, [r3, #0]
  335:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** }
- 615              		.loc 1 335 0
- 616 0030 07F10C07 		add	r7, r7, #12
- 617 0034 BD46     		mov	sp, r7
- 618 0036 80BC     		pop	{r7}
- 619 0038 7047     		bx	lr
- 620              		.cfi_endproc
- 621              	.LFE6:
- 622              		.size	SPIS_1_IntClock_SetModeRegister, .-SPIS_1_IntClock_SetModeRegister
- 623 003a 00BF     		.section	.text.SPIS_1_IntClock_ClearModeRegister,"ax",%progbits
- 624              		.align	2
- 625              		.global	SPIS_1_IntClock_ClearModeRegister
- 626              		.thumb
- 627              		.thumb_func
- 628              		.type	SPIS_1_IntClock_ClearModeRegister, %function
- 629              	SPIS_1_IntClock_ClearModeRegister:
- 630              	.LFB7:
+ 613              		.loc 1 335 0
+ 614 0030 07F10C07 		add	r7, r7, #12
+ 615 0034 BD46     		mov	sp, r7
+ 616 0036 80BC     		pop	{r7}
+ 617 0038 7047     		bx	lr
+ 618              		.cfi_endproc
+ 619              	.LFE6:
+ 620              		.size	SPIS_1_IntClock_SetModeRegister, .-SPIS_1_IntClock_SetModeRegister
+ 621 003a 00BF     		.section	.text.SPIS_1_IntClock_ClearModeRegister,"ax",%progbits
+ 622              		.align	2
+ 623              		.global	SPIS_1_IntClock_ClearModeRegister
+ 624              		.thumb
+ 625              		.thumb_func
+ 626              		.type	SPIS_1_IntClock_ClearModeRegister, %function
+ 627              	SPIS_1_IntClock_ClearModeRegister:
+ 628              	.LFB7:
  336:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  337:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 18
-
-
  338:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** /*******************************************************************************
  339:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** * Function Name: SPIS_1_IntClock_ClearModeRegister
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 18
+
+
  340:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** ********************************************************************************
  341:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** *
  342:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** * Summary:
@@ -1052,59 +1050,59 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 1
  366:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** *******************************************************************************/
  367:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** void SPIS_1_IntClock_ClearModeRegister(uint8 modeBitMask) 
  368:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** {
- 631              		.loc 1 368 0
- 632              		.cfi_startproc
- 633              		@ args = 0, pretend = 0, frame = 8
- 634              		@ frame_needed = 1, uses_anonymous_args = 0
- 635              		@ link register save eliminated.
- 636 0000 80B4     		push	{r7}
- 637              	.LCFI18:
- 638              		.cfi_def_cfa_offset 4
- 639              		.cfi_offset 7, -4
- 640 0002 83B0     		sub	sp, sp, #12
- 641              	.LCFI19:
- 642              		.cfi_def_cfa_offset 16
- 643 0004 00AF     		add	r7, sp, #0
- 644              	.LCFI20:
- 645              		.cfi_def_cfa_register 7
- 646 0006 0346     		mov	r3, r0
- 647 0008 FB71     		strb	r3, [r7, #7]
+ 629              		.loc 1 368 0
+ 630              		.cfi_startproc
+ 631              		@ args = 0, pretend = 0, frame = 8
+ 632              		@ frame_needed = 1, uses_anonymous_args = 0
+ 633              		@ link register save eliminated.
+ 634 0000 80B4     		push	{r7}
+ 635              	.LCFI18:
+ 636              		.cfi_def_cfa_offset 4
+ 637              		.cfi_offset 7, -4
+ 638 0002 83B0     		sub	sp, sp, #12
+ 639              	.LCFI19:
+ 640              		.cfi_def_cfa_offset 16
+ 641 0004 00AF     		add	r7, sp, #0
+ 642              	.LCFI20:
+ 643              		.cfi_def_cfa_register 7
+ 644 0006 0346     		mov	r3, r0
+ 645 0008 FB71     		strb	r3, [r7, #7]
  369:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     SPIS_1_IntClock_MOD_SRC &= (uint8)(~modeBitMask) | (uint8)(~(uint8)(SPIS_1_IntClock_MODE_MASK))
- 648              		.loc 1 369 0
- 649 000a 44F29E03 		movw	r3, #16542
- 650 000e C4F20003 		movt	r3, 16384
- 651 0012 44F29E02 		movw	r2, #16542
- 652 0016 C4F20002 		movt	r2, 16384
- 653 001a 1278     		ldrb	r2, [r2, #0]
- 654 001c D1B2     		uxtb	r1, r2
- 655 001e FA79     		ldrb	r2, [r7, #7]
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 19
+ 646              		.loc 1 369 0
+ 647 000a 44F29A03 		movw	r3, #16538
+ 648 000e C4F20003 		movt	r3, 16384
+ 649 0012 44F29A02 		movw	r2, #16538
+ 650 0016 C4F20002 		movt	r2, 16384
+ 651 001a 1278     		ldrb	r2, [r2, #0]
+ 652 001c D1B2     		uxtb	r1, r2
+ 653 001e FA79     		ldrb	r2, [r7, #7]
+ 654 0020 6FEA0202 		mvn	r2, r2
+ 655 0024 D2B2     		uxtb	r2, r2
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 19
 
 
- 656 0020 6FEA0202 		mvn	r2, r2
- 657 0024 D2B2     		uxtb	r2, r2
- 658 0026 42F00702 		orr	r2, r2, #7
- 659 002a D2B2     		uxtb	r2, r2
- 660 002c 0A40     		ands	r2, r2, r1
- 661 002e D2B2     		uxtb	r2, r2
- 662 0030 1A70     		strb	r2, [r3, #0]
+ 656 0026 42F00702 		orr	r2, r2, #7
+ 657 002a D2B2     		uxtb	r2, r2
+ 658 002c 0A40     		ands	r2, r2, r1
+ 659 002e D2B2     		uxtb	r2, r2
+ 660 0030 1A70     		strb	r2, [r3, #0]
  370:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** }
- 663              		.loc 1 370 0
- 664 0032 07F10C07 		add	r7, r7, #12
- 665 0036 BD46     		mov	sp, r7
- 666 0038 80BC     		pop	{r7}
- 667 003a 7047     		bx	lr
- 668              		.cfi_endproc
- 669              	.LFE7:
- 670              		.size	SPIS_1_IntClock_ClearModeRegister, .-SPIS_1_IntClock_ClearModeRegister
- 671              		.section	.text.SPIS_1_IntClock_GetModeRegister,"ax",%progbits
- 672              		.align	2
- 673              		.global	SPIS_1_IntClock_GetModeRegister
- 674              		.thumb
- 675              		.thumb_func
- 676              		.type	SPIS_1_IntClock_GetModeRegister, %function
- 677              	SPIS_1_IntClock_GetModeRegister:
- 678              	.LFB8:
+ 661              		.loc 1 370 0
+ 662 0032 07F10C07 		add	r7, r7, #12
+ 663 0036 BD46     		mov	sp, r7
+ 664 0038 80BC     		pop	{r7}
+ 665 003a 7047     		bx	lr
+ 666              		.cfi_endproc
+ 667              	.LFE7:
+ 668              		.size	SPIS_1_IntClock_ClearModeRegister, .-SPIS_1_IntClock_ClearModeRegister
+ 669              		.section	.text.SPIS_1_IntClock_GetModeRegister,"ax",%progbits
+ 670              		.align	2
+ 671              		.global	SPIS_1_IntClock_GetModeRegister
+ 672              		.thumb
+ 673              		.thumb_func
+ 674              		.type	SPIS_1_IntClock_GetModeRegister, %function
+ 675              	SPIS_1_IntClock_GetModeRegister:
+ 676              	.LFB8:
  371:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  372:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  373:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** /*******************************************************************************
@@ -1124,46 +1122,46 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 1
  387:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** *******************************************************************************/
  388:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** uint8 SPIS_1_IntClock_GetModeRegister(void) 
  389:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** {
- 679              		.loc 1 389 0
- 680              		.cfi_startproc
- 681              		@ args = 0, pretend = 0, frame = 0
- 682              		@ frame_needed = 1, uses_anonymous_args = 0
- 683              		@ link register save eliminated.
- 684 0000 80B4     		push	{r7}
- 685              	.LCFI21:
- 686              		.cfi_def_cfa_offset 4
- 687              		.cfi_offset 7, -4
- 688 0002 00AF     		add	r7, sp, #0
- 689              	.LCFI22:
- 690              		.cfi_def_cfa_register 7
+ 677              		.loc 1 389 0
+ 678              		.cfi_startproc
+ 679              		@ args = 0, pretend = 0, frame = 0
+ 680              		@ frame_needed = 1, uses_anonymous_args = 0
+ 681              		@ link register save eliminated.
+ 682 0000 80B4     		push	{r7}
+ 683              	.LCFI21:
+ 684              		.cfi_def_cfa_offset 4
+ 685              		.cfi_offset 7, -4
+ 686 0002 00AF     		add	r7, sp, #0
+ 687              	.LCFI22:
+ 688              		.cfi_def_cfa_register 7
  390:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     return SPIS_1_IntClock_MOD_SRC & (uint8)(SPIS_1_IntClock_MODE_MASK);
- 691              		.loc 1 390 0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 20
+ 689              		.loc 1 390 0
+ 690 0004 44F29A03 		movw	r3, #16538
+ 691 0008 C4F20003 		movt	r3, 16384
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 20
 
 
- 692 0004 44F29E03 		movw	r3, #16542
- 693 0008 C4F20003 		movt	r3, 16384
- 694 000c 1B78     		ldrb	r3, [r3, #0]
- 695 000e DBB2     		uxtb	r3, r3
- 696 0010 23F00703 		bic	r3, r3, #7
- 697 0014 DBB2     		uxtb	r3, r3
+ 692 000c 1B78     		ldrb	r3, [r3, #0]
+ 693 000e DBB2     		uxtb	r3, r3
+ 694 0010 23F00703 		bic	r3, r3, #7
+ 695 0014 DBB2     		uxtb	r3, r3
  391:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** }
- 698              		.loc 1 391 0
- 699 0016 1846     		mov	r0, r3
- 700 0018 BD46     		mov	sp, r7
- 701 001a 80BC     		pop	{r7}
- 702 001c 7047     		bx	lr
- 703              		.cfi_endproc
- 704              	.LFE8:
- 705              		.size	SPIS_1_IntClock_GetModeRegister, .-SPIS_1_IntClock_GetModeRegister
- 706 001e 00BF     		.section	.text.SPIS_1_IntClock_SetSourceRegister,"ax",%progbits
- 707              		.align	2
- 708              		.global	SPIS_1_IntClock_SetSourceRegister
- 709              		.thumb
- 710              		.thumb_func
- 711              		.type	SPIS_1_IntClock_SetSourceRegister, %function
- 712              	SPIS_1_IntClock_SetSourceRegister:
- 713              	.LFB9:
+ 696              		.loc 1 391 0
+ 697 0016 1846     		mov	r0, r3
+ 698 0018 BD46     		mov	sp, r7
+ 699 001a 80BC     		pop	{r7}
+ 700 001c 7047     		bx	lr
+ 701              		.cfi_endproc
+ 702              	.LFE8:
+ 703              		.size	SPIS_1_IntClock_GetModeRegister, .-SPIS_1_IntClock_GetModeRegister
+ 704 001e 00BF     		.section	.text.SPIS_1_IntClock_SetSourceRegister,"ax",%progbits
+ 705              		.align	2
+ 706              		.global	SPIS_1_IntClock_SetSourceRegister
+ 707              		.thumb
+ 708              		.thumb_func
+ 709              		.type	SPIS_1_IntClock_SetSourceRegister, %function
+ 710              	SPIS_1_IntClock_SetSourceRegister:
+ 711              	.LFB9:
  392:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  393:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  394:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** /*******************************************************************************
@@ -1193,196 +1191,196 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 1
  418:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** *******************************************************************************/
  419:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** void SPIS_1_IntClock_SetSourceRegister(uint8 clkSource) 
  420:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** {
- 714              		.loc 1 420 0
- 715              		.cfi_startproc
- 716              		@ args = 0, pretend = 0, frame = 16
- 717              		@ frame_needed = 1, uses_anonymous_args = 0
- 718 0000 80B5     		push	{r7, lr}
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 21
+ 712              		.loc 1 420 0
+ 713              		.cfi_startproc
+ 714              		@ args = 0, pretend = 0, frame = 16
+ 715              		@ frame_needed = 1, uses_anonymous_args = 0
+ 716 0000 80B5     		push	{r7, lr}
+ 717              	.LCFI23:
+ 718              		.cfi_def_cfa_offset 8
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 21
 
 
- 719              	.LCFI23:
- 720              		.cfi_def_cfa_offset 8
- 721              		.cfi_offset 7, -8
- 722              		.cfi_offset 14, -4
- 723 0002 84B0     		sub	sp, sp, #16
- 724              	.LCFI24:
- 725              		.cfi_def_cfa_offset 24
- 726 0004 00AF     		add	r7, sp, #0
- 727              	.LCFI25:
- 728              		.cfi_def_cfa_register 7
- 729 0006 0346     		mov	r3, r0
- 730 0008 FB71     		strb	r3, [r7, #7]
+ 719              		.cfi_offset 7, -8
+ 720              		.cfi_offset 14, -4
+ 721 0002 84B0     		sub	sp, sp, #16
+ 722              	.LCFI24:
+ 723              		.cfi_def_cfa_offset 24
+ 724 0004 00AF     		add	r7, sp, #0
+ 725              	.LCFI25:
+ 726              		.cfi_def_cfa_register 7
+ 727 0006 0346     		mov	r3, r0
+ 728 0008 FB71     		strb	r3, [r7, #7]
  421:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     uint16 currDiv = SPIS_1_IntClock_GetDividerRegister();
- 731              		.loc 1 421 0
- 732 000a FFF7FEFF 		bl	SPIS_1_IntClock_GetDividerRegister
- 733 000e 0346     		mov	r3, r0
- 734 0010 FB81     		strh	r3, [r7, #14]	@ movhi
+ 729              		.loc 1 421 0
+ 730 000a FFF7FEFF 		bl	SPIS_1_IntClock_GetDividerRegister
+ 731 000e 0346     		mov	r3, r0
+ 732 0010 FB81     		strh	r3, [r7, #14]	@ movhi
  422:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     uint8 oldSrc = SPIS_1_IntClock_GetSourceRegister();
- 735              		.loc 1 422 0
- 736 0012 FFF7FEFF 		bl	SPIS_1_IntClock_GetSourceRegister
- 737 0016 0346     		mov	r3, r0
- 738 0018 7B73     		strb	r3, [r7, #13]
+ 733              		.loc 1 422 0
+ 734 0012 FFF7FEFF 		bl	SPIS_1_IntClock_GetSourceRegister
+ 735 0016 0346     		mov	r3, r0
+ 736 0018 7B73     		strb	r3, [r7, #13]
  423:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  424:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     if (((oldSrc != ((uint8)CYCLK_SRC_SEL_CLK_SYNC_D)) && 
- 739              		.loc 1 424 0
- 740 001a 7B7B     		ldrb	r3, [r7, #13]	@ zero_extendqisi2
- 741 001c 002B     		cmp	r3, #0
- 742 001e 27D0     		beq	.L29
- 743              		.loc 1 424 0 is_stmt 0 discriminator 1
- 744 0020 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
- 745 0022 002B     		cmp	r3, #0
- 746 0024 24D1     		bne	.L29
+ 737              		.loc 1 424 0
+ 738 001a 7B7B     		ldrb	r3, [r7, #13]	@ zero_extendqisi2
+ 739 001c 002B     		cmp	r3, #0
+ 740 001e 27D0     		beq	.L29
+ 741              		.loc 1 424 0 is_stmt 0 discriminator 1
+ 742 0020 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 743 0022 002B     		cmp	r3, #0
+ 744 0024 24D1     		bne	.L29
  425:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         (clkSource == ((uint8)CYCLK_SRC_SEL_CLK_SYNC_D))) && (currDiv == 0u))
- 747              		.loc 1 425 0 is_stmt 1
- 748 0026 FB89     		ldrh	r3, [r7, #14]
- 749 0028 002B     		cmp	r3, #0
- 750 002a 21D1     		bne	.L29
+ 745              		.loc 1 425 0 is_stmt 1
+ 746 0026 FB89     		ldrh	r3, [r7, #14]
+ 747 0028 002B     		cmp	r3, #0
+ 748 002a 21D1     		bne	.L29
  426:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     {
  427:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         /* Switching to Master and divider is 1, set SSS, which will output master, */
  428:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         /* then set the source so we are consistent.                                */
  429:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         SPIS_1_IntClock_MOD_SRC |= CYCLK_SSS;
- 751              		.loc 1 429 0
- 752 002c 44F29E03 		movw	r3, #16542
- 753 0030 C4F20003 		movt	r3, 16384
- 754 0034 44F29E02 		movw	r2, #16542
- 755 0038 C4F20002 		movt	r2, 16384
- 756 003c 1278     		ldrb	r2, [r2, #0]
- 757 003e D2B2     		uxtb	r2, r2
- 758 0040 42F04002 		orr	r2, r2, #64
- 759 0044 D2B2     		uxtb	r2, r2
- 760 0046 1A70     		strb	r2, [r3, #0]
+ 749              		.loc 1 429 0
+ 750 002c 44F29A03 		movw	r3, #16538
+ 751 0030 C4F20003 		movt	r3, 16384
+ 752 0034 44F29A02 		movw	r2, #16538
+ 753 0038 C4F20002 		movt	r2, 16384
+ 754 003c 1278     		ldrb	r2, [r2, #0]
+ 755 003e D2B2     		uxtb	r2, r2
+ 756 0040 42F04002 		orr	r2, r2, #64
+ 757 0044 D2B2     		uxtb	r2, r2
+ 758 0046 1A70     		strb	r2, [r3, #0]
  430:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         SPIS_1_IntClock_MOD_SRC =
- 761              		.loc 1 430 0
- 762 0048 44F29E03 		movw	r3, #16542
- 763 004c C4F20003 		movt	r3, 16384
+ 759              		.loc 1 430 0
+ 760 0048 44F29A03 		movw	r3, #16538
+ 761 004c C4F20003 		movt	r3, 16384
  431:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****             (SPIS_1_IntClock_MOD_SRC & (uint8)(~SPIS_1_IntClock_SRC_SEL_MSK)) | clkSource;
- 764              		.loc 1 431 0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 22
+ 762              		.loc 1 431 0
+ 763 0050 44F29A02 		movw	r2, #16538
+ 764 0054 C4F20002 		movt	r2, 16384
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 22
 
 
- 765 0050 44F29E02 		movw	r2, #16542
- 766 0054 C4F20002 		movt	r2, 16384
- 767 0058 1278     		ldrb	r2, [r2, #0]
- 768 005a D2B2     		uxtb	r2, r2
+ 765 0058 1278     		ldrb	r2, [r2, #0]
+ 766 005a D2B2     		uxtb	r2, r2
  430:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         SPIS_1_IntClock_MOD_SRC =
- 769              		.loc 1 430 0
- 770 005c D2B2     		uxtb	r2, r2
- 771 005e 22F00702 		bic	r2, r2, #7
- 772 0062 D1B2     		uxtb	r1, r2
- 773 0064 FA79     		ldrb	r2, [r7, #7]	@ zero_extendqisi2
- 774 0066 0A43     		orrs	r2, r2, r1
- 775 0068 D2B2     		uxtb	r2, r2
- 776 006a D2B2     		uxtb	r2, r2
- 777 006c 1A70     		strb	r2, [r3, #0]
- 778 006e 3DE0     		b	.L28
- 779              	.L29:
+ 767              		.loc 1 430 0
+ 768 005c D2B2     		uxtb	r2, r2
+ 769 005e 22F00702 		bic	r2, r2, #7
+ 770 0062 D1B2     		uxtb	r1, r2
+ 771 0064 FA79     		ldrb	r2, [r7, #7]	@ zero_extendqisi2
+ 772 0066 0A43     		orrs	r2, r2, r1
+ 773 0068 D2B2     		uxtb	r2, r2
+ 774 006a D2B2     		uxtb	r2, r2
+ 775 006c 1A70     		strb	r2, [r3, #0]
+ 776 006e 3DE0     		b	.L28
+ 777              	.L29:
  432:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     }
  433:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     else if (((oldSrc == ((uint8)CYCLK_SRC_SEL_CLK_SYNC_D)) && 
- 780              		.loc 1 433 0
- 781 0070 7B7B     		ldrb	r3, [r7, #13]	@ zero_extendqisi2
- 782 0072 002B     		cmp	r3, #0
- 783 0074 27D1     		bne	.L31
- 784              		.loc 1 433 0 is_stmt 0 discriminator 1
- 785 0076 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
- 786 0078 002B     		cmp	r3, #0
- 787 007a 24D0     		beq	.L31
+ 778              		.loc 1 433 0
+ 779 0070 7B7B     		ldrb	r3, [r7, #13]	@ zero_extendqisi2
+ 780 0072 002B     		cmp	r3, #0
+ 781 0074 27D1     		bne	.L31
+ 782              		.loc 1 433 0 is_stmt 0 discriminator 1
+ 783 0076 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 784 0078 002B     		cmp	r3, #0
+ 785 007a 24D0     		beq	.L31
  434:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****             (clkSource != ((uint8)CYCLK_SRC_SEL_CLK_SYNC_D))) && (currDiv == 0u))
- 788              		.loc 1 434 0 is_stmt 1
- 789 007c FB89     		ldrh	r3, [r7, #14]
- 790 007e 002B     		cmp	r3, #0
- 791 0080 21D1     		bne	.L31
+ 786              		.loc 1 434 0 is_stmt 1
+ 787 007c FB89     		ldrh	r3, [r7, #14]
+ 788 007e 002B     		cmp	r3, #0
+ 789 0080 21D1     		bne	.L31
  435:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     {
  436:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         /* Switching from Master to not and divider is 1, set source, so we don't   */
  437:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         /* lock when we clear SSS.                                                  */
  438:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         SPIS_1_IntClock_MOD_SRC =
- 792              		.loc 1 438 0
- 793 0082 44F29E03 		movw	r3, #16542
- 794 0086 C4F20003 		movt	r3, 16384
+ 790              		.loc 1 438 0
+ 791 0082 44F29A03 		movw	r3, #16538
+ 792 0086 C4F20003 		movt	r3, 16384
  439:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****             (SPIS_1_IntClock_MOD_SRC & (uint8)(~SPIS_1_IntClock_SRC_SEL_MSK)) | clkSource;
- 795              		.loc 1 439 0
- 796 008a 44F29E02 		movw	r2, #16542
- 797 008e C4F20002 		movt	r2, 16384
- 798 0092 1278     		ldrb	r2, [r2, #0]
- 799 0094 D2B2     		uxtb	r2, r2
+ 793              		.loc 1 439 0
+ 794 008a 44F29A02 		movw	r2, #16538
+ 795 008e C4F20002 		movt	r2, 16384
+ 796 0092 1278     		ldrb	r2, [r2, #0]
+ 797 0094 D2B2     		uxtb	r2, r2
  438:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         SPIS_1_IntClock_MOD_SRC =
- 800              		.loc 1 438 0
- 801 0096 D2B2     		uxtb	r2, r2
- 802 0098 22F00702 		bic	r2, r2, #7
- 803 009c D1B2     		uxtb	r1, r2
- 804 009e FA79     		ldrb	r2, [r7, #7]	@ zero_extendqisi2
- 805 00a0 0A43     		orrs	r2, r2, r1
- 806 00a2 D2B2     		uxtb	r2, r2
- 807 00a4 D2B2     		uxtb	r2, r2
- 808 00a6 1A70     		strb	r2, [r3, #0]
+ 798              		.loc 1 438 0
+ 799 0096 D2B2     		uxtb	r2, r2
+ 800 0098 22F00702 		bic	r2, r2, #7
+ 801 009c D1B2     		uxtb	r1, r2
+ 802 009e FA79     		ldrb	r2, [r7, #7]	@ zero_extendqisi2
+ 803 00a0 0A43     		orrs	r2, r2, r1
+ 804 00a2 D2B2     		uxtb	r2, r2
+ 805 00a4 D2B2     		uxtb	r2, r2
+ 806 00a6 1A70     		strb	r2, [r3, #0]
  440:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         SPIS_1_IntClock_MOD_SRC &= (uint8)(~CYCLK_SSS);
- 809              		.loc 1 440 0
- 810 00a8 44F29E03 		movw	r3, #16542
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 23
+ 807              		.loc 1 440 0
+ 808 00a8 44F29A03 		movw	r3, #16538
+ 809 00ac C4F20003 		movt	r3, 16384
+ 810 00b0 44F29A02 		movw	r2, #16538
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 23
 
 
- 811 00ac C4F20003 		movt	r3, 16384
- 812 00b0 44F29E02 		movw	r2, #16542
- 813 00b4 C4F20002 		movt	r2, 16384
- 814 00b8 1278     		ldrb	r2, [r2, #0]
- 815 00ba D2B2     		uxtb	r2, r2
- 816 00bc 22F04002 		bic	r2, r2, #64
- 817 00c0 D2B2     		uxtb	r2, r2
- 818 00c2 1A70     		strb	r2, [r3, #0]
- 819 00c4 12E0     		b	.L28
- 820              	.L31:
+ 811 00b4 C4F20002 		movt	r2, 16384
+ 812 00b8 1278     		ldrb	r2, [r2, #0]
+ 813 00ba D2B2     		uxtb	r2, r2
+ 814 00bc 22F04002 		bic	r2, r2, #64
+ 815 00c0 D2B2     		uxtb	r2, r2
+ 816 00c2 1A70     		strb	r2, [r3, #0]
+ 817 00c4 12E0     		b	.L28
+ 818              	.L31:
  441:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     }
  442:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     else
  443:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     {
  444:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         SPIS_1_IntClock_MOD_SRC =
- 821              		.loc 1 444 0
- 822 00c6 44F29E03 		movw	r3, #16542
- 823 00ca C4F20003 		movt	r3, 16384
+ 819              		.loc 1 444 0
+ 820 00c6 44F29A03 		movw	r3, #16538
+ 821 00ca C4F20003 		movt	r3, 16384
  445:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****             (SPIS_1_IntClock_MOD_SRC & (uint8)(~SPIS_1_IntClock_SRC_SEL_MSK)) | clkSource;
- 824              		.loc 1 445 0
- 825 00ce 44F29E02 		movw	r2, #16542
- 826 00d2 C4F20002 		movt	r2, 16384
- 827 00d6 1278     		ldrb	r2, [r2, #0]
- 828 00d8 D2B2     		uxtb	r2, r2
+ 822              		.loc 1 445 0
+ 823 00ce 44F29A02 		movw	r2, #16538
+ 824 00d2 C4F20002 		movt	r2, 16384
+ 825 00d6 1278     		ldrb	r2, [r2, #0]
+ 826 00d8 D2B2     		uxtb	r2, r2
  444:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****         SPIS_1_IntClock_MOD_SRC =
- 829              		.loc 1 444 0
- 830 00da D2B2     		uxtb	r2, r2
- 831 00dc 22F00702 		bic	r2, r2, #7
- 832 00e0 D1B2     		uxtb	r1, r2
- 833 00e2 FA79     		ldrb	r2, [r7, #7]	@ zero_extendqisi2
- 834 00e4 0A43     		orrs	r2, r2, r1
- 835 00e6 D2B2     		uxtb	r2, r2
- 836 00e8 D2B2     		uxtb	r2, r2
- 837 00ea 1A70     		strb	r2, [r3, #0]
- 838              	.L28:
+ 827              		.loc 1 444 0
+ 828 00da D2B2     		uxtb	r2, r2
+ 829 00dc 22F00702 		bic	r2, r2, #7
+ 830 00e0 D1B2     		uxtb	r1, r2
+ 831 00e2 FA79     		ldrb	r2, [r7, #7]	@ zero_extendqisi2
+ 832 00e4 0A43     		orrs	r2, r2, r1
+ 833 00e6 D2B2     		uxtb	r2, r2
+ 834 00e8 D2B2     		uxtb	r2, r2
+ 835 00ea 1A70     		strb	r2, [r3, #0]
+ 836              	.L28:
  446:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     }
  447:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** }
- 839              		.loc 1 447 0
- 840 00ec 07F11007 		add	r7, r7, #16
- 841 00f0 BD46     		mov	sp, r7
- 842 00f2 80BD     		pop	{r7, pc}
- 843              		.cfi_endproc
- 844              	.LFE9:
- 845              		.size	SPIS_1_IntClock_SetSourceRegister, .-SPIS_1_IntClock_SetSourceRegister
- 846              		.section	.text.SPIS_1_IntClock_GetSourceRegister,"ax",%progbits
- 847              		.align	2
- 848              		.global	SPIS_1_IntClock_GetSourceRegister
- 849              		.thumb
- 850              		.thumb_func
- 851              		.type	SPIS_1_IntClock_GetSourceRegister, %function
- 852              	SPIS_1_IntClock_GetSourceRegister:
- 853              	.LFB10:
+ 837              		.loc 1 447 0
+ 838 00ec 07F11007 		add	r7, r7, #16
+ 839 00f0 BD46     		mov	sp, r7
+ 840 00f2 80BD     		pop	{r7, pc}
+ 841              		.cfi_endproc
+ 842              	.LFE9:
+ 843              		.size	SPIS_1_IntClock_SetSourceRegister, .-SPIS_1_IntClock_SetSourceRegister
+ 844              		.section	.text.SPIS_1_IntClock_GetSourceRegister,"ax",%progbits
+ 845              		.align	2
+ 846              		.global	SPIS_1_IntClock_GetSourceRegister
+ 847              		.thumb
+ 848              		.thumb_func
+ 849              		.type	SPIS_1_IntClock_GetSourceRegister, %function
+ 850              	SPIS_1_IntClock_GetSourceRegister:
+ 851              	.LFB10:
  448:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  449:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** 
  450:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** /*******************************************************************************
  451:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** * Function Name: SPIS_1_IntClock_GetSourceRegister
  452:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** ********************************************************************************
  453:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** *
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 24
-
-
  454:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** * Summary:
  455:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** *  Gets the input source of the clock.
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 24
+
+
  456:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** *
  457:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** * Parameters:
  458:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** *  None
@@ -1393,1182 +1391,1182 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 1
  463:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** *******************************************************************************/
  464:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** uint8 SPIS_1_IntClock_GetSourceRegister(void) 
  465:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** {
- 854              		.loc 1 465 0
- 855              		.cfi_startproc
- 856              		@ args = 0, pretend = 0, frame = 0
- 857              		@ frame_needed = 1, uses_anonymous_args = 0
- 858              		@ link register save eliminated.
- 859 0000 80B4     		push	{r7}
- 860              	.LCFI26:
- 861              		.cfi_def_cfa_offset 4
- 862              		.cfi_offset 7, -4
- 863 0002 00AF     		add	r7, sp, #0
- 864              	.LCFI27:
- 865              		.cfi_def_cfa_register 7
+ 852              		.loc 1 465 0
+ 853              		.cfi_startproc
+ 854              		@ args = 0, pretend = 0, frame = 0
+ 855              		@ frame_needed = 1, uses_anonymous_args = 0
+ 856              		@ link register save eliminated.
+ 857 0000 80B4     		push	{r7}
+ 858              	.LCFI26:
+ 859              		.cfi_def_cfa_offset 4
+ 860              		.cfi_offset 7, -4
+ 861 0002 00AF     		add	r7, sp, #0
+ 862              	.LCFI27:
+ 863              		.cfi_def_cfa_register 7
  466:.\Generated_Source\PSoC5/SPIS_1_IntClock.c ****     return SPIS_1_IntClock_MOD_SRC & SPIS_1_IntClock_SRC_SEL_MSK;
- 866              		.loc 1 466 0
- 867 0004 44F29E03 		movw	r3, #16542
- 868 0008 C4F20003 		movt	r3, 16384
- 869 000c 1B78     		ldrb	r3, [r3, #0]
- 870 000e DBB2     		uxtb	r3, r3
- 871 0010 03F00703 		and	r3, r3, #7
- 872 0014 DBB2     		uxtb	r3, r3
+ 864              		.loc 1 466 0
+ 865 0004 44F29A03 		movw	r3, #16538
+ 866 0008 C4F20003 		movt	r3, 16384
+ 867 000c 1B78     		ldrb	r3, [r3, #0]
+ 868 000e DBB2     		uxtb	r3, r3
+ 869 0010 03F00703 		and	r3, r3, #7
+ 870 0014 DBB2     		uxtb	r3, r3
  467:.\Generated_Source\PSoC5/SPIS_1_IntClock.c **** }
- 873              		.loc 1 467 0
- 874 0016 1846     		mov	r0, r3
- 875 0018 BD46     		mov	sp, r7
- 876 001a 80BC     		pop	{r7}
- 877 001c 7047     		bx	lr
- 878              		.cfi_endproc
- 879              	.LFE10:
- 880              		.size	SPIS_1_IntClock_GetSourceRegister, .-SPIS_1_IntClock_GetSourceRegister
- 881 001e 00BF     		.text
- 882              	.Letext0:
- 883              		.file 2 "./Generated_Source/PSoC5/cytypes.h"
- 884              		.section	.debug_info,"",%progbits
- 885              	.Ldebug_info0:
- 886 0000 90020000 		.4byte	0x290
- 887 0004 0200     		.2byte	0x2
- 888 0006 00000000 		.4byte	.Ldebug_abbrev0
- 889 000a 04       		.byte	0x4
- 890 000b 01       		.uleb128 0x1
- 891 000c 52020000 		.4byte	.LASF37
- 892 0010 01       		.byte	0x1
- 893 0011 C2020000 		.4byte	.LASF38
- 894 0015 A6010000 		.4byte	.LASF39
- 895 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 896 001d 00000000 		.4byte	0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 25
+ 871              		.loc 1 467 0
+ 872 0016 1846     		mov	r0, r3
+ 873 0018 BD46     		mov	sp, r7
+ 874 001a 80BC     		pop	{r7}
+ 875 001c 7047     		bx	lr
+ 876              		.cfi_endproc
+ 877              	.LFE10:
+ 878              		.size	SPIS_1_IntClock_GetSourceRegister, .-SPIS_1_IntClock_GetSourceRegister
+ 879 001e 00BF     		.text
+ 880              	.Letext0:
+ 881              		.file 2 "./Generated_Source/PSoC5/cytypes.h"
+ 882              		.section	.debug_info,"",%progbits
+ 883              	.Ldebug_info0:
+ 884 0000 90020000 		.4byte	0x290
+ 885 0004 0200     		.2byte	0x2
+ 886 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 887 000a 04       		.byte	0x4
+ 888 000b 01       		.uleb128 0x1
+ 889 000c 53020000 		.4byte	.LASF37
+ 890 0010 01       		.byte	0x1
+ 891 0011 C3020000 		.4byte	.LASF38
+ 892 0015 3A000000 		.4byte	.LASF39
+ 893 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 894 001d 00000000 		.4byte	0
+ 895 0021 00000000 		.4byte	0
+ 896 0025 00000000 		.4byte	.Ldebug_line0
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 25
 
 
- 897 0021 00000000 		.4byte	0
- 898 0025 00000000 		.4byte	.Ldebug_line0
- 899 0029 02       		.uleb128 0x2
- 900 002a 01       		.byte	0x1
- 901 002b 06       		.byte	0x6
- 902 002c B6020000 		.4byte	.LASF0
- 903 0030 02       		.uleb128 0x2
- 904 0031 01       		.byte	0x1
- 905 0032 08       		.byte	0x8
- 906 0033 88000000 		.4byte	.LASF1
- 907 0037 02       		.uleb128 0x2
- 908 0038 02       		.byte	0x2
- 909 0039 05       		.byte	0x5
- 910 003a 3C020000 		.4byte	.LASF2
- 911 003e 02       		.uleb128 0x2
- 912 003f 02       		.byte	0x2
- 913 0040 07       		.byte	0x7
- 914 0041 AD000000 		.4byte	.LASF3
- 915 0045 02       		.uleb128 0x2
- 916 0046 04       		.byte	0x4
- 917 0047 05       		.byte	0x5
- 918 0048 A3020000 		.4byte	.LASF4
- 919 004c 02       		.uleb128 0x2
- 920 004d 04       		.byte	0x4
- 921 004e 07       		.byte	0x7
- 922 004f 9B000000 		.4byte	.LASF5
- 923 0053 02       		.uleb128 0x2
- 924 0054 08       		.byte	0x8
- 925 0055 05       		.byte	0x5
- 926 0056 00000000 		.4byte	.LASF6
- 927 005a 02       		.uleb128 0x2
- 928 005b 08       		.byte	0x8
- 929 005c 07       		.byte	0x7
- 930 005d 83010000 		.4byte	.LASF7
- 931 0061 03       		.uleb128 0x3
- 932 0062 04       		.byte	0x4
- 933 0063 05       		.byte	0x5
- 934 0064 696E7400 		.ascii	"int\000"
- 935 0068 02       		.uleb128 0x2
- 936 0069 04       		.byte	0x4
- 937 006a 07       		.byte	0x7
- 938 006b 6E010000 		.4byte	.LASF8
- 939 006f 04       		.uleb128 0x4
- 940 0070 4C020000 		.4byte	.LASF9
- 941 0074 02       		.byte	0x2
- 942 0075 5B       		.byte	0x5b
- 943 0076 30000000 		.4byte	0x30
- 944 007a 04       		.uleb128 0x4
- 945 007b 1A010000 		.4byte	.LASF10
- 946 007f 02       		.byte	0x2
- 947 0080 5C       		.byte	0x5c
- 948 0081 3E000000 		.4byte	0x3e
- 949 0085 02       		.uleb128 0x2
- 950 0086 04       		.byte	0x4
- 951 0087 04       		.byte	0x4
- 952 0088 65000000 		.4byte	.LASF11
- 953 008c 02       		.uleb128 0x2
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 26
+ 897 0029 02       		.uleb128 0x2
+ 898 002a 01       		.byte	0x1
+ 899 002b 06       		.byte	0x6
+ 900 002c B7020000 		.4byte	.LASF0
+ 901 0030 02       		.uleb128 0x2
+ 902 0031 01       		.byte	0x1
+ 903 0032 08       		.byte	0x8
+ 904 0033 CE000000 		.4byte	.LASF1
+ 905 0037 02       		.uleb128 0x2
+ 906 0038 02       		.byte	0x2
+ 907 0039 05       		.byte	0x5
+ 908 003a 43020000 		.4byte	.LASF2
+ 909 003e 02       		.uleb128 0x2
+ 910 003f 02       		.byte	0x2
+ 911 0040 07       		.byte	0x7
+ 912 0041 F3000000 		.4byte	.LASF3
+ 913 0045 02       		.uleb128 0x2
+ 914 0046 04       		.byte	0x4
+ 915 0047 05       		.byte	0x5
+ 916 0048 A4020000 		.4byte	.LASF4
+ 917 004c 02       		.uleb128 0x2
+ 918 004d 04       		.byte	0x4
+ 919 004e 07       		.byte	0x7
+ 920 004f E1000000 		.4byte	.LASF5
+ 921 0053 02       		.uleb128 0x2
+ 922 0054 08       		.byte	0x8
+ 923 0055 05       		.byte	0x5
+ 924 0056 EC010000 		.4byte	.LASF6
+ 925 005a 02       		.uleb128 0x2
+ 926 005b 08       		.byte	0x8
+ 927 005c 07       		.byte	0x7
+ 928 005d C9010000 		.4byte	.LASF7
+ 929 0061 03       		.uleb128 0x3
+ 930 0062 04       		.byte	0x4
+ 931 0063 05       		.byte	0x5
+ 932 0064 696E7400 		.ascii	"int\000"
+ 933 0068 02       		.uleb128 0x2
+ 934 0069 04       		.byte	0x4
+ 935 006a 07       		.byte	0x7
+ 936 006b B4010000 		.4byte	.LASF8
+ 937 006f 04       		.uleb128 0x4
+ 938 0070 4D020000 		.4byte	.LASF9
+ 939 0074 02       		.byte	0x2
+ 940 0075 5B       		.byte	0x5b
+ 941 0076 30000000 		.4byte	0x30
+ 942 007a 04       		.uleb128 0x4
+ 943 007b 60010000 		.4byte	.LASF10
+ 944 007f 02       		.byte	0x2
+ 945 0080 5C       		.byte	0x5c
+ 946 0081 3E000000 		.4byte	0x3e
+ 947 0085 02       		.uleb128 0x2
+ 948 0086 04       		.byte	0x4
+ 949 0087 04       		.byte	0x4
+ 950 0088 AB000000 		.4byte	.LASF11
+ 951 008c 02       		.uleb128 0x2
+ 952 008d 08       		.byte	0x8
+ 953 008e 04       		.byte	0x4
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 26
 
 
- 954 008d 08       		.byte	0x8
- 955 008e 04       		.byte	0x4
- 956 008f 0B010000 		.4byte	.LASF12
- 957 0093 02       		.uleb128 0x2
- 958 0094 01       		.byte	0x1
- 959 0095 08       		.byte	0x8
- 960 0096 F3010000 		.4byte	.LASF13
- 961 009a 04       		.uleb128 0x4
- 962 009b 96000000 		.4byte	.LASF14
- 963 009f 02       		.byte	0x2
- 964 00a0 F0       		.byte	0xf0
- 965 00a1 A5000000 		.4byte	0xa5
- 966 00a5 05       		.uleb128 0x5
- 967 00a6 6F000000 		.4byte	0x6f
- 968 00aa 04       		.uleb128 0x4
- 969 00ab 46020000 		.4byte	.LASF15
- 970 00af 02       		.byte	0x2
- 971 00b0 F1       		.byte	0xf1
- 972 00b1 B5000000 		.4byte	0xb5
- 973 00b5 05       		.uleb128 0x5
- 974 00b6 7A000000 		.4byte	0x7a
- 975 00ba 06       		.uleb128 0x6
- 976 00bb 01       		.byte	0x1
- 977 00bc 43010000 		.4byte	.LASF16
- 978 00c0 01       		.byte	0x1
- 979 00c1 2D       		.byte	0x2d
- 980 00c2 01       		.byte	0x1
- 981 00c3 00000000 		.4byte	.LFB0
- 982 00c7 42000000 		.4byte	.LFE0
- 983 00cb 00000000 		.4byte	.LLST0
- 984 00cf 01       		.byte	0x1
- 985 00d0 06       		.uleb128 0x6
- 986 00d1 01       		.byte	0x1
- 987 00d2 59010000 		.4byte	.LASF17
- 988 00d6 01       		.byte	0x1
- 989 00d7 47       		.byte	0x47
- 990 00d8 01       		.byte	0x1
- 991 00d9 00000000 		.4byte	.LFB1
- 992 00dd 42000000 		.4byte	.LFE1
- 993 00e1 2C000000 		.4byte	.LLST1
- 994 00e5 01       		.byte	0x1
- 995 00e6 07       		.uleb128 0x7
- 996 00e7 01       		.byte	0x1
- 997 00e8 1A020000 		.4byte	.LASF18
- 998 00ec 01       		.byte	0x1
- 999 00ed 64       		.byte	0x64
- 1000 00ee 01       		.byte	0x1
- 1001 00ef 00000000 		.4byte	.LFB2
- 1002 00f3 F8000000 		.4byte	.LFE2
- 1003 00f7 58000000 		.4byte	.LLST2
- 1004 00fb 01       		.byte	0x1
- 1005 00fc 19010000 		.4byte	0x119
- 1006 0100 08       		.uleb128 0x8
- 1007 0101 1A000000 		.4byte	.LBB2
- 1008 0105 EE000000 		.4byte	.LBE2
- 1009 0109 09       		.uleb128 0x9
- 1010 010a 14000000 		.4byte	.LASF24
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 27
+ 954 008f 51010000 		.4byte	.LASF12
+ 955 0093 02       		.uleb128 0x2
+ 956 0094 01       		.byte	0x1
+ 957 0095 08       		.byte	0x8
+ 958 0096 FA010000 		.4byte	.LASF13
+ 959 009a 04       		.uleb128 0x4
+ 960 009b DC000000 		.4byte	.LASF14
+ 961 009f 02       		.byte	0x2
+ 962 00a0 F0       		.byte	0xf0
+ 963 00a1 A5000000 		.4byte	0xa5
+ 964 00a5 05       		.uleb128 0x5
+ 965 00a6 6F000000 		.4byte	0x6f
+ 966 00aa 04       		.uleb128 0x4
+ 967 00ab 00000000 		.4byte	.LASF15
+ 968 00af 02       		.byte	0x2
+ 969 00b0 F1       		.byte	0xf1
+ 970 00b1 B5000000 		.4byte	0xb5
+ 971 00b5 05       		.uleb128 0x5
+ 972 00b6 7A000000 		.4byte	0x7a
+ 973 00ba 06       		.uleb128 0x6
+ 974 00bb 01       		.byte	0x1
+ 975 00bc 89010000 		.4byte	.LASF16
+ 976 00c0 01       		.byte	0x1
+ 977 00c1 2D       		.byte	0x2d
+ 978 00c2 01       		.byte	0x1
+ 979 00c3 00000000 		.4byte	.LFB0
+ 980 00c7 42000000 		.4byte	.LFE0
+ 981 00cb 00000000 		.4byte	.LLST0
+ 982 00cf 01       		.byte	0x1
+ 983 00d0 06       		.uleb128 0x6
+ 984 00d1 01       		.byte	0x1
+ 985 00d2 9F010000 		.4byte	.LASF17
+ 986 00d6 01       		.byte	0x1
+ 987 00d7 47       		.byte	0x47
+ 988 00d8 01       		.byte	0x1
+ 989 00d9 00000000 		.4byte	.LFB1
+ 990 00dd 42000000 		.4byte	.LFE1
+ 991 00e1 2C000000 		.4byte	.LLST1
+ 992 00e5 01       		.byte	0x1
+ 993 00e6 07       		.uleb128 0x7
+ 994 00e7 01       		.byte	0x1
+ 995 00e8 21020000 		.4byte	.LASF18
+ 996 00ec 01       		.byte	0x1
+ 997 00ed 64       		.byte	0x64
+ 998 00ee 01       		.byte	0x1
+ 999 00ef 00000000 		.4byte	.LFB2
+ 1000 00f3 F8000000 		.4byte	.LFE2
+ 1001 00f7 58000000 		.4byte	.LLST2
+ 1002 00fb 01       		.byte	0x1
+ 1003 00fc 19010000 		.4byte	0x119
+ 1004 0100 08       		.uleb128 0x8
+ 1005 0101 1A000000 		.4byte	.LBB2
+ 1006 0105 EE000000 		.4byte	.LBE2
+ 1007 0109 09       		.uleb128 0x9
+ 1008 010a 0C000000 		.4byte	.LASF24
+ 1009 010e 01       		.byte	0x1
+ 1010 010f 69       		.byte	0x69
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 27
 
 
- 1011 010e 01       		.byte	0x1
- 1012 010f 69       		.byte	0x69
- 1013 0110 7A000000 		.4byte	0x7a
- 1014 0114 02       		.byte	0x2
- 1015 0115 91       		.byte	0x91
- 1016 0116 76       		.sleb128 -10
- 1017 0117 00       		.byte	0
- 1018 0118 00       		.byte	0
- 1019 0119 07       		.uleb128 0x7
- 1020 011a 01       		.byte	0x1
- 1021 011b 6B000000 		.4byte	.LASF19
- 1022 011f 01       		.byte	0x1
- 1023 0120 9D       		.byte	0x9d
- 1024 0121 01       		.byte	0x1
- 1025 0122 00000000 		.4byte	.LFB3
- 1026 0126 54000000 		.4byte	.LFE3
- 1027 012a 90000000 		.4byte	.LLST3
- 1028 012e 01       		.byte	0x1
- 1029 012f 42010000 		.4byte	0x142
- 1030 0133 0A       		.uleb128 0xa
- 1031 0134 0E000000 		.4byte	.LASF21
- 1032 0138 01       		.byte	0x1
- 1033 0139 9D       		.byte	0x9d
- 1034 013a 6F000000 		.4byte	0x6f
- 1035 013e 02       		.byte	0x2
- 1036 013f 91       		.byte	0x91
- 1037 0140 77       		.sleb128 -9
- 1038 0141 00       		.byte	0
- 1039 0142 0B       		.uleb128 0xb
- 1040 0143 01       		.byte	0x1
- 1041 0144 1F000000 		.4byte	.LASF20
- 1042 0148 01       		.byte	0x1
- 1043 0149 C1       		.byte	0xc1
- 1044 014a 01       		.byte	0x1
- 1045 014b 00000000 		.4byte	.LFB4
- 1046 014f E8010000 		.4byte	.LFE4
- 1047 0153 C8000000 		.4byte	.LLST4
- 1048 0157 01       		.byte	0x1
- 1049 0158 A3010000 		.4byte	0x1a3
- 1050 015c 0A       		.uleb128 0xa
- 1051 015d 00010000 		.4byte	.LASF22
- 1052 0161 01       		.byte	0x1
- 1053 0162 C1       		.byte	0xc1
- 1054 0163 7A000000 		.4byte	0x7a
- 1055 0167 02       		.byte	0x2
- 1056 0168 91       		.byte	0x91
- 1057 0169 6E       		.sleb128 -18
- 1058 016a 0A       		.uleb128 0xa
- 1059 016b 12010000 		.4byte	.LASF23
- 1060 016f 01       		.byte	0x1
- 1061 0170 C1       		.byte	0xc1
- 1062 0171 6F000000 		.4byte	0x6f
- 1063 0175 02       		.byte	0x2
- 1064 0176 91       		.byte	0x91
- 1065 0177 6D       		.sleb128 -19
- 1066 0178 09       		.uleb128 0x9
- 1067 0179 9B020000 		.4byte	.LASF25
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 28
+ 1011 0110 7A000000 		.4byte	0x7a
+ 1012 0114 02       		.byte	0x2
+ 1013 0115 91       		.byte	0x91
+ 1014 0116 76       		.sleb128 -10
+ 1015 0117 00       		.byte	0
+ 1016 0118 00       		.byte	0
+ 1017 0119 07       		.uleb128 0x7
+ 1018 011a 01       		.byte	0x1
+ 1019 011b B1000000 		.4byte	.LASF19
+ 1020 011f 01       		.byte	0x1
+ 1021 0120 9D       		.byte	0x9d
+ 1022 0121 01       		.byte	0x1
+ 1023 0122 00000000 		.4byte	.LFB3
+ 1024 0126 54000000 		.4byte	.LFE3
+ 1025 012a 90000000 		.4byte	.LLST3
+ 1026 012e 01       		.byte	0x1
+ 1027 012f 42010000 		.4byte	0x142
+ 1028 0133 0A       		.uleb128 0xa
+ 1029 0134 06000000 		.4byte	.LASF21
+ 1030 0138 01       		.byte	0x1
+ 1031 0139 9D       		.byte	0x9d
+ 1032 013a 6F000000 		.4byte	0x6f
+ 1033 013e 02       		.byte	0x2
+ 1034 013f 91       		.byte	0x91
+ 1035 0140 77       		.sleb128 -9
+ 1036 0141 00       		.byte	0
+ 1037 0142 0B       		.uleb128 0xb
+ 1038 0143 01       		.byte	0x1
+ 1039 0144 17000000 		.4byte	.LASF20
+ 1040 0148 01       		.byte	0x1
+ 1041 0149 C1       		.byte	0xc1
+ 1042 014a 01       		.byte	0x1
+ 1043 014b 00000000 		.4byte	.LFB4
+ 1044 014f E8010000 		.4byte	.LFE4
+ 1045 0153 C8000000 		.4byte	.LLST4
+ 1046 0157 01       		.byte	0x1
+ 1047 0158 A3010000 		.4byte	0x1a3
+ 1048 015c 0A       		.uleb128 0xa
+ 1049 015d 46010000 		.4byte	.LASF22
+ 1050 0161 01       		.byte	0x1
+ 1051 0162 C1       		.byte	0xc1
+ 1052 0163 7A000000 		.4byte	0x7a
+ 1053 0167 02       		.byte	0x2
+ 1054 0168 91       		.byte	0x91
+ 1055 0169 6E       		.sleb128 -18
+ 1056 016a 0A       		.uleb128 0xa
+ 1057 016b 58010000 		.4byte	.LASF23
+ 1058 016f 01       		.byte	0x1
+ 1059 0170 C1       		.byte	0xc1
+ 1060 0171 6F000000 		.4byte	0x6f
+ 1061 0175 02       		.byte	0x2
+ 1062 0176 91       		.byte	0x91
+ 1063 0177 6D       		.sleb128 -19
+ 1064 0178 09       		.uleb128 0x9
+ 1065 0179 9C020000 		.4byte	.LASF25
+ 1066 017d 01       		.byte	0x1
+ 1067 017e C4       		.byte	0xc4
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 28
 
 
- 1068 017d 01       		.byte	0x1
- 1069 017e C4       		.byte	0xc4
- 1070 017f 6F000000 		.4byte	0x6f
- 1071 0183 02       		.byte	0x2
- 1072 0184 91       		.byte	0x91
- 1073 0185 73       		.sleb128 -13
- 1074 0186 09       		.uleb128 0x9
- 1075 0187 7B010000 		.4byte	.LASF26
- 1076 018b 01       		.byte	0x1
- 1077 018c C6       		.byte	0xc6
- 1078 018d 6F000000 		.4byte	0x6f
- 1079 0191 02       		.byte	0x2
- 1080 0192 91       		.byte	0x91
- 1081 0193 77       		.sleb128 -9
- 1082 0194 09       		.uleb128 0x9
- 1083 0195 14000000 		.4byte	.LASF24
- 1084 0199 01       		.byte	0x1
- 1085 019a C7       		.byte	0xc7
- 1086 019b 7A000000 		.4byte	0x7a
- 1087 019f 02       		.byte	0x2
- 1088 01a0 91       		.byte	0x91
- 1089 01a1 74       		.sleb128 -12
- 1090 01a2 00       		.byte	0
- 1091 01a3 0C       		.uleb128 0xc
- 1092 01a4 01       		.byte	0x1
- 1093 01a5 42000000 		.4byte	.LASF30
- 1094 01a9 01       		.byte	0x1
- 1095 01aa 2901     		.2byte	0x129
- 1096 01ac 01       		.byte	0x1
- 1097 01ad 7A000000 		.4byte	0x7a
- 1098 01b1 00000000 		.4byte	.LFB5
- 1099 01b5 18000000 		.4byte	.LFE5
- 1100 01b9 00010000 		.4byte	.LLST5
- 1101 01bd 01       		.byte	0x1
- 1102 01be 0D       		.uleb128 0xd
- 1103 01bf 01       		.byte	0x1
- 1104 01c0 E0000000 		.4byte	.LASF27
- 1105 01c4 01       		.byte	0x1
- 1106 01c5 4C01     		.2byte	0x14c
- 1107 01c7 01       		.byte	0x1
- 1108 01c8 00000000 		.4byte	.LFB6
- 1109 01cc 3A000000 		.4byte	.LFE6
- 1110 01d0 2C010000 		.4byte	.LLST6
- 1111 01d4 01       		.byte	0x1
- 1112 01d5 E9010000 		.4byte	0x1e9
- 1113 01d9 0E       		.uleb128 0xe
- 1114 01da 9A010000 		.4byte	.LASF28
- 1115 01de 01       		.byte	0x1
- 1116 01df 4C01     		.2byte	0x14c
- 1117 01e1 6F000000 		.4byte	0x6f
- 1118 01e5 02       		.byte	0x2
- 1119 01e6 91       		.byte	0x91
- 1120 01e7 77       		.sleb128 -9
- 1121 01e8 00       		.byte	0
- 1122 01e9 0D       		.uleb128 0xd
- 1123 01ea 01       		.byte	0x1
- 1124 01eb 21010000 		.4byte	.LASF29
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 29
+ 1068 017f 6F000000 		.4byte	0x6f
+ 1069 0183 02       		.byte	0x2
+ 1070 0184 91       		.byte	0x91
+ 1071 0185 73       		.sleb128 -13
+ 1072 0186 09       		.uleb128 0x9
+ 1073 0187 C1010000 		.4byte	.LASF26
+ 1074 018b 01       		.byte	0x1
+ 1075 018c C6       		.byte	0xc6
+ 1076 018d 6F000000 		.4byte	0x6f
+ 1077 0191 02       		.byte	0x2
+ 1078 0192 91       		.byte	0x91
+ 1079 0193 77       		.sleb128 -9
+ 1080 0194 09       		.uleb128 0x9
+ 1081 0195 0C000000 		.4byte	.LASF24
+ 1082 0199 01       		.byte	0x1
+ 1083 019a C7       		.byte	0xc7
+ 1084 019b 7A000000 		.4byte	0x7a
+ 1085 019f 02       		.byte	0x2
+ 1086 01a0 91       		.byte	0x91
+ 1087 01a1 74       		.sleb128 -12
+ 1088 01a2 00       		.byte	0
+ 1089 01a3 0C       		.uleb128 0xc
+ 1090 01a4 01       		.byte	0x1
+ 1091 01a5 88000000 		.4byte	.LASF30
+ 1092 01a9 01       		.byte	0x1
+ 1093 01aa 2901     		.2byte	0x129
+ 1094 01ac 01       		.byte	0x1
+ 1095 01ad 7A000000 		.4byte	0x7a
+ 1096 01b1 00000000 		.4byte	.LFB5
+ 1097 01b5 18000000 		.4byte	.LFE5
+ 1098 01b9 00010000 		.4byte	.LLST5
+ 1099 01bd 01       		.byte	0x1
+ 1100 01be 0D       		.uleb128 0xd
+ 1101 01bf 01       		.byte	0x1
+ 1102 01c0 26010000 		.4byte	.LASF27
+ 1103 01c4 01       		.byte	0x1
+ 1104 01c5 4C01     		.2byte	0x14c
+ 1105 01c7 01       		.byte	0x1
+ 1106 01c8 00000000 		.4byte	.LFB6
+ 1107 01cc 3A000000 		.4byte	.LFE6
+ 1108 01d0 2C010000 		.4byte	.LLST6
+ 1109 01d4 01       		.byte	0x1
+ 1110 01d5 E9010000 		.4byte	0x1e9
+ 1111 01d9 0E       		.uleb128 0xe
+ 1112 01da E0010000 		.4byte	.LASF28
+ 1113 01de 01       		.byte	0x1
+ 1114 01df 4C01     		.2byte	0x14c
+ 1115 01e1 6F000000 		.4byte	0x6f
+ 1116 01e5 02       		.byte	0x2
+ 1117 01e6 91       		.byte	0x91
+ 1118 01e7 77       		.sleb128 -9
+ 1119 01e8 00       		.byte	0
+ 1120 01e9 0D       		.uleb128 0xd
+ 1121 01ea 01       		.byte	0x1
+ 1122 01eb 67010000 		.4byte	.LASF29
+ 1123 01ef 01       		.byte	0x1
+ 1124 01f0 6F01     		.2byte	0x16f
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 29
 
 
- 1125 01ef 01       		.byte	0x1
- 1126 01f0 6F01     		.2byte	0x16f
- 1127 01f2 01       		.byte	0x1
- 1128 01f3 00000000 		.4byte	.LFB7
- 1129 01f7 3C000000 		.4byte	.LFE7
- 1130 01fb 64010000 		.4byte	.LLST7
- 1131 01ff 01       		.byte	0x1
- 1132 0200 14020000 		.4byte	0x214
- 1133 0204 0E       		.uleb128 0xe
- 1134 0205 9A010000 		.4byte	.LASF28
- 1135 0209 01       		.byte	0x1
- 1136 020a 6F01     		.2byte	0x16f
- 1137 020c 6F000000 		.4byte	0x6f
- 1138 0210 02       		.byte	0x2
- 1139 0211 91       		.byte	0x91
- 1140 0212 77       		.sleb128 -9
- 1141 0213 00       		.byte	0
- 1142 0214 0C       		.uleb128 0xc
- 1143 0215 01       		.byte	0x1
- 1144 0216 C0000000 		.4byte	.LASF31
- 1145 021a 01       		.byte	0x1
- 1146 021b 8401     		.2byte	0x184
- 1147 021d 01       		.byte	0x1
- 1148 021e 6F000000 		.4byte	0x6f
- 1149 0222 00000000 		.4byte	.LFB8
- 1150 0226 1E000000 		.4byte	.LFE8
- 1151 022a 9C010000 		.4byte	.LLST8
- 1152 022e 01       		.byte	0x1
- 1153 022f 0F       		.uleb128 0xf
- 1154 0230 01       		.byte	0x1
- 1155 0231 ED020000 		.4byte	.LASF32
- 1156 0235 01       		.byte	0x1
- 1157 0236 A301     		.2byte	0x1a3
- 1158 0238 01       		.byte	0x1
- 1159 0239 00000000 		.4byte	.LFB9
- 1160 023d F4000000 		.4byte	.LFE9
- 1161 0241 C8010000 		.4byte	.LLST9
- 1162 0245 01       		.byte	0x1
- 1163 0246 78020000 		.4byte	0x278
- 1164 024a 0E       		.uleb128 0xe
- 1165 024b AC020000 		.4byte	.LASF33
- 1166 024f 01       		.byte	0x1
- 1167 0250 A301     		.2byte	0x1a3
- 1168 0252 6F000000 		.4byte	0x6f
- 1169 0256 02       		.byte	0x2
- 1170 0257 91       		.byte	0x91
- 1171 0258 6F       		.sleb128 -17
- 1172 0259 10       		.uleb128 0x10
- 1173 025a 34020000 		.4byte	.LASF34
- 1174 025e 01       		.byte	0x1
- 1175 025f A501     		.2byte	0x1a5
- 1176 0261 7A000000 		.4byte	0x7a
- 1177 0265 02       		.byte	0x2
- 1178 0266 91       		.byte	0x91
- 1179 0267 76       		.sleb128 -10
- 1180 0268 10       		.uleb128 0x10
- 1181 0269 0F030000 		.4byte	.LASF35
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 30
+ 1125 01f2 01       		.byte	0x1
+ 1126 01f3 00000000 		.4byte	.LFB7
+ 1127 01f7 3C000000 		.4byte	.LFE7
+ 1128 01fb 64010000 		.4byte	.LLST7
+ 1129 01ff 01       		.byte	0x1
+ 1130 0200 14020000 		.4byte	0x214
+ 1131 0204 0E       		.uleb128 0xe
+ 1132 0205 E0010000 		.4byte	.LASF28
+ 1133 0209 01       		.byte	0x1
+ 1134 020a 6F01     		.2byte	0x16f
+ 1135 020c 6F000000 		.4byte	0x6f
+ 1136 0210 02       		.byte	0x2
+ 1137 0211 91       		.byte	0x91
+ 1138 0212 77       		.sleb128 -9
+ 1139 0213 00       		.byte	0
+ 1140 0214 0C       		.uleb128 0xc
+ 1141 0215 01       		.byte	0x1
+ 1142 0216 06010000 		.4byte	.LASF31
+ 1143 021a 01       		.byte	0x1
+ 1144 021b 8401     		.2byte	0x184
+ 1145 021d 01       		.byte	0x1
+ 1146 021e 6F000000 		.4byte	0x6f
+ 1147 0222 00000000 		.4byte	.LFB8
+ 1148 0226 1E000000 		.4byte	.LFE8
+ 1149 022a 9C010000 		.4byte	.LLST8
+ 1150 022e 01       		.byte	0x1
+ 1151 022f 0F       		.uleb128 0xf
+ 1152 0230 01       		.byte	0x1
+ 1153 0231 EE020000 		.4byte	.LASF32
+ 1154 0235 01       		.byte	0x1
+ 1155 0236 A301     		.2byte	0x1a3
+ 1156 0238 01       		.byte	0x1
+ 1157 0239 00000000 		.4byte	.LFB9
+ 1158 023d F4000000 		.4byte	.LFE9
+ 1159 0241 C8010000 		.4byte	.LLST9
+ 1160 0245 01       		.byte	0x1
+ 1161 0246 78020000 		.4byte	0x278
+ 1162 024a 0E       		.uleb128 0xe
+ 1163 024b AD020000 		.4byte	.LASF33
+ 1164 024f 01       		.byte	0x1
+ 1165 0250 A301     		.2byte	0x1a3
+ 1166 0252 6F000000 		.4byte	0x6f
+ 1167 0256 02       		.byte	0x2
+ 1168 0257 91       		.byte	0x91
+ 1169 0258 6F       		.sleb128 -17
+ 1170 0259 10       		.uleb128 0x10
+ 1171 025a 3B020000 		.4byte	.LASF34
+ 1172 025e 01       		.byte	0x1
+ 1173 025f A501     		.2byte	0x1a5
+ 1174 0261 7A000000 		.4byte	0x7a
+ 1175 0265 02       		.byte	0x2
+ 1176 0266 91       		.byte	0x91
+ 1177 0267 76       		.sleb128 -10
+ 1178 0268 10       		.uleb128 0x10
+ 1179 0269 10030000 		.4byte	.LASF35
+ 1180 026d 01       		.byte	0x1
+ 1181 026e A601     		.2byte	0x1a6
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 30
 
 
- 1182 026d 01       		.byte	0x1
- 1183 026e A601     		.2byte	0x1a6
- 1184 0270 6F000000 		.4byte	0x6f
- 1185 0274 02       		.byte	0x2
- 1186 0275 91       		.byte	0x91
- 1187 0276 75       		.sleb128 -11
- 1188 0277 00       		.byte	0
- 1189 0278 0C       		.uleb128 0xc
- 1190 0279 01       		.byte	0x1
- 1191 027a F8010000 		.4byte	.LASF36
- 1192 027e 01       		.byte	0x1
- 1193 027f D001     		.2byte	0x1d0
- 1194 0281 01       		.byte	0x1
- 1195 0282 6F000000 		.4byte	0x6f
- 1196 0286 00000000 		.4byte	.LFB10
- 1197 028a 1E000000 		.4byte	.LFE10
- 1198 028e 00020000 		.4byte	.LLST10
- 1199 0292 01       		.byte	0x1
- 1200 0293 00       		.byte	0
- 1201              		.section	.debug_abbrev,"",%progbits
- 1202              	.Ldebug_abbrev0:
- 1203 0000 01       		.uleb128 0x1
- 1204 0001 11       		.uleb128 0x11
- 1205 0002 01       		.byte	0x1
- 1206 0003 25       		.uleb128 0x25
- 1207 0004 0E       		.uleb128 0xe
- 1208 0005 13       		.uleb128 0x13
- 1209 0006 0B       		.uleb128 0xb
- 1210 0007 03       		.uleb128 0x3
- 1211 0008 0E       		.uleb128 0xe
- 1212 0009 1B       		.uleb128 0x1b
- 1213 000a 0E       		.uleb128 0xe
- 1214 000b 55       		.uleb128 0x55
- 1215 000c 06       		.uleb128 0x6
- 1216 000d 11       		.uleb128 0x11
- 1217 000e 01       		.uleb128 0x1
- 1218 000f 52       		.uleb128 0x52
- 1219 0010 01       		.uleb128 0x1
- 1220 0011 10       		.uleb128 0x10
- 1221 0012 06       		.uleb128 0x6
- 1222 0013 00       		.byte	0
- 1223 0014 00       		.byte	0
- 1224 0015 02       		.uleb128 0x2
- 1225 0016 24       		.uleb128 0x24
- 1226 0017 00       		.byte	0
- 1227 0018 0B       		.uleb128 0xb
- 1228 0019 0B       		.uleb128 0xb
- 1229 001a 3E       		.uleb128 0x3e
- 1230 001b 0B       		.uleb128 0xb
- 1231 001c 03       		.uleb128 0x3
- 1232 001d 0E       		.uleb128 0xe
- 1233 001e 00       		.byte	0
- 1234 001f 00       		.byte	0
- 1235 0020 03       		.uleb128 0x3
- 1236 0021 24       		.uleb128 0x24
- 1237 0022 00       		.byte	0
- 1238 0023 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 31
+ 1182 0270 6F000000 		.4byte	0x6f
+ 1183 0274 02       		.byte	0x2
+ 1184 0275 91       		.byte	0x91
+ 1185 0276 75       		.sleb128 -11
+ 1186 0277 00       		.byte	0
+ 1187 0278 0C       		.uleb128 0xc
+ 1188 0279 01       		.byte	0x1
+ 1189 027a FF010000 		.4byte	.LASF36
+ 1190 027e 01       		.byte	0x1
+ 1191 027f D001     		.2byte	0x1d0
+ 1192 0281 01       		.byte	0x1
+ 1193 0282 6F000000 		.4byte	0x6f
+ 1194 0286 00000000 		.4byte	.LFB10
+ 1195 028a 1E000000 		.4byte	.LFE10
+ 1196 028e 00020000 		.4byte	.LLST10
+ 1197 0292 01       		.byte	0x1
+ 1198 0293 00       		.byte	0
+ 1199              		.section	.debug_abbrev,"",%progbits
+ 1200              	.Ldebug_abbrev0:
+ 1201 0000 01       		.uleb128 0x1
+ 1202 0001 11       		.uleb128 0x11
+ 1203 0002 01       		.byte	0x1
+ 1204 0003 25       		.uleb128 0x25
+ 1205 0004 0E       		.uleb128 0xe
+ 1206 0005 13       		.uleb128 0x13
+ 1207 0006 0B       		.uleb128 0xb
+ 1208 0007 03       		.uleb128 0x3
+ 1209 0008 0E       		.uleb128 0xe
+ 1210 0009 1B       		.uleb128 0x1b
+ 1211 000a 0E       		.uleb128 0xe
+ 1212 000b 55       		.uleb128 0x55
+ 1213 000c 06       		.uleb128 0x6
+ 1214 000d 11       		.uleb128 0x11
+ 1215 000e 01       		.uleb128 0x1
+ 1216 000f 52       		.uleb128 0x52
+ 1217 0010 01       		.uleb128 0x1
+ 1218 0011 10       		.uleb128 0x10
+ 1219 0012 06       		.uleb128 0x6
+ 1220 0013 00       		.byte	0
+ 1221 0014 00       		.byte	0
+ 1222 0015 02       		.uleb128 0x2
+ 1223 0016 24       		.uleb128 0x24
+ 1224 0017 00       		.byte	0
+ 1225 0018 0B       		.uleb128 0xb
+ 1226 0019 0B       		.uleb128 0xb
+ 1227 001a 3E       		.uleb128 0x3e
+ 1228 001b 0B       		.uleb128 0xb
+ 1229 001c 03       		.uleb128 0x3
+ 1230 001d 0E       		.uleb128 0xe
+ 1231 001e 00       		.byte	0
+ 1232 001f 00       		.byte	0
+ 1233 0020 03       		.uleb128 0x3
+ 1234 0021 24       		.uleb128 0x24
+ 1235 0022 00       		.byte	0
+ 1236 0023 0B       		.uleb128 0xb
+ 1237 0024 0B       		.uleb128 0xb
+ 1238 0025 3E       		.uleb128 0x3e
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 31
 
 
- 1239 0024 0B       		.uleb128 0xb
- 1240 0025 3E       		.uleb128 0x3e
- 1241 0026 0B       		.uleb128 0xb
- 1242 0027 03       		.uleb128 0x3
- 1243 0028 08       		.uleb128 0x8
- 1244 0029 00       		.byte	0
- 1245 002a 00       		.byte	0
- 1246 002b 04       		.uleb128 0x4
- 1247 002c 16       		.uleb128 0x16
- 1248 002d 00       		.byte	0
- 1249 002e 03       		.uleb128 0x3
- 1250 002f 0E       		.uleb128 0xe
- 1251 0030 3A       		.uleb128 0x3a
- 1252 0031 0B       		.uleb128 0xb
- 1253 0032 3B       		.uleb128 0x3b
- 1254 0033 0B       		.uleb128 0xb
- 1255 0034 49       		.uleb128 0x49
- 1256 0035 13       		.uleb128 0x13
- 1257 0036 00       		.byte	0
- 1258 0037 00       		.byte	0
- 1259 0038 05       		.uleb128 0x5
- 1260 0039 35       		.uleb128 0x35
- 1261 003a 00       		.byte	0
- 1262 003b 49       		.uleb128 0x49
- 1263 003c 13       		.uleb128 0x13
- 1264 003d 00       		.byte	0
- 1265 003e 00       		.byte	0
- 1266 003f 06       		.uleb128 0x6
- 1267 0040 2E       		.uleb128 0x2e
- 1268 0041 00       		.byte	0
- 1269 0042 3F       		.uleb128 0x3f
- 1270 0043 0C       		.uleb128 0xc
- 1271 0044 03       		.uleb128 0x3
- 1272 0045 0E       		.uleb128 0xe
- 1273 0046 3A       		.uleb128 0x3a
- 1274 0047 0B       		.uleb128 0xb
- 1275 0048 3B       		.uleb128 0x3b
- 1276 0049 0B       		.uleb128 0xb
- 1277 004a 27       		.uleb128 0x27
- 1278 004b 0C       		.uleb128 0xc
- 1279 004c 11       		.uleb128 0x11
- 1280 004d 01       		.uleb128 0x1
- 1281 004e 12       		.uleb128 0x12
- 1282 004f 01       		.uleb128 0x1
- 1283 0050 40       		.uleb128 0x40
- 1284 0051 06       		.uleb128 0x6
- 1285 0052 9742     		.uleb128 0x2117
- 1286 0054 0C       		.uleb128 0xc
- 1287 0055 00       		.byte	0
- 1288 0056 00       		.byte	0
- 1289 0057 07       		.uleb128 0x7
- 1290 0058 2E       		.uleb128 0x2e
- 1291 0059 01       		.byte	0x1
- 1292 005a 3F       		.uleb128 0x3f
- 1293 005b 0C       		.uleb128 0xc
- 1294 005c 03       		.uleb128 0x3
- 1295 005d 0E       		.uleb128 0xe
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 32
+ 1239 0026 0B       		.uleb128 0xb
+ 1240 0027 03       		.uleb128 0x3
+ 1241 0028 08       		.uleb128 0x8
+ 1242 0029 00       		.byte	0
+ 1243 002a 00       		.byte	0
+ 1244 002b 04       		.uleb128 0x4
+ 1245 002c 16       		.uleb128 0x16
+ 1246 002d 00       		.byte	0
+ 1247 002e 03       		.uleb128 0x3
+ 1248 002f 0E       		.uleb128 0xe
+ 1249 0030 3A       		.uleb128 0x3a
+ 1250 0031 0B       		.uleb128 0xb
+ 1251 0032 3B       		.uleb128 0x3b
+ 1252 0033 0B       		.uleb128 0xb
+ 1253 0034 49       		.uleb128 0x49
+ 1254 0035 13       		.uleb128 0x13
+ 1255 0036 00       		.byte	0
+ 1256 0037 00       		.byte	0
+ 1257 0038 05       		.uleb128 0x5
+ 1258 0039 35       		.uleb128 0x35
+ 1259 003a 00       		.byte	0
+ 1260 003b 49       		.uleb128 0x49
+ 1261 003c 13       		.uleb128 0x13
+ 1262 003d 00       		.byte	0
+ 1263 003e 00       		.byte	0
+ 1264 003f 06       		.uleb128 0x6
+ 1265 0040 2E       		.uleb128 0x2e
+ 1266 0041 00       		.byte	0
+ 1267 0042 3F       		.uleb128 0x3f
+ 1268 0043 0C       		.uleb128 0xc
+ 1269 0044 03       		.uleb128 0x3
+ 1270 0045 0E       		.uleb128 0xe
+ 1271 0046 3A       		.uleb128 0x3a
+ 1272 0047 0B       		.uleb128 0xb
+ 1273 0048 3B       		.uleb128 0x3b
+ 1274 0049 0B       		.uleb128 0xb
+ 1275 004a 27       		.uleb128 0x27
+ 1276 004b 0C       		.uleb128 0xc
+ 1277 004c 11       		.uleb128 0x11
+ 1278 004d 01       		.uleb128 0x1
+ 1279 004e 12       		.uleb128 0x12
+ 1280 004f 01       		.uleb128 0x1
+ 1281 0050 40       		.uleb128 0x40
+ 1282 0051 06       		.uleb128 0x6
+ 1283 0052 9742     		.uleb128 0x2117
+ 1284 0054 0C       		.uleb128 0xc
+ 1285 0055 00       		.byte	0
+ 1286 0056 00       		.byte	0
+ 1287 0057 07       		.uleb128 0x7
+ 1288 0058 2E       		.uleb128 0x2e
+ 1289 0059 01       		.byte	0x1
+ 1290 005a 3F       		.uleb128 0x3f
+ 1291 005b 0C       		.uleb128 0xc
+ 1292 005c 03       		.uleb128 0x3
+ 1293 005d 0E       		.uleb128 0xe
+ 1294 005e 3A       		.uleb128 0x3a
+ 1295 005f 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 32
 
 
- 1296 005e 3A       		.uleb128 0x3a
- 1297 005f 0B       		.uleb128 0xb
- 1298 0060 3B       		.uleb128 0x3b
- 1299 0061 0B       		.uleb128 0xb
- 1300 0062 27       		.uleb128 0x27
- 1301 0063 0C       		.uleb128 0xc
- 1302 0064 11       		.uleb128 0x11
- 1303 0065 01       		.uleb128 0x1
- 1304 0066 12       		.uleb128 0x12
- 1305 0067 01       		.uleb128 0x1
- 1306 0068 40       		.uleb128 0x40
- 1307 0069 06       		.uleb128 0x6
- 1308 006a 9742     		.uleb128 0x2117
- 1309 006c 0C       		.uleb128 0xc
- 1310 006d 01       		.uleb128 0x1
- 1311 006e 13       		.uleb128 0x13
- 1312 006f 00       		.byte	0
- 1313 0070 00       		.byte	0
- 1314 0071 08       		.uleb128 0x8
- 1315 0072 0B       		.uleb128 0xb
- 1316 0073 01       		.byte	0x1
- 1317 0074 11       		.uleb128 0x11
- 1318 0075 01       		.uleb128 0x1
- 1319 0076 12       		.uleb128 0x12
- 1320 0077 01       		.uleb128 0x1
- 1321 0078 00       		.byte	0
- 1322 0079 00       		.byte	0
- 1323 007a 09       		.uleb128 0x9
- 1324 007b 34       		.uleb128 0x34
- 1325 007c 00       		.byte	0
- 1326 007d 03       		.uleb128 0x3
- 1327 007e 0E       		.uleb128 0xe
- 1328 007f 3A       		.uleb128 0x3a
- 1329 0080 0B       		.uleb128 0xb
- 1330 0081 3B       		.uleb128 0x3b
- 1331 0082 0B       		.uleb128 0xb
- 1332 0083 49       		.uleb128 0x49
- 1333 0084 13       		.uleb128 0x13
- 1334 0085 02       		.uleb128 0x2
- 1335 0086 0A       		.uleb128 0xa
- 1336 0087 00       		.byte	0
- 1337 0088 00       		.byte	0
- 1338 0089 0A       		.uleb128 0xa
- 1339 008a 05       		.uleb128 0x5
- 1340 008b 00       		.byte	0
- 1341 008c 03       		.uleb128 0x3
- 1342 008d 0E       		.uleb128 0xe
- 1343 008e 3A       		.uleb128 0x3a
- 1344 008f 0B       		.uleb128 0xb
- 1345 0090 3B       		.uleb128 0x3b
- 1346 0091 0B       		.uleb128 0xb
- 1347 0092 49       		.uleb128 0x49
- 1348 0093 13       		.uleb128 0x13
- 1349 0094 02       		.uleb128 0x2
- 1350 0095 0A       		.uleb128 0xa
- 1351 0096 00       		.byte	0
- 1352 0097 00       		.byte	0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 33
+ 1296 0060 3B       		.uleb128 0x3b
+ 1297 0061 0B       		.uleb128 0xb
+ 1298 0062 27       		.uleb128 0x27
+ 1299 0063 0C       		.uleb128 0xc
+ 1300 0064 11       		.uleb128 0x11
+ 1301 0065 01       		.uleb128 0x1
+ 1302 0066 12       		.uleb128 0x12
+ 1303 0067 01       		.uleb128 0x1
+ 1304 0068 40       		.uleb128 0x40
+ 1305 0069 06       		.uleb128 0x6
+ 1306 006a 9742     		.uleb128 0x2117
+ 1307 006c 0C       		.uleb128 0xc
+ 1308 006d 01       		.uleb128 0x1
+ 1309 006e 13       		.uleb128 0x13
+ 1310 006f 00       		.byte	0
+ 1311 0070 00       		.byte	0
+ 1312 0071 08       		.uleb128 0x8
+ 1313 0072 0B       		.uleb128 0xb
+ 1314 0073 01       		.byte	0x1
+ 1315 0074 11       		.uleb128 0x11
+ 1316 0075 01       		.uleb128 0x1
+ 1317 0076 12       		.uleb128 0x12
+ 1318 0077 01       		.uleb128 0x1
+ 1319 0078 00       		.byte	0
+ 1320 0079 00       		.byte	0
+ 1321 007a 09       		.uleb128 0x9
+ 1322 007b 34       		.uleb128 0x34
+ 1323 007c 00       		.byte	0
+ 1324 007d 03       		.uleb128 0x3
+ 1325 007e 0E       		.uleb128 0xe
+ 1326 007f 3A       		.uleb128 0x3a
+ 1327 0080 0B       		.uleb128 0xb
+ 1328 0081 3B       		.uleb128 0x3b
+ 1329 0082 0B       		.uleb128 0xb
+ 1330 0083 49       		.uleb128 0x49
+ 1331 0084 13       		.uleb128 0x13
+ 1332 0085 02       		.uleb128 0x2
+ 1333 0086 0A       		.uleb128 0xa
+ 1334 0087 00       		.byte	0
+ 1335 0088 00       		.byte	0
+ 1336 0089 0A       		.uleb128 0xa
+ 1337 008a 05       		.uleb128 0x5
+ 1338 008b 00       		.byte	0
+ 1339 008c 03       		.uleb128 0x3
+ 1340 008d 0E       		.uleb128 0xe
+ 1341 008e 3A       		.uleb128 0x3a
+ 1342 008f 0B       		.uleb128 0xb
+ 1343 0090 3B       		.uleb128 0x3b
+ 1344 0091 0B       		.uleb128 0xb
+ 1345 0092 49       		.uleb128 0x49
+ 1346 0093 13       		.uleb128 0x13
+ 1347 0094 02       		.uleb128 0x2
+ 1348 0095 0A       		.uleb128 0xa
+ 1349 0096 00       		.byte	0
+ 1350 0097 00       		.byte	0
+ 1351 0098 0B       		.uleb128 0xb
+ 1352 0099 2E       		.uleb128 0x2e
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 33
 
 
- 1353 0098 0B       		.uleb128 0xb
- 1354 0099 2E       		.uleb128 0x2e
- 1355 009a 01       		.byte	0x1
- 1356 009b 3F       		.uleb128 0x3f
- 1357 009c 0C       		.uleb128 0xc
- 1358 009d 03       		.uleb128 0x3
- 1359 009e 0E       		.uleb128 0xe
- 1360 009f 3A       		.uleb128 0x3a
- 1361 00a0 0B       		.uleb128 0xb
- 1362 00a1 3B       		.uleb128 0x3b
- 1363 00a2 0B       		.uleb128 0xb
- 1364 00a3 27       		.uleb128 0x27
- 1365 00a4 0C       		.uleb128 0xc
- 1366 00a5 11       		.uleb128 0x11
- 1367 00a6 01       		.uleb128 0x1
- 1368 00a7 12       		.uleb128 0x12
- 1369 00a8 01       		.uleb128 0x1
- 1370 00a9 40       		.uleb128 0x40
- 1371 00aa 06       		.uleb128 0x6
- 1372 00ab 9642     		.uleb128 0x2116
- 1373 00ad 0C       		.uleb128 0xc
- 1374 00ae 01       		.uleb128 0x1
- 1375 00af 13       		.uleb128 0x13
- 1376 00b0 00       		.byte	0
- 1377 00b1 00       		.byte	0
- 1378 00b2 0C       		.uleb128 0xc
- 1379 00b3 2E       		.uleb128 0x2e
- 1380 00b4 00       		.byte	0
- 1381 00b5 3F       		.uleb128 0x3f
- 1382 00b6 0C       		.uleb128 0xc
- 1383 00b7 03       		.uleb128 0x3
- 1384 00b8 0E       		.uleb128 0xe
- 1385 00b9 3A       		.uleb128 0x3a
- 1386 00ba 0B       		.uleb128 0xb
- 1387 00bb 3B       		.uleb128 0x3b
- 1388 00bc 05       		.uleb128 0x5
- 1389 00bd 27       		.uleb128 0x27
- 1390 00be 0C       		.uleb128 0xc
- 1391 00bf 49       		.uleb128 0x49
- 1392 00c0 13       		.uleb128 0x13
- 1393 00c1 11       		.uleb128 0x11
- 1394 00c2 01       		.uleb128 0x1
- 1395 00c3 12       		.uleb128 0x12
- 1396 00c4 01       		.uleb128 0x1
- 1397 00c5 40       		.uleb128 0x40
- 1398 00c6 06       		.uleb128 0x6
- 1399 00c7 9742     		.uleb128 0x2117
- 1400 00c9 0C       		.uleb128 0xc
- 1401 00ca 00       		.byte	0
- 1402 00cb 00       		.byte	0
- 1403 00cc 0D       		.uleb128 0xd
- 1404 00cd 2E       		.uleb128 0x2e
- 1405 00ce 01       		.byte	0x1
- 1406 00cf 3F       		.uleb128 0x3f
- 1407 00d0 0C       		.uleb128 0xc
- 1408 00d1 03       		.uleb128 0x3
- 1409 00d2 0E       		.uleb128 0xe
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 34
+ 1353 009a 01       		.byte	0x1
+ 1354 009b 3F       		.uleb128 0x3f
+ 1355 009c 0C       		.uleb128 0xc
+ 1356 009d 03       		.uleb128 0x3
+ 1357 009e 0E       		.uleb128 0xe
+ 1358 009f 3A       		.uleb128 0x3a
+ 1359 00a0 0B       		.uleb128 0xb
+ 1360 00a1 3B       		.uleb128 0x3b
+ 1361 00a2 0B       		.uleb128 0xb
+ 1362 00a3 27       		.uleb128 0x27
+ 1363 00a4 0C       		.uleb128 0xc
+ 1364 00a5 11       		.uleb128 0x11
+ 1365 00a6 01       		.uleb128 0x1
+ 1366 00a7 12       		.uleb128 0x12
+ 1367 00a8 01       		.uleb128 0x1
+ 1368 00a9 40       		.uleb128 0x40
+ 1369 00aa 06       		.uleb128 0x6
+ 1370 00ab 9642     		.uleb128 0x2116
+ 1371 00ad 0C       		.uleb128 0xc
+ 1372 00ae 01       		.uleb128 0x1
+ 1373 00af 13       		.uleb128 0x13
+ 1374 00b0 00       		.byte	0
+ 1375 00b1 00       		.byte	0
+ 1376 00b2 0C       		.uleb128 0xc
+ 1377 00b3 2E       		.uleb128 0x2e
+ 1378 00b4 00       		.byte	0
+ 1379 00b5 3F       		.uleb128 0x3f
+ 1380 00b6 0C       		.uleb128 0xc
+ 1381 00b7 03       		.uleb128 0x3
+ 1382 00b8 0E       		.uleb128 0xe
+ 1383 00b9 3A       		.uleb128 0x3a
+ 1384 00ba 0B       		.uleb128 0xb
+ 1385 00bb 3B       		.uleb128 0x3b
+ 1386 00bc 05       		.uleb128 0x5
+ 1387 00bd 27       		.uleb128 0x27
+ 1388 00be 0C       		.uleb128 0xc
+ 1389 00bf 49       		.uleb128 0x49
+ 1390 00c0 13       		.uleb128 0x13
+ 1391 00c1 11       		.uleb128 0x11
+ 1392 00c2 01       		.uleb128 0x1
+ 1393 00c3 12       		.uleb128 0x12
+ 1394 00c4 01       		.uleb128 0x1
+ 1395 00c5 40       		.uleb128 0x40
+ 1396 00c6 06       		.uleb128 0x6
+ 1397 00c7 9742     		.uleb128 0x2117
+ 1398 00c9 0C       		.uleb128 0xc
+ 1399 00ca 00       		.byte	0
+ 1400 00cb 00       		.byte	0
+ 1401 00cc 0D       		.uleb128 0xd
+ 1402 00cd 2E       		.uleb128 0x2e
+ 1403 00ce 01       		.byte	0x1
+ 1404 00cf 3F       		.uleb128 0x3f
+ 1405 00d0 0C       		.uleb128 0xc
+ 1406 00d1 03       		.uleb128 0x3
+ 1407 00d2 0E       		.uleb128 0xe
+ 1408 00d3 3A       		.uleb128 0x3a
+ 1409 00d4 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 34
 
 
- 1410 00d3 3A       		.uleb128 0x3a
- 1411 00d4 0B       		.uleb128 0xb
- 1412 00d5 3B       		.uleb128 0x3b
- 1413 00d6 05       		.uleb128 0x5
- 1414 00d7 27       		.uleb128 0x27
- 1415 00d8 0C       		.uleb128 0xc
- 1416 00d9 11       		.uleb128 0x11
- 1417 00da 01       		.uleb128 0x1
- 1418 00db 12       		.uleb128 0x12
- 1419 00dc 01       		.uleb128 0x1
- 1420 00dd 40       		.uleb128 0x40
- 1421 00de 06       		.uleb128 0x6
- 1422 00df 9742     		.uleb128 0x2117
- 1423 00e1 0C       		.uleb128 0xc
- 1424 00e2 01       		.uleb128 0x1
- 1425 00e3 13       		.uleb128 0x13
- 1426 00e4 00       		.byte	0
- 1427 00e5 00       		.byte	0
- 1428 00e6 0E       		.uleb128 0xe
- 1429 00e7 05       		.uleb128 0x5
- 1430 00e8 00       		.byte	0
- 1431 00e9 03       		.uleb128 0x3
- 1432 00ea 0E       		.uleb128 0xe
- 1433 00eb 3A       		.uleb128 0x3a
- 1434 00ec 0B       		.uleb128 0xb
- 1435 00ed 3B       		.uleb128 0x3b
- 1436 00ee 05       		.uleb128 0x5
- 1437 00ef 49       		.uleb128 0x49
- 1438 00f0 13       		.uleb128 0x13
- 1439 00f1 02       		.uleb128 0x2
- 1440 00f2 0A       		.uleb128 0xa
- 1441 00f3 00       		.byte	0
- 1442 00f4 00       		.byte	0
- 1443 00f5 0F       		.uleb128 0xf
- 1444 00f6 2E       		.uleb128 0x2e
- 1445 00f7 01       		.byte	0x1
- 1446 00f8 3F       		.uleb128 0x3f
- 1447 00f9 0C       		.uleb128 0xc
- 1448 00fa 03       		.uleb128 0x3
- 1449 00fb 0E       		.uleb128 0xe
- 1450 00fc 3A       		.uleb128 0x3a
- 1451 00fd 0B       		.uleb128 0xb
- 1452 00fe 3B       		.uleb128 0x3b
- 1453 00ff 05       		.uleb128 0x5
- 1454 0100 27       		.uleb128 0x27
- 1455 0101 0C       		.uleb128 0xc
- 1456 0102 11       		.uleb128 0x11
- 1457 0103 01       		.uleb128 0x1
- 1458 0104 12       		.uleb128 0x12
- 1459 0105 01       		.uleb128 0x1
- 1460 0106 40       		.uleb128 0x40
- 1461 0107 06       		.uleb128 0x6
- 1462 0108 9642     		.uleb128 0x2116
- 1463 010a 0C       		.uleb128 0xc
- 1464 010b 01       		.uleb128 0x1
- 1465 010c 13       		.uleb128 0x13
- 1466 010d 00       		.byte	0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 35
+ 1410 00d5 3B       		.uleb128 0x3b
+ 1411 00d6 05       		.uleb128 0x5
+ 1412 00d7 27       		.uleb128 0x27
+ 1413 00d8 0C       		.uleb128 0xc
+ 1414 00d9 11       		.uleb128 0x11
+ 1415 00da 01       		.uleb128 0x1
+ 1416 00db 12       		.uleb128 0x12
+ 1417 00dc 01       		.uleb128 0x1
+ 1418 00dd 40       		.uleb128 0x40
+ 1419 00de 06       		.uleb128 0x6
+ 1420 00df 9742     		.uleb128 0x2117
+ 1421 00e1 0C       		.uleb128 0xc
+ 1422 00e2 01       		.uleb128 0x1
+ 1423 00e3 13       		.uleb128 0x13
+ 1424 00e4 00       		.byte	0
+ 1425 00e5 00       		.byte	0
+ 1426 00e6 0E       		.uleb128 0xe
+ 1427 00e7 05       		.uleb128 0x5
+ 1428 00e8 00       		.byte	0
+ 1429 00e9 03       		.uleb128 0x3
+ 1430 00ea 0E       		.uleb128 0xe
+ 1431 00eb 3A       		.uleb128 0x3a
+ 1432 00ec 0B       		.uleb128 0xb
+ 1433 00ed 3B       		.uleb128 0x3b
+ 1434 00ee 05       		.uleb128 0x5
+ 1435 00ef 49       		.uleb128 0x49
+ 1436 00f0 13       		.uleb128 0x13
+ 1437 00f1 02       		.uleb128 0x2
+ 1438 00f2 0A       		.uleb128 0xa
+ 1439 00f3 00       		.byte	0
+ 1440 00f4 00       		.byte	0
+ 1441 00f5 0F       		.uleb128 0xf
+ 1442 00f6 2E       		.uleb128 0x2e
+ 1443 00f7 01       		.byte	0x1
+ 1444 00f8 3F       		.uleb128 0x3f
+ 1445 00f9 0C       		.uleb128 0xc
+ 1446 00fa 03       		.uleb128 0x3
+ 1447 00fb 0E       		.uleb128 0xe
+ 1448 00fc 3A       		.uleb128 0x3a
+ 1449 00fd 0B       		.uleb128 0xb
+ 1450 00fe 3B       		.uleb128 0x3b
+ 1451 00ff 05       		.uleb128 0x5
+ 1452 0100 27       		.uleb128 0x27
+ 1453 0101 0C       		.uleb128 0xc
+ 1454 0102 11       		.uleb128 0x11
+ 1455 0103 01       		.uleb128 0x1
+ 1456 0104 12       		.uleb128 0x12
+ 1457 0105 01       		.uleb128 0x1
+ 1458 0106 40       		.uleb128 0x40
+ 1459 0107 06       		.uleb128 0x6
+ 1460 0108 9642     		.uleb128 0x2116
+ 1461 010a 0C       		.uleb128 0xc
+ 1462 010b 01       		.uleb128 0x1
+ 1463 010c 13       		.uleb128 0x13
+ 1464 010d 00       		.byte	0
+ 1465 010e 00       		.byte	0
+ 1466 010f 10       		.uleb128 0x10
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 35
 
 
- 1467 010e 00       		.byte	0
- 1468 010f 10       		.uleb128 0x10
- 1469 0110 34       		.uleb128 0x34
- 1470 0111 00       		.byte	0
- 1471 0112 03       		.uleb128 0x3
- 1472 0113 0E       		.uleb128 0xe
- 1473 0114 3A       		.uleb128 0x3a
- 1474 0115 0B       		.uleb128 0xb
- 1475 0116 3B       		.uleb128 0x3b
- 1476 0117 05       		.uleb128 0x5
- 1477 0118 49       		.uleb128 0x49
- 1478 0119 13       		.uleb128 0x13
- 1479 011a 02       		.uleb128 0x2
- 1480 011b 0A       		.uleb128 0xa
- 1481 011c 00       		.byte	0
- 1482 011d 00       		.byte	0
- 1483 011e 00       		.byte	0
- 1484              		.section	.debug_loc,"",%progbits
- 1485              	.Ldebug_loc0:
- 1486              	.LLST0:
- 1487 0000 00000000 		.4byte	.LFB0
- 1488 0004 02000000 		.4byte	.LCFI0
- 1489 0008 0200     		.2byte	0x2
- 1490 000a 7D       		.byte	0x7d
- 1491 000b 00       		.sleb128 0
- 1492 000c 02000000 		.4byte	.LCFI0
- 1493 0010 04000000 		.4byte	.LCFI1
- 1494 0014 0200     		.2byte	0x2
- 1495 0016 7D       		.byte	0x7d
- 1496 0017 04       		.sleb128 4
- 1497 0018 04000000 		.4byte	.LCFI1
- 1498 001c 42000000 		.4byte	.LFE0
- 1499 0020 0200     		.2byte	0x2
- 1500 0022 77       		.byte	0x77
- 1501 0023 04       		.sleb128 4
- 1502 0024 00000000 		.4byte	0
- 1503 0028 00000000 		.4byte	0
- 1504              	.LLST1:
- 1505 002c 00000000 		.4byte	.LFB1
- 1506 0030 02000000 		.4byte	.LCFI2
- 1507 0034 0200     		.2byte	0x2
- 1508 0036 7D       		.byte	0x7d
- 1509 0037 00       		.sleb128 0
- 1510 0038 02000000 		.4byte	.LCFI2
- 1511 003c 04000000 		.4byte	.LCFI3
- 1512 0040 0200     		.2byte	0x2
- 1513 0042 7D       		.byte	0x7d
- 1514 0043 04       		.sleb128 4
- 1515 0044 04000000 		.4byte	.LCFI3
- 1516 0048 42000000 		.4byte	.LFE1
- 1517 004c 0200     		.2byte	0x2
- 1518 004e 77       		.byte	0x77
- 1519 004f 04       		.sleb128 4
- 1520 0050 00000000 		.4byte	0
- 1521 0054 00000000 		.4byte	0
- 1522              	.LLST2:
- 1523 0058 00000000 		.4byte	.LFB2
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 36
+ 1467 0110 34       		.uleb128 0x34
+ 1468 0111 00       		.byte	0
+ 1469 0112 03       		.uleb128 0x3
+ 1470 0113 0E       		.uleb128 0xe
+ 1471 0114 3A       		.uleb128 0x3a
+ 1472 0115 0B       		.uleb128 0xb
+ 1473 0116 3B       		.uleb128 0x3b
+ 1474 0117 05       		.uleb128 0x5
+ 1475 0118 49       		.uleb128 0x49
+ 1476 0119 13       		.uleb128 0x13
+ 1477 011a 02       		.uleb128 0x2
+ 1478 011b 0A       		.uleb128 0xa
+ 1479 011c 00       		.byte	0
+ 1480 011d 00       		.byte	0
+ 1481 011e 00       		.byte	0
+ 1482              		.section	.debug_loc,"",%progbits
+ 1483              	.Ldebug_loc0:
+ 1484              	.LLST0:
+ 1485 0000 00000000 		.4byte	.LFB0
+ 1486 0004 02000000 		.4byte	.LCFI0
+ 1487 0008 0200     		.2byte	0x2
+ 1488 000a 7D       		.byte	0x7d
+ 1489 000b 00       		.sleb128 0
+ 1490 000c 02000000 		.4byte	.LCFI0
+ 1491 0010 04000000 		.4byte	.LCFI1
+ 1492 0014 0200     		.2byte	0x2
+ 1493 0016 7D       		.byte	0x7d
+ 1494 0017 04       		.sleb128 4
+ 1495 0018 04000000 		.4byte	.LCFI1
+ 1496 001c 42000000 		.4byte	.LFE0
+ 1497 0020 0200     		.2byte	0x2
+ 1498 0022 77       		.byte	0x77
+ 1499 0023 04       		.sleb128 4
+ 1500 0024 00000000 		.4byte	0
+ 1501 0028 00000000 		.4byte	0
+ 1502              	.LLST1:
+ 1503 002c 00000000 		.4byte	.LFB1
+ 1504 0030 02000000 		.4byte	.LCFI2
+ 1505 0034 0200     		.2byte	0x2
+ 1506 0036 7D       		.byte	0x7d
+ 1507 0037 00       		.sleb128 0
+ 1508 0038 02000000 		.4byte	.LCFI2
+ 1509 003c 04000000 		.4byte	.LCFI3
+ 1510 0040 0200     		.2byte	0x2
+ 1511 0042 7D       		.byte	0x7d
+ 1512 0043 04       		.sleb128 4
+ 1513 0044 04000000 		.4byte	.LCFI3
+ 1514 0048 42000000 		.4byte	.LFE1
+ 1515 004c 0200     		.2byte	0x2
+ 1516 004e 77       		.byte	0x77
+ 1517 004f 04       		.sleb128 4
+ 1518 0050 00000000 		.4byte	0
+ 1519 0054 00000000 		.4byte	0
+ 1520              	.LLST2:
+ 1521 0058 00000000 		.4byte	.LFB2
+ 1522 005c 02000000 		.4byte	.LCFI4
+ 1523 0060 0200     		.2byte	0x2
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 36
 
 
- 1524 005c 02000000 		.4byte	.LCFI4
- 1525 0060 0200     		.2byte	0x2
- 1526 0062 7D       		.byte	0x7d
- 1527 0063 00       		.sleb128 0
- 1528 0064 02000000 		.4byte	.LCFI4
- 1529 0068 04000000 		.4byte	.LCFI5
- 1530 006c 0200     		.2byte	0x2
- 1531 006e 7D       		.byte	0x7d
- 1532 006f 04       		.sleb128 4
- 1533 0070 04000000 		.4byte	.LCFI5
- 1534 0074 06000000 		.4byte	.LCFI6
- 1535 0078 0200     		.2byte	0x2
- 1536 007a 7D       		.byte	0x7d
- 1537 007b 10       		.sleb128 16
- 1538 007c 06000000 		.4byte	.LCFI6
- 1539 0080 F8000000 		.4byte	.LFE2
- 1540 0084 0200     		.2byte	0x2
- 1541 0086 77       		.byte	0x77
- 1542 0087 10       		.sleb128 16
- 1543 0088 00000000 		.4byte	0
- 1544 008c 00000000 		.4byte	0
- 1545              	.LLST3:
- 1546 0090 00000000 		.4byte	.LFB3
- 1547 0094 02000000 		.4byte	.LCFI7
- 1548 0098 0200     		.2byte	0x2
- 1549 009a 7D       		.byte	0x7d
- 1550 009b 00       		.sleb128 0
- 1551 009c 02000000 		.4byte	.LCFI7
- 1552 00a0 04000000 		.4byte	.LCFI8
- 1553 00a4 0200     		.2byte	0x2
- 1554 00a6 7D       		.byte	0x7d
- 1555 00a7 04       		.sleb128 4
- 1556 00a8 04000000 		.4byte	.LCFI8
- 1557 00ac 06000000 		.4byte	.LCFI9
- 1558 00b0 0200     		.2byte	0x2
- 1559 00b2 7D       		.byte	0x7d
- 1560 00b3 10       		.sleb128 16
- 1561 00b4 06000000 		.4byte	.LCFI9
- 1562 00b8 54000000 		.4byte	.LFE3
- 1563 00bc 0200     		.2byte	0x2
- 1564 00be 77       		.byte	0x77
- 1565 00bf 10       		.sleb128 16
- 1566 00c0 00000000 		.4byte	0
- 1567 00c4 00000000 		.4byte	0
- 1568              	.LLST4:
- 1569 00c8 00000000 		.4byte	.LFB4
- 1570 00cc 02000000 		.4byte	.LCFI10
- 1571 00d0 0200     		.2byte	0x2
- 1572 00d2 7D       		.byte	0x7d
- 1573 00d3 00       		.sleb128 0
- 1574 00d4 02000000 		.4byte	.LCFI10
- 1575 00d8 04000000 		.4byte	.LCFI11
- 1576 00dc 0200     		.2byte	0x2
- 1577 00de 7D       		.byte	0x7d
- 1578 00df 08       		.sleb128 8
- 1579 00e0 04000000 		.4byte	.LCFI11
- 1580 00e4 06000000 		.4byte	.LCFI12
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 37
+ 1524 0062 7D       		.byte	0x7d
+ 1525 0063 00       		.sleb128 0
+ 1526 0064 02000000 		.4byte	.LCFI4
+ 1527 0068 04000000 		.4byte	.LCFI5
+ 1528 006c 0200     		.2byte	0x2
+ 1529 006e 7D       		.byte	0x7d
+ 1530 006f 04       		.sleb128 4
+ 1531 0070 04000000 		.4byte	.LCFI5
+ 1532 0074 06000000 		.4byte	.LCFI6
+ 1533 0078 0200     		.2byte	0x2
+ 1534 007a 7D       		.byte	0x7d
+ 1535 007b 10       		.sleb128 16
+ 1536 007c 06000000 		.4byte	.LCFI6
+ 1537 0080 F8000000 		.4byte	.LFE2
+ 1538 0084 0200     		.2byte	0x2
+ 1539 0086 77       		.byte	0x77
+ 1540 0087 10       		.sleb128 16
+ 1541 0088 00000000 		.4byte	0
+ 1542 008c 00000000 		.4byte	0
+ 1543              	.LLST3:
+ 1544 0090 00000000 		.4byte	.LFB3
+ 1545 0094 02000000 		.4byte	.LCFI7
+ 1546 0098 0200     		.2byte	0x2
+ 1547 009a 7D       		.byte	0x7d
+ 1548 009b 00       		.sleb128 0
+ 1549 009c 02000000 		.4byte	.LCFI7
+ 1550 00a0 04000000 		.4byte	.LCFI8
+ 1551 00a4 0200     		.2byte	0x2
+ 1552 00a6 7D       		.byte	0x7d
+ 1553 00a7 04       		.sleb128 4
+ 1554 00a8 04000000 		.4byte	.LCFI8
+ 1555 00ac 06000000 		.4byte	.LCFI9
+ 1556 00b0 0200     		.2byte	0x2
+ 1557 00b2 7D       		.byte	0x7d
+ 1558 00b3 10       		.sleb128 16
+ 1559 00b4 06000000 		.4byte	.LCFI9
+ 1560 00b8 54000000 		.4byte	.LFE3
+ 1561 00bc 0200     		.2byte	0x2
+ 1562 00be 77       		.byte	0x77
+ 1563 00bf 10       		.sleb128 16
+ 1564 00c0 00000000 		.4byte	0
+ 1565 00c4 00000000 		.4byte	0
+ 1566              	.LLST4:
+ 1567 00c8 00000000 		.4byte	.LFB4
+ 1568 00cc 02000000 		.4byte	.LCFI10
+ 1569 00d0 0200     		.2byte	0x2
+ 1570 00d2 7D       		.byte	0x7d
+ 1571 00d3 00       		.sleb128 0
+ 1572 00d4 02000000 		.4byte	.LCFI10
+ 1573 00d8 04000000 		.4byte	.LCFI11
+ 1574 00dc 0200     		.2byte	0x2
+ 1575 00de 7D       		.byte	0x7d
+ 1576 00df 08       		.sleb128 8
+ 1577 00e0 04000000 		.4byte	.LCFI11
+ 1578 00e4 06000000 		.4byte	.LCFI12
+ 1579 00e8 0200     		.2byte	0x2
+ 1580 00ea 7D       		.byte	0x7d
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 37
 
 
- 1581 00e8 0200     		.2byte	0x2
- 1582 00ea 7D       		.byte	0x7d
- 1583 00eb 18       		.sleb128 24
- 1584 00ec 06000000 		.4byte	.LCFI12
- 1585 00f0 E8010000 		.4byte	.LFE4
- 1586 00f4 0200     		.2byte	0x2
- 1587 00f6 77       		.byte	0x77
- 1588 00f7 18       		.sleb128 24
- 1589 00f8 00000000 		.4byte	0
- 1590 00fc 00000000 		.4byte	0
- 1591              	.LLST5:
- 1592 0100 00000000 		.4byte	.LFB5
- 1593 0104 02000000 		.4byte	.LCFI13
- 1594 0108 0200     		.2byte	0x2
- 1595 010a 7D       		.byte	0x7d
- 1596 010b 00       		.sleb128 0
- 1597 010c 02000000 		.4byte	.LCFI13
- 1598 0110 04000000 		.4byte	.LCFI14
- 1599 0114 0200     		.2byte	0x2
- 1600 0116 7D       		.byte	0x7d
- 1601 0117 04       		.sleb128 4
- 1602 0118 04000000 		.4byte	.LCFI14
- 1603 011c 18000000 		.4byte	.LFE5
- 1604 0120 0200     		.2byte	0x2
- 1605 0122 77       		.byte	0x77
- 1606 0123 04       		.sleb128 4
- 1607 0124 00000000 		.4byte	0
- 1608 0128 00000000 		.4byte	0
- 1609              	.LLST6:
- 1610 012c 00000000 		.4byte	.LFB6
- 1611 0130 02000000 		.4byte	.LCFI15
- 1612 0134 0200     		.2byte	0x2
- 1613 0136 7D       		.byte	0x7d
- 1614 0137 00       		.sleb128 0
- 1615 0138 02000000 		.4byte	.LCFI15
- 1616 013c 04000000 		.4byte	.LCFI16
- 1617 0140 0200     		.2byte	0x2
- 1618 0142 7D       		.byte	0x7d
- 1619 0143 04       		.sleb128 4
- 1620 0144 04000000 		.4byte	.LCFI16
- 1621 0148 06000000 		.4byte	.LCFI17
- 1622 014c 0200     		.2byte	0x2
- 1623 014e 7D       		.byte	0x7d
- 1624 014f 10       		.sleb128 16
- 1625 0150 06000000 		.4byte	.LCFI17
- 1626 0154 3A000000 		.4byte	.LFE6
- 1627 0158 0200     		.2byte	0x2
- 1628 015a 77       		.byte	0x77
- 1629 015b 10       		.sleb128 16
- 1630 015c 00000000 		.4byte	0
- 1631 0160 00000000 		.4byte	0
- 1632              	.LLST7:
- 1633 0164 00000000 		.4byte	.LFB7
- 1634 0168 02000000 		.4byte	.LCFI18
- 1635 016c 0200     		.2byte	0x2
- 1636 016e 7D       		.byte	0x7d
- 1637 016f 00       		.sleb128 0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 38
+ 1581 00eb 18       		.sleb128 24
+ 1582 00ec 06000000 		.4byte	.LCFI12
+ 1583 00f0 E8010000 		.4byte	.LFE4
+ 1584 00f4 0200     		.2byte	0x2
+ 1585 00f6 77       		.byte	0x77
+ 1586 00f7 18       		.sleb128 24
+ 1587 00f8 00000000 		.4byte	0
+ 1588 00fc 00000000 		.4byte	0
+ 1589              	.LLST5:
+ 1590 0100 00000000 		.4byte	.LFB5
+ 1591 0104 02000000 		.4byte	.LCFI13
+ 1592 0108 0200     		.2byte	0x2
+ 1593 010a 7D       		.byte	0x7d
+ 1594 010b 00       		.sleb128 0
+ 1595 010c 02000000 		.4byte	.LCFI13
+ 1596 0110 04000000 		.4byte	.LCFI14
+ 1597 0114 0200     		.2byte	0x2
+ 1598 0116 7D       		.byte	0x7d
+ 1599 0117 04       		.sleb128 4
+ 1600 0118 04000000 		.4byte	.LCFI14
+ 1601 011c 18000000 		.4byte	.LFE5
+ 1602 0120 0200     		.2byte	0x2
+ 1603 0122 77       		.byte	0x77
+ 1604 0123 04       		.sleb128 4
+ 1605 0124 00000000 		.4byte	0
+ 1606 0128 00000000 		.4byte	0
+ 1607              	.LLST6:
+ 1608 012c 00000000 		.4byte	.LFB6
+ 1609 0130 02000000 		.4byte	.LCFI15
+ 1610 0134 0200     		.2byte	0x2
+ 1611 0136 7D       		.byte	0x7d
+ 1612 0137 00       		.sleb128 0
+ 1613 0138 02000000 		.4byte	.LCFI15
+ 1614 013c 04000000 		.4byte	.LCFI16
+ 1615 0140 0200     		.2byte	0x2
+ 1616 0142 7D       		.byte	0x7d
+ 1617 0143 04       		.sleb128 4
+ 1618 0144 04000000 		.4byte	.LCFI16
+ 1619 0148 06000000 		.4byte	.LCFI17
+ 1620 014c 0200     		.2byte	0x2
+ 1621 014e 7D       		.byte	0x7d
+ 1622 014f 10       		.sleb128 16
+ 1623 0150 06000000 		.4byte	.LCFI17
+ 1624 0154 3A000000 		.4byte	.LFE6
+ 1625 0158 0200     		.2byte	0x2
+ 1626 015a 77       		.byte	0x77
+ 1627 015b 10       		.sleb128 16
+ 1628 015c 00000000 		.4byte	0
+ 1629 0160 00000000 		.4byte	0
+ 1630              	.LLST7:
+ 1631 0164 00000000 		.4byte	.LFB7
+ 1632 0168 02000000 		.4byte	.LCFI18
+ 1633 016c 0200     		.2byte	0x2
+ 1634 016e 7D       		.byte	0x7d
+ 1635 016f 00       		.sleb128 0
+ 1636 0170 02000000 		.4byte	.LCFI18
+ 1637 0174 04000000 		.4byte	.LCFI19
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 38
 
 
- 1638 0170 02000000 		.4byte	.LCFI18
- 1639 0174 04000000 		.4byte	.LCFI19
- 1640 0178 0200     		.2byte	0x2
- 1641 017a 7D       		.byte	0x7d
- 1642 017b 04       		.sleb128 4
- 1643 017c 04000000 		.4byte	.LCFI19
- 1644 0180 06000000 		.4byte	.LCFI20
- 1645 0184 0200     		.2byte	0x2
- 1646 0186 7D       		.byte	0x7d
- 1647 0187 10       		.sleb128 16
- 1648 0188 06000000 		.4byte	.LCFI20
- 1649 018c 3C000000 		.4byte	.LFE7
- 1650 0190 0200     		.2byte	0x2
- 1651 0192 77       		.byte	0x77
- 1652 0193 10       		.sleb128 16
- 1653 0194 00000000 		.4byte	0
- 1654 0198 00000000 		.4byte	0
- 1655              	.LLST8:
- 1656 019c 00000000 		.4byte	.LFB8
- 1657 01a0 02000000 		.4byte	.LCFI21
- 1658 01a4 0200     		.2byte	0x2
- 1659 01a6 7D       		.byte	0x7d
- 1660 01a7 00       		.sleb128 0
- 1661 01a8 02000000 		.4byte	.LCFI21
- 1662 01ac 04000000 		.4byte	.LCFI22
- 1663 01b0 0200     		.2byte	0x2
- 1664 01b2 7D       		.byte	0x7d
- 1665 01b3 04       		.sleb128 4
- 1666 01b4 04000000 		.4byte	.LCFI22
- 1667 01b8 1E000000 		.4byte	.LFE8
- 1668 01bc 0200     		.2byte	0x2
- 1669 01be 77       		.byte	0x77
- 1670 01bf 04       		.sleb128 4
- 1671 01c0 00000000 		.4byte	0
- 1672 01c4 00000000 		.4byte	0
- 1673              	.LLST9:
- 1674 01c8 00000000 		.4byte	.LFB9
- 1675 01cc 02000000 		.4byte	.LCFI23
- 1676 01d0 0200     		.2byte	0x2
- 1677 01d2 7D       		.byte	0x7d
- 1678 01d3 00       		.sleb128 0
- 1679 01d4 02000000 		.4byte	.LCFI23
- 1680 01d8 04000000 		.4byte	.LCFI24
- 1681 01dc 0200     		.2byte	0x2
- 1682 01de 7D       		.byte	0x7d
- 1683 01df 08       		.sleb128 8
- 1684 01e0 04000000 		.4byte	.LCFI24
- 1685 01e4 06000000 		.4byte	.LCFI25
- 1686 01e8 0200     		.2byte	0x2
- 1687 01ea 7D       		.byte	0x7d
- 1688 01eb 18       		.sleb128 24
- 1689 01ec 06000000 		.4byte	.LCFI25
- 1690 01f0 F4000000 		.4byte	.LFE9
- 1691 01f4 0200     		.2byte	0x2
- 1692 01f6 77       		.byte	0x77
- 1693 01f7 18       		.sleb128 24
- 1694 01f8 00000000 		.4byte	0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 39
+ 1638 0178 0200     		.2byte	0x2
+ 1639 017a 7D       		.byte	0x7d
+ 1640 017b 04       		.sleb128 4
+ 1641 017c 04000000 		.4byte	.LCFI19
+ 1642 0180 06000000 		.4byte	.LCFI20
+ 1643 0184 0200     		.2byte	0x2
+ 1644 0186 7D       		.byte	0x7d
+ 1645 0187 10       		.sleb128 16
+ 1646 0188 06000000 		.4byte	.LCFI20
+ 1647 018c 3C000000 		.4byte	.LFE7
+ 1648 0190 0200     		.2byte	0x2
+ 1649 0192 77       		.byte	0x77
+ 1650 0193 10       		.sleb128 16
+ 1651 0194 00000000 		.4byte	0
+ 1652 0198 00000000 		.4byte	0
+ 1653              	.LLST8:
+ 1654 019c 00000000 		.4byte	.LFB8
+ 1655 01a0 02000000 		.4byte	.LCFI21
+ 1656 01a4 0200     		.2byte	0x2
+ 1657 01a6 7D       		.byte	0x7d
+ 1658 01a7 00       		.sleb128 0
+ 1659 01a8 02000000 		.4byte	.LCFI21
+ 1660 01ac 04000000 		.4byte	.LCFI22
+ 1661 01b0 0200     		.2byte	0x2
+ 1662 01b2 7D       		.byte	0x7d
+ 1663 01b3 04       		.sleb128 4
+ 1664 01b4 04000000 		.4byte	.LCFI22
+ 1665 01b8 1E000000 		.4byte	.LFE8
+ 1666 01bc 0200     		.2byte	0x2
+ 1667 01be 77       		.byte	0x77
+ 1668 01bf 04       		.sleb128 4
+ 1669 01c0 00000000 		.4byte	0
+ 1670 01c4 00000000 		.4byte	0
+ 1671              	.LLST9:
+ 1672 01c8 00000000 		.4byte	.LFB9
+ 1673 01cc 02000000 		.4byte	.LCFI23
+ 1674 01d0 0200     		.2byte	0x2
+ 1675 01d2 7D       		.byte	0x7d
+ 1676 01d3 00       		.sleb128 0
+ 1677 01d4 02000000 		.4byte	.LCFI23
+ 1678 01d8 04000000 		.4byte	.LCFI24
+ 1679 01dc 0200     		.2byte	0x2
+ 1680 01de 7D       		.byte	0x7d
+ 1681 01df 08       		.sleb128 8
+ 1682 01e0 04000000 		.4byte	.LCFI24
+ 1683 01e4 06000000 		.4byte	.LCFI25
+ 1684 01e8 0200     		.2byte	0x2
+ 1685 01ea 7D       		.byte	0x7d
+ 1686 01eb 18       		.sleb128 24
+ 1687 01ec 06000000 		.4byte	.LCFI25
+ 1688 01f0 F4000000 		.4byte	.LFE9
+ 1689 01f4 0200     		.2byte	0x2
+ 1690 01f6 77       		.byte	0x77
+ 1691 01f7 18       		.sleb128 24
+ 1692 01f8 00000000 		.4byte	0
+ 1693 01fc 00000000 		.4byte	0
+ 1694              	.LLST10:
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 39
 
 
- 1695 01fc 00000000 		.4byte	0
- 1696              	.LLST10:
- 1697 0200 00000000 		.4byte	.LFB10
- 1698 0204 02000000 		.4byte	.LCFI26
- 1699 0208 0200     		.2byte	0x2
- 1700 020a 7D       		.byte	0x7d
- 1701 020b 00       		.sleb128 0
- 1702 020c 02000000 		.4byte	.LCFI26
- 1703 0210 04000000 		.4byte	.LCFI27
- 1704 0214 0200     		.2byte	0x2
- 1705 0216 7D       		.byte	0x7d
- 1706 0217 04       		.sleb128 4
- 1707 0218 04000000 		.4byte	.LCFI27
- 1708 021c 1E000000 		.4byte	.LFE10
- 1709 0220 0200     		.2byte	0x2
- 1710 0222 77       		.byte	0x77
- 1711 0223 04       		.sleb128 4
- 1712 0224 00000000 		.4byte	0
- 1713 0228 00000000 		.4byte	0
- 1714              		.section	.debug_aranges,"",%progbits
- 1715 0000 6C000000 		.4byte	0x6c
- 1716 0004 0200     		.2byte	0x2
- 1717 0006 00000000 		.4byte	.Ldebug_info0
- 1718 000a 04       		.byte	0x4
- 1719 000b 00       		.byte	0
- 1720 000c 0000     		.2byte	0
- 1721 000e 0000     		.2byte	0
- 1722 0010 00000000 		.4byte	.LFB0
- 1723 0014 42000000 		.4byte	.LFE0-.LFB0
- 1724 0018 00000000 		.4byte	.LFB1
- 1725 001c 42000000 		.4byte	.LFE1-.LFB1
- 1726 0020 00000000 		.4byte	.LFB2
- 1727 0024 F8000000 		.4byte	.LFE2-.LFB2
- 1728 0028 00000000 		.4byte	.LFB3
- 1729 002c 54000000 		.4byte	.LFE3-.LFB3
- 1730 0030 00000000 		.4byte	.LFB4
- 1731 0034 E8010000 		.4byte	.LFE4-.LFB4
- 1732 0038 00000000 		.4byte	.LFB5
- 1733 003c 18000000 		.4byte	.LFE5-.LFB5
- 1734 0040 00000000 		.4byte	.LFB6
- 1735 0044 3A000000 		.4byte	.LFE6-.LFB6
- 1736 0048 00000000 		.4byte	.LFB7
- 1737 004c 3C000000 		.4byte	.LFE7-.LFB7
- 1738 0050 00000000 		.4byte	.LFB8
- 1739 0054 1E000000 		.4byte	.LFE8-.LFB8
- 1740 0058 00000000 		.4byte	.LFB9
- 1741 005c F4000000 		.4byte	.LFE9-.LFB9
- 1742 0060 00000000 		.4byte	.LFB10
- 1743 0064 1E000000 		.4byte	.LFE10-.LFB10
- 1744 0068 00000000 		.4byte	0
- 1745 006c 00000000 		.4byte	0
- 1746              		.section	.debug_ranges,"",%progbits
- 1747              	.Ldebug_ranges0:
- 1748 0000 00000000 		.4byte	.LFB0
- 1749 0004 42000000 		.4byte	.LFE0
- 1750 0008 00000000 		.4byte	.LFB1
- 1751 000c 42000000 		.4byte	.LFE1
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 40
+ 1695 0200 00000000 		.4byte	.LFB10
+ 1696 0204 02000000 		.4byte	.LCFI26
+ 1697 0208 0200     		.2byte	0x2
+ 1698 020a 7D       		.byte	0x7d
+ 1699 020b 00       		.sleb128 0
+ 1700 020c 02000000 		.4byte	.LCFI26
+ 1701 0210 04000000 		.4byte	.LCFI27
+ 1702 0214 0200     		.2byte	0x2
+ 1703 0216 7D       		.byte	0x7d
+ 1704 0217 04       		.sleb128 4
+ 1705 0218 04000000 		.4byte	.LCFI27
+ 1706 021c 1E000000 		.4byte	.LFE10
+ 1707 0220 0200     		.2byte	0x2
+ 1708 0222 77       		.byte	0x77
+ 1709 0223 04       		.sleb128 4
+ 1710 0224 00000000 		.4byte	0
+ 1711 0228 00000000 		.4byte	0
+ 1712              		.section	.debug_aranges,"",%progbits
+ 1713 0000 6C000000 		.4byte	0x6c
+ 1714 0004 0200     		.2byte	0x2
+ 1715 0006 00000000 		.4byte	.Ldebug_info0
+ 1716 000a 04       		.byte	0x4
+ 1717 000b 00       		.byte	0
+ 1718 000c 0000     		.2byte	0
+ 1719 000e 0000     		.2byte	0
+ 1720 0010 00000000 		.4byte	.LFB0
+ 1721 0014 42000000 		.4byte	.LFE0-.LFB0
+ 1722 0018 00000000 		.4byte	.LFB1
+ 1723 001c 42000000 		.4byte	.LFE1-.LFB1
+ 1724 0020 00000000 		.4byte	.LFB2
+ 1725 0024 F8000000 		.4byte	.LFE2-.LFB2
+ 1726 0028 00000000 		.4byte	.LFB3
+ 1727 002c 54000000 		.4byte	.LFE3-.LFB3
+ 1728 0030 00000000 		.4byte	.LFB4
+ 1729 0034 E8010000 		.4byte	.LFE4-.LFB4
+ 1730 0038 00000000 		.4byte	.LFB5
+ 1731 003c 18000000 		.4byte	.LFE5-.LFB5
+ 1732 0040 00000000 		.4byte	.LFB6
+ 1733 0044 3A000000 		.4byte	.LFE6-.LFB6
+ 1734 0048 00000000 		.4byte	.LFB7
+ 1735 004c 3C000000 		.4byte	.LFE7-.LFB7
+ 1736 0050 00000000 		.4byte	.LFB8
+ 1737 0054 1E000000 		.4byte	.LFE8-.LFB8
+ 1738 0058 00000000 		.4byte	.LFB9
+ 1739 005c F4000000 		.4byte	.LFE9-.LFB9
+ 1740 0060 00000000 		.4byte	.LFB10
+ 1741 0064 1E000000 		.4byte	.LFE10-.LFB10
+ 1742 0068 00000000 		.4byte	0
+ 1743 006c 00000000 		.4byte	0
+ 1744              		.section	.debug_ranges,"",%progbits
+ 1745              	.Ldebug_ranges0:
+ 1746 0000 00000000 		.4byte	.LFB0
+ 1747 0004 42000000 		.4byte	.LFE0
+ 1748 0008 00000000 		.4byte	.LFB1
+ 1749 000c 42000000 		.4byte	.LFE1
+ 1750 0010 00000000 		.4byte	.LFB2
+ 1751 0014 F8000000 		.4byte	.LFE2
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 40
 
 
- 1752 0010 00000000 		.4byte	.LFB2
- 1753 0014 F8000000 		.4byte	.LFE2
- 1754 0018 00000000 		.4byte	.LFB3
- 1755 001c 54000000 		.4byte	.LFE3
- 1756 0020 00000000 		.4byte	.LFB4
- 1757 0024 E8010000 		.4byte	.LFE4
- 1758 0028 00000000 		.4byte	.LFB5
- 1759 002c 18000000 		.4byte	.LFE5
- 1760 0030 00000000 		.4byte	.LFB6
- 1761 0034 3A000000 		.4byte	.LFE6
- 1762 0038 00000000 		.4byte	.LFB7
- 1763 003c 3C000000 		.4byte	.LFE7
- 1764 0040 00000000 		.4byte	.LFB8
- 1765 0044 1E000000 		.4byte	.LFE8
- 1766 0048 00000000 		.4byte	.LFB9
- 1767 004c F4000000 		.4byte	.LFE9
- 1768 0050 00000000 		.4byte	.LFB10
- 1769 0054 1E000000 		.4byte	.LFE10
- 1770 0058 00000000 		.4byte	0
- 1771 005c 00000000 		.4byte	0
- 1772              		.section	.debug_line,"",%progbits
- 1773              	.Ldebug_line0:
- 1774 0000 A2010000 		.section	.debug_str,"MS",%progbits,1
- 1774      02004E00 
- 1774      00000201 
- 1774      FB0E0D00 
- 1774      01010101 
- 1775              	.LASF6:
- 1776 0000 6C6F6E67 		.ascii	"long long int\000"
- 1776      206C6F6E 
- 1776      6720696E 
- 1776      7400
- 1777              	.LASF21:
- 1778 000e 73746174 		.ascii	"state\000"
- 1778      6500
- 1779              	.LASF24:
- 1780 0014 6F6C6444 		.ascii	"oldDivider\000"
- 1780      69766964 
- 1780      657200
- 1781              	.LASF20:
- 1782 001f 53504953 		.ascii	"SPIS_1_IntClock_SetDividerRegister\000"
- 1782      5F315F49 
- 1782      6E74436C 
- 1782      6F636B5F 
- 1782      53657444 
- 1783              	.LASF30:
- 1784 0042 53504953 		.ascii	"SPIS_1_IntClock_GetDividerRegister\000"
- 1784      5F315F49 
- 1784      6E74436C 
- 1784      6F636B5F 
- 1784      47657444 
- 1785              	.LASF11:
- 1786 0065 666C6F61 		.ascii	"float\000"
- 1786      7400
- 1787              	.LASF19:
- 1788 006b 53504953 		.ascii	"SPIS_1_IntClock_StandbyPower\000"
- 1788      5F315F49 
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 41
+ 1752 0018 00000000 		.4byte	.LFB3
+ 1753 001c 54000000 		.4byte	.LFE3
+ 1754 0020 00000000 		.4byte	.LFB4
+ 1755 0024 E8010000 		.4byte	.LFE4
+ 1756 0028 00000000 		.4byte	.LFB5
+ 1757 002c 18000000 		.4byte	.LFE5
+ 1758 0030 00000000 		.4byte	.LFB6
+ 1759 0034 3A000000 		.4byte	.LFE6
+ 1760 0038 00000000 		.4byte	.LFB7
+ 1761 003c 3C000000 		.4byte	.LFE7
+ 1762 0040 00000000 		.4byte	.LFB8
+ 1763 0044 1E000000 		.4byte	.LFE8
+ 1764 0048 00000000 		.4byte	.LFB9
+ 1765 004c F4000000 		.4byte	.LFE9
+ 1766 0050 00000000 		.4byte	.LFB10
+ 1767 0054 1E000000 		.4byte	.LFE10
+ 1768 0058 00000000 		.4byte	0
+ 1769 005c 00000000 		.4byte	0
+ 1770              		.section	.debug_line,"",%progbits
+ 1771              	.Ldebug_line0:
+ 1772 0000 A2010000 		.section	.debug_str,"MS",%progbits,1
+ 1772      02004E00 
+ 1772      00000201 
+ 1772      FB0E0D00 
+ 1772      01010101 
+ 1773              	.LASF15:
+ 1774 0000 72656731 		.ascii	"reg16\000"
+ 1774      3600
+ 1775              	.LASF21:
+ 1776 0006 73746174 		.ascii	"state\000"
+ 1776      6500
+ 1777              	.LASF24:
+ 1778 000c 6F6C6444 		.ascii	"oldDivider\000"
+ 1778      69766964 
+ 1778      657200
+ 1779              	.LASF20:
+ 1780 0017 53504953 		.ascii	"SPIS_1_IntClock_SetDividerRegister\000"
+ 1780      5F315F49 
+ 1780      6E74436C 
+ 1780      6F636B5F 
+ 1780      53657444 
+ 1781              	.LASF39:
+ 1782 003a 433A5C55 		.ascii	"C:\\Users\\Brian\\Dropbox\\RPiSoC\\Projects\\PSoC_2"
+ 1782      73657273 
+ 1782      5C427269 
+ 1782      616E5C44 
+ 1782      726F7062 
+ 1783 0067 5F50695C 		.ascii	"_Pi\\PSoC Creator\\PSoC_2_Pi.cydsn\000"
+ 1783      50536F43 
+ 1783      20437265 
+ 1783      61746F72 
+ 1783      5C50536F 
+ 1784              	.LASF30:
+ 1785 0088 53504953 		.ascii	"SPIS_1_IntClock_GetDividerRegister\000"
+ 1785      5F315F49 
+ 1785      6E74436C 
+ 1785      6F636B5F 
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 41
 
 
- 1788      6E74436C 
- 1788      6F636B5F 
- 1788      5374616E 
- 1789              	.LASF1:
- 1790 0088 756E7369 		.ascii	"unsigned char\000"
- 1790      676E6564 
- 1790      20636861 
- 1790      7200
- 1791              	.LASF14:
- 1792 0096 72656738 		.ascii	"reg8\000"
- 1792      00
- 1793              	.LASF5:
- 1794 009b 6C6F6E67 		.ascii	"long unsigned int\000"
- 1794      20756E73 
- 1794      69676E65 
- 1794      6420696E 
- 1794      7400
- 1795              	.LASF3:
- 1796 00ad 73686F72 		.ascii	"short unsigned int\000"
- 1796      7420756E 
- 1796      7369676E 
- 1796      65642069 
- 1796      6E7400
- 1797              	.LASF31:
- 1798 00c0 53504953 		.ascii	"SPIS_1_IntClock_GetModeRegister\000"
- 1798      5F315F49 
- 1798      6E74436C 
- 1798      6F636B5F 
- 1798      4765744D 
- 1799              	.LASF27:
- 1800 00e0 53504953 		.ascii	"SPIS_1_IntClock_SetModeRegister\000"
- 1800      5F315F49 
- 1800      6E74436C 
- 1800      6F636B5F 
- 1800      5365744D 
- 1801              	.LASF22:
- 1802 0100 636C6B44 		.ascii	"clkDivider\000"
- 1802      69766964 
- 1802      657200
- 1803              	.LASF12:
- 1804 010b 646F7562 		.ascii	"double\000"
- 1804      6C6500
- 1805              	.LASF23:
- 1806 0112 72657374 		.ascii	"restart\000"
- 1806      61727400 
- 1807              	.LASF10:
- 1808 011a 75696E74 		.ascii	"uint16\000"
- 1808      313600
- 1809              	.LASF29:
- 1810 0121 53504953 		.ascii	"SPIS_1_IntClock_ClearModeRegister\000"
- 1810      5F315F49 
- 1810      6E74436C 
- 1810      6F636B5F 
- 1810      436C6561 
- 1811              	.LASF16:
- 1812 0143 53504953 		.ascii	"SPIS_1_IntClock_Start\000"
- 1812      5F315F49 
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 42
+ 1785      47657444 
+ 1786              	.LASF11:
+ 1787 00ab 666C6F61 		.ascii	"float\000"
+ 1787      7400
+ 1788              	.LASF19:
+ 1789 00b1 53504953 		.ascii	"SPIS_1_IntClock_StandbyPower\000"
+ 1789      5F315F49 
+ 1789      6E74436C 
+ 1789      6F636B5F 
+ 1789      5374616E 
+ 1790              	.LASF1:
+ 1791 00ce 756E7369 		.ascii	"unsigned char\000"
+ 1791      676E6564 
+ 1791      20636861 
+ 1791      7200
+ 1792              	.LASF14:
+ 1793 00dc 72656738 		.ascii	"reg8\000"
+ 1793      00
+ 1794              	.LASF5:
+ 1795 00e1 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1795      20756E73 
+ 1795      69676E65 
+ 1795      6420696E 
+ 1795      7400
+ 1796              	.LASF3:
+ 1797 00f3 73686F72 		.ascii	"short unsigned int\000"
+ 1797      7420756E 
+ 1797      7369676E 
+ 1797      65642069 
+ 1797      6E7400
+ 1798              	.LASF31:
+ 1799 0106 53504953 		.ascii	"SPIS_1_IntClock_GetModeRegister\000"
+ 1799      5F315F49 
+ 1799      6E74436C 
+ 1799      6F636B5F 
+ 1799      4765744D 
+ 1800              	.LASF27:
+ 1801 0126 53504953 		.ascii	"SPIS_1_IntClock_SetModeRegister\000"
+ 1801      5F315F49 
+ 1801      6E74436C 
+ 1801      6F636B5F 
+ 1801      5365744D 
+ 1802              	.LASF22:
+ 1803 0146 636C6B44 		.ascii	"clkDivider\000"
+ 1803      69766964 
+ 1803      657200
+ 1804              	.LASF12:
+ 1805 0151 646F7562 		.ascii	"double\000"
+ 1805      6C6500
+ 1806              	.LASF23:
+ 1807 0158 72657374 		.ascii	"restart\000"
+ 1807      61727400 
+ 1808              	.LASF10:
+ 1809 0160 75696E74 		.ascii	"uint16\000"
+ 1809      313600
+ 1810              	.LASF29:
+ 1811 0167 53504953 		.ascii	"SPIS_1_IntClock_ClearModeRegister\000"
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 42
 
 
- 1812      6E74436C 
- 1812      6F636B5F 
- 1812      53746172 
- 1813              	.LASF17:
- 1814 0159 53504953 		.ascii	"SPIS_1_IntClock_Stop\000"
- 1814      5F315F49 
- 1814      6E74436C 
- 1814      6F636B5F 
- 1814      53746F70 
- 1815              	.LASF8:
- 1816 016e 756E7369 		.ascii	"unsigned int\000"
- 1816      676E6564 
- 1816      20696E74 
- 1816      00
- 1817              	.LASF26:
- 1818 017b 63757272 		.ascii	"currSrc\000"
- 1818      53726300 
- 1819              	.LASF7:
- 1820 0183 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1820      206C6F6E 
- 1820      6720756E 
- 1820      7369676E 
- 1820      65642069 
- 1821              	.LASF28:
- 1822 019a 6D6F6465 		.ascii	"modeBitMask\000"
- 1822      4269744D 
- 1822      61736B00 
- 1823              	.LASF39:
- 1824 01a6 433A5C55 		.ascii	"C:\\Users\\Robert\\workspace\\embedit_git\\psoc_2_p"
- 1824      73657273 
- 1824      5C526F62 
- 1824      6572745C 
- 1824      776F726B 
- 1825 01d4 695C5053 		.ascii	"i\\PSoC Creator\\PSoC_2_Pi.cydsn\000"
- 1825      6F432043 
- 1825      72656174 
- 1825      6F725C50 
- 1825      536F435F 
+ 1811      5F315F49 
+ 1811      6E74436C 
+ 1811      6F636B5F 
+ 1811      436C6561 
+ 1812              	.LASF16:
+ 1813 0189 53504953 		.ascii	"SPIS_1_IntClock_Start\000"
+ 1813      5F315F49 
+ 1813      6E74436C 
+ 1813      6F636B5F 
+ 1813      53746172 
+ 1814              	.LASF17:
+ 1815 019f 53504953 		.ascii	"SPIS_1_IntClock_Stop\000"
+ 1815      5F315F49 
+ 1815      6E74436C 
+ 1815      6F636B5F 
+ 1815      53746F70 
+ 1816              	.LASF8:
+ 1817 01b4 756E7369 		.ascii	"unsigned int\000"
+ 1817      676E6564 
+ 1817      20696E74 
+ 1817      00
+ 1818              	.LASF26:
+ 1819 01c1 63757272 		.ascii	"currSrc\000"
+ 1819      53726300 
+ 1820              	.LASF7:
+ 1821 01c9 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1821      206C6F6E 
+ 1821      6720756E 
+ 1821      7369676E 
+ 1821      65642069 
+ 1822              	.LASF28:
+ 1823 01e0 6D6F6465 		.ascii	"modeBitMask\000"
+ 1823      4269744D 
+ 1823      61736B00 
+ 1824              	.LASF6:
+ 1825 01ec 6C6F6E67 		.ascii	"long long int\000"
+ 1825      206C6F6E 
+ 1825      6720696E 
+ 1825      7400
  1826              	.LASF13:
- 1827 01f3 63686172 		.ascii	"char\000"
+ 1827 01fa 63686172 		.ascii	"char\000"
  1827      00
  1828              	.LASF36:
- 1829 01f8 53504953 		.ascii	"SPIS_1_IntClock_GetSourceRegister\000"
+ 1829 01ff 53504953 		.ascii	"SPIS_1_IntClock_GetSourceRegister\000"
  1829      5F315F49 
  1829      6E74436C 
  1829      6F636B5F 
  1829      47657453 
  1830              	.LASF18:
- 1831 021a 53504953 		.ascii	"SPIS_1_IntClock_StopBlock\000"
+ 1831 0221 53504953 		.ascii	"SPIS_1_IntClock_StopBlock\000"
  1831      5F315F49 
  1831      6E74436C 
  1831      6F636B5F 
  1831      53746F70 
  1832              	.LASF34:
- 1833 0234 63757272 		.ascii	"currDiv\000"
+ 1833 023b 63757272 		.ascii	"currDiv\000"
  1833      44697600 
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\cc2e2FiY.s 			page 43
+
+
  1834              	.LASF2:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\ccIfuI7V.s 			page 43
-
-
- 1835 023c 73686F72 		.ascii	"short int\000"
+ 1835 0243 73686F72 		.ascii	"short int\000"
  1835      7420696E 
  1835      7400
- 1836              	.LASF15:
- 1837 0246 72656731 		.ascii	"reg16\000"
- 1837      3600
- 1838              	.LASF9:
- 1839 024c 75696E74 		.ascii	"uint8\000"
- 1839      3800
- 1840              	.LASF37:
- 1841 0252 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
- 1841      4320342E 
- 1841      372E3320 
- 1841      32303133 
- 1841      30333132 
- 1842 0285 616E6368 		.ascii	"anch revision 196615]\000"
- 1842      20726576 
- 1842      6973696F 
- 1842      6E203139 
- 1842      36363135 
- 1843              	.LASF25:
- 1844 029b 656E6162 		.ascii	"enabled\000"
- 1844      6C656400 
- 1845              	.LASF4:
- 1846 02a3 6C6F6E67 		.ascii	"long int\000"
- 1846      20696E74 
- 1846      00
- 1847              	.LASF33:
- 1848 02ac 636C6B53 		.ascii	"clkSource\000"
- 1848      6F757263 
- 1848      6500
- 1849              	.LASF0:
- 1850 02b6 7369676E 		.ascii	"signed char\000"
- 1850      65642063 
- 1850      68617200 
- 1851              	.LASF38:
- 1852 02c2 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\SPIS_1_IntClock.c\000"
- 1852      6E657261 
- 1852      7465645F 
- 1852      536F7572 
- 1852      63655C50 
- 1853              	.LASF32:
- 1854 02ed 53504953 		.ascii	"SPIS_1_IntClock_SetSourceRegister\000"
- 1854      5F315F49 
- 1854      6E74436C 
- 1854      6F636B5F 
- 1854      53657453 
- 1855              	.LASF35:
- 1856 030f 6F6C6453 		.ascii	"oldSrc\000"
- 1856      726300
- 1857              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br
+ 1836              	.LASF9:
+ 1837 024d 75696E74 		.ascii	"uint8\000"
+ 1837      3800
+ 1838              	.LASF37:
+ 1839 0253 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 1839      4320342E 
+ 1839      372E3320 
+ 1839      32303133 
+ 1839      30333132 
+ 1840 0286 616E6368 		.ascii	"anch revision 196615]\000"
+ 1840      20726576 
+ 1840      6973696F 
+ 1840      6E203139 
+ 1840      36363135 
+ 1841              	.LASF25:
+ 1842 029c 656E6162 		.ascii	"enabled\000"
+ 1842      6C656400 
+ 1843              	.LASF4:
+ 1844 02a4 6C6F6E67 		.ascii	"long int\000"
+ 1844      20696E74 
+ 1844      00
+ 1845              	.LASF33:
+ 1846 02ad 636C6B53 		.ascii	"clkSource\000"
+ 1846      6F757263 
+ 1846      6500
+ 1847              	.LASF0:
+ 1848 02b7 7369676E 		.ascii	"signed char\000"
+ 1848      65642063 
+ 1848      68617200 
+ 1849              	.LASF38:
+ 1850 02c3 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\SPIS_1_IntClock.c\000"
+ 1850      6E657261 
+ 1850      7465645F 
+ 1850      536F7572 
+ 1850      63655C50 
+ 1851              	.LASF32:
+ 1852 02ee 53504953 		.ascii	"SPIS_1_IntClock_SetSourceRegister\000"
+ 1852      5F315F49 
+ 1852      6E74436C 
+ 1852      6F636B5F 
+ 1852      53657453 
+ 1853              	.LASF35:
+ 1854 0310 6F6C6453 		.ascii	"oldSrc\000"
+ 1854      726300
+ 1855              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

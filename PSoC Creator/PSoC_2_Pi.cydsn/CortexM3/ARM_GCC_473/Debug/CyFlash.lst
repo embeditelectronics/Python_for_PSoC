@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
   24:.\Generated_Source\PSoC5/CyFlash.c **** 
   25:.\Generated_Source\PSoC5/CyFlash.c **** /*******************************************************************************
   26:.\Generated_Source\PSoC5/CyFlash.c **** * Holds the die temperature, updated by CySetTemp(). Used for flash writing.
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 2
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 2
 
 
   27:.\Generated_Source\PSoC5/CyFlash.c **** * The first byte is the sign of the temperature (0 = negative, 1 = positive).
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
   59:.\Generated_Source\PSoC5/CyFlash.c ****     /* Standby Power Mode */
   60:.\Generated_Source\PSoC5/CyFlash.c ****     *CY_FLASH_PM_ALTACT_EEFLASH_PTR |= CY_FLASH_PM_FLASH_MASK;
   54              		.loc 1 60 0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 3
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 3
 
 
   55 0020 44F2BC33 		movw	r3, #17340
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
   84              		@ link register save eliminated.
   85 0000 80B4     		push	{r7}
   86              	.LCFI2:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 4
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 4
 
 
   87              		.cfi_def_cfa_offset 4
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  101:.\Generated_Source\PSoC5/CyFlash.c **** *  executing a series of Flash writing functions.
  102:.\Generated_Source\PSoC5/CyFlash.c **** *
  103:.\Generated_Source\PSoC5/CyFlash.c **** * Parameters:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 5
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 5
 
 
  104:.\Generated_Source\PSoC5/CyFlash.c **** *  None
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  157              	.L9:
  127:.\Generated_Source\PSoC5/CyFlash.c ****         {
  128:.\Generated_Source\PSoC5/CyFlash.c ****             do
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 6
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 6
 
 
  129:.\Generated_Source\PSoC5/CyFlash.c ****             {
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  144:.\Generated_Source\PSoC5/CyFlash.c **** 
  145:.\Generated_Source\PSoC5/CyFlash.c ****         CySpcUnlock();
  196              		.loc 1 145 0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 7
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 7
 
 
  197 0078 FFF7FEFF 		bl	CySpcUnlock
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  175:.\Generated_Source\PSoC5/CyFlash.c **** *   the sign of the temperature (0 = negative, 1 = positive). The second byte is
  176:.\Generated_Source\PSoC5/CyFlash.c **** *   the magnitude.
  177:.\Generated_Source\PSoC5/CyFlash.c **** *
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 8
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 8
 
 
  178:.\Generated_Source\PSoC5/CyFlash.c **** *******************************************************************************/
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  264              	CySetFlashEEBuffer:
  265              	.LFB4:
  190:.\Generated_Source\PSoC5/CyFlash.c **** 
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 9
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 9
 
 
  191:.\Generated_Source\PSoC5/CyFlash.c **** 
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  290 0016 0DD1     		bne	.L16
  221:.\Generated_Source\PSoC5/CyFlash.c ****         {
  222:.\Generated_Source\PSoC5/CyFlash.c ****             rowBuffer = rowBuffer;
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 10
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 10
 
 
  291              		.loc 1 222 0
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  240:.\Generated_Source\PSoC5/CyFlash.c **** 
  241:.\Generated_Source\PSoC5/CyFlash.c ****     #endif  /* (CYDEV_ECC_ENABLE == 0u) */
  242:.\Generated_Source\PSoC5/CyFlash.c **** 
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 11
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 11
 
 
  243:.\Generated_Source\PSoC5/CyFlash.c ****     return(status);
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  279:.\Generated_Source\PSoC5/CyFlash.c ****         rowSize = (arrayId > CY_SPC_LAST_FLASH_ARRAYID) ? CYDEV_EEPROM_ROW_SIZE : CYDEV_FLS_ROW_SIZ
  280:.\Generated_Source\PSoC5/CyFlash.c ****         status = CyWriteRowFull(arrayId, rowAddress, rowData, rowSize);
  281:.\Generated_Source\PSoC5/CyFlash.c **** 
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 12
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 12
 
 
  282:.\Generated_Source\PSoC5/CyFlash.c ****         return(status);
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  316:.\Generated_Source\PSoC5/CyFlash.c ****         uint16 rowSize;
  317:.\Generated_Source\PSoC5/CyFlash.c ****         cystatus status;
  318:.\Generated_Source\PSoC5/CyFlash.c **** 
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 13
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 13
 
 
  319:.\Generated_Source\PSoC5/CyFlash.c ****         /* Check whether rowBuffer pointer has been initialized by CySetFlashEEBuffer() */
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  337:.\Generated_Source\PSoC5/CyFlash.c ****                     *(rowBuffer + CYDEV_FLS_ROW_SIZE + i) = CY_GET_XTND_REG8((void CYFAR *)(offset 
  400              		.loc 1 337 0 discriminator 2
  401 004e 40F20003 		movw	r3, #:lower16:rowBuffer
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 14
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 14
 
 
  402 0052 C0F20003 		movt	r3, #:upper16:rowBuffer
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  350:.\Generated_Source\PSoC5/CyFlash.c ****         else
  351:.\Generated_Source\PSoC5/CyFlash.c ****         {
  352:.\Generated_Source\PSoC5/CyFlash.c ****             status = CYRET_UNKNOWN;
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 15
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 15
 
 
  442              		.loc 1 352 0
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  385:.\Generated_Source\PSoC5/CyFlash.c ****     *
  386:.\Generated_Source\PSoC5/CyFlash.c ****     *******************************************************************************/
  387:.\Generated_Source\PSoC5/CyFlash.c ****     cystatus CyWriteRowConfig(uint8 arrayId, uint16 rowAddress, const uint8 * rowECC)\
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 16
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 16
 
 
  388:.\Generated_Source\PSoC5/CyFlash.c ****     
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  442:.\Generated_Source\PSoC5/CyFlash.c **** *  arrayId:    FLASH or EEPROM array id.
  443:.\Generated_Source\PSoC5/CyFlash.c **** *  rowData:    Pointer to a row of data to write.
  444:.\Generated_Source\PSoC5/CyFlash.c **** *  rowNumber:  Zero based number of the row.
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 17
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 17
 
 
  445:.\Generated_Source\PSoC5/CyFlash.c **** *  rowSize:    Size of the row.
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  498              		.loc 1 464 0
  499 002c 7B69     		ldr	r3, [r7, #20]
  500 002e 072B     		cmp	r3, #7
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 18
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 18
 
 
  501 0030 6AD1     		bne	.L30
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  539              		.loc 1 479 0
  540 0082 4FF0FF33 		mov	r3, #-1
  541 0086 7B61     		str	r3, [r7, #20]
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 19
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 19
 
 
  542              	.L34:
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  578 00d0 44F22273 		movw	r3, #18210
  579 00d4 C4F20003 		movt	r3, 16384
  580 00d8 1B78     		ldrb	r3, [r3, #0]
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 20
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 20
 
 
  581 00da DBB2     		uxtb	r3, r3
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  614 0116 1846     		mov	r0, r3
  615 0118 07F11807 		add	r7, r7, #24
  616 011c BD46     		mov	sp, r7
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 21
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 21
 
 
  617 011e 80BD     		pop	{r7, pc}
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  543:.\Generated_Source\PSoC5/CyFlash.c ****     interruptState = CyEnterCriticalSection();
  646              		.loc 1 543 0
  647 000a FFF7FEFF 		bl	CyEnterCriticalSection
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 22
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 22
 
 
  648 000e 0346     		mov	r3, r0
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  669              	.L41:
  577:.\Generated_Source\PSoC5/CyFlash.c ****                 ((uint8)(CY_FLASH_LESSER_OR_EQUAL_16MHz << CY_FLASH_CYCLES_MASK_SHIFT)));
  578:.\Generated_Source\PSoC5/CyFlash.c ****         }
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 23
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 23
 
 
  579:.\Generated_Source\PSoC5/CyFlash.c ****         else if (freq <= 33u)
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  711 00a2 1278     		ldrb	r2, [r2, #0]
  712 00a4 D2B2     		uxtb	r2, r2
  713 00a6 02F03F02 		and	r2, r2, #63
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 24
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 24
 
 
  714 00aa D2B2     		uxtb	r2, r2
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  742              	.LCFI22:
  743              		.cfi_def_cfa_offset 4
  744              		.cfi_offset 7, -4
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 25
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 25
 
 
  745 0002 00AF     		add	r7, sp, #0
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  634:.\Generated_Source\PSoC5/CyFlash.c **** *  None
  635:.\Generated_Source\PSoC5/CyFlash.c **** *
  636:.\Generated_Source\PSoC5/CyFlash.c **** * Return:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 26
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 26
 
 
  637:.\Generated_Source\PSoC5/CyFlash.c **** *  None
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  826              		.thumb_func
  827              		.type	CyEEPROM_ReadReserve, %function
  828              	CyEEPROM_ReadReserve:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 27
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 27
 
 
  829              	.LFB10:
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  861 0032 002B     		cmp	r3, #0
  862 0034 F5D0     		beq	.L48
  670:.\Generated_Source\PSoC5/CyFlash.c ****     {
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 28
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 28
 
 
  671:.\Generated_Source\PSoC5/CyFlash.c ****         /* Wait for acknowledgement from PHUB */
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  895 0014 1278     		ldrb	r2, [r2, #0]
  896 0016 D2B2     		uxtb	r2, r2
  897 0018 22F00102 		bic	r2, r2, #1
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 29
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 29
 
 
  898 001c D2B2     		uxtb	r2, r2
@@ -1701,10 +1701,10 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  914 0006 00000000 		.4byte	.Ldebug_abbrev0
  915 000a 04       		.byte	0x4
  916 000b 01       		.uleb128 0x1
- 917 000c 02020000 		.4byte	.LASF39
+ 917 000c 03020000 		.4byte	.LASF39
  918 0010 01       		.byte	0x1
- 919 0011 4B020000 		.4byte	.LASF40
- 920 0015 64010000 		.4byte	.LASF41
+ 919 0011 4C020000 		.4byte	.LASF40
+ 920 0015 39000000 		.4byte	.LASF41
  921 0019 00000000 		.4byte	.Ldebug_ranges0+0
  922 001d 00000000 		.4byte	0
  923 0021 00000000 		.4byte	0
@@ -1712,15 +1712,15 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  925 0029 02       		.uleb128 0x2
  926 002a 01       		.byte	0x1
  927 002b 06       		.byte	0x6
- 928 002c 8E020000 		.4byte	.LASF0
+ 928 002c 8F020000 		.4byte	.LASF0
  929 0030 02       		.uleb128 0x2
  930 0031 01       		.byte	0x1
  931 0032 08       		.byte	0x8
- 932 0033 7E000000 		.4byte	.LASF1
+ 932 0033 CC000000 		.4byte	.LASF1
  933 0037 02       		.uleb128 0x2
  934 0038 02       		.byte	0x2
  935 0039 05       		.byte	0x5
- 936 003a F0000000 		.4byte	.LASF2
+ 936 003a 3E010000 		.4byte	.LASF2
  937 003e 02       		.uleb128 0x2
  938 003f 02       		.byte	0x2
  939 0040 07       		.byte	0x7
@@ -1728,22 +1728,22 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  941 0045 02       		.uleb128 0x2
  942 0046 04       		.byte	0x4
  943 0047 05       		.byte	0x5
- 944 0048 6E020000 		.4byte	.LASF4
+ 944 0048 6F020000 		.4byte	.LASF4
  945 004c 02       		.uleb128 0x2
  946 004d 04       		.byte	0x4
  947 004e 07       		.byte	0x7
- 948 004f B2000000 		.4byte	.LASF5
+ 948 004f 00010000 		.4byte	.LASF5
  949 0053 02       		.uleb128 0x2
  950 0054 08       		.byte	0x8
  951 0055 05       		.byte	0x5
- 952 0056 C4010000 		.4byte	.LASF6
+ 952 0056 C5010000 		.4byte	.LASF6
  953 005a 02       		.uleb128 0x2
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 30
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 30
 
 
  954 005b 08       		.byte	0x8
  955 005c 07       		.byte	0x7
- 956 005d 38010000 		.4byte	.LASF7
+ 956 005d 86010000 		.4byte	.LASF7
  957 0061 03       		.uleb128 0x3
  958 0062 04       		.byte	0x4
  959 0063 05       		.byte	0x5
@@ -1751,34 +1751,34 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  961 0068 02       		.uleb128 0x2
  962 0069 04       		.byte	0x4
  963 006a 07       		.byte	0x7
- 964 006b 1D010000 		.4byte	.LASF8
+ 964 006b 6B010000 		.4byte	.LASF8
  965 006f 04       		.uleb128 0x4
- 966 0070 C4000000 		.4byte	.LASF9
+ 966 0070 12010000 		.4byte	.LASF9
  967 0074 02       		.byte	0x2
  968 0075 5B       		.byte	0x5b
  969 0076 30000000 		.4byte	0x30
  970 007a 04       		.uleb128 0x4
- 971 007b 0F010000 		.4byte	.LASF10
+ 971 007b 5D010000 		.4byte	.LASF10
  972 007f 02       		.byte	0x2
  973 0080 5C       		.byte	0x5c
  974 0081 3E000000 		.4byte	0x3e
  975 0085 04       		.uleb128 0x4
- 976 0086 16010000 		.4byte	.LASF11
+ 976 0086 64010000 		.4byte	.LASF11
  977 008a 02       		.byte	0x2
  978 008b 5D       		.byte	0x5d
  979 008c 4C000000 		.4byte	0x4c
  980 0090 02       		.uleb128 0x2
  981 0091 04       		.byte	0x4
  982 0092 04       		.byte	0x4
- 983 0093 4F000000 		.4byte	.LASF12
+ 983 0093 9D000000 		.4byte	.LASF12
  984 0097 02       		.uleb128 0x2
  985 0098 08       		.byte	0x8
  986 0099 04       		.byte	0x4
- 987 009a E1000000 		.4byte	.LASF13
+ 987 009a 2F010000 		.4byte	.LASF13
  988 009e 02       		.uleb128 0x2
  989 009f 01       		.byte	0x1
  990 00a0 08       		.byte	0x8
- 991 00a1 DD010000 		.4byte	.LASF14
+ 991 00a1 DE010000 		.4byte	.LASF14
  992 00a5 04       		.uleb128 0x4
  993 00a6 00000000 		.4byte	.LASF15
  994 00aa 02       		.byte	0x2
@@ -1794,11 +1794,11 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1004 00c0 02       		.uleb128 0x2
  1005 00c1 04       		.byte	0x4
  1006 00c2 07       		.byte	0x7
- 1007 00c3 BB010000 		.4byte	.LASF17
+ 1007 00c3 B2010000 		.4byte	.LASF17
  1008 00c7 06       		.uleb128 0x6
  1009 00c8 01       		.byte	0x1
- 1010 00c9 2A010000 		.4byte	.LASF18
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 31
+ 1010 00c9 78010000 		.4byte	.LASF18
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 31
 
 
  1011 00cd 01       		.byte	0x1
@@ -1810,7 +1810,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1017 00dc 01       		.byte	0x1
  1018 00dd 07       		.uleb128 0x7
  1019 00de 01       		.byte	0x1
- 1020 00df 77020000 		.4byte	.LASF19
+ 1020 00df 78020000 		.4byte	.LASF19
  1021 00e3 01       		.byte	0x1
  1022 00e4 54       		.byte	0x54
  1023 00e5 01       		.byte	0x1
@@ -1819,7 +1819,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1026 00ee 2C000000 		.4byte	.LLST1
  1027 00f2 01       		.byte	0x1
  1028 00f3 08       		.uleb128 0x8
- 1029 00f4 E2010000 		.4byte	.LASF42
+ 1029 00f4 E3010000 		.4byte	.LASF42
  1030 00f8 01       		.byte	0x1
  1031 00f9 71       		.byte	0x71
  1032 00fa 01       		.byte	0x1
@@ -1830,7 +1830,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1037 010b 01       		.byte	0x1
  1038 010c 1F010000 		.4byte	0x11f
  1039 0110 09       		.uleb128 0x9
- 1040 0111 48000000 		.4byte	.LASF20
+ 1040 0111 96000000 		.4byte	.LASF20
  1041 0115 01       		.byte	0x1
  1042 0116 73       		.byte	0x73
  1043 0117 A5000000 		.4byte	0xa5
@@ -1840,7 +1840,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1047 011e 00       		.byte	0
  1048 011f 0A       		.uleb128 0xa
  1049 0120 01       		.byte	0x1
- 1050 0121 B1010000 		.4byte	.LASF21
+ 1050 0121 BB010000 		.4byte	.LASF21
  1051 0125 01       		.byte	0x1
  1052 0126 B3       		.byte	0xb3
  1053 0127 01       		.byte	0x1
@@ -1851,20 +1851,20 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1058 0138 01       		.byte	0x1
  1059 0139 4C010000 		.4byte	0x14c
  1060 013d 09       		.uleb128 0x9
- 1061 013e 48000000 		.4byte	.LASF20
+ 1061 013e 96000000 		.4byte	.LASF20
  1062 0142 01       		.byte	0x1
  1063 0143 B5       		.byte	0xb5
  1064 0144 A5000000 		.4byte	0xa5
  1065 0148 02       		.byte	0x2
  1066 0149 91       		.byte	0x91
  1067 014a 74       		.sleb128 -12
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 32
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 32
 
 
  1068 014b 00       		.byte	0
  1069 014c 0A       		.uleb128 0xa
  1070 014d 01       		.byte	0x1
- 1071 014e 6B000000 		.4byte	.LASF22
+ 1071 014e B9000000 		.4byte	.LASF22
  1072 0152 01       		.byte	0x1
  1073 0153 D4       		.byte	0xd4
  1074 0154 01       		.byte	0x1
@@ -1875,7 +1875,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1079 0165 01       		.byte	0x1
  1080 0166 87010000 		.4byte	0x187
  1081 016a 0B       		.uleb128 0xb
- 1082 016b FB010000 		.4byte	.LASF24
+ 1082 016b FC010000 		.4byte	.LASF24
  1083 016f 01       		.byte	0x1
  1084 0170 D4       		.byte	0xd4
  1085 0171 87010000 		.4byte	0x187
@@ -1883,7 +1883,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1087 0176 91       		.byte	0x91
  1088 0177 6C       		.sleb128 -20
  1089 0178 09       		.uleb128 0x9
- 1090 0179 48000000 		.4byte	.LASF20
+ 1090 0179 96000000 		.4byte	.LASF20
  1091 017d 01       		.byte	0x1
  1092 017e D6       		.byte	0xd6
  1093 017f A5000000 		.4byte	0xa5
@@ -1896,7 +1896,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1100 0189 6F000000 		.4byte	0x6f
  1101 018d 0D       		.uleb128 0xd
  1102 018e 01       		.byte	0x1
- 1103 018f 9A020000 		.4byte	.LASF23
+ 1103 018f 9B020000 		.4byte	.LASF23
  1104 0193 01       		.byte	0x1
  1105 0194 3801     		.2byte	0x138
  1106 0196 01       		.byte	0x1
@@ -1907,7 +1907,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1111 01a7 01       		.byte	0x1
  1112 01a8 14020000 		.4byte	0x214
  1113 01ac 0E       		.uleb128 0xe
- 1114 01ad CA000000 		.4byte	.LASF25
+ 1114 01ad 18010000 		.4byte	.LASF25
  1115 01b1 01       		.byte	0x1
  1116 01b2 3801     		.2byte	0x138
  1117 01b4 6F000000 		.4byte	0x6f
@@ -1915,10 +1915,10 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1119 01b9 91       		.byte	0x91
  1120 01ba 67       		.sleb128 -25
  1121 01bb 0E       		.uleb128 0xe
- 1122 01bc D2010000 		.4byte	.LASF26
+ 1122 01bc D3010000 		.4byte	.LASF26
  1123 01c0 01       		.byte	0x1
  1124 01c1 3801     		.2byte	0x138
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 33
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 33
 
 
  1125 01c3 7A000000 		.4byte	0x7a
@@ -1926,7 +1926,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1127 01c8 91       		.byte	0x91
  1128 01c9 64       		.sleb128 -28
  1129 01ca 0E       		.uleb128 0xe
- 1130 01cb 8C000000 		.4byte	.LASF27
+ 1130 01cb DA000000 		.4byte	.LASF27
  1131 01cf 01       		.byte	0x1
  1132 01d0 3801     		.2byte	0x138
  1133 01d2 14020000 		.4byte	0x214
@@ -1942,7 +1942,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1143 01e4 91       		.byte	0x91
  1144 01e5 77       		.sleb128 -9
  1145 01e6 10       		.uleb128 0x10
- 1146 01e7 EF010000 		.4byte	.LASF28
+ 1146 01e7 F0010000 		.4byte	.LASF28
  1147 01eb 01       		.byte	0x1
  1148 01ec 3B01     		.2byte	0x13b
  1149 01ee 85000000 		.4byte	0x85
@@ -1950,7 +1950,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1151 01f3 91       		.byte	0x91
  1152 01f4 6C       		.sleb128 -20
  1153 01f5 10       		.uleb128 0x10
- 1154 01f6 E8000000 		.4byte	.LASF29
+ 1154 01f6 36010000 		.4byte	.LASF29
  1155 01fa 01       		.byte	0x1
  1156 01fb 3C01     		.2byte	0x13c
  1157 01fd 7A000000 		.4byte	0x7a
@@ -1958,7 +1958,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1159 0202 91       		.byte	0x91
  1160 0203 74       		.sleb128 -12
  1161 0204 10       		.uleb128 0x10
- 1162 0205 48000000 		.4byte	.LASF20
+ 1162 0205 96000000 		.4byte	.LASF20
  1163 0209 01       		.byte	0x1
  1164 020a 3D01     		.2byte	0x13d
  1165 020c A5000000 		.4byte	0xa5
@@ -1973,12 +1973,12 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1174 021b 6F000000 		.4byte	0x6f
  1175 021f 0D       		.uleb128 0xd
  1176 0220 01       		.byte	0x1
- 1177 0221 39000000 		.4byte	.LASF30
+ 1177 0221 87000000 		.4byte	.LASF30
  1178 0225 01       		.byte	0x1
  1179 0226 C601     		.2byte	0x1c6
  1180 0228 01       		.byte	0x1
  1181 0229 A5000000 		.4byte	0xa5
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 34
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 34
 
 
  1182 022d 00000000 		.4byte	.LFB6
@@ -1987,7 +1987,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1185 0239 01       		.byte	0x1
  1186 023a 8A020000 		.4byte	0x28a
  1187 023e 0E       		.uleb128 0xe
- 1188 023f CA000000 		.4byte	.LASF25
+ 1188 023f 18010000 		.4byte	.LASF25
  1189 0243 01       		.byte	0x1
  1190 0244 C601     		.2byte	0x1c6
  1191 0246 6F000000 		.4byte	0x6f
@@ -1995,7 +1995,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1193 024b 91       		.byte	0x91
  1194 024c 6F       		.sleb128 -17
  1195 024d 0E       		.uleb128 0xe
- 1196 024e 84020000 		.4byte	.LASF31
+ 1196 024e 85020000 		.4byte	.LASF31
  1197 0252 01       		.byte	0x1
  1198 0253 C601     		.2byte	0x1c6
  1199 0255 7A000000 		.4byte	0x7a
@@ -2003,7 +2003,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1201 025a 91       		.byte	0x91
  1202 025b 6C       		.sleb128 -20
  1203 025c 0E       		.uleb128 0xe
- 1204 025d 8C000000 		.4byte	.LASF27
+ 1204 025d DA000000 		.4byte	.LASF27
  1205 0261 01       		.byte	0x1
  1206 0262 C601     		.2byte	0x1c6
  1207 0264 14020000 		.4byte	0x214
@@ -2011,7 +2011,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1209 0269 91       		.byte	0x91
  1210 026a 68       		.sleb128 -24
  1211 026b 0E       		.uleb128 0xe
- 1212 026c E8000000 		.4byte	.LASF29
+ 1212 026c 36010000 		.4byte	.LASF29
  1213 0270 01       		.byte	0x1
  1214 0271 C601     		.2byte	0x1c6
  1215 0273 7A000000 		.4byte	0x7a
@@ -2019,7 +2019,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1217 0278 91       		.byte	0x91
  1218 0279 66       		.sleb128 -26
  1219 027a 10       		.uleb128 0x10
- 1220 027b 48000000 		.4byte	.LASF20
+ 1220 027b 96000000 		.4byte	.LASF20
  1221 027f 01       		.byte	0x1
  1222 0280 C901     		.2byte	0x1c9
  1223 0282 A5000000 		.4byte	0xa5
@@ -2029,7 +2029,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1227 0289 00       		.byte	0
  1228 028a 12       		.uleb128 0x12
  1229 028b 01       		.byte	0x1
- 1230 028c 55000000 		.4byte	.LASF43
+ 1230 028c A3000000 		.4byte	.LASF43
  1231 0290 01       		.byte	0x1
  1232 0291 1A02     		.2byte	0x21a
  1233 0293 01       		.byte	0x1
@@ -2038,11 +2038,11 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1236 029c 70010000 		.4byte	.LLST7
  1237 02a0 01       		.byte	0x1
  1238 02a1 C4020000 		.4byte	0x2c4
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 35
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 35
 
 
  1239 02a5 0E       		.uleb128 0xe
- 1240 02a6 F6010000 		.4byte	.LASF32
+ 1240 02a6 F7010000 		.4byte	.LASF32
  1241 02aa 01       		.byte	0x1
  1242 02ab 1A02     		.2byte	0x21a
  1243 02ad 6F000000 		.4byte	0x6f
@@ -2050,7 +2050,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1245 02b2 91       		.byte	0x91
  1246 02b3 6F       		.sleb128 -17
  1247 02b4 10       		.uleb128 0x10
- 1248 02b5 A3000000 		.4byte	.LASF33
+ 1248 02b5 F1000000 		.4byte	.LASF33
  1249 02b9 01       		.byte	0x1
  1250 02ba 1C02     		.2byte	0x21c
  1251 02bc 6F000000 		.4byte	0x6f
@@ -2060,7 +2060,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1255 02c3 00       		.byte	0
  1256 02c4 13       		.uleb128 0x13
  1257 02c5 01       		.byte	0x1
- 1258 02c6 94000000 		.4byte	.LASF34
+ 1258 02c6 E2000000 		.4byte	.LASF34
  1259 02ca 01       		.byte	0x1
  1260 02cb 6802     		.2byte	0x268
  1261 02cd 01       		.byte	0x1
@@ -2080,7 +2080,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1275 02f1 01       		.byte	0x1
  1276 02f2 13       		.uleb128 0x13
  1277 02f3 01       		.byte	0x1
- 1278 02f4 4F010000 		.4byte	.LASF36
+ 1278 02f4 9D010000 		.4byte	.LASF36
  1279 02f8 01       		.byte	0x1
  1280 02f9 9802     		.2byte	0x298
  1281 02fb 01       		.byte	0x1
@@ -2090,7 +2090,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1285 0308 01       		.byte	0x1
  1286 0309 13       		.uleb128 0x13
  1287 030a 01       		.byte	0x1
- 1288 030b FA000000 		.4byte	.LASF37
+ 1288 030b 48010000 		.4byte	.LASF37
  1289 030f 01       		.byte	0x1
  1290 0310 B202     		.2byte	0x2b2
  1291 0312 01       		.byte	0x1
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1293 0317 26000000 		.4byte	.LFE11
  1294 031b 2C020000 		.4byte	.LLST11
  1295 031f 01       		.byte	0x1
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 36
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 36
 
 
  1296 0320 09       		.uleb128 0x9
@@ -2117,7 +2117,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1309 033f 01       		.byte	0x1
  1310 0340 00       		.byte	0
  1311 0341 16       		.uleb128 0x16
- 1312 0342 D2000000 		.4byte	.LASF44
+ 1312 0342 20010000 		.4byte	.LASF44
  1313 0346 01       		.byte	0x1
  1314 0347 1E       		.byte	0x1e
  1315 0348 31030000 		.4byte	0x331
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1350 001b 0B       		.uleb128 0xb
  1351 001c 03       		.uleb128 0x3
  1352 001d 0E       		.uleb128 0xe
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 37
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 37
 
 
  1353 001e 00       		.byte	0
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1407 0055 00       		.byte	0
  1408 0056 00       		.byte	0
  1409 0057 07       		.uleb128 0x7
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 38
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 38
 
 
  1410 0058 2E       		.uleb128 0x2e
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1464 0090 3B       		.uleb128 0x3b
  1465 0091 0B       		.uleb128 0xb
  1466 0092 49       		.uleb128 0x49
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 39
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 39
 
 
  1467 0093 13       		.uleb128 0x13
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1521 00ca 00       		.byte	0
  1522 00cb 00       		.byte	0
  1523 00cc 0D       		.uleb128 0xd
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 40
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 40
 
 
  1524 00cd 2E       		.uleb128 0x2e
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1578 0104 00       		.byte	0
  1579 0105 00       		.byte	0
  1580 0106 10       		.uleb128 0x10
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 41
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 41
 
 
  1581 0107 34       		.uleb128 0x34
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1635 013e 0B       		.uleb128 0xb
  1636 013f 3B       		.uleb128 0x3b
  1637 0140 05       		.uleb128 0x5
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 42
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 42
 
 
  1638 0141 27       		.uleb128 0x27
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1692 000a 7D       		.byte	0x7d
  1693 000b 00       		.sleb128 0
  1694 000c 02000000 		.4byte	.LCFI0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 43
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 43
 
 
  1695 0010 04000000 		.4byte	.LCFI1
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1749 0094 02000000 		.4byte	.LCFI7
  1750 0098 0200     		.2byte	0x2
  1751 009a 7D       		.byte	0x7d
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 44
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 44
 
 
  1752 009b 00       		.sleb128 0
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1806 0120 0200     		.2byte	0x2
  1807 0122 7D       		.byte	0x7d
  1808 0123 20       		.sleb128 32
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 45
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 45
 
 
  1809 0124 06000000 		.4byte	.LCFI15
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1863 01a8 00000000 		.4byte	.LFB8
  1864 01ac 02000000 		.4byte	.LCFI22
  1865 01b0 0200     		.2byte	0x2
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 46
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 46
 
 
  1866 01b2 7D       		.byte	0x7d
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1920 0236 7D       		.byte	0x7d
  1921 0237 00       		.sleb128 0
  1922 0238 02000000 		.4byte	.LCFI28
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 47
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 47
 
 
  1923 023c 04000000 		.4byte	.LCFI29
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  1977 001c 24000000 		.4byte	.LFE3
  1978 0020 00000000 		.4byte	.LFB4
  1979 0024 76000000 		.4byte	.LFE4
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 48
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 48
 
 
  1980 0028 00000000 		.4byte	.LFB5
@@ -2866,199 +2866,199 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 1
  2008      7369676E 
  2008      65642069 
  2008      6E7400
- 2009              	.LASF30:
- 2010 0039 43795772 		.ascii	"CyWriteRowFull\000"
- 2010      69746552 
- 2010      6F774675 
- 2010      6C6C00
- 2011              	.LASF20:
- 2012 0048 73746174 		.ascii	"status\000"
- 2012      757300
- 2013              	.LASF12:
- 2014 004f 666C6F61 		.ascii	"float\000"
- 2014      7400
- 2015              	.LASF43:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 49
+ 2009              	.LASF41:
+ 2010 0039 433A5C55 		.ascii	"C:\\Users\\Brian\\Dropbox\\RPiSoC\\Projects\\PSoC_2"
+ 2010      73657273 
+ 2010      5C427269 
+ 2010      616E5C44 
+ 2010      726F7062 
+ 2011 0066 5F50695C 		.ascii	"_Pi\\PSoC Creator\\PSoC_2_Pi.cydsn\000"
+ 2011      50536F43 
+ 2011      20437265 
+ 2011      61746F72 
+ 2011      5C50536F 
+ 2012              	.LASF30:
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 49
 
 
- 2016 0055 4379466C 		.ascii	"CyFlash_SetWaitCycles\000"
- 2016      6173685F 
- 2016      53657457 
- 2016      61697443 
- 2016      79636C65 
- 2017              	.LASF22:
- 2018 006b 43795365 		.ascii	"CySetFlashEEBuffer\000"
- 2018      74466C61 
- 2018      73684545 
- 2018      42756666 
- 2018      657200
- 2019              	.LASF1:
- 2020 007e 756E7369 		.ascii	"unsigned char\000"
- 2020      676E6564 
- 2020      20636861 
- 2020      7200
- 2021              	.LASF27:
- 2022 008c 726F7744 		.ascii	"rowData\000"
- 2022      61746100 
- 2023              	.LASF34:
- 2024 0094 43794545 		.ascii	"CyEEPROM_Start\000"
- 2024      50524F4D 
- 2024      5F537461 
- 2024      727400
- 2025              	.LASF33:
- 2026 00a3 696E7465 		.ascii	"interruptState\000"
- 2026      72727570 
- 2026      74537461 
- 2026      746500
- 2027              	.LASF5:
- 2028 00b2 6C6F6E67 		.ascii	"long unsigned int\000"
- 2028      20756E73 
- 2028      69676E65 
- 2028      6420696E 
- 2028      7400
- 2029              	.LASF9:
- 2030 00c4 75696E74 		.ascii	"uint8\000"
- 2030      3800
- 2031              	.LASF25:
- 2032 00ca 61727261 		.ascii	"arrayId\000"
- 2032      79496400 
- 2033              	.LASF44:
- 2034 00d2 64696554 		.ascii	"dieTemperature\000"
- 2034      656D7065 
- 2034      72617475 
- 2034      726500
- 2035              	.LASF13:
- 2036 00e1 646F7562 		.ascii	"double\000"
- 2036      6C6500
- 2037              	.LASF29:
- 2038 00e8 726F7753 		.ascii	"rowSize\000"
- 2038      697A6500 
- 2039              	.LASF2:
- 2040 00f0 73686F72 		.ascii	"short int\000"
- 2040      7420696E 
- 2040      7400
- 2041              	.LASF37:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 50
+ 2013 0087 43795772 		.ascii	"CyWriteRowFull\000"
+ 2013      69746552 
+ 2013      6F774675 
+ 2013      6C6C00
+ 2014              	.LASF20:
+ 2015 0096 73746174 		.ascii	"status\000"
+ 2015      757300
+ 2016              	.LASF12:
+ 2017 009d 666C6F61 		.ascii	"float\000"
+ 2017      7400
+ 2018              	.LASF43:
+ 2019 00a3 4379466C 		.ascii	"CyFlash_SetWaitCycles\000"
+ 2019      6173685F 
+ 2019      53657457 
+ 2019      61697443 
+ 2019      79636C65 
+ 2020              	.LASF22:
+ 2021 00b9 43795365 		.ascii	"CySetFlashEEBuffer\000"
+ 2021      74466C61 
+ 2021      73684545 
+ 2021      42756666 
+ 2021      657200
+ 2022              	.LASF1:
+ 2023 00cc 756E7369 		.ascii	"unsigned char\000"
+ 2023      676E6564 
+ 2023      20636861 
+ 2023      7200
+ 2024              	.LASF27:
+ 2025 00da 726F7744 		.ascii	"rowData\000"
+ 2025      61746100 
+ 2026              	.LASF34:
+ 2027 00e2 43794545 		.ascii	"CyEEPROM_Start\000"
+ 2027      50524F4D 
+ 2027      5F537461 
+ 2027      727400
+ 2028              	.LASF33:
+ 2029 00f1 696E7465 		.ascii	"interruptState\000"
+ 2029      72727570 
+ 2029      74537461 
+ 2029      746500
+ 2030              	.LASF5:
+ 2031 0100 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2031      20756E73 
+ 2031      69676E65 
+ 2031      6420696E 
+ 2031      7400
+ 2032              	.LASF9:
+ 2033 0112 75696E74 		.ascii	"uint8\000"
+ 2033      3800
+ 2034              	.LASF25:
+ 2035 0118 61727261 		.ascii	"arrayId\000"
+ 2035      79496400 
+ 2036              	.LASF44:
+ 2037 0120 64696554 		.ascii	"dieTemperature\000"
+ 2037      656D7065 
+ 2037      72617475 
+ 2037      726500
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 50
 
 
- 2042 00fa 43794545 		.ascii	"CyEEPROM_ReadRelease\000"
- 2042      50524F4D 
- 2042      5F526561 
- 2042      6452656C 
- 2042      65617365 
- 2043              	.LASF10:
- 2044 010f 75696E74 		.ascii	"uint16\000"
- 2044      313600
- 2045              	.LASF11:
- 2046 0116 75696E74 		.ascii	"uint32\000"
- 2046      333200
- 2047              	.LASF8:
- 2048 011d 756E7369 		.ascii	"unsigned int\000"
- 2048      676E6564 
- 2048      20696E74 
- 2048      00
- 2049              	.LASF18:
- 2050 012a 4379466C 		.ascii	"CyFlash_Start\000"
- 2050      6173685F 
- 2050      53746172 
- 2050      7400
- 2051              	.LASF7:
- 2052 0138 6C6F6E67 		.ascii	"long long unsigned int\000"
- 2052      206C6F6E 
- 2052      6720756E 
- 2052      7369676E 
- 2052      65642069 
- 2053              	.LASF36:
- 2054 014f 43794545 		.ascii	"CyEEPROM_ReadReserve\000"
- 2054      50524F4D 
- 2054      5F526561 
- 2054      64526573 
- 2054      65727665 
- 2055              	.LASF41:
- 2056 0164 433A5C55 		.ascii	"C:\\Users\\Robert\\workspace\\embedit_git\\psoc_2_p"
- 2056      73657273 
- 2056      5C526F62 
- 2056      6572745C 
- 2056      776F726B 
- 2057 0192 695C5053 		.ascii	"i\\PSoC Creator\\PSoC_2_Pi.cydsn\000"
- 2057      6F432043 
- 2057      72656174 
- 2057      6F725C50 
- 2057      536F435F 
- 2058              	.LASF21:
- 2059 01b1 43795365 		.ascii	"CySetTemp\000"
- 2059      7454656D 
- 2059      7000
- 2060              	.LASF17:
- 2061 01bb 73697A65 		.ascii	"sizetype\000"
- 2061      74797065 
- 2061      00
+ 2038              	.LASF13:
+ 2039 012f 646F7562 		.ascii	"double\000"
+ 2039      6C6500
+ 2040              	.LASF29:
+ 2041 0136 726F7753 		.ascii	"rowSize\000"
+ 2041      697A6500 
+ 2042              	.LASF2:
+ 2043 013e 73686F72 		.ascii	"short int\000"
+ 2043      7420696E 
+ 2043      7400
+ 2044              	.LASF37:
+ 2045 0148 43794545 		.ascii	"CyEEPROM_ReadRelease\000"
+ 2045      50524F4D 
+ 2045      5F526561 
+ 2045      6452656C 
+ 2045      65617365 
+ 2046              	.LASF10:
+ 2047 015d 75696E74 		.ascii	"uint16\000"
+ 2047      313600
+ 2048              	.LASF11:
+ 2049 0164 75696E74 		.ascii	"uint32\000"
+ 2049      333200
+ 2050              	.LASF8:
+ 2051 016b 756E7369 		.ascii	"unsigned int\000"
+ 2051      676E6564 
+ 2051      20696E74 
+ 2051      00
+ 2052              	.LASF18:
+ 2053 0178 4379466C 		.ascii	"CyFlash_Start\000"
+ 2053      6173685F 
+ 2053      53746172 
+ 2053      7400
+ 2054              	.LASF7:
+ 2055 0186 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2055      206C6F6E 
+ 2055      6720756E 
+ 2055      7369676E 
+ 2055      65642069 
+ 2056              	.LASF36:
+ 2057 019d 43794545 		.ascii	"CyEEPROM_ReadReserve\000"
+ 2057      50524F4D 
+ 2057      5F526561 
+ 2057      64526573 
+ 2057      65727665 
+ 2058              	.LASF17:
+ 2059 01b2 73697A65 		.ascii	"sizetype\000"
+ 2059      74797065 
+ 2059      00
+ 2060              	.LASF21:
+ 2061 01bb 43795365 		.ascii	"CySetTemp\000"
+ 2061      7454656D 
+ 2061      7000
  2062              	.LASF6:
- 2063 01c4 6C6F6E67 		.ascii	"long long int\000"
+ 2063 01c5 6C6F6E67 		.ascii	"long long int\000"
  2063      206C6F6E 
  2063      6720696E 
  2063      7400
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 51
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 51
 
 
  2064              	.LASF26:
- 2065 01d2 726F7741 		.ascii	"rowAddress\000"
+ 2065 01d3 726F7741 		.ascii	"rowAddress\000"
  2065      64647265 
  2065      737300
  2066              	.LASF14:
- 2067 01dd 63686172 		.ascii	"char\000"
+ 2067 01de 63686172 		.ascii	"char\000"
  2067      00
  2068              	.LASF42:
- 2069 01e2 43795365 		.ascii	"CySetTempInt\000"
+ 2069 01e3 43795365 		.ascii	"CySetTempInt\000"
  2069      7454656D 
  2069      70496E74 
  2069      00
  2070              	.LASF28:
- 2071 01ef 6F666673 		.ascii	"offset\000"
+ 2071 01f0 6F666673 		.ascii	"offset\000"
  2071      657400
  2072              	.LASF32:
- 2073 01f6 66726571 		.ascii	"freq\000"
+ 2073 01f7 66726571 		.ascii	"freq\000"
  2073      00
  2074              	.LASF24:
- 2075 01fb 62756666 		.ascii	"buffer\000"
+ 2075 01fc 62756666 		.ascii	"buffer\000"
  2075      657200
  2076              	.LASF39:
- 2077 0202 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 2077 0203 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
  2077      4320342E 
  2077      372E3320 
  2077      32303133 
  2077      30333132 
- 2078 0235 616E6368 		.ascii	"anch revision 196615]\000"
+ 2078 0236 616E6368 		.ascii	"anch revision 196615]\000"
  2078      20726576 
  2078      6973696F 
  2078      6E203139 
  2078      36363135 
  2079              	.LASF40:
- 2080 024b 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\CyFlash.c\000"
+ 2080 024c 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\CyFlash.c\000"
  2080      6E657261 
  2080      7465645F 
  2080      536F7572 
  2080      63655C50 
  2081              	.LASF4:
- 2082 026e 6C6F6E67 		.ascii	"long int\000"
+ 2082 026f 6C6F6E67 		.ascii	"long int\000"
  2082      20696E74 
  2082      00
  2083              	.LASF19:
- 2084 0277 4379466C 		.ascii	"CyFlash_Stop\000"
+ 2084 0278 4379466C 		.ascii	"CyFlash_Stop\000"
  2084      6173685F 
  2084      53746F70 
  2084      00
  2085              	.LASF31:
- 2086 0284 726F774E 		.ascii	"rowNumber\000"
+ 2086 0285 726F774E 		.ascii	"rowNumber\000"
  2086      756D6265 
  2086      7200
  2087              	.LASF0:
- 2088 028e 7369676E 		.ascii	"signed char\000"
+ 2088 028f 7369676E 		.ascii	"signed char\000"
  2088      65642063 
  2088      68617200 
  2089              	.LASF23:
- 2090 029a 43795772 		.ascii	"CyWriteRowData\000"
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cc96kDxD.s 			page 52
+ 2090 029b 43795772 		.ascii	"CyWriteRowData\000"
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccDOo0oo.s 			page 52
 
 
  2090      69746552 

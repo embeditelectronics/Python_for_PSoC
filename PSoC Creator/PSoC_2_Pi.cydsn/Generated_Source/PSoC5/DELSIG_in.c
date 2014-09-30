@@ -1,5 +1,5 @@
 /*******************************************************************************
-* File Name: DELSIG_in.c  
+* File Name: DELSIG_IN.c  
 * Version 2.0
 *
 * Description:
@@ -15,15 +15,15 @@
 *******************************************************************************/
 
 #include "cytypes.h"
-#include "DELSIG_in.h"
+#include "DELSIG_IN.h"
 
 /* APIs are not generated for P15[7:6] on PSoC 5 */
 #if !(CY_PSOC5A &&\
-	 DELSIG_in__PORT == 15 && ((DELSIG_in__MASK & 0xC0) != 0))
+	 DELSIG_IN__PORT == 15 && ((DELSIG_IN__MASK & 0xC0) != 0))
 
 
 /*******************************************************************************
-* Function Name: DELSIG_in_Write
+* Function Name: DELSIG_IN_Write
 ********************************************************************************
 *
 * Summary:
@@ -36,15 +36,15 @@
 *  None
 *  
 *******************************************************************************/
-void DELSIG_in_Write(uint8 value) 
+void DELSIG_IN_Write(uint8 value) 
 {
-    uint8 staticBits = (DELSIG_in_DR & (uint8)(~DELSIG_in_MASK));
-    DELSIG_in_DR = staticBits | ((uint8)(value << DELSIG_in_SHIFT) & DELSIG_in_MASK);
+    uint8 staticBits = (DELSIG_IN_DR & (uint8)(~DELSIG_IN_MASK));
+    DELSIG_IN_DR = staticBits | ((uint8)(value << DELSIG_IN_SHIFT) & DELSIG_IN_MASK);
 }
 
 
 /*******************************************************************************
-* Function Name: DELSIG_in_SetDriveMode
+* Function Name: DELSIG_IN_SetDriveMode
 ********************************************************************************
 *
 * Summary:
@@ -53,27 +53,27 @@ void DELSIG_in_Write(uint8 value)
 * Parameters:  
 *  mode:  Change the pins to one of the following drive modes.
 *
-*  DELSIG_in_DM_STRONG     Strong Drive 
-*  DELSIG_in_DM_OD_HI      Open Drain, Drives High 
-*  DELSIG_in_DM_OD_LO      Open Drain, Drives Low 
-*  DELSIG_in_DM_RES_UP     Resistive Pull Up 
-*  DELSIG_in_DM_RES_DWN    Resistive Pull Down 
-*  DELSIG_in_DM_RES_UPDWN  Resistive Pull Up/Down 
-*  DELSIG_in_DM_DIG_HIZ    High Impedance Digital 
-*  DELSIG_in_DM_ALG_HIZ    High Impedance Analog 
+*  DELSIG_IN_DM_STRONG     Strong Drive 
+*  DELSIG_IN_DM_OD_HI      Open Drain, Drives High 
+*  DELSIG_IN_DM_OD_LO      Open Drain, Drives Low 
+*  DELSIG_IN_DM_RES_UP     Resistive Pull Up 
+*  DELSIG_IN_DM_RES_DWN    Resistive Pull Down 
+*  DELSIG_IN_DM_RES_UPDWN  Resistive Pull Up/Down 
+*  DELSIG_IN_DM_DIG_HIZ    High Impedance Digital 
+*  DELSIG_IN_DM_ALG_HIZ    High Impedance Analog 
 *
 * Return: 
 *  None
 *
 *******************************************************************************/
-void DELSIG_in_SetDriveMode(uint8 mode) 
+void DELSIG_IN_SetDriveMode(uint8 mode) 
 {
-	CyPins_SetPinDriveMode(DELSIG_in_0, mode);
+	CyPins_SetPinDriveMode(DELSIG_IN_0, mode);
 }
 
 
 /*******************************************************************************
-* Function Name: DELSIG_in_Read
+* Function Name: DELSIG_IN_Read
 ********************************************************************************
 *
 * Summary:
@@ -87,17 +87,17 @@ void DELSIG_in_SetDriveMode(uint8 mode)
 *  Returns the current value of the Digital Port as a right justified number
 *  
 * Note:
-*  Macro DELSIG_in_ReadPS calls this function. 
+*  Macro DELSIG_IN_ReadPS calls this function. 
 *  
 *******************************************************************************/
-uint8 DELSIG_in_Read(void) 
+uint8 DELSIG_IN_Read(void) 
 {
-    return (DELSIG_in_PS & DELSIG_in_MASK) >> DELSIG_in_SHIFT;
+    return (DELSIG_IN_PS & DELSIG_IN_MASK) >> DELSIG_IN_SHIFT;
 }
 
 
 /*******************************************************************************
-* Function Name: DELSIG_in_ReadDataReg
+* Function Name: DELSIG_IN_ReadDataReg
 ********************************************************************************
 *
 * Summary:
@@ -110,17 +110,17 @@ uint8 DELSIG_in_Read(void)
 *  Returns the current value assigned to the Digital Port's data output register
 *  
 *******************************************************************************/
-uint8 DELSIG_in_ReadDataReg(void) 
+uint8 DELSIG_IN_ReadDataReg(void) 
 {
-    return (DELSIG_in_DR & DELSIG_in_MASK) >> DELSIG_in_SHIFT;
+    return (DELSIG_IN_DR & DELSIG_IN_MASK) >> DELSIG_IN_SHIFT;
 }
 
 
 /* If Interrupts Are Enabled for this Pins component */ 
-#if defined(DELSIG_in_INTSTAT) 
+#if defined(DELSIG_IN_INTSTAT) 
 
     /*******************************************************************************
-    * Function Name: DELSIG_in_ClearInterrupt
+    * Function Name: DELSIG_IN_ClearInterrupt
     ********************************************************************************
     * Summary:
     *  Clears any active interrupts attached to port and returns the value of the 
@@ -133,9 +133,9 @@ uint8 DELSIG_in_ReadDataReg(void)
     *  Returns the value of the interrupt status register
     *  
     *******************************************************************************/
-    uint8 DELSIG_in_ClearInterrupt(void) 
+    uint8 DELSIG_IN_ClearInterrupt(void) 
     {
-        return (DELSIG_in_INTSTAT & DELSIG_in_MASK) >> DELSIG_in_SHIFT;
+        return (DELSIG_IN_INTSTAT & DELSIG_IN_MASK) >> DELSIG_IN_SHIFT;
     }
 
 #endif /* If Interrupts Are Enabled for this Pins component */ 

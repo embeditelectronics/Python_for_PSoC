@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
   29:.\Generated_Source\PSoC5/WaveDAC_clk.c **** 
   30:.\Generated_Source\PSoC5/WaveDAC_clk.c **** /*******************************************************************************
   31:.\Generated_Source\PSoC5/WaveDAC_clk.c **** * Function Name: WaveDAC_clk_Start
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 2
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/WaveDAC_clk.c **** ********************************************************************************
@@ -91,24 +91,24 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
   47:.\Generated_Source\PSoC5/WaveDAC_clk.c ****     /* Set the bit to enable the clock. */
   48:.\Generated_Source\PSoC5/WaveDAC_clk.c ****     WaveDAC_clk_CLKEN |= WaveDAC_clk_CLKEN_MASK;
   39              		.loc 1 48 0
-  40 0004 44F2A233 		movw	r3, #17314
+  40 0004 44F2A133 		movw	r3, #17313
   41 0008 C4F20003 		movt	r3, 16384
-  42 000c 44F2A232 		movw	r2, #17314
+  42 000c 44F2A132 		movw	r2, #17313
   43 0010 C4F20002 		movt	r2, 16384
   44 0014 1278     		ldrb	r2, [r2, #0]
   45 0016 D2B2     		uxtb	r2, r2
-  46 0018 42F00202 		orr	r2, r2, #2
+  46 0018 42F00102 		orr	r2, r2, #1
   47 001c D2B2     		uxtb	r2, r2
   48 001e 1A70     		strb	r2, [r3, #0]
   49:.\Generated_Source\PSoC5/WaveDAC_clk.c **** 	WaveDAC_clk_CLKSTBY |= WaveDAC_clk_CLKSTBY_MASK;
   49              		.loc 1 49 0
-  50 0020 44F2B233 		movw	r3, #17330
+  50 0020 44F2B133 		movw	r3, #17329
   51 0024 C4F20003 		movt	r3, 16384
-  52 0028 44F2B232 		movw	r2, #17330
+  52 0028 44F2B132 		movw	r2, #17329
   53 002c C4F20002 		movt	r2, 16384
   54 0030 1278     		ldrb	r2, [r2, #0]
   55 0032 D2B2     		uxtb	r2, r2
-  56 0034 42F00202 		orr	r2, r2, #2
+  56 0034 42F00102 		orr	r2, r2, #1
   57 0038 D2B2     		uxtb	r2, r2
   58 003a 1A70     		strb	r2, [r3, #0]
   50:.\Generated_Source\PSoC5/WaveDAC_clk.c **** }
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
   62 0040 7047     		bx	lr
   63              		.cfi_endproc
   64              	.LFE0:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 3
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 3
 
 
   65              		.size	WaveDAC_clk_Start, .-WaveDAC_clk_Start
@@ -167,27 +167,27 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
   73:.\Generated_Source\PSoC5/WaveDAC_clk.c ****     /* Clear the bit to disable the clock. */
   74:.\Generated_Source\PSoC5/WaveDAC_clk.c ****     WaveDAC_clk_CLKEN &= (uint8)(~WaveDAC_clk_CLKEN_MASK);
   86              		.loc 1 74 0
-  87 0004 44F2A233 		movw	r3, #17314
+  87 0004 44F2A133 		movw	r3, #17313
   88 0008 C4F20003 		movt	r3, 16384
-  89 000c 44F2A232 		movw	r2, #17314
+  89 000c 44F2A132 		movw	r2, #17313
   90 0010 C4F20002 		movt	r2, 16384
   91 0014 1278     		ldrb	r2, [r2, #0]
   92 0016 D2B2     		uxtb	r2, r2
-  93 0018 22F00202 		bic	r2, r2, #2
+  93 0018 22F00102 		bic	r2, r2, #1
   94 001c D2B2     		uxtb	r2, r2
   95 001e 1A70     		strb	r2, [r3, #0]
   75:.\Generated_Source\PSoC5/WaveDAC_clk.c **** 	WaveDAC_clk_CLKSTBY &= (uint8)(~WaveDAC_clk_CLKSTBY_MASK);
   96              		.loc 1 75 0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 4
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 4
 
 
-  97 0020 44F2B233 		movw	r3, #17330
+  97 0020 44F2B133 		movw	r3, #17329
   98 0024 C4F20003 		movt	r3, 16384
-  99 0028 44F2B232 		movw	r2, #17330
+  99 0028 44F2B132 		movw	r2, #17329
  100 002c C4F20002 		movt	r2, 16384
  101 0030 1278     		ldrb	r2, [r2, #0]
  102 0032 D2B2     		uxtb	r2, r2
- 103 0034 22F00202 		bic	r2, r2, #2
+ 103 0034 22F00102 		bic	r2, r2, #1
  104 0038 D2B2     		uxtb	r2, r2
  105 003a 1A70     		strb	r2, [r3, #0]
   76:.\Generated_Source\PSoC5/WaveDAC_clk.c **** }
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  125              		@ link register save eliminated.
  126 0000 80B4     		push	{r7}
  127              	.LCFI4:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 5
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 5
 
 
  128              		.cfi_def_cfa_offset 4
@@ -251,11 +251,11 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  135              		.cfi_def_cfa_register 7
  102:.\Generated_Source\PSoC5/WaveDAC_clk.c ****     if ((WaveDAC_clk_CLKEN & WaveDAC_clk_CLKEN_MASK) != 0u)
  136              		.loc 1 102 0
- 137 0006 44F2A233 		movw	r3, #17314
+ 137 0006 44F2A133 		movw	r3, #17313
  138 000a C4F20003 		movt	r3, 16384
  139 000e 1B78     		ldrb	r3, [r3, #0]
  140 0010 DBB2     		uxtb	r3, r3
- 141 0012 03F00203 		and	r3, r3, #2
+ 141 0012 03F00103 		and	r3, r3, #1
  142 0016 002B     		cmp	r3, #0
  143 0018 69D0     		beq	.L3
  144              	.LBB2:
@@ -273,20 +273,20 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  109:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         /* Clear all the mask bits except ours. */
  110:.\Generated_Source\PSoC5/WaveDAC_clk.c **** #if defined(WaveDAC_clk__CFG3)
  111:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         CLK_DIST_AMASK = WaveDAC_clk_CLKEN_MASK;
- 112:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         CLK_DIST_DMASK = 0x00u;
- 113:.\Generated_Source\PSoC5/WaveDAC_clk.c **** #else
- 114:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         CLK_DIST_DMASK = WaveDAC_clk_CLKEN_MASK;
- 150              		.loc 1 114 0
- 151 0028 44F21003 		movw	r3, #16400
+ 150              		.loc 1 111 0
+ 151 0028 44F21403 		movw	r3, #16404
  152 002c C4F20003 		movt	r3, 16384
- 153 0030 4FF00202 		mov	r2, #2
+ 153 0030 4FF00102 		mov	r2, #1
  154 0034 1A70     		strb	r2, [r3, #0]
- 115:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         CLK_DIST_AMASK = 0x00u;
- 155              		.loc 1 115 0
- 156 0036 44F21403 		movw	r3, #16404
+ 112:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         CLK_DIST_DMASK = 0x00u;
+ 155              		.loc 1 112 0
+ 156 0036 44F21003 		movw	r3, #16400
  157 003a C4F20003 		movt	r3, 16384
  158 003e 4FF00002 		mov	r2, #0
  159 0042 1A70     		strb	r2, [r3, #0]
+ 113:.\Generated_Source\PSoC5/WaveDAC_clk.c **** #else
+ 114:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         CLK_DIST_DMASK = WaveDAC_clk_CLKEN_MASK;
+ 115:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         CLK_DIST_AMASK = 0x00u;
  116:.\Generated_Source\PSoC5/WaveDAC_clk.c **** #endif /* WaveDAC_clk__CFG3 */
  117:.\Generated_Source\PSoC5/WaveDAC_clk.c **** 
  118:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         /* Clear mask of bus clock. */
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  164 0050 C4F20002 		movt	r2, 16384
  165 0054 1278     		ldrb	r2, [r2, #0]
  166 0056 D2B2     		uxtb	r2, r2
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 6
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 6
 
 
  167 0058 02F07F02 		and	r2, r2, #127
@@ -307,7 +307,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  120:.\Generated_Source\PSoC5/WaveDAC_clk.c **** 
  121:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         oldDivider = CY_GET_REG16(WaveDAC_clk_DIV_PTR);
  170              		.loc 1 121 0
- 171 0060 44F28403 		movw	r3, #16516
+ 171 0060 4FF48243 		mov	r3, #16640
  172 0064 C4F20003 		movt	r3, 16384
  173 0068 1B88     		ldrh	r3, [r3, #0]	@ movhi
  174 006a FB80     		strh	r3, [r7, #6]	@ movhi
@@ -342,27 +342,27 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  129:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         /* Clear the bit to disable the clock. */
  130:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         WaveDAC_clk_CLKEN &= (uint8)(~WaveDAC_clk_CLKEN_MASK);
  196              		.loc 1 130 0 is_stmt 1
- 197 009c 44F2A233 		movw	r3, #17314
+ 197 009c 44F2A133 		movw	r3, #17313
  198 00a0 C4F20003 		movt	r3, 16384
- 199 00a4 44F2A232 		movw	r2, #17314
+ 199 00a4 44F2A132 		movw	r2, #17313
  200 00a8 C4F20002 		movt	r2, 16384
  201 00ac 1278     		ldrb	r2, [r2, #0]
  202 00ae D2B2     		uxtb	r2, r2
- 203 00b0 22F00202 		bic	r2, r2, #2
+ 203 00b0 22F00102 		bic	r2, r2, #1
  204 00b4 D2B2     		uxtb	r2, r2
  205 00b6 1A70     		strb	r2, [r3, #0]
  131:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         WaveDAC_clk_CLKSTBY &= (uint8)(~WaveDAC_clk_CLKSTBY_MASK);
  206              		.loc 1 131 0
- 207 00b8 44F2B233 		movw	r3, #17330
+ 207 00b8 44F2B133 		movw	r3, #17329
  208 00bc C4F20003 		movt	r3, 16384
- 209 00c0 44F2B232 		movw	r2, #17330
+ 209 00c0 44F2B132 		movw	r2, #17329
  210 00c4 C4F20002 		movt	r2, 16384
  211 00c8 1278     		ldrb	r2, [r2, #0]
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 7
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 7
 
 
  212 00ca D2B2     		uxtb	r2, r2
- 213 00cc 22F00202 		bic	r2, r2, #2
+ 213 00cc 22F00102 		bic	r2, r2, #1
  214 00d0 D2B2     		uxtb	r2, r2
  215 00d2 1A70     		strb	r2, [r3, #0]
  132:.\Generated_Source\PSoC5/WaveDAC_clk.c **** 
@@ -376,7 +376,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  220 00e0 1A70     		strb	r2, [r3, #0]
  136:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         CY_SET_REG16(WaveDAC_clk_DIV_PTR, oldDivider);
  221              		.loc 1 136 0
- 222 00e2 44F28403 		movw	r3, #16516
+ 222 00e2 4FF48243 		mov	r3, #16640
  223 00e6 C4F20003 		movt	r3, 16384
  224 00ea FA88     		ldrh	r2, [r7, #6]	@ movhi
  225 00ec 1A80     		strh	r2, [r3, #0]	@ movhi
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  154:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *  None
  155:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *
  156:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *******************************************************************************/
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 8
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 8
 
 
  157:.\Generated_Source\PSoC5/WaveDAC_clk.c **** void WaveDAC_clk_StandbyPower(uint8 state) 
@@ -448,13 +448,13 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  160:.\Generated_Source\PSoC5/WaveDAC_clk.c ****     {
  161:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         WaveDAC_clk_CLKSTBY &= (uint8)(~WaveDAC_clk_CLKSTBY_MASK);
  265              		.loc 1 161 0
- 266 0010 44F2B233 		movw	r3, #17330
+ 266 0010 44F2B133 		movw	r3, #17329
  267 0014 C4F20003 		movt	r3, 16384
- 268 0018 44F2B232 		movw	r2, #17330
+ 268 0018 44F2B132 		movw	r2, #17329
  269 001c C4F20002 		movt	r2, 16384
  270 0020 1278     		ldrb	r2, [r2, #0]
  271 0022 D2B2     		uxtb	r2, r2
- 272 0024 22F00202 		bic	r2, r2, #2
+ 272 0024 22F00102 		bic	r2, r2, #1
  273 0028 D2B2     		uxtb	r2, r2
  274 002a 1A70     		strb	r2, [r3, #0]
  275 002c 0DE0     		b	.L6
@@ -464,13 +464,13 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  164:.\Generated_Source\PSoC5/WaveDAC_clk.c ****     {
  165:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         WaveDAC_clk_CLKSTBY |= WaveDAC_clk_CLKSTBY_MASK;
  277              		.loc 1 165 0
- 278 002e 44F2B233 		movw	r3, #17330
+ 278 002e 44F2B133 		movw	r3, #17329
  279 0032 C4F20003 		movt	r3, 16384
- 280 0036 44F2B232 		movw	r2, #17330
+ 280 0036 44F2B132 		movw	r2, #17329
  281 003a C4F20002 		movt	r2, 16384
  282 003e 1278     		ldrb	r2, [r2, #0]
  283 0040 D2B2     		uxtb	r2, r2
- 284 0042 42F00202 		orr	r2, r2, #2
+ 284 0042 42F00102 		orr	r2, r2, #1
  285 0046 D2B2     		uxtb	r2, r2
  286 0048 1A70     		strb	r2, [r3, #0]
  287              	.L6:
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  167:.\Generated_Source\PSoC5/WaveDAC_clk.c **** }
  288              		.loc 1 167 0
  289 004a 07F10C07 		add	r7, r7, #12
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 9
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 9
 
 
  290 004e BD46     		mov	sp, r7
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  316 0004 00AF     		add	r7, sp, #0
  317              	.LCFI12:
  318              		.cfi_def_cfa_register 7
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 10
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 10
 
 
  319 0006 0246     		mov	r2, r0
@@ -567,11 +567,11 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  202:.\Generated_Source\PSoC5/WaveDAC_clk.c ****     {
  203:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         enabled = WaveDAC_clk_CLKEN & WaveDAC_clk_CLKEN_MASK;
  336              		.loc 1 203 0
- 337 0028 44F2A233 		movw	r3, #17314
+ 337 0028 44F2A133 		movw	r3, #17313
  338 002c C4F20003 		movt	r3, 16384
  339 0030 1B78     		ldrb	r3, [r3, #0]
  340 0032 DBB2     		uxtb	r3, r3
- 341 0034 03F00203 		and	r3, r3, #2
+ 341 0034 03F00103 		and	r3, r3, #1
  342 0038 FB72     		strb	r3, [r7, #11]
  204:.\Generated_Source\PSoC5/WaveDAC_clk.c **** 
  205:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         if ((currSrc == (uint8)CYCLK_SRC_SEL_CLK_SYNC_D) && ((oldDivider == 0u) || (clkDivider == 0
@@ -598,20 +598,20 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  210:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                 /* Moving away from SSS, set the divider first so when SSS is cleared we    */
  211:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                 /* don't halt the clock.  Using the shadow load isn't required as the       */
  212:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                 /* divider is ignored while SSS is set.                                     */
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 11
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 11
 
 
  213:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                 CY_SET_REG16(WaveDAC_clk_DIV_PTR, clkDivider);
  359              		.loc 1 213 0
- 360 0052 44F28403 		movw	r3, #16516
+ 360 0052 4FF48243 		mov	r3, #16640
  361 0056 C4F20003 		movt	r3, 16384
  362 005a FA88     		ldrh	r2, [r7, #6]	@ movhi
  363 005c 1A80     		strh	r2, [r3, #0]	@ movhi
  214:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                 WaveDAC_clk_MOD_SRC &= (uint8)(~CYCLK_SSS);
  364              		.loc 1 214 0
- 365 005e 44F28603 		movw	r3, #16518
+ 365 005e 44F20213 		movw	r3, #16642
  366 0062 C4F20003 		movt	r3, 16384
- 367 0066 44F28602 		movw	r2, #16518
+ 367 0066 44F20212 		movw	r2, #16642
  368 006a C4F20002 		movt	r2, 16384
  369 006e 1278     		ldrb	r2, [r2, #0]
  370 0070 D2B2     		uxtb	r2, r2
@@ -629,9 +629,9 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  219:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                 /* it without bothering with the shadow load.                               */
  220:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                 WaveDAC_clk_MOD_SRC |= CYCLK_SSS;
  377              		.loc 1 220 0
- 378 007c 44F28603 		movw	r3, #16518
+ 378 007c 44F20213 		movw	r3, #16642
  379 0080 C4F20003 		movt	r3, 16384
- 380 0084 44F28602 		movw	r2, #16518
+ 380 0084 44F20212 		movw	r2, #16642
  381 0088 C4F20002 		movt	r2, 16384
  382 008c 1278     		ldrb	r2, [r2, #0]
  383 008e D2B2     		uxtb	r2, r2
@@ -640,7 +640,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  386 0096 1A70     		strb	r2, [r3, #0]
  221:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                 CY_SET_REG16(WaveDAC_clk_DIV_PTR, clkDivider);
  387              		.loc 1 221 0
- 388 0098 44F28403 		movw	r3, #16516
+ 388 0098 4FF48243 		mov	r3, #16640
  389 009c C4F20003 		movt	r3, 16384
  390 00a0 FA88     		ldrh	r2, [r7, #6]	@ movhi
  391 00a2 1A80     		strh	r2, [r3, #0]	@ movhi
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  396 00a6 FB7A     		ldrb	r3, [r7, #11]	@ zero_extendqisi2
  397 00a8 002B     		cmp	r3, #0
  398 00aa 5CD0     		beq	.L15
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 12
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 12
 
 
  228:.\Generated_Source\PSoC5/WaveDAC_clk.c ****             {
@@ -672,20 +672,20 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  231:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                 /* Clear all the mask bits except ours. */
  232:.\Generated_Source\PSoC5/WaveDAC_clk.c **** #if defined(WaveDAC_clk__CFG3)
  233:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                 CLK_DIST_AMASK = WaveDAC_clk_CLKEN_MASK;
- 234:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                 CLK_DIST_DMASK = 0x00u;
- 235:.\Generated_Source\PSoC5/WaveDAC_clk.c **** #else
- 236:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                 CLK_DIST_DMASK = WaveDAC_clk_CLKEN_MASK;
- 404              		.loc 1 236 0
- 405 00ba 44F21003 		movw	r3, #16400
+ 404              		.loc 1 233 0
+ 405 00ba 44F21403 		movw	r3, #16404
  406 00be C4F20003 		movt	r3, 16384
- 407 00c2 4FF00202 		mov	r2, #2
+ 407 00c2 4FF00102 		mov	r2, #1
  408 00c6 1A70     		strb	r2, [r3, #0]
- 237:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                 CLK_DIST_AMASK = 0x00u;
- 409              		.loc 1 237 0
- 410 00c8 44F21403 		movw	r3, #16404
+ 234:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                 CLK_DIST_DMASK = 0x00u;
+ 409              		.loc 1 234 0
+ 410 00c8 44F21003 		movw	r3, #16400
  411 00cc C4F20003 		movt	r3, 16384
  412 00d0 4FF00002 		mov	r2, #0
  413 00d4 1A70     		strb	r2, [r3, #0]
+ 235:.\Generated_Source\PSoC5/WaveDAC_clk.c **** #else
+ 236:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                 CLK_DIST_DMASK = WaveDAC_clk_CLKEN_MASK;
+ 237:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                 CLK_DIST_AMASK = 0x00u;
  238:.\Generated_Source\PSoC5/WaveDAC_clk.c **** #endif /* WaveDAC_clk__CFG3 */
  239:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                 /* Clear mask of bus clock. */
  240:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                 CLK_DIST_BCFG2 &= (uint8)(~BCFG2_MASK);
@@ -703,7 +703,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  242:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                 /* If clock is currently enabled, disable it if async or going from N-to-1*/
  243:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                 if (((WaveDAC_clk_MOD_SRC & CYCLK_SYNC) == 0u) || (clkDivider == 0u))
  424              		.loc 1 243 0
- 425 00f2 44F28603 		movw	r3, #16518
+ 425 00f2 44F20213 		movw	r3, #16642
  426 00f6 C4F20003 		movt	r3, 16384
  427 00fa 1B78     		ldrb	r3, [r3, #0]
  428 00fc DBB2     		uxtb	r3, r3
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  244:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                 {
  245:.\Generated_Source\PSoC5/WaveDAC_clk.c **** #if HAS_CLKDIST_LD_DISABLE
  246:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                     CY_SET_REG16(CYREG_CLKDIST_WRK0, oldDivider);
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 13
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 13
 
 
  437              		.loc 1 246 0 is_stmt 1
@@ -750,13 +750,13 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  252:.\Generated_Source\PSoC5/WaveDAC_clk.c **** 
  253:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                     WaveDAC_clk_CLKEN &= (uint8)(~WaveDAC_clk_CLKEN_MASK);
  458              		.loc 1 253 0 is_stmt 1
- 459 013c 44F2A233 		movw	r3, #17314
+ 459 013c 44F2A133 		movw	r3, #17313
  460 0140 C4F20003 		movt	r3, 16384
- 461 0144 44F2A232 		movw	r2, #17314
+ 461 0144 44F2A132 		movw	r2, #17313
  462 0148 C4F20002 		movt	r2, 16384
  463 014c 1278     		ldrb	r2, [r2, #0]
  464 014e D2B2     		uxtb	r2, r2
- 465 0150 22F00202 		bic	r2, r2, #2
+ 465 0150 22F00102 		bic	r2, r2, #1
  466 0154 D2B2     		uxtb	r2, r2
  467 0156 1A70     		strb	r2, [r3, #0]
  254:.\Generated_Source\PSoC5/WaveDAC_clk.c **** 
@@ -776,14 +776,14 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  262:.\Generated_Source\PSoC5/WaveDAC_clk.c ****             /* Load divide value. */
  263:.\Generated_Source\PSoC5/WaveDAC_clk.c ****             if ((WaveDAC_clk_CLKEN & WaveDAC_clk_CLKEN_MASK) != 0u)
  474              		.loc 1 263 0
- 475 0166 44F2A233 		movw	r3, #17314
+ 475 0166 44F2A133 		movw	r3, #17313
  476 016a C4F20003 		movt	r3, 16384
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 14
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 14
 
 
  477 016e 1B78     		ldrb	r3, [r3, #0]
  478 0170 DBB2     		uxtb	r3, r3
- 479 0172 03F00203 		and	r3, r3, #2
+ 479 0172 03F00103 		and	r3, r3, #1
  480 0176 002B     		cmp	r3, #0
  481 0178 1ED0     		beq	.L18
  264:.\Generated_Source\PSoC5/WaveDAC_clk.c ****             {
@@ -832,18 +832,18 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  273:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                 /* If the clock is disabled, set the divider directly */
  274:.\Generated_Source\PSoC5/WaveDAC_clk.c ****                 CY_SET_REG16(WaveDAC_clk_DIV_PTR, clkDivider);
  516              		.loc 1 274 0 is_stmt 1
- 517 01b8 44F28403 		movw	r3, #16516
+ 517 01b8 4FF48243 		mov	r3, #16640
  518 01bc C4F20003 		movt	r3, 16384
  519 01c0 FA88     		ldrh	r2, [r7, #6]	@ movhi
  520 01c2 1A80     		strh	r2, [r3, #0]	@ movhi
  275:.\Generated_Source\PSoC5/WaveDAC_clk.c **** 				WaveDAC_clk_CLKEN |= enabled;
  521              		.loc 1 275 0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 15
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 15
 
 
- 522 01c4 44F2A233 		movw	r3, #17314
+ 522 01c4 44F2A133 		movw	r3, #17313
  523 01c8 C4F20003 		movt	r3, 16384
- 524 01cc 44F2A232 		movw	r2, #17314
+ 524 01cc 44F2A132 		movw	r2, #17313
  525 01d0 C4F20002 		movt	r2, 16384
  526 01d4 1278     		ldrb	r2, [r2, #0]
  527 01d6 D1B2     		uxtb	r1, r2
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  553 0000 80B4     		push	{r7}
  554              	.LCFI13:
  555              		.cfi_def_cfa_offset 4
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 16
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 16
 
 
  556              		.cfi_offset 7, -4
@@ -907,7 +907,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  559              		.cfi_def_cfa_register 7
  299:.\Generated_Source\PSoC5/WaveDAC_clk.c ****     return CY_GET_REG16(WaveDAC_clk_DIV_PTR);
  560              		.loc 1 299 0
- 561 0004 44F28403 		movw	r3, #16516
+ 561 0004 4FF48243 		mov	r3, #16640
  562 0008 C4F20003 		movt	r3, 16384
  563 000c 1B88     		ldrh	r3, [r3, #0]	@ movhi
  564 000e 9BB2     		uxth	r3, r3
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  328:.\Generated_Source\PSoC5/WaveDAC_clk.c **** * Returns:
  329:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *  None
  330:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 17
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 17
 
 
  331:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *******************************************************************************/
@@ -983,9 +983,9 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  597 0008 FB71     		strb	r3, [r7, #7]
  334:.\Generated_Source\PSoC5/WaveDAC_clk.c ****     WaveDAC_clk_MOD_SRC |= modeBitMask & (uint8)WaveDAC_clk_MODE_MASK;
  598              		.loc 1 334 0
- 599 000a 44F28603 		movw	r3, #16518
+ 599 000a 44F20213 		movw	r3, #16642
  600 000e C4F20003 		movt	r3, 16384
- 601 0012 44F28602 		movw	r2, #16518
+ 601 0012 44F20212 		movw	r2, #16642
  602 0016 C4F20002 		movt	r2, 16384
  603 001a 1278     		ldrb	r2, [r2, #0]
  604 001c D2B2     		uxtb	r2, r2
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  337:.\Generated_Source\PSoC5/WaveDAC_clk.c **** 
  338:.\Generated_Source\PSoC5/WaveDAC_clk.c **** /*******************************************************************************
  339:.\Generated_Source\PSoC5/WaveDAC_clk.c **** * Function Name: WaveDAC_clk_ClearModeRegister
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 18
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 18
 
 
  340:.\Generated_Source\PSoC5/WaveDAC_clk.c **** ********************************************************************************
@@ -1069,16 +1069,16 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  645 0008 FB71     		strb	r3, [r7, #7]
  369:.\Generated_Source\PSoC5/WaveDAC_clk.c ****     WaveDAC_clk_MOD_SRC &= (uint8)(~modeBitMask) | (uint8)(~(uint8)(WaveDAC_clk_MODE_MASK));
  646              		.loc 1 369 0
- 647 000a 44F28603 		movw	r3, #16518
+ 647 000a 44F20213 		movw	r3, #16642
  648 000e C4F20003 		movt	r3, 16384
- 649 0012 44F28602 		movw	r2, #16518
+ 649 0012 44F20212 		movw	r2, #16642
  650 0016 C4F20002 		movt	r2, 16384
  651 001a 1278     		ldrb	r2, [r2, #0]
  652 001c D1B2     		uxtb	r1, r2
  653 001e FA79     		ldrb	r2, [r7, #7]
  654 0020 6FEA0202 		mvn	r2, r2
  655 0024 D2B2     		uxtb	r2, r2
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 19
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 19
 
 
  656 0026 42F00702 		orr	r2, r2, #7
@@ -1136,9 +1136,9 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  688              		.cfi_def_cfa_register 7
  390:.\Generated_Source\PSoC5/WaveDAC_clk.c ****     return WaveDAC_clk_MOD_SRC & (uint8)(WaveDAC_clk_MODE_MASK);
  689              		.loc 1 390 0
- 690 0004 44F28603 		movw	r3, #16518
+ 690 0004 44F20213 		movw	r3, #16642
  691 0008 C4F20003 		movt	r3, 16384
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 20
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 20
 
 
  692 000c 1B78     		ldrb	r3, [r3, #0]
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  716 0000 80B5     		push	{r7, lr}
  717              	.LCFI23:
  718              		.cfi_def_cfa_offset 8
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 21
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 21
 
 
  719              		.cfi_offset 7, -8
@@ -1241,9 +1241,9 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  428:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         /* then set the source so we are consistent.                                */
  429:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         WaveDAC_clk_MOD_SRC |= CYCLK_SSS;
  749              		.loc 1 429 0
- 750 002c 44F28603 		movw	r3, #16518
+ 750 002c 44F20213 		movw	r3, #16642
  751 0030 C4F20003 		movt	r3, 16384
- 752 0034 44F28602 		movw	r2, #16518
+ 752 0034 44F20212 		movw	r2, #16642
  753 0038 C4F20002 		movt	r2, 16384
  754 003c 1278     		ldrb	r2, [r2, #0]
  755 003e D2B2     		uxtb	r2, r2
@@ -1252,13 +1252,13 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  758 0046 1A70     		strb	r2, [r3, #0]
  430:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         WaveDAC_clk_MOD_SRC =
  759              		.loc 1 430 0
- 760 0048 44F28603 		movw	r3, #16518
+ 760 0048 44F20213 		movw	r3, #16642
  761 004c C4F20003 		movt	r3, 16384
  431:.\Generated_Source\PSoC5/WaveDAC_clk.c ****             (WaveDAC_clk_MOD_SRC & (uint8)(~WaveDAC_clk_SRC_SEL_MSK)) | clkSource;
  762              		.loc 1 431 0
- 763 0050 44F28602 		movw	r2, #16518
+ 763 0050 44F20212 		movw	r2, #16642
  764 0054 C4F20002 		movt	r2, 16384
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 22
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 22
 
 
  765 0058 1278     		ldrb	r2, [r2, #0]
@@ -1295,11 +1295,11 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  437:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         /* lock when we clear SSS.                                                  */
  438:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         WaveDAC_clk_MOD_SRC =
  790              		.loc 1 438 0
- 791 0082 44F28603 		movw	r3, #16518
+ 791 0082 44F20213 		movw	r3, #16642
  792 0086 C4F20003 		movt	r3, 16384
  439:.\Generated_Source\PSoC5/WaveDAC_clk.c ****             (WaveDAC_clk_MOD_SRC & (uint8)(~WaveDAC_clk_SRC_SEL_MSK)) | clkSource;
  793              		.loc 1 439 0
- 794 008a 44F28602 		movw	r2, #16518
+ 794 008a 44F20212 		movw	r2, #16642
  795 008e C4F20002 		movt	r2, 16384
  796 0092 1278     		ldrb	r2, [r2, #0]
  797 0094 D2B2     		uxtb	r2, r2
@@ -1315,10 +1315,10 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  806 00a6 1A70     		strb	r2, [r3, #0]
  440:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         WaveDAC_clk_MOD_SRC &= (uint8)(~CYCLK_SSS);
  807              		.loc 1 440 0
- 808 00a8 44F28603 		movw	r3, #16518
+ 808 00a8 44F20213 		movw	r3, #16642
  809 00ac C4F20003 		movt	r3, 16384
- 810 00b0 44F28602 		movw	r2, #16518
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 23
+ 810 00b0 44F20212 		movw	r2, #16642
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 23
 
 
  811 00b4 C4F20002 		movt	r2, 16384
@@ -1334,11 +1334,11 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  443:.\Generated_Source\PSoC5/WaveDAC_clk.c ****     {
  444:.\Generated_Source\PSoC5/WaveDAC_clk.c ****         WaveDAC_clk_MOD_SRC =
  819              		.loc 1 444 0
- 820 00c6 44F28603 		movw	r3, #16518
+ 820 00c6 44F20213 		movw	r3, #16642
  821 00ca C4F20003 		movt	r3, 16384
  445:.\Generated_Source\PSoC5/WaveDAC_clk.c ****             (WaveDAC_clk_MOD_SRC & (uint8)(~WaveDAC_clk_SRC_SEL_MSK)) | clkSource;
  822              		.loc 1 445 0
- 823 00ce 44F28602 		movw	r2, #16518
+ 823 00ce 44F20212 		movw	r2, #16642
  824 00d2 C4F20002 		movt	r2, 16384
  825 00d6 1278     		ldrb	r2, [r2, #0]
  826 00d8 D2B2     		uxtb	r2, r2
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  453:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *
  454:.\Generated_Source\PSoC5/WaveDAC_clk.c **** * Summary:
  455:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *  Gets the input source of the clock.
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 24
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 24
 
 
  456:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *
@@ -1405,7 +1405,7 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  863              		.cfi_def_cfa_register 7
  466:.\Generated_Source\PSoC5/WaveDAC_clk.c ****     return WaveDAC_clk_MOD_SRC & WaveDAC_clk_SRC_SEL_MSK;
  864              		.loc 1 466 0
- 865 0004 44F28603 		movw	r3, #16518
+ 865 0004 44F20213 		movw	r3, #16642
  866 0008 C4F20003 		movt	r3, 16384
  867 000c 1B78     		ldrb	r3, [r3, #0]
  868 000e DBB2     		uxtb	r3, r3
@@ -1420,1153 +1420,1385 @@ ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 1
  876              		.cfi_endproc
  877              	.LFE10:
  878              		.size	WaveDAC_clk_GetSourceRegister, .-WaveDAC_clk_GetSourceRegister
- 879 001e 00BF     		.text
- 880              	.Letext0:
- 881              		.file 2 "./Generated_Source/PSoC5/cytypes.h"
- 882              		.section	.debug_info,"",%progbits
- 883              	.Ldebug_info0:
- 884 0000 90020000 		.4byte	0x290
- 885 0004 0200     		.2byte	0x2
- 886 0006 00000000 		.4byte	.Ldebug_abbrev0
- 887 000a 04       		.byte	0x4
- 888 000b 01       		.uleb128 0x1
- 889 000c 31020000 		.4byte	.LASF37
- 890 0010 01       		.byte	0x1
- 891 0011 E7010000 		.4byte	.LASF38
- 892 0015 9A010000 		.4byte	.LASF39
- 893 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 894 001d 00000000 		.4byte	0
- 895 0021 00000000 		.4byte	0
- 896 0025 00000000 		.4byte	.Ldebug_line0
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 25
+ 879 001e 00BF     		.section	.text.WaveDAC_clk_SetPhaseRegister,"ax",%progbits
+ 880              		.align	2
+ 881              		.global	WaveDAC_clk_SetPhaseRegister
+ 882              		.thumb
+ 883              		.thumb_func
+ 884              		.type	WaveDAC_clk_SetPhaseRegister, %function
+ 885              	WaveDAC_clk_SetPhaseRegister:
+ 886              	.LFB11:
+ 468:.\Generated_Source\PSoC5/WaveDAC_clk.c **** 
+ 469:.\Generated_Source\PSoC5/WaveDAC_clk.c **** 
+ 470:.\Generated_Source\PSoC5/WaveDAC_clk.c **** #if defined(WaveDAC_clk__CFG3)
+ 471:.\Generated_Source\PSoC5/WaveDAC_clk.c **** 
+ 472:.\Generated_Source\PSoC5/WaveDAC_clk.c **** 
+ 473:.\Generated_Source\PSoC5/WaveDAC_clk.c **** /*******************************************************************************
+ 474:.\Generated_Source\PSoC5/WaveDAC_clk.c **** * Function Name: WaveDAC_clk_SetPhaseRegister
+ 475:.\Generated_Source\PSoC5/WaveDAC_clk.c **** ********************************************************************************
+ 476:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *
+ 477:.\Generated_Source\PSoC5/WaveDAC_clk.c **** * Summary:
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 25
 
 
- 897 0029 02       		.uleb128 0x2
- 898 002a 01       		.byte	0x1
- 899 002b 06       		.byte	0x6
- 900 002c D3020000 		.4byte	.LASF0
- 901 0030 02       		.uleb128 0x2
- 902 0031 01       		.byte	0x1
- 903 0032 08       		.byte	0x8
- 904 0033 9A000000 		.4byte	.LASF1
- 905 0037 02       		.uleb128 0x2
- 906 0038 02       		.byte	0x2
- 907 0039 05       		.byte	0x5
- 908 003a 1B020000 		.4byte	.LASF2
- 909 003e 02       		.uleb128 0x2
- 910 003f 02       		.byte	0x2
- 911 0040 07       		.byte	0x7
- 912 0041 DB000000 		.4byte	.LASF3
- 913 0045 02       		.uleb128 0x2
- 914 0046 04       		.byte	0x4
- 915 0047 05       		.byte	0x5
- 916 0048 A1020000 		.4byte	.LASF4
- 917 004c 02       		.uleb128 0x2
- 918 004d 04       		.byte	0x4
- 919 004e 07       		.byte	0x7
- 920 004f AD000000 		.4byte	.LASF5
- 921 0053 02       		.uleb128 0x2
- 922 0054 08       		.byte	0x8
- 923 0055 05       		.byte	0x5
- 924 0056 00000000 		.4byte	.LASF6
- 925 005a 02       		.uleb128 0x2
- 926 005b 08       		.byte	0x8
- 927 005c 07       		.byte	0x7
- 928 005d 77010000 		.4byte	.LASF7
- 929 0061 03       		.uleb128 0x3
- 930 0062 04       		.byte	0x4
- 931 0063 05       		.byte	0x5
- 932 0064 696E7400 		.ascii	"int\000"
- 933 0068 02       		.uleb128 0x2
- 934 0069 04       		.byte	0x4
- 935 006a 07       		.byte	0x7
- 936 006b 62010000 		.4byte	.LASF8
- 937 006f 04       		.uleb128 0x4
- 938 0070 2B020000 		.4byte	.LASF9
- 939 0074 02       		.byte	0x2
- 940 0075 5B       		.byte	0x5b
- 941 0076 30000000 		.4byte	0x30
- 942 007a 04       		.uleb128 0x4
- 943 007b 5B010000 		.4byte	.LASF10
- 944 007f 02       		.byte	0x2
- 945 0080 5C       		.byte	0x5c
- 946 0081 3E000000 		.4byte	0x3e
- 947 0085 02       		.uleb128 0x2
- 948 0086 04       		.byte	0x4
- 949 0087 04       		.byte	0x4
- 950 0088 7E000000 		.4byte	.LASF11
- 951 008c 02       		.uleb128 0x2
- 952 008d 08       		.byte	0x8
- 953 008e 04       		.byte	0x4
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 26
+ 478:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *  Sets the phase delay of the analog clock. This function is only available
+ 479:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *  for analog clocks. The clock must be disabled before changing the phase
+ 480:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *  delay to avoid glitches.
+ 481:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *
+ 482:.\Generated_Source\PSoC5/WaveDAC_clk.c **** * Parameters:
+ 483:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *  clkPhase: Amount to delay the phase of the clock, in 1.0ns increments.
+ 484:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *   clkPhase must be from 1 to 11 inclusive. Other values, including 0,
+ 485:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *   disable the clock. clkPhase = 1 produces a 0ns delay and clkPhase = 11 
+ 486:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *   produces a 10ns delay.
+ 487:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *
+ 488:.\Generated_Source\PSoC5/WaveDAC_clk.c **** * Returns:
+ 489:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *  None
+ 490:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *
+ 491:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *******************************************************************************/
+ 492:.\Generated_Source\PSoC5/WaveDAC_clk.c **** void WaveDAC_clk_SetPhaseRegister(uint8 clkPhase) 
+ 493:.\Generated_Source\PSoC5/WaveDAC_clk.c **** {
+ 887              		.loc 1 493 0
+ 888              		.cfi_startproc
+ 889              		@ args = 0, pretend = 0, frame = 8
+ 890              		@ frame_needed = 1, uses_anonymous_args = 0
+ 891              		@ link register save eliminated.
+ 892 0000 80B4     		push	{r7}
+ 893              	.LCFI28:
+ 894              		.cfi_def_cfa_offset 4
+ 895              		.cfi_offset 7, -4
+ 896 0002 83B0     		sub	sp, sp, #12
+ 897              	.LCFI29:
+ 898              		.cfi_def_cfa_offset 16
+ 899 0004 00AF     		add	r7, sp, #0
+ 900              	.LCFI30:
+ 901              		.cfi_def_cfa_register 7
+ 902 0006 0346     		mov	r3, r0
+ 903 0008 FB71     		strb	r3, [r7, #7]
+ 494:.\Generated_Source\PSoC5/WaveDAC_clk.c ****     WaveDAC_clk_PHASE = clkPhase & WaveDAC_clk_PHASE_MASK;
+ 904              		.loc 1 494 0
+ 905 000a 44F20313 		movw	r3, #16643
+ 906 000e C4F20003 		movt	r3, 16384
+ 907 0012 FA79     		ldrb	r2, [r7, #7]
+ 908 0014 02F00F02 		and	r2, r2, #15
+ 909 0018 D2B2     		uxtb	r2, r2
+ 910 001a 1A70     		strb	r2, [r3, #0]
+ 495:.\Generated_Source\PSoC5/WaveDAC_clk.c **** }
+ 911              		.loc 1 495 0
+ 912 001c 07F10C07 		add	r7, r7, #12
+ 913 0020 BD46     		mov	sp, r7
+ 914 0022 80BC     		pop	{r7}
+ 915 0024 7047     		bx	lr
+ 916              		.cfi_endproc
+ 917              	.LFE11:
+ 918              		.size	WaveDAC_clk_SetPhaseRegister, .-WaveDAC_clk_SetPhaseRegister
+ 919 0026 00BF     		.section	.text.WaveDAC_clk_GetPhaseRegister,"ax",%progbits
+ 920              		.align	2
+ 921              		.global	WaveDAC_clk_GetPhaseRegister
+ 922              		.thumb
+ 923              		.thumb_func
+ 924              		.type	WaveDAC_clk_GetPhaseRegister, %function
+ 925              	WaveDAC_clk_GetPhaseRegister:
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 26
 
 
- 954 008f 4C010000 		.4byte	.LASF12
- 955 0093 02       		.uleb128 0x2
- 956 0094 01       		.byte	0x1
- 957 0095 08       		.byte	0x8
- 958 0096 0E020000 		.4byte	.LASF13
- 959 009a 04       		.uleb128 0x4
- 960 009b A8000000 		.4byte	.LASF14
- 961 009f 02       		.byte	0x2
- 962 00a0 F0       		.byte	0xf0
- 963 00a1 A5000000 		.4byte	0xa5
- 964 00a5 05       		.uleb128 0x5
- 965 00a6 6F000000 		.4byte	0x6f
- 966 00aa 04       		.uleb128 0x4
- 967 00ab 25020000 		.4byte	.LASF15
- 968 00af 02       		.byte	0x2
- 969 00b0 F1       		.byte	0xf1
- 970 00b1 B5000000 		.4byte	0xb5
- 971 00b5 05       		.uleb128 0x5
- 972 00b6 7A000000 		.4byte	0x7a
- 973 00ba 06       		.uleb128 0x6
- 974 00bb 01       		.byte	0x1
- 975 00bc 3D000000 		.4byte	.LASF16
- 976 00c0 01       		.byte	0x1
- 977 00c1 2D       		.byte	0x2d
- 978 00c2 01       		.byte	0x1
- 979 00c3 00000000 		.4byte	.LFB0
- 980 00c7 42000000 		.4byte	.LFE0
- 981 00cb 00000000 		.4byte	.LLST0
- 982 00cf 01       		.byte	0x1
- 983 00d0 06       		.uleb128 0x6
- 984 00d1 01       		.byte	0x1
- 985 00d2 6D000000 		.4byte	.LASF17
- 986 00d6 01       		.byte	0x1
- 987 00d7 47       		.byte	0x47
- 988 00d8 01       		.byte	0x1
- 989 00d9 00000000 		.4byte	.LFB1
- 990 00dd 42000000 		.4byte	.LFE1
- 991 00e1 2C000000 		.4byte	.LLST1
- 992 00e5 01       		.byte	0x1
- 993 00e6 07       		.uleb128 0x7
- 994 00e7 01       		.byte	0x1
- 995 00e8 84000000 		.4byte	.LASF18
- 996 00ec 01       		.byte	0x1
- 997 00ed 64       		.byte	0x64
- 998 00ee 01       		.byte	0x1
- 999 00ef 00000000 		.4byte	.LFB2
- 1000 00f3 F8000000 		.4byte	.LFE2
- 1001 00f7 58000000 		.4byte	.LLST2
- 1002 00fb 01       		.byte	0x1
- 1003 00fc 19010000 		.4byte	0x119
- 1004 0100 08       		.uleb128 0x8
- 1005 0101 1A000000 		.4byte	.LBB2
- 1006 0105 EE000000 		.4byte	.LBE2
- 1007 0109 09       		.uleb128 0x9
- 1008 010a 32000000 		.4byte	.LASF24
- 1009 010e 01       		.byte	0x1
- 1010 010f 69       		.byte	0x69
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 27
+ 926              	.LFB12:
+ 496:.\Generated_Source\PSoC5/WaveDAC_clk.c **** 
+ 497:.\Generated_Source\PSoC5/WaveDAC_clk.c **** 
+ 498:.\Generated_Source\PSoC5/WaveDAC_clk.c **** /*******************************************************************************
+ 499:.\Generated_Source\PSoC5/WaveDAC_clk.c **** * Function Name: WaveDAC_clk_GetPhase
+ 500:.\Generated_Source\PSoC5/WaveDAC_clk.c **** ********************************************************************************
+ 501:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *
+ 502:.\Generated_Source\PSoC5/WaveDAC_clk.c **** * Summary:
+ 503:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *  Gets the phase delay of the analog clock. This function is only available
+ 504:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *  for analog clocks.
+ 505:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *
+ 506:.\Generated_Source\PSoC5/WaveDAC_clk.c **** * Parameters:
+ 507:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *  None
+ 508:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *
+ 509:.\Generated_Source\PSoC5/WaveDAC_clk.c **** * Returns:
+ 510:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *  Phase of the analog clock. See SetPhaseRegister for details.
+ 511:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *
+ 512:.\Generated_Source\PSoC5/WaveDAC_clk.c **** *******************************************************************************/
+ 513:.\Generated_Source\PSoC5/WaveDAC_clk.c **** uint8 WaveDAC_clk_GetPhaseRegister(void) 
+ 514:.\Generated_Source\PSoC5/WaveDAC_clk.c **** {
+ 927              		.loc 1 514 0
+ 928              		.cfi_startproc
+ 929              		@ args = 0, pretend = 0, frame = 0
+ 930              		@ frame_needed = 1, uses_anonymous_args = 0
+ 931              		@ link register save eliminated.
+ 932 0000 80B4     		push	{r7}
+ 933              	.LCFI31:
+ 934              		.cfi_def_cfa_offset 4
+ 935              		.cfi_offset 7, -4
+ 936 0002 00AF     		add	r7, sp, #0
+ 937              	.LCFI32:
+ 938              		.cfi_def_cfa_register 7
+ 515:.\Generated_Source\PSoC5/WaveDAC_clk.c ****     return WaveDAC_clk_PHASE & WaveDAC_clk_PHASE_MASK;
+ 939              		.loc 1 515 0
+ 940 0004 44F20313 		movw	r3, #16643
+ 941 0008 C4F20003 		movt	r3, 16384
+ 942 000c 1B78     		ldrb	r3, [r3, #0]
+ 943 000e DBB2     		uxtb	r3, r3
+ 944 0010 03F00F03 		and	r3, r3, #15
+ 945 0014 DBB2     		uxtb	r3, r3
+ 516:.\Generated_Source\PSoC5/WaveDAC_clk.c **** }
+ 946              		.loc 1 516 0
+ 947 0016 1846     		mov	r0, r3
+ 948 0018 BD46     		mov	sp, r7
+ 949 001a 80BC     		pop	{r7}
+ 950 001c 7047     		bx	lr
+ 951              		.cfi_endproc
+ 952              	.LFE12:
+ 953              		.size	WaveDAC_clk_GetPhaseRegister, .-WaveDAC_clk_GetPhaseRegister
+ 954 001e 00BF     		.text
+ 955              	.Letext0:
+ 956              		.file 2 "./Generated_Source/PSoC5/cytypes.h"
+ 957              		.section	.debug_info,"",%progbits
+ 958              	.Ldebug_info0:
+ 959 0000 D6020000 		.4byte	0x2d6
+ 960 0004 0200     		.2byte	0x2
+ 961 0006 00000000 		.4byte	.Ldebug_abbrev0
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 27
 
 
- 1011 0110 7A000000 		.4byte	0x7a
- 1012 0114 02       		.byte	0x2
- 1013 0115 91       		.byte	0x91
- 1014 0116 76       		.sleb128 -10
- 1015 0117 00       		.byte	0
- 1016 0118 00       		.byte	0
- 1017 0119 07       		.uleb128 0x7
- 1018 011a 01       		.byte	0x1
- 1019 011b 28010000 		.4byte	.LASF19
- 1020 011f 01       		.byte	0x1
- 1021 0120 9D       		.byte	0x9d
- 1022 0121 01       		.byte	0x1
- 1023 0122 00000000 		.4byte	.LFB3
- 1024 0126 54000000 		.4byte	.LFE3
- 1025 012a 90000000 		.4byte	.LLST3
- 1026 012e 01       		.byte	0x1
- 1027 012f 42010000 		.4byte	0x142
- 1028 0133 0A       		.uleb128 0xa
- 1029 0134 2C000000 		.4byte	.LASF21
- 1030 0138 01       		.byte	0x1
- 1031 0139 9D       		.byte	0x9d
- 1032 013a 6F000000 		.4byte	0x6f
- 1033 013e 02       		.byte	0x2
- 1034 013f 91       		.byte	0x91
- 1035 0140 77       		.sleb128 -9
- 1036 0141 00       		.byte	0
- 1037 0142 0B       		.uleb128 0xb
- 1038 0143 01       		.byte	0x1
- 1039 0144 B4020000 		.4byte	.LASF20
- 1040 0148 01       		.byte	0x1
- 1041 0149 C1       		.byte	0xc1
- 1042 014a 01       		.byte	0x1
- 1043 014b 00000000 		.4byte	.LFB4
- 1044 014f E8010000 		.4byte	.LFE4
- 1045 0153 C8000000 		.4byte	.LLST4
- 1046 0157 01       		.byte	0x1
- 1047 0158 A3010000 		.4byte	0x1a3
- 1048 015c 0A       		.uleb128 0xa
- 1049 015d 41010000 		.4byte	.LASF22
- 1050 0161 01       		.byte	0x1
- 1051 0162 C1       		.byte	0xc1
- 1052 0163 7A000000 		.4byte	0x7a
- 1053 0167 02       		.byte	0x2
- 1054 0168 91       		.byte	0x91
- 1055 0169 6E       		.sleb128 -18
- 1056 016a 0A       		.uleb128 0xa
- 1057 016b 53010000 		.4byte	.LASF23
- 1058 016f 01       		.byte	0x1
- 1059 0170 C1       		.byte	0xc1
- 1060 0171 6F000000 		.4byte	0x6f
- 1061 0175 02       		.byte	0x2
- 1062 0176 91       		.byte	0x91
- 1063 0177 6D       		.sleb128 -19
- 1064 0178 09       		.uleb128 0x9
- 1065 0179 99020000 		.4byte	.LASF25
- 1066 017d 01       		.byte	0x1
- 1067 017e C4       		.byte	0xc4
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 28
+ 962 000a 04       		.byte	0x4
+ 963 000b 01       		.uleb128 0x1
+ 964 000c 75020000 		.4byte	.LASF40
+ 965 0010 01       		.byte	0x1
+ 966 0011 14020000 		.4byte	.LASF41
+ 967 0015 47000000 		.4byte	.LASF42
+ 968 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 969 001d 00000000 		.4byte	0
+ 970 0021 00000000 		.4byte	0
+ 971 0025 00000000 		.4byte	.Ldebug_line0
+ 972 0029 02       		.uleb128 0x2
+ 973 002a 01       		.byte	0x1
+ 974 002b 06       		.byte	0x6
+ 975 002c 17030000 		.4byte	.LASF0
+ 976 0030 02       		.uleb128 0x2
+ 977 0031 01       		.byte	0x1
+ 978 0032 08       		.byte	0x8
+ 979 0033 E9000000 		.4byte	.LASF1
+ 980 0037 02       		.uleb128 0x2
+ 981 0038 02       		.byte	0x2
+ 982 0039 05       		.byte	0x5
+ 983 003a 65020000 		.4byte	.LASF2
+ 984 003e 02       		.uleb128 0x2
+ 985 003f 02       		.byte	0x2
+ 986 0040 07       		.byte	0x7
+ 987 0041 2A010000 		.4byte	.LASF3
+ 988 0045 02       		.uleb128 0x2
+ 989 0046 04       		.byte	0x4
+ 990 0047 05       		.byte	0x5
+ 991 0048 E5020000 		.4byte	.LASF4
+ 992 004c 02       		.uleb128 0x2
+ 993 004d 04       		.byte	0x4
+ 994 004e 07       		.byte	0x7
+ 995 004f FC000000 		.4byte	.LASF5
+ 996 0053 02       		.uleb128 0x2
+ 997 0054 08       		.byte	0x8
+ 998 0055 05       		.byte	0x5
+ 999 0056 06020000 		.4byte	.LASF6
+ 1000 005a 02       		.uleb128 0x2
+ 1001 005b 08       		.byte	0x8
+ 1002 005c 07       		.byte	0x7
+ 1003 005d E3010000 		.4byte	.LASF7
+ 1004 0061 03       		.uleb128 0x3
+ 1005 0062 04       		.byte	0x4
+ 1006 0063 05       		.byte	0x5
+ 1007 0064 696E7400 		.ascii	"int\000"
+ 1008 0068 02       		.uleb128 0x2
+ 1009 0069 04       		.byte	0x4
+ 1010 006a 07       		.byte	0x7
+ 1011 006b CE010000 		.4byte	.LASF8
+ 1012 006f 04       		.uleb128 0x4
+ 1013 0070 6F020000 		.4byte	.LASF9
+ 1014 0074 02       		.byte	0x2
+ 1015 0075 5B       		.byte	0x5b
+ 1016 0076 30000000 		.4byte	0x30
+ 1017 007a 04       		.uleb128 0x4
+ 1018 007b C7010000 		.4byte	.LASF10
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 28
 
 
- 1068 017f 6F000000 		.4byte	0x6f
- 1069 0183 02       		.byte	0x2
- 1070 0184 91       		.byte	0x91
- 1071 0185 73       		.sleb128 -13
- 1072 0186 09       		.uleb128 0x9
- 1073 0187 6F010000 		.4byte	.LASF26
- 1074 018b 01       		.byte	0x1
- 1075 018c C6       		.byte	0xc6
- 1076 018d 6F000000 		.4byte	0x6f
- 1077 0191 02       		.byte	0x2
- 1078 0192 91       		.byte	0x91
- 1079 0193 77       		.sleb128 -9
- 1080 0194 09       		.uleb128 0x9
- 1081 0195 32000000 		.4byte	.LASF24
- 1082 0199 01       		.byte	0x1
- 1083 019a C7       		.byte	0xc7
- 1084 019b 7A000000 		.4byte	0x7a
- 1085 019f 02       		.byte	0x2
- 1086 01a0 91       		.byte	0x91
- 1087 01a1 74       		.sleb128 -12
- 1088 01a2 00       		.byte	0
- 1089 01a3 0C       		.uleb128 0xc
- 1090 01a4 01       		.byte	0x1
- 1091 01a5 7A020000 		.4byte	.LASF30
- 1092 01a9 01       		.byte	0x1
- 1093 01aa 2901     		.2byte	0x129
- 1094 01ac 01       		.byte	0x1
- 1095 01ad 7A000000 		.4byte	0x7a
- 1096 01b1 00000000 		.4byte	.LFB5
- 1097 01b5 18000000 		.4byte	.LFE5
- 1098 01b9 00010000 		.4byte	.LLST5
- 1099 01bd 01       		.byte	0x1
- 1100 01be 0D       		.uleb128 0xd
- 1101 01bf 01       		.byte	0x1
- 1102 01c0 EE000000 		.4byte	.LASF27
- 1103 01c4 01       		.byte	0x1
- 1104 01c5 4C01     		.2byte	0x14c
- 1105 01c7 01       		.byte	0x1
- 1106 01c8 00000000 		.4byte	.LFB6
- 1107 01cc 3A000000 		.4byte	.LFE6
- 1108 01d0 2C010000 		.4byte	.LLST6
- 1109 01d4 01       		.byte	0x1
- 1110 01d5 E9010000 		.4byte	0x1e9
- 1111 01d9 0E       		.uleb128 0xe
- 1112 01da 8E010000 		.4byte	.LASF28
- 1113 01de 01       		.byte	0x1
- 1114 01df 4C01     		.2byte	0x14c
- 1115 01e1 6F000000 		.4byte	0x6f
- 1116 01e5 02       		.byte	0x2
- 1117 01e6 91       		.byte	0x91
- 1118 01e7 77       		.sleb128 -9
- 1119 01e8 00       		.byte	0
- 1120 01e9 0D       		.uleb128 0xd
- 1121 01ea 01       		.byte	0x1
- 1122 01eb 0A010000 		.4byte	.LASF29
- 1123 01ef 01       		.byte	0x1
- 1124 01f0 6F01     		.2byte	0x16f
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 29
+ 1019 007f 02       		.byte	0x2
+ 1020 0080 5C       		.byte	0x5c
+ 1021 0081 3E000000 		.4byte	0x3e
+ 1022 0085 02       		.uleb128 0x2
+ 1023 0086 04       		.byte	0x4
+ 1024 0087 04       		.byte	0x4
+ 1025 0088 C4000000 		.4byte	.LASF11
+ 1026 008c 02       		.uleb128 0x2
+ 1027 008d 08       		.byte	0x8
+ 1028 008e 04       		.byte	0x4
+ 1029 008f 9B010000 		.4byte	.LASF12
+ 1030 0093 02       		.uleb128 0x2
+ 1031 0094 01       		.byte	0x1
+ 1032 0095 08       		.byte	0x8
+ 1033 0096 3B020000 		.4byte	.LASF13
+ 1034 009a 04       		.uleb128 0x4
+ 1035 009b F7000000 		.4byte	.LASF14
+ 1036 009f 02       		.byte	0x2
+ 1037 00a0 F0       		.byte	0xf0
+ 1038 00a1 A5000000 		.4byte	0xa5
+ 1039 00a5 05       		.uleb128 0x5
+ 1040 00a6 6F000000 		.4byte	0x6f
+ 1041 00aa 04       		.uleb128 0x4
+ 1042 00ab 00000000 		.4byte	.LASF15
+ 1043 00af 02       		.byte	0x2
+ 1044 00b0 F1       		.byte	0xf1
+ 1045 00b1 B5000000 		.4byte	0xb5
+ 1046 00b5 05       		.uleb128 0x5
+ 1047 00b6 7A000000 		.4byte	0x7a
+ 1048 00ba 06       		.uleb128 0x6
+ 1049 00bb 01       		.byte	0x1
+ 1050 00bc 35000000 		.4byte	.LASF16
+ 1051 00c0 01       		.byte	0x1
+ 1052 00c1 2D       		.byte	0x2d
+ 1053 00c2 01       		.byte	0x1
+ 1054 00c3 00000000 		.4byte	.LFB0
+ 1055 00c7 42000000 		.4byte	.LFE0
+ 1056 00cb 00000000 		.4byte	.LLST0
+ 1057 00cf 01       		.byte	0x1
+ 1058 00d0 06       		.uleb128 0x6
+ 1059 00d1 01       		.byte	0x1
+ 1060 00d2 B3000000 		.4byte	.LASF17
+ 1061 00d6 01       		.byte	0x1
+ 1062 00d7 47       		.byte	0x47
+ 1063 00d8 01       		.byte	0x1
+ 1064 00d9 00000000 		.4byte	.LFB1
+ 1065 00dd 42000000 		.4byte	.LFE1
+ 1066 00e1 2C000000 		.4byte	.LLST1
+ 1067 00e5 01       		.byte	0x1
+ 1068 00e6 07       		.uleb128 0x7
+ 1069 00e7 01       		.byte	0x1
+ 1070 00e8 CA000000 		.4byte	.LASF18
+ 1071 00ec 01       		.byte	0x1
+ 1072 00ed 64       		.byte	0x64
+ 1073 00ee 01       		.byte	0x1
+ 1074 00ef 00000000 		.4byte	.LFB2
+ 1075 00f3 F8000000 		.4byte	.LFE2
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 29
 
 
- 1125 01f2 01       		.byte	0x1
- 1126 01f3 00000000 		.4byte	.LFB7
- 1127 01f7 3C000000 		.4byte	.LFE7
- 1128 01fb 64010000 		.4byte	.LLST7
- 1129 01ff 01       		.byte	0x1
- 1130 0200 14020000 		.4byte	0x214
- 1131 0204 0E       		.uleb128 0xe
- 1132 0205 8E010000 		.4byte	.LASF28
- 1133 0209 01       		.byte	0x1
- 1134 020a 6F01     		.2byte	0x16f
- 1135 020c 6F000000 		.4byte	0x6f
- 1136 0210 02       		.byte	0x2
- 1137 0211 91       		.byte	0x91
- 1138 0212 77       		.sleb128 -9
- 1139 0213 00       		.byte	0
- 1140 0214 0C       		.uleb128 0xc
- 1141 0215 01       		.byte	0x1
- 1142 0216 BF000000 		.4byte	.LASF31
- 1143 021a 01       		.byte	0x1
- 1144 021b 8401     		.2byte	0x184
- 1145 021d 01       		.byte	0x1
- 1146 021e 6F000000 		.4byte	0x6f
- 1147 0222 00000000 		.4byte	.LFB8
- 1148 0226 1E000000 		.4byte	.LFE8
- 1149 022a 9C010000 		.4byte	.LLST8
- 1150 022e 01       		.byte	0x1
- 1151 022f 0F       		.uleb128 0xf
- 1152 0230 01       		.byte	0x1
- 1153 0231 0E000000 		.4byte	.LASF32
- 1154 0235 01       		.byte	0x1
- 1155 0236 A301     		.2byte	0x1a3
- 1156 0238 01       		.byte	0x1
- 1157 0239 00000000 		.4byte	.LFB9
- 1158 023d F4000000 		.4byte	.LFE9
- 1159 0241 C8010000 		.4byte	.LLST9
- 1160 0245 01       		.byte	0x1
- 1161 0246 78020000 		.4byte	0x278
- 1162 024a 0E       		.uleb128 0xe
- 1163 024b AA020000 		.4byte	.LASF33
- 1164 024f 01       		.byte	0x1
- 1165 0250 A301     		.2byte	0x1a3
- 1166 0252 6F000000 		.4byte	0x6f
- 1167 0256 02       		.byte	0x2
- 1168 0257 91       		.byte	0x91
- 1169 0258 6F       		.sleb128 -17
- 1170 0259 10       		.uleb128 0x10
- 1171 025a 13020000 		.4byte	.LASF34
- 1172 025e 01       		.byte	0x1
- 1173 025f A501     		.2byte	0x1a5
- 1174 0261 7A000000 		.4byte	0x7a
- 1175 0265 02       		.byte	0x2
- 1176 0266 91       		.byte	0x91
- 1177 0267 76       		.sleb128 -10
- 1178 0268 10       		.uleb128 0x10
- 1179 0269 DF020000 		.4byte	.LASF35
- 1180 026d 01       		.byte	0x1
- 1181 026e A601     		.2byte	0x1a6
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 30
+ 1076 00f7 58000000 		.4byte	.LLST2
+ 1077 00fb 01       		.byte	0x1
+ 1078 00fc 19010000 		.4byte	0x119
+ 1079 0100 08       		.uleb128 0x8
+ 1080 0101 1A000000 		.4byte	.LBB2
+ 1081 0105 EE000000 		.4byte	.LBE2
+ 1082 0109 09       		.uleb128 0x9
+ 1083 010a 2A000000 		.4byte	.LASF24
+ 1084 010e 01       		.byte	0x1
+ 1085 010f 69       		.byte	0x69
+ 1086 0110 7A000000 		.4byte	0x7a
+ 1087 0114 02       		.byte	0x2
+ 1088 0115 91       		.byte	0x91
+ 1089 0116 76       		.sleb128 -10
+ 1090 0117 00       		.byte	0
+ 1091 0118 00       		.byte	0
+ 1092 0119 07       		.uleb128 0x7
+ 1093 011a 01       		.byte	0x1
+ 1094 011b 77010000 		.4byte	.LASF19
+ 1095 011f 01       		.byte	0x1
+ 1096 0120 9D       		.byte	0x9d
+ 1097 0121 01       		.byte	0x1
+ 1098 0122 00000000 		.4byte	.LFB3
+ 1099 0126 54000000 		.4byte	.LFE3
+ 1100 012a 90000000 		.4byte	.LLST3
+ 1101 012e 01       		.byte	0x1
+ 1102 012f 42010000 		.4byte	0x142
+ 1103 0133 0A       		.uleb128 0xa
+ 1104 0134 24000000 		.4byte	.LASF21
+ 1105 0138 01       		.byte	0x1
+ 1106 0139 9D       		.byte	0x9d
+ 1107 013a 6F000000 		.4byte	0x6f
+ 1108 013e 02       		.byte	0x2
+ 1109 013f 91       		.byte	0x91
+ 1110 0140 77       		.sleb128 -9
+ 1111 0141 00       		.byte	0
+ 1112 0142 0B       		.uleb128 0xb
+ 1113 0143 01       		.byte	0x1
+ 1114 0144 F8020000 		.4byte	.LASF20
+ 1115 0148 01       		.byte	0x1
+ 1116 0149 C1       		.byte	0xc1
+ 1117 014a 01       		.byte	0x1
+ 1118 014b 00000000 		.4byte	.LFB4
+ 1119 014f E8010000 		.4byte	.LFE4
+ 1120 0153 C8000000 		.4byte	.LLST4
+ 1121 0157 01       		.byte	0x1
+ 1122 0158 A3010000 		.4byte	0x1a3
+ 1123 015c 0A       		.uleb128 0xa
+ 1124 015d 90010000 		.4byte	.LASF22
+ 1125 0161 01       		.byte	0x1
+ 1126 0162 C1       		.byte	0xc1
+ 1127 0163 7A000000 		.4byte	0x7a
+ 1128 0167 02       		.byte	0x2
+ 1129 0168 91       		.byte	0x91
+ 1130 0169 6E       		.sleb128 -18
+ 1131 016a 0A       		.uleb128 0xa
+ 1132 016b A2010000 		.4byte	.LASF23
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 30
 
 
- 1182 0270 6F000000 		.4byte	0x6f
- 1183 0274 02       		.byte	0x2
- 1184 0275 91       		.byte	0x91
- 1185 0276 75       		.sleb128 -11
- 1186 0277 00       		.byte	0
- 1187 0278 0C       		.uleb128 0xc
- 1188 0279 01       		.byte	0x1
- 1189 027a 4F000000 		.4byte	.LASF36
- 1190 027e 01       		.byte	0x1
- 1191 027f D001     		.2byte	0x1d0
- 1192 0281 01       		.byte	0x1
- 1193 0282 6F000000 		.4byte	0x6f
- 1194 0286 00000000 		.4byte	.LFB10
- 1195 028a 1E000000 		.4byte	.LFE10
- 1196 028e 00020000 		.4byte	.LLST10
- 1197 0292 01       		.byte	0x1
- 1198 0293 00       		.byte	0
- 1199              		.section	.debug_abbrev,"",%progbits
- 1200              	.Ldebug_abbrev0:
- 1201 0000 01       		.uleb128 0x1
- 1202 0001 11       		.uleb128 0x11
- 1203 0002 01       		.byte	0x1
- 1204 0003 25       		.uleb128 0x25
- 1205 0004 0E       		.uleb128 0xe
- 1206 0005 13       		.uleb128 0x13
- 1207 0006 0B       		.uleb128 0xb
- 1208 0007 03       		.uleb128 0x3
- 1209 0008 0E       		.uleb128 0xe
- 1210 0009 1B       		.uleb128 0x1b
- 1211 000a 0E       		.uleb128 0xe
- 1212 000b 55       		.uleb128 0x55
- 1213 000c 06       		.uleb128 0x6
- 1214 000d 11       		.uleb128 0x11
- 1215 000e 01       		.uleb128 0x1
- 1216 000f 52       		.uleb128 0x52
- 1217 0010 01       		.uleb128 0x1
- 1218 0011 10       		.uleb128 0x10
- 1219 0012 06       		.uleb128 0x6
- 1220 0013 00       		.byte	0
- 1221 0014 00       		.byte	0
- 1222 0015 02       		.uleb128 0x2
- 1223 0016 24       		.uleb128 0x24
- 1224 0017 00       		.byte	0
- 1225 0018 0B       		.uleb128 0xb
- 1226 0019 0B       		.uleb128 0xb
- 1227 001a 3E       		.uleb128 0x3e
- 1228 001b 0B       		.uleb128 0xb
- 1229 001c 03       		.uleb128 0x3
- 1230 001d 0E       		.uleb128 0xe
- 1231 001e 00       		.byte	0
- 1232 001f 00       		.byte	0
- 1233 0020 03       		.uleb128 0x3
- 1234 0021 24       		.uleb128 0x24
- 1235 0022 00       		.byte	0
- 1236 0023 0B       		.uleb128 0xb
- 1237 0024 0B       		.uleb128 0xb
- 1238 0025 3E       		.uleb128 0x3e
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 31
+ 1133 016f 01       		.byte	0x1
+ 1134 0170 C1       		.byte	0xc1
+ 1135 0171 6F000000 		.4byte	0x6f
+ 1136 0175 02       		.byte	0x2
+ 1137 0176 91       		.byte	0x91
+ 1138 0177 6D       		.sleb128 -19
+ 1139 0178 09       		.uleb128 0x9
+ 1140 0179 DD020000 		.4byte	.LASF25
+ 1141 017d 01       		.byte	0x1
+ 1142 017e C4       		.byte	0xc4
+ 1143 017f 6F000000 		.4byte	0x6f
+ 1144 0183 02       		.byte	0x2
+ 1145 0184 91       		.byte	0x91
+ 1146 0185 73       		.sleb128 -13
+ 1147 0186 09       		.uleb128 0x9
+ 1148 0187 DB010000 		.4byte	.LASF26
+ 1149 018b 01       		.byte	0x1
+ 1150 018c C6       		.byte	0xc6
+ 1151 018d 6F000000 		.4byte	0x6f
+ 1152 0191 02       		.byte	0x2
+ 1153 0192 91       		.byte	0x91
+ 1154 0193 77       		.sleb128 -9
+ 1155 0194 09       		.uleb128 0x9
+ 1156 0195 2A000000 		.4byte	.LASF24
+ 1157 0199 01       		.byte	0x1
+ 1158 019a C7       		.byte	0xc7
+ 1159 019b 7A000000 		.4byte	0x7a
+ 1160 019f 02       		.byte	0x2
+ 1161 01a0 91       		.byte	0x91
+ 1162 01a1 74       		.sleb128 -12
+ 1163 01a2 00       		.byte	0
+ 1164 01a3 0C       		.uleb128 0xc
+ 1165 01a4 01       		.byte	0x1
+ 1166 01a5 BE020000 		.4byte	.LASF30
+ 1167 01a9 01       		.byte	0x1
+ 1168 01aa 2901     		.2byte	0x129
+ 1169 01ac 01       		.byte	0x1
+ 1170 01ad 7A000000 		.4byte	0x7a
+ 1171 01b1 00000000 		.4byte	.LFB5
+ 1172 01b5 18000000 		.4byte	.LFE5
+ 1173 01b9 00010000 		.4byte	.LLST5
+ 1174 01bd 01       		.byte	0x1
+ 1175 01be 0D       		.uleb128 0xd
+ 1176 01bf 01       		.byte	0x1
+ 1177 01c0 3D010000 		.4byte	.LASF27
+ 1178 01c4 01       		.byte	0x1
+ 1179 01c5 4C01     		.2byte	0x14c
+ 1180 01c7 01       		.byte	0x1
+ 1181 01c8 00000000 		.4byte	.LFB6
+ 1182 01cc 3A000000 		.4byte	.LFE6
+ 1183 01d0 2C010000 		.4byte	.LLST6
+ 1184 01d4 01       		.byte	0x1
+ 1185 01d5 E9010000 		.4byte	0x1e9
+ 1186 01d9 0E       		.uleb128 0xe
+ 1187 01da FA010000 		.4byte	.LASF28
+ 1188 01de 01       		.byte	0x1
+ 1189 01df 4C01     		.2byte	0x14c
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 31
 
 
- 1239 0026 0B       		.uleb128 0xb
- 1240 0027 03       		.uleb128 0x3
- 1241 0028 08       		.uleb128 0x8
- 1242 0029 00       		.byte	0
- 1243 002a 00       		.byte	0
- 1244 002b 04       		.uleb128 0x4
- 1245 002c 16       		.uleb128 0x16
- 1246 002d 00       		.byte	0
- 1247 002e 03       		.uleb128 0x3
- 1248 002f 0E       		.uleb128 0xe
- 1249 0030 3A       		.uleb128 0x3a
- 1250 0031 0B       		.uleb128 0xb
- 1251 0032 3B       		.uleb128 0x3b
- 1252 0033 0B       		.uleb128 0xb
- 1253 0034 49       		.uleb128 0x49
- 1254 0035 13       		.uleb128 0x13
- 1255 0036 00       		.byte	0
- 1256 0037 00       		.byte	0
- 1257 0038 05       		.uleb128 0x5
- 1258 0039 35       		.uleb128 0x35
- 1259 003a 00       		.byte	0
- 1260 003b 49       		.uleb128 0x49
- 1261 003c 13       		.uleb128 0x13
- 1262 003d 00       		.byte	0
- 1263 003e 00       		.byte	0
- 1264 003f 06       		.uleb128 0x6
- 1265 0040 2E       		.uleb128 0x2e
- 1266 0041 00       		.byte	0
- 1267 0042 3F       		.uleb128 0x3f
- 1268 0043 0C       		.uleb128 0xc
- 1269 0044 03       		.uleb128 0x3
- 1270 0045 0E       		.uleb128 0xe
- 1271 0046 3A       		.uleb128 0x3a
- 1272 0047 0B       		.uleb128 0xb
- 1273 0048 3B       		.uleb128 0x3b
- 1274 0049 0B       		.uleb128 0xb
- 1275 004a 27       		.uleb128 0x27
- 1276 004b 0C       		.uleb128 0xc
- 1277 004c 11       		.uleb128 0x11
- 1278 004d 01       		.uleb128 0x1
- 1279 004e 12       		.uleb128 0x12
- 1280 004f 01       		.uleb128 0x1
- 1281 0050 40       		.uleb128 0x40
- 1282 0051 06       		.uleb128 0x6
- 1283 0052 9742     		.uleb128 0x2117
- 1284 0054 0C       		.uleb128 0xc
- 1285 0055 00       		.byte	0
- 1286 0056 00       		.byte	0
- 1287 0057 07       		.uleb128 0x7
- 1288 0058 2E       		.uleb128 0x2e
- 1289 0059 01       		.byte	0x1
- 1290 005a 3F       		.uleb128 0x3f
- 1291 005b 0C       		.uleb128 0xc
- 1292 005c 03       		.uleb128 0x3
- 1293 005d 0E       		.uleb128 0xe
- 1294 005e 3A       		.uleb128 0x3a
- 1295 005f 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 32
+ 1190 01e1 6F000000 		.4byte	0x6f
+ 1191 01e5 02       		.byte	0x2
+ 1192 01e6 91       		.byte	0x91
+ 1193 01e7 77       		.sleb128 -9
+ 1194 01e8 00       		.byte	0
+ 1195 01e9 0D       		.uleb128 0xd
+ 1196 01ea 01       		.byte	0x1
+ 1197 01eb 59010000 		.4byte	.LASF29
+ 1198 01ef 01       		.byte	0x1
+ 1199 01f0 6F01     		.2byte	0x16f
+ 1200 01f2 01       		.byte	0x1
+ 1201 01f3 00000000 		.4byte	.LFB7
+ 1202 01f7 3C000000 		.4byte	.LFE7
+ 1203 01fb 64010000 		.4byte	.LLST7
+ 1204 01ff 01       		.byte	0x1
+ 1205 0200 14020000 		.4byte	0x214
+ 1206 0204 0E       		.uleb128 0xe
+ 1207 0205 FA010000 		.4byte	.LASF28
+ 1208 0209 01       		.byte	0x1
+ 1209 020a 6F01     		.2byte	0x16f
+ 1210 020c 6F000000 		.4byte	0x6f
+ 1211 0210 02       		.byte	0x2
+ 1212 0211 91       		.byte	0x91
+ 1213 0212 77       		.sleb128 -9
+ 1214 0213 00       		.byte	0
+ 1215 0214 0C       		.uleb128 0xc
+ 1216 0215 01       		.byte	0x1
+ 1217 0216 0E010000 		.4byte	.LASF31
+ 1218 021a 01       		.byte	0x1
+ 1219 021b 8401     		.2byte	0x184
+ 1220 021d 01       		.byte	0x1
+ 1221 021e 6F000000 		.4byte	0x6f
+ 1222 0222 00000000 		.4byte	.LFB8
+ 1223 0226 1E000000 		.4byte	.LFE8
+ 1224 022a 9C010000 		.4byte	.LLST8
+ 1225 022e 01       		.byte	0x1
+ 1226 022f 0F       		.uleb128 0xf
+ 1227 0230 01       		.byte	0x1
+ 1228 0231 06000000 		.4byte	.LASF32
+ 1229 0235 01       		.byte	0x1
+ 1230 0236 A301     		.2byte	0x1a3
+ 1231 0238 01       		.byte	0x1
+ 1232 0239 00000000 		.4byte	.LFB9
+ 1233 023d F4000000 		.4byte	.LFE9
+ 1234 0241 C8010000 		.4byte	.LLST9
+ 1235 0245 01       		.byte	0x1
+ 1236 0246 78020000 		.4byte	0x278
+ 1237 024a 0E       		.uleb128 0xe
+ 1238 024b EE020000 		.4byte	.LASF33
+ 1239 024f 01       		.byte	0x1
+ 1240 0250 A301     		.2byte	0x1a3
+ 1241 0252 6F000000 		.4byte	0x6f
+ 1242 0256 02       		.byte	0x2
+ 1243 0257 91       		.byte	0x91
+ 1244 0258 6F       		.sleb128 -17
+ 1245 0259 10       		.uleb128 0x10
+ 1246 025a 5D020000 		.4byte	.LASF34
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 32
 
 
- 1296 0060 3B       		.uleb128 0x3b
- 1297 0061 0B       		.uleb128 0xb
- 1298 0062 27       		.uleb128 0x27
- 1299 0063 0C       		.uleb128 0xc
- 1300 0064 11       		.uleb128 0x11
- 1301 0065 01       		.uleb128 0x1
- 1302 0066 12       		.uleb128 0x12
- 1303 0067 01       		.uleb128 0x1
- 1304 0068 40       		.uleb128 0x40
- 1305 0069 06       		.uleb128 0x6
- 1306 006a 9742     		.uleb128 0x2117
- 1307 006c 0C       		.uleb128 0xc
- 1308 006d 01       		.uleb128 0x1
- 1309 006e 13       		.uleb128 0x13
- 1310 006f 00       		.byte	0
- 1311 0070 00       		.byte	0
- 1312 0071 08       		.uleb128 0x8
- 1313 0072 0B       		.uleb128 0xb
- 1314 0073 01       		.byte	0x1
- 1315 0074 11       		.uleb128 0x11
- 1316 0075 01       		.uleb128 0x1
- 1317 0076 12       		.uleb128 0x12
- 1318 0077 01       		.uleb128 0x1
- 1319 0078 00       		.byte	0
- 1320 0079 00       		.byte	0
- 1321 007a 09       		.uleb128 0x9
- 1322 007b 34       		.uleb128 0x34
- 1323 007c 00       		.byte	0
- 1324 007d 03       		.uleb128 0x3
- 1325 007e 0E       		.uleb128 0xe
- 1326 007f 3A       		.uleb128 0x3a
- 1327 0080 0B       		.uleb128 0xb
- 1328 0081 3B       		.uleb128 0x3b
- 1329 0082 0B       		.uleb128 0xb
- 1330 0083 49       		.uleb128 0x49
- 1331 0084 13       		.uleb128 0x13
- 1332 0085 02       		.uleb128 0x2
- 1333 0086 0A       		.uleb128 0xa
- 1334 0087 00       		.byte	0
- 1335 0088 00       		.byte	0
- 1336 0089 0A       		.uleb128 0xa
- 1337 008a 05       		.uleb128 0x5
- 1338 008b 00       		.byte	0
- 1339 008c 03       		.uleb128 0x3
- 1340 008d 0E       		.uleb128 0xe
- 1341 008e 3A       		.uleb128 0x3a
- 1342 008f 0B       		.uleb128 0xb
- 1343 0090 3B       		.uleb128 0x3b
- 1344 0091 0B       		.uleb128 0xb
- 1345 0092 49       		.uleb128 0x49
- 1346 0093 13       		.uleb128 0x13
- 1347 0094 02       		.uleb128 0x2
- 1348 0095 0A       		.uleb128 0xa
- 1349 0096 00       		.byte	0
- 1350 0097 00       		.byte	0
- 1351 0098 0B       		.uleb128 0xb
- 1352 0099 2E       		.uleb128 0x2e
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 33
+ 1247 025e 01       		.byte	0x1
+ 1248 025f A501     		.2byte	0x1a5
+ 1249 0261 7A000000 		.4byte	0x7a
+ 1250 0265 02       		.byte	0x2
+ 1251 0266 91       		.byte	0x91
+ 1252 0267 76       		.sleb128 -10
+ 1253 0268 10       		.uleb128 0x10
+ 1254 0269 23030000 		.4byte	.LASF35
+ 1255 026d 01       		.byte	0x1
+ 1256 026e A601     		.2byte	0x1a6
+ 1257 0270 6F000000 		.4byte	0x6f
+ 1258 0274 02       		.byte	0x2
+ 1259 0275 91       		.byte	0x91
+ 1260 0276 75       		.sleb128 -11
+ 1261 0277 00       		.byte	0
+ 1262 0278 0C       		.uleb128 0xc
+ 1263 0279 01       		.byte	0x1
+ 1264 027a 95000000 		.4byte	.LASF36
+ 1265 027e 01       		.byte	0x1
+ 1266 027f D001     		.2byte	0x1d0
+ 1267 0281 01       		.byte	0x1
+ 1268 0282 6F000000 		.4byte	0x6f
+ 1269 0286 00000000 		.4byte	.LFB10
+ 1270 028a 1E000000 		.4byte	.LFE10
+ 1271 028e 00020000 		.4byte	.LLST10
+ 1272 0292 01       		.byte	0x1
+ 1273 0293 0D       		.uleb128 0xd
+ 1274 0294 01       		.byte	0x1
+ 1275 0295 AA010000 		.4byte	.LASF37
+ 1276 0299 01       		.byte	0x1
+ 1277 029a EC01     		.2byte	0x1ec
+ 1278 029c 01       		.byte	0x1
+ 1279 029d 00000000 		.4byte	.LFB11
+ 1280 02a1 26000000 		.4byte	.LFE11
+ 1281 02a5 2C020000 		.4byte	.LLST11
+ 1282 02a9 01       		.byte	0x1
+ 1283 02aa BE020000 		.4byte	0x2be
+ 1284 02ae 0E       		.uleb128 0xe
+ 1285 02af E0000000 		.4byte	.LASF38
+ 1286 02b3 01       		.byte	0x1
+ 1287 02b4 EC01     		.2byte	0x1ec
+ 1288 02b6 6F000000 		.4byte	0x6f
+ 1289 02ba 02       		.byte	0x2
+ 1290 02bb 91       		.byte	0x91
+ 1291 02bc 77       		.sleb128 -9
+ 1292 02bd 00       		.byte	0
+ 1293 02be 0C       		.uleb128 0xc
+ 1294 02bf 01       		.byte	0x1
+ 1295 02c0 40020000 		.4byte	.LASF39
+ 1296 02c4 01       		.byte	0x1
+ 1297 02c5 0102     		.2byte	0x201
+ 1298 02c7 01       		.byte	0x1
+ 1299 02c8 6F000000 		.4byte	0x6f
+ 1300 02cc 00000000 		.4byte	.LFB12
+ 1301 02d0 1E000000 		.4byte	.LFE12
+ 1302 02d4 64020000 		.4byte	.LLST12
+ 1303 02d8 01       		.byte	0x1
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 33
 
 
- 1353 009a 01       		.byte	0x1
- 1354 009b 3F       		.uleb128 0x3f
- 1355 009c 0C       		.uleb128 0xc
- 1356 009d 03       		.uleb128 0x3
- 1357 009e 0E       		.uleb128 0xe
- 1358 009f 3A       		.uleb128 0x3a
- 1359 00a0 0B       		.uleb128 0xb
- 1360 00a1 3B       		.uleb128 0x3b
- 1361 00a2 0B       		.uleb128 0xb
- 1362 00a3 27       		.uleb128 0x27
- 1363 00a4 0C       		.uleb128 0xc
- 1364 00a5 11       		.uleb128 0x11
- 1365 00a6 01       		.uleb128 0x1
- 1366 00a7 12       		.uleb128 0x12
- 1367 00a8 01       		.uleb128 0x1
- 1368 00a9 40       		.uleb128 0x40
- 1369 00aa 06       		.uleb128 0x6
- 1370 00ab 9642     		.uleb128 0x2116
- 1371 00ad 0C       		.uleb128 0xc
- 1372 00ae 01       		.uleb128 0x1
- 1373 00af 13       		.uleb128 0x13
- 1374 00b0 00       		.byte	0
- 1375 00b1 00       		.byte	0
- 1376 00b2 0C       		.uleb128 0xc
- 1377 00b3 2E       		.uleb128 0x2e
- 1378 00b4 00       		.byte	0
- 1379 00b5 3F       		.uleb128 0x3f
- 1380 00b6 0C       		.uleb128 0xc
- 1381 00b7 03       		.uleb128 0x3
- 1382 00b8 0E       		.uleb128 0xe
- 1383 00b9 3A       		.uleb128 0x3a
- 1384 00ba 0B       		.uleb128 0xb
- 1385 00bb 3B       		.uleb128 0x3b
- 1386 00bc 05       		.uleb128 0x5
- 1387 00bd 27       		.uleb128 0x27
- 1388 00be 0C       		.uleb128 0xc
- 1389 00bf 49       		.uleb128 0x49
- 1390 00c0 13       		.uleb128 0x13
- 1391 00c1 11       		.uleb128 0x11
- 1392 00c2 01       		.uleb128 0x1
- 1393 00c3 12       		.uleb128 0x12
- 1394 00c4 01       		.uleb128 0x1
- 1395 00c5 40       		.uleb128 0x40
- 1396 00c6 06       		.uleb128 0x6
- 1397 00c7 9742     		.uleb128 0x2117
- 1398 00c9 0C       		.uleb128 0xc
- 1399 00ca 00       		.byte	0
- 1400 00cb 00       		.byte	0
- 1401 00cc 0D       		.uleb128 0xd
- 1402 00cd 2E       		.uleb128 0x2e
- 1403 00ce 01       		.byte	0x1
- 1404 00cf 3F       		.uleb128 0x3f
- 1405 00d0 0C       		.uleb128 0xc
- 1406 00d1 03       		.uleb128 0x3
- 1407 00d2 0E       		.uleb128 0xe
- 1408 00d3 3A       		.uleb128 0x3a
- 1409 00d4 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 34
+ 1304 02d9 00       		.byte	0
+ 1305              		.section	.debug_abbrev,"",%progbits
+ 1306              	.Ldebug_abbrev0:
+ 1307 0000 01       		.uleb128 0x1
+ 1308 0001 11       		.uleb128 0x11
+ 1309 0002 01       		.byte	0x1
+ 1310 0003 25       		.uleb128 0x25
+ 1311 0004 0E       		.uleb128 0xe
+ 1312 0005 13       		.uleb128 0x13
+ 1313 0006 0B       		.uleb128 0xb
+ 1314 0007 03       		.uleb128 0x3
+ 1315 0008 0E       		.uleb128 0xe
+ 1316 0009 1B       		.uleb128 0x1b
+ 1317 000a 0E       		.uleb128 0xe
+ 1318 000b 55       		.uleb128 0x55
+ 1319 000c 06       		.uleb128 0x6
+ 1320 000d 11       		.uleb128 0x11
+ 1321 000e 01       		.uleb128 0x1
+ 1322 000f 52       		.uleb128 0x52
+ 1323 0010 01       		.uleb128 0x1
+ 1324 0011 10       		.uleb128 0x10
+ 1325 0012 06       		.uleb128 0x6
+ 1326 0013 00       		.byte	0
+ 1327 0014 00       		.byte	0
+ 1328 0015 02       		.uleb128 0x2
+ 1329 0016 24       		.uleb128 0x24
+ 1330 0017 00       		.byte	0
+ 1331 0018 0B       		.uleb128 0xb
+ 1332 0019 0B       		.uleb128 0xb
+ 1333 001a 3E       		.uleb128 0x3e
+ 1334 001b 0B       		.uleb128 0xb
+ 1335 001c 03       		.uleb128 0x3
+ 1336 001d 0E       		.uleb128 0xe
+ 1337 001e 00       		.byte	0
+ 1338 001f 00       		.byte	0
+ 1339 0020 03       		.uleb128 0x3
+ 1340 0021 24       		.uleb128 0x24
+ 1341 0022 00       		.byte	0
+ 1342 0023 0B       		.uleb128 0xb
+ 1343 0024 0B       		.uleb128 0xb
+ 1344 0025 3E       		.uleb128 0x3e
+ 1345 0026 0B       		.uleb128 0xb
+ 1346 0027 03       		.uleb128 0x3
+ 1347 0028 08       		.uleb128 0x8
+ 1348 0029 00       		.byte	0
+ 1349 002a 00       		.byte	0
+ 1350 002b 04       		.uleb128 0x4
+ 1351 002c 16       		.uleb128 0x16
+ 1352 002d 00       		.byte	0
+ 1353 002e 03       		.uleb128 0x3
+ 1354 002f 0E       		.uleb128 0xe
+ 1355 0030 3A       		.uleb128 0x3a
+ 1356 0031 0B       		.uleb128 0xb
+ 1357 0032 3B       		.uleb128 0x3b
+ 1358 0033 0B       		.uleb128 0xb
+ 1359 0034 49       		.uleb128 0x49
+ 1360 0035 13       		.uleb128 0x13
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 34
 
 
- 1410 00d5 3B       		.uleb128 0x3b
- 1411 00d6 05       		.uleb128 0x5
- 1412 00d7 27       		.uleb128 0x27
- 1413 00d8 0C       		.uleb128 0xc
- 1414 00d9 11       		.uleb128 0x11
- 1415 00da 01       		.uleb128 0x1
- 1416 00db 12       		.uleb128 0x12
- 1417 00dc 01       		.uleb128 0x1
- 1418 00dd 40       		.uleb128 0x40
- 1419 00de 06       		.uleb128 0x6
- 1420 00df 9742     		.uleb128 0x2117
- 1421 00e1 0C       		.uleb128 0xc
- 1422 00e2 01       		.uleb128 0x1
- 1423 00e3 13       		.uleb128 0x13
- 1424 00e4 00       		.byte	0
- 1425 00e5 00       		.byte	0
- 1426 00e6 0E       		.uleb128 0xe
- 1427 00e7 05       		.uleb128 0x5
- 1428 00e8 00       		.byte	0
- 1429 00e9 03       		.uleb128 0x3
- 1430 00ea 0E       		.uleb128 0xe
- 1431 00eb 3A       		.uleb128 0x3a
- 1432 00ec 0B       		.uleb128 0xb
- 1433 00ed 3B       		.uleb128 0x3b
- 1434 00ee 05       		.uleb128 0x5
- 1435 00ef 49       		.uleb128 0x49
- 1436 00f0 13       		.uleb128 0x13
- 1437 00f1 02       		.uleb128 0x2
- 1438 00f2 0A       		.uleb128 0xa
- 1439 00f3 00       		.byte	0
- 1440 00f4 00       		.byte	0
- 1441 00f5 0F       		.uleb128 0xf
- 1442 00f6 2E       		.uleb128 0x2e
- 1443 00f7 01       		.byte	0x1
- 1444 00f8 3F       		.uleb128 0x3f
- 1445 00f9 0C       		.uleb128 0xc
- 1446 00fa 03       		.uleb128 0x3
- 1447 00fb 0E       		.uleb128 0xe
- 1448 00fc 3A       		.uleb128 0x3a
- 1449 00fd 0B       		.uleb128 0xb
- 1450 00fe 3B       		.uleb128 0x3b
- 1451 00ff 05       		.uleb128 0x5
- 1452 0100 27       		.uleb128 0x27
- 1453 0101 0C       		.uleb128 0xc
- 1454 0102 11       		.uleb128 0x11
- 1455 0103 01       		.uleb128 0x1
- 1456 0104 12       		.uleb128 0x12
- 1457 0105 01       		.uleb128 0x1
- 1458 0106 40       		.uleb128 0x40
- 1459 0107 06       		.uleb128 0x6
- 1460 0108 9642     		.uleb128 0x2116
- 1461 010a 0C       		.uleb128 0xc
- 1462 010b 01       		.uleb128 0x1
- 1463 010c 13       		.uleb128 0x13
- 1464 010d 00       		.byte	0
- 1465 010e 00       		.byte	0
- 1466 010f 10       		.uleb128 0x10
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 35
+ 1361 0036 00       		.byte	0
+ 1362 0037 00       		.byte	0
+ 1363 0038 05       		.uleb128 0x5
+ 1364 0039 35       		.uleb128 0x35
+ 1365 003a 00       		.byte	0
+ 1366 003b 49       		.uleb128 0x49
+ 1367 003c 13       		.uleb128 0x13
+ 1368 003d 00       		.byte	0
+ 1369 003e 00       		.byte	0
+ 1370 003f 06       		.uleb128 0x6
+ 1371 0040 2E       		.uleb128 0x2e
+ 1372 0041 00       		.byte	0
+ 1373 0042 3F       		.uleb128 0x3f
+ 1374 0043 0C       		.uleb128 0xc
+ 1375 0044 03       		.uleb128 0x3
+ 1376 0045 0E       		.uleb128 0xe
+ 1377 0046 3A       		.uleb128 0x3a
+ 1378 0047 0B       		.uleb128 0xb
+ 1379 0048 3B       		.uleb128 0x3b
+ 1380 0049 0B       		.uleb128 0xb
+ 1381 004a 27       		.uleb128 0x27
+ 1382 004b 0C       		.uleb128 0xc
+ 1383 004c 11       		.uleb128 0x11
+ 1384 004d 01       		.uleb128 0x1
+ 1385 004e 12       		.uleb128 0x12
+ 1386 004f 01       		.uleb128 0x1
+ 1387 0050 40       		.uleb128 0x40
+ 1388 0051 06       		.uleb128 0x6
+ 1389 0052 9742     		.uleb128 0x2117
+ 1390 0054 0C       		.uleb128 0xc
+ 1391 0055 00       		.byte	0
+ 1392 0056 00       		.byte	0
+ 1393 0057 07       		.uleb128 0x7
+ 1394 0058 2E       		.uleb128 0x2e
+ 1395 0059 01       		.byte	0x1
+ 1396 005a 3F       		.uleb128 0x3f
+ 1397 005b 0C       		.uleb128 0xc
+ 1398 005c 03       		.uleb128 0x3
+ 1399 005d 0E       		.uleb128 0xe
+ 1400 005e 3A       		.uleb128 0x3a
+ 1401 005f 0B       		.uleb128 0xb
+ 1402 0060 3B       		.uleb128 0x3b
+ 1403 0061 0B       		.uleb128 0xb
+ 1404 0062 27       		.uleb128 0x27
+ 1405 0063 0C       		.uleb128 0xc
+ 1406 0064 11       		.uleb128 0x11
+ 1407 0065 01       		.uleb128 0x1
+ 1408 0066 12       		.uleb128 0x12
+ 1409 0067 01       		.uleb128 0x1
+ 1410 0068 40       		.uleb128 0x40
+ 1411 0069 06       		.uleb128 0x6
+ 1412 006a 9742     		.uleb128 0x2117
+ 1413 006c 0C       		.uleb128 0xc
+ 1414 006d 01       		.uleb128 0x1
+ 1415 006e 13       		.uleb128 0x13
+ 1416 006f 00       		.byte	0
+ 1417 0070 00       		.byte	0
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 35
 
 
- 1467 0110 34       		.uleb128 0x34
- 1468 0111 00       		.byte	0
- 1469 0112 03       		.uleb128 0x3
- 1470 0113 0E       		.uleb128 0xe
- 1471 0114 3A       		.uleb128 0x3a
- 1472 0115 0B       		.uleb128 0xb
- 1473 0116 3B       		.uleb128 0x3b
- 1474 0117 05       		.uleb128 0x5
- 1475 0118 49       		.uleb128 0x49
- 1476 0119 13       		.uleb128 0x13
- 1477 011a 02       		.uleb128 0x2
- 1478 011b 0A       		.uleb128 0xa
- 1479 011c 00       		.byte	0
- 1480 011d 00       		.byte	0
- 1481 011e 00       		.byte	0
- 1482              		.section	.debug_loc,"",%progbits
- 1483              	.Ldebug_loc0:
- 1484              	.LLST0:
- 1485 0000 00000000 		.4byte	.LFB0
- 1486 0004 02000000 		.4byte	.LCFI0
- 1487 0008 0200     		.2byte	0x2
- 1488 000a 7D       		.byte	0x7d
- 1489 000b 00       		.sleb128 0
- 1490 000c 02000000 		.4byte	.LCFI0
- 1491 0010 04000000 		.4byte	.LCFI1
- 1492 0014 0200     		.2byte	0x2
- 1493 0016 7D       		.byte	0x7d
- 1494 0017 04       		.sleb128 4
- 1495 0018 04000000 		.4byte	.LCFI1
- 1496 001c 42000000 		.4byte	.LFE0
- 1497 0020 0200     		.2byte	0x2
- 1498 0022 77       		.byte	0x77
- 1499 0023 04       		.sleb128 4
- 1500 0024 00000000 		.4byte	0
- 1501 0028 00000000 		.4byte	0
- 1502              	.LLST1:
- 1503 002c 00000000 		.4byte	.LFB1
- 1504 0030 02000000 		.4byte	.LCFI2
- 1505 0034 0200     		.2byte	0x2
- 1506 0036 7D       		.byte	0x7d
- 1507 0037 00       		.sleb128 0
- 1508 0038 02000000 		.4byte	.LCFI2
- 1509 003c 04000000 		.4byte	.LCFI3
- 1510 0040 0200     		.2byte	0x2
- 1511 0042 7D       		.byte	0x7d
- 1512 0043 04       		.sleb128 4
- 1513 0044 04000000 		.4byte	.LCFI3
- 1514 0048 42000000 		.4byte	.LFE1
- 1515 004c 0200     		.2byte	0x2
- 1516 004e 77       		.byte	0x77
- 1517 004f 04       		.sleb128 4
- 1518 0050 00000000 		.4byte	0
- 1519 0054 00000000 		.4byte	0
- 1520              	.LLST2:
- 1521 0058 00000000 		.4byte	.LFB2
- 1522 005c 02000000 		.4byte	.LCFI4
- 1523 0060 0200     		.2byte	0x2
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 36
+ 1418 0071 08       		.uleb128 0x8
+ 1419 0072 0B       		.uleb128 0xb
+ 1420 0073 01       		.byte	0x1
+ 1421 0074 11       		.uleb128 0x11
+ 1422 0075 01       		.uleb128 0x1
+ 1423 0076 12       		.uleb128 0x12
+ 1424 0077 01       		.uleb128 0x1
+ 1425 0078 00       		.byte	0
+ 1426 0079 00       		.byte	0
+ 1427 007a 09       		.uleb128 0x9
+ 1428 007b 34       		.uleb128 0x34
+ 1429 007c 00       		.byte	0
+ 1430 007d 03       		.uleb128 0x3
+ 1431 007e 0E       		.uleb128 0xe
+ 1432 007f 3A       		.uleb128 0x3a
+ 1433 0080 0B       		.uleb128 0xb
+ 1434 0081 3B       		.uleb128 0x3b
+ 1435 0082 0B       		.uleb128 0xb
+ 1436 0083 49       		.uleb128 0x49
+ 1437 0084 13       		.uleb128 0x13
+ 1438 0085 02       		.uleb128 0x2
+ 1439 0086 0A       		.uleb128 0xa
+ 1440 0087 00       		.byte	0
+ 1441 0088 00       		.byte	0
+ 1442 0089 0A       		.uleb128 0xa
+ 1443 008a 05       		.uleb128 0x5
+ 1444 008b 00       		.byte	0
+ 1445 008c 03       		.uleb128 0x3
+ 1446 008d 0E       		.uleb128 0xe
+ 1447 008e 3A       		.uleb128 0x3a
+ 1448 008f 0B       		.uleb128 0xb
+ 1449 0090 3B       		.uleb128 0x3b
+ 1450 0091 0B       		.uleb128 0xb
+ 1451 0092 49       		.uleb128 0x49
+ 1452 0093 13       		.uleb128 0x13
+ 1453 0094 02       		.uleb128 0x2
+ 1454 0095 0A       		.uleb128 0xa
+ 1455 0096 00       		.byte	0
+ 1456 0097 00       		.byte	0
+ 1457 0098 0B       		.uleb128 0xb
+ 1458 0099 2E       		.uleb128 0x2e
+ 1459 009a 01       		.byte	0x1
+ 1460 009b 3F       		.uleb128 0x3f
+ 1461 009c 0C       		.uleb128 0xc
+ 1462 009d 03       		.uleb128 0x3
+ 1463 009e 0E       		.uleb128 0xe
+ 1464 009f 3A       		.uleb128 0x3a
+ 1465 00a0 0B       		.uleb128 0xb
+ 1466 00a1 3B       		.uleb128 0x3b
+ 1467 00a2 0B       		.uleb128 0xb
+ 1468 00a3 27       		.uleb128 0x27
+ 1469 00a4 0C       		.uleb128 0xc
+ 1470 00a5 11       		.uleb128 0x11
+ 1471 00a6 01       		.uleb128 0x1
+ 1472 00a7 12       		.uleb128 0x12
+ 1473 00a8 01       		.uleb128 0x1
+ 1474 00a9 40       		.uleb128 0x40
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 36
 
 
- 1524 0062 7D       		.byte	0x7d
- 1525 0063 00       		.sleb128 0
- 1526 0064 02000000 		.4byte	.LCFI4
- 1527 0068 04000000 		.4byte	.LCFI5
- 1528 006c 0200     		.2byte	0x2
- 1529 006e 7D       		.byte	0x7d
- 1530 006f 04       		.sleb128 4
- 1531 0070 04000000 		.4byte	.LCFI5
- 1532 0074 06000000 		.4byte	.LCFI6
- 1533 0078 0200     		.2byte	0x2
- 1534 007a 7D       		.byte	0x7d
- 1535 007b 10       		.sleb128 16
- 1536 007c 06000000 		.4byte	.LCFI6
- 1537 0080 F8000000 		.4byte	.LFE2
- 1538 0084 0200     		.2byte	0x2
- 1539 0086 77       		.byte	0x77
- 1540 0087 10       		.sleb128 16
- 1541 0088 00000000 		.4byte	0
- 1542 008c 00000000 		.4byte	0
- 1543              	.LLST3:
- 1544 0090 00000000 		.4byte	.LFB3
- 1545 0094 02000000 		.4byte	.LCFI7
- 1546 0098 0200     		.2byte	0x2
- 1547 009a 7D       		.byte	0x7d
- 1548 009b 00       		.sleb128 0
- 1549 009c 02000000 		.4byte	.LCFI7
- 1550 00a0 04000000 		.4byte	.LCFI8
- 1551 00a4 0200     		.2byte	0x2
- 1552 00a6 7D       		.byte	0x7d
- 1553 00a7 04       		.sleb128 4
- 1554 00a8 04000000 		.4byte	.LCFI8
- 1555 00ac 06000000 		.4byte	.LCFI9
- 1556 00b0 0200     		.2byte	0x2
- 1557 00b2 7D       		.byte	0x7d
- 1558 00b3 10       		.sleb128 16
- 1559 00b4 06000000 		.4byte	.LCFI9
- 1560 00b8 54000000 		.4byte	.LFE3
- 1561 00bc 0200     		.2byte	0x2
- 1562 00be 77       		.byte	0x77
- 1563 00bf 10       		.sleb128 16
- 1564 00c0 00000000 		.4byte	0
- 1565 00c4 00000000 		.4byte	0
- 1566              	.LLST4:
- 1567 00c8 00000000 		.4byte	.LFB4
- 1568 00cc 02000000 		.4byte	.LCFI10
- 1569 00d0 0200     		.2byte	0x2
- 1570 00d2 7D       		.byte	0x7d
- 1571 00d3 00       		.sleb128 0
- 1572 00d4 02000000 		.4byte	.LCFI10
- 1573 00d8 04000000 		.4byte	.LCFI11
- 1574 00dc 0200     		.2byte	0x2
- 1575 00de 7D       		.byte	0x7d
- 1576 00df 08       		.sleb128 8
- 1577 00e0 04000000 		.4byte	.LCFI11
- 1578 00e4 06000000 		.4byte	.LCFI12
- 1579 00e8 0200     		.2byte	0x2
- 1580 00ea 7D       		.byte	0x7d
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 37
+ 1475 00aa 06       		.uleb128 0x6
+ 1476 00ab 9642     		.uleb128 0x2116
+ 1477 00ad 0C       		.uleb128 0xc
+ 1478 00ae 01       		.uleb128 0x1
+ 1479 00af 13       		.uleb128 0x13
+ 1480 00b0 00       		.byte	0
+ 1481 00b1 00       		.byte	0
+ 1482 00b2 0C       		.uleb128 0xc
+ 1483 00b3 2E       		.uleb128 0x2e
+ 1484 00b4 00       		.byte	0
+ 1485 00b5 3F       		.uleb128 0x3f
+ 1486 00b6 0C       		.uleb128 0xc
+ 1487 00b7 03       		.uleb128 0x3
+ 1488 00b8 0E       		.uleb128 0xe
+ 1489 00b9 3A       		.uleb128 0x3a
+ 1490 00ba 0B       		.uleb128 0xb
+ 1491 00bb 3B       		.uleb128 0x3b
+ 1492 00bc 05       		.uleb128 0x5
+ 1493 00bd 27       		.uleb128 0x27
+ 1494 00be 0C       		.uleb128 0xc
+ 1495 00bf 49       		.uleb128 0x49
+ 1496 00c0 13       		.uleb128 0x13
+ 1497 00c1 11       		.uleb128 0x11
+ 1498 00c2 01       		.uleb128 0x1
+ 1499 00c3 12       		.uleb128 0x12
+ 1500 00c4 01       		.uleb128 0x1
+ 1501 00c5 40       		.uleb128 0x40
+ 1502 00c6 06       		.uleb128 0x6
+ 1503 00c7 9742     		.uleb128 0x2117
+ 1504 00c9 0C       		.uleb128 0xc
+ 1505 00ca 00       		.byte	0
+ 1506 00cb 00       		.byte	0
+ 1507 00cc 0D       		.uleb128 0xd
+ 1508 00cd 2E       		.uleb128 0x2e
+ 1509 00ce 01       		.byte	0x1
+ 1510 00cf 3F       		.uleb128 0x3f
+ 1511 00d0 0C       		.uleb128 0xc
+ 1512 00d1 03       		.uleb128 0x3
+ 1513 00d2 0E       		.uleb128 0xe
+ 1514 00d3 3A       		.uleb128 0x3a
+ 1515 00d4 0B       		.uleb128 0xb
+ 1516 00d5 3B       		.uleb128 0x3b
+ 1517 00d6 05       		.uleb128 0x5
+ 1518 00d7 27       		.uleb128 0x27
+ 1519 00d8 0C       		.uleb128 0xc
+ 1520 00d9 11       		.uleb128 0x11
+ 1521 00da 01       		.uleb128 0x1
+ 1522 00db 12       		.uleb128 0x12
+ 1523 00dc 01       		.uleb128 0x1
+ 1524 00dd 40       		.uleb128 0x40
+ 1525 00de 06       		.uleb128 0x6
+ 1526 00df 9742     		.uleb128 0x2117
+ 1527 00e1 0C       		.uleb128 0xc
+ 1528 00e2 01       		.uleb128 0x1
+ 1529 00e3 13       		.uleb128 0x13
+ 1530 00e4 00       		.byte	0
+ 1531 00e5 00       		.byte	0
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 37
 
 
- 1581 00eb 18       		.sleb128 24
- 1582 00ec 06000000 		.4byte	.LCFI12
- 1583 00f0 E8010000 		.4byte	.LFE4
- 1584 00f4 0200     		.2byte	0x2
- 1585 00f6 77       		.byte	0x77
- 1586 00f7 18       		.sleb128 24
- 1587 00f8 00000000 		.4byte	0
- 1588 00fc 00000000 		.4byte	0
- 1589              	.LLST5:
- 1590 0100 00000000 		.4byte	.LFB5
- 1591 0104 02000000 		.4byte	.LCFI13
- 1592 0108 0200     		.2byte	0x2
- 1593 010a 7D       		.byte	0x7d
- 1594 010b 00       		.sleb128 0
- 1595 010c 02000000 		.4byte	.LCFI13
- 1596 0110 04000000 		.4byte	.LCFI14
- 1597 0114 0200     		.2byte	0x2
- 1598 0116 7D       		.byte	0x7d
- 1599 0117 04       		.sleb128 4
- 1600 0118 04000000 		.4byte	.LCFI14
- 1601 011c 18000000 		.4byte	.LFE5
- 1602 0120 0200     		.2byte	0x2
- 1603 0122 77       		.byte	0x77
- 1604 0123 04       		.sleb128 4
- 1605 0124 00000000 		.4byte	0
- 1606 0128 00000000 		.4byte	0
- 1607              	.LLST6:
- 1608 012c 00000000 		.4byte	.LFB6
- 1609 0130 02000000 		.4byte	.LCFI15
- 1610 0134 0200     		.2byte	0x2
- 1611 0136 7D       		.byte	0x7d
- 1612 0137 00       		.sleb128 0
- 1613 0138 02000000 		.4byte	.LCFI15
- 1614 013c 04000000 		.4byte	.LCFI16
- 1615 0140 0200     		.2byte	0x2
- 1616 0142 7D       		.byte	0x7d
- 1617 0143 04       		.sleb128 4
- 1618 0144 04000000 		.4byte	.LCFI16
- 1619 0148 06000000 		.4byte	.LCFI17
- 1620 014c 0200     		.2byte	0x2
- 1621 014e 7D       		.byte	0x7d
- 1622 014f 10       		.sleb128 16
- 1623 0150 06000000 		.4byte	.LCFI17
- 1624 0154 3A000000 		.4byte	.LFE6
- 1625 0158 0200     		.2byte	0x2
- 1626 015a 77       		.byte	0x77
- 1627 015b 10       		.sleb128 16
- 1628 015c 00000000 		.4byte	0
- 1629 0160 00000000 		.4byte	0
- 1630              	.LLST7:
- 1631 0164 00000000 		.4byte	.LFB7
- 1632 0168 02000000 		.4byte	.LCFI18
- 1633 016c 0200     		.2byte	0x2
- 1634 016e 7D       		.byte	0x7d
- 1635 016f 00       		.sleb128 0
- 1636 0170 02000000 		.4byte	.LCFI18
- 1637 0174 04000000 		.4byte	.LCFI19
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 38
+ 1532 00e6 0E       		.uleb128 0xe
+ 1533 00e7 05       		.uleb128 0x5
+ 1534 00e8 00       		.byte	0
+ 1535 00e9 03       		.uleb128 0x3
+ 1536 00ea 0E       		.uleb128 0xe
+ 1537 00eb 3A       		.uleb128 0x3a
+ 1538 00ec 0B       		.uleb128 0xb
+ 1539 00ed 3B       		.uleb128 0x3b
+ 1540 00ee 05       		.uleb128 0x5
+ 1541 00ef 49       		.uleb128 0x49
+ 1542 00f0 13       		.uleb128 0x13
+ 1543 00f1 02       		.uleb128 0x2
+ 1544 00f2 0A       		.uleb128 0xa
+ 1545 00f3 00       		.byte	0
+ 1546 00f4 00       		.byte	0
+ 1547 00f5 0F       		.uleb128 0xf
+ 1548 00f6 2E       		.uleb128 0x2e
+ 1549 00f7 01       		.byte	0x1
+ 1550 00f8 3F       		.uleb128 0x3f
+ 1551 00f9 0C       		.uleb128 0xc
+ 1552 00fa 03       		.uleb128 0x3
+ 1553 00fb 0E       		.uleb128 0xe
+ 1554 00fc 3A       		.uleb128 0x3a
+ 1555 00fd 0B       		.uleb128 0xb
+ 1556 00fe 3B       		.uleb128 0x3b
+ 1557 00ff 05       		.uleb128 0x5
+ 1558 0100 27       		.uleb128 0x27
+ 1559 0101 0C       		.uleb128 0xc
+ 1560 0102 11       		.uleb128 0x11
+ 1561 0103 01       		.uleb128 0x1
+ 1562 0104 12       		.uleb128 0x12
+ 1563 0105 01       		.uleb128 0x1
+ 1564 0106 40       		.uleb128 0x40
+ 1565 0107 06       		.uleb128 0x6
+ 1566 0108 9642     		.uleb128 0x2116
+ 1567 010a 0C       		.uleb128 0xc
+ 1568 010b 01       		.uleb128 0x1
+ 1569 010c 13       		.uleb128 0x13
+ 1570 010d 00       		.byte	0
+ 1571 010e 00       		.byte	0
+ 1572 010f 10       		.uleb128 0x10
+ 1573 0110 34       		.uleb128 0x34
+ 1574 0111 00       		.byte	0
+ 1575 0112 03       		.uleb128 0x3
+ 1576 0113 0E       		.uleb128 0xe
+ 1577 0114 3A       		.uleb128 0x3a
+ 1578 0115 0B       		.uleb128 0xb
+ 1579 0116 3B       		.uleb128 0x3b
+ 1580 0117 05       		.uleb128 0x5
+ 1581 0118 49       		.uleb128 0x49
+ 1582 0119 13       		.uleb128 0x13
+ 1583 011a 02       		.uleb128 0x2
+ 1584 011b 0A       		.uleb128 0xa
+ 1585 011c 00       		.byte	0
+ 1586 011d 00       		.byte	0
+ 1587 011e 00       		.byte	0
+ 1588              		.section	.debug_loc,"",%progbits
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 38
 
 
- 1638 0178 0200     		.2byte	0x2
- 1639 017a 7D       		.byte	0x7d
- 1640 017b 04       		.sleb128 4
- 1641 017c 04000000 		.4byte	.LCFI19
- 1642 0180 06000000 		.4byte	.LCFI20
- 1643 0184 0200     		.2byte	0x2
- 1644 0186 7D       		.byte	0x7d
- 1645 0187 10       		.sleb128 16
- 1646 0188 06000000 		.4byte	.LCFI20
- 1647 018c 3C000000 		.4byte	.LFE7
- 1648 0190 0200     		.2byte	0x2
- 1649 0192 77       		.byte	0x77
- 1650 0193 10       		.sleb128 16
- 1651 0194 00000000 		.4byte	0
- 1652 0198 00000000 		.4byte	0
- 1653              	.LLST8:
- 1654 019c 00000000 		.4byte	.LFB8
- 1655 01a0 02000000 		.4byte	.LCFI21
- 1656 01a4 0200     		.2byte	0x2
- 1657 01a6 7D       		.byte	0x7d
- 1658 01a7 00       		.sleb128 0
- 1659 01a8 02000000 		.4byte	.LCFI21
- 1660 01ac 04000000 		.4byte	.LCFI22
- 1661 01b0 0200     		.2byte	0x2
- 1662 01b2 7D       		.byte	0x7d
- 1663 01b3 04       		.sleb128 4
- 1664 01b4 04000000 		.4byte	.LCFI22
- 1665 01b8 1E000000 		.4byte	.LFE8
- 1666 01bc 0200     		.2byte	0x2
- 1667 01be 77       		.byte	0x77
- 1668 01bf 04       		.sleb128 4
- 1669 01c0 00000000 		.4byte	0
- 1670 01c4 00000000 		.4byte	0
- 1671              	.LLST9:
- 1672 01c8 00000000 		.4byte	.LFB9
- 1673 01cc 02000000 		.4byte	.LCFI23
- 1674 01d0 0200     		.2byte	0x2
- 1675 01d2 7D       		.byte	0x7d
- 1676 01d3 00       		.sleb128 0
- 1677 01d4 02000000 		.4byte	.LCFI23
- 1678 01d8 04000000 		.4byte	.LCFI24
- 1679 01dc 0200     		.2byte	0x2
- 1680 01de 7D       		.byte	0x7d
- 1681 01df 08       		.sleb128 8
- 1682 01e0 04000000 		.4byte	.LCFI24
- 1683 01e4 06000000 		.4byte	.LCFI25
- 1684 01e8 0200     		.2byte	0x2
- 1685 01ea 7D       		.byte	0x7d
- 1686 01eb 18       		.sleb128 24
- 1687 01ec 06000000 		.4byte	.LCFI25
- 1688 01f0 F4000000 		.4byte	.LFE9
- 1689 01f4 0200     		.2byte	0x2
- 1690 01f6 77       		.byte	0x77
- 1691 01f7 18       		.sleb128 24
- 1692 01f8 00000000 		.4byte	0
- 1693 01fc 00000000 		.4byte	0
- 1694              	.LLST10:
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 39
+ 1589              	.Ldebug_loc0:
+ 1590              	.LLST0:
+ 1591 0000 00000000 		.4byte	.LFB0
+ 1592 0004 02000000 		.4byte	.LCFI0
+ 1593 0008 0200     		.2byte	0x2
+ 1594 000a 7D       		.byte	0x7d
+ 1595 000b 00       		.sleb128 0
+ 1596 000c 02000000 		.4byte	.LCFI0
+ 1597 0010 04000000 		.4byte	.LCFI1
+ 1598 0014 0200     		.2byte	0x2
+ 1599 0016 7D       		.byte	0x7d
+ 1600 0017 04       		.sleb128 4
+ 1601 0018 04000000 		.4byte	.LCFI1
+ 1602 001c 42000000 		.4byte	.LFE0
+ 1603 0020 0200     		.2byte	0x2
+ 1604 0022 77       		.byte	0x77
+ 1605 0023 04       		.sleb128 4
+ 1606 0024 00000000 		.4byte	0
+ 1607 0028 00000000 		.4byte	0
+ 1608              	.LLST1:
+ 1609 002c 00000000 		.4byte	.LFB1
+ 1610 0030 02000000 		.4byte	.LCFI2
+ 1611 0034 0200     		.2byte	0x2
+ 1612 0036 7D       		.byte	0x7d
+ 1613 0037 00       		.sleb128 0
+ 1614 0038 02000000 		.4byte	.LCFI2
+ 1615 003c 04000000 		.4byte	.LCFI3
+ 1616 0040 0200     		.2byte	0x2
+ 1617 0042 7D       		.byte	0x7d
+ 1618 0043 04       		.sleb128 4
+ 1619 0044 04000000 		.4byte	.LCFI3
+ 1620 0048 42000000 		.4byte	.LFE1
+ 1621 004c 0200     		.2byte	0x2
+ 1622 004e 77       		.byte	0x77
+ 1623 004f 04       		.sleb128 4
+ 1624 0050 00000000 		.4byte	0
+ 1625 0054 00000000 		.4byte	0
+ 1626              	.LLST2:
+ 1627 0058 00000000 		.4byte	.LFB2
+ 1628 005c 02000000 		.4byte	.LCFI4
+ 1629 0060 0200     		.2byte	0x2
+ 1630 0062 7D       		.byte	0x7d
+ 1631 0063 00       		.sleb128 0
+ 1632 0064 02000000 		.4byte	.LCFI4
+ 1633 0068 04000000 		.4byte	.LCFI5
+ 1634 006c 0200     		.2byte	0x2
+ 1635 006e 7D       		.byte	0x7d
+ 1636 006f 04       		.sleb128 4
+ 1637 0070 04000000 		.4byte	.LCFI5
+ 1638 0074 06000000 		.4byte	.LCFI6
+ 1639 0078 0200     		.2byte	0x2
+ 1640 007a 7D       		.byte	0x7d
+ 1641 007b 10       		.sleb128 16
+ 1642 007c 06000000 		.4byte	.LCFI6
+ 1643 0080 F8000000 		.4byte	.LFE2
+ 1644 0084 0200     		.2byte	0x2
+ 1645 0086 77       		.byte	0x77
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 39
 
 
- 1695 0200 00000000 		.4byte	.LFB10
- 1696 0204 02000000 		.4byte	.LCFI26
- 1697 0208 0200     		.2byte	0x2
- 1698 020a 7D       		.byte	0x7d
- 1699 020b 00       		.sleb128 0
- 1700 020c 02000000 		.4byte	.LCFI26
- 1701 0210 04000000 		.4byte	.LCFI27
- 1702 0214 0200     		.2byte	0x2
- 1703 0216 7D       		.byte	0x7d
- 1704 0217 04       		.sleb128 4
- 1705 0218 04000000 		.4byte	.LCFI27
- 1706 021c 1E000000 		.4byte	.LFE10
- 1707 0220 0200     		.2byte	0x2
- 1708 0222 77       		.byte	0x77
- 1709 0223 04       		.sleb128 4
- 1710 0224 00000000 		.4byte	0
- 1711 0228 00000000 		.4byte	0
- 1712              		.section	.debug_aranges,"",%progbits
- 1713 0000 6C000000 		.4byte	0x6c
- 1714 0004 0200     		.2byte	0x2
- 1715 0006 00000000 		.4byte	.Ldebug_info0
- 1716 000a 04       		.byte	0x4
- 1717 000b 00       		.byte	0
- 1718 000c 0000     		.2byte	0
- 1719 000e 0000     		.2byte	0
- 1720 0010 00000000 		.4byte	.LFB0
- 1721 0014 42000000 		.4byte	.LFE0-.LFB0
- 1722 0018 00000000 		.4byte	.LFB1
- 1723 001c 42000000 		.4byte	.LFE1-.LFB1
- 1724 0020 00000000 		.4byte	.LFB2
- 1725 0024 F8000000 		.4byte	.LFE2-.LFB2
- 1726 0028 00000000 		.4byte	.LFB3
- 1727 002c 54000000 		.4byte	.LFE3-.LFB3
- 1728 0030 00000000 		.4byte	.LFB4
- 1729 0034 E8010000 		.4byte	.LFE4-.LFB4
- 1730 0038 00000000 		.4byte	.LFB5
- 1731 003c 18000000 		.4byte	.LFE5-.LFB5
- 1732 0040 00000000 		.4byte	.LFB6
- 1733 0044 3A000000 		.4byte	.LFE6-.LFB6
- 1734 0048 00000000 		.4byte	.LFB7
- 1735 004c 3C000000 		.4byte	.LFE7-.LFB7
- 1736 0050 00000000 		.4byte	.LFB8
- 1737 0054 1E000000 		.4byte	.LFE8-.LFB8
- 1738 0058 00000000 		.4byte	.LFB9
- 1739 005c F4000000 		.4byte	.LFE9-.LFB9
- 1740 0060 00000000 		.4byte	.LFB10
- 1741 0064 1E000000 		.4byte	.LFE10-.LFB10
- 1742 0068 00000000 		.4byte	0
- 1743 006c 00000000 		.4byte	0
- 1744              		.section	.debug_ranges,"",%progbits
- 1745              	.Ldebug_ranges0:
- 1746 0000 00000000 		.4byte	.LFB0
- 1747 0004 42000000 		.4byte	.LFE0
- 1748 0008 00000000 		.4byte	.LFB1
- 1749 000c 42000000 		.4byte	.LFE1
- 1750 0010 00000000 		.4byte	.LFB2
- 1751 0014 F8000000 		.4byte	.LFE2
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 40
+ 1646 0087 10       		.sleb128 16
+ 1647 0088 00000000 		.4byte	0
+ 1648 008c 00000000 		.4byte	0
+ 1649              	.LLST3:
+ 1650 0090 00000000 		.4byte	.LFB3
+ 1651 0094 02000000 		.4byte	.LCFI7
+ 1652 0098 0200     		.2byte	0x2
+ 1653 009a 7D       		.byte	0x7d
+ 1654 009b 00       		.sleb128 0
+ 1655 009c 02000000 		.4byte	.LCFI7
+ 1656 00a0 04000000 		.4byte	.LCFI8
+ 1657 00a4 0200     		.2byte	0x2
+ 1658 00a6 7D       		.byte	0x7d
+ 1659 00a7 04       		.sleb128 4
+ 1660 00a8 04000000 		.4byte	.LCFI8
+ 1661 00ac 06000000 		.4byte	.LCFI9
+ 1662 00b0 0200     		.2byte	0x2
+ 1663 00b2 7D       		.byte	0x7d
+ 1664 00b3 10       		.sleb128 16
+ 1665 00b4 06000000 		.4byte	.LCFI9
+ 1666 00b8 54000000 		.4byte	.LFE3
+ 1667 00bc 0200     		.2byte	0x2
+ 1668 00be 77       		.byte	0x77
+ 1669 00bf 10       		.sleb128 16
+ 1670 00c0 00000000 		.4byte	0
+ 1671 00c4 00000000 		.4byte	0
+ 1672              	.LLST4:
+ 1673 00c8 00000000 		.4byte	.LFB4
+ 1674 00cc 02000000 		.4byte	.LCFI10
+ 1675 00d0 0200     		.2byte	0x2
+ 1676 00d2 7D       		.byte	0x7d
+ 1677 00d3 00       		.sleb128 0
+ 1678 00d4 02000000 		.4byte	.LCFI10
+ 1679 00d8 04000000 		.4byte	.LCFI11
+ 1680 00dc 0200     		.2byte	0x2
+ 1681 00de 7D       		.byte	0x7d
+ 1682 00df 08       		.sleb128 8
+ 1683 00e0 04000000 		.4byte	.LCFI11
+ 1684 00e4 06000000 		.4byte	.LCFI12
+ 1685 00e8 0200     		.2byte	0x2
+ 1686 00ea 7D       		.byte	0x7d
+ 1687 00eb 18       		.sleb128 24
+ 1688 00ec 06000000 		.4byte	.LCFI12
+ 1689 00f0 E8010000 		.4byte	.LFE4
+ 1690 00f4 0200     		.2byte	0x2
+ 1691 00f6 77       		.byte	0x77
+ 1692 00f7 18       		.sleb128 24
+ 1693 00f8 00000000 		.4byte	0
+ 1694 00fc 00000000 		.4byte	0
+ 1695              	.LLST5:
+ 1696 0100 00000000 		.4byte	.LFB5
+ 1697 0104 02000000 		.4byte	.LCFI13
+ 1698 0108 0200     		.2byte	0x2
+ 1699 010a 7D       		.byte	0x7d
+ 1700 010b 00       		.sleb128 0
+ 1701 010c 02000000 		.4byte	.LCFI13
+ 1702 0110 04000000 		.4byte	.LCFI14
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 40
 
 
- 1752 0018 00000000 		.4byte	.LFB3
- 1753 001c 54000000 		.4byte	.LFE3
- 1754 0020 00000000 		.4byte	.LFB4
- 1755 0024 E8010000 		.4byte	.LFE4
- 1756 0028 00000000 		.4byte	.LFB5
- 1757 002c 18000000 		.4byte	.LFE5
- 1758 0030 00000000 		.4byte	.LFB6
- 1759 0034 3A000000 		.4byte	.LFE6
- 1760 0038 00000000 		.4byte	.LFB7
- 1761 003c 3C000000 		.4byte	.LFE7
- 1762 0040 00000000 		.4byte	.LFB8
- 1763 0044 1E000000 		.4byte	.LFE8
- 1764 0048 00000000 		.4byte	.LFB9
- 1765 004c F4000000 		.4byte	.LFE9
- 1766 0050 00000000 		.4byte	.LFB10
- 1767 0054 1E000000 		.4byte	.LFE10
- 1768 0058 00000000 		.4byte	0
- 1769 005c 00000000 		.4byte	0
- 1770              		.section	.debug_line,"",%progbits
- 1771              	.Ldebug_line0:
- 1772 0000 9E010000 		.section	.debug_str,"MS",%progbits,1
- 1772      02004A00 
- 1772      00000201 
- 1772      FB0E0D00 
- 1772      01010101 
- 1773              	.LASF6:
- 1774 0000 6C6F6E67 		.ascii	"long long int\000"
- 1774      206C6F6E 
- 1774      6720696E 
- 1774      7400
- 1775              	.LASF32:
- 1776 000e 57617665 		.ascii	"WaveDAC_clk_SetSourceRegister\000"
- 1776      4441435F 
- 1776      636C6B5F 
- 1776      53657453 
- 1776      6F757263 
- 1777              	.LASF21:
- 1778 002c 73746174 		.ascii	"state\000"
- 1778      6500
- 1779              	.LASF24:
- 1780 0032 6F6C6444 		.ascii	"oldDivider\000"
- 1780      69766964 
- 1780      657200
- 1781              	.LASF16:
- 1782 003d 57617665 		.ascii	"WaveDAC_clk_Start\000"
- 1782      4441435F 
- 1782      636C6B5F 
- 1782      53746172 
- 1782      7400
- 1783              	.LASF36:
- 1784 004f 57617665 		.ascii	"WaveDAC_clk_GetSourceRegister\000"
- 1784      4441435F 
- 1784      636C6B5F 
- 1784      47657453 
- 1784      6F757263 
- 1785              	.LASF17:
- 1786 006d 57617665 		.ascii	"WaveDAC_clk_Stop\000"
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 41
+ 1703 0114 0200     		.2byte	0x2
+ 1704 0116 7D       		.byte	0x7d
+ 1705 0117 04       		.sleb128 4
+ 1706 0118 04000000 		.4byte	.LCFI14
+ 1707 011c 18000000 		.4byte	.LFE5
+ 1708 0120 0200     		.2byte	0x2
+ 1709 0122 77       		.byte	0x77
+ 1710 0123 04       		.sleb128 4
+ 1711 0124 00000000 		.4byte	0
+ 1712 0128 00000000 		.4byte	0
+ 1713              	.LLST6:
+ 1714 012c 00000000 		.4byte	.LFB6
+ 1715 0130 02000000 		.4byte	.LCFI15
+ 1716 0134 0200     		.2byte	0x2
+ 1717 0136 7D       		.byte	0x7d
+ 1718 0137 00       		.sleb128 0
+ 1719 0138 02000000 		.4byte	.LCFI15
+ 1720 013c 04000000 		.4byte	.LCFI16
+ 1721 0140 0200     		.2byte	0x2
+ 1722 0142 7D       		.byte	0x7d
+ 1723 0143 04       		.sleb128 4
+ 1724 0144 04000000 		.4byte	.LCFI16
+ 1725 0148 06000000 		.4byte	.LCFI17
+ 1726 014c 0200     		.2byte	0x2
+ 1727 014e 7D       		.byte	0x7d
+ 1728 014f 10       		.sleb128 16
+ 1729 0150 06000000 		.4byte	.LCFI17
+ 1730 0154 3A000000 		.4byte	.LFE6
+ 1731 0158 0200     		.2byte	0x2
+ 1732 015a 77       		.byte	0x77
+ 1733 015b 10       		.sleb128 16
+ 1734 015c 00000000 		.4byte	0
+ 1735 0160 00000000 		.4byte	0
+ 1736              	.LLST7:
+ 1737 0164 00000000 		.4byte	.LFB7
+ 1738 0168 02000000 		.4byte	.LCFI18
+ 1739 016c 0200     		.2byte	0x2
+ 1740 016e 7D       		.byte	0x7d
+ 1741 016f 00       		.sleb128 0
+ 1742 0170 02000000 		.4byte	.LCFI18
+ 1743 0174 04000000 		.4byte	.LCFI19
+ 1744 0178 0200     		.2byte	0x2
+ 1745 017a 7D       		.byte	0x7d
+ 1746 017b 04       		.sleb128 4
+ 1747 017c 04000000 		.4byte	.LCFI19
+ 1748 0180 06000000 		.4byte	.LCFI20
+ 1749 0184 0200     		.2byte	0x2
+ 1750 0186 7D       		.byte	0x7d
+ 1751 0187 10       		.sleb128 16
+ 1752 0188 06000000 		.4byte	.LCFI20
+ 1753 018c 3C000000 		.4byte	.LFE7
+ 1754 0190 0200     		.2byte	0x2
+ 1755 0192 77       		.byte	0x77
+ 1756 0193 10       		.sleb128 16
+ 1757 0194 00000000 		.4byte	0
+ 1758 0198 00000000 		.4byte	0
+ 1759              	.LLST8:
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 41
 
 
- 1786      4441435F 
- 1786      636C6B5F 
- 1786      53746F70 
- 1786      00
- 1787              	.LASF11:
- 1788 007e 666C6F61 		.ascii	"float\000"
- 1788      7400
- 1789              	.LASF18:
- 1790 0084 57617665 		.ascii	"WaveDAC_clk_StopBlock\000"
- 1790      4441435F 
- 1790      636C6B5F 
- 1790      53746F70 
- 1790      426C6F63 
- 1791              	.LASF1:
- 1792 009a 756E7369 		.ascii	"unsigned char\000"
- 1792      676E6564 
- 1792      20636861 
- 1792      7200
- 1793              	.LASF14:
- 1794 00a8 72656738 		.ascii	"reg8\000"
- 1794      00
- 1795              	.LASF5:
- 1796 00ad 6C6F6E67 		.ascii	"long unsigned int\000"
- 1796      20756E73 
- 1796      69676E65 
- 1796      6420696E 
- 1796      7400
- 1797              	.LASF31:
- 1798 00bf 57617665 		.ascii	"WaveDAC_clk_GetModeRegister\000"
- 1798      4441435F 
- 1798      636C6B5F 
- 1798      4765744D 
- 1798      6F646552 
- 1799              	.LASF3:
- 1800 00db 73686F72 		.ascii	"short unsigned int\000"
- 1800      7420756E 
- 1800      7369676E 
- 1800      65642069 
- 1800      6E7400
- 1801              	.LASF27:
- 1802 00ee 57617665 		.ascii	"WaveDAC_clk_SetModeRegister\000"
- 1802      4441435F 
- 1802      636C6B5F 
- 1802      5365744D 
- 1802      6F646552 
- 1803              	.LASF29:
- 1804 010a 57617665 		.ascii	"WaveDAC_clk_ClearModeRegister\000"
- 1804      4441435F 
- 1804      636C6B5F 
- 1804      436C6561 
- 1804      724D6F64 
- 1805              	.LASF19:
- 1806 0128 57617665 		.ascii	"WaveDAC_clk_StandbyPower\000"
- 1806      4441435F 
- 1806      636C6B5F 
- 1806      5374616E 
- 1806      64627950 
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 42
+ 1760 019c 00000000 		.4byte	.LFB8
+ 1761 01a0 02000000 		.4byte	.LCFI21
+ 1762 01a4 0200     		.2byte	0x2
+ 1763 01a6 7D       		.byte	0x7d
+ 1764 01a7 00       		.sleb128 0
+ 1765 01a8 02000000 		.4byte	.LCFI21
+ 1766 01ac 04000000 		.4byte	.LCFI22
+ 1767 01b0 0200     		.2byte	0x2
+ 1768 01b2 7D       		.byte	0x7d
+ 1769 01b3 04       		.sleb128 4
+ 1770 01b4 04000000 		.4byte	.LCFI22
+ 1771 01b8 1E000000 		.4byte	.LFE8
+ 1772 01bc 0200     		.2byte	0x2
+ 1773 01be 77       		.byte	0x77
+ 1774 01bf 04       		.sleb128 4
+ 1775 01c0 00000000 		.4byte	0
+ 1776 01c4 00000000 		.4byte	0
+ 1777              	.LLST9:
+ 1778 01c8 00000000 		.4byte	.LFB9
+ 1779 01cc 02000000 		.4byte	.LCFI23
+ 1780 01d0 0200     		.2byte	0x2
+ 1781 01d2 7D       		.byte	0x7d
+ 1782 01d3 00       		.sleb128 0
+ 1783 01d4 02000000 		.4byte	.LCFI23
+ 1784 01d8 04000000 		.4byte	.LCFI24
+ 1785 01dc 0200     		.2byte	0x2
+ 1786 01de 7D       		.byte	0x7d
+ 1787 01df 08       		.sleb128 8
+ 1788 01e0 04000000 		.4byte	.LCFI24
+ 1789 01e4 06000000 		.4byte	.LCFI25
+ 1790 01e8 0200     		.2byte	0x2
+ 1791 01ea 7D       		.byte	0x7d
+ 1792 01eb 18       		.sleb128 24
+ 1793 01ec 06000000 		.4byte	.LCFI25
+ 1794 01f0 F4000000 		.4byte	.LFE9
+ 1795 01f4 0200     		.2byte	0x2
+ 1796 01f6 77       		.byte	0x77
+ 1797 01f7 18       		.sleb128 24
+ 1798 01f8 00000000 		.4byte	0
+ 1799 01fc 00000000 		.4byte	0
+ 1800              	.LLST10:
+ 1801 0200 00000000 		.4byte	.LFB10
+ 1802 0204 02000000 		.4byte	.LCFI26
+ 1803 0208 0200     		.2byte	0x2
+ 1804 020a 7D       		.byte	0x7d
+ 1805 020b 00       		.sleb128 0
+ 1806 020c 02000000 		.4byte	.LCFI26
+ 1807 0210 04000000 		.4byte	.LCFI27
+ 1808 0214 0200     		.2byte	0x2
+ 1809 0216 7D       		.byte	0x7d
+ 1810 0217 04       		.sleb128 4
+ 1811 0218 04000000 		.4byte	.LCFI27
+ 1812 021c 1E000000 		.4byte	.LFE10
+ 1813 0220 0200     		.2byte	0x2
+ 1814 0222 77       		.byte	0x77
+ 1815 0223 04       		.sleb128 4
+ 1816 0224 00000000 		.4byte	0
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 42
 
 
- 1807              	.LASF22:
- 1808 0141 636C6B44 		.ascii	"clkDivider\000"
- 1808      69766964 
- 1808      657200
- 1809              	.LASF12:
- 1810 014c 646F7562 		.ascii	"double\000"
- 1810      6C6500
- 1811              	.LASF23:
- 1812 0153 72657374 		.ascii	"restart\000"
- 1812      61727400 
- 1813              	.LASF10:
- 1814 015b 75696E74 		.ascii	"uint16\000"
- 1814      313600
- 1815              	.LASF8:
- 1816 0162 756E7369 		.ascii	"unsigned int\000"
- 1816      676E6564 
- 1816      20696E74 
- 1816      00
- 1817              	.LASF26:
- 1818 016f 63757272 		.ascii	"currSrc\000"
- 1818      53726300 
- 1819              	.LASF7:
- 1820 0177 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1820      206C6F6E 
- 1820      6720756E 
- 1820      7369676E 
- 1820      65642069 
- 1821              	.LASF28:
- 1822 018e 6D6F6465 		.ascii	"modeBitMask\000"
- 1822      4269744D 
- 1822      61736B00 
- 1823              	.LASF39:
- 1824 019a 433A5C55 		.ascii	"C:\\Users\\Robert\\workspace\\embedit_git\\psoc_2_p"
- 1824      73657273 
- 1824      5C526F62 
- 1824      6572745C 
- 1824      776F726B 
- 1825 01c8 695C5053 		.ascii	"i\\PSoC Creator\\PSoC_2_Pi.cydsn\000"
- 1825      6F432043 
- 1825      72656174 
- 1825      6F725C50 
- 1825      536F435F 
- 1826              	.LASF38:
- 1827 01e7 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\WaveDAC_clk.c\000"
- 1827      6E657261 
- 1827      7465645F 
- 1827      536F7572 
- 1827      63655C50 
- 1828              	.LASF13:
- 1829 020e 63686172 		.ascii	"char\000"
- 1829      00
- 1830              	.LASF34:
- 1831 0213 63757272 		.ascii	"currDiv\000"
- 1831      44697600 
- 1832              	.LASF2:
- 1833 021b 73686F72 		.ascii	"short int\000"
- 1833      7420696E 
-ARM GAS  C:\Users\Robert\AppData\Local\Temp\cciyWkuU.s 			page 43
+ 1817 0228 00000000 		.4byte	0
+ 1818              	.LLST11:
+ 1819 022c 00000000 		.4byte	.LFB11
+ 1820 0230 02000000 		.4byte	.LCFI28
+ 1821 0234 0200     		.2byte	0x2
+ 1822 0236 7D       		.byte	0x7d
+ 1823 0237 00       		.sleb128 0
+ 1824 0238 02000000 		.4byte	.LCFI28
+ 1825 023c 04000000 		.4byte	.LCFI29
+ 1826 0240 0200     		.2byte	0x2
+ 1827 0242 7D       		.byte	0x7d
+ 1828 0243 04       		.sleb128 4
+ 1829 0244 04000000 		.4byte	.LCFI29
+ 1830 0248 06000000 		.4byte	.LCFI30
+ 1831 024c 0200     		.2byte	0x2
+ 1832 024e 7D       		.byte	0x7d
+ 1833 024f 10       		.sleb128 16
+ 1834 0250 06000000 		.4byte	.LCFI30
+ 1835 0254 26000000 		.4byte	.LFE11
+ 1836 0258 0200     		.2byte	0x2
+ 1837 025a 77       		.byte	0x77
+ 1838 025b 10       		.sleb128 16
+ 1839 025c 00000000 		.4byte	0
+ 1840 0260 00000000 		.4byte	0
+ 1841              	.LLST12:
+ 1842 0264 00000000 		.4byte	.LFB12
+ 1843 0268 02000000 		.4byte	.LCFI31
+ 1844 026c 0200     		.2byte	0x2
+ 1845 026e 7D       		.byte	0x7d
+ 1846 026f 00       		.sleb128 0
+ 1847 0270 02000000 		.4byte	.LCFI31
+ 1848 0274 04000000 		.4byte	.LCFI32
+ 1849 0278 0200     		.2byte	0x2
+ 1850 027a 7D       		.byte	0x7d
+ 1851 027b 04       		.sleb128 4
+ 1852 027c 04000000 		.4byte	.LCFI32
+ 1853 0280 1E000000 		.4byte	.LFE12
+ 1854 0284 0200     		.2byte	0x2
+ 1855 0286 77       		.byte	0x77
+ 1856 0287 04       		.sleb128 4
+ 1857 0288 00000000 		.4byte	0
+ 1858 028c 00000000 		.4byte	0
+ 1859              		.section	.debug_aranges,"",%progbits
+ 1860 0000 7C000000 		.4byte	0x7c
+ 1861 0004 0200     		.2byte	0x2
+ 1862 0006 00000000 		.4byte	.Ldebug_info0
+ 1863 000a 04       		.byte	0x4
+ 1864 000b 00       		.byte	0
+ 1865 000c 0000     		.2byte	0
+ 1866 000e 0000     		.2byte	0
+ 1867 0010 00000000 		.4byte	.LFB0
+ 1868 0014 42000000 		.4byte	.LFE0-.LFB0
+ 1869 0018 00000000 		.4byte	.LFB1
+ 1870 001c 42000000 		.4byte	.LFE1-.LFB1
+ 1871 0020 00000000 		.4byte	.LFB2
+ 1872 0024 F8000000 		.4byte	.LFE2-.LFB2
+ 1873 0028 00000000 		.4byte	.LFB3
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 43
 
 
- 1833      7400
- 1834              	.LASF15:
- 1835 0225 72656731 		.ascii	"reg16\000"
- 1835      3600
- 1836              	.LASF9:
- 1837 022b 75696E74 		.ascii	"uint8\000"
- 1837      3800
- 1838              	.LASF37:
- 1839 0231 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
- 1839      4320342E 
- 1839      372E3320 
- 1839      32303133 
- 1839      30333132 
- 1840 0264 616E6368 		.ascii	"anch revision 196615]\000"
- 1840      20726576 
- 1840      6973696F 
- 1840      6E203139 
- 1840      36363135 
- 1841              	.LASF30:
- 1842 027a 57617665 		.ascii	"WaveDAC_clk_GetDividerRegister\000"
- 1842      4441435F 
- 1842      636C6B5F 
- 1842      47657444 
- 1842      69766964 
- 1843              	.LASF25:
- 1844 0299 656E6162 		.ascii	"enabled\000"
- 1844      6C656400 
- 1845              	.LASF4:
- 1846 02a1 6C6F6E67 		.ascii	"long int\000"
- 1846      20696E74 
- 1846      00
- 1847              	.LASF33:
- 1848 02aa 636C6B53 		.ascii	"clkSource\000"
- 1848      6F757263 
- 1848      6500
- 1849              	.LASF20:
- 1850 02b4 57617665 		.ascii	"WaveDAC_clk_SetDividerRegister\000"
- 1850      4441435F 
- 1850      636C6B5F 
- 1850      53657444 
- 1850      69766964 
- 1851              	.LASF0:
- 1852 02d3 7369676E 		.ascii	"signed char\000"
- 1852      65642063 
- 1852      68617200 
- 1853              	.LASF35:
- 1854 02df 6F6C6453 		.ascii	"oldSrc\000"
- 1854      726300
- 1855              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br
+ 1874 002c 54000000 		.4byte	.LFE3-.LFB3
+ 1875 0030 00000000 		.4byte	.LFB4
+ 1876 0034 E8010000 		.4byte	.LFE4-.LFB4
+ 1877 0038 00000000 		.4byte	.LFB5
+ 1878 003c 18000000 		.4byte	.LFE5-.LFB5
+ 1879 0040 00000000 		.4byte	.LFB6
+ 1880 0044 3A000000 		.4byte	.LFE6-.LFB6
+ 1881 0048 00000000 		.4byte	.LFB7
+ 1882 004c 3C000000 		.4byte	.LFE7-.LFB7
+ 1883 0050 00000000 		.4byte	.LFB8
+ 1884 0054 1E000000 		.4byte	.LFE8-.LFB8
+ 1885 0058 00000000 		.4byte	.LFB9
+ 1886 005c F4000000 		.4byte	.LFE9-.LFB9
+ 1887 0060 00000000 		.4byte	.LFB10
+ 1888 0064 1E000000 		.4byte	.LFE10-.LFB10
+ 1889 0068 00000000 		.4byte	.LFB11
+ 1890 006c 26000000 		.4byte	.LFE11-.LFB11
+ 1891 0070 00000000 		.4byte	.LFB12
+ 1892 0074 1E000000 		.4byte	.LFE12-.LFB12
+ 1893 0078 00000000 		.4byte	0
+ 1894 007c 00000000 		.4byte	0
+ 1895              		.section	.debug_ranges,"",%progbits
+ 1896              	.Ldebug_ranges0:
+ 1897 0000 00000000 		.4byte	.LFB0
+ 1898 0004 42000000 		.4byte	.LFE0
+ 1899 0008 00000000 		.4byte	.LFB1
+ 1900 000c 42000000 		.4byte	.LFE1
+ 1901 0010 00000000 		.4byte	.LFB2
+ 1902 0014 F8000000 		.4byte	.LFE2
+ 1903 0018 00000000 		.4byte	.LFB3
+ 1904 001c 54000000 		.4byte	.LFE3
+ 1905 0020 00000000 		.4byte	.LFB4
+ 1906 0024 E8010000 		.4byte	.LFE4
+ 1907 0028 00000000 		.4byte	.LFB5
+ 1908 002c 18000000 		.4byte	.LFE5
+ 1909 0030 00000000 		.4byte	.LFB6
+ 1910 0034 3A000000 		.4byte	.LFE6
+ 1911 0038 00000000 		.4byte	.LFB7
+ 1912 003c 3C000000 		.4byte	.LFE7
+ 1913 0040 00000000 		.4byte	.LFB8
+ 1914 0044 1E000000 		.4byte	.LFE8
+ 1915 0048 00000000 		.4byte	.LFB9
+ 1916 004c F4000000 		.4byte	.LFE9
+ 1917 0050 00000000 		.4byte	.LFB10
+ 1918 0054 1E000000 		.4byte	.LFE10
+ 1919 0058 00000000 		.4byte	.LFB11
+ 1920 005c 26000000 		.4byte	.LFE11
+ 1921 0060 00000000 		.4byte	.LFB12
+ 1922 0064 1E000000 		.4byte	.LFE12
+ 1923 0068 00000000 		.4byte	0
+ 1924 006c 00000000 		.4byte	0
+ 1925              		.section	.debug_line,"",%progbits
+ 1926              	.Ldebug_line0:
+ 1927 0000 C2010000 		.section	.debug_str,"MS",%progbits,1
+ 1927      02004A00 
+ 1927      00000201 
+ 1927      FB0E0D00 
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 44
+
+
+ 1927      01010101 
+ 1928              	.LASF15:
+ 1929 0000 72656731 		.ascii	"reg16\000"
+ 1929      3600
+ 1930              	.LASF32:
+ 1931 0006 57617665 		.ascii	"WaveDAC_clk_SetSourceRegister\000"
+ 1931      4441435F 
+ 1931      636C6B5F 
+ 1931      53657453 
+ 1931      6F757263 
+ 1932              	.LASF21:
+ 1933 0024 73746174 		.ascii	"state\000"
+ 1933      6500
+ 1934              	.LASF24:
+ 1935 002a 6F6C6444 		.ascii	"oldDivider\000"
+ 1935      69766964 
+ 1935      657200
+ 1936              	.LASF16:
+ 1937 0035 57617665 		.ascii	"WaveDAC_clk_Start\000"
+ 1937      4441435F 
+ 1937      636C6B5F 
+ 1937      53746172 
+ 1937      7400
+ 1938              	.LASF42:
+ 1939 0047 433A5C55 		.ascii	"C:\\Users\\Brian\\Dropbox\\RPiSoC\\Projects\\PSoC_2"
+ 1939      73657273 
+ 1939      5C427269 
+ 1939      616E5C44 
+ 1939      726F7062 
+ 1940 0074 5F50695C 		.ascii	"_Pi\\PSoC Creator\\PSoC_2_Pi.cydsn\000"
+ 1940      50536F43 
+ 1940      20437265 
+ 1940      61746F72 
+ 1940      5C50536F 
+ 1941              	.LASF36:
+ 1942 0095 57617665 		.ascii	"WaveDAC_clk_GetSourceRegister\000"
+ 1942      4441435F 
+ 1942      636C6B5F 
+ 1942      47657453 
+ 1942      6F757263 
+ 1943              	.LASF17:
+ 1944 00b3 57617665 		.ascii	"WaveDAC_clk_Stop\000"
+ 1944      4441435F 
+ 1944      636C6B5F 
+ 1944      53746F70 
+ 1944      00
+ 1945              	.LASF11:
+ 1946 00c4 666C6F61 		.ascii	"float\000"
+ 1946      7400
+ 1947              	.LASF18:
+ 1948 00ca 57617665 		.ascii	"WaveDAC_clk_StopBlock\000"
+ 1948      4441435F 
+ 1948      636C6B5F 
+ 1948      53746F70 
+ 1948      426C6F63 
+ 1949              	.LASF38:
+ 1950 00e0 636C6B50 		.ascii	"clkPhase\000"
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 45
+
+
+ 1950      68617365 
+ 1950      00
+ 1951              	.LASF1:
+ 1952 00e9 756E7369 		.ascii	"unsigned char\000"
+ 1952      676E6564 
+ 1952      20636861 
+ 1952      7200
+ 1953              	.LASF14:
+ 1954 00f7 72656738 		.ascii	"reg8\000"
+ 1954      00
+ 1955              	.LASF5:
+ 1956 00fc 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1956      20756E73 
+ 1956      69676E65 
+ 1956      6420696E 
+ 1956      7400
+ 1957              	.LASF31:
+ 1958 010e 57617665 		.ascii	"WaveDAC_clk_GetModeRegister\000"
+ 1958      4441435F 
+ 1958      636C6B5F 
+ 1958      4765744D 
+ 1958      6F646552 
+ 1959              	.LASF3:
+ 1960 012a 73686F72 		.ascii	"short unsigned int\000"
+ 1960      7420756E 
+ 1960      7369676E 
+ 1960      65642069 
+ 1960      6E7400
+ 1961              	.LASF27:
+ 1962 013d 57617665 		.ascii	"WaveDAC_clk_SetModeRegister\000"
+ 1962      4441435F 
+ 1962      636C6B5F 
+ 1962      5365744D 
+ 1962      6F646552 
+ 1963              	.LASF29:
+ 1964 0159 57617665 		.ascii	"WaveDAC_clk_ClearModeRegister\000"
+ 1964      4441435F 
+ 1964      636C6B5F 
+ 1964      436C6561 
+ 1964      724D6F64 
+ 1965              	.LASF19:
+ 1966 0177 57617665 		.ascii	"WaveDAC_clk_StandbyPower\000"
+ 1966      4441435F 
+ 1966      636C6B5F 
+ 1966      5374616E 
+ 1966      64627950 
+ 1967              	.LASF22:
+ 1968 0190 636C6B44 		.ascii	"clkDivider\000"
+ 1968      69766964 
+ 1968      657200
+ 1969              	.LASF12:
+ 1970 019b 646F7562 		.ascii	"double\000"
+ 1970      6C6500
+ 1971              	.LASF23:
+ 1972 01a2 72657374 		.ascii	"restart\000"
+ 1972      61727400 
+ 1973              	.LASF37:
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 46
+
+
+ 1974 01aa 57617665 		.ascii	"WaveDAC_clk_SetPhaseRegister\000"
+ 1974      4441435F 
+ 1974      636C6B5F 
+ 1974      53657450 
+ 1974      68617365 
+ 1975              	.LASF10:
+ 1976 01c7 75696E74 		.ascii	"uint16\000"
+ 1976      313600
+ 1977              	.LASF8:
+ 1978 01ce 756E7369 		.ascii	"unsigned int\000"
+ 1978      676E6564 
+ 1978      20696E74 
+ 1978      00
+ 1979              	.LASF26:
+ 1980 01db 63757272 		.ascii	"currSrc\000"
+ 1980      53726300 
+ 1981              	.LASF7:
+ 1982 01e3 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1982      206C6F6E 
+ 1982      6720756E 
+ 1982      7369676E 
+ 1982      65642069 
+ 1983              	.LASF28:
+ 1984 01fa 6D6F6465 		.ascii	"modeBitMask\000"
+ 1984      4269744D 
+ 1984      61736B00 
+ 1985              	.LASF6:
+ 1986 0206 6C6F6E67 		.ascii	"long long int\000"
+ 1986      206C6F6E 
+ 1986      6720696E 
+ 1986      7400
+ 1987              	.LASF41:
+ 1988 0214 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\WaveDAC_clk.c\000"
+ 1988      6E657261 
+ 1988      7465645F 
+ 1988      536F7572 
+ 1988      63655C50 
+ 1989              	.LASF13:
+ 1990 023b 63686172 		.ascii	"char\000"
+ 1990      00
+ 1991              	.LASF39:
+ 1992 0240 57617665 		.ascii	"WaveDAC_clk_GetPhaseRegister\000"
+ 1992      4441435F 
+ 1992      636C6B5F 
+ 1992      47657450 
+ 1992      68617365 
+ 1993              	.LASF34:
+ 1994 025d 63757272 		.ascii	"currDiv\000"
+ 1994      44697600 
+ 1995              	.LASF2:
+ 1996 0265 73686F72 		.ascii	"short int\000"
+ 1996      7420696E 
+ 1996      7400
+ 1997              	.LASF9:
+ 1998 026f 75696E74 		.ascii	"uint8\000"
+ 1998      3800
+ 1999              	.LASF40:
+ARM GAS  C:\Users\Brian\AppData\Local\Temp\ccze5dyd.s 			page 47
+
+
+ 2000 0275 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 2000      4320342E 
+ 2000      372E3320 
+ 2000      32303133 
+ 2000      30333132 
+ 2001 02a8 616E6368 		.ascii	"anch revision 196615]\000"
+ 2001      20726576 
+ 2001      6973696F 
+ 2001      6E203139 
+ 2001      36363135 
+ 2002              	.LASF30:
+ 2003 02be 57617665 		.ascii	"WaveDAC_clk_GetDividerRegister\000"
+ 2003      4441435F 
+ 2003      636C6B5F 
+ 2003      47657444 
+ 2003      69766964 
+ 2004              	.LASF25:
+ 2005 02dd 656E6162 		.ascii	"enabled\000"
+ 2005      6C656400 
+ 2006              	.LASF4:
+ 2007 02e5 6C6F6E67 		.ascii	"long int\000"
+ 2007      20696E74 
+ 2007      00
+ 2008              	.LASF33:
+ 2009 02ee 636C6B53 		.ascii	"clkSource\000"
+ 2009      6F757263 
+ 2009      6500
+ 2010              	.LASF20:
+ 2011 02f8 57617665 		.ascii	"WaveDAC_clk_SetDividerRegister\000"
+ 2011      4441435F 
+ 2011      636C6B5F 
+ 2011      53657444 
+ 2011      69766964 
+ 2012              	.LASF0:
+ 2013 0317 7369676E 		.ascii	"signed char\000"
+ 2013      65642063 
+ 2013      68617200 
+ 2014              	.LASF35:
+ 2015 0323 6F6C6453 		.ascii	"oldSrc\000"
+ 2015      726300
+ 2016              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br
