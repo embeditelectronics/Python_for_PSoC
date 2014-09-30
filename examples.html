@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Example Projects! &mdash; RPiSoC Python API 1.1.1 documentation</title>
+    <title>Example Projects! &mdash; RPiSoC Python API 1.1.2 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.1.1',
+        VERSION:     '1.1.2',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="RPiSoC Python API 1.1.1 documentation" href="index.html" />
+    <link rel="top" title="RPiSoC Python API 1.1.2 documentation" href="index.html" />
     <link rel="next" title="Revision History" href="revision_history.html" />
     <link rel="prev" title="API modules" href="code.html" /> 
   </head>
@@ -43,7 +43,7 @@
         <li class="right" >
           <a href="code.html" title="API modules"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.1.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.1.2 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -71,16 +71,15 @@ code:</p>
 <span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span>
 
 <span class="n">My_DELSIG</span>  <span class="o">=</span> <span class="n">ADC</span><span class="p">(</span><span class="s">&#39;DELSIG&#39;</span><span class="p">)</span>
+<span class="n">My_DELSIG</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
 
-<span class="n">out_3v3</span> <span class="o">=</span> <span class="n">DigitalOutput</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">out_3v3</span> <span class="o">=</span> <span class="n">digitalPin</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s">&#39;OUT&#39;</span><span class="p">)</span>
 <span class="n">out_3v3</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="k">try</span><span class="p">:</span>
         <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-                <span class="n">My_DELSIG</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
                 <span class="n">ADC_counts</span> <span class="o">=</span> <span class="n">My_DELSIG</span><span class="o">.</span><span class="n">Read</span><span class="p">()</span>
                 <span class="n">Voltage</span> <span class="o">=</span> <span class="n">My_DELSIG</span><span class="o">.</span><span class="n">CountsTo_Volts</span><span class="p">(</span><span class="n">ADC_counts</span><span class="p">)</span>
-                <span class="n">My_DELSIG</span><span class="o">.</span><span class="n">Stop</span><span class="p">()</span>
 
                 <span class="k">print</span><span class="p">(</span><span class="s">&#39;ADC OUTPUT: </span><span class="si">%d</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">ADC_counts</span><span class="p">)</span>
                 <span class="k">print</span><span class="p">(</span><span class="s">&#39;VOLTAGE:    </span><span class="si">%.3f</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">Voltage</span><span class="p">)</span>
@@ -94,7 +93,6 @@ code:</p>
 <div class="section" id="voltmeter-using-the-12-bit-successive-approximation-adc">
 <h2>Voltmeter using the 12-bit Successive Approximation ADC<a class="headerlink" href="#voltmeter-using-the-12-bit-successive-approximation-adc" title="Permalink to this headline">¶</a></h2>
 <p>This is the same concept as the previous example, except it is done in a totally different way using the SAR ADC. Here, we are using the <em>StartConvert()</em> and <em>StopConvert()</em> methods to manually control each conversion, instead of using <em>Read()</em> like in the above example, which hides that functionality.</p>
-<p>The program will also output the amount of time it took for the Pi to confirm a completed conversion from the RPiSoC (accounting for SPI transfer delay).</p>
 <p>Remember that the SAR ADC being used here is on P15[4] now, not P15[5] like in the previous example!</p>
 <p>code:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span>
@@ -103,7 +101,7 @@ code:</p>
 
 <span class="n">My_SAR_ADC</span> <span class="o">=</span> <span class="n">ADC</span><span class="p">(</span><span class="s">&#39;SAR0&#39;</span><span class="p">)</span>
 
-<span class="n">out_3v3</span> <span class="o">=</span> <span class="n">DigitalOutput</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">out_3v3</span> <span class="o">=</span> <span class="n">digitalPin</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s">&#39;OUT&#39;</span><span class="p">)</span>
 <span class="n">out_3v3</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="k">try</span><span class="p">:</span>
@@ -112,18 +110,15 @@ code:</p>
         <span class="c">#My_SAR_ADC.SetOffset(40)</span>
         <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">StartConvert</span><span class="p">()</span>
 
-        <span class="n">time_0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
         <span class="k">while</span> <span class="ow">not</span> <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">IsEndConversion</span><span class="p">():</span>
             <span class="k">pass</span>
-        <span class="n">time_final</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.05</span> <span class="c">#The Pi waits .1 seconds after the data transfer, so it must be accounted for</span>
-        <span class="n">conversion_time</span> <span class="o">=</span> <span class="n">time_final</span> <span class="o">-</span> <span class="n">time_0</span>
 
         <span class="n">Counts</span> <span class="o">=</span> <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">GetResult</span><span class="p">()</span>
         <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">StopConvert</span><span class="p">()</span>
         <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">Stop</span><span class="p">()</span>
 
         <span class="n">Volts</span> <span class="o">=</span> <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">CountsTo_Volts</span><span class="p">(</span><span class="n">Counts</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;ADC OUTPUT:</span><span class="se">\t</span><span class="s"> </span><span class="si">%d</span><span class="s"> </span><span class="se">\n</span><span class="s">VOLTAGE:</span><span class="se">\t</span><span class="s"> </span><span class="si">%.5f</span><span class="s"> Volts </span><span class="se">\n</span><span class="s">CONVERT TIME:</span><span class="se">\t</span><span class="s"> </span><span class="si">%.5f</span><span class="s"> seconds </span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">Counts</span><span class="p">,</span> <span class="n">Volts</span><span class="p">,</span> <span class="n">conversion_time</span><span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;ADC OUTPUT:</span><span class="se">\t</span><span class="s"> </span><span class="si">%d</span><span class="s"> </span><span class="se">\n</span><span class="s">VOLTAGE:</span><span class="se">\t</span><span class="s"> </span><span class="si">%.5f</span><span class="s"> Volts </span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">Counts</span><span class="p">,</span> <span class="n">Volts</span><span class="p">))</span>
 
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
 
@@ -196,12 +191,12 @@ period, comparison values, duty cycle, clock frequency, or wave frequency. These
 </div>
 <div class="section" id="simple-usage-of-digital-inputs-and-outputs">
 <h2>Simple usage of  digital inputs and outputs<a class="headerlink" href="#simple-usage-of-digital-inputs-and-outputs" title="Permalink to this headline">¶</a></h2>
-<p>To set this demo up, wire P2[0], P2[1], P5[0], and P5[1] to LEDs in series
+<p>To set this demo up, wire P12[0], P12[1], P5[0], and P5[1] to LEDs in series
 with a resistor. Also wire the outputs to one of the initialized inputs, in the following way:</p>
 <blockquote>
 <div><ul class="simple">
-<li>wire P2[0] to P6[0]</li>
-<li>wire P2[1] to P6[1]</li>
+<li>wire P12[0] to P4[0]</li>
+<li>wire P12[1] to P4[1]</li>
 <li>wire P5[0] to P5[4]</li>
 <li>wire P5[1] to P5[5]</li>
 </ul>
@@ -215,8 +210,8 @@ correlate with the LEDs (if wired in the way noted above)</p>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span>
 
-<span class="n">My_outputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">DigitalOutput</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">DigitalOutput</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">DigitalOutput</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">DigitalOutput</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">)]</span>
-<span class="n">My_inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">DigitalInput</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">DigitalInput</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">DigitalInput</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">DigitalInput</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)]</span>
+<span class="n">My_outputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">digitalPin</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s">&#39;OUT&#39;</span><span class="p">),</span> <span class="n">digitalPin</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s">&#39;OUT&#39;</span><span class="p">),</span> <span class="n">digitalPin</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s">&#39;OUT&#39;</span><span class="p">),</span> <span class="n">digitalPin</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s">&#39;OUT&#39;</span><span class="p">)]</span>
+<span class="n">My_inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">digitalPin</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s">&#39;IN&#39;</span><span class="p">),</span> <span class="n">digitalPin</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s">&#39;IN&#39;</span><span class="p">),</span> <span class="n">digitalPin</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="s">&#39;IN&#39;</span><span class="p">),</span> <span class="n">digitalPin</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="s">&#39;IN&#39;</span><span class="p">)]</span>
 
 <span class="k">try</span><span class="p">:</span> <span class="c">#exception handling</span>
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
@@ -291,9 +286,9 @@ held at a constant position.</p>
 
 <span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span>
 
-<span class="n">My_servo</span> <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">180</span><span class="p">)</span>
-<span class="n">My_other_servo</span> <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">180</span><span class="p">)</span>
-<span class="n">My_last_servo</span> <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">180</span><span class="p">)</span>
+<span class="n">My_servo</span> <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c">#simple init</span>
+<span class="n">My_other_servo</span> <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span><span class="mf">2.5</span><span class="p">)</span> <span class="c">#init with custom min and max pulse widths</span>
+<span class="n">My_last_servo</span> <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">180</span><span class="p">)</span> <span class="c"># init with custom min and max pulse widths, and custom min and max angles.</span>
 
 <span class="n">My_servo</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
 <span class="n">My_other_servo</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
@@ -301,7 +296,7 @@ held at a constant position.</p>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">Servo</span><span class="se">\t</span><span class="s">Period</span><span class="se">\t\t</span><span class="s">Pulse Width</span><span class="se">\n</span><span class="s">1    :</span><span class="se">\t</span><span class="si">%.2f</span><span class="s"> ms</span><span class="se">\t</span><span class="si">%.2f</span><span class="s"> ms</span><span class="se">\n</span><span class="s">2    :</span><span class="se">\t</span><span class="si">%.2f</span><span class="s"> ms</span><span class="se">\t</span><span class="si">%.2f</span><span class="s"> ms</span><span class="se">\n</span><span class="s">3    :</span><span class="se">\t</span><span class="si">%.2f</span><span class="s"> ms</span><span class="se">\t</span><span class="si">%.2f</span><span class="s"> ms</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="mf">1000.0</span><span class="o">/</span><span class="n">My_servo</span><span class="o">.</span><span class="n">servo_PWM</span><span class="o">.</span><span class="n">GetFrequency</span><span class="p">(),</span> <span class="n">My_servo</span><span class="o">.</span><span class="n">servo_PWM</span><span class="o">.</span><span class="n">GetDutyCycle</span><span class="p">()</span><span class="o">*</span><span class="p">(</span><span class="mf">10.0</span><span class="o">/</span><span class="n">My_servo</span><span class="o">.</span><span class="n">servo_PWM</span><span class="o">.</span><span class="n">GetFrequency</span><span class="p">()),</span> <span class="mf">1000.0</span><span class="o">/</span><span class="n">My_other_servo</span><span class="o">.</span><span class="n">servo_PWM</span><span class="o">.</span><span class="n">GetFrequency</span><span class="p">(),</span> <span class="n">My_other_servo</span><span class="o">.</span><span class="n">servo_PWM</span><span class="o">.</span><span class="n">GetDutyCycle</span><span class="p">()</span><span class="o">*</span><span class="p">(</span><span class="mf">10.0</span><span class="o">/</span><span class="n">My_other_servo</span><span class="o">.</span><span class="n">servo_PWM</span><span class="o">.</span><span class="n">GetFrequency</span><span class="p">()),</span> <span class="mf">1000.0</span><span class="o">/</span><span class="n">My_last_servo</span><span class="o">.</span><span class="n">servo_PWM</span><span class="o">.</span><span class="n">GetFrequency</span><span class="p">(),</span> <span class="n">My_last_servo</span><span class="o">.</span><span class="n">servo_PWM</span><span class="o">.</span><span class="n">GetDutyCycle</span><span class="p">()</span><span class="o">*</span><span class="p">(</span><span class="mf">10.0</span><span class="o">/</span><span class="n">My_last_servo</span><span class="o">.</span><span class="n">servo_PWM</span><span class="o">.</span><span class="n">GetFrequency</span><span class="p">())</span> <span class="p">))</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">Servo</span><span class="se">\t</span><span class="s">Period</span><span class="se">\t\t</span><span class="s">Pulse Width</span><span class="se">\n</span><span class="s">1    :</span><span class="se">\t</span><span class="si">%.2f</span><span class="s"> ms</span><span class="se">\t</span><span class="si">%.2f</span><span class="s"> ms</span><span class="se">\n</span><span class="s">2    :</span><span class="se">\t</span><span class="si">%.2f</span><span class="s"> ms</span><span class="se">\t</span><span class="si">%.2f</span><span class="s"> ms</span><span class="se">\n</span><span class="s">3    :</span><span class="se">\t</span><span class="si">%.2f</span><span class="s"> ms</span><span class="se">\t</span><span class="si">%.2f</span><span class="s"> ms</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="mf">1000.0</span><span class="o">/</span><span class="n">My_servo</span><span class="o">.</span><span class="n">servo_PWM</span><span class="o">.</span><span class="n">GetFrequency</span><span class="p">(),</span> <span class="n">My_servo</span><span class="o">.</span><span class="n">ReadPulse</span><span class="p">(),</span> <span class="mf">1000.0</span><span class="o">/</span><span class="n">My_other_servo</span><span class="o">.</span><span class="n">servo_PWM</span><span class="o">.</span><span class="n">GetFrequency</span><span class="p">(),</span> <span class="n">My_other_servo</span><span class="o">.</span><span class="n">ReadPulse</span><span class="p">(),</span> <span class="mf">1000.0</span><span class="o">/</span><span class="n">My_last_servo</span><span class="o">.</span><span class="n">servo_PWM</span><span class="o">.</span><span class="n">GetFrequency</span><span class="p">(),</span> <span class="n">My_last_servo</span><span class="o">.</span><span class="n">ReadPulse</span><span class="p">()</span> <span class="p">))</span>
 
         <span class="n">choice</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s">&#39;Change [P]ulse width or [A]ngle&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="s">&#39;P&#39;</span> <span class="ow">or</span> <span class="n">choice</span> <span class="o">==</span> <span class="s">&#39;p&#39;</span><span class="p">:</span>
@@ -384,12 +379,12 @@ held at a constant position.</p>
         <li class="right" >
           <a href="code.html" title="API modules"
              >previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.1.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.1.2 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2014, Embedit Electronics.
-      Last updated on Sep 14, 2014.
+      Last updated on Sep 25, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

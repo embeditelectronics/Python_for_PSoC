@@ -3,7 +3,28 @@ Revision History
 
 Version 1.1
 +++++++++++
-This version provides the RPi with a lot more functionality, and use of the API is intended to be more flexible than in the previous version.
+This version provides the Pi with a lot more functionality, and use of the API is intended to be more flexible than in the previous version.
+
+New to v1.1.2
+*************
+	In the RPiSoC code
+		- Removed the second SAR ADC and replaced it with a sequenced ADC, with 10 analog inputs. This allows for simplified use of analog pins, and gives 10 more.
+		- Removed Port 6 as a GPIO register so that more analog pins could be added
+		- PWM (and consequently servo) pins were moved from Port 3 to Port 6, so that Port 3 could be used for the new analog pins (Ports 0 and 3 have slightly better analog performance than the other ports)
+		- Changed the structure of the GPIO functionality enumeration. I concatenated all of the seperate GPIO registers into one register, and changed the packing and unpacking process of each transfer to contain the port, pin, command, and value to be written if applicable. 
+		- Added the ability to change drive modes to each GPIO at run time.
+	In module *rpisoc*
+		- Fixed the import structure so that both smbus and spidev aren't needed. This means you don't have to configure the Pi for I2C if you only intend to use SPI, or vice versa. 
+	In module *digital*
+		- Removed classes *DigitalInput* and *DigitalOutput*
+		- Added class *digitalPin* which allows one to instantiate any of the GPIO as input or output, or in any of several different drive modes if needed.
+	In module *analog*
+		- Added class *analogPin* which simplifies the process of getting an analog reading from an ADC, and it adds an aditional 10 analog inputs.
+	In class *Servo*
+		- Simplified instantiation. It is now only required to provide a servo location relative to Port 6.
+			* Pulse width and angle ranges can still be input, but they will simply default to standard values if only the servo location is given
+			* Minimum pulse width defaults to 1.0; maximum pulse width defaults to 2.0; minimum angle defaults to 0; maximum angle defaults to 180
+
 
 New to V1.1.1
 *************
@@ -50,8 +71,8 @@ New to V1.1.0
 	
 	In class *WaveDAC*
 		- Added a warning when the frequency might be out of range
-	New class *Servo*
-		- Added a servo class with the following methods:
+	In modeule *digital*
+		- Added class *Servo* with the following methods:
 			* SetPulse() : Sets a PWM pulse in milliseconds
 			* ReadPulse(): Gets the actual pulse in milliseconds that is being applied to the servo
 			* SetAngle() : sets the servomotor to a designated angle based on the user defined minimum angle, maximum angle, minimum pulse width, and maximum pulse width. 

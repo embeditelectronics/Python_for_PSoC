@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>API modules &mdash; RPiSoC Python API 1.1.1 documentation</title>
+    <title>API modules &mdash; RPiSoC Python API 1.1.2 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.1.1',
+        VERSION:     '1.1.2',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="RPiSoC Python API 1.1.1 documentation" href="index.html" />
+    <link rel="top" title="RPiSoC Python API 1.1.2 documentation" href="index.html" />
     <link rel="next" title="Example Projects!" href="examples.html" />
     <link rel="prev" title="Getting Started" href="getting_started.html" /> 
   </head>
@@ -43,7 +43,7 @@
         <li class="right" >
           <a href="getting_started.html" title="Getting Started"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.1.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.1.2 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -293,141 +293,6 @@ be initialized.</dd>
 </div>
 <div class="section" id="module-digital">
 <span id="digital-py"></span><h2>digital.py<a class="headerlink" href="#module-digital" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="digital.DigitalInput">
-<em class="property">class </em><tt class="descclassname">digital.</tt><tt class="descname">DigitalInput</tt><big>(</big><em>Port</em>, <em>Pin</em><big>)</big><a class="headerlink" href="#digital.DigitalInput" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt><strong>Description:</strong></dt>
-<dd><p class="first">Provides functionality for use of the digital inputs defined on the RPiSoC. Define digital input objects in the following
-way:</p>
-<div class="last highlight-python"><div class="highlight"><pre><span class="n">My_input</span> <span class="o">=</span> <span class="n">DigitalInput</span><span class="p">(</span><span class="n">Port</span><span class="p">,</span><span class="n">Pin</span><span class="p">)</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><dl class="first docutils">
-<dt><em>Port</em>: Port on the RPiSoC.</dt>
-<dd><ul class="first last simple">
-<li>Inputs are chosen by default as Ports <em>4, 5,</em> and <em>6.</em></li>
-<li>Port <em>4</em> does not contain Pin <em>7</em> (it is reserved)</li>
-<li>Only Pins <em>4-7</em> are used on Port <em>5</em>, because it is split between input and output</li>
-<li>Port 5 uses 3.3V logic instead of 5V.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><em>Pin</em>: Pin relative to the chosen Port.</dt>
-<dd><ul class="first last simple">
-<li>Valid arguments are between <em>0</em> and <em>7</em>, unless noted to have a Port specific exception</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<dl class="method">
-<dt id="digital.DigitalInput.Read">
-<tt class="descname">Read</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.DigitalInput.Read" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt><strong>Description:</strong></dt>
-<dd>Returns a boolean value (True/False) which correlates to the current state of the input.</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="digital.DigitalOutput">
-<em class="property">class </em><tt class="descclassname">digital.</tt><tt class="descname">DigitalOutput</tt><big>(</big><em>Port</em>, <em>Pin</em><big>)</big><a class="headerlink" href="#digital.DigitalOutput" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt><strong>Description:</strong></dt>
-<dd><p class="first">This class provides functionality for use of the digital outputs defined on the RPiSoC. Define digital output objects in the following
-way:</p>
-<div class="last highlight-python"><div class="highlight"><pre><span class="n">My_output</span> <span class="o">=</span> <span class="n">DigitalOutput</span><span class="p">(</span><span class="n">Port</span><span class="p">,</span><span class="n">Pin</span><span class="p">)</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-<p><strong>Parameters:</strong></p>
-<ul>
-<li><dl class="first docutils">
-<dt><em>Port:</em> Port on the RPiSoC.</dt>
-<dd><ul class="first last simple">
-<li>Outputs are chosen by default as Ports <em>2, 5,</em> and <em>12</em></li>
-<li>By default, only pins <em>0-3</em> are used on Port <em>5</em> because it is split between input and output.</li>
-<li>Port <em>5</em> uses 3.3V logic instead of 5V.</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><em>Pin:</em> Pin relative to the chosen Port</dt>
-<dd><ul class="first last simple">
-<li>Valid arguments are between <em>0</em> and <em>7</em>, unless noted to have a Port specific exception</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<dl class="method">
-<dt id="digital.DigitalOutput.Read">
-<tt class="descname">Read</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.DigitalOutput.Read" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt><strong>Description:</strong></dt>
-<dd>Returns a boolean value (True/False) which correlates to the current state of the output.</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="digital.DigitalOutput.Toggle">
-<tt class="descname">Toggle</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.DigitalOutput.Toggle" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt><strong>Description:</strong></dt>
-<dd><ul class="first last simple">
-<li>Toggles the state of the specified output and then writes the new value to the RPiSoC.</li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="digital.DigitalOutput.Write">
-<tt class="descname">Write</tt><big>(</big><em>val</em><big>)</big><a class="headerlink" href="#digital.DigitalOutput.Write" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt><strong>Description:</strong></dt>
-<dd><ul class="first last">
-<li><p class="first">Writes a new value to the output port, without affecting the other pins attached to that port.</p>
-</li>
-<li><dl class="first docutils">
-<dt>Before committing the write operation, this function will confirm that the new value is different than the previous value.</dt>
-<dd><ul class="first last simple">
-<li>If it is not different, meaning the output is already the correct value, it will not do anything.</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-<p><strong>Parameters:</strong></p>
-<blockquote>
-<div><ul>
-<li><dl class="first docutils">
-<dt><em>val:</em> Value to be written to the initialized Pin object.</dt>
-<dd><ul class="first last simple">
-<li>Accepts only <em>1</em> or <em>0</em> for writing the output HIGH or LOW, respectively.</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</div></blockquote>
-</dd></dl>
-
-</dd></dl>
-
 <dl class="class">
 <dt id="digital.PWM">
 <em class="property">class </em><tt class="descclassname">digital.</tt><tt class="descname">PWM</tt><big>(</big><em>portNumber</em><big>)</big><a class="headerlink" href="#digital.PWM" title="Permalink to this definition">¶</a></dt>
@@ -729,15 +594,14 @@ It will try to maintain the clock rate, unless it is impossible without compromi
 
 <dl class="class">
 <dt id="digital.Servo">
-<em class="property">class </em><tt class="descclassname">digital.</tt><tt class="descname">Servo</tt><big>(</big><em>servo_id</em>, <em>min_pulse</em>, <em>max_pulse</em>, <em>min_angle</em>, <em>max_angle</em><big>)</big><a class="headerlink" href="#digital.Servo" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">digital.</tt><tt class="descname">Servo</tt><big>(</big><em>servo_id</em>, <em>min_pulse=1.0</em>, <em>max_pulse=2.0</em>, <em>min_angle=0</em>, <em>max_angle=180</em><big>)</big><a class="headerlink" href="#digital.Servo" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt><strong>Description:</strong></dt>
 <dd><p class="first">Create a servo object with the given parameter set. Define PWM objects in the following
 way:</p>
-<div class="last highlight-python"><div class="highlight"><pre><span class="n">My_servo</span>       <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">)</span>
-<span class="n">My_other_servo</span> <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">)</span>
-<span class="sd">&#39;&#39;&#39;etc etc...    &#39;&#39;&#39;</span>
-<span class="n">My_last_servo</span>  <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">)</span>
+<div class="last highlight-python"><div class="highlight"><pre><span class="n">My_servo</span> <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c">#simple init</span>
+<span class="n">My_other_servo</span> <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span><span class="mf">2.5</span><span class="p">)</span> <span class="c">#init with custom min and max pulse widths</span>
+<span class="n">My_last_servo</span> <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">180</span><span class="p">)</span> <span class="c"># init with custom min and max pulse widths, and custom min and max angles.</span>
 </pre></div>
 </div>
 </dd>
@@ -745,12 +609,16 @@ way:</p>
 <p><strong>Parameters:</strong></p>
 <blockquote>
 <div><ul>
-<li><p class="first"><em>servo_id:</em> the pin which the servo will be connected to, relative to port 3 on the RPiSoC</p>
+<li><dl class="first docutils">
+<dt><em>servo_id:</em> the pin which the servo will be connected to, relative to port 6 on the RPiSoC</dt>
+<dd><p class="first last"><a href="#id1"><span class="problematic" id="id2">*</span></a>For simple instantiation, only this parameter is required; the others are optional.</p>
+</dd>
+</dl>
 </li>
 <li><dl class="first docutils">
-<dt><em>min_pulse:</em> the pulse width necessary to obtain angular position min_angle.</dt>
+<dt><em>min_pulse:</em> the pulse width necessary to obtain angular position min_angle. Find an appropriate value through calibration.</dt>
 <dd><ul class="first simple">
-<li><em>max_pulse:</em> the pulse width necessary to obtain angular position max_angle.</li>
+<li><em>max_pulse:</em> the pulse width necessary to obtain angular position max_angle. Find an appropriate value through calibration.</li>
 </ul>
 <ul class="last simple">
 <li>Pulse widths must be positive and greater than zero.</li>
@@ -773,8 +641,8 @@ way:</p>
 </div></blockquote>
 <dl class="docutils">
 <dt><strong>Note:</strong></dt>
-<dd>A servo with servo_id, n, will make PWM(n) unnavailable, since the servo controller is implemented using that PWM object. For fine control over
-that PWM, you can expose the object using My_servo.servo_PWM, and then you can use any of the PWM methods using My_servo.servo_PWM.method(). This is
+<dd>A servo with servo_id, n, will make PWM(n) unavailable, since the servo controller is implemented using that PWM object. For fine control over
+that PWM, you can expose the object using My_servo.servo_PWM, and then you can use any of the PWM methods using My_servo.servo_PWM.PWM_method(). This is
 advised against though, because servos are very particular about the construction of their data signals. If you change the wrong parameter of the PWM signal, you
 might damage the servo.</dd>
 </dl>
@@ -860,6 +728,145 @@ set the position of the servo.</p>
 <dt><strong>Side Effects:</strong></dt>
 <dd>This may cause the servo to move slightly out of position</dd>
 </dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="digital.digitalPin">
+<em class="property">class </em><tt class="descclassname">digital.</tt><tt class="descname">digitalPin</tt><big>(</big><em>PORT</em>, <em>PIN</em>, <em>CONFIG</em><big>)</big><a class="headerlink" href="#digital.digitalPin" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd><p class="first">Provides functionality for use of the GPIO on the RPiSoC as a digital input or output, with a number of different drive mode configurations. Define a digitalPin object in the following
+way:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="n">My_input</span> <span class="o">=</span> <span class="n">digitalPin</span><span class="p">(</span><span class="n">Port</span><span class="p">,</span><span class="n">Pin</span><span class="p">,</span><span class="s">&#39;IN&#39;</span><span class="p">)</span>
+<span class="n">My_output</span> <span class="o">=</span> <span class="n">digitalPin</span><span class="p">(</span><span class="n">Port</span><span class="p">,</span><span class="n">Pin</span><span class="p">,</span><span class="s">&#39;OUT&#39;</span><span class="p">)</span>
+<span class="sd">&#39;&#39;&#39;or more generally&#39;&#39;&#39;</span>
+<span class="n">My_pin</span> <span class="o">=</span> <span class="n">digitalPin</span><span class="p">(</span><span class="n">Port</span><span class="p">,</span><span class="n">Pin</span><span class="p">,</span><span class="n">DRIVE_MODE</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><dl class="first docutils">
+<dt><em>PORT</em>: Port on the RPiSoC.</dt>
+<dd><ul class="first last simple">
+<li>GPIO Ports are chosen by default as Ports <em>2, 4, 5</em> and <em>12.</em></li>
+<li>Port <em>4</em> does not contain Pin <em>7</em> (it is reserved)</li>
+<li>Port 5 uses 3.3V logic instead of 5V.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><em>PIN</em>: Pin relative to the chosen Port.</dt>
+<dd><ul class="first last simple">
+<li>Valid arguments are between <em>0</em> and <em>7</em>, unless noted to have a Port specific exception</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><em>CONFIG:</em> drive mode of the pin. Valid choices are:</dt>
+<dd><ul class="first last simple">
+<li>&#8216;IN&#8217; - sets pin as input</li>
+<li>&#8216;OUT&#8217; - sets pin as output</li>
+<li>&#8216;PULL_UP&#8217; - sets pin as resisitive pullup</li>
+<li>&#8216;PULL_DWN&#8217; - sets pin as resistive pulldown</li>
+<li>&#8216;OPEN_DRAIN_LO&#8217; - sets pin as open-drain (drives low)</li>
+<li>&#8216;OPEN_DRAIN_HI&#8217; - sets pin as open-drain (drives high)</li>
+<li>&#8216;PULL_UP_DWN&#8217; - sets pin as resistive pull-up/down</li>
+<li>&#8216;HIGH_Z_DIG&#8217; - sets pin as high impedence (digital)</li>
+<li>&#8216;STRONG_DRIVE&#8217; - sets pin as strong drive</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="digital.digitalPin.Configure">
+<tt class="descname">Configure</tt><big>(</big><em>CONFIG</em><big>)</big><a class="headerlink" href="#digital.digitalPin.Configure" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Sets the drive mode of the pin as input (high impedence digital), resistive pullup, resistive pull down, open drain (drives low), open drain (drives high), output (strong drive), or resistive pull-up/down</dd>
+</dl>
+<p><strong>Parameters:</strong></p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt><em>CONFIG:</em> drive mode of the pin. Valid choices are:</dt>
+<dd><ul class="first last simple">
+<li>&#8216;IN&#8217; - sets pin as input</li>
+<li>&#8216;OUT&#8217; - sets pin as output</li>
+<li>&#8216;PULL_UP&#8217; - sets pin as resisitive pullup</li>
+<li>&#8216;PULL_DWN&#8217; - sets pin as resistive pulldown</li>
+<li>&#8216;OPEN_DRAIN_LO&#8217; - sets pin as open-drain (drives low)</li>
+<li>&#8216;OPEN_DRAIN_HI&#8217; - sets pin as open-drain (drives high)</li>
+<li>&#8216;PULL_UP_DWN&#8217; - sets pin as resistive pull-up/down</li>
+<li>&#8216;HIGH_Z_DIG&#8217; - sets pin as high impedence (digital)</li>
+<li>&#8216;STRONG_DRIVE&#8217; - sets pin as strong drive</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.digitalPin.Read">
+<tt class="descname">Read</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.digitalPin.Read" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Returns a boolean value (True/False) which correlates to the current state of the input.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.digitalPin.Toggle">
+<tt class="descname">Toggle</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.digitalPin.Toggle" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd><ul class="first last simple">
+<li>Toggles the state of the specified output and then writes the new value to the RPiSoC.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.digitalPin.Write">
+<tt class="descname">Write</tt><big>(</big><em>val</em><big>)</big><a class="headerlink" href="#digital.digitalPin.Write" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd><ul class="first last">
+<li><p class="first">Writes a new value to the output port, without affecting the other pins attached to that port.</p>
+</li>
+<li><dl class="first docutils">
+<dt>Before committing the write operation, this function will confirm that the new value is different than the previous value.</dt>
+<dd><ul class="first last simple">
+<li>If it is not different, meaning the output is already the correct value, it will not do anything.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<p><strong>Parameters:</strong></p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt><em>val:</em> Value to be written to the initialized Pin object.</dt>
+<dd><ul class="first last simple">
+<li>Accepts only <em>1</em> or <em>0</em> for writing the output HIGH or LOW, respectively.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
 </dd></dl>
 
 </dd></dl>
@@ -1042,7 +1049,7 @@ for another 6 + <em>resolution</em> clock cycles. You may need add a delay of th
 <tt class="descname">StartConvert</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.ADC.StartConvert" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt><strong>Description:</strong></dt>
-<dd>Forces the ADC to initialize a conversion. This is handled internally for the Delsig ADC, using the <a href="#id1"><span class="problematic" id="id2">*</span></a>Read()*function, but it is kept seperate for the SAR. It can be done seperately for the Delsig as well, if desired.</dd>
+<dd>Forces the ADC to initialize a conversion. This is handled internally for the Delsig ADC, using the <a href="#id3"><span class="problematic" id="id4">*</span></a>Read()*function, but it is kept seperate for the SAR. It can be done seperately for the Delsig as well, if desired.</dd>
 </dl>
 </dd></dl>
 
@@ -1607,6 +1614,99 @@ restart the WaveDAC8 following a Stop() call, the current component parameter se
 
 </dd></dl>
 
+<dl class="class">
+<dt id="analog.analogPin">
+<em class="property">class </em><tt class="descclassname">analog.</tt><tt class="descname">analogPin</tt><big>(</big><em>PIN</em><big>)</big><a class="headerlink" href="#analog.analogPin" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd><p class="first">Provides functionality for use of the analog pins exposed on the RPiSoC. Define an analogPin object in the following
+way:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="n">My_analog_pin</span> <span class="o">=</span> <span class="n">analogPin</span><span class="p">(</span><span class="n">PIN</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><dl class="first docutils">
+<dt><em>PIN</em>: The analog pin number</dt>
+<dd><ul class="first last simple">
+<li>Valid arguments are between <em>0</em> and <em>9</em></li>
+<li>PINs <em>0-7</em> are relative to Port 3. So PIN = 0 an analog pin on Port 3 Pin 0 (P3[0]), and PIN = 7 is on Port 3 Pin 7 (P3[7])</li>
+<li>PIN <em>8</em> is on P0[3]</li>
+<li>PIN <em>9</em> is on P0[7]</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="analog.analogPin.Read">
+<tt class="descname">Read</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.analogPin.Read" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Reads the specified analog pin</dd>
+<dt><strong>Returns:</strong></dt>
+<dd>Value in <em>counts</em> which represents the digital value after an A/D conversion on the specified pin. The voltage the is represented by the count value will depend on the resolution set by the SetResolution() method</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="analog.analogPin.ReadVolts">
+<tt class="descname">ReadVolts</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.analogPin.ReadVolts" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Reads the specified analog pin and converts that digital reading to a voltage in Volts.</dd>
+<dt><strong>Returns:</strong></dt>
+<dd>Value in <em>Volts</em> which is being applied to the specified analog pin. The resolution of the ADC does not affect this method; the conversion process accounts for the ADC resolution.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="analog.analogPin.SetOffset">
+<tt class="descname">SetOffset</tt><big>(</big><em>counts</em><big>)</big><a class="headerlink" href="#analog.analogPin.SetOffset" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Sets an offset on the ADC which is used by the CountsTo_Volts function. It will subtract the given offset before making the conversion.</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><ul class="first last simple">
+<li><em>offset</em>: ADC Value in <em>counts</em>, which will be used by the <em>CountsTo_Volts()</em> function by subtracting the given offset before making the conversion.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="analog.analogPin.SetResolution">
+<tt class="descname">SetResolution</tt><big>(</big><em>resolution</em><big>)</big><a class="headerlink" href="#analog.analogPin.SetResolution" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd><ul class="first last simple">
+<li>This function sets the resolution of ALL analogPin objects. The resolution is defaulted to 12.</li>
+</ul>
+</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt><em>resolution:</em> An integer value, in bits, that represents the new resolution of the SAR ADC.</dt>
+<dd><ul class="first last simple">
+<li>Valid entries are <em>8, 10, or 12.</em></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt><strong>Side Effects:</strong></dt>
+<dd><ul class="first last simple">
+<li>The ADC resolution cannot be changed during a conversion cycle. The recommended bestpractice is to stop conversions with <em>Stop()</em> before changint the resolution, and then restarting with <em>Start().</em> If you call <em>SetResolution()</em> during a conversion, the resolution will not change until the current conversion is complete. Data will not be available in the new resolution for another 6 + <em>resolution</em> clock cycles. You may need add a delay of this number of clock cycles after <em>SetResolution()</em> is called before data is valid again.</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <p><em>Code author: Brian Bradley &lt;<a class="reference external" href="mailto:embedit&#37;&#52;&#48;embeditelectronics&#46;com">embedit<span>&#64;</span>embeditelectronics<span>&#46;</span>com</a>&gt;</em></p>
 <p><em>Section author: Brian Bradley &lt;<a class="reference external" href="mailto:embedit&#37;&#52;&#48;embeditelectronics&#46;com">embedit<span>&#64;</span>embeditelectronics<span>&#46;</span>com</a>&gt;</em></p>
 </div>
@@ -1674,12 +1774,12 @@ restart the WaveDAC8 following a Stop() call, the current component parameter se
         <li class="right" >
           <a href="getting_started.html" title="Getting Started"
              >previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.1.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.1.2 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2014, Embedit Electronics.
-      Last updated on Sep 14, 2014.
+      Last updated on Sep 25, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Revision History &mdash; RPiSoC Python API 1.1.1 documentation</title>
+    <title>Revision History &mdash; RPiSoC Python API 1.1.2 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.1.1',
+        VERSION:     '1.1.2',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="RPiSoC Python API 1.1.1 documentation" href="index.html" />
+    <link rel="top" title="RPiSoC Python API 1.1.2 documentation" href="index.html" />
     <link rel="prev" title="Example Projects!" href="examples.html" /> 
   </head>
   <body>
@@ -39,7 +39,7 @@
         <li class="right" >
           <a href="examples.html" title="Example Projects!"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.1.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.1.2 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -52,7 +52,52 @@
 <h1>Revision History<a class="headerlink" href="#revision-history" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="version-1-1">
 <h2>Version 1.1<a class="headerlink" href="#version-1-1" title="Permalink to this headline">¶</a></h2>
-<p>This version provides the RPi with a lot more functionality, and use of the API is intended to be more flexible than in the previous version.</p>
+<p>This version provides the Pi with a lot more functionality, and use of the API is intended to be more flexible than in the previous version.</p>
+<div class="section" id="new-to-v1-1-2">
+<h3>New to v1.1.2<a class="headerlink" href="#new-to-v1-1-2" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><dl class="docutils">
+<dt>In the RPiSoC code</dt>
+<dd><ul class="first last simple">
+<li>Removed the second SAR ADC and replaced it with a sequenced ADC, with 10 analog inputs. This allows for simplified use of analog pins, and gives 10 more.</li>
+<li>Removed Port 6 as a GPIO register so that more analog pins could be added</li>
+<li>PWM (and consequently servo) pins were moved from Port 3 to Port 6, so that Port 3 could be used for the new analog pins (Ports 0 and 3 have slightly better analog performance than the other ports)</li>
+<li>Changed the structure of the GPIO functionality enumeration. I concatenated all of the seperate GPIO registers into one register, and changed the packing and unpacking process of each transfer to contain the port, pin, command, and value to be written if applicable.</li>
+<li>Added the ability to change drive modes to each GPIO at run time.</li>
+</ul>
+</dd>
+<dt>In module <em>rpisoc</em></dt>
+<dd><ul class="first last simple">
+<li>Fixed the import structure so that both smbus and spidev aren&#8217;t needed. This means you don&#8217;t have to configure the Pi for I2C if you only intend to use SPI, or vice versa.</li>
+</ul>
+</dd>
+<dt>In module <em>digital</em></dt>
+<dd><ul class="first last simple">
+<li>Removed classes <em>DigitalInput</em> and <em>DigitalOutput</em></li>
+<li>Added class <em>digitalPin</em> which allows one to instantiate any of the GPIO as input or output, or in any of several different drive modes if needed.</li>
+</ul>
+</dd>
+<dt>In module <em>analog</em></dt>
+<dd><ul class="first last simple">
+<li>Added class <em>analogPin</em> which simplifies the process of getting an analog reading from an ADC, and it adds an aditional 10 analog inputs.</li>
+</ul>
+</dd>
+<dt>In class <em>Servo</em></dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Simplified instantiation. It is now only required to provide a servo location relative to Port 6.</dt>
+<dd><ul class="first last simple">
+<li>Pulse width and angle ranges can still be input, but they will simply default to standard values if only the servo location is given</li>
+<li>Minimum pulse width defaults to 1.0; maximum pulse width defaults to 2.0; minimum angle defaults to 0; maximum angle defaults to 180</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</div>
 <div class="section" id="new-to-v1-1-1">
 <h3>New to V1.1.1<a class="headerlink" href="#new-to-v1-1-1" title="Permalink to this headline">¶</a></h3>
 <blockquote>
@@ -129,10 +174,10 @@
 <li>Added a warning when the frequency might be out of range</li>
 </ul>
 </dd>
-<dt>New class <em>Servo</em></dt>
+<dt>In modeule <em>digital</em></dt>
 <dd><ul class="first last">
 <li><dl class="first docutils">
-<dt>Added a servo class with the following methods:</dt>
+<dt>Added class <em>Servo</em> with the following methods:</dt>
 <dd><ul class="first last simple">
 <li>SetPulse() : Sets a PWM pulse in milliseconds</li>
 <li>ReadPulse(): Gets the actual pulse in milliseconds that is being applied to the servo</li>
@@ -182,6 +227,7 @@
   <ul>
 <li><a class="reference internal" href="#">Revision History</a><ul>
 <li><a class="reference internal" href="#version-1-1">Version 1.1</a><ul>
+<li><a class="reference internal" href="#new-to-v1-1-2">New to v1.1.2</a></li>
 <li><a class="reference internal" href="#new-to-v1-1-1">New to V1.1.1</a></li>
 <li><a class="reference internal" href="#new-to-v1-1-0">New to V1.1.0</a></li>
 </ul>
@@ -228,12 +274,12 @@
         <li class="right" >
           <a href="examples.html" title="Example Projects!"
              >previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.1.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.1.2 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2014, Embedit Electronics.
-      Last updated on Sep 14, 2014.
+      Last updated on Sep 25, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

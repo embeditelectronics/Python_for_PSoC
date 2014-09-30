@@ -23,16 +23,15 @@ code::
 	RPiSoC('SPI') 
 
 	My_DELSIG  = ADC('DELSIG')
+	My_DELSIG.Start()
 
-	out_3v3 = DigitalOutput(5,0) 
+	out_3v3 = digitalPin(5,0,'OUT') 
 	out_3v3.Write(1)
 
 	try: 
 		while True:
-			My_DELSIG.Start()
 			ADC_counts = My_DELSIG.Read()
 			Voltage = My_DELSIG.CountsTo_Volts(ADC_counts)
-			My_DELSIG.Stop()
 
 			print('ADC OUTPUT: %d' %ADC_counts)
 			print('VOLTAGE:    %.3f' %Voltage)
@@ -45,8 +44,6 @@ Voltmeter using the 12-bit Successive Approximation ADC
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++
 This is the same concept as the previous example, except it is done in a totally different way using the SAR ADC. Here, we are using the *StartConvert()* and *StopConvert()* methods to manually control each conversion, instead of using *Read()* like in the above example, which hides that functionality. 
 
-The program will also output the amount of time it took for the Pi to confirm a completed conversion from the RPiSoC (accounting for SPI transfer delay). 
-
 Remember that the SAR ADC being used here is on P15[4] now, not P15[5] like in the previous example!
 
 code::
@@ -57,7 +54,7 @@ code::
 
     My_SAR_ADC = ADC('SAR0')
 
-    out_3v3 = DigitalOutput(5,0)
+    out_3v3 = digitalPin(5,0,'OUT')
     out_3v3.Write(1)
 
     try:
@@ -66,18 +63,15 @@ code::
             #My_SAR_ADC.SetOffset(40)
             My_SAR_ADC.StartConvert()
 
-            time_0 = time.time()
             while not My_SAR_ADC.IsEndConversion():
                 pass
-            time_final = time.time() - 0.05 #The Pi waits .1 seconds after the data transfer, so it must be accounted for
-            conversion_time = time_final - time_0
 
             Counts = My_SAR_ADC.GetResult()
             My_SAR_ADC.StopConvert()
             My_SAR_ADC.Stop()
 
             Volts = My_SAR_ADC.CountsTo_Volts(Counts)
-            print('ADC OUTPUT:\t %d \nVOLTAGE:\t %.5f Volts \nCONVERT TIME:\t %.5f seconds \n' %(Counts, Volts, conversion_time))
+            print('ADC OUTPUT:\t %d \nVOLTAGE:\t %.5f Volts \n' %(Counts, Volts))
 
             time.sleep(0.1)
 
@@ -155,10 +149,10 @@ code::
 
 Simple usage of  digital inputs and outputs
 +++++++++++++++++++++++++++++++++++++++++++
-To set this demo up, wire P2[0], P2[1], P5[0], and P5[1] to LEDs in series
+To set this demo up, wire P12[0], P12[1], P5[0], and P5[1] to LEDs in series
 with a resistor. Also wire the outputs to one of the initialized inputs, in the following way:
-	- wire P2[0] to P6[0]
-	- wire P2[1] to P6[1]
+	- wire P12[0] to P4[0]
+	- wire P12[1] to P4[1]
 	- wire P5[0] to P5[4]
 	- wire P5[1] to P5[5]
 
@@ -174,8 +168,8 @@ code::
     import os
     RPiSoC('SPI')
 
-    My_outputs = [DigitalOutput(2,0), DigitalOutput(2,1), DigitalOutput(5,0), DigitalOutput(5,1)]
-    My_inputs = [DigitalInput(6,0), DigitalInput(6,1), DigitalInput(5,4), DigitalInput(5,5)]
+    My_outputs = [digitalPin(12,0,'OUT'), digitalPin(12,1,'OUT'), digitalPin(5,0,'OUT'), digitalPin(5,1,'OUT')]
+    My_inputs = [digitalPin(4,0,'IN'), digitalPin(4,1,'IN'), digitalPin(5,4,'IN'), digitalPin(5,5,'IN')]
 
     try: #exception handling
         while True:
@@ -256,9 +250,9 @@ code::
 
     RPiSoC('SPI')
 
-    My_servo = Servo(0,1.0,2.5,0,180)
-    My_other_servo = Servo(1,1.0,2.5,0,180)
-    My_last_servo = Servo(2,1.0,2.5,0,180)
+    My_servo = Servo(0) #simple init
+    My_other_servo = Servo(1,1.2,2.5) #init with custom min and max pulse widths
+    My_last_servo = Servo(2,1.0,2.5,0,180) # init with custom min and max pulse widths, and custom min and max angles.
 
     My_servo.Start()
     My_other_servo.Start()
@@ -266,7 +260,7 @@ code::
 
     try:
         while True:
-            print('\nServo\tPeriod\t\tPulse Width\n1    :\t%.2f ms\t%.2f ms\n2    :\t%.2f ms\t%.2f ms\n3    :\t%.2f ms\t%.2f ms\n' %(1000.0/My_servo.servo_PWM.GetFrequency(), My_servo.servo_PWM.GetDutyCycle()*(10.0/My_servo.servo_PWM.GetFrequency()), 1000.0/My_other_servo.servo_PWM.GetFrequency(), My_other_servo.servo_PWM.GetDutyCycle()*(10.0/My_other_servo.servo_PWM.GetFrequency()), 1000.0/My_last_servo.servo_PWM.GetFrequency(), My_last_servo.servo_PWM.GetDutyCycle()*(10.0/My_last_servo.servo_PWM.GetFrequency()) ))
+            print('\nServo\tPeriod\t\tPulse Width\n1    :\t%.2f ms\t%.2f ms\n2    :\t%.2f ms\t%.2f ms\n3    :\t%.2f ms\t%.2f ms\n' %(1000.0/My_servo.servo_PWM.GetFrequency(), My_servo.ReadPulse(), 1000.0/My_other_servo.servo_PWM.GetFrequency(), My_other_servo.ReadPulse(), 1000.0/My_last_servo.servo_PWM.GetFrequency(), My_last_servo.ReadPulse() ))
 
             choice = raw_input('Change [P]ulse width or [A]ngle')
             if choice == 'P' or choice == 'p':
