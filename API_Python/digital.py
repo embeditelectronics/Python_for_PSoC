@@ -195,7 +195,6 @@ class PWM(object):
 
         self.max_num = pow(2,self.resolution_in_bits) - 1
         self.period = self.ReadPeriod()
-        self.WriteCompare(4500)
         self.cmp = self.ReadCompare() 
 
         if self.address in RPiSoC.REGISTERS_IN_USE:
