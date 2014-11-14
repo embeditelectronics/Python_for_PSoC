@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>API modules &mdash; RPiSoC Python API 1.1.2 documentation</title>
+    <title>API modules &mdash; RPiSoC Python API 1.2.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.1.2',
+        VERSION:     '1.2.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,8 +23,8 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="RPiSoC Python API 1.1.2 documentation" href="index.html" />
-    <link rel="next" title="Example Projects!" href="examples.html" />
+    <link rel="top" title="RPiSoC Python API 1.2.0 documentation" href="index.html" />
+    <link rel="next" title="Making Changes to the API" href="making_changes.html" />
     <link rel="prev" title="Getting Started" href="getting_started.html" /> 
   </head>
   <body>
@@ -38,12 +38,12 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="examples.html" title="Example Projects!"
+          <a href="making_changes.html" title="Making Changes to the API"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="getting_started.html" title="Getting Started"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.1.2 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.2.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -59,13 +59,10 @@
 <h2>rpisoc.py<a class="headerlink" href="#rpisoc-py" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
 <dt>This is the highest level module import for the RPiSoC API, which the user should</dt>
-<dd>import into their scripts for full use of it.</dd>
+<dd>import into their scripts for full use of it. It is used to keep records of some globally used variables between all classes.</dd>
 </dl>
-<p>It is used to keep records of some globally used variables between all classes.</p>
 <p>It is also used to send data to, and receive data from the RPiSoC using
-a user chosen communication protocol. <em>V1.1</em> supports SPI and I2C communication, but
-structure for easy integration of different protocols is in place,
-<em>V1.2</em> will roll in UART support.</p>
+a user chosen communication protocol.</p>
 <p>At the beginning of each script, insert the following
 two lines:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span> <span class="c">#This will handle dependencies</span>
@@ -73,7 +70,66 @@ two lines:</p>
 <span class="c">#or RPiSoC(&#39;I2C&#39;)</span>
 </pre></div>
 </div>
-<span class="target" id="module-rpisoc"></span><dl class="class">
+<span class="target" id="module-rpisoc"></span><p>This program is the highest level module for the RPiSoC API, which the user should
+import into their scripts for full use of the API.</p>
+<dl class="function">
+<dt id="rpisoc.Check_Analog">
+<tt class="descclassname">rpisoc.</tt><tt class="descname">Check_Analog</tt><big>(</big><big>)</big><a class="headerlink" href="#rpisoc.Check_Analog" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Used to collect analog data from the RPiSoC during run-time</dd>
+<dt><strong>Returns:</strong></dt>
+<dd><em>data:</em> The number of DACs, ADCs, analog pins, and capsense pins found. Refer to the code for unpacking process.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="rpisoc.Check_GPIO">
+<tt class="descclassname">rpisoc.</tt><tt class="descname">Check_GPIO</tt><big>(</big><em>block</em><big>)</big><a class="headerlink" href="#rpisoc.Check_GPIO" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Used to collect GPIO data from the RPiSoC during run-time</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><dl class="first last docutils">
+<dt><em>block:</em> describes which &#8220;block&#8221; of GPIO you are making a queery for.</dt>
+<dd><ul class="first last simple">
+<li>block = 0 is for ports 0, 2, and 3</li>
+<li>block = 1 is for ports 4, 5, and 6</li>
+<li>block = 2 is for ports 12 and 15</li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt><strong>Returns:</strong></dt>
+<dd><em>data:</em> A binary number, each bit of which represents the presense of a particular pin.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="rpisoc.Check_PWM">
+<tt class="descclassname">rpisoc.</tt><tt class="descname">Check_PWM</tt><big>(</big><big>)</big><a class="headerlink" href="#rpisoc.Check_PWM" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Used to collect PWM data from the RPiSoC during run-time</dd>
+<dt><strong>Returns:</strong></dt>
+<dd><em>data:</em> The number of PWM blocks found on the RPiSoC(data&gt;&gt;4), and the number of unique clocks driving them (first 4 bits).</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="rpisoc.Get_Clocks">
+<tt class="descclassname">rpisoc.</tt><tt class="descname">Get_Clocks</tt><big>(</big><em>clk_num</em><big>)</big><a class="headerlink" href="#rpisoc.Get_Clocks" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Used to get information about the clocks driving the PWM&#8217;s, specifically their frequency and default divider, as well as their assigned tag number for matching.</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><em>clk_num:</em> The number of clocks in the build, which is discovered from the Check_PWM() function.</dd>
+<dt><strong>Returns:</strong></dt>
+<dd><em>clk_dat:</em> a list containing raw data for each individual clock.</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
 <dt id="rpisoc.I2C">
 <em class="property">class </em><tt class="descclassname">rpisoc.</tt><tt class="descname">I2C</tt><big>(</big><em>bus_location=1</em>, <em>f_address=8</em><big>)</big><a class="headerlink" href="#rpisoc.I2C" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
@@ -88,7 +144,7 @@ with:</p>
 <div class="highlight-python"><div class="highlight"><pre>i2cdetect -y 1
 </pre></div>
 </div>
-<p>If this command is written to the terminal, and the addres <em>08</em> is not shows, then
+<p>If this command is written to the terminal, and the addres <em>08</em> is not shown, then
 try:</p>
 <div class="highlight-python"><div class="highlight"><pre>i2cdetect -y 0
 </pre></div>
@@ -134,30 +190,55 @@ RPiSoC, that change must be reflected here.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="rpisoc.I2C.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>bus_location=1</em>, <em>f_address=8</em><big>)</big><a class="headerlink" href="#rpisoc.I2C.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Parameters:</strong></p>
+<blockquote>
+<div><p><em>bus_location:</em> location of the smbus on the pi, it is defaulted to 1 but confirm
+with:</p>
+<div class="highlight-python"><div class="highlight"><pre>i2cdetect -y 1
+</pre></div>
+</div>
+<p>If this command is written to the terminal, and the addres <em>08</em> is not shown, then
+try:</p>
+<div class="highlight-python"><div class="highlight"><pre>i2cdetect -y 0
+</pre></div>
+</div>
+<p>If that successfully shows the RPiSoC&#8217;s address of <em>08</em>, then change this parameter to <em>0.</em>
+If neither command shows the correct address, verify your connection, and verify that you have
+correctly configured and enabled i2c.</p>
+<p><em>f_address:</em> The i2c address on the RPiSoC. It is set to 0x08 by default. If you change the address on the
+RPiSoC, that change must be reflected here.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
 <dt id="rpisoc.I2C.cleanup">
 <tt class="descname">cleanup</tt><big>(</big><big>)</big><a class="headerlink" href="#rpisoc.I2C.cleanup" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt><strong>Description:</strong></dt>
-<dd>Forces a software reset on the RPiSoC to clean up its GPIO, and then resets any global data that might be tracked within the RPiSoC class.</dd>
+<dd>Forces a software reset on the RPiSoC to clean up its GPIO.</dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="rpisoc.I2C.receiveData">
-<tt class="descname">receiveData</tt><big>(</big><em>vals</em><big>)</big><a class="headerlink" href="#rpisoc.I2C.receiveData" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">receiveData</tt><big>(</big><em>vals</em>, <em>delay=0.05</em><big>)</big><a class="headerlink" href="#rpisoc.I2C.receiveData" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt><strong>Description:</strong></dt>
 <dd>This function is called when the RPi desires a returned value from the RPiSoC. It will send a command, and then wait for a response.</dd>
 <dt><strong>Parameters:</strong></dt>
 <dd><em>vals:</em> A tuple which will be sent to the <em>PrepareData()</em> function to be restructured into a list of length 4 and then sent to the RPiSoC over I2C.</dd>
+<dt><strong>Optional Parameter:</strong></dt>
+<dd><em>delay:</em> The amount of time that the Python code will wait after sending a request, and before expecting a response. This is to be used when one is requesting a complex operation, and more time is needed by the RPiSoC to generate a result.</dd>
 <dt><strong>Returns:</strong></dt>
 <dd><dl class="first last docutils">
 <dt>The data packet received from the PSoC, which has been unpacked and reformatted.</dt>
 <dd><ul class="first last">
 <li><dl class="first docutils">
-<dt>Since the largest possible value that the PSoC will send as of <em>V1.0</em> is a 20 bit number, if the RPi receives a number larger than 20 bits, it will assume that the number overflowed backwards because the PSoC tried to send a negative number.</dt>
+<dt>Since the largest possible value that the PSoC will generally send is a 20 bit number, if the RPi receives a number that is sufficiently large, it will assume that the number overflowed backwards because the PSoC tried to send a negative number.</dt>
 <dd><ul class="first last simple">
-<li>It will account for this by subtracting (2^32 - 1) from the received data, if that data is larger than (2^24 -1)</li>
+<li>It will account for this by subtracting (2^32 - 1) from the received data, if that data is larger than (2^26 -1)</li>
 </ul>
 </dd>
 </dl>
@@ -182,19 +263,63 @@ RPiSoC, that change must be reflected here.</p>
 
 </dd></dl>
 
+<dl class="function">
+<dt id="rpisoc.Match_Clocks">
+<tt class="descclassname">rpisoc.</tt><tt class="descname">Match_Clocks</tt><big>(</big><em>val</em><big>)</big><a class="headerlink" href="#rpisoc.Match_Clocks" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Used to identify which PWM blocks are mapped to which specific clocks. This information must be known for some higher level methods in the PWM class.</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><dl class="first last docutils">
+<dt><em>val:</em></dt>
+<dd>The number of clocks in the build, which is discovered from the Check_PWM() function.</dd>
+</dl>
+</dd>
+<dt><strong>Returns:</strong></dt>
+<dd><em>dat:</em> a list containing raw data for each individual clock. This data will identify which clocks are being shared, and it will provide data about each PWM&#8217;s resolution.</dd>
+</dl>
+</dd></dl>
+
 <dl class="class">
 <dt id="rpisoc.RPiSoC">
 <em class="property">class </em><tt class="descclassname">rpisoc.</tt><tt class="descname">RPiSoC</tt><a class="headerlink" href="#rpisoc.RPiSoC" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt><strong>Description:</strong></dt>
-<dd>This class is used to define the register locations of each component on the
-RPiSoC, and it defines which communication protocol will be utilized by the
-API. The class is not to be assigned to an object; it only needs to be called so
-that addresses can be defined and so that the communication protocol can
-be initialized.</dd>
-<dt><strong>Note:</strong></dt>
-<dd><em>V1.1</em> supports SPI and I2C only, support for UART will be rolled into <em>V1.2</em></dd>
+<dd><p class="first">This class is used to define the register locations of each component on the
+RPiSoC, it defines which communication protocol will be utilized by the
+API, and it collects compiled data from the RPiSoC. The class is not to be assigned to an object; it only needs to be called so
+that addresses can be defined, compiled data on the RPiSoC can be verified, and so that the communication protocol can
+be initialized.</p>
+<p class="last">Optionally, one can construct the object with a DEBUG parameter, as described in the __new__ method description, which will print diagnostic information to the terminal.</p>
+</dd>
 </dl>
+<dl class="staticmethod">
+<dt id="rpisoc.RPiSoC.__new__">
+<em class="property">static </em><tt class="descname">__new__</tt><big>(</big><em>commChannel</em>, <em>DEBUG=False</em><big>)</big><a class="headerlink" href="#rpisoc.RPiSoC.__new__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Called upon construction of the class. It will decide the communication
+protocol to be utilized by the API and it will attempt to learn what components are available on the RPiSoC, and some needed information about the available components.</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><ul class="first last simple">
+<li>commChannel: SPI or I2C</li>
+</ul>
+</dd>
+<dt><strong>Optional Parameters:</strong></dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>DEBUG: Defaults to False, so this parameter is optional. Changing it to True will print debugging data to the terminal.</dt>
+<dd><ul class="first last simple">
+<li>This data depends on the program and which classes/methods are used, but the program will at least print what information is found on the rpisoc when __new__ is called. This can be used to identify errors in your RPiSoC firmware changes.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -228,7 +353,7 @@ be initialized.</dd>
 <dt><strong>Returns:</strong></dt>
 <dd><ul class="first last">
 <li><dl class="first docutils">
-<dt>A list of length 4, prepared for SPI transfer, with the following construction:</dt>
+<dt><em>dat_l:</em> A list of length 4, prepared for SPI transfer, with the following construction:</dt>
 <dd><ul class="first last simple">
 <li>[dat[0], dat[1], dat[2]__LOW_BYTE, dat[2]__HIGH_BYTE]</li>
 <li>The RPiSoC is expecting receipt of these 4 bytes, in this order.</li>
@@ -246,24 +371,26 @@ be initialized.</dd>
 <tt class="descname">cleanup</tt><big>(</big><big>)</big><a class="headerlink" href="#rpisoc.SPI.cleanup" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt><strong>Description:</strong></dt>
-<dd>Forces a software reset on the RPiSoC to clean up its GPIO, then it closes and cleans up the SPI bus. It then resets any global data that might be tracked within the RPiSoC class.</dd>
+<dd>Forces a software reset on the RPiSoC to clean up its GPIO, then it closes and cleans up the SPI bus.</dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="rpisoc.SPI.receiveData">
-<tt class="descname">receiveData</tt><big>(</big><em>vals</em><big>)</big><a class="headerlink" href="#rpisoc.SPI.receiveData" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">receiveData</tt><big>(</big><em>vals</em>, <em>delay=0.01</em><big>)</big><a class="headerlink" href="#rpisoc.SPI.receiveData" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt><strong>Description:</strong></dt>
 <dd>This function is called when the RPi desires a returned value from the RPiSoC. It will send a command, and then wait for a response.</dd>
 <dt><strong>Parameters:</strong></dt>
 <dd><em>vals:</em> A tuple which will be sent to the <em>PrepareData()</em> function to be restructured into a list of length 4, and then sent to the RPiSoC over SPI.</dd>
+<dt><strong>Optional Parameter:</strong></dt>
+<dd><em>delay:</em> The amount of time that the Python code will wait after sending a request, and before expecting a response. This is to be used when one is requesting a complex operation, and more time is needed by the RPiSoC to generate a result.</dd>
 <dt><strong>Returns:</strong></dt>
 <dd><dl class="first last docutils">
 <dt>The data packet received from the PSoC, which has been unpacked and reformatted.</dt>
 <dd><ul class="first last">
 <li><dl class="first docutils">
-<dt>Since the largest possible value that the PSoC will send as of <em>V1.1</em> is a 20 bit number, if the RPi receives a number larger than 20 bits, it will assume that the number overflowed backwards because the PSoC tried to send a negative number.</dt>
+<dt>Since the largest possible value that the PSoC will generally send is a 20 bit number, if the RPi receives a number that is sufficiently large, it will assume that the number overflowed backwards because the PSoC tried to send a negative number.</dt>
 <dd><ul class="first last simple">
 <li>It will account for this by subtracting (2^32 - 1) from the received data, if that data is larger than (2^24 -1)</li>
 </ul>
@@ -307,15 +434,13 @@ way:</p>
 </pre></div>
 </div>
 </dd>
-<dt><strong>Note:</strong></dt>
-<dd><em>V1.1.0</em> of this API only gives access to 8 PWM&#8217;s, but there are 24 available on the RPiSoC. Adding them will require some modification of the code, but support for all PWM&#8217;s will be rolled into version 1.2</dd>
 </dl>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><dl class="first docutils">
-<dt><em>portNumber:</em> Valid inputs are 0-7</dt>
+<dt><em>portNumber:</em> Valid inputs are 0-(N-1), assuming that there are N PWM channels in your RPiSoC schematic (8 by default).</dt>
 <dd><ul class="first last simple">
-<li>This number corresponds to the respective pin on Port 3</li>
+<li>For the default version of V1.2, this number corresponds to the respective pin on Port 6.</li>
 </ul>
 </dd>
 </dl>
@@ -448,6 +573,7 @@ This value is then saved in the RPiSoC class so that it can be referenced to cal
 <dt>At frequencies higher than 5.333 MHz (<em>5333345</em> Hz) accuracy <em>cannot</em> be guaranteed to be within a tolerance of 10%</dt>
 <dd><ul class="first last simple">
 <li>The frequency might still be accurate at high frequencies; those tolerances are worst case scenarios. Use <em>GetClocks()</em> to get the actually achieved frequency.</li>
+<li>These numbers are valid only for a 24MHz driving frequency, which is the suggested rate for PWM.</li>
 </ul>
 </dd>
 </dl>
@@ -597,42 +723,41 @@ It will try to maintain the clock rate, unless it is impossible without compromi
 <em class="property">class </em><tt class="descclassname">digital.</tt><tt class="descname">Servo</tt><big>(</big><em>servo_id</em>, <em>min_pulse=1.0</em>, <em>max_pulse=2.0</em>, <em>min_angle=0</em>, <em>max_angle=180</em><big>)</big><a class="headerlink" href="#digital.Servo" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt><strong>Description:</strong></dt>
-<dd><p class="first">Create a servo object with the given parameter set. Define PWM objects in the following
-way:</p>
-<div class="last highlight-python"><div class="highlight"><pre><span class="n">My_servo</span> <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c">#simple init</span>
-<span class="n">My_other_servo</span> <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span><span class="mf">2.5</span><span class="p">)</span> <span class="c">#init with custom min and max pulse widths</span>
-<span class="n">My_last_servo</span> <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">180</span><span class="p">)</span> <span class="c"># init with custom min and max pulse widths, and custom min and max angles.</span>
+<dd><p class="first">Creates a servo object with the given parameter set. Define PWM objects in any the following
+ways:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="n">My_simple_servo</span>       <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">My_calibrated_servo</span>   <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+<span class="n">My_descriptive_servo</span>  <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd>
 </dl>
 <p><strong>Parameters:</strong></p>
 <blockquote>
+<div><ul class="simple">
+<li><em>servo_id:</em> the pin which the servo will be connected to, relative to port 6 on the RPiSoC</li>
+</ul>
+</div></blockquote>
+<p><strong>Optional Parameters:</strong></p>
+<blockquote>
 <div><ul>
-<li><dl class="first docutils">
-<dt><em>servo_id:</em> the pin which the servo will be connected to, relative to port 6 on the RPiSoC</dt>
-<dd><p class="first last"><a href="#id1"><span class="problematic" id="id2">*</span></a>For simple instantiation, only this parameter is required; the others are optional.</p>
-</dd>
-</dl>
+<li><p class="first"><em>min_pulse:</em> the pulse width necessary to obtain angular position min_angle. Find an appropriate value through calibration; it defaults to 1.0</p>
 </li>
 <li><dl class="first docutils">
-<dt><em>min_pulse:</em> the pulse width necessary to obtain angular position min_angle. Find an appropriate value through calibration.</dt>
-<dd><ul class="first simple">
-<li><em>max_pulse:</em> the pulse width necessary to obtain angular position max_angle. Find an appropriate value through calibration.</li>
-</ul>
-<ul class="last simple">
+<dt><em>max_pulse:</em> the pulse width necessary to obtain angular position max_angle. Find an appropriate value through calibration; it defaults to 2.0</dt>
+<dd><ul class="first last simple">
 <li>Pulse widths must be positive and greater than zero.</li>
 <li>Pulse width values are usually have maximum values of 2 to 2.3 and minimum values of 0.8 to 1.2</li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><p class="first"><em>min_angle:</em> the angle which the servo will return to if applied with a pulse width of min_pulse</p>
+<li><p class="first"><em>min_angle:</em> the angle which the servo will return to if applied with a pulse width of min_pulse. Defaults to 0</p>
 </li>
 <li><dl class="first docutils">
-<dt><em>max_angle:</em> the angle which the servo will return to if applied with a pulse width of max_pulse.</dt>
+<dt><em>max_angle:</em> the angle which the servo will return to if applied with a pulse width of max_pulse. Defaults to 180</dt>
 <dd><ul class="first last simple">
-<li>Negative angular positions are valid. Angles can be any angular unit: degrees, radians, or other arbitrary (linear) scale.</li>
+<li>Negative angular positions are valid. Angles can be any angular unit: degrees, radians, or other arbitrary (linear) scale</li>
 </ul>
 </dd>
 </dl>
@@ -641,8 +766,8 @@ way:</p>
 </div></blockquote>
 <dl class="docutils">
 <dt><strong>Note:</strong></dt>
-<dd>A servo with servo_id, n, will make PWM(n) unavailable, since the servo controller is implemented using that PWM object. For fine control over
-that PWM, you can expose the object using My_servo.servo_PWM, and then you can use any of the PWM methods using My_servo.servo_PWM.PWM_method(). This is
+<dd>A servo with servo_id, n, will make PWM(n) unnavailable, since the servo controller is implemented using that PWM object. For fine control over
+that PWM, you can expose the object using My_servo.servo_PWM, and then you can use any of the PWM methods using My_servo.servo_PWM.method(). This is
 advised against though, because servos are very particular about the construction of their data signals. If you change the wrong parameter of the PWM signal, you
 might damage the servo.</dd>
 </dl>
@@ -673,20 +798,16 @@ might damage the servo.</dd>
 <tt class="descname">SetAngle</tt><big>(</big><em>angle</em><big>)</big><a class="headerlink" href="#digital.Servo.SetAngle" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt><strong>Description:</strong></dt>
-<dd><blockquote class="first">
-<div><p>Calculates a pulse width based on the given angular position and the min/max
+<dd>Calculates a pulse width based on the given angular position and the min/max
 configuration parameters defined at initialization, then calls SetPulse to
-set the position of the servo.</p>
-<blockquote>
-<div><strong>Parameters:</strong></div></blockquote>
-</div></blockquote>
-<ul class="last">
+set the position of the servo.</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><ul class="first last">
 <li><dl class="first docutils">
 <dt><em>angle:</em> The angle to which the servo should be set, linearized relative to the defined minimum and maximum angles.</dt>
-<dd><ul class="first simple">
-<li>Negative angular positions are valid. Angles can be any angular unit: degrees, radians, or other arbitrary (linear) scale but they</li>
+<dd><ul class="first last simple">
+<li>Negative angular positions are valid. Angles can be any angular unit: degrees, radians, or other arbitrary (linear) scale but they must be within the same scale used when initializing the min/max configuration parameters.</li>
 </ul>
-<p class="last">must be within the same scale used when initializing the min/max configuration parameters.</p>
 </dd>
 </dl>
 </li>
@@ -748,11 +869,12 @@ way:</p>
 </dd>
 </dl>
 <p><strong>Parameters:</strong></p>
-<ul>
+<blockquote>
+<div><ul>
 <li><dl class="first docutils">
 <dt><em>PORT</em>: Port on the RPiSoC.</dt>
 <dd><ul class="first last simple">
-<li>GPIO Ports are chosen by default as Ports <em>2, 4, 5</em> and <em>12.</em></li>
+<li>GPIO Ports are chosen by default as Ports <em>2, 5</em> and <em>12.</em> for V1.2, but they are easily changed</li>
 <li>Port <em>4</em> does not contain Pin <em>7</em> (it is reserved)</li>
 <li>Port 5 uses 3.3V logic instead of 5V.</li>
 </ul>
@@ -762,7 +884,7 @@ way:</p>
 <li><dl class="first docutils">
 <dt><em>PIN</em>: Pin relative to the chosen Port.</dt>
 <dd><ul class="first last simple">
-<li>Valid arguments are between <em>0</em> and <em>7</em>, unless noted to have a Port specific exception</li>
+<li>Valid arguments are between <em>0</em> and <em>7</em>, unless noted to have a Port specific exception, or if that pin is removed from your RPiSoC schematic.</li>
 </ul>
 </dd>
 </dl>
@@ -784,6 +906,12 @@ way:</p>
 </dl>
 </li>
 </ul>
+</div></blockquote>
+<dl class="docutils">
+<dt><strong>Note:</strong></dt>
+<dd>Modification of which pins are available should be easy. Just add new pins to you RPiSoC schematic, give them an input and an output, and then name them as GPIO_PORT_PIN.
+After you do this, confirm that it was done correctly by using the DEBUG feature of the RPiSoC class.</dd>
+</dl>
 <dl class="method">
 <dt id="digital.digitalPin.Configure">
 <tt class="descname">Configure</tt><big>(</big><em>CONFIG</em><big>)</big><a class="headerlink" href="#digital.digitalPin.Configure" title="Permalink to this definition">¶</a></dt>
@@ -828,10 +956,7 @@ way:</p>
 <tt class="descname">Toggle</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.digitalPin.Toggle" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt><strong>Description:</strong></dt>
-<dd><ul class="first last simple">
-<li>Toggles the state of the specified output and then writes the new value to the RPiSoC.</li>
-</ul>
-</dd>
+<dd>Toggles the state of the specified output and then writes the new value to the RPiSoC.</dd>
 </dl>
 </dd></dl>
 
@@ -890,16 +1015,20 @@ way:</p>
 </pre></div>
 </div>
 </dd>
-</dl>
-<p><strong>Paramaters:</strong>
-<em>c_type:</em> The type of ADC to be used. Choose:</p>
-<blockquote>
-<div><ul class="simple">
-<li><em>DELSIG</em> ; output is on P15[5]</li>
-<li><em>SAR0</em> ; output is on P15[4]</li>
-<li><em>SAR1</em> ; output is on P0[3]</li>
+<dt><strong>Paramaters:</strong></dt>
+<dd><dl class="first last docutils">
+<dt><em>c_type:</em> The type of ADC to be used. Choose:</dt>
+<dd><ul class="first last simple">
+<li><em>DELSIG</em></li>
+<li><em>SAR0</em></li>
+<li><em>SAR1</em></li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
+</dd>
+<dt><strong>Note:</strong></dt>
+<dd>None of the ADCs are included by default in V1.2. You are able to add them by simply placing them in your schematic on your RPiSoC program.</dd>
+</dl>
 <dl class="method">
 <dt id="analog.ADC.CountsTo_Volts">
 <tt class="descname">CountsTo_Volts</tt><big>(</big><em>counts</em><big>)</big><a class="headerlink" href="#analog.ADC.CountsTo_Volts" title="Permalink to this definition">¶</a></dt>
@@ -1016,12 +1145,9 @@ way:</p>
 </ul>
 </dd>
 <dt><strong>Side Effects:</strong></dt>
-<dd><ul class="first simple">
-<li>The ADC resolution cannot be changed during a conversion cycle. The recommended bestpractice is to stop conversions with <em>StopConvert(),</em> change the resolution, then restart the conversions with <em>StartConvert().</em> If you decide not to stop conversions before calling this API,</li>
+<dd><ul class="first last simple">
+<li>The ADC resolution cannot be changed during a conversion cycle. The recommended bestpractice is to stop conversions with <em>StopConvert(),</em> change the resolution, then restart the conversions with <em>StartConvert().</em> If you decide not to stop conversions before calling this API, use <em>IsEndConversion()</em> to wait until conversion is complete before changing the resolution. If you call <em>SetResolution()</em> during a conversion, the resolution will not change until the current conversion is complete. Data will not be available in the new resolution for another 6 + <em>resolution</em> clock cycles. You may need add a delay of this number of clock cycles after <em>SetResolution()</em> is called before data is valid again.</li>
 </ul>
-<p class="last">use <em>IsEndConversion()</em> to wait until conversion is complete before changing the resolution. If you call <em>SetResolution()</em> during a conversion,
-the resolution will not change until the current conversion is complete. Data will not be available in the new resolution
-for another 6 + <em>resolution</em> clock cycles. You may need add a delay of this number of clock cycles after <em>SetResolution()</em> is called before data is valid again.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1049,7 +1175,7 @@ for another 6 + <em>resolution</em> clock cycles. You may need add a delay of th
 <tt class="descname">StartConvert</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.ADC.StartConvert" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt><strong>Description:</strong></dt>
-<dd>Forces the ADC to initialize a conversion. This is handled internally for the Delsig ADC, using the <a href="#id3"><span class="problematic" id="id4">*</span></a>Read()*function, but it is kept seperate for the SAR. It can be done seperately for the Delsig as well, if desired.</dd>
+<dd>Forces the ADC to initialize a conversion. This is handled internally for the Delsig ADC, using the <em>Read()</em> function, but it is kept seperate for the SAR. It can be done seperately for the Delsig as well, if desired.</dd>
 </dl>
 </dd></dl>
 
@@ -1083,6 +1209,83 @@ for another 6 + <em>resolution</em> clock cycles. You may need add a delay of th
 </dd></dl>
 
 <dl class="class">
+<dt id="analog.CapSense">
+<em class="property">class </em><tt class="descclassname">analog.</tt><tt class="descname">CapSense</tt><big>(</big><em>PIN</em><big>)</big><a class="headerlink" href="#analog.CapSense" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Description:</strong>
+Provides functionality for use of CapSense buttons on the RPiSoC. Define a CapSense object in the following
+way:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">My_capsense_button</span> <span class="o">=</span> <span class="n">CapSense</span><span class="p">(</span><span class="n">PIN</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><dl class="first docutils">
+<dt><em>PIN</em>: The capsense pin number. PIN n directly corresponds to the pin which you assign to Capsense_BTN_N in your rpisoc firmware</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>The following is valid for the default version of the API (v1.2) which contains 6 capsense buttons</dt>
+<dd><ul class="first last simple">
+<li>The Cmod pin, which should be a 2.2nF capacitor, should be connected between ground and P4[6]</li>
+<li>PIN is the number relative to Port 4, between <em>0</em> and <em>5</em>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="analog.CapSense.Read">
+<tt class="descname">Read</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.CapSense.Read" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Gives the state of the capsense button</dd>
+<dt><strong>Returns:</strong></dt>
+<dd>state: bool which represents the current state of the capsense button.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="analog.CapSense.Sleep">
+<tt class="descname">Sleep</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.CapSense.Sleep" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Prepares the component for the device entering a low-power mode. Disables Active mode power template bits of the sub components used within CapSense, saves nonretention registers, and resets all sensors to an inactive state.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="analog.CapSense.Start">
+<tt class="descname">Start</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.CapSense.Start" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Initializes registers and enables active mode power template bits of the subcomponents used within CapSense.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="analog.CapSense.Stop">
+<tt class="descname">Stop</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.CapSense.Stop" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Disables component interrupts, and calls CapSense_ClearSensors() to reset all sensors to an inactive state.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="analog.CapSense.Wakeup">
+<tt class="descname">Wakeup</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.CapSense.Wakeup" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Restores CapSense configuration and nonretention register values after the device wake from a low power mode sleep mode.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
 <dt id="analog.IDAC">
 <em class="property">class </em><tt class="descclassname">analog.</tt><tt class="descname">IDAC</tt><big>(</big><em>channel</em><big>)</big><a class="headerlink" href="#analog.IDAC" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
@@ -1095,13 +1298,12 @@ way:</p>
 </div>
 </dd>
 </dl>
-<p><strong>Note:</strong> The default API configuration for <em>V1.0</em> only has one IDAC, but more can be included if the default configuration is modified on the RPiSoC. <em>V1.1</em> intends to include support for multiple configurations, each with a different emphasis.</p>
 <p><strong>Parameter:</strong></p>
 <ul>
 <li><dl class="first docutils">
 <dt><em>channel</em> Determines which IDAC is the be utilized</dt>
 <dd><ul class="first last simple">
-<li><em>0</em> for the first IDAC; output is on P0[6]</li>
+<li><em>0</em> for the first IDAC; output is on P0[7] by default</li>
 <li><em>1</em> for the second IDAC; not available by default</li>
 </ul>
 </dd>
@@ -1111,22 +1313,11 @@ way:</p>
 <dl class="method">
 <dt id="analog.IDAC.SetCurrent">
 <tt class="descname">SetCurrent</tt><big>(</big><em>amps</em><big>)</big><a class="headerlink" href="#analog.IDAC.SetCurrent" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt><strong>Description:</strong></dt>
-<dd>Sets a current in milliamperes to be output on the specified IDAC. Valid values depend on the chosen full scale range</dd>
-<dt><strong>Parameters:</strong></dt>
-<dd><ul class="first last">
-<li><dl class="first docutils">
-<dt><em>amps</em>: number between 0 and the full scale range in milliamperes.</dt>
-<dd><ul class="first last simple">
-<li>The full scale value depends on the range, which is chosen with the SetRange() method.</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
+<dd><p><strong>Description:</strong>
+Sets a current in milliamps to be output on the specified IDAC. Valid values depend on the chosen full scale range</p>
+<p><strong>Parameters:</strong>
+- <em>amps</em>: number between 0 and the full scale range in milliamperes.
+* The full scale value depends on the range, which is chosen with the SetRange() method.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1265,33 +1456,17 @@ way:</p>
 </dd>
 </dl>
 <p><strong>Parameters:</strong></p>
-<blockquote>
-<div><ul>
+<ul>
 <li><dl class="first docutils">
 <dt><em>channel:</em> Determines which VDAC is to be utilized</dt>
 <dd><ul class="first last simple">
-<li><em>0</em> for the first VDAC; output is on P0[1]</li>
-<li><em>1</em> for the second VDAC; output is on P0[5]</li>
+<li><em>0</em> for the first VDAC; output is on P0[1] by default</li>
+<li><em>1</em> for the second VDAC; not available by default</li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
-</div></blockquote>
-<dl class="docutils">
-<dt><strong>Note:</strong></dt>
-<dd><ul class="first simple">
-<li>By default, <em>VDAC0</em> has a full scale range of 4.080V and</li>
-</ul>
-<dl class="last docutils">
-<dt><em>VDAC1</em> has a full scale range of 1.020V.</dt>
-<dd><ul class="first last simple">
-<li>This can be modified at runtime with the <em>SetRange()</em> method for either VDAC</li>
-</ul>
-</dd>
-</dl>
-</dd>
-</dl>
 <dl class="method">
 <dt id="analog.VDAC.SetRange">
 <tt class="descname">SetRange</tt><big>(</big><em>Range</em><big>)</big><a class="headerlink" href="#analog.VDAC.SetRange" title="Permalink to this definition">¶</a></dt>
@@ -1358,22 +1533,11 @@ way:</p>
 <dl class="method">
 <dt id="analog.VDAC.SetVoltage">
 <tt class="descname">SetVoltage</tt><big>(</big><em>volts</em><big>)</big><a class="headerlink" href="#analog.VDAC.SetVoltage" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt><strong>Description:</strong></dt>
-<dd>Sets a voltage in Volts to be output on the specified VDAC. Valid values depend on the chosen full scale range</dd>
-<dt><strong>Parameters:</strong></dt>
-<dd><ul class="first last">
-<li><dl class="first docutils">
-<dt><em>volts</em>: number between 0 and the full scale range in Volts.</dt>
-<dd><ul class="first last simple">
-<li>The full scale value depends on the range, which is chosen with the SetRange() method.</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
+<dd><p><strong>Description:</strong>
+Sets a voltage in Volts to be output on the specified VDAC. Valid values depend on the chosen full scale range</p>
+<p><strong>Parameters:</strong>
+- <em>volts</em>: number between 0 and the full scale range in Volts.
+* The full scale value depends on the range, which is chosen with the SetRange() method.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1629,12 +1793,17 @@ way:</p>
 <p><strong>Parameters:</strong></p>
 <ul>
 <li><dl class="first docutils">
-<dt><em>PIN</em>: The analog pin number</dt>
+<dt><em>PIN</em>: The analog pin number - This directly corresponds to the pins connected to your sequenced SAR ADC, where 0 is the top pin.</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>The following is valid for the default version of the API (v1.2) which containts 8 analog pins.</dt>
 <dd><ul class="first last simple">
-<li>Valid arguments are between <em>0</em> and <em>9</em></li>
+<li>Valid arguments are between <em>0</em> and <em>7</em></li>
 <li>PINs <em>0-7</em> are relative to Port 3. So PIN = 0 an analog pin on Port 3 Pin 0 (P3[0]), and PIN = 7 is on Port 3 Pin 7 (P3[7])</li>
-<li>PIN <em>8</em> is on P0[3]</li>
-<li>PIN <em>9</em> is on P0[7]</li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 </dd>
 </dl>
@@ -1735,8 +1904,8 @@ way:</p>
   <p class="topless"><a href="getting_started.html"
                         title="previous chapter">Getting Started</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="examples.html"
-                        title="next chapter">Example Projects!</a></p>
+  <p class="topless"><a href="making_changes.html"
+                        title="next chapter">Making Changes to the API</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/code.txt"
@@ -1769,17 +1938,17 @@ way:</p>
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="examples.html" title="Example Projects!"
+          <a href="making_changes.html" title="Making Changes to the API"
              >next</a> |</li>
         <li class="right" >
           <a href="getting_started.html" title="Getting Started"
              >previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.1.2 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.2.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2014, Embedit Electronics.
-      Last updated on Sep 25, 2014.
+      Last updated on Nov 14, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

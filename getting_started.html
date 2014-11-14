@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Getting Started &mdash; RPiSoC Python API 1.1.2 documentation</title>
+    <title>Getting Started &mdash; RPiSoC Python API 1.2.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.1.2',
+        VERSION:     '1.2.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="RPiSoC Python API 1.1.2 documentation" href="index.html" />
+    <link rel="top" title="RPiSoC Python API 1.2.0 documentation" href="index.html" />
     <link rel="next" title="API modules" href="code.html" />
     <link rel="prev" title="Welcome to the RPiSoC Python API documentation!" href="index.html" /> 
   </head>
@@ -43,7 +43,7 @@
         <li class="right" >
           <a href="index.html" title="Welcome to the RPiSoC Python API documentation!"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.1.2 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.2.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -57,22 +57,24 @@
 <p>Here is everything you should need to get yourself moving with development on the RPiSoC through the Raspberry Pi!</p>
 <div class="section" id="using-the-rpisoc">
 <h2>Using the RPiSoC<a class="headerlink" href="#using-the-rpisoc" title="Permalink to this headline">¶</a></h2>
-<p>If you&#8217;re new to the RPiSoC, it would greatly benefit you to read through its documentation before going any further. The documentation can be found here:</p>
-<blockquote>
-<div><ul class="simple">
+<dl class="docutils">
+<dt>If you&#8217;re new to the RPiSoC, it would greatly benefit you to read through its documentation before going any further. The documentation can be found here:</dt>
+<dd><ul class="first last simple">
 <li><a class="reference external" href="https://github.com/EmbeditElectronics/RPiSoC_Bootloader/blob/master/RPiSoC_RevC_User_Guide.pdf">https://github.com/EmbeditElectronics/RPiSoC_Bootloader/blob/master/RPiSoC_RevC_User_Guide.pdf</a></li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
 <p>Pay special attention to the sections discussing how to download a program to the board using the Bootloader Host Tool.</p>
 </div>
 <div class="section" id="program-your-rpisoc">
 <h2>Program your RPiSoC<a class="headerlink" href="#program-your-rpisoc" title="Permalink to this headline">¶</a></h2>
-<p>Once you know how to program the RPiSoC, you&#8217;re ready to go! Just download the PSoC Creator project from git and download it to the RPiSoC.</p>
-<blockquote>
-<div><ul class="simple">
+<dl class="docutils">
+<dt>Once you know how to program the RPiSoC, you&#8217;re ready to go! Just download the PSoC Creator project from git and download it to the RPiSoC.</dt>
+<dd><ul class="first last simple">
 <li><a class="reference external" href="https://github.com/EmbeditElectronics/psoc_2_pi/tree/master/PSoC%20Creator">https://github.com/EmbeditElectronics/psoc_2_pi/tree/master/PSoC%20Creator</a></li>
 </ul>
-</div></blockquote>
+</dd>
+</dl>
 </div>
 <div class="section" id="download-the-python-files-from-git">
 <h2>Download the Python files from git<a class="headerlink" href="#download-the-python-files-from-git" title="Permalink to this headline">¶</a></h2>
@@ -228,14 +230,14 @@ reads:</p>
 </div>
 <p>Now, in the PSoC Creator program navigate to <em>mem1.h</em> and you will find two lines that look like
 this:</p>
-<div class="highlight-python"><div class="highlight"><pre>//#undef CY_SPIS_SPIS_1_H     /* SPI */
-#undef CY_I2C_I2C_1_H       /* I2C */
+<div class="highlight-python"><div class="highlight"><pre>#define USE_SPI
+//#define USE_I2C
 </pre></div>
 </div>
 <p>This indicates that I2C is to be undefined, and so SPI is to be used. To reverse this, just change which one is commented
 out:</p>
-<div class="highlight-python"><div class="highlight"><pre>#undef CY_SPIS_SPIS_1_H     /* SPI */
-//#undef CY_I2C_I2C_1_H       /* I2C */
+<div class="highlight-python"><div class="highlight"><pre>//#define USE_SPI
+#define USE_I2C
 </pre></div>
 </div>
 <p>Now, SPI will be undefined, and the RPiSoC will be expecting I2C communication.
@@ -309,12 +311,12 @@ Now just compile the program, and redownload it to the RPiSoC using the Bootload
         <li class="right" >
           <a href="index.html" title="Welcome to the RPiSoC Python API documentation!"
              >previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.1.2 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.2.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2014, Embedit Electronics.
-      Last updated on Sep 25, 2014.
+      Last updated on Nov 14, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

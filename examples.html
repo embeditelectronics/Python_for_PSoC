@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Example Projects! &mdash; RPiSoC Python API 1.1.2 documentation</title>
+    <title>Example Projects! &mdash; RPiSoC Python API 1.2.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.1.2',
+        VERSION:     '1.2.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,9 +23,9 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="RPiSoC Python API 1.1.2 documentation" href="index.html" />
+    <link rel="top" title="RPiSoC Python API 1.2.0 documentation" href="index.html" />
     <link rel="next" title="Revision History" href="revision_history.html" />
-    <link rel="prev" title="API modules" href="code.html" /> 
+    <link rel="prev" title="Making Changes to the API" href="making_changes.html" /> 
   </head>
   <body>
     <div class="related">
@@ -41,9 +41,9 @@
           <a href="revision_history.html" title="Revision History"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="code.html" title="API modules"
+          <a href="making_changes.html" title="Making Changes to the API"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.1.2 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.2.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -131,7 +131,7 @@ code:</p>
 <div class="section" id="simple-pwm-demo">
 <h2>Simple PWM Demo<a class="headerlink" href="#simple-pwm-demo" title="Permalink to this headline">¶</a></h2>
 <p>This program demonstrates basic use of the PWM channels on the RPiSoC.</p>
-<p>To see the desired output, connect an LED to P3[0] and P3[2]</p>
+<p>To see the desired output, connect an LED to P6[0] and P6[2]</p>
 <p>The program will initialize two PWM objects, one of which will remain blinking
 with the same duty cycle and frequency, while the other will change according to user input</p>
 <p>While the program runs, the user will give terminal commands to modify the PWM&#8217;s
@@ -278,8 +278,8 @@ the configuration details.</p>
 <h2>Servo testing<a class="headerlink" href="#servo-testing" title="Permalink to this headline">¶</a></h2>
 <p>This is a test for the Servo class. It will initialize three servo objects with default paramaters, and then the user will have the option to modify the first servo, and watch that the changes are reflected in the terminal
 as well as by the servomotor itself.</p>
-<p>Connect three servos to P3[0], P3[1], and P3[2] to see the desired results.
-P3[0] should be moved according to user input, while the other two should be
+<p>Connect three servos to P6[0], P6[1], and P6[2] to see the desired results.
+P6[0] should be moved according to user input, while the other two should be
 held at a constant position.</p>
 <p>code:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span>
@@ -337,8 +337,8 @@ held at a constant position.</p>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="code.html"
-                        title="previous chapter">API modules</a></p>
+  <p class="topless"><a href="making_changes.html"
+                        title="previous chapter">Making Changes to the API</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="revision_history.html"
                         title="next chapter">Revision History</a></p>
@@ -377,14 +377,14 @@ held at a constant position.</p>
           <a href="revision_history.html" title="Revision History"
              >next</a> |</li>
         <li class="right" >
-          <a href="code.html" title="API modules"
+          <a href="making_changes.html" title="Making Changes to the API"
              >previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.1.2 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.2.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2014, Embedit Electronics.
-      Last updated on Sep 25, 2014.
+      Last updated on Nov 14, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

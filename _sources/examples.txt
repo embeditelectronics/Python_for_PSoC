@@ -83,7 +83,7 @@ Simple PWM Demo
 +++++++++++++++
 This program demonstrates basic use of the PWM channels on the RPiSoC.
 
-To see the desired output, connect an LED to P3[0] and P3[2]
+To see the desired output, connect an LED to P6[0] and P6[2]
 
 The program will initialize two PWM objects, one of which will remain blinking
 with the same duty cycle and frequency, while the other will change according to user input
@@ -240,8 +240,8 @@ Servo testing
 This is a test for the Servo class. It will initialize three servo objects with default paramaters, and then the user will have the option to modify the first servo, and watch that the changes are reflected in the terminal
 as well as by the servomotor itself.
 
-Connect three servos to P3[0], P3[1], and P3[2] to see the desired results.
-P3[0] should be moved according to user input, while the other two should be
+Connect three servos to P6[0], P6[1], and P6[2] to see the desired results.
+P6[0] should be moved according to user input, while the other two should be
 held at a constant position. 
 
 code::

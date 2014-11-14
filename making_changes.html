@@ -1,0 +1,532 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Making Changes to the API &mdash; RPiSoC Python API 1.2.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.2.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="RPiSoC Python API 1.2.0 documentation" href="index.html" />
+    <link rel="next" title="Example Projects!" href="examples.html" />
+    <link rel="prev" title="API modules" href="code.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="examples.html" title="Example Projects!"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="code.html" title="API modules"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">RPiSoC Python API 1.2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="making-changes-to-the-api">
+<h1>Making Changes to the API<a class="headerlink" href="#making-changes-to-the-api" title="Permalink to this headline">¶</a></h1>
+<p>The default API is intended to have very diverse usage, so it essentially provides &#8220;a little bit of everything.&#8221; The folliwng section shows exactly what you have to play with by default, but an advanced user might have different needs based on their unique design constraints. Luckily, the code was designed to easily facilitate this kind of need, and changing it to fit any project should not be too difficult.</p>
+<div class="section" id="what-comes-with-this-version-by-default">
+<h2>What comes with this version by default<a class="headerlink" href="#what-comes-with-this-version-by-default" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>By default, the API (V1.2) is configured with the following components available:</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>28 GPIO</dt>
+<dd><ul class="first last simple">
+<li>This includes all of Port 2, 5, and 6, as well as P0[5], P0[6], P15[4], and P15[5]</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>8 PWMs</dt>
+<dd><ul class="first last">
+<li><p class="first">All are 16-bit resolution by default</p>
+</li>
+<li><p class="first">They are available on Port 6</p>
+</li>
+<li><dl class="first docutils">
+<dt>They are clocked by 4 different clock sources</dt>
+<dd><ul class="first last simple">
+<li>PWM 1 and 2 are connected (default 3MHz)</li>
+<li>PWM 3 and 4 are connected (default 3MHz)</li>
+<li>PWM 5 and 6 are connected (default 3MHz)</li>
+<li>PWM 7 and 8 are connected (default 3MHz)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>8 Analog pins</dt>
+<dd><ul class="first last simple">
+<li>These are the pins connected to the sequenced SAR ADC</li>
+<li>They are available on Port 3</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>6 Capsense buttons</dt>
+<dd><ul class="first last simple">
+<li>Available on Port 4, pins 0 - 5</li>
+<li>Requires the placement of a 2.2nF external capacitor (Cmod) between P4[6] and ground</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Current DAC (IDAC) connected to P0[7]</dt>
+<dd><ul class="first last simple">
+<li>Has a 32uA full scale range</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Voltage DAC (VDAC) connected to P0[1]</dt>
+<dd><ul class="first last simple">
+<li>Has a 4.080V full scale range</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Wave DAC connected to P0[0]</p>
+</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="changing-gpios-available">
+<h2>Changing GPIOs available<a class="headerlink" href="#changing-gpios-available" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>This should be very simple.</dt>
+<dd><ul class="first last">
+<li><p class="first">Open the PSoC_2_Pi .cywrk file</p>
+</li>
+<li><p class="first">Navigate to your schematic (the .cysch file)</p>
+</li>
+<li><p class="first">Double click on the GPIO page at the bottom of your schematic</p>
+</li>
+<li><dl class="first docutils">
+<dt>Make your changes here</dt>
+<dd><ul class="first last">
+<li><p class="first">To delete, for example, P0[5] as a GPIO, simply click the component named GPIO_0_5, and press delete.</p>
+</li>
+<li><dl class="first docutils">
+<dt>To add P0[7] (assuming it is available, which it is not by default), simply add a new pins component</dt>
+<dd><ul class="first last simple">
+<li>You can most easily do this just by copy/pasting one of the other pins on the GPIO page</li>
+<li>You can also navigate to the components pane on the right of your .cysch file, fnd the &#8220;pins&#8221; component, drop it into your schematic, double click it to configure it, use the checkboxes to give it make it a Digital Input and Digital output, and remove the HW connection.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Once the pin component is in place, make sure that you name it in the same way the other pins are named. It needs to be named GPIO_0_7 in this case, or GPIO_&lt;PORT#&gt;_&lt;PIN#&gt; more generally</p>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Now, navigate to your design wide resources page (.cydwr)</p>
+</li>
+<li><p class="first">Find your new pin in the list of pins shown on the right (it should be highlighted in white since it hasn&#8217;t been assigned a location yet)</p>
+</li>
+<li><p class="first">Assign the pin to your desired location (P0[7])</p>
+</li>
+</ul>
+</dd>
+</dl>
+<p>And that should do it! No code changes needed!</p>
+</div>
+<div class="section" id="changing-pwms-available">
+<h2>Changing PWMs available<a class="headerlink" href="#changing-pwms-available" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>This is the only change that will require a slight change to the code, but it is not extreme, you will mostly just be changing a couple numbers. I simply couldn&#8217;t conceive a better way to handle this. First though, you only need to change the schematic, similar to the GPIO modification.</dt>
+<dd><ul class="first last">
+<li><p class="first">Open the PSoC_2_Pi .cywrk file</p>
+</li>
+<li><p class="first">Navigate to your schematic (the .cysch file)</p>
+</li>
+<li><p class="first">Double click on the PWM page at the bottom of your schematic</p>
+</li>
+<li><dl class="first docutils">
+<dt>Make your schematic changes here</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>To delete a PWM, you need to make sure you do it in reverse order. For instance, do NOT delete only PWM_7, and keep PWM_8. It is important that the PWMs are in order for how the raspberry pi interprets what components are available (meaning you cannot skip numbers, PWMs must be named as PWM_1, PWM_2, ..., PWM_(n-1), PWM_n, where n is the number of PWMs you want in your schematic.</dt>
+<dd><ul class="first last simple">
+<li>If you delete a PWM, make sure to remove the wire (or net) which was there to connect the clock, and make sure to delete the pin which was connected to it</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">To add a PWM, simply find the PWM component in your components tab to the right and drag and drop it into your build. You should not have to change the name (it defaults to the expected name)</p>
+</li>
+<li><p class="first">Double click on the components to configure it, and make sure that your Implementation is selected as &#8220;UDB&#8221; and your PWM mode is selected as &#8220;One Output.&#8221;</p>
+</li>
+<li><p class="first">Modify the remaining parameters as you see fit</p>
+</li>
+<li><p class="first">Connect the PWM output to a digital output pin, with HW connection</p>
+</li>
+<li><dl class="first docutils">
+<dt>Connect the PWM to a clock source</dt>
+<dd><ul class="first last simple">
+<li>There a number of ways to do this, and you should be aware of the effects. Each PWM block can potentially be driven independently by it&#8217;s own clock source, or it can share the clock source of another unit. Keep in mind that if you use the SetFrequency(), SetClockDivider(), or SetClocks() method of the PWM class, you will be changind this clock, and not necessarily anything about the PWM block itself. This means your changes will affect the behavior of all PWM&#8217;s assosiated with it.</li>
+<li>If you add a new clock, make sure it is named in accordance with the others. A fifth clock would be named as PWM_CLK_5</li>
+<li>If you wish to tie the PWM&#8217;s clock to a clock already available (this is often required since there are a limited number of clocks available), simply draw a wire from the clk input of the PWM component, to the existing wire on the clock you wish to share. (TAKE NOTE OF THAT CLOCK NAME)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Assign your pins a location</dt>
+<dd><ul class="first last simple">
+<li>Go to you design wide resources tab (.cydwr)</li>
+<li>Find your new PWM output pin in the list of pins to the right (should be highlighted in white)</li>
+<li>Assign it to a pin location. This PWM will now output from that chosen pin.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Now make your code changes</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>First, navigate to mem1.c, and to the PWM_Control_n function. Here, n is the &#8220;PWM channel number&#8221;, so if you added a PWM_9 component, you would be navigating to the PWM_Control_8 function.</dt>
+<dd><ul class="first last simple">
+<li>In PWM_Control_n, go to the switch-case, and find case 0xFF. Here change the code to call the correct clock. If you tied PWM_9 to PWM_CLK_2, make sure that case 0xFF in PWM_Control_8 reads as</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<div class="highlight-python"><div class="highlight"><pre>case 0xFF: PWM_CLK_2_SetDividerValue(val); result = PWM_CLK_2_GetDividerRegister(); return_flag = 1; break;
+</pre></div>
+</div>
+<ul>
+<li><dl class="first docutils">
+<dt>Match your clocks together in the code</dt>
+<dd><ul class="first last simple">
+<li>Navigate to mem1.h</li>
+<li>Find the section which asks you to match the clocks together, it should be the section towards the bottom, but just above all the function prototypes</li>
+<li>Essentially what you do here, is define you PWM_x_CLK to be using PWM_CLK_y. So lets consider the same example as eariler. You are adding PWM_9, and it is sharing PWM_CLK_2. In this case, find the block of code associated with PWM_9 (it should already exist!) and change it so that it reads</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">#ifdef CY_PWM_PWM_9_H</span>
+        <span class="c">#define PWM_9_CLK               (PWM_CLK_2)</span>
+<span class="c">#endif</span>
+</pre></div>
+</div>
+<p>And now you should be all set with your PWM changes.</p>
+</div>
+<div class="section" id="changing-analog-pins-available">
+<h2>Changing Analog Pins available<a class="headerlink" href="#changing-analog-pins-available" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>This again should be quite simple, and can be done without code changes.</dt>
+<dd><ul class="first last">
+<li><p class="first">Open the PSoC_2_Pi .cywrk file</p>
+</li>
+<li><p class="first">Navigate to your schematic (the .cysch file)</p>
+</li>
+<li><p class="first">Double click on the ANALOG page at the bottom of your schematic</p>
+</li>
+<li><dl class="first docutils">
+<dt>Make your changes here</dt>
+<dd><ul class="first last">
+<li><p class="first">If you want to remove all of the analog pins, you can simply delete the entire Sequenced SAR ADC (named ADC_SAR_Seq_1), and make sure to delete the pins connected to it.</p>
+</li>
+<li><dl class="first docutils">
+<dt>To otherwise change the amount of pins..</dt>
+<dd><ul class="first last simple">
+<li>Double click the ADC_SAR_Seq_1 component</li>
+<li>Change the &#8220;Channels&#8221; parameter to your desired number</li>
+<li>Select &#8220;Apply&#8221; and &#8220;OK&#8221;</li>
+<li>If you reduced the number of channels, be sure to delete the pins that are now floating next to the ADC</li>
+<li>If you increased the number of channels, make sure to connect ANALOG pins to the newly available connections on the ADC component</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>If you added new pins, navigate to the design wide resources tab (.cydwr)</dt>
+<dd><ul class="first last simple">
+<li>Find your new pin in the list of available pins listed on the right (it should be highlighted in white)</li>
+<li>Assign that pin to your desired location on the RPiSoC</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<p>Note that when you call analog pin N, it is referring to whatever pin is connected to index N on the sequenced SAR, where 0 is the top pin.</p>
+</div>
+<div class="section" id="changing-capsense-buttons-available">
+<h2>Changing CapSense Buttons available<a class="headerlink" href="#changing-capsense-buttons-available" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>This is a similar process to the analog pin modifications.</dt>
+<dd><ul class="first last">
+<li><p class="first">Open the PSoC_2_Pi .cywrk file</p>
+</li>
+<li><p class="first">Navigate to your schematic (the .cysch file)</p>
+</li>
+<li><p class="first">Double click on the ANALOG page at the bottom of your schematic</p>
+</li>
+<li><dl class="first docutils">
+<dt>Make your changes here</dt>
+<dd><ul class="first last">
+<li><p class="first">If you want to remove all of the CapSense buttons, you can simply delete the entire CapSense component (named CapSense_1), this saves a lot of analog resources</p>
+</li>
+<li><dl class="first docutils">
+<dt>To otherwise change the amount of buttons..</dt>
+<dd><ul class="first last simple">
+<li>Double click the CapSense_1 component</li>
+<li>Change the Tuning Method to &#8220;None&#8221; (TEMPORARILY)</li>
+<li>Navigate to the &#8220;Widgets Config&#8221; tab</li>
+<li>If you wish to reduce the number of buttons, simply choose to delete a Button (STARTING WITH THE HIGHEST INDEXED BUTTON &#8211; don&#8217;t delete Button3 before Button4 and Button5, for instance.)</li>
+<li>If you wish to add a new button, click &#8220;Add Button&#8221; then change the Scan resolution parameter for that button from 10 bits to 8 bits</li>
+<li>IMPORTANT: Change the tuning method back to Auto (Smart Sense)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>If you added new pins, navigate to the design wide resources tab (.cydwr)</dt>
+<dd><ul class="first last simple">
+<li>Find your new button in the list of available pins listed on the right (it should be highlighted in white)</li>
+<li>Assign that pin to your desired location on the RPiSoC</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="changing-general-analog-features-available-for-advanced-users">
+<h2>Changing general Analog Features available for advanced users<a class="headerlink" href="#changing-general-analog-features-available-for-advanced-users" title="Permalink to this headline">¶</a></h2>
+<p>Here I will discuss how to add/remove general analog features, like the WaveDAC, IDACs, VDACs, and ADC&#8217;s. They all share the same process, so I will explain them all in the same section. First, note that the API makes available the following general analog features, in addition to the Analog Pins and the CapSense Buttons</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>One WaveDAC</dt>
+<dd><ul class="first last simple">
+<li>MUST BE NAMED WaveDAC8_1</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Two IDAC&#8217;s (current DAC&#8217;s)</dt>
+<dd><ul class="first last simple">
+<li>MUST BE NAMED IDAC8_1 and IDAC8_2</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Two VDAC&#8217;s (voltage DAC&#8217;s)</dt>
+<dd><ul class="first last simple">
+<li>MUST BE NAMED VDAC8_1 and VDAC8_2</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Two SAR ADC&#8217;s</dt>
+<dd><ul class="first last simple">
+<li>MUST BE NAMED ADC_SAR_1 and ADC_SAR_2</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>One Delta-Sigma (DELSIG) ADC</dt>
+<dd><ul class="first last simple">
+<li>MUST BE NAMED ADC_DelSig_1</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>To remove any of these feature, you only need to navigate to the schematic file (.cysch) and delete the components that are named as shown above, and anything connected to them.</p>
+<dl class="docutils">
+<dt>To add these features back:</dt>
+<dd><ul class="first last">
+<li><p class="first">Open the PSoC_2_Pi .cywrk file</p>
+</li>
+<li><p class="first">Navigate to your schematic (the .cysch file)</p>
+</li>
+<li><p class="first">Double click on the ANALOG page at the bottom of your schematic</p>
+</li>
+<li><dl class="first docutils">
+<dt>Make your changes here</dt>
+<dd><ul class="first last">
+<li><p class="first">To add any component, simply find it in the components catalog to the right, and drop it into your schematic. It should be named appropriately by default, but confirm that it is named according to my comments above anyway.</p>
+</li>
+<li><p class="first">Double click on the component to configure it as desired</p>
+</li>
+<li><dl class="first docutils">
+<dt>For the WaveDAC component, you must connect a clock to its clock input.</dt>
+<dd><ul class="first last simple">
+<li>For this clock, configure the source as IMO, and the divider to be 12 (it works best with a 250kHz clock), and make sure to name is WaveDAC_clk</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">I prefer to buffer the outputs of all Voltage DACs (including the WaveDac), but it isn&#8217;t necessary. For the WaveDAC you can choose that the output be buffered. For the VDACs, you can simply connect an Op-Amp in &#8220;follower&#8221; configuration operating at Med or High power between your output pin and the output of your DAC. Keep in mind that I am not suggesting you physically connect an external op-amp &#8211; There are op-amps internal to the PSoC, and you can find them in the component catalog to the right</p>
+</li>
+<li><p class="first">Also for the WaveDAC component, be sure to attach the &#8220;ws&#8221; connection to a &#8220;Logic High&#8221; component from the component catalog to the right.</p>
+</li>
+<li><p class="first">For the ADCs, I traditionally use Single-Ended, but you can use differential inputs if you desire, just know that if you leave the differential inputs floating, it will produce bad results, so the lesson is to pay close attention to the parameters you choose.</p>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Make sure to attach your component outputs to an analog pin, and then assign that pin to a physical location in your design wide resources (.cydwr)</p>
+</li>
+<li><p class="first">In this case, certain components are restricted to certain pin assignments. For instance, the IDAC&#8217;s will want to be placed at only a couple different locations, otherwise they cannot operate at full power. When you search for a pin location in the drop down menu, next to the pin location will be the suggested use. For an IDAC_out pin, find one with a label that reads &#8220;IDAC:HI&#8221; &#8211; If you are buffering your DACs, you need you connect the pin to a location labled with &#8220;OpAmp:out&#8221;</p>
+</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="expanding-the-api-to-include-features-components-that-are-not-yet-supported">
+<h2>Expanding the API to include features/components that are not yet supported<a class="headerlink" href="#expanding-the-api-to-include-features-components-that-are-not-yet-supported" title="Permalink to this headline">¶</a></h2>
+<p>I like to think I included the overwhelming majority of use cases with this API, but for more advanced users, this is of course not entirely the case. There are a number of components that could be added, but don&#8217;t have support, such as quadrature decoding, op-amps, digital filters, etc. I did keep this in mind when designing the software architecture though, and so there exists a very specific, and relatively easy to follow procedure for how to work these kinds of things in, but for now, I will ask that any requests for new features be sent to me, and we can work on getting your suggested feature into the official version. In the future, I will update this section to explain exactly the procedure to follow for handling this.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/Embedit_flat.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Making Changes to the API</a><ul>
+<li><a class="reference internal" href="#what-comes-with-this-version-by-default">What comes with this version by default</a></li>
+<li><a class="reference internal" href="#changing-gpios-available">Changing GPIOs available</a></li>
+<li><a class="reference internal" href="#changing-pwms-available">Changing PWMs available</a></li>
+<li><a class="reference internal" href="#changing-analog-pins-available">Changing Analog Pins available</a></li>
+<li><a class="reference internal" href="#changing-capsense-buttons-available">Changing CapSense Buttons available</a></li>
+<li><a class="reference internal" href="#changing-general-analog-features-available-for-advanced-users">Changing general Analog Features available for advanced users</a></li>
+<li><a class="reference internal" href="#expanding-the-api-to-include-features-components-that-are-not-yet-supported">Expanding the API to include features/components that are not yet supported</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="code.html"
+                        title="previous chapter">API modules</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="examples.html"
+                        title="next chapter">Example Projects!</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/making_changes.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="examples.html" title="Example Projects!"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="code.html" title="API modules"
+             >previous</a> |</li>
+        <li><a href="index.html">RPiSoC Python API 1.2.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Embedit Electronics.
+      Last updated on Nov 14, 2014.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

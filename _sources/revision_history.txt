@@ -1,5 +1,39 @@
 Revision History
 ================
+Version 1.2
++++++++++++
+This version makes versioning the python much simpler. It allows for much easier modification to the RPiSoC code, without needing to version those changes in the python code. Instead, when a connection is established, the python will request specific compiled data from the RPiSoC and save it to a parent class for use by all objects.
+
+New to v1.2.0
+*************
+	In the RPiSoC code
+		- Added a way for the RPiSoC to scan its generated source to determine
+			* What GPIO were being used
+			* How many PWMs, analog pins, and capsense buttons are being used
+			* If there existed one or more VDACs, IDACs, Delsig ADCs, SAR ADCs, or Wave DACs
+			* The full scale ranges on any DACs that are found
+			* The resolution of every PWM being used, as well as how many unique clocks are driving them
+			* Details about exactly which PWMs are sharing specific clocks, and the source frequency and default divider placed on those clocks
+		- That data was then packed appropriately so that it could easily and efficiently be sent to the Raspberry Pi on request
+		- Changed the GPIO structure to support all possible GPIO, and removed the control/status registers which were previously writing to, and polling these GPIO. With this approach, modification is simplified and digital resources are reserved.
+		- Added full support for up to 24 PWM channels (previously there was only support for 8)
+		- Added support for 6 CapSense buttons, located on Port 4, pins 0-5, with P4[6] needing a ~2.2nF Cmod
+		- Made a skeleton for UART support, but haven't yet completed the implementation
+	In class *RPiSoC*
+		- Added the ability to determine what is in the RPiSoC firmare during the construction of the object, inside of the *__new__* method
+		- Added a DEBUG feature, which when set to *True* will print warnings and other diagnostic information to the terminal during run time
+	In module *analog*
+		- Added class *CapSense* with the following methods
+			* Start() : Starts the CapSense component, and all sub-components, preparing them for operation
+			* Stop()  : Disables CapSense components, and all sub-components, and puts them in their lowest power mode
+			* Read()  : Returns the state of the desired CapSense button
+	In class *Servo*
+		- Fixed a bug which caused errors with 8-bit PWMs, due to a poorly derived (non-generalized) formula for calculation of a comparison value
+	In all classes
+		- Removed hard coded constraints, dependent on the version of the API, and replaced them with references to the data collected at construction of the RPiSoC object.
+			* For instance, instead of raising an exception when you ask to initialize an analog pin not in range(10), as it was previously, I will raise an exception when trying to initialize an analog pin not in range(RPiSoC.ANALOG_IN_NUM), where RPiSoC.ANALOG_IN_NUM is the number of analog inputs which were discovered when the RPiSoC class was constructed. This makes the API more portable and easier to version.
+	In classes *SPI* and *I2C*
+		- Provided an optional second argument to the *receiveData()* method, which will accept a delay, in seconds, to be called between the write operation and read operation. This is to be used by advanced users expanding the API. If a feature they implement requires a highly complex operation to be executed on the RPiSoC, the Python may have to wait a small amount of time between the request and the response. Otherwise, a garbage response will be returned by the method.
 
 Version 1.1
 +++++++++++

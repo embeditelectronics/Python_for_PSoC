@@ -7,7 +7,7 @@ Welcome to the RPiSoC Python API documentation!
 ===============================================
 This API intends to augment the functionality of the Raspberry Pi by introducing it to the RPiSoC.
 
-The latest version of the API is *V1.1*
+The latest version of the API is *V1.2*
 
 Contents
 ++++++++
@@ -16,6 +16,7 @@ Contents
 
    getting_started
    code
+   making_changes
    examples
    revision_history
 
