@@ -2,7 +2,7 @@ Revision History
 ================
 Version 1.2
 +++++++++++
-This version makes versioning the python much simpler. It allows for much easier modification to the RPiSoC code, without needing to version those changes in the python code. Instead, when a connection is established, the python will request specific compiled data from the RPiSoC and save it to a parent class for use by all objects.
+This version makes versioning the python much simpler. It allows for much easier modification to the RPiSoC code, without needing to version those changes in the python code. Instead, when a connection is established, the python will request specific compiled data from the RPiSoC and save it within a parent class for global use.
 
 New to v1.2.0
 *************
