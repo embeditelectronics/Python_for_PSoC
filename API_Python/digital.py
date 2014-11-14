@@ -1,5 +1,5 @@
 __author__ = 'Brian Bradley'
-__version__ = '1.1'
+__version__ = '1.2'
 
 from rpisoc import *
 
@@ -19,12 +19,12 @@ class digitalPin(object):
         **Parameters:**
 
              - *PORT*: Port on the RPiSoC.
-                    * GPIO Ports are chosen by default as Ports *2, 4, 5* and *12.*
+                    * GPIO Ports are chosen by default as Ports *2, 5* and *12.* for V1.2, but they are easily changed
                     * Port *4* does not contain Pin *7* (it is reserved)
                     * Port 5 uses 3.3V logic instead of 5V.
 
              - *PIN*: Pin relative to the chosen Port.
-                    * Valid arguments are between *0* and *7*, unless noted to have a Port specific exception
+                    * Valid arguments are between *0* and *7*, unless noted to have a Port specific exception, or if that pin is removed from your RPiSoC schematic.
 
              - *CONFIG:* drive mode of the pin. Valid choices are:
                     * 'IN' - sets pin as input
@@ -37,21 +37,24 @@ class digitalPin(object):
                     * 'HIGH_Z_DIG' - sets pin as high impedence (digital)
                     * 'STRONG_DRIVE' - sets pin as strong drive
 
+        **Note:**
+            Modification of which pins are available should be easy. Just add new pins to you RPiSoC schematic, give them an input and an output, and then name them as GPIO_PORT_PIN.
+            After you do this, confirm that it was done correctly by using the DEBUG feature of the RPiSoC class.
+
         """
 
         self.address = RPiSoC.GPIO_REGISTER
 
-        if int(PORT) not in [2,4,5,12]:
-            raise ValueError('Invalid object instantiation: the first argument should be the Port number on the PSoC; valid entries are 2, 4, 5, 6, and 12')
-        else:
-            self.port = PORT
 
-        if int(PIN) not in range(8):
-            raise ValueError('Invalid object instantiation: the second argument should be the pin number relative to the desired port. Valid entries are 0-8. ')
-        elif int(PIN) == 7 and int(PORT) == 4:
-            raise ValueError('This pin (P4[7]) is reserved, and thus cannot be used as GPIO')
+        if int(PORT) not in RPiSoC.GPIO.keys():
+            raise ValueError('Invalid PORT: Port numbers found on RPiSoC are ', RPiSoC.GPIO.keys())
         else:
-            self.pin = PIN
+            self.port = int(PORT)
+
+        if int(PIN) not in RPiSoC.GPIO[self.port]:
+            raise ValueError('Invalid PIN: the second argument should be the pin number relative to the desired port. Valid entries on this port are ', RPiSoC.GPIO[self.port])
+        else:
+            self.pin = int(PIN)
 
         self.Configure(CONFIG)
         self.state = self.Read()
@@ -120,7 +123,7 @@ class digitalPin(object):
         """
 
         **Description:**
-            - Toggles the state of the specified output and then writes the new value to the RPiSoC.
+            Toggles the state of the specified output and then writes the new value to the RPiSoC.
 
         """
         val = int(not (self.state==1))
@@ -133,12 +136,11 @@ class digitalPin(object):
         """
         cmd = 0x00
         dat = (self.port<<4) | (self.pin<<1)
-        reg_status = RPiSoC.commChannel.receiveData((self.address, cmd, dat))
-        return bool(reg_status&(0x01<<self.pin))
+        status = RPiSoC.commChannel.receiveData((self.address, cmd, dat))
+        return bool(status)
 
 class PWM(object):
     """
-
     **Description:**
         This class provides functionality for use of the PWM components available on the RPiSoC. Define PWM objects in the following
         way::
@@ -147,59 +149,34 @@ class PWM(object):
             '''etc etc...    '''
             My_last_PWM  = PWM(7)
 
-    **Note:**
-        *V1.1.0* of this API only gives access to 8 PWM's, but there are 24 available on the RPiSoC. Adding them will require some modification of the code, but support for all PWM's will be rolled into version 1.2
 	"""
     def __init__(self, portNumber):
         """
         **Parameters:**
 
-            - *portNumber:* Valid inputs are 0-7
-                * This number corresponds to the respective pin on Port 3
+            - *portNumber:* Valid inputs are 0-(N-1), assuming that there are N PWM channels in your RPiSoC schematic (8 by default).
+                * For the default version of V1.2, this number corresponds to the respective pin on Port 6.
         """
 
-        if portNumber == 0:
-            self.address = RPiSoC.PWM_REGISTER0
-            self.clk_number = 1
-            self.resolution_in_bits = 16 #make sure to change these if you change to 8-bit mode on the PSoC
-        elif portNumber == 1:
-            self.address = RPiSoC.PWM_REGISTER1
-            self.clk_number = 1
-            self.resolution_in_bits = 16
-        elif portNumber == 2:
-            self.address = RPiSoC.PWM_REGISTER2
-            self.clk_number = 2
-            self.resolution_in_bits = 16
-        elif portNumber == 3:
-            self.address = RPiSoC.PWM_REGISTER3
-            self.clk_number = 2
-            self.resolution_in_bits = 16
-        elif portNumber == 4:
-            self.address = RPiSoC.PWM_REGISTER4
-            self.clk_number = 3
-            self.resolution_in_bits = 16
-        elif portNumber == 5:
-            self.address = RPiSoC.PWM_REGISTER5
-            self.clk_number = 3
-            self.resolution_in_bits = 16
-        elif portNumber == 6:
-            self.address = RPiSoC.PWM_REGISTER6
-            self.clk_number = 4
-            self.resolution_in_bits = 16
-        elif portNumber == 7:
-            self.address = RPiSoC.PWM_REGISTER7
-            self.clk_number = 4
-            self.resolution_in_bits = 16
-        else:
-            raise ValueError('Invalid PWM channel specified')
+        if portNumber not in range(RPiSoC.PWM_NUM ):
+            raise ValueError('Invalid PWM Channel specified, valid entires are 0 through %d' %RPiSoC.PWM_NUM)
+        for key in RPiSoC.PWM_clks:
+            for i in RPiSoC.PWM_clks[key][2]:
+                if int(portNumber) ==  i[0]:
+                    addr_str = "RPiSoC.PWM_REGISTER"+str(portNumber)
+                    setattr(self, 'address', eval(addr_str))
+                    self.clk_number = int(key)
+                    self.resolution_in_bits = int(i[1])
 
         self.max_num = pow(2,self.resolution_in_bits) - 1
+        self.max_clk = RPiSoC.PWM_clks[self.clk_number][0]
+        self.min_clk = int(RPiSoC.PWM_clks[self.clk_number][0]/65535) + 1
         self.period = self.ReadPeriod()
-        self.WriteCompare(4500)
-        self.cmp = self.ReadCompare() 
+        self.cmp = self.ReadCompare()
 
-        if self.address in RPiSoC.REGISTERS_IN_USE:
-            print('WARNING: Attempting to initialize object at register %d which is already in use.' %self.address)
+        if RPiSoC.DEBUG:
+            if self.address in RPiSoC.REGISTERS_IN_USE:
+                print('WARNING: Attempting to initialize object at register %d which is already in use.' %self.address)
         RPiSoC.REGISTERS_IN_USE.append(self.address)
 
     def Start(self):
@@ -237,7 +214,8 @@ class PWM(object):
             raise ValueError('Invalid range for WritePeriod operation')
 
         if self.period<self.cmp:
-            #print('WARNING: Attempting to write a PWM period value less than its comparison value. \nDecreasing comparison value to be equal to period before continuing to prevent run time errors.')
+            if RPiSoC.DEBUG:
+                print('WARNING: Attempting to write a PWM period value less than its comparison value. \nDecreasing comparison value to be equal to period before continuing to prevent run time errors.')
             self.cmp = self.period
             self.WriteCompare(self.cmp)
 
@@ -271,7 +249,8 @@ class PWM(object):
             raise ValueError('Invalid range for WriteCompare() method')
 
         if self.period<self.cmp:
-            #print('WARNING: Attempting to write comparison value larger than period. \nIncreasing period to be equal to comparison value before continuing to prevent run time errors.')
+            if RPiSoC.DEBUG:
+                print('WARNING: Attempting to write comparison value larger than period. \nIncreasing period to be equal to comparison value before continuing to prevent run time errors.')
             self.period = self.cmp
             self.WritePeriod(self.period)
 
@@ -327,14 +306,16 @@ class PWM(object):
                 - At frequencies higher than 2.526 MHz (*2526318* Hz) accuracy *cannot* be guaranteed to be within a tolerance of 5%
                 - At frequencies higher than 5.333 MHz (*5333345* Hz) accuracy *cannot* be guaranteed to be within a tolerance of 10%
                     * The frequency might still be accurate at high frequencies; those tolerances are worst case scenarios. Use *GetClocks()* to get the actually achieved frequency.
+                    * These numbers are valid only for a 24MHz driving frequency, which is the suggested rate for PWM.
 
         """
-        if frequency>24000000 or frequency<367:
-            raise ValueError('Invalid range specified for PWM clock frequency. Must be less than 24MHz and greater than 367Hz')
-        elif frequency>5333345:
-            print("WARNING: Attempted to set PWM clock frequency greater than 5.333 MHz; this frequency cannot be gauranteed within a tolerance of 10%. Get the actual frequency with the GetClocks() method")
-        elif frequency>2526318:
-            print("WARNING: Attempted to set PWM clock frequency greater than 2.526 MHz; this frequency cannot be gauranteed within a tolerance of 5%. Get the actual frequency with the GetClocks() method")
+        if frequency>self.max_clk or frequency<self.min_clk:
+            raise ValueError('Invalid range specified for PWM clock frequency. Must be less than %dMHz and greater than %dHz'%(int(float(self.max_clk)/1000000),self.min_clk))
+        if RPiSoC.DEBUG:
+            if frequency>5333345: #figure this out for arbitrary clock. Only valid for 24MHz
+                print("WARNING: Attempted to set PWM clock frequency greater than 5.333 MHz; this frequency cannot be gauranteed within a tolerance of 10%. Get the actual frequency with the GetClocks() method")
+            elif frequency>2526318:
+                print("WARNING: Attempted to set PWM clock frequency greater than 2.526 MHz; this frequency cannot be gauranteed within a tolerance of 5%. Get the actual frequency with the GetClocks() method")
 
         cmd = 0xFF
         attempt_divider = int((RPiSoC.PWM_clks[self.clk_number][0]/float(frequency)) + 0.5)
@@ -379,6 +360,7 @@ class PWM(object):
             raise ValueError('Invalide range for SetClockDivider() method')
         RPiSoC.PWM_clks[self.clk_number][1] = (RPiSoC.commChannel.receiveData((self.address,cmd, divider))) + 1
 
+    #eventually move this algorithm to psoc side for greater portability...
     def SetFrequency(self,freq):
         """
         **Description:**
@@ -393,12 +375,14 @@ class PWM(object):
                 * This value cannot be less than .006 Hz and cannot be more than 2.4 MHz (*2400000* Hz)
 
         """
-        if freq<=0.006:
-            #print('WARNING: cannot generate frequencies less than .006 Hz. Frequency will be set to .006 Hz')
-            freq = 0.006
-        if freq>2400000:
-            #print('WARNING: cannot generate a frequency greater than 1.2MHz without severely compromisng the accurate maintenence of the Duty Cycle. Frequency will be set to 1.2MHz to prevent this. ')
-            freq = 2400000.0
+        if freq<=(float(self.min_clk)/65534):
+            if RPiSoC.DEBUG:
+                print('WARNING: cannot generate frequencies less than %f Hz. Frequency will be set to %f Hz'%(float(self.min_clk)/65534,float(self.min_clk)/65534))
+            freq = self.min_clk/65534.0
+        if freq>(self.max_clk/10.0):
+            if RPiSoC.DEBUG:
+                print('WARNING: cannot generate a frequency greater than %fMHz without severely compromisng the accurate maintenence of the Duty Cycle. Frequency will be set to %fMHz to prevent this. '%(self.max_clk/10.0,self.max_clk/10.0))
+            freq = self.max_clk/10.0
 
         DutyCycle_cur = self.GetDutyCycle()/100.0
         period_new = int((self.GetClocks()/float(freq)) + 0.5)
@@ -416,8 +400,9 @@ class PWM(object):
         div_cur = self.GetClockDivider()
         while abs(error)>5:
             if err_chk_strt:
-                print('WARNING: Could not acheive desired frequency within 5% tolerance without editing the clock rate. This change will affect any PWM channels sharing this clock.')
-                clock_rate = int(freq*self.max_num + (367 - freq*self.max_num)*(freq*self.max_num<367) - (freq*self.max_num>24000000)*(freq*self.max_num - 24000000))
+                if RPiSoC.DEBUG:
+                    print('WARNING: Could not acheive desired frequency within 5% tolerance without editing the clock rate. This change will affect any PWM channels sharing this clock.')
+                clock_rate = int(freq*self.max_num + (self.min_clk - freq*self.max_num)*(freq*self.max_num<self.min_clk) - (freq*self.max_num>self.max_clk)*(freq*self.max_num - self.max_clk))
                 self.SetClocks(clock_rate)
                 clk_new = self.GetClocks()
                 div_cur = self.GetClockDivider()
@@ -501,26 +486,27 @@ class PWM(object):
 class Servo:
     """
         **Description:**
-            Create a servo object with the given parameter set. Define PWM objects in the following
-            way::
-                My_servo       = Servo(0, 1.0, 2.5, 0, 180)
-                My_other_servo = Servo(1, 1.0, 2.5, 0, 180)
-                '''etc etc...    '''
-                My_last_servo  = Servo(7, 1.0, 2.5, 0, 180)
+            Creates a servo object with the given parameter set. Define PWM objects in any the following
+            ways::
+                My_simple_servo       = Servo(0)
+                My_calibrated_servo   = Servo(1, 1.0, 2.5)
+                My_descriptive_servo  = Servo(7, 1.0, 2.5, 0, 180)
     """
     def __init__(self, servo_id, min_pulse = 1.0, max_pulse = 2.0, min_angle = 0, max_angle = 180):
         """
         **Parameters:**
 
-            - *servo_id:* the pin which the servo will be connected to, relative to port 3 on the RPiSoC
+            - *servo_id:* the pin which the servo will be connected to, relative to port 6 on the RPiSoC
 
-            - *min_pulse:* the pulse width necessary to obtain angular position min_angle.
-    		- *max_pulse:* the pulse width necessary to obtain angular position max_angle.
+        **Optional Parameters:**
+
+            - *min_pulse:* the pulse width necessary to obtain angular position min_angle. Find an appropriate value through calibration; it defaults to 1.0
+            - *max_pulse:* the pulse width necessary to obtain angular position max_angle. Find an appropriate value through calibration; it defaults to 2.0
                 * Pulse widths must be positive and greater than zero.
                 * Pulse width values are usually have maximum values of 2 to 2.3 and minimum values of 0.8 to 1.2
-            - *min_angle:* the angle which the servo will return to if applied with a pulse width of min_pulse
-            - *max_angle:* the angle which the servo will return to if applied with a pulse width of max_pulse.
-                * Negative angular positions are valid. Angles can be any angular unit: degrees, radians, or other arbitrary (linear) scale.
+            - *min_angle:* the angle which the servo will return to if applied with a pulse width of min_pulse. Defaults to 0
+            - *max_angle:* the angle which the servo will return to if applied with a pulse width of max_pulse. Defaults to 180
+                * Negative angular positions are valid. Angles can be any angular unit: degrees, radians, or other arbitrary (linear) scale
 
         **Note:**
             A servo with servo_id, n, will make PWM(n) unnavailable, since the servo controller is implemented using that PWM object. For fine control over
@@ -538,14 +524,8 @@ class Servo:
         self.pulse_range = float(max_pulse-min_pulse)
         self.angle_range = float(max_angle-min_angle)
 
-	
+
         self.servo_PWM = PWM(self.servo_id)
-	
-        #self.Start()
-        #self.servo_PWM.SetClocks(3000000)
-        #self.servo_PWM.WritePeriod(60000)
-        #self.SetPulse((self.max_pulse + self.min_pulse)/2.0)
-        #self.Stop()
 
     def SetPulse(self, pulse_ms):
         """
@@ -557,9 +537,10 @@ class Servo:
 		  - *pulse_ms:* a pulse width in ms, which will be applied to the servo.Normal values are between 0.8 and 2.3
 
 		"""
-        cmp = int((self.servo_PWM.GetClocks()*((pulse_ms)/1000.0)) + 0.5)
-        self.servo_PWM.WriteCompare(cmp)
-
+        #cmp = int((self.servo_PWM.GetClocks()*((pulse_ms)/1000.0)) + 0.5)
+        #cmp = int(  (float(pulse_ms)/(1.0/(self.servo_PWM.GetFrequency()))) * self.servo_PWM.ReadPeriod() )
+        self.servo_PWM.SetDutyCycle((float(pulse_ms)/(1.0/(self.servo_PWM.GetFrequency())))*100)
+        #self.servo_PWM.WriteCompare(cmp)
     def ReadPulse(self):
         """
         **Description:**
@@ -592,11 +573,9 @@ class Servo:
              configuration parameters defined at initialization, then calls SetPulse to
              set the position of the servo.
 
-		**Parameters:**
-
+        **Parameters:**
             - *angle:* The angle to which the servo should be set, linearized relative to the defined minimum and maximum angles.
-                * Negative angular positions are valid. Angles can be any angular unit: degrees, radians, or other arbitrary (linear) scale but they
-                must be within the same scale used when initializing the min/max configuration parameters.
+                * Negative angular positions are valid. Angles can be any angular unit: degrees, radians, or other arbitrary (linear) scale but they must be within the same scale used when initializing the min/max configuration parameters.
 		"""
 
         angle_perc = float(angle-self.min_angle)/self.angle_range
