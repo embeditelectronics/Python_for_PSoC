@@ -6,7 +6,7 @@ This program is the highest level module for the RPiSoC API, which the user shou
 import into their scripts for full use of the API.
 """
 __author__ = 'Brian Bradley'
-__version__ = '1.1.1'
+__version__ = '1.2.0'
 
 import math
 import time

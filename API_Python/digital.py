@@ -1,5 +1,5 @@
 __author__ = 'Brian Bradley'
-__version__ = '1.2'
+__version__ = '1.2.0'
 
 from rpisoc import *
 
