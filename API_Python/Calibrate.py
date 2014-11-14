@@ -34,7 +34,7 @@ def init_servos(servos, file = None):
 if __name__ == '__main__':
     try:
         servos = [0,1,2]
-        my_servos =  init_servos(servos,'robo-arm_calibrations.txt')
+        my_servos =  init_servos(servos,'calibrations.txt')
         down_list = []
         up_list = []
         servo_count = len(my_servos)
