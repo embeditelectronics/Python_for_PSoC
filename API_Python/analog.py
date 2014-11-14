@@ -4,10 +4,78 @@ of the RPiSoC.
 """
 
 __author__ = 'Brian Bradley'
-__version__ = '1.1'
+__version__ = '1.2.0'
 
 from rpisoc import *
 from time import sleep
+
+class CapSense(object):
+    """
+    **Description:**
+    Provides functionality for use of CapSense buttons on the RPiSoC. Define a CapSense object in the following
+    way::
+        My_capsense_button = CapSense(PIN)
+    """
+    def __init__(self,PIN):
+        """
+        **Parameters:**
+
+             - *PIN*: The capsense pin number. PIN n directly corresponds to the pin which you assign to Capsense_BTN_N in your rpisoc firmware
+                    * The following is valid for the default version of the API (v1.2) which contains 6 capsense buttons
+                        + The Cmod pin, which should be a 2.2nF capacitor, should be connected between ground and P4[6]
+                        + PIN is the number relative to Port 4, between *0* and *5*.
+
+        """
+        if RPiSoC.CAPSENSE_SENSOR_NUM is 0:
+            raise ValueError('Error: No CapSense pins found. Verify your schematic on the RPiSoC is correct, or try resetting the RPiSoC and trying again.')
+        elif PIN not in range(RPiSoC.CAPSENSE_SENSOR_NUM):
+            raise ValueError('Invalid CapSense sensor number chosen: Valid range is between 0 and %d'%(RPiSoC.CAPSENSE_SENSOR_NUM - 1))
+        else:
+            self.number = PIN
+            self.address = RPiSoC.CAPSENSE_REGISTER
+
+    def Start(self):
+        """
+        **Description:**
+            Initializes registers and enables active mode power template bits of the subcomponents used within CapSense.
+        """
+        cmd = 0x00
+        RPiSoC.commChannel.sendData((self.address,cmd))
+
+    def Stop(self):
+        """
+        **Description:**
+            Disables component interrupts, and calls CapSense_ClearSensors() to reset all sensors to an inactive state.
+        """
+        cmd = 0x01
+        RPiSoC.commChannel.sendData((self.address,cmd))
+
+    def Sleep(self):
+        """
+        **Description:**
+            Prepares the component for the device entering a low-power mode. Disables Active mode power template bits of the sub components used within CapSense, saves nonretention registers, and resets all sensors to an inactive state.
+        """
+        cmd = 0x02
+        RPiSoC.commChannel.sendData((self.address,cmd))
+
+    def Wakeup(self):
+        """
+        **Description:**
+            Restores CapSense configuration and nonretention register values after the device wake from a low power mode sleep mode.
+        """
+        cmd = 0x03
+        RPiSoC.commChannel.sendData((self.address,cmd))
+
+    def Read(self):
+        """
+        **Description:**
+            Gives the state of the capsense button
+        **Returns:**
+            state: bool which represents the current state of the capsense button.
+        """
+        cmd = 0x18
+        val = self.number
+        return bool(RPiSoC.commChannel.receiveData((self.address,cmd, val),delay = 0.03))
 
 class analogPin(object):
     """
@@ -20,15 +88,14 @@ class analogPin(object):
         """
         **Parameters:**
 
-             - *PIN*: The analog pin number
-                    * Valid arguments are between *0* and *9*
-                    * PINs *0-7* are relative to Port 3. So PIN = 0 an analog pin on Port 3 Pin 0 (P3[0]), and PIN = 7 is on Port 3 Pin 7 (P3[7])
-                    * PIN *8* is on P0[3]
-                    * PIN *9* is on P0[7]
+             - *PIN*: The analog pin number - This directly corresponds to the pins connected to your sequenced SAR ADC, where 0 is the top pin.
+                    * The following is valid for the default version of the API (v1.2) which containts 8 analog pins.
+                        + Valid arguments are between *0* and *7*
+                        + PINs *0-7* are relative to Port 3. So PIN = 0 an analog pin on Port 3 Pin 0 (P3[0]), and PIN = 7 is on Port 3 Pin 7 (P3[7])
         """
 
-        if int(PIN) not in range(10):
-            raise ValueError('Invalid Pin for Analog input specified. Only 10 analog inputs available.')
+        if int(PIN) not in range(RPiSoC.ANALOG_IN_NUM):
+            raise ValueError('Invalid Pin for Analog input specified. Only %d analog inputs available.' %RPiSoC.ANALOG_IN_NUM)
         else:
             self.pin = PIN
 
@@ -101,26 +168,36 @@ class ADC(object):
         """
         **Paramaters:**
             *c_type:* The type of ADC to be used. Choose:
-                - *DELSIG* ; output is on P15[5]
-                - *SAR0* ; output is on P15[4]
-                - *SAR1* ; output is on P0[3]
+                - *DELSIG*
+                - *SAR0*
+                - *SAR1*
+
+        **Note:**
+            None of the ADCs are included by default in V1.2. You are able to add them by simply placing them in your schematic on your RPiSoC program.
 
         """
 
         self.type = c_type
 
         if self.type == 'DELSIG':
+            if not RPiSoC.DELSIG:
+                raise ValueError('Delta-Sigma ADC not found on PSoC Creator program, verify that it is in your schematic and named correctly')
             self.address = RPiSoC.DELSIG_ADC_CONTROL
         elif self.type == 'SAR0':
+            if not RPiSoC.SAR0:
+                raise ValueError('SAR0 ADC not found on PSoC Creator program, verify that it is in your schematic and named correctly')
             self.address = RPiSoC.SAR_ADC0_CONTROL
         elif self.type == 'SAR1':
+            if not RPiSoC.SAR1:
+                raise ValueError('SAR1 ADC not found on PSoC Creator program, verify that it is in your schematic and named correctly')
             self.address = RPiSoC.SAR_ADC1_CONTROL
         else:
             raise ValueError('Invalid ADC type: Choose "DELSIG" "SAR0" or "SAR1"')
         self.polarity = 1
 
-        if self.address in RPiSoC.REGISTERS_IN_USE:
-            print('WARNING: Attempting to initialize object at register %d which is already in use.' %self.address)
+        if RPiSoC.DEBUG:
+            if self.address in RPiSoC.REGISTERS_IN_USE:
+                print('WARNING: Attempting to initialize object at register %d which is already in use.' %self.address)
         RPiSoC.REGISTERS_IN_USE.append(self.address)
 
     def Start(self):
@@ -175,10 +252,7 @@ class ADC(object):
                 * Valid entries are *8, 10, or 12.*
 
         **Side Effects:**
-            - The ADC resolution cannot be changed during a conversion cycle. The recommended bestpractice is to stop conversions with *StopConvert(),* change the resolution, then restart the conversions with *StartConvert().* If you decide not to stop conversions before calling this API,
-            use *IsEndConversion()* to wait until conversion is complete before changing the resolution. If you call *SetResolution()* during a conversion,
-            the resolution will not change until the current conversion is complete. Data will not be available in the new resolution
-            for another 6 + *resolution* clock cycles. You may need add a delay of this number of clock cycles after *SetResolution()* is called before data is valid again.
+            - The ADC resolution cannot be changed during a conversion cycle. The recommended bestpractice is to stop conversions with *StopConvert(),* change the resolution, then restart the conversions with *StartConvert().* If you decide not to stop conversions before calling this API, use *IsEndConversion()* to wait until conversion is complete before changing the resolution. If you call *SetResolution()* during a conversion, the resolution will not change until the current conversion is complete. Data will not be available in the new resolution for another 6 + *resolution* clock cycles. You may need add a delay of this number of clock cycles after *SetResolution()* is called before data is valid again.
         """
 
         if self.type == 'DELSIG':
@@ -193,7 +267,7 @@ class ADC(object):
     def StartConvert(self):
         """
         **Description:**
-            Forces the ADC to initialize a conversion. This is handled internally for the Delsig ADC, using the *Read()*function, but it is kept seperate for the SAR. It can be done seperately for the Delsig as well, if desired.
+            Forces the ADC to initialize a conversion. This is handled internally for the Delsig ADC, using the *Read()* function, but it is kept seperate for the SAR. It can be done seperately for the Delsig as well, if desired.
         """
         if self.type == "SAR0" or self.type == "SAR1":
             cmd = 0x04
@@ -357,7 +431,6 @@ class IDAC(object):
             My_IDAC       = IDAC(0)
             My_other_IDAC = IDAC(1)
 
-    **Note:** The default API configuration for *V1.0* only has one IDAC, but more can be included if the default configuration is modified on the RPiSoC. *V1.1* intends to include support for multiple configurations, each with a different emphasis.
     """
     def __init__(self, channel):
         """
@@ -365,7 +438,7 @@ class IDAC(object):
         **Parameter:**
 
             - *channel* Determines which IDAC is the be utilized
-                * *0* for the first IDAC; output is on P0[6]
+                * *0* for the first IDAC; output is on P0[7] by default
                 * *1* for the second IDAC; not available by default
 
 
@@ -373,18 +446,23 @@ class IDAC(object):
         self.channel = channel
 
         if self.channel == 0:
+            if not RPiSoC.IDAC0:
+                raise ValueError('IDAC0 not found on PSoC Creator program, verify that it is in your schematic and named correctly')
             self.address = RPiSoC.IDAC0_CONTROL
+            self.full_range = RPiSoC.IDAC0_RANGE
        	elif self.channel == 1:
-            raise ValueError('Only one IDAC supported by this configuration.')
+            if not RPiSoC.IDAC1:
+                raise ValueError('IDAC1 not found on PSoC Creator program, verify that it is in your schematic and named correctly')
             self.address = RPiSoC.IDAC1_CONTROL
+            self.full_range = RPiSoC.IDAC1_RANGE
         else:
             raise ValueError('Invalid channel: Only two IDACs available; choose 0 or 1.')
 
-        if self.address in RPiSoC.REGISTERS_IN_USE:
-            print('WARNING: Attempting to initialize object at register %d which is already in use.' %self.address)
+        if RPiSoC.DEBUG:
+            if self.address in RPiSoC.REGISTERS_IN_USE:
+                print('WARNING: Attempting to initialize object at register %d which is already in use.' %self.address)
         RPiSoC.REGISTERS_IN_USE.append(self.address)
 
-        self.full_range = 2.0
 
     def Start(self):
         """
@@ -418,7 +496,7 @@ class IDAC(object):
         elif speed =='HIGH':
             val = 1
         else:
-            raise ValueError('Invalid Speed: Input "High" or "Low"')
+            raise ValueError('Invalid Speed: Input "HIGH" or "LOW"')
 
         RPiSoC.commChannel.sendData((self.address, cmd, val))
 
@@ -462,7 +540,7 @@ class IDAC(object):
             self.full_range = .255
         elif mode == 2:
             self.full_range = 2.0
-        
+
         RPiSoC.commChannel.sendData((self.address, cmd, mode))
 
 
@@ -498,7 +576,7 @@ class IDAC(object):
             digital_val = int(255*(amps>self.full_range))
 
         self.SetValue(digital_val)
-        
+
 
     def Sleep(self):
         """
@@ -530,29 +608,28 @@ class VDAC(object):
         **Parameters:**
 
             - *channel:* Determines which VDAC is to be utilized
-                * *0* for the first VDAC; output is on P0[1]
-                * *1* for the second VDAC; output is on P0[5]
-        **Note:**
-            - By default, *VDAC0* has a full scale range of 4.080V and
-            *VDAC1* has a full scale range of 1.020V.
-                * This can be modified at runtime with the *SetRange()* method for either VDAC
-
-
+                * *0* for the first VDAC; output is on P0[1] by default
+                * *1* for the second VDAC; not available by default
         """
 
         self.channel = channel
 
         if self.channel == 0:
+            if not RPiSoC.VDAC0:
+                raise ValueError('VDAC0 not found on PSoC Creator program, verify that it is in your schematic and named correctly')
             self.address = RPiSoC.VDAC0_CONTROL
-            self.full_range = 4.08
+            self.full_range = RPiSoC.VDAC0_RANGE
         elif self.channel == 1:
+            if not RPiSoC.VDAC1:
+                raise ValueError('VDAC1 not found on PSoC Creator program, verify that it is in your schematic and named correctly')
             self.address = RPiSoC.VDAC1_CONTROL
-            self.full_range = 1.02
+            self.full_range = RPiSoC.VDAC1_RANGE
         else:
             raise ValueError('Invalid channel: Only two VDACs available; choose 0 or 1')
 
-        if self.address in RPiSoC.REGISTERS_IN_USE:
-            print('WARNING: Attempting to initialize object at register %d which is already in use.' %self.address)
+        if RPiSoC.DEBUG:
+            if self.address in RPiSoC.REGISTERS_IN_USE:
+                print('WARNING: Attempting to initialize object at register %d which is already in use.' %self.address)
         RPiSoC.REGISTERS_IN_USE.append(self.address)
 
     def Start(self):
@@ -587,7 +664,7 @@ class VDAC(object):
         elif speed =='HIGH':
             val = 1
         else:
-            raise ValueError('Invalid Speed: Input "High" or "Low"')
+            raise ValueError('Invalid Speed: Input "HIGH" or "LOW"')
 
         RPiSoC.commChannel.sendData((self.address, cmd, val))
 
@@ -622,7 +699,7 @@ class VDAC(object):
         - *volts*: number between 0 and the full scale range in Volts.
         * The full scale value depends on the range, which is chosen with the SetRange() method.
         """
-	
+
 
         if volts <= self.full_range and volts>=0:
             digital_val = int((float(volts)/self.full_range) * 255 + 0.5)
@@ -674,7 +751,9 @@ class WaveDAC(object):
 
     def __init__(self):
 
-        self.master_clk = 3000000
+        if not RPiSoC.WAVEDAC:
+                raise ValueError('Wave DAC not found on PSoC Creator program, verify that it is in your schematic and named correctly')
+        self.master_clk = 3000000 #might want to automate....
         self.frequency = 250000
         self.divider_value = 12
         self.amplitude = 255
@@ -682,8 +761,9 @@ class WaveDAC(object):
         self.waveType = 'SINE'
         self.address = RPiSoC.WAVEDAC_CONTROL
 
-        if self.address in RPiSoC.REGISTERS_IN_USE:
-            print('WARNING: Attempting to initialize object at register %d which is already in use.' %self.address)
+        if RPiSoC.DEBUG:
+            if self.address in RPiSoC.REGISTERS_IN_USE:
+                print('WARNING: Attempting to initialize object at register %d which is already in use.' %self.address)
         RPiSoC.REGISTERS_IN_USE.append(self.address)
 
     def Start(self):

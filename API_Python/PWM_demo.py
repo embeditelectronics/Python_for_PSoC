@@ -19,14 +19,14 @@ from rpisoc import *
 RPiSoC('SPI')
 
 My_PWM = PWM(0)
-My_other_PWM = PWM(2)
+My_other_PWM = PWM(1)
 
 My_PWM.Start()
 My_other_PWM.Start()
 #My_PWM.WritePeriod(65535)
 #My_other_PWM.WritePeriod(65535)
-My_PWM.SetDutyCycle(50)
-My_other_PWM.SetDutyCycle(50)
+#My_PWM.SetDutyCycle(50)
+#My_other_PWM.SetDutyCycle(50)
 
 try:
     while True:
