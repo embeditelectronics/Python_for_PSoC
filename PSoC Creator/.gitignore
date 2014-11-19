@@ -1,0 +1,39 @@
+# Ignore all files.
+
+*.*
+!*.gitignore
+
+# Add back the workspace configuration file.
+
+!*.cywrk
+
+# Add back the project directories.
+
+!*.cydsn
+
+# Add back the project configuration files.
+
+!*.cydwr
+!*.cyprj
+!*.cysch
+!*.cyversion
+
+# Add back the source files.
+
+!*.h
+!*.c
+
+# Ignore the generated source directories.
+
+codegentemp
+Generated_Source
+
+# Add back the bootloader files
+!*.hex
+!*.elf
+
+# Add back the documentation files.
+
+!*.md
+!*.txt
+!*.docx
