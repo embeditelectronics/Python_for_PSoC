@@ -16,15 +16,17 @@
 * 
 */
 #include <project.h>
-//#include <device.h>
 #include <stdio.h>
 #include <mem1.h>
 //#include <LINX.h>
+#include <Python.h>
 
 #ifdef USE_I2C
     uint8 WR_buf[I2C_BUFFER_SIZE]; 
     uint8 RD_buf[I2C_BUFFER_SIZE] = {0,0,0,0};
 #endif
+
+vessel_type vessel;
 
 int main()
 {
@@ -55,7 +57,7 @@ int main()
     /* Gets data from the Pi and send it to mem1.c*/
     for(;;)
     {
-        #ifdef LINX_H
+        #if defined(LINX_H)
             if(USBUART_DataIsReady()) {
                 if (LINX_GetCommand(LINX_Command)) {
                     LINX_ProcessCommand(LINX_Command, LINX_Response);
@@ -68,17 +70,13 @@ int main()
                 }
                 
             }
-        #else
-            uint32 input = ReadFrom_Pi();
+        #elif defined(PYTHON_H)
+            ReadFrom_Pi();
+            Python_parser(&vessel);
             
-            uint8 addr = (input & 0xFF000000)>>24;
-            uint8 cmd = (input & 0x00FF0000)>>16;
-            uint8 dat_lo = (input & 0x0000FF00)>>8;
-            uint8 dat_hi = input & 0x000000FF;
-            uint16 dat = (dat_hi<<8) | dat_lo;
             uint32 result;
-          
-            if (readData(addr,cmd,dat,&result)) {
+            
+            if (readData(vessel, &result)) {
                 WriteTo_Pi(result);
             }
         #endif
@@ -107,7 +105,7 @@ int main()
 *
 *********************************************************************************************/
     
-    uint32 ReadFrom_Pi(void)
+    void ReadFrom_Pi(void)
     {   
         uint8 addr = 0;
         uint8 cmd = 0;
@@ -143,9 +141,11 @@ int main()
                 
         #endif
  
-        
-        uint32 input = (((addr<<24)|(cmd<<16))|(dat_lo<<8))|(dat_hi);
-        return input;
+        vessel.addr = addr;
+        vessel.cmd = cmd;
+        vessel.dat = (dat_hi<<8)||dat_lo;
+        //uint32 input = (((addr<<24)|(cmd<<16))|(dat_lo<<8))|(dat_hi);
+       // return input;
     }
     
 /****************************************************************************************//**

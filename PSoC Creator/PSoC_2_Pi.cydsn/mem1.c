@@ -32,9 +32,12 @@
 *
 *****************************************************************************************************/
 
-bool readData(uint8 addr, uint8 cmd, uint16 dat, uint32 *result)
+bool readData(vessel_type vessel, uint32 *result)
 {
     bool return_flag = false;
+    uint8 cmd = vessel.cmd;
+    uint8 dat = vessel.dat;
+    uint8 addr = vessel.addr;
     
     switch(addr)
     {
@@ -142,7 +145,7 @@ bool readData(uint8 addr, uint8 cmd, uint16 dat, uint32 *result)
             case CAPSENSE_REGISTER: return_flag = CapSense_Read(cmd, dat, result); break;
         #endif
         
-        case GPIO_REGISTER: return_flag = GPIO_Control(cmd,dat, result); break;
+        case GPIO_REGISTER: return_flag = GPIO_Control(cmd, vessel.port, vessel.pin, dat, result); break;
         
         case CHECK_BUILD: return_flag = CheckBuild(cmd, dat, result); break;
         
@@ -1762,13 +1765,13 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
         }
     #endif
     
-    bool GPIO_Control(uint8 cmd, uint16 dat, uint32 *result)
+    bool GPIO_Control(uint8 cmd, uint8 port, uint8 pin, uint16 val, uint32 *result)
     //port, pin, value
     {
-        uint8 val = dat&0x0001;
+        /*uint8 val = dat&0x0001;
         uint8 pin = (dat>>1)&0x0007;
         uint8 port = (dat>>4)&0x000F;
-        uint8 config = (dat>>8)&0x000F;
+        uint8 config = (dat>>8)&0x000F;*/
         
         uint16 config_MASK = 0x00;
         
@@ -2275,7 +2278,7 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
                     
                     
                     case 0x03: //set drive mode
-                            switch(config)
+                            switch(val)
                             {
                                     case 0x01: config_MASK = PIN_DM_ALG_HIZ; break;
                                     case 0x02: config_MASK = PIN_DM_DIG_HIZ; break;

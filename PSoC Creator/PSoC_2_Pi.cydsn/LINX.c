@@ -17,10 +17,7 @@
     #include "LINX.h"
 #endif
 
-#include <project.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include "mem1.h"
+vessel_type vessel;
 
 // Initializes all hardware devices the LINX protocol needs,
 // Including the USBUART, DEBUG_UART if enabled, EEPROM, VDACs,
@@ -43,10 +40,12 @@ void LINX_Initialize() {
     
     // Start both VDACs
     #ifdef CY_VDAC8_VDAC8_1_H
-        readData(VDAC0_CONTROL, 0x00, 0x00, 0x00);
+        //readData(VDAC1_CONTROL, 0x00, 0x00, 0x00);
+        readData(vessel, 0x00);
     #endif
     #ifdef CY_VDAC8_VDAC8_2_H
-        readData(VDAC1_CONTROL, 0x00, 0x00, 0x00);
+        //readData(VDAC1_CONTROL, 0x00, 0x00, 0x00);
+        readData(vessel, 0x00);
     #endif
     
     // Start QE
@@ -165,7 +164,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
     // TODO: Look into how variable declaraion within switch statements works
     //       There might be a more efficient way to do this, but this will definitely work
     uint8 i;
-    uint8 status = L_OK;
+    uint8 status = LINX_STATUS_L_OK;
     uint8 response_data[LINX_RESPONSE_DATA_BUFFER_SIZE];
     uint8 response_data_len = 0;
     uint8 response_bits_remaining;
@@ -205,10 +204,10 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             #endif
             
             response_data_len = 4;
-            response_data[0] = FIRMWARE_VER_MAJOR;
-            response_data[1] = FIRMWARE_VER_MINOR;
-            response_data[2] = FIRMWARE_VER_SUBMINOR;
-            response_data[3] = FIRMWARE_VER_BUILD;
+            response_data[0] = LINX_FIRMWARE_VER_MAJOR;
+            response_data[1] = LINX_FIRMWARE_VER_MINOR;
+            response_data[2] = LINX_FIRMWARE_VER_SUBMINOR;
+            response_data[3] = LINX_FIRMWARE_VER_BUILD;
             break;
         
         // Get max baud rate
@@ -572,7 +571,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             cystatus second = EEPROM_ByteWrite(command[7], 0, 1);
             
             if(first == CYRET_LOCKED || first == CYRET_UNKNOWN || second == CYRET_LOCKED || second == CYRET_UNKNOWN) {
-                status = L_UNKNOWN_ERROR;
+                status = LINX_STATUS_L_UNKNOWN_ERROR;
             }
             
             break;
@@ -622,19 +621,18 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 #endif
                 
                 // Set as output
-                uint8 addr = GPIO_REGISTER;
-                uint8 cmd = 0x03;               // Set drive mode command
-                uint16 dat = 0x0000;
-                dat |= (value) & 0x01;
-                dat |= (pin << 1) & 0x0E;       // Set pin
-                dat |= (port << 4) & 0xF0;      // Set port
-                dat |= (0x07 << 8) & 0xF00;     // Set to strong drive
+                vessel.addr = GPIO_REGISTER;
+                vessel.cmd = 0x03;               // Set drive mode command
+                vessel.pin = pin;
+                vessel.port = port;
+                vessel.dat = 0x07;              // Set to strong drive
                 uint32 result = 0x00;
-                readData(addr, cmd, dat, &result);
+                readData(vessel, &result);
 
                 // Write value
-                cmd = 0x01;                     // Write command
-                readData(addr, cmd, dat, &result);
+                vessel.cmd = 0x01;                     // Write command
+                vessel.dat = value;
+                readData(vessel, &result);
                 
             }
             
@@ -659,18 +657,17 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 #endif
                 
                 // Set as input
-                uint8 addr = GPIO_REGISTER;
-                uint8 cmd = 0x03;               // Set drive mode command
-                uint16 dat = 0x0000;
-                dat |= (pin << 1) & 0x0E;       // Set pin
-                dat |= (port << 4) & 0xF0;      // Set port
-                dat |= (0x02 << 8) & 0xF00;     // Set to digital high impedance
+                vessel.addr = GPIO_REGISTER;
+                vessel.cmd = 0x03;               // Set drive mode command
+                vessel.pin = pin;
+                vessel.port = port;
+                vessel.dat = 0x02;              // Set to digital high impedance
                 uint32 result = 0x00;
-                readData(addr, cmd, dat, &result);
+                readData(vessel, &result);
                 
                 // Read value
-                cmd = 0x00;                     // Read command
-                readData(addr, cmd, dat, &result);
+                vessel.cmd = 0x00;                     // Read command
+                readData(vessel, &result);
                 
                 #ifdef LINX_DEBUG
                     debug_str_len = sprintf((char *)debug_str, "\t\tResult: %x\r\n", (unsigned int)result);
@@ -727,11 +724,11 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 
                 // Read pin
                 // TODO: Test that this works with multiple channels
-                uint8 addr = ANALOG_IN_REGISTER;
-                uint8 cmd = 0x00;
-                uint16 dat = pin;
+                vessel.addr = ANALOG_IN_REGISTER;
+                vessel.cmd = 0x00;
+                vessel.dat = pin;
                 uint32 result;
-                readData(addr, cmd, dat, &result);
+                readData(vessel, &result);
                 
                 #ifdef LINX_DEBUG
                     debug_str_len = sprintf((char *)debug_str, "\t\t\tResult: %x\r\n", (unsigned int)result);
@@ -768,11 +765,11 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 #endif
                 
                 // Output value
-                uint8 addr = VDAC0_CONTROL + pin;   // Choose which VDAC
-                uint8 cmd = 0x04;                   // Set value command
-                uint16 dat = value;                 // Set value
+                vessel.addr = VDAC0_CONTROL + pin;   // Choose which VDAC
+                vessel.cmd = 0x04;                   // Set value command
+                vessel.dat = value;                 // Set value
                 uint32 result = 0x00;
-                readData(addr, cmd, dat, &result);
+                readData(vessel, &result);
             }
             
             break;
@@ -795,25 +792,26 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 
                 // TODO: Softcode with #defines? Actually cypress API calls
                 // Calculate comparison value
-                uint16 cmp = (uint32)value * (uint32)60000 / (uint32)255;
-                uint8 addr;
+                vessel.dat = (uint32)value * (uint32)60000 / (uint32)255;
                 uint32 result;
                 switch(pin) {
-                    case 0: addr = PWM_REGISTER0; break;
-                    case 1: addr = PWM_REGISTER1; break;
-                    case 2: addr = PWM_REGISTER2; break;
-                    case 3: addr = PWM_REGISTER3; break;
-                    case 4: addr = PWM_REGISTER4; break;
-                    case 5: addr = PWM_REGISTER5; break;
-                    case 6: addr = PWM_REGISTER6; break;
-                    case 7: addr = PWM_REGISTER7; break;
+                    case 0: vessel.addr = PWM_REGISTER0; break;
+                    case 1: vessel.addr = PWM_REGISTER1; break;
+                    case 2: vessel.addr = PWM_REGISTER2; break;
+                    case 3: vessel.addr = PWM_REGISTER3; break;
+                    case 4: vessel.addr = PWM_REGISTER4; break;
+                    case 5: vessel.addr = PWM_REGISTER5; break;
+                    case 6: vessel.addr = PWM_REGISTER6; break;
+                    case 7: vessel.addr = PWM_REGISTER7; break;
                 }
                 
                 // Start PWM channel
-                readData(addr, 0x00, cmp, &result);
+                vessel.cmd = 0x00;
+                readData(vessel, &result);
                 
                 // Set PWM compare value
-                readData(addr, 0x0E, cmp, &result);
+                vessel.cmd = 0x0E;
+                readData(vessel, &result);
             }
             
             break;
@@ -840,7 +838,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                         case 0x01: QuadDec_1_SetCounter(0); break;
                     #endif
                     default:
-                        status = L_UNKNOWN_ERROR; break;
+                        status = LINX_STATUS_L_UNKNOWN_ERROR; break;
                 }
             }
             
@@ -875,7 +873,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                         case 0x01: result = QuadDec_1_GetCounter(); break;
                     #endif
                     default:
-                        status = L_UNKNOWN_ERROR; break;
+                        status = LINX_STATUS_L_UNKNOWN_ERROR; break;
                 }
                 
                 #ifdef LINX_DEBUG
@@ -908,7 +906,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 #endif
                 
                 default:
-                    status = L_UNKNOWN_ERROR; break;
+                    status = LINX_STATUS_L_UNKNOWN_ERROR; break;
             }
             
             break;
@@ -941,7 +939,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 #endif
                 
                 default:
-                    status = L_UNKNOWN_ERROR; break;
+                    status = LINX_STATUS_L_UNKNOWN_ERROR; break;
             }
             
             break;
@@ -974,7 +972,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                     #endif
                 #endif
                 
-                default: status = L_UNKNOWN_ERROR; break;
+                default: status = LINX_STATUS_L_UNKNOWN_ERROR; break;
             }
             
             break;
@@ -997,7 +995,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                     #endif
                 #endif
                 
-                default: status = L_UNKNOWN_ERROR; break;
+                default: status = LINX_STATUS_L_UNKNOWN_ERROR; break;
             }
             
             break;
@@ -1013,7 +1011,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                     case 0x01: SPIM_1_Start(); break;
                 #endif
                 
-                default: status = L_UNKNOWN_ERROR; break;
+                default: status = LINX_STATUS_L_UNKNOWN_ERROR; break;
             }
             
             break;
@@ -1041,7 +1039,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                         break;
                 #endif
              
-                default: status = L_UNKNOWN_ERROR; break;
+                default: status = LINX_STATUS_L_UNKNOWN_ERROR; break;
             }
             
             break;
@@ -1054,7 +1052,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
             // Check if writing to device user ID memory, error if so
             if(command[7] == 0 && command[8] < 2) {
-                status = L_UNKNOWN_ERROR;
+                status = LINX_STATUS_L_UNKNOWN_ERROR;
                 break;
             }
             
@@ -1088,7 +1086,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 DEBUG_UART_PutString("Unsupported\r\n");
             #endif
             
-            status = L_FUNCTION_NOT_SUPPORTED;
+            status = LINX_STATUS_L_FUNCTION_NOT_SUPPORTED;
             break;
     }
     

@@ -22,6 +22,14 @@
 #include "cytypes.h"
 #include "CyLib.h"
 #include "project.h"
+    
+typedef struct vessel_tag{
+    uint8 addr              : 8;
+    uint8 cmd               : 8;
+    uint16 dat              : 16;
+    uint8 port              : 4;
+    uint8 pin               : 3;
+}vessel_type;
 
 /*DEFINE DESIRED PROTOCOL*/
 #define USE_SPI                     /* KEEP THIS UNCOMMENTED TO USE SPI -- COMMENT THE OTHER PROTOCOLS!! */
@@ -467,9 +475,9 @@
     
 /*FUNCTION PROTOTYPES*/
 void WriteTo_Pi(uint32 dat);
-uint32 ReadFrom_Pi(void);
+void ReadFrom_Pi(void);
 
-bool readData(uint8 addr, uint8 cmd, uint16 dat, uint32 *result);
+bool readData(vessel_type vessel, uint32 *result);
 
 bool DELSIG_ADC_Control(uint8 cmd, uint16 val, uint32 *result);
 bool SAR0_ADC_Control(uint8 cmd, uint16 val, uint32 *result);
@@ -492,11 +500,10 @@ bool PWM_Control_8(uint8 cmd, uint16 val, uint32 *result);
 bool PWM_Control_9(uint8 cmd, uint16 val, uint32 *result);
 bool PWM_Control_10(uint8 cmd, uint16 val, uint32 *result);
 bool PWM_Control_11(uint8 cmd, uint16 val, uint32 *result);
-bool GPIO_Control(uint8 cmd, uint16 val, uint32 *result);
+bool GPIO_Control(uint8 cmd, uint8 port, uint8 pin, uint16 val, uint32 *result);
 bool Analog_Read(uint8 cmd, uint16 val, uint32 *result);
 bool CapSense_Read(uint8 cmd, uint16 val, uint32 *result);
 
 bool CheckBuild(uint8 cmd, uint16 val, uint32 *result);
-
 #endif
 /* [] END OF FILE */
