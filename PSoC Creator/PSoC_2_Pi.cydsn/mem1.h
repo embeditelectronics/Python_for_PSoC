@@ -3,7 +3,7 @@
 * \brief This file contains the defined register address information for each 
          supported component, and it provides the function prototypes for mem1.c
 *
-* Version 1.2
+* Version 1.2.1
 *
 * \author Brian Bradley
 *
@@ -16,7 +16,8 @@
 
 #ifndef MEM1_H
 #define MEM1_H
-    
+
+#include <stdbool.h>
 #include "cyfitter.h"
 #include "cytypes.h"
 #include "CyLib.h"
@@ -26,7 +27,18 @@
 #define USE_SPI                     /* KEEP THIS UNCOMMENTED TO USE SPI -- COMMENT THE OTHER PROTOCOLS!! */
 //#define USE_I2C                     /* KEEP THIS UNCOMMENTED TO USE I2C -- COMMENT THE OTHER PROTOCOLS!! */
 //#define USE_UART                    /* KEEP THIS UNCOMMENTED TO USE UART -- COMMENT THE OTHER PROTOCOLS!! */
+    
+#if defined (USE_SPI) 
+    #ifndef CY_SPIS_SPIS_1_H
+        #error "Cannot use SPI slave API without the SPIS component"
+    #endif
+#endif
 
+#if defined (USE_I2C) 
+    #if(I2C_1_MODE_MASTER_ENABLED) 
+        #error "Cannot use I2C slave API with master mode enabled"
+    #endif
+#endif 
 /*Making sure a communication protocol is correctly defined*/
 #if defined(USE_SPI) && defined(USE_I2C)
     #error "Only one communication protocol should be used."
@@ -457,34 +469,34 @@
 void WriteTo_Pi(uint32 dat);
 uint32 ReadFrom_Pi(void);
 
-void readData(uint8 addr, uint8 cmd, uint16 dat);
+bool readData(uint8 addr, uint8 cmd, uint16 dat, uint32 *result);
 
-void DELSIG_ADC_Control(uint8 cmd, uint16 val);
-void SAR0_ADC_Control(uint8 cmd, uint16 val);
-void SAR1_ADC_Control(uint8 cmd, uint16 val);
-void VDAC0_Control(uint8 cmd, uint16 val);
-void VDAC1_Control(uint8 cmd, uint16 val);
-void IDAC0_Control(uint8 cmd, uint16 val);
-void IDAC1_Control(uint8 cmd, uint16 val);
-void WAVEDAC_Control(uint8 cmd, uint16 val);
-void Generate_Wave(void);
-void PWM_Control_0(uint8 cmd, uint16 val);
-void PWM_Control_1(uint8 cmd, uint16 val);
-void PWM_Control_2(uint8 cmd, uint16 val);
-void PWM_Control_3(uint8 cmd, uint16 val);
-void PWM_Control_4(uint8 cmd, uint16 val);
-void PWM_Control_5(uint8 cmd, uint16 val);
-void PWM_Control_6(uint8 cmd, uint16 val);
-void PWM_Control_7(uint8 cmd, uint16 val);
-void PWM_Control_8(uint8 cmd, uint16 val);
-void PWM_Control_9(uint8 cmd, uint16 val);
-void PWM_Control_10(uint8 cmd, uint16 val);
-void PWM_Control_11(uint8 cmd, uint16 val);
-void GPIO_Control(uint8 cmd, uint16 val);
-void Analog_Read(uint8 cmd, uint16 val);
-void CapSense_Read(uint8 cmd, uint16 val);
+bool DELSIG_ADC_Control(uint8 cmd, uint16 val, uint32 *result);
+bool SAR0_ADC_Control(uint8 cmd, uint16 val, uint32 *result);
+bool SAR1_ADC_Control(uint8 cmd, uint16 val, uint32 *result);
+bool VDAC0_Control(uint8 cmd, uint16 val, uint32 *result);
+bool VDAC1_Control(uint8 cmd, uint16 val, uint32 *result);
+bool IDAC0_Control(uint8 cmd, uint16 val, uint32 *result);
+bool IDAC1_Control(uint8 cmd, uint16 val, uint32 *result);
+bool WAVEDAC_Control(uint8 cmd, uint16 val, uint32 *result);
+bool Generate_Wave(void);
+bool PWM_Control_0(uint8 cmd, uint16 val, uint32 *result);
+bool PWM_Control_1(uint8 cmd, uint16 val, uint32 *result);
+bool PWM_Control_2(uint8 cmd, uint16 val, uint32 *result);
+bool PWM_Control_3(uint8 cmd, uint16 val, uint32 *result);
+bool PWM_Control_4(uint8 cmd, uint16 val, uint32 *result);
+bool PWM_Control_5(uint8 cmd, uint16 val, uint32 *result);
+bool PWM_Control_6(uint8 cmd, uint16 val, uint32 *result);
+bool PWM_Control_7(uint8 cmd, uint16 val, uint32 *result);
+bool PWM_Control_8(uint8 cmd, uint16 val, uint32 *result);
+bool PWM_Control_9(uint8 cmd, uint16 val, uint32 *result);
+bool PWM_Control_10(uint8 cmd, uint16 val, uint32 *result);
+bool PWM_Control_11(uint8 cmd, uint16 val, uint32 *result);
+bool GPIO_Control(uint8 cmd, uint16 val, uint32 *result);
+bool Analog_Read(uint8 cmd, uint16 val, uint32 *result);
+bool CapSense_Read(uint8 cmd, uint16 val, uint32 *result);
 
-uint32 CheckBuild(uint8 cmd, uint16 val);
+bool CheckBuild(uint8 cmd, uint16 val, uint32 *result);
 
 #endif
 /* [] END OF FILE */

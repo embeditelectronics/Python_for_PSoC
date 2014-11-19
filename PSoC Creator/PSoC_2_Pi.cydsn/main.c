@@ -4,21 +4,22 @@
 *   to mem1.c where data will be returned to the SPI Master when applicable
 *   
 *
-* Version 1.2
+* Version 1.2.1
 *
 * \author Brian Bradley
 *
-* \bug No known bugs.
+* \bug No known bugs, but I2C is untested
 *
 * 
 *
-* Copyright Embedit Electronics 2014
+* Copyright Embedit Electronics
 * 
 */
-#include "project.h"
+#include <project.h>
 //#include <device.h>
 #include <stdio.h>
 #include <mem1.h>
+//#include <LINX.h>
 
 #ifdef USE_I2C
     uint8 WR_buf[I2C_BUFFER_SIZE]; 
@@ -27,39 +28,60 @@
 
 int main()
 {
-    /* Place your initialization/startup code here (e.g. MyInst_Start()) */
-    #ifdef USE_SPI
-        SPIS_1_Start();
-        SPIS_1_ClearFIFO();
-        SPIS_1_ClearRxBuffer();
-        SPIS_1_ClearTxBuffer();
-    #endif
-
-    #ifdef USE_I2C
-        I2C_1_SlaveInitReadBuf(RD_buf,  I2C_BUFFER_SIZE);
-        I2C_1_SlaveInitWriteBuf(WR_buf,  I2C_BUFFER_SIZE);
-        I2C_1_Start();
-    #endif
-    
-    #ifdef USE_UART
-        UART_1_Start();
-    #endif
-    
     CyGlobalIntEnable;  /* enable global interrupts. */
+    
+    #ifdef LINX_H
+        LINX_Initialize();
+        
+        uint8 LINX_Command[LINX_COMMAND_BUFFER_SIZE];
+        uint8 LINX_Response[LINX_RESPONSE_BUFFER_SIZE];
+    #else
+        #ifdef USE_SPI
+            SPIS_1_Start();
+            SPIS_1_ClearFIFO();
+            SPIS_1_ClearRxBuffer();
+            SPIS_1_ClearTxBuffer();
+        #endif
+
+        #ifdef USE_I2C
+            I2C_1_SlaveInitReadBuf(RD_buf,  I2C_BUFFER_SIZE);
+            I2C_1_SlaveInitWriteBuf(WR_buf,  I2C_BUFFER_SIZE);
+            I2C_1_Start();
+        #endif
+    #endif
+    
+    /* Place your initialization/startup code here (e.g. MyInst_Start()) */
     
     /* Gets data from the Pi and send it to mem1.c*/
     for(;;)
     {
-      
-        uint32 input = ReadFrom_Pi();
-        
-        uint8 addr = (input & 0xFF000000)>>24;
-        uint8 cmd = (input & 0x00FF0000)>>16;
-        uint8 dat_lo = (input & 0x0000FF00)>>8;
-        uint8 dat_hi = input & 0x000000FF;
-        uint16 dat = (dat_hi<<8) | dat_lo;
-      
-        readData(addr,cmd,dat); 
+        #ifdef LINX_H
+            if(USBUART_DataIsReady()) {
+                if (LINX_GetCommand(LINX_Command)) {
+                    LINX_ProcessCommand(LINX_Command, LINX_Response);
+                    LINX_SendResponse(LINX_Response);
+                }
+                else {
+                    #ifdef DEBUG_LINX
+                        DEBUG_UART_PutString("Get command FAILED\r\n");
+                    #endif
+                }
+                
+            }
+        #else
+            uint32 input = ReadFrom_Pi();
+            
+            uint8 addr = (input & 0xFF000000)>>24;
+            uint8 cmd = (input & 0x00FF0000)>>16;
+            uint8 dat_lo = (input & 0x0000FF00)>>8;
+            uint8 dat_hi = input & 0x000000FF;
+            uint16 dat = (dat_hi<<8) | dat_lo;
+            uint32 result;
+          
+            if (readData(addr,cmd,dat,&result)) {
+                WriteTo_Pi(result);
+            }
+        #endif
         
         /*          Add your code here            */
         
@@ -102,8 +124,6 @@ int main()
     	        dat_lo = SPIS_1_ReadRxData();
             while(!SPIS_1_GetRxBufferSize()){/* Wait until the Rx buffer isn't empty */}
     	        dat_hi = SPIS_1_ReadRxData();
-                
-            SPIS_1_ClearRxBuffer();
         #endif
       
         /* I2C READ HANDLER */
@@ -122,20 +142,7 @@ int main()
                 I2C_1_SlaveClearWriteBuf();
                 
         #endif
-        
-        #ifdef USE_UART
-            while (!UART_1_GetRxBufferSize()){/*Wait for data to be put in Rx Buffer*/}
-                addr = UART_1_ReadRxData();
-            while (!UART_1_GetRxBufferSize()){/*Wait for data to be put in Rx Buffer*/}
-                cmd = UART_1_ReadRxData();
-            while (!UART_1_GetRxBufferSize()){/*Wait for data to be put in Rx Buffer*/}
-                dat_lo = UART_1_ReadRxData();
-            while (!UART_1_GetRxBufferSize()){/*Wait for data to be put in Rx Buffer*/}
-                dat_hi = UART_1_ReadRxData();
-                
-            UART_1_ClearRxBuffer();
-        #endif
-  
+ 
         
         uint32 input = (((addr<<24)|(cmd<<16))|(dat_lo<<8))|(dat_hi);
         return input;
@@ -162,6 +169,7 @@ int main()
         #ifdef USE_SPI
             SPIS_1_ClearTxBuffer();
             SPIS_1_ClearFIFO();    //Clear the SPI buffers
+            SPIS_1_ClearRxBuffer();
             
             uint8 SPI_buffer[3] = {out_mid_lo, out_mid_hi, out_hi};
             SPIS_1_WriteTxDataZero(out_lo);
@@ -172,26 +180,18 @@ int main()
         
         /* I2C WRITE HANDLER */
         #ifdef USE_I2C
-            while (I2C_1_SlaveGetReadBufSize()){}
+ //           while (I2C_1_SlaveGetReadBufSize()){}
             RD_buf[0] = out_lo;
             RD_buf[1] = out_mid_lo;
             RD_buf[2] = out_mid_hi;
             RD_buf[3] = out_hi;
             
             /*Wait until read is complete*/
-            while (0u == (I2C_1_SlaveStatus() & I2C_1_SSTAT_RD_CMPLT)){}
-                I2C_1_SlaveClearReadBuf();          /* Clear slave read buffer and status */
-                (void) I2C_1_SlaveClearReadStatus();
+//            while (0u == (I2C_1_SlaveStatus() & I2C_1_SSTAT_RD_CMPLT)){}
+//                I2C_1_SlaveClearReadBuf();          /* Clear slave read buffer and status */
+//                (void) I2C_1_SlaveClearReadStatus();
         #endif
         
-        #ifdef USE_UART
-            UART_1_ClearTxBuffer();
-            
-            uint8 UART_buffer[4] = {out_lo,out_mid_lo, out_mid_hi, out_hi};
-            UART_1_PutArray(UART_buffer, 4);
-           
-            while(!(UART_1_ReadTxStatus() & UART_1_TX_STS_COMPLETE)); //Wait until Tx buffer empties   
-        #endif
     }
    
 /* [] END OF FILE */
