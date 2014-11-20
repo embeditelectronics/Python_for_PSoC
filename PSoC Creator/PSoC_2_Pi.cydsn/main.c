@@ -25,12 +25,7 @@
 #include <Python.h>
 
 #if defined(LINX_H) && defined(PYTHON_H)
-    #error "Attempted to include a LINX and Python device."
-#endif
-
-#ifdef USE_I2C
-    uint8 WR_buf[I2C_BUFFER_SIZE]; 
-    uint8 RD_buf[I2C_BUFFER_SIZE] = {0,0,0,0};
+    #error "Attempted to include both a LINX and Python device."
 #endif
 
 vessel_type vessel;
