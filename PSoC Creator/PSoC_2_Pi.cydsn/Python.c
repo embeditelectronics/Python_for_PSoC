@@ -1,22 +1,28 @@
-/* ========================================
- *
- * Copyright YOUR COMPANY, THE YEAR
- * All Rights Reserved
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
- *
- * ========================================
+/**
+* \file Python.c
+* \brief Handles all communication and parsing of data for a python device, such as the raspberry pi. 
+           This should work for any device where both sides of the API were created, extending beyond Python
+*
+* Version 1.2.1
+*
+* \author Brian Bradley
+*
+* \bug None known, but this is untested
+*
+*
+* Copyright Embedit Electronics
+* 
 */
-
 #ifndef PYTHON_H
     #include "Python.h"
 #endif
 
-#ifdef USE_I2C
+#if defined(USE_I2C)
     uint8 WR_buf[I2C_BUFFER_SIZE]; 
     uint8 RD_buf[I2C_BUFFER_SIZE];
+#elif defined(USE_SERIAL)
+    #define BUFFER_LEN          (4u)
+    uint8 buffer[BUFFER_LEN];
 #endif
 
 void Python_parser(vessel_type *vessel)
@@ -71,7 +77,7 @@ void Python_parser(vessel_type *vessel)
             switch(cmd)
             {
                 case 0x04:
-                    Python_getData(&vessel);
+                    Python_getData(vessel);
                     waveType = vessel->addr;
                     amp = vessel->cmd;
                     dcB = vessel->dat;
@@ -80,6 +86,7 @@ void Python_parser(vessel_type *vessel)
                     vessel->waveType = waveType;
                     vessel->amp = amp;
                     vessel->dcB = dcB;
+                    break;
                     
             }
             break;      
@@ -176,11 +183,19 @@ void Python_Initialize(void)
             SPIS_1_ClearFIFO();
             SPIS_1_ClearRxBuffer();
             SPIS_1_ClearTxBuffer();
-
         #elif defined(USE_I2C)
             I2C_1_SlaveInitReadBuf(RD_buf,  I2C_BUFFER_SIZE);
             I2C_1_SlaveInitWriteBuf(WR_buf,  I2C_BUFFER_SIZE);
             I2C_1_Start();
+        #elif defined(USE_SERIAL)
+            /* Start USBFS Operation with 5V operation */
+            USBUART_Start(0u, USBUART_5V_OPERATION);
+
+            /* Wait for Device to enumerate */
+            while(!USBUART_GetConfiguration());
+
+            /* Enumeration is done, enable OUT endpoint for receive data from Host */
+            USBUART_CDC_Init();
         #endif
 }
 
@@ -200,8 +215,8 @@ void Python_Initialize(void)
         uint8 dat_lo = 0;
         uint8 dat_hi = 0;
         
-        /* SPI READ HANDLER */
-        #if defined(USE_SPI)
+        
+        #if defined(USE_SPI)            /* SPI READ HANDLER */
             while(!SPIS_1_GetRxBufferSize()){/* Wait until the Rx buffer isn't empty */}
                 addr = SPIS_1_ReadRxData();
     	    while(!SPIS_1_GetRxBufferSize()){/* Wait until the Rx buffer isn't empty */}
@@ -211,8 +226,8 @@ void Python_Initialize(void)
             while(!SPIS_1_GetRxBufferSize()){/* Wait until the Rx buffer isn't empty */}
     	        dat_hi = SPIS_1_ReadRxData();
       
-        /* I2C READ HANDLER */
-        #elif defined(USE_I2C)
+        
+        #elif defined(USE_I2C)          /* I2C READ HANDLER */
             while (!I2C_1_SlaveGetWriteBufSize()){}
             /* wait until I2C master is not writing or reading from the Buffer */
             while (!(I2C_1_SlaveStatus() & I2C_1_SSTAT_WR_CMPLT)){}         
@@ -226,6 +241,17 @@ void Python_Initialize(void)
                 I2C_1_SlaveClearWriteStatus();
                 I2C_1_SlaveClearWriteBuf();
                 
+        
+        #elif defined(USE_SERIAL)       /* USBUART READ HANDLER */
+            while (!USBUART_DataIsReady()){/*wait until data is ready*/}
+            while (USBUART_GetCount()<BUFFER_LEN){/*Wait to get all bytes*/}
+        
+            USBUART_GetAll(buffer);
+            
+            addr = buffer[0];
+            cmd = buffer[1];
+            dat_lo = buffer[2];
+            dat_hi = buffer[3];
         #endif
  
         vessel->addr = addr;
@@ -248,8 +274,8 @@ void Python_Initialize(void)
             uint8 out_mid_lo = (dat & 0x0000FF00)>>8;
             uint8 out_lo = dat & 0x000000FF;
         
-        /* SPI WRITE HANDLER */
-        #if defined(USE_SPI)
+        
+        #if defined(USE_SPI)            /* SPI WRITE HANDLER */
             SPIS_1_ClearTxBuffer();
             SPIS_1_ClearFIFO();    //Clear the SPI buffers
             SPIS_1_ClearRxBuffer();
@@ -259,9 +285,8 @@ void Python_Initialize(void)
             SPIS_1_PutArray(SPI_buffer, 3);
            
             while(!(SPIS_1_ReadTxStatus() & SPIS_1_STS_SPI_DONE)); //Wait until Tx buffer empties    
-        
-        /* I2C WRITE HANDLER */
-        #elif defined(USE_I2C)
+            
+        #elif defined(USE_I2C)          /* I2C WRITE HANDLER */
             while (I2C_1_SlaveGetReadBufSize()){}
             RD_buf[0] = out_lo;
             RD_buf[1] = out_mid_lo;
@@ -272,6 +297,16 @@ void Python_Initialize(void)
             while (0u == (I2C_1_SlaveStatus() & I2C_1_SSTAT_RD_CMPLT)){}
                 I2C_1_SlaveClearReadBuf();          /* Clear slave read buffer and status */
                 (void) I2C_1_SlaveClearReadStatus();
+                
+        #elif defined(USE_SERIAL)      /* USBUART WRITE HANDLER */
+            while(!USBUART_CDCIsReady()){/* Wait until ready to send*/}
+                USBUART_PutChar((char8)out_lo);
+            while(!USBUART_CDCIsReady()){/* Wait until ready to send*/}
+                USBUART_PutChar((char8)out_mid_lo);
+            while(!USBUART_CDCIsReady()){/* Wait until ready to send*/}
+                USBUART_PutChar((char8)out_mid_hi);
+            while(!USBUART_CDCIsReady()){/* Wait until ready to send*/}
+                USBUART_PutChar((char8)out_hi);
         #endif
         
     }

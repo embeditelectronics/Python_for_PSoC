@@ -869,7 +869,6 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
     #ifdef CY_ADC_DELSIG_ADC_DelSig_1_H
         bool DELSIG_ADC_Control(uint8 cmd, uint16 val, uint32 *result)
         {
-            *result = MAX_32;
             bool return_flag = 0;
            
             switch(cmd)
@@ -917,7 +916,6 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
     #ifdef CY_ADC_SAR_ADC_SAR_1_H
         bool SAR0_ADC_Control(uint8 cmd, uint16 val, uint32 *result)
         {
-            *result = MAX_32;
             bool return_flag = 0;
             switch(cmd)
             {
@@ -958,7 +956,6 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
     #ifdef CY_ADC_SAR_ADC_SAR_2_H
          bool SAR1_ADC_Control(uint8 cmd, uint16 val, uint32 *result)
         {
-            *result = MAX_32;
             bool return_flag = 0;
             switch(cmd)
             {
@@ -1000,7 +997,6 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
     #ifdef CY_VDAC8_VDAC8_1_H
         bool VDAC0_Control(uint8 cmd, uint16 val, uint32 *result)
         {
-            *result = MAX_32;
             bool return_flag = 0;
             switch(cmd)
             {
@@ -1042,7 +1038,6 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
     #ifdef CY_VDAC8_VDAC8_2_H
         bool VDAC1_Control(uint8 cmd, uint16 val, uint32 *result)
         {
-            *result = MAX_32;
             bool return_flag = 0;
                 switch(cmd)
                 {
@@ -1084,7 +1079,6 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
     #ifdef CY_IDAC8_IDAC8_1_H
         bool IDAC0_Control(uint8 cmd, uint16 val, uint32 *result)
             {
-                *result = MAX_32;
                 bool return_flag = 0;
                     switch(cmd)
                     {
@@ -1134,7 +1128,6 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
     #ifdef CY_IDAC8_IDAC8_2_H
         bool IDAC1_Control(uint8 cmd, uint16 val, uint32 *result)
         {
-            *result = MAX_32;
             bool return_flag = 0;
                 switch(cmd)
                 {
@@ -1184,7 +1177,6 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
     #ifdef CY_WaveDAC8_WaveDAC8_1_H
         bool WAVEDAC_Control(uint8 cmd, uint16 val, uint8 waveType, uint8 amp, uint8 dcB, uint32 *result)
         {
-            *result = MAX_32;
             bool return_flag = 0;
             
             switch(cmd)
@@ -1204,7 +1196,7 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
                     case 0x0C: WaveDAC8_1_Wakeup(); break;
                     case 0xFD: WaveDAC_clk_Start(); break;
                     case 0xFE: WaveDAC_clk_Stop(); break;
-                    case 0xFF: WaveDAC_clk_SetDividerValue(val); result = WaveDAC_clk_GetDividerRegister(); return_flag = 1; break; 
+                    case 0xFF: WaveDAC_clk_SetDividerValue(val); *result = WaveDAC_clk_GetDividerRegister(); return_flag = 1; break; 
                         
                     
                 }   
@@ -1223,17 +1215,7 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
 *******************************************************************************/
         void Generate_Wave(uint8 waveType, uint8 amp, uint8 dcB)
         {
-            /*
-            uint32 input = ReadFrom_Pi();
-                        
-            uint8 waveType = (input & 0xFF000000)>>24;
-            uint8 amp = (input & 0x00FF0000)>>16;
-            uint8 dcB_l = (input & 0x0000FF00)>>8;
-            uint8 dcB_h = input & 0x000000FF;
-            
-            uint8 dcB = ( dcB_h << 8 ) | dcB_l;
-           */
-                        
+              
             #define WAVE_SIZE           (255)
             #define SINE                (0x00)
             #define SQUARE              (0x01)
@@ -1308,31 +1290,7 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
                             247, 248, 249, 250, 251, 252, 253, 254,255
                     	};
             
-            /*
-            if (waveType == SINE)
-            {
-              int i;
-              uint8 newWave[WAVE_SIZE];
-              for(i = 0; i < WAVE_SIZE; i++)
-                {
-                    double val;
-                    
-                    val = (((double)SINEWave[i]) * (((double)amp)/255.0)) + (double)dcB;
-                    
-                    if(val > 255){val = 255;}
-                    
-                    uint8 newVal = (uint8) val; 
-                    
-                    newWave[i] = newVal;
-    	        }
-        
-                uint8 Zeroes[WAVE_SIZE];
-                memset(Zeroes, 0, WAVE_SIZE);
-                
-                WaveDAC8_1_Wave2Setup(newWave, WAVE_SIZE);
-              
-            }
-            */
+            
             
             uint8 newWave[WAVE_SIZE];
             memset(newWave, 0, WAVE_SIZE);
@@ -1758,7 +1716,6 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
       
         uint16 config_MASK = 0x00;
         
-        *result = MAX_32; 
         bool return_flag = 0;
         
         switch(cmd)

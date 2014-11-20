@@ -34,10 +34,12 @@ typedef struct vessel_tag{
     uint8 dcB               : 8;
 }vessel_type;
 
+//extern vessel_type vessel;
+
 /*DEFINE DESIRED PROTOCOL*/
 #define USE_SPI                     /* KEEP THIS UNCOMMENTED TO USE SPI -- COMMENT THE OTHER PROTOCOLS!! */
 //#define USE_I2C                     /* KEEP THIS UNCOMMENTED TO USE I2C -- COMMENT THE OTHER PROTOCOLS!! */
-//#define USE_UART                    /* KEEP THIS UNCOMMENTED TO USE UART -- COMMENT THE OTHER PROTOCOLS!! */
+//#define USE_SERIAL                    /* KEEP THIS UNCOMMENTED TO USE SERIAL -- COMMENT THE OTHER PROTOCOLS!! */
     
 #if defined (USE_SPI) 
     #ifndef CY_SPIS_SPIS_1_H
@@ -53,11 +55,11 @@ typedef struct vessel_tag{
 /*Making sure a communication protocol is correctly defined*/
 #if defined(USE_SPI) && defined(USE_I2C)
     #error "Only one communication protocol should be used."
-#elif defined(USE_SPI) && defined(USE_UART)
+#elif defined(USE_SPI) && defined(USE_SERIAL)
     #error "Only one communication protocol should be used."
-#elif defined(USE_I2C) && defined(USE_UART)
+#elif defined(USE_I2C) && defined(USE_SERIAL)
     #error "Only one communication protocol should be used."
-#elif !defined(USE_I2C) && !defined(USE_SPI) && !defined(USE_UART)
+#elif !defined(USE_I2C) && !defined(USE_SPI) && !defined(USE_SERIAL)
     #error "A communication protocol must be defined"
 #endif
 
@@ -487,7 +489,7 @@ bool VDAC1_Control(uint8 cmd, uint16 val, uint32 *result);
 bool IDAC0_Control(uint8 cmd, uint16 val, uint32 *result);
 bool IDAC1_Control(uint8 cmd, uint16 val, uint32 *result);
 bool WAVEDAC_Control(uint8 cmd, uint16 val, uint8 waveType, uint8 amp, uint8 dcB, uint32 *result);
-bool Generate_Wave(uint8 waveType, uint8 amp, uint8 dcB);
+void Generate_Wave(uint8 waveType, uint8 amp, uint8 dcB);
 bool PWM_Control_0(uint8 cmd, uint16 val, uint32 *result);
 bool PWM_Control_1(uint8 cmd, uint16 val, uint32 *result);
 bool PWM_Control_2(uint8 cmd, uint16 val, uint32 *result);

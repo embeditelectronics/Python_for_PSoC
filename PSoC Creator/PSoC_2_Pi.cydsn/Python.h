@@ -1,15 +1,16 @@
-/* ========================================
- *
- * Copyright YOUR COMPANY, THE YEAR
- * All Rights Reserved
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
- *
- * ========================================
+/**
+* \file Python.h
+* \brief Prototypes functions needed for Python.c and includes all dependencies.
+*
+* Version 1.2.1
+*
+* \author Brian Bradley
+*
+* \bug None
+*
+* Copyright Embedit Electronics
+* 
 */
-
 #ifndef PYTHON_H
 #define PYTHON_H
 

@@ -78,10 +78,11 @@ class RPiSoC(object):
 
     CHECK_BUILD = 0xFE
     RESET_ADDRESS = 0xFF
-
+	
+	#make sure these match the clock frequencies shown in the .cydwr page
     MASTER_CLK_FREQ = 24000000
-    IMO_CLK_FREQ = 3000000
-    ILO_CLK_FREQ = 1000
+    IMO_CLK_FREQ = 24000000
+    ILO_CLK_FREQ = 100000
     PLL_CLK_FREQ = 24000000
 
     PWM_clks = dict()
