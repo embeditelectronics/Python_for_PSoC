@@ -16,6 +16,9 @@
 #include "mem1.h"
 
 void Python_parser(vessel_type *vessel);
+void Python_Initialize(void);
+void Python_sendData(uint32 dat);
+void Python_getData(vessel_type *vessel);
 
 #endif
 

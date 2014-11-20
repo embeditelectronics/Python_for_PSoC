@@ -474,9 +474,6 @@ typedef struct vessel_tag{
 #endif
     
 /*FUNCTION PROTOTYPES*/
-void WriteTo_Pi(uint32 dat);
-void ReadFrom_Pi(void);
-
 bool readData(vessel_type vessel, uint32 *result);
 
 bool DELSIG_ADC_Control(uint8 cmd, uint16 val, uint32 *result);
