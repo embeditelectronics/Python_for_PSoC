@@ -29,6 +29,9 @@ typedef struct vessel_tag{
     uint16 dat              : 16;
     uint8 port              : 4;
     uint8 pin               : 3;
+    uint8 waveType          : 3;
+    uint8 amp               : 8;
+    uint8 dcB               : 8;
 }vessel_type;
 
 /*DEFINE DESIRED PROTOCOL*/
@@ -483,8 +486,8 @@ bool VDAC0_Control(uint8 cmd, uint16 val, uint32 *result);
 bool VDAC1_Control(uint8 cmd, uint16 val, uint32 *result);
 bool IDAC0_Control(uint8 cmd, uint16 val, uint32 *result);
 bool IDAC1_Control(uint8 cmd, uint16 val, uint32 *result);
-bool WAVEDAC_Control(uint8 cmd, uint16 val, uint32 *result);
-bool Generate_Wave(void);
+bool WAVEDAC_Control(uint8 cmd, uint16 val, uint8 waveType, uint8 amp, uint8 dcB, uint32 *result);
+bool Generate_Wave(uint8 waveType, uint8 amp, uint8 dcB);
 bool PWM_Control_0(uint8 cmd, uint16 val, uint32 *result);
 bool PWM_Control_1(uint8 cmd, uint16 val, uint32 *result);
 bool PWM_Control_2(uint8 cmd, uint16 val, uint32 *result);

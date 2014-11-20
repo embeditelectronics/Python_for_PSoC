@@ -76,6 +76,19 @@ class CapSense(object):
         cmd = 0x18
         val = self.number
         return bool(RPiSoC.commChannel.receiveData((self.address,cmd, val),delay = 0.03))
+		
+    def ReadRaw(self):
+        """
+        **Description:**
+            Gives the raw sensor output of the capsense button
+        **Returns:**
+            val: raw value from the capsense sensor array
+        """
+        cmd = 0x0F
+        val = self.number
+        return bool(RPiSoC.commChannel.receiveData((self.address,cmd, val),delay = 0.03))
+		
+	
 
 class analogPin(object):
     """
@@ -828,13 +841,13 @@ class WaveDAC(object):
         self.waveType = waveType
 
         if waveType == 'SINE':
-            val = 0x01
+            val = 0x00
         elif waveType =='SQUARE':
-            val = 0x03
+            val = 0x01
         elif waveType == 'TRIANGLE':
-            val = 0x05
+            val = 0x02
         elif waveType == 'SAWTOOTH':
-            val = 0x07
+            val = 0x03
         else:
             raise ValueError('Invalid waveType: Choose "SINE" "SQUARE" "TRIANGLE" or "SAWTOOTH" ')
 

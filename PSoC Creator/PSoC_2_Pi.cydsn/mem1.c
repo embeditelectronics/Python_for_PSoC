@@ -78,7 +78,7 @@ bool readData(vessel_type vessel, uint32 *result)
         
         //Wave DAC
         #ifdef CY_WaveDAC8_WaveDAC8_1_H
-            case WAVEDAC_CONTROL: return_flag = WAVEDAC_Control(cmd,dat, result); break;      
+            case WAVEDAC_CONTROL: return_flag = WAVEDAC_Control(cmd,dat, vessel.waveType, vessel.amp, vessel.dcB, result); break;      
         #endif
         
         //first PWM
@@ -1182,7 +1182,7 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
 *********************************************************************************************/
     
     #ifdef CY_WaveDAC8_WaveDAC8_1_H
-        bool WAVEDAC_Control(uint8 cmd, uint16 val, uint32 *result)
+        bool WAVEDAC_Control(uint8 cmd, uint16 val, uint8 waveType, uint8 amp, uint8 dcB, uint32 *result)
         {
             *result = MAX_32;
             bool return_flag = 0;
@@ -1191,7 +1191,7 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
                 {
                     case 0x00: WaveDAC8_1_Start(); break;
                     case 0x01: WaveDAC8_1_Stop(); break;
-                    case 0x04: Generate_Wave(); break;
+                    case 0x04: Generate_Wave(waveType, amp, dcB); break;
                     case 0x07: 
                         switch (val)
                         {
@@ -1221,9 +1221,9 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
 *         generate the desired waveform using the WaveDAC8.
 *
 *******************************************************************************/
-        void Generate_Wave(void)
+        void Generate_Wave(uint8 waveType, uint8 amp, uint8 dcB)
         {
-            
+            /*
             uint32 input = ReadFrom_Pi();
                         
             uint8 waveType = (input & 0xFF000000)>>24;
@@ -1232,13 +1232,13 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
             uint8 dcB_h = input & 0x000000FF;
             
             uint8 dcB = ( dcB_h << 8 ) | dcB_l;
-           
+           */
                         
-            #define WAVE_SIZE 255
-            #define SINE 0x01
-            #define SQUARE 0x03
-            #define TRIANGLE 0x05
-            #define SAWTOOTH 0x07
+            #define WAVE_SIZE           (255)
+            #define SINE                (0x00)
+            #define SQUARE              (0x01)
+            #define TRIANGLE            (0x02)
+            #define SAWTOOTH            (0x03)
             
             
             uint8 SINEWave[WAVE_SIZE] = {
@@ -1411,7 +1411,6 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
     #ifdef CY_PWM_PWM_1_H
         bool PWM_Control_0(uint8 cmd, uint16 val, uint32 *result)
         {
-            *result = MAX_32;
             bool return_flag = 0;
             
             switch(cmd)
@@ -1445,7 +1444,6 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
      #ifdef CY_PWM_PWM_2_H
         bool PWM_Control_1(uint8 cmd, uint16 val, uint32 *result)
         {
-            *result = MAX_32;
             bool return_flag = 0;
             
             switch(cmd)
@@ -1478,7 +1476,6 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
      #ifdef CY_PWM_PWM_3_H
         bool PWM_Control_2(uint8 cmd, uint16 val, uint32 *result)
         {
-            *result = MAX_32;
             bool return_flag = 0;
             
             switch(cmd)
@@ -1511,7 +1508,6 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
      #ifdef CY_PWM_PWM_4_H
         bool PWM_Control_3(uint8 cmd, uint16 val, uint32 *result)
         {
-            *result = MAX_32;
             bool return_flag = 0;
             
             switch(cmd)
@@ -1546,7 +1542,6 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
      #ifdef CY_PWM_PWM_5_H
         bool PWM_Control_4(uint8 cmd, uint16 val, uint32 *result)
         {
-            *result = MAX_32;
             bool return_flag = 0;
             
             switch(cmd)
@@ -1581,7 +1576,6 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
      #ifdef CY_PWM_PWM_6_H
         bool PWM_Control_5(uint8 cmd, uint16 val, uint32 *result)
         {
-            *result = MAX_32;
             bool return_flag = 0;
             
             switch(cmd)
@@ -1615,7 +1609,6 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
      #ifdef CY_PWM_PWM_7_H
         bool PWM_Control_6(uint8 cmd, uint16 val, uint32 *result)
         {
-            *result = MAX_32;
             bool return_flag = 0;
             
             switch(cmd)
@@ -1647,7 +1640,6 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
      #ifdef CY_PWM_PWM_8_H
         bool PWM_Control_7(uint8 cmd, uint16 val, uint32 *result)
         {
-            *result = MAX_32;
             bool return_flag = 0;
             
             switch(cmd)
@@ -1672,7 +1664,6 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
     #ifdef CY_PWM_PWM_9_H
         bool PWM_Control_8(uint8 cmd, uint16 val, uint32 *result)
         {
-            *result = MAX_32;
             bool return_flag = 0;
             
             switch(cmd)
@@ -1696,7 +1687,6 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
     #ifdef CY_PWM_PWM_10_H
         bool PWM_Control_9(uint8 cmd, uint16 val, uint32 *result)
         {
-            *result = MAX_32;
             bool return_flag = 0;
             
             switch(cmd)
@@ -1720,7 +1710,6 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
     #ifdef CY_PWM_PWM_11_H
         bool PWM_Control_10(uint8 cmd, uint16 val, uint32 *result)
         {
-            *result = MAX_32;
             bool return_flag = 0;
             
             switch(cmd)
@@ -1744,7 +1733,6 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
     #ifdef CY_PWM_PWM_12_H
         bool PWM_Control_11(uint8 cmd, uint16 val, uint32 *result)
         {
-            *result = MAX_32;
             bool return_flag = 0;
             
             switch(cmd)
@@ -1766,13 +1754,8 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
     #endif
     
     bool GPIO_Control(uint8 cmd, uint8 port, uint8 pin, uint16 val, uint32 *result)
-    //port, pin, value
     {
-        /*uint8 val = dat&0x0001;
-        uint8 pin = (dat>>1)&0x0007;
-        uint8 port = (dat>>4)&0x000F;
-        uint8 config = (dat>>8)&0x000F;*/
-        
+      
         uint16 config_MASK = 0x00;
         
         *result = MAX_32; 
@@ -2578,7 +2561,6 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
     #ifdef CY_CAPSENSE_CSD_CapSense_1_H
         bool CapSense_Read(uint8 cmd, uint16 dat, uint32 *result)
         {
-             *result = MAX_32;
              bool return_flag = 0;
 
                     switch(cmd)
@@ -2587,6 +2569,15 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
                         case 0x01: CapSense_1_Stop(); break;
                         case 0x02: CapSense_1_Sleep(); break;
                         case 0x03: CapSense_1_Wakeup(); break;
+                        case 0x0F:
+                            /* Update all baselines */
+                            CapSense_1_UpdateEnabledBaselines();
+                       		/* Start scanning all enabled sensors */
+                        	CapSense_1_ScanEnabledWidgets();
+                            /* Wait for scanning to complete */
+                    		while(CapSense_1_IsBusy() != 0);
+                            *result = CapSense_1_ReadSensorRaw(dat); return_flag = 1;
+                            break;
                         case 0x18:
                             /* Update all baselines */
                             CapSense_1_UpdateEnabledBaselines();
@@ -2595,19 +2586,7 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
                             /* Wait for scanning to complete */
                     		while(CapSense_1_IsBusy() != 0);
                             *result = CapSense_1_CheckIsWidgetActive(dat); return_flag = 1;
-                            /*
-                            switch(dat)
-                            {
-                               
-                                case 0x00: result = CapSense_1_CheckIsWidgetActive(CapSense_1_BUTTON0__BTN); return_flag = 1; break;
-                                case 0x01: result = CapSense_1_CheckIsWidgetActive(CapSense_1_BUTTON1__BTN); return_flag = 1; break;
-                                case 0x02: result = CapSense_1_CheckIsWidgetActive(CapSense_1_BUTTON2__BTN); return_flag = 1; break;
-                                case 0x03: result = CapSense_1_CheckIsWidgetActive(CapSense_1_BUTTON3__BTN); return_flag = 1; break;
-                                case 0x04: result = CapSense_1_CheckIsWidgetActive(CapSense_1_BUTTON4__BTN); return_flag = 1; break;
-                                case 0x05: result = CapSense_1_CheckIsWidgetActive(CapSense_1_BUTTON5__BTN); return_flag = 1; break;
-                     
-                            }*/
-                              break;
+                            break;
 
                     }
 

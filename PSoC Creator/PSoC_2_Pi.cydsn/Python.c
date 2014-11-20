@@ -24,6 +24,9 @@ void Python_parser(vessel_type *vessel)
     uint8 cmd = vessel->cmd;
     uint8 addr = vessel->addr;
     uint16 temp_data;
+    uint8 waveType;
+    uint8 amp;
+    uint8 dcB;
     
     switch(addr)
     {
@@ -64,7 +67,22 @@ void Python_parser(vessel_type *vessel)
         
         //Wave DAC
         #ifdef CY_WaveDAC8_WaveDAC8_1_H
-            case WAVEDAC_CONTROL: break;      
+            case WAVEDAC_CONTROL: 
+            switch(cmd)
+            {
+                case 0x04:
+                    Python_getData(&vessel);
+                    waveType = vessel->addr;
+                    amp = vessel->cmd;
+                    dcB = vessel->dat;
+                    vessel->cmd = cmd;
+                    vessel->addr = addr;
+                    vessel->waveType = waveType;
+                    vessel->amp = amp;
+                    vessel->dcB = dcB;
+                    
+            }
+            break;      
         #endif
         
         //first PWM
