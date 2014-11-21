@@ -4,7 +4,7 @@
 *        all components included in the build. It will do so according to
 *        sets of instructions provided by a Master Device.
 *
-* Version 1.2.1
+* Version 1.2.2
 *
 * \author Brian Bradley
 *
@@ -31,12 +31,11 @@
 *  @param dat: 16-bit number containing a value that is to be written to that function, if applicable.
 *
 *****************************************************************************************************/
-
 bool readData(vessel_type vessel, uint32 *result)
 {
     bool return_flag = false;
     uint8 cmd = vessel.cmd;
-    uint8 dat = vessel.dat;
+    uint16 dat = vessel.dat;
     uint8 addr = vessel.addr;
     
     switch(addr)
@@ -144,6 +143,8 @@ bool readData(vessel_type vessel, uint32 *result)
         #ifdef CY_CAPSENSE_CSD_CapSense_1_H
             case CAPSENSE_REGISTER: return_flag = CapSense_Read(cmd, dat, result); break;
         #endif
+        
+        case TEST_REGISTER: return_flag = test_read(dat, result); break;
         
         case GPIO_REGISTER: return_flag = GPIO_Control(cmd, vessel.port, vessel.pin, dat, result); break;
         
@@ -2550,5 +2551,10 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
                     return return_flag;
         }
     #endif
-
+    
+bool test_read(uint16 dat, uint32 *result)
+    {
+        *result = dat;
+        return true;
+    }
 /* [] END OF FILE */

@@ -2,7 +2,7 @@
 * \file LINX.c
 * \brief TODO
 *
-* Version 1.2.1
+* Version 1.2.2
 *
 * \author Mark Bradley
 *

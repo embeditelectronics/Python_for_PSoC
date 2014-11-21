@@ -105,7 +105,8 @@ typedef struct vessel_tag{
 #define ANALOG_IN_REGISTER          (GPIO_REGISTER + 1)
 
 #define CAPSENSE_REGISTER           (ANALOG_IN_REGISTER + 1)
-    
+
+#define TEST_REGISTER               (0xFD)
 #define CHECK_BUILD                 (0xFE)
 #define RESET_ADDRESS               (0xFF)
 
@@ -507,5 +508,6 @@ bool Analog_Read(uint8 cmd, uint16 val, uint32 *result);
 bool CapSense_Read(uint8 cmd, uint16 val, uint32 *result);
 
 bool CheckBuild(uint8 cmd, uint16 val, uint32 *result);
+bool test_read(uint16 dat, uint32 *result);
 #endif
 /* [] END OF FILE */

@@ -3,7 +3,7 @@
 * \brief Handles all communication and parsing of data for a python device, such as the raspberry pi. 
            This should work for any device where both sides of the API were created, extending beyond Python
 *
-* Version 1.2.1
+* Version 1.2.2
 *
 * \author Brian Bradley
 *
@@ -29,7 +29,7 @@ void Python_parser(vessel_type *vessel)
 {
     uint8 cmd = vessel->cmd;
     uint8 addr = vessel->addr;
-    uint16 temp_data;
+    uint16 temp_data = vessel->dat;
     uint8 waveType;
     uint8 amp;
     uint8 dcB;
@@ -157,7 +157,6 @@ void Python_parser(vessel_type *vessel)
         #endif
         
         case GPIO_REGISTER: 
-            temp_data    = vessel->dat;
             vessel->pin  = (temp_data>>1)&0x0007;
             vessel->port = (temp_data>>4)&0x000F;
             switch(cmd)
@@ -193,7 +192,6 @@ void Python_Initialize(void)
 
             /* Wait for Device to enumerate */
             while(!USBUART_GetConfiguration());
-
             /* Enumeration is done, enable OUT endpoint for receive data from Host */
             USBUART_CDC_Init();
         #endif
@@ -214,7 +212,6 @@ void Python_Initialize(void)
         uint8 cmd = 0;
         uint8 dat_lo = 0;
         uint8 dat_hi = 0;
-        
         
         #if defined(USE_SPI)            /* SPI READ HANDLER */
             while(!SPIS_1_GetRxBufferSize()){/* Wait until the Rx buffer isn't empty */}
@@ -244,19 +241,18 @@ void Python_Initialize(void)
         
         #elif defined(USE_SERIAL)       /* USBUART READ HANDLER */
             while (!USBUART_DataIsReady()){/*wait until data is ready*/}
-            while (USBUART_GetCount()<BUFFER_LEN){/*Wait to get all bytes*/}
-        
-            USBUART_GetAll(buffer);
+            uint8 data_len = USBUART_GetAll(buffer);
             
             addr = buffer[0];
             cmd = buffer[1];
             dat_lo = buffer[2];
             dat_hi = buffer[3];
+            
         #endif
- 
+        
         vessel->addr = addr;
         vessel->cmd = cmd;
-        vessel->dat = (dat_hi<<8)||dat_lo;
+        vessel->dat = (dat_hi<<8)|dat_lo;
     }
     
 /****************************************************************************************//**
@@ -299,6 +295,7 @@ void Python_Initialize(void)
                 (void) I2C_1_SlaveClearReadStatus();
                 
         #elif defined(USE_SERIAL)      /* USBUART WRITE HANDLER */
+       
             while(!USBUART_CDCIsReady()){/* Wait until ready to send*/}
                 USBUART_PutChar((char8)out_lo);
             while(!USBUART_CDCIsReady()){/* Wait until ready to send*/}

@@ -7,7 +7,7 @@
 *           it to the master device if needed.
 *   
 *
-* Version 1.2.1
+* Version 1.2.2
 *
 * \author Brian Bradley
 *
@@ -45,9 +45,6 @@ int main()
         #error "No device chosen! include LINX.h for use of the RPiSoC with LabVIEW, or Python.h for use with a Python device."
     #endif
     
-    /* Place your initialization/startup code here (e.g. MyInst_Start()) */
-    
-    /* Gets data from the Pi and send it to mem1.c*/
     for(;;)
     {
         #if defined(LINX_H)
@@ -64,11 +61,11 @@ int main()
                 
             }
         #elif defined(PYTHON_H)
+            
             Python_getData(&vessel);
             Python_parser(&vessel);
             
             uint32 result;
-            
             if (readData(vessel, &result)) {
                 Python_sendData(result);
             }
@@ -76,9 +73,6 @@ int main()
         
     }
 }
-
-   
-
 
    
 /* [] END OF FILE */

@@ -4,7 +4,7 @@ of the RPiSoC.
 """
 
 __author__ = 'Brian Bradley'
-__version__ = '1.2.0'
+__version__ = '1.2.2'
 
 from rpisoc import *
 from time import sleep
@@ -76,19 +76,6 @@ class CapSense(object):
         cmd = 0x18
         val = self.number
         return bool(RPiSoC.commChannel.receiveData((self.address,cmd, val),delay = 0.03))
-		
-    def ReadRaw(self):
-        """
-        **Description:**
-            Gives the raw sensor output of the capsense button
-        **Returns:**
-            val: raw value from the capsense sensor array
-        """
-        cmd = 0x0F
-        val = self.number
-        return bool(RPiSoC.commChannel.receiveData((self.address,cmd, val),delay = 0.03))
-		
-	
 
 class analogPin(object):
     """
@@ -542,7 +529,7 @@ class IDAC(object):
             - *mode:* *0, 1, or 2*
                 * *0*: Sets full scale range to **31.875 uA**
                 * *1*: Sets full scale range to **255 uA**
-                * *2*: Sets full scale range to **2 mA**
+                * *2*: Sets full scale range to **2.04 mA**
         """
         cmd = 0x04
         if mode not in range(3):
@@ -552,7 +539,7 @@ class IDAC(object):
         elif mode == 1:
             self.full_range = .255
         elif mode == 2:
-            self.full_range = 2.0
+            self.full_range = 2.04
 
         RPiSoC.commChannel.sendData((self.address, cmd, mode))
 
@@ -841,13 +828,13 @@ class WaveDAC(object):
         self.waveType = waveType
 
         if waveType == 'SINE':
-            val = 0x00
-        elif waveType =='SQUARE':
             val = 0x01
-        elif waveType == 'TRIANGLE':
-            val = 0x02
-        elif waveType == 'SAWTOOTH':
+        elif waveType =='SQUARE':
             val = 0x03
+        elif waveType == 'TRIANGLE':
+            val = 0x05
+        elif waveType == 'SAWTOOTH':
+            val = 0x07
         else:
             raise ValueError('Invalid waveType: Choose "SINE" "SQUARE" "TRIANGLE" or "SAWTOOTH" ')
 
