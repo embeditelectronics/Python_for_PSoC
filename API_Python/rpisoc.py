@@ -284,7 +284,7 @@ class RPiSoC(object):
         for i in PWM_DAT:
             for j in range(4):
                 num+=1
-                res =16*((i >> (4 + 5*j)&0x01) is 1) + 8*((i >> (4 + 5*j)&0x01) is 0)
+                res =16*((i >> (4 + 5*j)&0x01) == 1) + 8*((i >> (4 + 5*j)&0x01) == 0)
                 if (i>>j*5)&0x0F:
                     RPiSoC.PWM_clks[(i>>j*5)&0x0F][2].append([num,res])
 
@@ -435,7 +435,7 @@ def Test_Read(val):
     **Parameters:**
         *val:* a 16-bit number which will be sent to the RPiSoC, and then returned.
     **Returns:**
-        *echo:* The data returned from the RPiSoC; if transmission of *val* was successful, this should be equal to *return*
+        *echo:* The data returned from the RPiSoC; if transmission of *val* was successful, *echo* should be equal to *val*
     """
     return RPiSoC.commChannel.receiveData((RPiSoC.TEST_REGISTER, 0, val))
 
@@ -766,16 +766,13 @@ class SERIAL(object):
         xfer_packet = self.PrepareData(vals)
         self.ser.write(bytearray(xfer_packet))
 
-    def receiveData(self, vals, delay = 0.01):
+    def receiveData(self, vals):
         """
         **Description:**
             This function is called when a returned value from the RPiSoC is needed. It will send a command, and then wait for a response.
 
         **Parameters:**
             *vals:* A tuple which will be sent to the *PrepareData()* function to be restructured into a list of length 4, and then sent to the RPiSoC over SPI.
-
-        **Optional Parameter:**
-            *delay:* The amount of time that the Python code will wait after sending a request, and before expecting a response. This is to be used when one is requesting a complex operation, and more time is needed by the RPiSoC to generate a result.
 
         **Returns:**
             The data packet received from the PSoC, which has been unpacked and reformatted.
@@ -786,12 +783,14 @@ class SERIAL(object):
         xfer_packet = self.PrepareData(vals)
         self.ser.write(bytearray(xfer_packet))
 
-        time.sleep(delay)
+        #time.sleep(delay)
         data = 0
         data_packet = []
 
-        while self.ser.inWaiting()>0:
-            data_packet.append(ord(self.ser.read(1)))
+        while self.ser.inWaiting()<4:
+            pass
+        for string in self.ser.read(4):
+            data_packet.append(ord(string))
 
         for i in range(len(data_packet)):
             data = data_packet[i]<<(8*i) | data
