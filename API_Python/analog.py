@@ -4,7 +4,7 @@ of the RPiSoC.
 """
 
 __author__ = 'Brian Bradley'
-__version__ = '1.2.2'
+__version__ = '1.2.3'
 
 from rpisoc import *
 from time import sleep
@@ -16,7 +16,7 @@ class CapSense(object):
     way::
         My_capsense_button = CapSense(PIN)
     """
-    def __init__(self,PIN):
+    def __init__(self,PIN, THRESHOLD = 0):
         """
         **Parameters:**
 
@@ -24,6 +24,12 @@ class CapSense(object):
                     * The following is valid for the default version of the API (v1.2) which contains 6 capsense buttons
                         + The Cmod pin, which should be a 2.2nF capacitor, should be connected between ground and P4[6]
                         + PIN is the number relative to Port 4, between *0* and *5*.
+
+        **Optional Parameters:**
+
+            - *THRESHOLD*: The number of counts, between 0 and 255, which will be added to your calibrated baseline value to determine if a button has been touched.
+                    * *0* means that the baseline value itself will be used as a comparison value. Generally, baseline + THRESHOLD is used
+                    * The threshold may need to be high if the button data is noisy. Try printing the results of *readRaw()* to get an understanding of the output behavior as you touch the button, this will help determine a suitable value
 
         """
         if RPiSoC.CAPSENSE_SENSOR_NUM is 0:
@@ -33,14 +39,20 @@ class CapSense(object):
         else:
             self.number = PIN
             self.address = RPiSoC.CAPSENSE_REGISTER
-
+        self.threshold = THRESHOLD
     def Start(self):
         """
         **Description:**
-            Initializes registers and enables active mode power template bits of the subcomponents used within CapSense.
+            Initializes registers and enables active mode power template bits of the subcomponents used within CapSense. It also attempts to establish a CapSense baseline, which will be used as a comparison value in the *isTouched()* method.
+            The button should not be touched when this method is called, otherwise the baseline value will be calibrated with a touched value. It will only set the baseline if it sees two identical readings in a row.
         """
         cmd = 0x00
         RPiSoC.commChannel.sendData((self.address,cmd))
+        while True:
+            self.baseline = self.readRaw()
+            if self.baseline == self.readRaw():
+                break
+
 
     def Stop(self):
         """
@@ -69,13 +81,34 @@ class CapSense(object):
     def Read(self):
         """
         **Description:**
-            Gives the state of the capsense button
+            Gives the state of the capsense button, as determined by the PSoC firmware. This will need to be calibrated in the CapSense component for optimal results. Use isTouched for more general application.
         **Returns:**
             state: bool which represents the current state of the capsense button.
         """
         cmd = 0x18
         val = self.number
         return bool(RPiSoC.commChannel.receiveData((self.address,cmd, val),delay = 0.03))
+
+    def readRaw(self):
+        """
+        **Description:**
+            Gives an 8-bit raw value from the capsense raw data array. This is used to generate a baseline in *Start()*
+        **Returns:**
+            val: int which represents the raw value on the capsense button
+        """
+        cmd = 0x0F
+        val = self.number
+        return RPiSoC.commChannel.receiveData((self.address, cmd, val))
+
+    def isTouched(self):
+        """
+        **Description:**
+            Uses the calibrated baseline and provided threshold value to determine if the requested CapSense button is being touched
+        """
+        if self.readRaw()>(self.baseline + self.threshold):
+            return True
+        else:
+            return False
 
 class analogPin(object):
     """

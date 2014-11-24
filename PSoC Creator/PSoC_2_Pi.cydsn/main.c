@@ -7,7 +7,7 @@
 *           it to the master device if needed.
 *   
 *
-* Version 1.2.2
+* Version 1.2.3
 *
 * \author Brian Bradley
 *

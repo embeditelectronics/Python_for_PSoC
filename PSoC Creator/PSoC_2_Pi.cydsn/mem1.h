@@ -3,7 +3,7 @@
 * \brief This file contains the defined register address information for each 
          supported component, and it provides the function prototypes for mem1.c
 *
-* Version 1.2.1
+* Version 1.2.3
 *
 * \author Brian Bradley
 *

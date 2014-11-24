@@ -1,15 +1,5 @@
-#-------------------------------------------------------------------------------
-# Name:        module1
-# Purpose:
-#
-# Author:      Brian
-#
-# Created:     21/11/2014
-# Copyright:   (c) Brian 2014
-# Licence:     <your licence>
-#-------------------------------------------------------------------------------
 from rpisoc import *
-RPiSoC('COM16')
+RPiSoC('SPI')
 
 def main():
     out = digitalPin(12,0,'OUT')

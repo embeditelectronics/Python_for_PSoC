@@ -6,7 +6,7 @@ This program is the highest level module for the RPiSoC API, which the user shou
 import into their scripts for full use of the API.
 """
 __author__ = 'Brian Bradley'
-__version__ = '1.2.2'
+__version__ = '1.2.3'
 
 import math
 import time
@@ -130,8 +130,11 @@ class RPiSoC(object):
             self.commChannel = I2C()
         elif protocol == 'SPI':
             self.commChannel = SPI()
-        elif protocol.find('COM') is not -1:
+        elif protocol.find('COM') != -1:
             self.commChannel = SERIAL(protocol)
+        elif protocol.find('dev') != -1:
+            self.commChannel = SERIAL(protocol)
+
         else:
             raise ValueError('Invalid Communication Protocol selected: Choose "I2C" "SPI" or provide a valid COM port for Serial communication')
 
@@ -766,7 +769,7 @@ class SERIAL(object):
         xfer_packet = self.PrepareData(vals)
         self.ser.write(bytearray(xfer_packet))
 
-    def receiveData(self, vals):
+    def receiveData(self, vals, delay = None):
         """
         **Description:**
             This function is called when a returned value from the RPiSoC is needed. It will send a command, and then wait for a response.
@@ -783,7 +786,6 @@ class SERIAL(object):
         xfer_packet = self.PrepareData(vals)
         self.ser.write(bytearray(xfer_packet))
 
-        #time.sleep(delay)
         data = 0
         data_packet = []
 
@@ -795,7 +797,7 @@ class SERIAL(object):
         for i in range(len(data_packet)):
             data = data_packet[i]<<(8*i) | data
 
-        if data > 0x0FFFFFFF:
+        if data > 0x7FFFFFFF:
             return int(data - 0xFFFFFFFF)
         else:
             return int(data) #return result

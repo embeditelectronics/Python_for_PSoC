@@ -3,7 +3,7 @@
 * \brief Handles all communication and parsing of data for a python device, such as the raspberry pi. 
            This should work for any device where both sides of the API were created, extending beyond Python
 *
-* Version 1.2.2
+* Version 1.2.3
 *
 * \author Brian Bradley
 *
@@ -295,15 +295,11 @@ void Python_Initialize(void)
                 (void) I2C_1_SlaveClearReadStatus();
                 
         #elif defined(USE_SERIAL)      /* USBUART WRITE HANDLER */
-       
+            
             while(!USBUART_CDCIsReady()){/* Wait until ready to send*/}
-                USBUART_PutChar((char8)out_lo);
-            while(!USBUART_CDCIsReady()){/* Wait until ready to send*/}
-                USBUART_PutChar((char8)out_mid_lo);
-            while(!USBUART_CDCIsReady()){/* Wait until ready to send*/}
-                USBUART_PutChar((char8)out_mid_hi);
-            while(!USBUART_CDCIsReady()){/* Wait until ready to send*/}
-                USBUART_PutChar((char8)out_hi);
+            uint8 dat_out[4] = {out_lo, out_mid_lo, out_mid_hi, out_hi};
+            USBUART_PutData(dat_out, 4);
+            
         #endif
         
     }
