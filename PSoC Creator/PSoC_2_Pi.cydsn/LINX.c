@@ -161,14 +161,10 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
     #endif
     
     // Declare variables needed by any commands up front
-    // TODO: Look into how variable declaraion within switch statements works
-    //       There might be a more efficient way to do this, but this will definitely work
-    uint8 i;
     uint8 status = LINX_STATUS_L_OK;
     uint8 response_data[LINX_RESPONSE_DATA_BUFFER_SIZE];
     uint8 response_data_len = 0;
-    uint8 response_bits_remaining;
-    int32 result;
+    uint8 i;
     
     // Execute code that corresponds to the command
     // If any command processing needs to respond with data, it can simply set the bytes
@@ -559,14 +555,12 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // Set Device User ID
         // Untested
-        case 0x12:
+        case 0x12: {
             #ifdef LINX_DEBUG
                 DEBUG_UART_PutString("Set Device User ID\r\n");
             #endif
                 
             // Device User ID is stoerd in bytes (0, 0) and (0, 1) of the EEPROM
-            i = 0;  // TODO: Added this to get rid of an error when LINX_DEBUG is undefined
-                    //       Figure out why it's needed
             cystatus first = EEPROM_ByteWrite(command[6], 0, 0);
             cystatus second = EEPROM_ByteWrite(command[7], 0, 1);
             
@@ -575,6 +569,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             }
             
             break;
+        }
             
         // Get Device User ID
         // Untested
@@ -700,7 +695,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             break;
             
         // Analog Read
-        case 0x64:
+        case 0x64: {
             #ifdef LINX_DEBUG
                 DEBUG_UART_PutString("Analog Read\r\n");
             #endif
@@ -710,7 +705,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             response_data[0] = LINX_AI_BITS;
             
             // Initialize byte packing counters
-            response_bits_remaining = 8;
+            uint8 response_bits_remaining = 8;
             response_data[response_data_len] = 0x00;
             
             // For each pin
@@ -745,6 +740,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             }
             
             break;
+        }
             
         // Analog write
         // TODO: generalize for varying-bit values, add logic for value unpacking if not using
@@ -817,7 +813,6 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             break;
                         
         // QE Reset
-        // Untested
         case 0xA0:
             #ifdef LINX_DEBUG
                 DEBUG_UART_PutString("QE Reset\r\n");
@@ -845,7 +840,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             break;
             
         // QE Read
-        case 0xA1:
+        case 0xA1: {
             #ifdef LINX_DEBUG
                 DEBUG_UART_PutString("QE Read\r\n");
             #endif
@@ -855,7 +850,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             response_data[0] = LINX_QE_BITS;
             
             // Initialize byte packing variables
-            response_bits_remaining = 8;
+            uint8 response_bits_remaining = 8;
             response_data[response_data_len] = 0x00;
             
             // For each channel
@@ -868,6 +863,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 #endif
                 
                 // Read QE
+                int32 result = 0x00;
                 switch(channel) {
                     #ifdef CY_QUADRATURE_DECODER_QuadDec_1_H
                         case 0x01: result = QuadDec_1_GetCounter(); break;
@@ -891,6 +887,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             }
 
             break;
+        }
             
         // I2C Open Master
         case 0xE0:
@@ -912,7 +909,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             break;
             
         // I2C Write
-        case 0xE2:
+        case 0xE2: {
             #ifdef LINX_DEBUG
                 DEBUG_UART_PutString("I2C Write\r\n");
             #endif
@@ -926,12 +923,12 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                             I2C_1_MasterClearStatus();
                             I2C_1_MasterWriteBuf(command[7] >> 1, &command[9], command[1] - 10, I2C_1_MODE_COMPLETE_XFER);
                             while((I2C_1_MasterStatus() & I2C_1_MSTAT_WR_CMPLT) == 0);
-                            i = I2C_1_MasterStatus();
-                            if (i & I2C_1_MSTAT_ERR_XFER) {
+                            uint8 I2C_Stat = I2C_1_MasterStatus();
+                            if (I2C_Stat & I2C_1_MSTAT_ERR_XFER) {
                                 status = L_UNKNOWN_ERROR;
                                 
                                 #ifdef LINX_DEBUG
-                                    DEBUG_UART_PutArray(debug_str, sprintf((char *)debug_str, "\t\tI2C_MasterStatus: %x\r\n", i));
+                                    DEBUG_UART_PutArray(debug_str, sprintf((char *)debug_str, "\t\tI2C_MasterStatus: %x\r\n", I2C_Stat));
                                 #endif
                             }
                             break;
@@ -943,9 +940,10 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             }
             
             break;
+        }
             
         // I2C Read
-        case 0xE3:
+        case 0xE3: {
             #ifdef LINX_DEBUG
                 DEBUG_UART_PutString("I2C Read\r\n");
             #endif
@@ -957,12 +955,12 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                             I2C_1_MasterClearStatus();
                             I2C_1_MasterReadBuf(command[7] >> 1, response_data, command[8], I2C_1_MODE_COMPLETE_XFER);
                             while((I2C_1_MasterStatus() & I2C_1_MSTAT_RD_CMPLT) == 0);
-                            i = I2C_1_MasterStatus();
-                            if (i & I2C_1_MSTAT_ERR_XFER) {
+                            uint8 I2C_Stat = I2C_1_MasterStatus();
+                            if (I2C_Stat & I2C_1_MSTAT_ERR_XFER) {
                                 status = L_UNKNOWN_ERROR;
                                 
                                 #ifdef LINX_DEBUG
-                                    DEBUG_UART_PutArray(debug_str, sprintf((char *)debug_str, "\t\tI2C_MasterStatus: %x\r\n", i));
+                                    DEBUG_UART_PutArray(debug_str, sprintf((char *)debug_str, "\t\tI2C_MasterStatus: %x\r\n", I2C_Stat));
                                 #endif
                             }
                             else {
@@ -976,6 +974,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             }
             
             break;
+        }
             
         // I2C Close
         case 0xE4:
