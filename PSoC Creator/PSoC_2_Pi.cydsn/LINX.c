@@ -40,11 +40,15 @@ void LINX_Initialize() {
     
     // Start both VDACs
     #ifdef CY_VDAC8_VDAC8_1_H
-        //readData(VDAC1_CONTROL, 0x00, 0x00, 0x00);
+        vessel.addr = VDAC0_CONTROL;
+        vessel.cmd = 0x00;
+        vessel.dat = 0x00;
         readData(vessel, 0x00);
     #endif
     #ifdef CY_VDAC8_VDAC8_2_H
-        //readData(VDAC1_CONTROL, 0x00, 0x00, 0x00);
+        vessel.addr = VDAC1_CONTROL;
+        vessel.cmd = 0x00;
+        vessel.dat = 0x00;
         readData(vessel, 0x00);
     #endif
     
