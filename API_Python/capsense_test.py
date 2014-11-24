@@ -1,17 +1,17 @@
 from rpisoc import *
-RPiSoC('SPI')
+RPiSoC('COM16')
 
-test = CapSense(0)
-pin = digitalPin(12,0,'OUT')
+def main():
+    capsense_button = CapSense(0, THRESHOLD = 3)
 
-test.Start()
-pin.Toggle()
-while test.Read():
-	pass
-pin.Toggle()
+    pin = digitalPin(12,0,'OUT')
+    capsense_button.Start()
 
-try:
-	while True:
-		pin.Write(int(test.Read()))
-except KeyboardInterrupt:
-	RPiSoC.commChannel.cleanup()
+    try:
+        while True:
+            pin.Write(capsense_button.isTouched())
+    except KeyboardInterrupt:
+    	RPiSoC.commChannel.cleanup()
+
+if __name__ == '__main__':
+    main()

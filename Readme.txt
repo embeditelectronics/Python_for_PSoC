@@ -7,4 +7,4 @@ Documentation and changelog can be found here: http://embeditelectronics.github.
 
 This branch contains only the python API, so the Raspberry Pi can clone it without wasting space
 
-The API_Python folder contains the Python API for Raspberry Pi and example projects. They were created with Python 2.7 on Raspbian June 2014
+The API_Python folder contains the Python API for Raspberry Pi and example projects. They were created with Python 2.7 on Raspbian June 2014 and on Windows 7 x64 SP1 using a serial interface.

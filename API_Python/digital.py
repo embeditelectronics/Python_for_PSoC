@@ -1,5 +1,5 @@
 __author__ = 'Brian Bradley'
-__version__ = '1.2.0'
+__version__ = '1.2.3'
 
 from rpisoc import *
 
@@ -58,7 +58,6 @@ class digitalPin(object):
 
         self.Configure(CONFIG)
         self.state = self.Read()
-
 
     def Configure(self, CONFIG):
         """

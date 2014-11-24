@@ -6,7 +6,7 @@ This program is the highest level module for the RPiSoC API, which the user shou
 import into their scripts for full use of the API.
 """
 __author__ = 'Brian Bradley'
-__version__ = '1.2.0'
+__version__ = '1.2.3'
 
 import math
 import time
@@ -28,7 +28,7 @@ except ImportError:
     import_count+=1
 
 if import_count is 3:
-     print('WARNING: No communication libraries found! You need either spidev, smbus, or serial libraries available for import to use this API!')
+     raise ImportError('No communication libraries found! You need either spidev, smbus, or serial libraries available for import to use this API!')
 
 class RPiSoC(object):
     """
@@ -76,12 +76,13 @@ class RPiSoC(object):
 
     REGISTERS_IN_USE = []
 
+    TEST_REGISTER = 0xFD
     CHECK_BUILD = 0xFE
     RESET_ADDRESS = 0xFF
 
     MASTER_CLK_FREQ = 24000000
-    IMO_CLK_FREQ = 3000000
-    ILO_CLK_FREQ = 1000
+    IMO_CLK_FREQ = 24000000
+    ILO_CLK_FREQ = 100000
     PLL_CLK_FREQ = 24000000
 
     PWM_clks = dict()
@@ -110,14 +111,14 @@ class RPiSoC(object):
 
     DEBUG = False
 
-    def __new__ (self, commChannel, DEBUG = False):
+    def __new__ (self, protocol, DEBUG = False):
         """
         **Description:**
             Called upon construction of the class. It will decide the communication
             protocol to be utilized by the API and it will attempt to learn what components are available on the RPiSoC, and some needed information about the available components.
 
         **Parameters:**
-            - commChannel: SPI or I2C
+            - commChannel: SPI, I2C, or COM<#>, as in COM1, COM2, COM3...
         **Optional Parameters:**
             - DEBUG: Defaults to False, so this parameter is optional. Changing it to True will print debugging data to the terminal.
                 * This data depends on the program and which classes/methods are used, but the program will at least print what information is found on the rpisoc when __new__ is called. This can be used to identify errors in your RPiSoC firmware changes.
@@ -125,15 +126,17 @@ class RPiSoC(object):
         RPiSoC.DEBUG = DEBUG
         self.PWM_clks_copy  = dict((k,v) for k,v in RPiSoC.PWM_clks.items())
 
-        if commChannel == 'I2C':
+        if protocol == 'I2C':
             self.commChannel = I2C()
-            #time.sleep(.2)
-        elif commChannel == 'SPI':
+        elif protocol == 'SPI':
             self.commChannel = SPI()
-        elif commChannel == 'UART':
-            self.commChannel = UART()
+        elif protocol.find('COM') != -1:
+            self.commChannel = SERIAL(protocol)
+        elif protocol.find('dev') != -1:
+            self.commChannel = SERIAL(protocol)
+
         else:
-            raise ValueError('Invalid Communication Protocol selected: Choose "I2C" or "SPI" ')
+            raise ValueError('Invalid Communication Protocol selected: Choose "I2C" "SPI" or provide a valid COM port for Serial communication')
 
         analog = Check_Analog()
         DELSIG__MASK = 0x01
@@ -178,14 +181,14 @@ class RPiSoC(object):
         elif IDAC0_MODE is 0x02:
         	RPiSoC.IDAC0_RANGE = .255
         else:
-        	RPiSoC.IDAC0_RANGE = 2.0
+        	RPiSoC.IDAC0_RANGE = 2.04
 
         if IDAC1_MODE is 0x01:
         	RPiSoC.IDAC1_RANGE = 0.03175
         elif IDAC1_MODE is 0x02:
         	RPiSoC.IDAC1_RANGE = .255
         else:
-        	RPiSoC.IDAC1_RANGE = 2
+        	RPiSoC.IDAC1_RANGE = 2.04
 
         PWM_DAT = Check_PWM()
         RPiSoC.PWM_CLK_NUM = PWM_DAT&0x0F
@@ -284,7 +287,7 @@ class RPiSoC(object):
         for i in PWM_DAT:
             for j in range(4):
                 num+=1
-                res =16*((i >> (4 + 5*j)&0x01) is 1) + 8*((i >> (4 + 5*j)&0x01) is 0)
+                res =16*((i >> (4 + 5*j)&0x01) == 1) + 8*((i >> (4 + 5*j)&0x01) == 0)
                 if (i>>j*5)&0x0F:
                     RPiSoC.PWM_clks[(i>>j*5)&0x0F][2].append([num,res])
 
@@ -428,6 +431,17 @@ def Match_Clocks(val):
         dat.append(RPiSoC.commChannel.receiveData((addr, cmd, i)))
     return dat
 
+def Test_Read(val):
+    """
+    **Description:**
+        Used to test the accuracy of data transfer between devices. It will simply echo back what is given to it as a parameter.
+    **Parameters:**
+        *val:* a 16-bit number which will be sent to the RPiSoC, and then returned.
+    **Returns:**
+        *echo:* The data returned from the RPiSoC; if transmission of *val* was successful, *echo* should be equal to *val*
+    """
+    return RPiSoC.commChannel.receiveData((RPiSoC.TEST_REGISTER, 0, val))
+
 class SPI():
     """
     **Description:**
@@ -444,8 +458,6 @@ class SPI():
         self.speed = 1000000
         self.spi.open(0,0)
         self.spi.max_speed_hz = self.speed
-
-        #spi.openSPI(speed = 100000)
 
     def PrepareData(self, dat):
         """
@@ -519,7 +531,6 @@ class SPI():
         """
 
         xfer_packet = self.PrepareData(vals)
-        #print('sending: ',xfer_packet, ' from: ',vals)
 
         self.spi.writebytes(xfer_packet)
         time.sleep(delay)
@@ -530,10 +541,6 @@ class SPI():
         for i in range(len(data_packet)):
             data = data_packet[i]<<(8*i) | data
 
-
-        #print('recieving: ', data_packet, data)
-        #print(data, hex(data))
-
         if data > 0x0FFFFFFF:
             return int(data - 0xFFFFFFFF)
         else:
@@ -542,17 +549,11 @@ class SPI():
     def cleanup(self):
         """
         **Description:**
-            Forces a software reset on the RPiSoC to clean up its GPIO, then it closes and cleans up the SPI bus.
+            Forces a software reset on the RPiSoC and then closes and cleans up the SPI bus.
         """
-        #print('\n\nCleaning up RPiSoC...')
         self.sendData((0xFF,0xFF))
         RPiSoC.REGISTERS_IN_USE = []
-        RPiSoC.PWM_clks = dict((k,v) for k,v in RPiSoC.PWM_clks_copy.items())
-        #print('RPiSoC clean')
-
-        #print('\nclosing spi...')
         self.spi.close()
-        #print('closed')
         '''
         obj_keys = ['analog.ADC object at 0x', 'analog.VDAC object at', 'analog.IDAC object at 0x', 'analog.WaveDAC object at 0x','digital.DigitalInput object at 0x', 'digital.DigitalOutput object at', 'digital.PWM object at 0x', 'digital.Servo object at']
         for (k,v) in locals().items():
@@ -699,11 +700,118 @@ class I2C(object):
         **Description:**
             Forces a software reset on the RPiSoC to clean up its GPIO.
         """
-        print('\n\nCleaning up RPiSoC...')
         self.sendData((0xFF,0xFF))
         RPiSoC.REGISTERS_IN_USE = []
-        RPiSoC.PWM_clks = dict((k,v) for k,v in RPiSoC.PWM_clks_copy.items())
-        print('RPiSoC clean')
+
+class SERIAL(object):
+    """
+    **Description:**
+        Provides a Serial interface for communicating with the RPiSoC through a desired COM port
+    """
+    def __init__(self, com):
+        """
+        **Description:**
+            opens the desired COM port at 9600 baud
+        **Parameters:**
+            *com:* A string representative of the desired COM port. For instance 'COM16' to open COM16.
+        """
+        self.ser = serial.Serial(com, 9600, timeout = 2, writeTimeout = 2)
+
+    def PrepareData(self, dat):
+        """
+        **Description:**
+            Makes sure that the data being sent is correctly formatted, so that the RPiSoC is able to more easily decode the received words.
+
+        **Parameters:**
+            - *dat:* A tuple of length 2 or 3
+                * The size of the first two items of the tuple must be less than or equal to one byte each.
+                * The size of the third item in the tuple, if applicable, must be less than or equal to two bytes.
+        **Returns:**
+            - *dat_l:* A list of length 4, prepared for SPI transfer, with the following construction:
+                    * [dat[0], dat[1], dat[2]__LOW_BYTE, dat[2]__HIGH_BYTE]
+                    * The RPiSoC is expecting receipt of these 4 bytes, in this order.
+        """
+        dat_l = list(dat)
+
+        if len(dat_l)<2:
+            raise ValueError('Not enough arguments for data transfer: At least an address and a command are required')
+        if len(dat_l)<4:
+            for i in range(4):
+                if i>(len(dat_l)-1):
+                    dat_l.append(0x00)
+        addr = dat_l[0]
+        cmd = dat_l[1]
+        val = dat_l[2]
+
+        if addr > 0xFF or cmd > 0xFF:
+            raise ValueError('Data is the wrong size')
+
+        if val> 0xFFFF:
+            dat_l[3] = 0xFF
+            dat_l[2] = 0xFF
+
+        elif val > 0xFF:
+            dat_l[3] = (dat_l[2] & 0xFF00)>>8
+            dat_l[2] &= 0x00FF
+
+        return dat_l
+
+
+    def sendData(self, vals):
+        """
+        **Description:**
+            This function will send data to the RPiSoC, without waiting for a return
+
+        **Parameters:**
+            *vals:* A tuple which will be sent to the *PrepareData()* function to be restructured into a list of length 4, and then sent to the rpisoc over the requested COM port.
+        """
+
+        xfer_packet = self.PrepareData(vals)
+        self.ser.write(bytearray(xfer_packet))
+
+    def receiveData(self, vals, delay = None):
+        """
+        **Description:**
+            This function is called when a returned value from the RPiSoC is needed. It will send a command, and then wait for a response.
+
+        **Parameters:**
+            *vals:* A tuple which will be sent to the *PrepareData()* function to be restructured into a list of length 4, and then sent to the RPiSoC over SPI.
+
+        **Returns:**
+            The data packet received from the PSoC, which has been unpacked and reformatted.
+                - Since the largest possible value that the PSoC will generally send is a 20 bit number, if a number received is sufficiently large, it will assume that the number overflowed backwards because the PSoC tried to send a negative number.
+                    * It will account for this by subtracting (2^32 - 1) from the received data, if that data is larger than (2^24 -1)
+        """
+
+        xfer_packet = self.PrepareData(vals)
+        self.ser.write(bytearray(xfer_packet))
+
+        data = 0
+        data_packet = []
+
+        while self.ser.inWaiting()<4:
+            pass
+        for string in self.ser.read(4):
+            data_packet.append(ord(string))
+
+        for i in range(len(data_packet)):
+            data = data_packet[i]<<(8*i) | data
+
+        if data > 0x7FFFFFFF:
+            return int(data - 0xFFFFFFFF)
+        else:
+            return int(data) #return result
+
+    def cleanup(self):
+        """
+        **Description:**
+            Forces a software reset on the RPiSoC to clean it up, then it closes and cleans up the serial port.
+        """
+        self.sendData((0xFF,0xFF))
+        RPiSoC.REGISTERS_IN_USE = []
+        self.ser.close()
+
+
 
 from digital import *
 from analog import *
