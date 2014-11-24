@@ -226,9 +226,6 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 DEBUG_UART_PutString("Set Baud Rate\r\n");
             #endif
             
-            // TODO: Follow up on possible typo in documentation
-            //       Says status is 8th byte, but it's usually the 4th
-            
             // This is a bit of a hack, but because you can't really set the baud
             // rate of the USBUART, this always responds saying it set the baud
             // rate to 9600 no matter what LINX requests
@@ -458,7 +455,6 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 DEBUG_UART_PutString("Get PWM Channels\r\n");
             #endif
             
-            // TODO: 1-index
             #ifdef CY_PWM_PWM_1_H
                 response_data[response_data_len] = 1;
                 ++response_data_len;
@@ -718,7 +714,6 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 #endif
                 
                 // Read pin
-                // TODO: Test that this works with multiple channels
                 vessel.addr = ANALOG_IN_REGISTER;
                 vessel.cmd = 0x00;
                 vessel.dat = pin;
@@ -1075,9 +1070,6 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             }
             
             break;
-            
-        // TODO: Reset
-            // Send RESET_ADDRESS (255) to read_data for software reset
             
         // Unsupported command
         default:
