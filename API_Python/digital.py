@@ -360,7 +360,7 @@ class PWM(object):
         RPiSoC.PWM_clks[self.clk_number][1] = (RPiSoC.commChannel.receiveData((self.address,cmd, divider))) + 1
 
     #eventually move this algorithm to psoc side for greater portability...
-    def SetFrequency(self,freq):
+    def SetFrequency(self,freq, MAX_ERROR = 5, MIN_PERIOD = 10):
         """
         **Description:**
             Attempts to set the PWM wave frequency to a desired rate by calculating an appropriate period value and/or clock rate
@@ -378,16 +378,16 @@ class PWM(object):
             if RPiSoC.DEBUG:
                 print('WARNING: cannot generate frequencies less than %f Hz. Frequency will be set to %f Hz'%(float(self.min_clk)/65534,float(self.min_clk)/65534))
             freq = self.min_clk/65534.0
-        if freq>(self.max_clk/10.0):
+        if freq>(self.max_clk/float(MIN_PERIOD)):
             if RPiSoC.DEBUG:
-                print('WARNING: cannot generate a frequency greater than %fMHz without severely compromisng the accurate maintenence of the Duty Cycle. Frequency will be set to %fMHz to prevent this. '%(self.max_clk/10.0,self.max_clk/10.0))
-            freq = self.max_clk/10.0
+                print('WARNING: cannot generate a frequency greater than %dHz without compromosing Duty Cycle beyond specification. Frequency will be set to %dHz to prevent this. '%(self.max_clk/float(MIN_PERIOD),self.max_clk/float(MIN_PERIOD)))
+            freq = self.max_clk/float(MIN_PERIOD)
 
         DutyCycle_cur = self.GetDutyCycle()/100.0
         period_new = int((self.GetClocks()/float(freq)) + 0.5)
 
-        if period_new<10:
-            period_new = 10
+        if period_new<float(MIN_PERIOD):
+            period_new = MIN_PERIOD
         elif period_new>self.max_num:
             period_new = self.max_num
 
@@ -397,7 +397,7 @@ class PWM(object):
 
         err_chk_strt = True
         div_cur = self.GetClockDivider()
-        while abs(error)>5:
+        while abs(error)>MAX_ERROR:
             if err_chk_strt:
                 if RPiSoC.DEBUG:
                     print('WARNING: Could not acheive desired frequency within 5% tolerance without editing the clock rate. This change will affect any PWM channels sharing this clock.')
@@ -419,12 +419,13 @@ class PWM(object):
                     break
 
             period_new = int((clk_new/float(freq)) + 0.5)
-            compare_new = int(period_new*DutyCycle_cur + 0.5)
 
-            if period_new<10:
-                period_new = 10
+            if period_new<float(MIN_PERIOD):
+                period_new = MIN_PERIOD
             elif period_new>self.max_num:
                 period_new = self.max_num
+
+            compare_new = int(period_new*DutyCycle_cur + 0.5)
 
             try_freq = clk_new/float(period_new)
             error = ((100.0*(try_freq - freq))/freq)
@@ -443,8 +444,10 @@ class PWM(object):
                     self.WriteCompare(compare_new)
 
 
+    def SetMIDI(self, MIDI, MAX_ERROR = 5, MIN_PERIOD = 10):
+        self.SetFrequency(pow(2, (MIDI-69)/12)*440, MAX_ERROR, MIN_PERIOD)
 
-    def GetDutyCycle(self):
+    def GetDutyCycle(self, PRECISION = 2):
         """
         **Description:**
             Calculates the current duty cycle based on the current period and comparison values.
@@ -453,9 +456,9 @@ class PWM(object):
             A float value which is representative of the percentage of time, between 0 and 100%, that the PWM signal is
             on, relative to the total length of its period.
         """
-        return 100.0*(self.cmp/float(self.period))
+        return round(100.0*(self.cmp/float(self.period)),PRECISION)
 
-    def GetFrequency(self):
+    def GetFrequency(self, PRECISION = 2):
         """
         **Description:**
             Calculates the current PWM wave frequency based on the current clock rate and period value
@@ -463,7 +466,7 @@ class PWM(object):
         **Returns:**
             A frequency in Hz, which is representative of the current PWM signal frequency.
         """
-        return (self.GetClocks()/float(self.period))
+        return round((self.GetClocks()/float(self.period)),PRECISION)
 
     def SetDutyCycle(self,duty_cycle):
         """

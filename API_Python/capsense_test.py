@@ -1,5 +1,5 @@
 from rpisoc import *
-RPiSoC('COM16')
+RPiSoC('SPI')
 
 def main():
     capsense_button = CapSense(0, THRESHOLD = 3)

@@ -1,12 +1,12 @@
 from rpisoc import *
 import random
-RPiSoC('SPI', DEBUG = True)
+RPiSoC('COM16')
 
-"""
+
 print('starting...')
 SIZE = 100
 try:
-
+    '''
     correct = 0
     for i in range(SIZE):
         send_dat = random.randint(0,65535)
@@ -25,8 +25,6 @@ try:
     tf = time.time()
 
     print ('%.1f kB transferred in %.3f seconds. \n%.6f seconds (%.3f ms) per full duplex transfer (%.2f kbps)' %(((SIZE*2.0)/1000), tf - t0, ((tf-t0)/float(SIZE)), 1000*((tf-t0)/float(SIZE)), (((SIZE*2.0)/1000)*8)/(tf - t0)))
-    '''
     RPiSoC.commChannel.cleanup()
 except KeyboardInterrupt:
     RPiSoC.commChannel.cleanup()
-"""
