@@ -3,7 +3,7 @@
 * \brief Handles all communication and parsing of data for a python device, such as the raspberry pi. 
            This should work for any device where both sides of the API were created, extending beyond Python
 *
-* Version 1.2.3
+* Version 1.2.4
 *
 * \author Brian Bradley
 *
@@ -164,9 +164,9 @@ void Python_parser(vessel_type *vessel)
                 case 0x01: vessel->dat = temp_data&0x0001; break;
                 case 0x03: vessel->dat = temp_data>>8&0x000F; break;
             }
-        
-        
             break;
+            
+        case TEST_REGISTER: break;
         
         case CHECK_BUILD: break;
         

@@ -4,7 +4,7 @@
 *        all components included in the build. It will do so according to
 *        sets of instructions provided by a Master Device.
 *
-* Version 1.2.3
+* Version 1.2.4
 *
 * \author Brian Bradley
 *

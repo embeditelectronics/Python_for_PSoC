@@ -143,15 +143,20 @@ class analogPin(object):
         cmd = 0x00
         counts = int(RPiSoC.commChannel.receiveData((self.address, cmd, self.pin)))
         return counts
-    def ReadVolts(self):
+    def ReadVolts(self, PRECISION = 2):
         """
         **Description:**
             Reads the specified analog pin and converts that digital reading to a voltage in Volts.
+
+        **Optional Parameters:**
+            *PRECISION:* The number of decimal points the voltage will be rounded to.
+                    - The default value is 2, but precision up to 5 points is available.
         **Returns:**
             Value in *Volts* which is being applied to the specified analog pin. The resolution of the ADC does not affect this method; the conversion process accounts for the ADC resolution.
         """
         cmd = 0x01
-        return (float(((RPiSoC.commChannel.receiveData((self.address,cmd, self.pin)))/1000000.0)))
+        return round((float(((RPiSoC.commChannel.receiveData((self.address,cmd, self.pin)))/1000000.0))), PRECISION)
+
     def SetOffset(self,counts):
         """
         **Description:**
@@ -854,7 +859,7 @@ class WaveDAC(object):
                     * *TRIANGLE*
                     * *SAWTOOTH*
 
-        **Note:** *V1.1* intends to introduce defining your own custom waveforms.
+        **Note:** *V1.3* intends to introduce defining your own custom waveforms.
         """
 
         cmd = 0x04
@@ -872,7 +877,6 @@ class WaveDAC(object):
             raise ValueError('Invalid waveType: Choose "SINE" "SQUARE" "TRIANGLE" or "SAWTOOTH" ')
 
         RPiSoC.commChannel.sendData((self.address, cmd))
-        time.sleep(0.1)
         RPiSoC.commChannel.sendData((val, self.amplitude, self.dcBias))
 
 

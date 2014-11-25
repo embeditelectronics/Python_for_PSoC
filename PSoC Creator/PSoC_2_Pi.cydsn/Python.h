@@ -2,7 +2,7 @@
 * \file Python.h
 * \brief Prototypes functions needed for Python.c and includes all dependencies.
 *
-* Version 1.2.3
+* Version 1.2.4
 *
 * \author Brian Bradley
 *

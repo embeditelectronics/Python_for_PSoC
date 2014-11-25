@@ -715,7 +715,7 @@ class SERIAL(object):
         **Parameters:**
             *com:* A string representative of the desired COM port. For instance 'COM16' to open COM16.
         """
-        self.ser = serial.Serial(com, 9600, timeout = 2, writeTimeout = 2)
+        self.ser = serial.Serial(com, 115200, timeout = 2, writeTimeout = 2)
 
     def PrepareData(self, dat):
         """
