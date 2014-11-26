@@ -224,7 +224,8 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             break;
         
         // Set Baud Rate
-        // Untested
+        // Untested - LINX doesn't currently call this because we report
+        //            that 9600 is our max supported rate
         case 0x06:
             #ifdef LINX_DEBUG
                 DEBUG_UART_PutString("Set Baud Rate\r\n");
@@ -517,7 +518,6 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             break;
             
         // Get I2C Channels
-        // Incomplete
         case 0x0E:
             #ifdef LINX_DEBUG
                 DEBUG_UART_PutString("Get I2C Channels\r\n");
@@ -554,7 +554,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             break;
             
         // Set Device User ID
-        // Untested
+        // Untested - LINX never actually uses this currently
         case 0x12: {
             #ifdef LINX_DEBUG
                 DEBUG_UART_PutString("Set Device User ID\r\n");
@@ -572,7 +572,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
         }
             
         // Get Device User ID
-        // Untested
+        // Untested - LINX never actually uses this currently
         case 0x13:
             #ifdef LINX_DEBUG
                 DEBUG_UART_PutString("Get Device User ID\r\n");
