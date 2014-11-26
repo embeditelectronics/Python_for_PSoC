@@ -742,8 +742,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
         }
             
         // Analog write
-        // TODO: generalize for varying-bit values, add logic for value unpacking if not using
-        // an 8-bit DAC, or just make sure the hardware doesn't support higher than 8 bits and throw an error if more than 8 bits are sent
+        // Note: This assumes 8 bit values, will need bit unpacking logic if you ever want to write vlaues other than 8 bits
         case 0x65:
             #ifdef LINX_DEBUG
                 DEBUG_UART_PutString("Analog write\r\n");
@@ -785,9 +784,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                     DEBUG_UART_PutArray(debug_str, debug_str_len);
                 #endif
                 
-                // TODO: Softcode with #defines? Actually cypress API calls
-                // Calculate comparison value
-                vessel.dat = (uint32)value * (uint32)60000 / (uint32)255;
+                // Select PWM channel
                 uint32 result;
                 switch(pin) {
                     case 0: vessel.addr = PWM_REGISTER0; break;
@@ -799,6 +796,21 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                     case 6: vessel.addr = PWM_REGISTER6; break;
                     case 7: vessel.addr = PWM_REGISTER7; break;
                 }
+                
+                // Get period counts
+                vessel.cmd = 0x0D;         // Read period command
+                readData(vessel, &result);
+                
+                #ifdef LINX_DEBUG
+                    DEBUG_UART_PutArray(debug_str, sprintf((char *)debug_str, "\t\tPeriod: %lu\r\n", result));
+                #endif
+                
+                // Calculate comparison value
+                vessel.dat = (uint32)value * (uint32)result / (uint32)255;
+                
+                #ifdef LINX_DEBUG
+                    DEBUG_UART_PutArray(debug_str, sprintf((char *)debug_str, "\t\tCompraison value: %u\r\n", vessel.dat));
+                #endif
                 
                 // Start PWM channel
                 vessel.cmd = 0x00;
