@@ -843,8 +843,8 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                     #ifdef CY_QUADRATURE_DECODER_QuadDec_1_H
                         case 0x01: QuadDec_1_SetCounter(0); break;
                     #endif
-                    default:
-                        status = LINX_STATUS_L_UNKNOWN_ERROR; break;
+                    
+                    default: status = LINX_STATUS_L_UNKNOWN_ERROR; break;
                 }
             }
             
@@ -879,8 +879,8 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                     #ifdef CY_QUADRATURE_DECODER_QuadDec_1_H
                         case 0x01: result = QuadDec_1_GetCounter(); break;
                     #endif
-                    default:
-                        status = LINX_STATUS_L_UNKNOWN_ERROR; break;
+                    
+                    default: status = LINX_STATUS_L_UNKNOWN_ERROR; break;
                 }
                 
                 #ifdef LINX_DEBUG
@@ -913,8 +913,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                     #endif
                 #endif
                 
-                default:
-                    status = LINX_STATUS_L_UNKNOWN_ERROR; break;
+                default: status = LINX_STATUS_L_UNKNOWN_ERROR; break;
             }
             
             break;
@@ -930,7 +929,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             switch(command[8]) {
                 case(0x00): mode = I2C_1_MODE_COMPLETE_XFER; break;
                 case(0x01): mode = I2C_1_MODE_REPEAT_START; break;
-                case(0x02): status = LINX_STATUS_L_FUNCTION_NOT_SUPPORTED; break;
+                case(0x02): status = LINX_STATUS_LI2C_EOF; break;
                 case(0x03): mode = I2C_1_MODE_NO_STOP; break;
             }
             
@@ -946,7 +945,12 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                             while((I2C_1_MasterStatus() & I2C_1_MSTAT_WR_CMPLT) == 0);
                             uint8 I2C_Stat = I2C_1_MasterStatus();
                             if (I2C_Stat & I2C_1_MSTAT_ERR_XFER) {
-                                status = LINX_STATUS_L_UNKNOWN_ERROR;
+                                if (I2C_Stat & I2C_1_MSTAT_ERR_ADDR_NAK) {
+                                    status = LINX_STATUS_LI2C_SADDR;
+                                }
+                                else {
+                                    status = LINX_STATUS_LI2C_WRITE_FAIL;
+                                }
                                 
                                 #ifdef LINX_DEBUG
                                     DEBUG_UART_PutArray(debug_str, sprintf((char *)debug_str, "\t\tI2C_MasterStatus: %x\r\n", I2C_Stat));
@@ -956,8 +960,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                     #endif
                 #endif
                 
-                default:
-                    status = LINX_STATUS_L_UNKNOWN_ERROR; break;
+                default: status = LINX_STATUS_L_UNKNOWN_ERROR; break;
             }
             
             break;
@@ -974,7 +977,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             switch(command[8]) {
                 case(0x00): mode = I2C_1_MODE_COMPLETE_XFER; break;
                 case(0x01): mode = I2C_1_MODE_REPEAT_START; break;
-                case(0x02): status = LINX_STATUS_L_FUNCTION_NOT_SUPPORTED; break;
+                case(0x02): status = LINX_STATUS_LI2C_EOF; break;
                 case(0x03): mode = I2C_1_MODE_NO_STOP; break;
             }
             
@@ -991,7 +994,12 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                             while((I2C_1_MasterStatus() & I2C_1_MSTAT_RD_CMPLT) == 0);
                             uint8 I2C_Stat = I2C_1_MasterStatus();
                             if (I2C_Stat & I2C_1_MSTAT_ERR_XFER) {
-                                status = LINX_STATUS_L_UNKNOWN_ERROR;
+                                if (I2C_Stat & I2C_1_MSTAT_ERR_ADDR_NAK) {
+                                    status = LINX_STATUS_LI2C_SADDR;
+                                }
+                                else {
+                                    status = LINX_STATUS_LI2C_READ_FAIL;
+                                }
                                 
                                 #ifdef LINX_DEBUG
                                     DEBUG_UART_PutArray(debug_str, sprintf((char *)debug_str, "\t\tI2C_MasterStatus: %x\r\n", I2C_Stat));
