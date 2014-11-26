@@ -925,18 +925,28 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 DEBUG_UART_PutString("I2C Write\r\n");
             #endif
             
-            // For now, assumes that this is a single master bus, which is probably legit
-            // TODO: Support EOF repeated start 'n stuff
+            // Set transfer type
+            uint8 mode;
+            switch(command[8]) {
+                case(0x00): mode = I2C_1_MODE_COMPLETE_XFER; break;
+                case(0x01): mode = I2C_1_MODE_REPEAT_START; break;
+                case(0x02): status = LINX_STATUS_L_FUNCTION_NOT_SUPPORTED; break;
+                case(0x03): mode = I2C_1_MODE_NO_STOP; break;
+            }
+            
+            // Break if status is non-okay
+            if (status != LINX_STATUS_L_OK) break;
+            
             switch(command[6]) {
                 #ifdef CY_I2C_I2C_1_H
                     #if(I2C_1_MODE_MASTER_ENABLED)
                         case 0x01:
                             I2C_1_MasterClearStatus();
-                            I2C_1_MasterWriteBuf(command[7] >> 1, &command[9], command[1] - 10, I2C_1_MODE_COMPLETE_XFER);
+                            I2C_1_MasterWriteBuf(command[7] >> 1, &command[9], command[1] - 10, mode);
                             while((I2C_1_MasterStatus() & I2C_1_MSTAT_WR_CMPLT) == 0);
                             uint8 I2C_Stat = I2C_1_MasterStatus();
                             if (I2C_Stat & I2C_1_MSTAT_ERR_XFER) {
-                                status = L_UNKNOWN_ERROR;
+                                status = LINX_STATUS_L_UNKNOWN_ERROR;
                                 
                                 #ifdef LINX_DEBUG
                                     DEBUG_UART_PutArray(debug_str, sprintf((char *)debug_str, "\t\tI2C_MasterStatus: %x\r\n", I2C_Stat));
@@ -959,16 +969,29 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 DEBUG_UART_PutString("I2C Read\r\n");
             #endif
             
+            // Set transfer type
+            uint8 mode;
+            switch(command[8]) {
+                case(0x00): mode = I2C_1_MODE_COMPLETE_XFER; break;
+                case(0x01): mode = I2C_1_MODE_REPEAT_START; break;
+                case(0x02): status = LINX_STATUS_L_FUNCTION_NOT_SUPPORTED; break;
+                case(0x03): mode = I2C_1_MODE_NO_STOP; break;
+            }
+            
+            // Break if status is non-okay
+            if (status != LINX_STATUS_L_OK) break;
+            
+            // TODO: Support I2C Read timeout
             switch(command[6]) {
                 #ifdef CY_I2C_I2C_1_H
                     #if(I2C_1_MODE_MASTER_ENABLED)
                         case 0x01:
                             I2C_1_MasterClearStatus();
-                            I2C_1_MasterReadBuf(command[7] >> 1, response_data, command[8], I2C_1_MODE_COMPLETE_XFER);
+                            I2C_1_MasterReadBuf(command[7] >> 1, response_data, command[8], mode);
                             while((I2C_1_MasterStatus() & I2C_1_MSTAT_RD_CMPLT) == 0);
                             uint8 I2C_Stat = I2C_1_MasterStatus();
                             if (I2C_Stat & I2C_1_MSTAT_ERR_XFER) {
-                                status = L_UNKNOWN_ERROR;
+                                status = LINX_STATUS_L_UNKNOWN_ERROR;
                                 
                                 #ifdef LINX_DEBUG
                                     DEBUG_UART_PutArray(debug_str, sprintf((char *)debug_str, "\t\tI2C_MasterStatus: %x\r\n", I2C_Stat));
