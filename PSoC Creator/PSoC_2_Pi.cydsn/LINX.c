@@ -19,6 +19,13 @@
 
 vessel_type vessel;
 
+// Macro for easily outputting debug statements
+#ifdef LINX_DEBUG
+    #define DEBUG_PRINT(...) DEBUG_UART_PutArray(debug_str, sprintf((char *)debug_str, __VA_ARGS__))
+#else
+    #define DEBUG_PRINT(...) //no-op
+#endif
+
 // Initializes all hardware devices the LINX protocol needs,
 // Including the USBUART, DEBUG_UART if enabled, EEPROM, VDACs,
 // and Quadrature Decoder
@@ -64,7 +71,6 @@ bool LINX_GetCommand(uint8 *command) {
     #ifdef LINX_DEBUG
         DEBUG_UART_PutString("Getting new LINX command\r\n");
         uint8 debug_str[LINX_DEBUG_STR_SIZE];
-        uint8 debug_str_len;
         uint8 i;
     #endif
     
@@ -75,42 +81,30 @@ bool LINX_GetCommand(uint8 *command) {
     #ifdef LINX_DEBUG
         DEBUG_UART_PutString("Received command:");
         for (i = 0; i < command_len; ++i) {
-            debug_str_len = sprintf((char *)debug_str, " %x", command[i]);
-            DEBUG_UART_PutArray(debug_str, debug_str_len);
+            DEBUG_PRINT(" %x", command[i]);
         }
         DEBUG_UART_PutString("\r\n");
     #endif
     
     // Verify SoF
     if (command[0] != 0xFF) {
-        #ifdef LINX_DEBUG
-            DEBUG_UART_PutString("\tSoF FAILED\r\n");
-        #endif
-        
+        DEBUG_PRINT("\tSoF FAILED\r\n");
         return false;
     }
     
     // Verify checksum
     if (command[command_len - 1] != LINX_CalculateChecksum(command, command_len - 1)) {
-        #ifdef LINX_DEBUG
-            DEBUG_UART_PutString("\tChecksum FAILED\r\n");
-        #endif
-        
+        DEBUG_PRINT("\tChecksum FAILED\r\n");
         return false;
     }
     
     // Verify command length
     if (command[1] != command_len) {
-        #ifdef LINX_DEBUG
-            DEBUG_UART_PutString("\tCommand length FAILED\r\n");
-        #endif
-        
+        DEBUG_PRINT("\tCommand length FAILED\r\n");
         return false;
     }
     
-    #ifdef LINX_DEBUG
-        DEBUG_UART_PutString("\tCommand validated\r\n");
-    #endif
+    DEBUG_PRINT("\tCommand validated\r\n");
     
     return true;
 }
@@ -161,7 +155,6 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
     #ifdef LINX_DEBUG
         DEBUG_UART_PutString("\tProcessing LINX command: ");
         uint8 debug_str[LINX_DEBUG_STR_SIZE];
-        uint8 debug_str_len;
     #endif
     
     // Declare variables needed by any commands up front
@@ -178,9 +171,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
     switch(cmd) {
         // Sync
         case 0x00:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("Sync\r\n");
-            #endif
+            DEBUG_PRINT("Sync\r\n");
             
             // Do nothing, will default to responding with L_OK status and no data,
             // which is what sync expects
@@ -188,9 +179,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
         
         // Get device ID
         case 0x03:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("Get device ID\r\n");
-            #endif
+            DEBUG_PRINT("Get device ID\r\n");
             
             response_data_len = 2;
             response_data[0] = LINX_DEVICE_FAMILY;
@@ -199,9 +188,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
         
         // Get LINX API Version
         case 0x04:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("Get API (Firmware) Version\r\n");
-            #endif
+            DEBUG_PRINT("Get API (Firmware) Version\r\n");
             
             response_data_len = 4;
             response_data[0] = LINX_FIRMWARE_VER_MAJOR;
@@ -212,9 +199,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
         
         // Get max baud rate
         case 0x05:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("Get max baud rate\r\n");
-            #endif
+            DEBUG_PRINT("Get max baud rate\r\n");
             
             response_data_len = 4;
             response_data[0] = (LINX_MAX_BAUD_RATE >> 24) & 0xFF;
@@ -227,9 +212,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
         // Untested - LINX doesn't currently call this because we report
         //            that 9600 is our max supported rate
         case 0x06:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("Set Baud Rate\r\n");
-            #endif
+            DEBUG_PRINT("Set Baud Rate\r\n");
             
             // This is a bit of a hack, but because you can't really set the baud
             // rate of the USBUART, this always responds saying it set the baud
@@ -243,9 +226,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // Get DIO Channels
         case 0x08:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("Get DIO Channels\r\n");
-            #endif
+            DEBUG_PRINT("Get DIO Channels\r\n");
             
             // Port 2
             #ifdef CY_PINS_GPIO_2_0_H
@@ -421,9 +402,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // Get AI Channels
         case 0x09:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("Get AI Channels\r\n");
-            #endif
+            DEBUG_PRINT("Get AI Channels\r\n");
             
             // TODO: For now, only supports the sequenced SAR ADC, could potentially add more ADC devices
             #ifdef CY_ADC_SAR_Seq_1_H
@@ -437,9 +416,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // Get AO Channels
         case 0x0A:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("Get AO Channels\r\n");
-            #endif
+            DEBUG_PRINT("Get AO Channels\r\n");
             
             // TODO: For now, only supports the two VDACs, could potentially add more DAC devices
             #ifdef CY_VDAC8_VDAC8_1_H
@@ -456,9 +433,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // Get PWM Channels
         case 0x0B:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("Get PWM Channels\r\n");
-            #endif
+            DEBUG_PRINT("Get PWM Channels\r\n");
             
             #ifdef CY_PWM_PWM_1_H
                 response_data[response_data_len] = 1;
@@ -497,9 +472,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // Get QE Channels
         case 0x0C:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("Get QE Channels\r\n");
-            #endif
+            DEBUG_PRINT("Get QE Channels\r\n");
             
             #ifdef CY_QUADRATURE_DECODER_QuadDec_1_H
                 response_data[response_data_len] = 1;
@@ -511,17 +484,13 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
         // Get UART Channels
         // Incomplete
         case 0x0D:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("Get UART Channels\r\n");
-            #endif
+            DEBUG_PRINT("Get UART Channels\r\n");
             
             break;
             
         // Get I2C Channels
         case 0x0E:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("Get I2C Channels\r\n");
-            #endif
+            DEBUG_PRINT("Get I2C Channels\r\n");
             
             #ifdef CY_I2C_I2C_1_H
                 #if(I2C_1_MODE_MASTER_ENABLED)                
@@ -534,9 +503,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // Get SPI Channels
         case 0x0F:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("Get SPI Channels\r\n");
-            #endif
+            DEBUG_PRINT("Get SPI Channels\r\n");
             
             #ifdef CY_SPIM_SPIM_1_H
                 response_data[response_data_len] = 1;
@@ -547,18 +514,14 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // Get CAN Channels
         case 0x10:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("Get CAN Channels\r\n");
-            #endif
+            DEBUG_PRINT("Get CAN Channels\r\n");
             
             break;
             
         // Set Device User ID
         // Untested - LINX never actually uses this currently
         case 0x12: {
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("Set Device User ID\r\n");
-            #endif
+            DEBUG_PRINT("Set Device User ID\r\n");
                 
             // Device User ID is stoerd in bytes (0, 0) and (0, 1) of the EEPROM
             cystatus first = EEPROM_ByteWrite(command[6], 0, 0);
@@ -574,9 +537,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
         // Get Device User ID
         // Untested - LINX never actually uses this currently
         case 0x13:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("Get Device User ID\r\n");
-            #endif
+            DEBUG_PRINT("Get Device User ID\r\n");
             
             response_data_len = 2;
             response_data[0] = *((uint8 *)CYDEV_EE_BASE);
@@ -586,9 +547,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // Get device name
         case 0x24:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("Get device name\r\n");
-            #endif
+            DEBUG_PRINT("Get device name\r\n");
 
             response_data_len = sprintf((char *)response_data, LINX_DEVICE_NAME);
             
@@ -596,9 +555,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // Digital Write
         case 0x41:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("Digital Write\r\n");
-            #endif
+            DEBUG_PRINT("Digital Write\r\n");
             
             // For each pin
             for (i = 0; i < command[6]; ++i) {
@@ -606,14 +563,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 uint8 pin = command[7 + i] % 10;
                 bool value = (command[7 + command[6] + (i / 8)] >> (i % 8)) & 0x01;
                 
-                #ifdef LINX_DEBUG
-                    debug_str_len = sprintf((char *)debug_str, "\t\tPort: %u", port);
-                    DEBUG_UART_PutArray(debug_str, debug_str_len);
-                    debug_str_len = sprintf((char *)debug_str, " Pin: %u", pin);
-                    DEBUG_UART_PutArray(debug_str, debug_str_len);
-                    debug_str_len = sprintf((char *)debug_str, " Value: %u\r\n", value);
-                    DEBUG_UART_PutArray(debug_str, debug_str_len);
-                #endif
+                DEBUG_PRINT("\t\tPort: %u Pin: %u Value %u\r\n", port, pin, value);
                 
                 // Set as output
                 vessel.addr = GPIO_REGISTER;
@@ -628,28 +578,20 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 vessel.cmd = 0x01;                     // Write command
                 vessel.dat = value;
                 readData(vessel, &result);
-                
             }
             
             break;
             
         // Digital Read
         case 0x42:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("Digital Read\r\n");
-            #endif
+            DEBUG_PRINT("Digital Read\r\n");
             
             // For each pin
             for (i = 0; i < (command[1] - 7); ++i) {
                 uint8 port = command[6 + i] / 10;
                 uint8 pin = command[6 + i] % 10;
                 
-                #ifdef LINX_DEBUG
-                    debug_str_len = sprintf((char *)debug_str, "\t\tPort: %u", port);
-                    DEBUG_UART_PutArray(debug_str, debug_str_len);
-                    debug_str_len = sprintf((char *)debug_str, " Pin: %u\r\n", pin);
-                    DEBUG_UART_PutArray(debug_str, debug_str_len);
-                #endif
+                DEBUG_PRINT("\t\tPort: %u Pin: %u\r\n", port, pin);
                 
                 // Set as input
                 vessel.addr = GPIO_REGISTER;
@@ -664,10 +606,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 vessel.cmd = 0x00;                     // Read command
                 readData(vessel, &result);
                 
-                #ifdef LINX_DEBUG
-                    debug_str_len = sprintf((char *)debug_str, "\t\tResult: %x\r\n", (unsigned int)result);
-                    DEBUG_UART_PutArray(debug_str, debug_str_len);
-                #endif
+                DEBUG_PRINT("\t\tResult: %x\r\n", (unsigned int)result);
                 
                 // Pack result
                 if ((i % 8) == 0) {
@@ -681,9 +620,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // Get AI Reference
         case 0x61:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("Get AI Reference\r\n");
-            #endif
+            DEBUG_PRINT("Get AI Reference\r\n");
             
             // Return AI reference voltage
             response_data_len = 4;
@@ -696,9 +633,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // Analog Read
         case 0x64: {
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("Analog Read\r\n");
-            #endif
+            DEBUG_PRINT("Analog Read\r\n");
             
             // Return resolution of ADC conversions
             response_data_len = 1;
@@ -712,10 +647,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             for (i = 0; i < (command[1] - 7); ++i) {
                 uint8 pin = command[6 + i] - 1;
                 
-                #ifdef LINX_DEBUG
-                    debug_str_len = sprintf((char *)debug_str, "\t\t\tPin: %u\r\n", pin);
-                    DEBUG_UART_PutArray(debug_str, debug_str_len);
-                #endif
+                DEBUG_PRINT("\t\t\tPin: %u\r\n", pin);
                 
                 // Read pin
                 vessel.addr = ANALOG_IN_REGISTER;
@@ -724,10 +656,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 uint32 result;
                 readData(vessel, &result);
                 
-                #ifdef LINX_DEBUG
-                    debug_str_len = sprintf((char *)debug_str, "\t\t\tResult: %x\r\n", (unsigned int)result);
-                    DEBUG_UART_PutArray(debug_str, debug_str_len);
-                #endif
+                DEBUG_PRINT("\t\t\tResult: %x\r\n", (unsigned int)result);
                 
                 // Pack response
                 LINX_PackResult(response_data, &response_data_len, LINX_AI_BITS, &response_bits_remaining, result);
@@ -744,19 +673,14 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
         // Analog write
         // Note: This assumes 8 bit values, will need bit unpacking logic if you ever want to write vlaues other than 8 bits
         case 0x65:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("Analog write\r\n");
-            #endif
+            DEBUG_PRINT("Analog write\r\n");
             
             // For each pin
             for (i = 0; i < command[6]; ++i) {
                 uint8 pin = command[7 + i] - 1;
                 uint8 value = command[7 + command[6] + i];
                 
-                #ifdef LINX_DEBUG
-                    debug_str_len = sprintf((char *)debug_str, "\t\tPin: %u Value: %u\r\n", pin, value);
-                    DEBUG_UART_PutArray(debug_str, debug_str_len);
-                #endif
+                DEBUG_PRINT("\t\tPin: %u Value: %u\r\n", pin, value);
                 
                 // Output value
                 vessel.addr = VDAC0_CONTROL + pin;   // Choose which VDAC
@@ -770,19 +694,14 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // PWM Set Duty Cycle
         case 0x83:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("PWM Set Duty Cycle\r\n");
-            #endif
+            DEBUG_PRINT("PWM Set Duty Cycle\r\n");
             
             // For each pin
             for (i = 0; i < command[6]; ++i) {
                 uint8 pin = command[7 + i] - 1;
                 uint8 value = command[7 + command[6] + i];
                 
-                #ifdef LINX_DEBUG
-                    debug_str_len = sprintf((char *)debug_str,"\t\tPin: %u Value: %u\r\n", pin, value);
-                    DEBUG_UART_PutArray(debug_str, debug_str_len);
-                #endif
+                DEBUG_PRINT("\t\tPin: %u Value: %u\r\n", pin, value);
                 
                 // Select PWM channel
                 uint32 result;
@@ -801,16 +720,12 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 vessel.cmd = 0x0D;         // Read period command
                 readData(vessel, &result);
                 
-                #ifdef LINX_DEBUG
-                    DEBUG_UART_PutArray(debug_str, sprintf((char *)debug_str, "\t\tPeriod: %lu\r\n", result));
-                #endif
+                DEBUG_PRINT("\t\tPeriod: %lu\r\n", result);
                 
                 // Calculate comparison value
                 vessel.dat = (uint32)value * (uint32)result / (uint32)255;
                 
-                #ifdef LINX_DEBUG
-                    DEBUG_UART_PutArray(debug_str, sprintf((char *)debug_str, "\t\tCompraison value: %u\r\n", vessel.dat));
-                #endif
+                DEBUG_PRINT("\t\tCompraison value: %u\r\n", vessel.dat);
                 
                 // Start PWM channel
                 vessel.cmd = 0x00;
@@ -825,18 +740,13 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                         
         // QE Reset
         case 0xA0:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("QE Reset\r\n");
-            #endif
+            DEBUG_PRINT("QE Reset\r\n");
             
             // For each channel
             for (i = 0; i < command[6]; ++i) {
                 uint8 channel = command[7 + i];
                 
-                #ifdef LINX_DEBUG
-                    debug_str_len = sprintf((char *)debug_str, "\t\t\tChannel: %u\r\n", channel);
-                    DEBUG_UART_PutArray(debug_str, debug_str_len);
-                #endif
+                DEBUG_PRINT("\t\t\tChannel: %u\r\n", channel);
                 
                 // Set counter value to 0
                 switch(channel) {
@@ -852,9 +762,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // QE Read
         case 0xA1: {
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("QE Read\r\n");
-            #endif
+            DEBUG_PRINT("QE Read\r\n");
             
             // Return resolution of QE counters
             response_data_len = 1;
@@ -868,10 +776,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             for (i = 0; i < (command[1] - 7); ++i) {
                 uint8 channel = command[6 + i];
                 
-                #ifdef LINX_DEBUG
-                    debug_str_len = sprintf((char *)debug_str, "\t\t\tChannel: %u\r\n", channel);
-                    DEBUG_UART_PutArray(debug_str, debug_str_len);
-                #endif
+                DEBUG_PRINT("\t\t\tChannel: %u\r\n", channel);
                 
                 // Read QE
                 int32 result = 0x00;
@@ -883,10 +788,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                     default: status = LINX_STATUS_L_UNKNOWN_ERROR; break;
                 }
                 
-                #ifdef LINX_DEBUG
-                    debug_str_len = sprintf((char *)debug_str, "\t\t\tResult: %x\r\n", (unsigned int)result);
-                    DEBUG_UART_PutArray(debug_str, debug_str_len);
-                #endif
+                DEBUG_PRINT("\t\t\tResult: %x\r\n", (unsigned int)result);
                 
                 // Pack response bits
                 LINX_PackResult(response_data, &response_data_len, LINX_QE_BITS, &response_bits_remaining, result);
@@ -902,9 +804,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // I2C Open Master
         case 0xE0:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("I2C Open Master\r\n");
-            #endif
+            DEBUG_PRINT("I2C Open Master\r\n");
             
             switch(command[6]) {
                 #ifdef CY_I2C_I2C_1_H
@@ -920,9 +820,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // I2C Write
         case 0xE2: {
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("I2C Write\r\n");
-            #endif
+            DEBUG_PRINT("I2C Write\r\n");
             
             // Set transfer type
             uint8 mode;
@@ -952,9 +850,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                                     status = LINX_STATUS_LI2C_WRITE_FAIL;
                                 }
                                 
-                                #ifdef LINX_DEBUG
-                                    DEBUG_UART_PutArray(debug_str, sprintf((char *)debug_str, "\t\tI2C_MasterStatus: %x\r\n", I2C_Stat));
-                                #endif
+                                DEBUG_PRINT("\t\tI2C_MasterStatus: %x\r\n", I2C_Stat);
                             }
                             break;
                     #endif
@@ -968,9 +864,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // I2C Read
         case 0xE3: {
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("I2C Read\r\n");
-            #endif
+            DEBUG_PRINT("I2C Read\r\n");
             
             // Set transfer type
             uint8 mode;
@@ -1001,9 +895,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                                     status = LINX_STATUS_LI2C_READ_FAIL;
                                 }
                                 
-                                #ifdef LINX_DEBUG
-                                    DEBUG_UART_PutArray(debug_str, sprintf((char *)debug_str, "\t\tI2C_MasterStatus: %x\r\n", I2C_Stat));
-                                #endif
+                                DEBUG_PRINT("\t\tI2C_MasterStatus: %x\r\n", I2C_Stat);
                             }
                             else {
                                 response_data_len = command[8];
@@ -1020,9 +912,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // I2C Close
         case 0xE4:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("I2C Close\r\n");
-            #endif
+            DEBUG_PRINT("I2C Close\r\n");
             
             switch(command[6]) {
                 #ifdef CY_I2C_I2C_1_H
@@ -1043,9 +933,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // SPI Open
         case 0x100:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("SPI Open\r\n");
-            #endif
+            DEBUG_PRINT("SPI Open\r\n");
             
             switch(command[6]) {
                 #ifdef CY_SPIM_SPIM_1_H
@@ -1059,9 +947,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // SPI Write/Read
         case 0x107:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("SPI Write/Read\r\n");
-            #endif
+            DEBUG_PRINT("SPI Write/Read\r\n");
             
             // TODO: Right now this completely ignores frame size, CS pin, and CS logic level parts of the LINX command
             switch(command[6]) {
@@ -1087,9 +973,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // EEPROM Write
         case 0x140:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("EEPROM Write\r\n");
-            #endif
+            DEBUG_PRINT("EEPROM Write\r\n");
             
             // Check if writing to device user ID memory, error if so
             if(command[7] == 0 && command[8] < 2) {
@@ -1106,9 +990,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // EEPROM Read
         case 0x141:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("EEPROM Read\r\n");
-            #endif
+            DEBUG_PRINT("EEPROM Read\r\n");
             
             // Read bytes
             for (i = 0; i < command[6]; ++i) {
@@ -1120,9 +1002,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // Unsupported command
         default:
-            #ifdef LINX_DEBUG
-                DEBUG_UART_PutString("Unsupported\r\n");
-            #endif
+            DEBUG_PRINT("Unsupported\r\n");
             
             status = LINX_STATUS_L_FUNCTION_NOT_SUPPORTED;
             break;
@@ -1142,8 +1022,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
     #ifdef LINX_DEBUG
         DEBUG_UART_PutString("\tGenerated response:");
         for (i = 0; i < response[1]; ++i) {
-            debug_str_len = sprintf((char *)debug_str, " %x", response[i]);
-            DEBUG_UART_PutArray(debug_str, debug_str_len);
+            DEBUG_PRINT(" %x", response[i]);
         }
         DEBUG_UART_PutString("\r\n");
     #endif
