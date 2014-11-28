@@ -445,7 +445,7 @@ class PWM(object):
 
 
     def SetMIDI(self, MIDI, MAX_ERROR = 5, MIN_PERIOD = 10):
-        self.SetFrequency(pow(2, (MIDI-69)/12)*440, MAX_ERROR, MIN_PERIOD)
+        self.SetFrequency(pow(2, (MIDI-69)/12.0)*440, MAX_ERROR, MIN_PERIOD)
 
     def GetDutyCycle(self, PRECISION = 2):
         """
@@ -601,6 +601,35 @@ class Servo:
             Starts the servo object so that it can be used.
         """
         self.servo_PWM.Start()
+
+class rangeFinder(object):
+    """
+    **Description:**
+        TODO
+    """
+
+    def __init__(self):
+
+        self.address = RPiSoC.RANGE_FINDER
+
+    def readRaw():
+        cmd = 0x00
+        return RPiSoC.commChannel.receiveData((self.address, cmd), delay = 0.04)
+
+    def readMeters(sound = 340.29, PRECISION = 2):
+        period_counts = 3000
+        period_time = .03
+
+        time_high = (float(self.readRaw())/3000)*period_time
+        # x = vt; speed of sound = 340.29, x is distance from ranger, to object, back to ranger. So twice the desired distance.
+        return round(sound*time_high/2.0, PRECISION)
+
+    def readCentimeters(sound = 340.29, PRECISION = 2):
+        return round((self.readMeters(sound))*1000, PRECISION)
+
+    def readInches(sound = 340.29, PRECISION = 2):
+        return round(self.readCentimeters()/2.54, PRECISION)
+
 
 
 
