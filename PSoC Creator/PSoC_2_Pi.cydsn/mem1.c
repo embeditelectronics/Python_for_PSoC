@@ -143,6 +143,9 @@ bool readData(vessel_type vessel, uint32 *result)
         #ifdef CY_CAPSENSE_CSD_CapSense_1_H
             case CAPSENSE_REGISTER: return_flag = CapSense_Read(cmd, dat, result); break;
         #endif
+        #ifdef CY_Timer_v2_30_SRF05_Ranger_H
+            case RANGE_FINDER: return_flag = Range_Finder(result); break;
+        #endif
         
         case TEST_REGISTER: return_flag = test_read(dat, result); break;
         
@@ -2551,6 +2554,40 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
                     return return_flag;
         }
     #endif
+
+#ifdef CY_Timer_v2_30_SRF05_Ranger_H
+    bool Range_Finder(uint32 *result)
+        {
+            /*Start the timer component*/
+            SRF05_Ranger_Start();
+            
+            /*Clear the capture fifo of the timer*/
+            Control_Reg_1_Write(1);
+            
+            /*Trigger the Range Finder to tell it to echo*/
+            Range_in_Write(1);
+            
+            /*Wait the needed time so that the ranger knows it is being triggered*/
+            CyDelayUs(10);
+            
+            /* Kill the trigger */
+            Range_in_Write(0);
+            
+            /*Start Counting*/
+            Control_Reg_1_Write(1);
+            
+            /*Wait as long as needed to get a result. (Max of 30 ms) */
+            CyDelay(30);
+            
+            /*Read the most recent capture value*/
+            *result = SRF05_Ranger_ReadCapture();
+            
+            /*Stop the timer component*/
+            SRF05_Ranger_Stop();
+            
+            return true;
+        }
+#endif
     
 bool test_read(uint16 dat, uint32 *result)
     {

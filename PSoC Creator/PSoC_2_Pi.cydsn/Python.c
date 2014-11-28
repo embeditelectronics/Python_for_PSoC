@@ -165,7 +165,9 @@ void Python_parser(vessel_type *vessel)
                 case 0x03: vessel->dat = temp_data>>8&0x000F; break;
             }
             break;
-            
+        #ifdef CY_Timer_v2_30_SRF05_Ranger_H
+            case RANGE_FINDER: break;
+        #endif  
         case TEST_REGISTER: break;
         
         case CHECK_BUILD: break;

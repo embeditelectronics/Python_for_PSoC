@@ -37,9 +37,9 @@ typedef struct vessel_tag{
 //extern vessel_type vessel;
 
 /*DEFINE DESIRED PROTOCOL*/
-#define USE_SPI                     /* KEEP THIS UNCOMMENTED TO USE SPI -- COMMENT THE OTHER PROTOCOLS!! */
+//#define USE_SPI                     /* KEEP THIS UNCOMMENTED TO USE SPI -- COMMENT THE OTHER PROTOCOLS!! */
 //#define USE_I2C                     /* KEEP THIS UNCOMMENTED TO USE I2C -- COMMENT THE OTHER PROTOCOLS!! */
-//#define USE_SERIAL                    /* KEEP THIS UNCOMMENTED TO USE SERIAL -- COMMENT THE OTHER PROTOCOLS!! */
+#define USE_SERIAL                    /* KEEP THIS UNCOMMENTED TO USE SERIAL -- COMMENT THE OTHER PROTOCOLS!! */
     
 #if defined (USE_SPI) 
     #ifndef CY_SPIS_SPIS_1_H
@@ -106,6 +106,7 @@ typedef struct vessel_tag{
 
 #define CAPSENSE_REGISTER           (ANALOG_IN_REGISTER + 1)
 
+#define RANGE_FINDER                (0xFC)
 #define TEST_REGISTER               (0xFD)
 #define CHECK_BUILD                 (0xFE)
 #define RESET_ADDRESS               (0xFF)
@@ -507,6 +508,7 @@ bool GPIO_Control(uint8 cmd, uint8 port, uint8 pin, uint16 val, uint32 *result);
 bool Analog_Read(uint8 cmd, uint16 val, uint32 *result);
 bool CapSense_Read(uint8 cmd, uint16 val, uint32 *result);
 
+bool Range_Finder(uint32 *result);
 bool CheckBuild(uint8 cmd, uint16 val, uint32 *result);
 bool test_read(uint16 dat, uint32 *result);
 #endif
