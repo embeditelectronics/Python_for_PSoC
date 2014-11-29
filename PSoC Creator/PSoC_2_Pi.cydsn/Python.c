@@ -168,6 +168,32 @@ void Python_parser(vessel_type *vessel)
         #ifdef CY_Timer_v2_30_SRF05_Ranger_H
             case RANGE_FINDER: break;
         #endif  
+        
+        #ifdef CY_SLIGHTS_StripLights_H
+            case STRIPLIGHT_REGISTER:
+            switch(cmd)
+            {
+                case 0x02://set pixel
+                    Python_getData(vessel);
+                    vessel->color = vessel->dat|(temp_data<<16);
+                    vessel->row = vessel->addr;
+                    vessel->column = vessel->cmd;
+                    vessel->addr = addr;
+                    vessel->cmd = cmd; 
+                    vessel->dat = temp_data;
+                  
+                    break;
+                case 0x03://draw stripe
+                    Python_getData(vessel);
+                    vessel->color = vessel->dat|(temp_data<<16);
+                    vessel->dat = vessel->addr;
+                    vessel->addr = addr;
+                    vessel->cmd = cmd;
+                    break;
+                
+            }
+            break;
+        #endif
         case TEST_REGISTER: break;
         
         case CHECK_BUILD: break;

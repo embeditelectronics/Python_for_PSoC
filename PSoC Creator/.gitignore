@@ -22,6 +22,7 @@
 
 !*.h
 !*.c
+!*.v
 
 # Ignore the generated source directories.
 

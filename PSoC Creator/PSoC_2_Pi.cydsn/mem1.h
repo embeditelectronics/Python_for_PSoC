@@ -32,6 +32,9 @@ typedef struct vessel_tag{
     uint8 waveType          : 3;
     uint8 amp               : 8;
     uint8 dcB               : 8;
+    uint8 column            : 3;
+    uint8 row               : 3;
+    uint32 color            : 24;
 }vessel_type;
 
 //extern vessel_type vessel;
@@ -106,6 +109,7 @@ typedef struct vessel_tag{
 
 #define CAPSENSE_REGISTER           (ANALOG_IN_REGISTER + 1)
 
+#define STRIPLIGHT_REGISTER         (0xFB)
 #define RANGE_FINDER                (0xFC)
 #define TEST_REGISTER               (0xFD)
 #define CHECK_BUILD                 (0xFE)
@@ -491,7 +495,6 @@ bool VDAC1_Control(uint8 cmd, uint16 val, uint32 *result);
 bool IDAC0_Control(uint8 cmd, uint16 val, uint32 *result);
 bool IDAC1_Control(uint8 cmd, uint16 val, uint32 *result);
 bool WAVEDAC_Control(uint8 cmd, uint16 val, uint8 waveType, uint8 amp, uint8 dcB, uint32 *result);
-void Generate_Wave(uint8 waveType, uint8 amp, uint8 dcB);
 bool PWM_Control_0(uint8 cmd, uint16 val, uint32 *result);
 bool PWM_Control_1(uint8 cmd, uint16 val, uint32 *result);
 bool PWM_Control_2(uint8 cmd, uint16 val, uint32 *result);
@@ -508,8 +511,17 @@ bool GPIO_Control(uint8 cmd, uint8 port, uint8 pin, uint16 val, uint32 *result);
 bool Analog_Read(uint8 cmd, uint16 val, uint32 *result);
 bool CapSense_Read(uint8 cmd, uint16 val, uint32 *result);
 
+bool StripLightsControl(uint8 cmd, uint16 dat, uint8 column, uint8 row, uint32 color);
 bool Range_Finder(uint32 *result);
 bool CheckBuild(uint8 cmd, uint16 val, uint32 *result);
 bool test_read(uint16 dat, uint32 *result);
+
+//helper functions
+void Generate_Wave(uint8 waveType, uint8 amp, uint8 dcB);
+void Stripe(uint16 MAX, uint32 color);
+void SetNeoPixel(uint8 row, uint8 column, uint32 color);
+void NeoPixelDrawRow(int row, int size, int start, uint32 color);
+void NeoPixelDrawColumn(int column, int size, int start, uint32 color);
+void NeoPixelDrawRectangle(int start_x, int start_y, int length, int width, uint32 color);
 #endif
 /* [] END OF FILE */

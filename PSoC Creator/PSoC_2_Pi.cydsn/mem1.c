@@ -22,6 +22,10 @@
 #include <project.h>
 #include <stdbool.h>
 
+#ifdef CY_SLIGHTS_StripLights_H
+    extern const uint32 StripLights_CLUT[ ];
+#endif
+
 /*************************************************************************************************//**
 *  @brief This function organizes each component of the build, and gives the 
 *         applicable information to the appropriate address for use.
@@ -145,6 +149,10 @@ bool readData(vessel_type vessel, uint32 *result)
         #endif
         #ifdef CY_Timer_v2_30_SRF05_Ranger_H
             case RANGE_FINDER: return_flag = Range_Finder(result); break;
+        #endif
+        
+        #ifdef CY_SLIGHTS_StripLights_H
+            case STRIPLIGHT_REGISTER: return_flag = StripLightsControl(cmd, dat, vessel.row, vessel.column, vessel.color); break;
         #endif
         
         case TEST_REGISTER: return_flag = test_read(dat, result); break;
@@ -2594,4 +2602,96 @@ bool test_read(uint16 dat, uint32 *result)
         *result = dat;
         return true;
     }
+
+#ifdef CY_SLIGHTS_StripLights_H
+    bool StripLightsControl(uint8 cmd, uint16 dat, uint8 row, uint8 column, uint32 color)
+        {
+            switch(cmd)
+            {
+                case 0x00: StripLights_Start(); break;
+                case 0x01: StripLights_Stop(); break;
+                case 0x02: SetNeoPixel(row, column, color); break;
+                case 0x03: Stripe(dat, color); break;
+                case 0x04: StripLights_Dim(dat); break; 
+                
+            }
+            
+            return false;
+        }
+        
+    void Stripe(uint16 MAX, uint32 color)
+    {
+       uint32 x;
+        
+           for(x = 0; x <= MAX; x++)
+           {
+     //          color = getColor((lp+x) % StripLights_COLOR_WHEEL_SIZE);
+               StripLights_DrawLine(x, StripLights_MIN_Y, x, StripLights_MAX_Y, color);
+           }
+           while( StripLights_Ready() == 0);
+           StripLights_Trigger(1);
+        
+
+    }
+
+    void SetNeoPixel(uint8 row, uint8 column, uint32 color)
+    {
+        StripLights_Pixel(8*row + column, 0, color);
+        while( StripLights_Ready() == 0);
+        StripLights_Trigger(1);
+    }
+    void NeoPixelDrawRectangle(int start_x, int start_y, int length, int width, uint32 color)
+    {
+        //horizontal Lines
+        NeoPixelDrawRow(start_y, width, start_x, color);
+          NeoPixelDrawRow(start_y + length - 1, width, start_x, color);
+        
+        //vert lines
+        // DrawColumn(int column, int size, int start, uint32 color)
+        NeoPixelDrawColumn(start_x, length, start_y, color);
+        NeoPixelDrawColumn(start_x + width - 1, length, start_y, color);
+    }
+
+    void NeoPixelDrawRow(int row, int size, int start, uint32 color)
+    {
+        int i;
+            //int mask = 0;
+            
+            for (i = 0; i<start+size; i++)
+                {   
+                    if (i <start){StripLights_Pixel(row*8 + i, 0, 0);}
+                    else {StripLights_Pixel(row*8 + i, 0, color);}
+                    
+                    
+                }
+                
+            for (i = start+size; i<=8; i++)
+            {
+                StripLights_Pixel(row*8 + i, 0, 0);
+            }
+                
+                while( StripLights_Ready() == 0);
+                StripLights_Trigger(1);
+                
+            
+    }
+        
+    void NeoPixelDrawColumn(int column, int size, int start, uint32 color)
+    {
+            int i;
+            for (i = 0; i<=5; i++)
+            {
+                StripLights_Pixel(i*8 + column, 0, 0);
+              
+            }
+            for (i = start; i<(start+size); i++)
+            {
+                StripLights_Pixel(i*8 + column, 0, color);
+               
+            }
+             while( StripLights_Ready() == 0);
+             StripLights_Trigger(1);
+              
+    }
+#endif
 /* [] END OF FILE */

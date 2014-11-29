@@ -76,6 +76,7 @@ class RPiSoC(object):
 
     REGISTERS_IN_USE = []
 
+    STRIPLIGHT_REGISTER = 0xFB
     RANGE_FINDER = 0xFC
     TEST_REGISTER = 0xFD
     CHECK_BUILD = 0xFE

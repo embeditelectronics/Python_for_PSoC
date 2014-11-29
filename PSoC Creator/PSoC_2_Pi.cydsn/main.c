@@ -32,8 +32,11 @@ vessel_type vessel;
 
 int main()
 {
-    CyGlobalIntEnable;  /* enable global interrupts. */
+    //StripLights_Start();
+    //StripLights_Dim(2); 
     
+    CyGlobalIntEnable;  /* enable global interrupts. */
+    //SetNeoPixel(2,2,255);
     #if defined(LINX_H)
         LINX_Initialize();
         

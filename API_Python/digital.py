@@ -630,6 +630,47 @@ class rangeFinder(object):
     def readInches(sound = 340.29, PRECISION = 2):
         return round(self.readCentimeters()/2.54, PRECISION)
 
+class NeoPixelShield(object):
+    def __init__(self):
+        self.address = RPiSoC.STRIPLIGHT_REGISTER
+
+    def Start(self):
+        cmd = 0x00
+        RPiSoC.commChannel.sendData((self.address, cmd))
+
+    def Stop(self):
+        cmd = 0x01
+        RPiSoC.commChannel.sendData((self.address, cmd))
+
+    def SetPixel(self, row, column, color):
+        cmd = 0x02
+        if color>0xFFFFFF:
+            raise ValueError('Color value too large. Color is 24 bit only.')
+        if row not in range(5):
+            raise ValueError('NeoPixel shield only has 5 rows available, choose 0-4')
+        if column not in range(8):
+            raise ValueError('NeoPixel shield only has 8 rows available, choose 0-7')
+
+        #first send high 16 bits bits of color
+        RPiSoC.commChannel.sendData((self.address, cmd, color>>16))
+        #now send the remaining 16 bits in the data bytes, set the row as the addr, and set the column as the cmd
+        RPiSoC.commChannel.sendData((row, column, color&0xFFFF))
+
+    def Stripe(self, pixelnum, color):
+        cmd = 0x03
+        if color>0xFFFFFF:
+            raise ValueError('Color value too large. Color is 24 bit only.')
+        #first send high 8 bits bits of color
+        RPiSoC.commChannel.sendData((self.address, cmd, color>>16))
+        #now send the remaining 16 bits in the data bytes, and the pixel num set as the address, cmd is arbitrary
+        RPiSoC.commChannel.sendData((pixelnum, cmd, color&0xFFFF))
+
+    def Dim(self, DIM_LEVEL):
+        cmd = 0x04
+        if DIM_LEVEL not in range(5):
+            raise ValueError('Dim level must be between 0 and 4')
+        RPiSoC.commChannel.sendData((self.address, cmd, DIM_LEVEL))
+
 
 
 
