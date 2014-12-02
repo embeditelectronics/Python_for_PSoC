@@ -613,7 +613,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                     response_data[i / 8] = 0x00;
                     ++response_data_len;
                 }
-                response_data[i / 8] |= (((result >> pin) & 0x01) << (7 - (i % 8)));
+                response_data[i / 8] |= ((result & 0x01) << (7 - (i % 8)));
             }
             
             break;
