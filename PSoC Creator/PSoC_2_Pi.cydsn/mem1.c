@@ -147,9 +147,8 @@ bool readData(vessel_type vessel, uint32 *result)
         #ifdef CY_CAPSENSE_CSD_CapSense_1_H
             case CAPSENSE_REGISTER: return_flag = CapSense_Read(cmd, dat, result); break;
         #endif
-        #ifdef CY_Timer_v2_30_SRF05_Ranger_H
-            case RANGE_FINDER: return_flag = Range_Finder(result); break;
-        #endif
+        
+        case RANGE_FINDER: return_flag = Range_Finder(vessel.port, vessel.pin, vessel.trigport, vessel.trigpin, dat, result); break;
         
         #ifdef CY_SLIGHTS_StripLights_H
             case STRIPLIGHT_REGISTER: return_flag = StripLightsControl(cmd, dat, vessel.row, vessel.column, vessel.color); break;
@@ -2483,7 +2482,11 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
                                         break;
                                 
                             }
-                            break;        
+                            break; 
+                            
+                            case 0x04: //ranger
+                            
+                            break;
                             
                 
                 }
@@ -2531,6 +2534,7 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
         bool CapSense_Read(uint8 cmd, uint16 dat, uint32 *result)
         {
              bool return_flag = 0;
+             unsigned int j = 0;
 
                     switch(cmd)
                     {
@@ -2556,47 +2560,119 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
                     		while(CapSense_1_IsBusy() != 0);
                             *result = CapSense_1_CheckIsWidgetActive(dat); return_flag = 1;
                             break;
+                        case 0xFF:
+                            
+                            /* Update all baselines */
+                            CapSense_1_UpdateEnabledBaselines();
+                            
+                            for (j = 0; j<CapSense_1_TOTAL_SENSOR_COUNT; j++)
+                            {
+                           		/* Start scanning all enabled sensors */
+                            	CapSense_1_ScanEnabledWidgets();
+                                /* Wait for scanning to complete */
+                        		while(CapSense_1_IsBusy() != 0);
+                                if (CapSense_1_ReadSensorRaw(j)>=dat)
+                                {
+                                    *result|=(0x01<<j);
+                                }
+                            }
+                            return_flag = true;
+                            
+                            
 
                     }
 
                     return return_flag;
         }
     #endif
-
-#ifdef CY_Timer_v2_30_SRF05_Ranger_H
+    bool Range_Finder(uint8 port, uint8 pin, uint8 trigport, uint8 trigpin, uint8 delayus, uint32 *result)
+        {
+            uint32 us_count = 0;
+            uint32 timeout_count = 0;//clean this up eventually...
+            switch (trigport)
+            {
+                case 0x0F:
+                    switch (trigpin)
+                    {   
+                        #ifdef CY_PINS_GPIO_15_4_H 
+                            case 0x04: GPIO_15_4_SetDriveMode(PIN_DM_STRONG); GPIO_15_4_Write(0); CyDelayUs(2); GPIO_15_4_Write(1); CyDelayUs(delayus); GPIO_15_4_Write(0); break;
+                        #endif
+                        #ifdef CY_PINS_GPIO_15_5_H 
+                            case 0x05: GPIO_15_5_SetDriveMode(PIN_DM_STRONG); GPIO_15_5_Write(0); CyDelayUs(2); GPIO_15_5_Write(1); CyDelayUs(delayus); GPIO_15_5_Write(0); break;
+                        #endif
+                    }
+                break;
+            }
+            switch (port)
+            {
+                case 0x0F:
+                    switch (pin)
+                    {
+                        #ifdef CY_PINS_GPIO_15_4_H 
+                            case 0x04: 
+                                GPIO_15_4_SetDriveMode(PIN_DM_DIG_HIZ); 
+                                while (!GPIO_15_4_Read() && timeout_count<10000){timeout_count++;}//wait until pin goes high
+                                while (GPIO_15_4_Read() && us_count<30000)//this is approximate, should consider timer later
+                                    {
+                                        CyDelayUs(1);
+                                        us_count++;
+                                    }
+                            break;// case 0x05
+                        #endif
+                        
+                        #ifdef CY_PINS_GPIO_15_5_H 
+                            case 0x05: 
+                                GPIO_15_5_SetDriveMode(PIN_DM_DIG_HIZ); 
+                                while (!GPIO_15_5_Read() && timeout_count<1000){timeout_count++;}//wait until pin goes high
+                                while (GPIO_15_5_Read() && us_count<30000)//this is approximate, should consider timer later
+                                    {
+                                        CyDelayUs(1);
+                                        us_count++;
+                                    }
+                            break;// case 0x05
+                        #endif
+                    }
+                break; //case 0x0F
+            }
+            *result = us_count;
+            return true;
+        }
+/*
+#ifdef CY_Timer_v2_60_SRF05_Ranger_H
     bool Range_Finder(uint32 *result)
         {
-            /*Start the timer component*/
+           // Start the timer component
             SRF05_Ranger_Start();
             
-            /*Clear the capture fifo of the timer*/
+           // Clear the capture fifo of the timer
             Control_Reg_1_Write(1);
+            Ranger_SetDriveMode(Ranger_DM_STRONG);
+           // Trigger the Range Finder to tell it to echo
+            Ranger_Write(1);
             
-            /*Trigger the Range Finder to tell it to echo*/
-            Range_in_Write(1);
-            
-            /*Wait the needed time so that the ranger knows it is being triggered*/
+          //  Wait the needed time so that the ranger knows it is being triggered
             CyDelayUs(10);
             
-            /* Kill the trigger */
-            Range_in_Write(0);
+           // Kill the trigger 
+            Ranger_Write(0);
             
-            /*Start Counting*/
-            Control_Reg_1_Write(1);
+           // Start Counting
+            Ranger_SetDriveMode(Ranger_DM_DIG_HIZ);
+            Control_Reg_1_Write(0);
             
-            /*Wait as long as needed to get a result. (Max of 30 ms) */
-            CyDelay(30);
+          //  Wait as long as needed to get a result. (Max of 30 ms) 
+            CyDelay(19);
             
-            /*Read the most recent capture value*/
-            *result = SRF05_Ranger_ReadCapture();
+          // Read the most recent capture value
+            *result = 1850 - SRF05_Ranger_ReadCapture();
             
-            /*Stop the timer component*/
+          //  Stop the timer component
             SRF05_Ranger_Stop();
             
             return true;
         }
 #endif
-    
+    */
 bool test_read(uint16 dat, uint32 *result)
     {
         *result = dat;
@@ -2613,6 +2689,8 @@ bool test_read(uint16 dat, uint32 *result)
                 case 0x02: SetNeoPixel(row, column, color); break;
                 case 0x03: Stripe(dat, color); break;
                 case 0x04: StripLights_Dim(dat); break; 
+                case 0x05: NeoPixel_DrawRow(row, color); break;
+                case 0x06: NeoPixel_DrawColumn(column, color); break;
                 
             }
             
@@ -2626,72 +2704,43 @@ bool test_read(uint16 dat, uint32 *result)
            for(x = 0; x <= MAX; x++)
            {
      //          color = getColor((lp+x) % StripLights_COLOR_WHEEL_SIZE);
-               StripLights_DrawLine(x, StripLights_MIN_Y, x, StripLights_MAX_Y, color);
+               //StripLights_DrawLine(x, StripLights_MIN_Y, x, StripLights_MAX_Y, color);
+                StripLights_Pixel(x, 0, color);
+                while( StripLights_Ready() == 0);
+                StripLights_Trigger(1);
+                
            }
-           while( StripLights_Ready() == 0);
-           StripLights_Trigger(1);
+           
         
 
     }
-
+    void NeoPixel_DrawRow(uint8 row, uint32 color)
+    {
+        int x = 0;
+        for (x = 0; x<8 ; x++)
+        {
+            StripLights_Pixel(8*row + x, 0, color);
+            while( StripLights_Ready() == 0);
+            StripLights_Trigger(1);
+        }
+        
+    }
+    void NeoPixel_DrawColumn(uint8 column, uint32 color)
+    {
+        int x = 0;
+        for (x = 0; x<5 ; x++)
+        {
+            StripLights_Pixel(column + 8*x, 0, color);
+            while( StripLights_Ready() == 0);
+            StripLights_Trigger(1);
+        }
+        
+    }
     void SetNeoPixel(uint8 row, uint8 column, uint32 color)
     {
         StripLights_Pixel(8*row + column, 0, color);
         while( StripLights_Ready() == 0);
         StripLights_Trigger(1);
-    }
-    void NeoPixelDrawRectangle(int start_x, int start_y, int length, int width, uint32 color)
-    {
-        //horizontal Lines
-        NeoPixelDrawRow(start_y, width, start_x, color);
-          NeoPixelDrawRow(start_y + length - 1, width, start_x, color);
-        
-        //vert lines
-        // DrawColumn(int column, int size, int start, uint32 color)
-        NeoPixelDrawColumn(start_x, length, start_y, color);
-        NeoPixelDrawColumn(start_x + width - 1, length, start_y, color);
-    }
-
-    void NeoPixelDrawRow(int row, int size, int start, uint32 color)
-    {
-        int i;
-            //int mask = 0;
-            
-            for (i = 0; i<start+size; i++)
-                {   
-                    if (i <start){StripLights_Pixel(row*8 + i, 0, 0);}
-                    else {StripLights_Pixel(row*8 + i, 0, color);}
-                    
-                    
-                }
-                
-            for (i = start+size; i<=8; i++)
-            {
-                StripLights_Pixel(row*8 + i, 0, 0);
-            }
-                
-                while( StripLights_Ready() == 0);
-                StripLights_Trigger(1);
-                
-            
-    }
-        
-    void NeoPixelDrawColumn(int column, int size, int start, uint32 color)
-    {
-            int i;
-            for (i = 0; i<=5; i++)
-            {
-                StripLights_Pixel(i*8 + column, 0, 0);
-              
-            }
-            for (i = start; i<(start+size); i++)
-            {
-                StripLights_Pixel(i*8 + column, 0, color);
-               
-            }
-             while( StripLights_Ready() == 0);
-             StripLights_Trigger(1);
-              
     }
 #endif
 /* [] END OF FILE */

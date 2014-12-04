@@ -7,29 +7,49 @@ def main():
         #               C       D       E       F       G   A       B   C
         buttons = []
         for i in range(8):
-            buttons.append(CapSense(i, THRESHOLD = 3))
+            buttons.append(CapSense(i, THRESHOLD = 5))
             buttons[i].Start()
-        piezo_in = PWM(0)
+        piezo_in = PWM(5)
         piezo_in.Start()
         piezo_in.SetDutyCycle(0)#min volume; equivalent to DC of 100
 
-        led = digitalPin(12,0,'OUT')
+        #led = digitalPin(12,0,'OUT')
+        NeoPixels = NeoPixelShield()
+        NeoPixels.Start()
+        DIM_START = 4
+        NeoPixels.Dim(DIM_START)
+        NeoPixels.Stripe(40, NeoPixels.Black)
+        colors = [NeoPixels.Green, NeoPixels.Yellow, NeoPixels.Orange, NeoPixels.Red, NeoPixels.Purple, NeoPixels.Blue, NeoPixels.PowderBlue, NeoPixels.White]
+        '''
+        for i in colors:
+            NeoPixels.Stripe(20, i)
+            time.sleep(1)
+        '''
 
         while True: #play the piano!
             for button in buttons:
-
                 if button.isTouched():
 
                     index = buttons.index(button)
+                    NeoPixels.DrawColumn(index, colors[index])
                     #piezo_in.SetFrequency(note_freqs[index], MIN_PERIOD = 100, MAX_ERROR = 1)
                     piezo_in.SetMIDI(midi_notes[index], MAX_ERROR = 1)
                     piezo_in.SetDutyCycle(50) #max volume
 
-                    led.Toggle()
+                    #led.Toggle()
+                    #NeoPixels.Stripe(40, 0)
+                    t0= time.time()
+                    count = DIM_START
                     while button.isTouched():
-                        pass
+                        if time.time() - t0>(0.25):
+                            NeoPixels.Dim(count%5)
+                            NeoPixels.DrawColumn(index, colors[index])
+                            count+=1
+                            t0 = time.time()
                     piezo_in.SetDutyCycle(0)
-                    led.Toggle()
+
+                    NeoPixels.DrawColumn(index, 0)
+                    #time.sleep(0.1)
 
 
     except KeyboardInterrupt:

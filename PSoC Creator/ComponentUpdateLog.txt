@@ -1,0 +1,61 @@
+Last Modified Date & Time: 11/30/2014 14:36:01
+
+Project : PSoC_2_Pi
+		Schematic : TopDesign
+
+		miso	v 2.0tv 2.5
+		sclk	v 2.0tv 2.5
+		mosi	v 2.0tv 2.5
+		PWM_out_1	v 2.0tv 2.5
+		PWM_out_2	v 2.0tv 2.5
+		analog_in_2	v 2.0tv 2.5
+		analog_in_1	v 2.0tv 2.5
+		analog_in_4	v 2.0tv 2.5
+		IDAC_out_1	v 2.0tv 2.5
+		VDAC_out_1	v 2.0tv 2.5
+		GPIO_5_4	v 2.0tv 2.5
+		GPIO_5_5	v 2.0tv 2.5
+		GPIO_5_6	v 2.0tv 2.5
+		GPIO_5_7	v 2.0tv 2.5
+		GPIO_5_3	v 2.0tv 2.5
+		GPIO_12_5	v 2.0tv 2.5
+		GPIO_12_7	v 2.0tv 2.5
+		GPIO_2_1	v 2.0tv 2.5
+		GPIO_2_2	v 2.0tv 2.5
+		GPIO_2_3	v 2.0tv 2.5
+		GPIO_2_4	v 2.0tv 2.5
+		GPIO_5_2	v 2.0tv 2.5
+		GPIO_5_1	v 2.0tv 2.5
+		GPIO_2_7	v 2.0tv 2.5
+		GPIO_12_0	v 2.0tv 2.5
+		GPIO_2_0	v 2.0tv 2.5
+		GPIO_2_6	v 2.0tv 2.5
+		GPIO_2_5	v 2.0tv 2.5
+		GPIO_5_0	v 2.0tv 2.5
+		GPIO_12_1	v 2.0tv 2.5
+		GPIO_12_2	v 2.0tv 2.5
+		GPIO_12_3	v 2.0tv 2.5
+		GPIO_12_4	v 2.0tv 2.5
+		analog_in_5	v 2.0tv 2.5
+		analog_in_6	v 2.0tv 2.5
+		analog_in_7	v 2.0tv 2.5
+		analog_in_8	v 2.0tv 2.5
+		analog_in_3	v 2.0tv 2.5
+		GPIO_12_6	v 2.0tv 2.5
+		PWM_out_6	v 2.0tv 2.5
+		WaveDAC_out	v 2.0tv 2.5
+		PWM_out_7	v 2.0tv 2.5
+		PWM_out_5	v 2.0tv 2.5
+		PWM_out_4	v 2.0tv 2.5
+		PWM_out_3	v 2.0tv 2.5
+		Range_out	v 2.0tv 2.5
+		Range_in	v 2.0tv 2.5
+		Neo_out	v 2.0tv 2.5
+		SRF05_Ranger	v 2.50tv 2.60
+
+Project : PSoC_2_Pi
+		Design Wide APIs
+
+		cy_boot	v 4.10	v 4.11
+
+

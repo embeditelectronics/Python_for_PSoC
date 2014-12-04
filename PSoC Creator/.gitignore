@@ -17,6 +17,7 @@
 !*.cyprj
 !*.cysch
 !*.cyversion
+!*.cysym
 
 # Add back the source files.
 

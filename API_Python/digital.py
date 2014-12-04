@@ -608,31 +608,206 @@ class rangeFinder(object):
         TODO
     """
 
-    def __init__(self):
+    def __init__(self, SIG, TRIGGER = None, DELAYus = 10):
+
+        if TRIGGER == None:
+            TRIGGER = SIG[:]
+
+        if int(SIG[0]) not in RPiSoC.GPIO.keys():
+            raise ValueError('Invalid PORT for signal: Port numbers found on RPiSoC are ', RPiSoC.GPIO.keys())
+        else:
+             self.sigport = SIG[0]
+
+        if int(SIG[1]) not in RPiSoC.GPIO[self.sigport]:
+            raise ValueError('Invalid PIN for signal: the second argument should be the pin number relative to the desired port. Valid entries on this port are ', RPiSoC.GPIO[self.sigport])
+        else:
+            self.sigpin = SIG[1]
+
+        if int(TRIGGER[0]) not in RPiSoC.GPIO.keys():
+            raise ValueError('Invalid PORT for trigger: Port numbers found on RPiSoC are ', RPiSoC.GPIO.keys())
+        else:
+             self.trigport = TRIGGER[0]
+
+        if int(TRIGGER[1]) not in RPiSoC.GPIO[self.trigport]:
+            raise ValueError('Invalid PIN for trigger: the second argument should be the pin number relative to the desired port. Valid entries on this port are ', RPiSoC.GPIO[self.trigport])
+        else:
+            self.trigpin = TRIGGER[1]
 
         self.address = RPiSoC.RANGE_FINDER
+        self.delayus = DELAYus
+        self.packed_dat = (self.trigport<<10)|(self.trigpin<<7)|(self.sigport<<3)|(self.sigpin)
 
-    def readRaw():
-        cmd = 0x00
-        return RPiSoC.commChannel.receiveData((self.address, cmd), delay = 0.04)
 
-    def readMeters(sound = 340.29, PRECISION = 2):
-        period_counts = 3000
-        period_time = .03
+    def readRaw(self):
+        reading = RPiSoC.commChannel.receiveData((self.address, self.delayus, self.packed_dat), delay = 0.04)
+        if RPiSoC.DEBUG:
+            if reading == 0:
+                print ('Timeout occured waiting for signal pin to be asserted; verify connection')
+            elif reading>=30000:
+                print('Timeout occured while reading signal pin; verify hardware is functional')
+        return reading
 
-        time_high = (float(self.readRaw())/3000)*period_time
+    def readMeters(self, sound = 340.29, PRECISION = 2):
+        period_counts = 1850
+        period_time = .00185
+
+        #time_high = (float(self.readRaw())/period_counts)*period_time
+        time_high = float(self.readRaw())/1000000.0;
         # x = vt; speed of sound = 340.29, x is distance from ranger, to object, back to ranger. So twice the desired distance.
-        return round(sound*time_high/2.0, PRECISION)
+        return round((sound*time_high)/2.0, PRECISION)
 
-    def readCentimeters(sound = 340.29, PRECISION = 2):
-        return round((self.readMeters(sound))*1000, PRECISION)
+    def readCentimeters(self, sound = 340.29, PRECISION = 2):
+        return round((self.readMeters(sound, PRECISION = 9))*100.0, PRECISION)
 
-    def readInches(sound = 340.29, PRECISION = 2):
-        return round(self.readCentimeters()/2.54, PRECISION)
-
+    def readInches(self, sound = 340.29, PRECISION = 2):
+        return round(self.readCentimeters(sound, PRECISION = 9)/2.54, PRECISION)
 class NeoPixelShield(object):
-    def __init__(self):
+    def __init__(self, includeColors = True):
         self.address = RPiSoC.STRIPLIGHT_REGISTER
+        if includeColors:
+            self.AliceBlue = 0xfff0f8
+            self.AntiqueWhite = 0xd7faeb
+            self.Aqua = 0xff00ff
+            self.Aquamarine = 0xd47fff
+            self.Azure = 0xfff0ff
+            self.Beige = 0xdcf5f5
+            self.Bisque = 0xc4ffe4
+            self.Black = 0x0
+            self.BlanchedAlmond = 0xcdffeb
+            self.Blue = 0xff0000
+            self.BlueViolet = 0xe28a2b
+            self.Brown = 0x2aa52a
+            self.BurlyWood = 0x87deb8
+            self.CadetBlue = 0xa05f9e
+            self.Chartreuse = 0x7fff
+            self.Chocolate = 0x1ed269
+            self.Coral = 0x50ff7f
+            self.CornflowerBlue = 0xed6495
+            self.Cornsilk = 0xdcfff8
+            self.Crimson = 0x3cdc14
+            self.Cyan = 0xff00ff
+            self.DarkBlue = 0x8b0000
+            self.DarkCyan = 0x8b008b
+            self.DarkGoldenRod = 0xbb886
+            self.DarkGray = 0xa9a9a9
+            self.DarkGreen = 0x64
+            self.DarkKhaki = 0x6bbdb7
+            self.DarkMagenta = 0x8b8b00
+            self.DarkOliveGreen = 0x2f556b
+            self.DarkOrange = 0xff8c
+            self.DarkOrchid = 0xcc9932
+            self.DarkRed = 0x8b00
+            self.DarkSalmon = 0x7ae996
+            self.DarkSeaGreen = 0x8f8fbc
+            self.DarkSlateBlue = 0x8b483d
+            self.DarkSlateGray = 0x4f2f4f
+            self.DarkTurquoise = 0xd100ce
+            self.DarkViolet = 0xd39400
+            self.DeepPink = 0x93ff14
+            self.DeepSkyBlue = 0xff00bf
+            self.DimGray = 0x696969
+            self.DodgerBlue = 0xff1e90
+            self.FireBrick = 0x22b222
+            self.FloralWhite = 0xf0fffa
+            self.ForestGreen = 0x22228b
+            self.Fuchsia = 0xffff00
+            self.Gainsboro = 0xdcdcdc
+            self.GhostWhite = 0xfff8f8
+            self.Gold = 0xffd7
+            self.GoldenRod = 0x20daa5
+            self.Gray = 0x808080
+            self.Green = 0x80
+            self.GreenYellow = 0x2fadff
+            self.HoneyDew = 0xf0f0ff
+            self.HotPink = 0xb4ff69
+            self.IndianRed = 0x5ccd5c
+            self.Indigo = 0x824b00
+            self.Ivory = 0xf0ffff
+            self.Khaki = 0x8cf0e6
+            self.Lavender = 0xfae6e6
+            self.LavenderBlush = 0xf5fff0
+            self.LawnGreen = 0x7cfc
+            self.LemonChiffon = 0xcdfffa
+            self.LightBlue = 0xe6add8
+            self.LightCoral = 0x80f080
+            self.LightCyan = 0xffe0ff
+            self.LightGoldenRodYellow = 0xd2fafa
+            self.LightGray = 0xd3d3d3
+            self.LightGreen = 0x9090ee
+            self.LightPink = 0xc1ffb6
+            self.LightSalmon = 0x7affa0
+            self.LightSeaGreen = 0xaa20b2
+            self.LightSkyBlue = 0xfa87ce
+            self.LightSlateGray = 0x997788
+            self.LightSteelBlue = 0xdeb0c4
+            self.LightYellow = 0xe0ffff
+            self.Lime = 0xff
+            self.LimeGreen = 0x3232cd
+            self.Linen = 0xe6faf0
+            self.Magenta = 0xffff00
+            self.Maroon = 0x8000
+            self.MediumAquaMarine = 0xaa66cd
+            self.MediumBlue = 0xcd0000
+            self.MediumOrchid = 0xd3ba55
+            self.MediumPurple = 0xdb9370
+            self.MediumSeaGreen = 0x713cb3
+            self.MediumSlateBlue = 0xee7b68
+            self.MediumSpringGreen = 0x9a00fa
+            self.MediumTurquoise = 0xcc48d1
+            self.MediumVioletRed = 0x85c715
+            self.MidnightBlue = 0x701919
+            self.MintCream = 0xfaf5ff
+            self.MistyRose = 0xe1ffe4
+            self.Moccasin = 0xb5ffe4
+            self.NavajoWhite = 0xadffde
+            self.Navy = 0x800000
+            self.OldLace = 0xe6fdf5
+            self.Olive = 0x8080
+            self.OliveDrab = 0x236b8e
+            self.Orange = 0xffa5
+            self.OrangeRed = 0xff45
+            self.Orchid = 0xd6da70
+            self.PaleGoldenRod = 0xaaeee8
+            self.PaleGreen = 0x9898fb
+            self.PaleTurquoise = 0xeeafee
+            self.PaleVioletRed = 0x93db70
+            self.PapayaWhip = 0xd5ffef
+            self.PeachPuff = 0xb9ffda
+            self.Peru = 0x3fcd85
+            self.Pink = 0xcbffc0
+            self.Plum = 0xdddda0
+            self.PowderBlue = 0xe6b0e0
+            self.Purple = 0x808000
+            self.Red = 0xff00
+            self.RosyBrown = 0x8fbc8f
+            self.RoyalBlue = 0xe14169
+            self.SaddleBrown = 0x138b45
+            self.Salmon = 0x72fa80
+            self.SandyBrown = 0x60f4a4
+            self.SeaGreen = 0x572e8b
+            self.SeaShell = 0xeefff5
+            self.Sienna = 0x2da052
+            self.Silver = 0xc0c0c0
+            self.SkyBlue = 0xeb87ce
+            self.SlateBlue = 0xcd6a5a
+            self.SlateGray = 0x907080
+            self.Snow = 0xfafffa
+            self.SpringGreen = 0x7f00ff
+            self.SteelBlue = 0xb44682
+            self.Tan = 0x8cd2b4
+            self.Teal = 0x800080
+            self.Thistle = 0xd8d8bf
+            self.Tomato = 0x47ff63
+            self.Turquoise = 0xd040e0
+            self.Violet = 0xeeee82
+            self.Wheat = 0xb3f5de
+            self.White = 0xffffff
+            self.WhiteSmoke = 0xf5f5f5
+            self.Yellow = 0xffff
+            self.YellowGreen = 0x329acd
+
+
+
 
     def Start(self):
         cmd = 0x00
@@ -641,6 +816,14 @@ class NeoPixelShield(object):
     def Stop(self):
         cmd = 0x01
         RPiSoC.commChannel.sendData((self.address, cmd))
+
+    def SetPixelRGB(self, row, column, RGB):
+        RED = RGB[0]
+        GREEN = RGB[1]
+        BLUE = RGB[2]
+
+        self.SetPixel(row, column, (BLUE<<16)|(RED<<8)|GREEN)
+
 
     def SetPixel(self, row, column, color):
         cmd = 0x02
@@ -657,6 +840,10 @@ class NeoPixelShield(object):
         RPiSoC.commChannel.sendData((row, column, color&0xFFFF))
 
     def Stripe(self, pixelnum, color):
+
+        if pixelnum not in range(1, 41):
+            raise ValueError('Valid stripe length is between 1 and 40: stripe length of %d was requested' %pixelnum)
+        pixelnum-=1
         cmd = 0x03
         if color>0xFFFFFF:
             raise ValueError('Color value too large. Color is 24 bit only.')
@@ -664,6 +851,26 @@ class NeoPixelShield(object):
         RPiSoC.commChannel.sendData((self.address, cmd, color>>16))
         #now send the remaining 16 bits in the data bytes, and the pixel num set as the address, cmd is arbitrary
         RPiSoC.commChannel.sendData((pixelnum, cmd, color&0xFFFF))
+
+    def DrawRow(self, row, color):
+
+        cmd = 0x05
+        if color>0xFFFFFF:
+            raise ValueError('Color value too large. Color is 24 bit only.')
+        #first send high 8 bits bits of color
+        RPiSoC.commChannel.sendData((self.address, cmd, color>>16))
+        #now send the remaining 16 bits in the data bytes, and the pixel num set as the address, cmd is arbitrary
+        RPiSoC.commChannel.sendData((row, cmd, color&0xFFFF))
+
+    def DrawColumn(self, column, color):
+
+        cmd = 0x06
+        if color>0xFFFFFF:
+            raise ValueError('Color value too large. Color is 24 bit only.')
+        #first send high 8 bits bits of color
+        RPiSoC.commChannel.sendData((self.address, cmd, color>>16))
+        #now send the remaining 16 bits in the data bytes, and the pixel num set as the address, cmd is arbitrary
+        RPiSoC.commChannel.sendData((column, cmd, color&0xFFFF))
 
     def Dim(self, DIM_LEVEL):
         cmd = 0x04

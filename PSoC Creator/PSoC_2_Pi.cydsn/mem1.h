@@ -29,6 +29,8 @@ typedef struct vessel_tag{
     uint16 dat              : 16;
     uint8 port              : 4;
     uint8 pin               : 3;
+    uint8 trigport          : 4; 
+    uint8 trigpin           : 3;
     uint8 waveType          : 3;
     uint8 amp               : 8;
     uint8 dcB               : 8;
@@ -512,7 +514,8 @@ bool Analog_Read(uint8 cmd, uint16 val, uint32 *result);
 bool CapSense_Read(uint8 cmd, uint16 val, uint32 *result);
 
 bool StripLightsControl(uint8 cmd, uint16 dat, uint8 column, uint8 row, uint32 color);
-bool Range_Finder(uint32 *result);
+//bool Range_Finder(uint32 *result);
+bool Range_Finder(uint8 port, uint8 pin, uint8 trigport, uint8 trigpin, uint8 delayus, uint32 *result);
 bool CheckBuild(uint8 cmd, uint16 val, uint32 *result);
 bool test_read(uint16 dat, uint32 *result);
 
@@ -520,8 +523,7 @@ bool test_read(uint16 dat, uint32 *result);
 void Generate_Wave(uint8 waveType, uint8 amp, uint8 dcB);
 void Stripe(uint16 MAX, uint32 color);
 void SetNeoPixel(uint8 row, uint8 column, uint32 color);
-void NeoPixelDrawRow(int row, int size, int start, uint32 color);
-void NeoPixelDrawColumn(int column, int size, int start, uint32 color);
-void NeoPixelDrawRectangle(int start_x, int start_y, int length, int width, uint32 color);
+void NeoPixel_DrawRow(uint8 row, uint32 color);
+void NeoPixel_DrawColumn(uint8 column, uint32 color);
 #endif
 /* [] END OF FILE */
