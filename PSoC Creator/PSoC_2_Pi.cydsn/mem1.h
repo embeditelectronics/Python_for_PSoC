@@ -36,6 +36,7 @@ typedef struct vessel_tag{
     uint8 dcB               : 8;
     uint8 column            : 3;
     uint8 row               : 3;
+    uint8 delayus           : 6;
     uint32 color            : 24;
 }vessel_type;
 
@@ -117,7 +118,25 @@ typedef struct vessel_tag{
 #define CHECK_BUILD                 (0xFE)
 #define RESET_ADDRESS               (0xFF)
 
+/*
+#define TIMER_TC_TRIGGERED          (0x01)
+#define TIMER_CAPTURE_TRIGGERED     (0x02)
+
+#define TIMER_RESET                 (0x04)
+#define TIMER_TRIGGER               (0x02)
+#define TIMER_CAPTURE               (0x01)
+
+#define TIMER_START_CAPTURE         (TIMER_CONTROL_Write(TIMER_CONTROL_Read()&~TIMER_CAPTURE));(TIMER_CONTROL_Write(TIMER_CONTROL_Read()&TIMER_TRIGGER)) 
+#define TIMER_STOP_CAPTURE          (TIMER_CONTROL_Write(TIMER_CONTROL_Read()&TIMER_CAPTURE)); (TIMER_CONTROL_Write(TIMER_CONTROL_Read()&~TIMER_TRIGGER))
+#define TIMER_TOGGLE_RESET          (TIMER_CONTROL_Write(TIMER_CONTROL_Read()&TIMER_RESET)); (TIMER_CONTROL_Write(TIMER_CONTROL_Read()&~TIMER_RESET))
+*/
+
+#define COUNTER_TC_TRIGGERED        (0x80)
+#define COUNTER_CAPTURE_TRIGGERED   (0x40)
+#define COUNTER_ERROR_COMP          (2u) //Initial testing shows closer to 9 uS, will test with o-scope   
+
 /* GET PWM MAX NUMBER */
+
 
 #ifdef CY_PWM_PWM_24_H
     #ifndef PWM_NUM
@@ -515,7 +534,7 @@ bool CapSense_Read(uint8 cmd, uint16 val, uint32 *result);
 
 bool StripLightsControl(uint8 cmd, uint16 dat, uint8 column, uint8 row, uint32 color);
 //bool Range_Finder(uint32 *result);
-bool Range_Finder(uint8 port, uint8 pin, uint8 trigport, uint8 trigpin, uint8 delayus, uint32 *result);
+bool Range_Finder(uint8 cmd, uint8 port, uint8 pin, uint8 trigport, uint8 trigpin, uint8 delayus, uint16 timeout, uint32 *result);
 bool CheckBuild(uint8 cmd, uint16 val, uint32 *result);
 bool test_read(uint16 dat, uint32 *result);
 

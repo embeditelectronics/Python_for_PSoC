@@ -165,14 +165,17 @@ void Python_parser(vessel_type *vessel)
                 case 0x03: vessel->dat = temp_data>>8&0x000F; break;
             }
             break;
-        
+        //TTTTtttPPPPppp
         case RANGE_FINDER:
+            case 0x00:
                 vessel->pin  = (temp_data)&0x0007;
                 vessel->port = (temp_data>>3)&0x000F;
                 vessel->trigpin = (temp_data>>7)&0x07;
                 vessel->trigport = (temp_data>>10)&0x0F;
-                vessel->dat = cmd;
             break;
+            case 0x01: break;
+            case 0x02: vessel->delayus = temp_data; break;
+                
         
         #ifdef CY_SLIGHTS_StripLights_H
             case STRIPLIGHT_REGISTER:

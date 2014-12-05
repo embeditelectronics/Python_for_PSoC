@@ -748,6 +748,7 @@ class SERIAL(object):
         if addr > 0xFF or cmd > 0xFF:
             raise ValueError('Data is the wrong size')
 
+
         if val> 0xFFFF:
             dat_l[3] = 0xFF
             dat_l[2] = 0xFF

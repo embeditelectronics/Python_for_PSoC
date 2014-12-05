@@ -608,7 +608,7 @@ class rangeFinder(object):
         TODO
     """
 
-    def __init__(self, SIG, TRIGGER = None, DELAYus = 10):
+    def __init__(self, SIG, TRIGGER = None, DELAYus = 10, TIMEOUTus = 30000):
 
         if TRIGGER == None:
             TRIGGER = SIG[:]
@@ -632,16 +632,29 @@ class rangeFinder(object):
             raise ValueError('Invalid PIN for trigger: the second argument should be the pin number relative to the desired port. Valid entries on this port are ', RPiSoC.GPIO[self.trigport])
         else:
             self.trigpin = TRIGGER[1]
-
         self.address = RPiSoC.RANGE_FINDER
         self.delayus = DELAYus
         self.packed_dat = (self.trigport<<10)|(self.trigpin<<7)|(self.sigport<<3)|(self.sigpin)
+        self.setDelay(DELAYus)
+        self.setTimeout(TIMEOUTus)
 
+    def setTimeout(self, timeout_us):
+        cmd = 0x01
+        if ((timeout_us>65535) or (timeout_us<=0)):
+            raise ValueError('Timeout must be between 1 and 65535 microseconds: provided %d' %timeout_us)
+        RPiSoC.commChannel.sendData((self.address, cmd, timeout_us))
+
+    def setDelay(self, delay_us):
+        cmd = 0x02
+        if (delay_us>63 or delay_us<=0):
+            raise ValueError('Delay must be between 1 and 63 microseconds: provided %d' %delay_us)
+        RPiSoC.commChannel.sendData((self.address, cmd, delay_us))
 
     def readRaw(self):
-        reading = RPiSoC.commChannel.receiveData((self.address, self.delayus, self.packed_dat), delay = 0.04)
+        cmd = 0x00
+        reading = RPiSoC.commChannel.receiveData((self.address, cmd, self.packed_dat), delay = 0.04)
         if RPiSoC.DEBUG:
-            if reading == 0:
+            if reading <= 0:
                 print ('Timeout occured waiting for signal pin to be asserted; verify connection')
             elif reading>=30000:
                 print('Timeout occured while reading signal pin; verify hardware is functional')

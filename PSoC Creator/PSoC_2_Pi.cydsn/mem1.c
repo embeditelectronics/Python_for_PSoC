@@ -148,7 +148,7 @@ bool readData(vessel_type vessel, uint32 *result)
             case CAPSENSE_REGISTER: return_flag = CapSense_Read(cmd, dat, result); break;
         #endif
         
-        case RANGE_FINDER: return_flag = Range_Finder(vessel.port, vessel.pin, vessel.trigport, vessel.trigpin, dat, result); break;
+        case RANGE_FINDER: return_flag = Range_Finder(cmd, vessel.port, vessel.pin, vessel.trigport, vessel.trigpin, vessel.delayus, dat, result); break;
         
         #ifdef CY_SLIGHTS_StripLights_H
             case STRIPLIGHT_REGISTER: return_flag = StripLightsControl(cmd, dat, vessel.row, vessel.column, vessel.color); break;
@@ -2585,55 +2585,1873 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
                     return return_flag;
         }
     #endif
-    bool Range_Finder(uint8 port, uint8 pin, uint8 trigport, uint8 trigpin, uint8 delayus, uint32 *result)
+    bool Range_Finder(uint8 cmd, uint8 port, uint8 pin, uint8 trigport, uint8 trigpin, uint8 delayus, uint16 timeout, uint32 *result)
         {
             uint32 us_count = 0;
-            uint32 timeout_count = 0;//clean this up eventually...
-            switch (trigport)
+            bool read_timeout = false;
+            bool write_timeout = false;
+            //counter_clock_StopBlock();
+            Counter_1_Start();
+            COUNTER_RESET_Write(1);
+            switch (cmd)
             {
-                case 0x0F:
-                    switch (trigpin)
-                    {   
-                        #ifdef CY_PINS_GPIO_15_4_H 
-                            case 0x04: GPIO_15_4_SetDriveMode(PIN_DM_STRONG); GPIO_15_4_Write(0); CyDelayUs(2); GPIO_15_4_Write(1); CyDelayUs(delayus); GPIO_15_4_Write(0); break;
-                        #endif
-                        #ifdef CY_PINS_GPIO_15_5_H 
-                            case 0x05: GPIO_15_5_SetDriveMode(PIN_DM_STRONG); GPIO_15_5_Write(0); CyDelayUs(2); GPIO_15_5_Write(1); CyDelayUs(delayus); GPIO_15_5_Write(0); break;
-                        #endif
-                    }
-                break;
-            }
-            switch (port)
-            {
-                case 0x0F:
-                    switch (pin)
+                case 0x00: //cmd case
+                    switch (trigport)
                     {
-                        #ifdef CY_PINS_GPIO_15_4_H 
-                            case 0x04: 
-                                GPIO_15_4_SetDriveMode(PIN_DM_DIG_HIZ); 
-                                while (!GPIO_15_4_Read() && timeout_count<10000){timeout_count++;}//wait until pin goes high
-                                while (GPIO_15_4_Read() && us_count<30000)//this is approximate, should consider timer later
-                                    {
-                                        CyDelayUs(1);
-                                        us_count++;
-                                    }
-                            break;// case 0x05
-                        #endif
-                        
-                        #ifdef CY_PINS_GPIO_15_5_H 
-                            case 0x05: 
-                                GPIO_15_5_SetDriveMode(PIN_DM_DIG_HIZ); 
-                                while (!GPIO_15_5_Read() && timeout_count<1000){timeout_count++;}//wait until pin goes high
-                                while (GPIO_15_5_Read() && us_count<30000)//this is approximate, should consider timer later
-                                    {
-                                        CyDelayUs(1);
-                                        us_count++;
-                                    }
-                            break;// case 0x05
-                        #endif
+                    case 0x00:
+                    	switch(trigpin)
+                    	{
+                    		case 0x00:
+                    			#ifdef CY_PINS_GPIO_0_0_H 
+                    				GPIO_0_0_SetDriveMode(PIN_DM_STRONG); GPIO_0_0_Write(0); CyDelayUs(2); GPIO_0_0_Write(1); CyDelayUs(delayus); GPIO_0_0_Write(0); break;
+                    			#endif
+                    		break; //0x00
+                    		case 0x01:
+                    			#ifdef CY_PINS_GPIO_0_1_H 
+                    				GPIO_0_1_SetDriveMode(PIN_DM_STRONG); GPIO_0_1_Write(0); CyDelayUs(2); GPIO_0_1_Write(1); CyDelayUs(delayus); GPIO_0_1_Write(0); break;
+                    			#endif
+                    		break; //0x01
+                    		case 0x02:
+                    			#ifdef CY_PINS_GPIO_0_2_H 
+                    				GPIO_0_2_SetDriveMode(PIN_DM_STRONG); GPIO_0_2_Write(0); CyDelayUs(2); GPIO_0_2_Write(1); CyDelayUs(delayus); GPIO_0_2_Write(0); break;
+                    			#endif
+                    		break; //0x02
+                    		case 0x03:
+                    			#ifdef CY_PINS_GPIO_0_3_H 
+                    				GPIO_0_3_SetDriveMode(PIN_DM_STRONG); GPIO_0_3_Write(0); CyDelayUs(2); GPIO_0_3_Write(1); CyDelayUs(delayus); GPIO_0_3_Write(0); break;
+                    			#endif
+                    		break; //0x03
+                    		case 0x04:
+                    			#ifdef CY_PINS_GPIO_0_4_H 
+                    				GPIO_0_4_SetDriveMode(PIN_DM_STRONG); GPIO_0_4_Write(0); CyDelayUs(2); GPIO_0_4_Write(1); CyDelayUs(delayus); GPIO_0_4_Write(0); break;
+                    			#endif
+                    		break; //0x04
+                    		case 0x05:
+                    			#ifdef CY_PINS_GPIO_0_5_H 
+                    				GPIO_0_5_SetDriveMode(PIN_DM_STRONG); GPIO_0_5_Write(0); CyDelayUs(2); GPIO_0_5_Write(1); CyDelayUs(delayus); GPIO_0_5_Write(0); break;
+                    			#endif
+                    		break; //0x05
+                    		case 0x06:
+                    			#ifdef CY_PINS_GPIO_0_6_H 
+                    				GPIO_0_6_SetDriveMode(PIN_DM_STRONG); GPIO_0_6_Write(0); CyDelayUs(2); GPIO_0_6_Write(1); CyDelayUs(delayus); GPIO_0_6_Write(0); break;
+                    			#endif
+                    		break; //0x06
+                    		case 0x07:
+                    			#ifdef CY_PINS_GPIO_0_7_H 
+                    				GPIO_0_7_SetDriveMode(PIN_DM_STRONG); GPIO_0_7_Write(0); CyDelayUs(2); GPIO_0_7_Write(1); CyDelayUs(delayus); GPIO_0_7_Write(0); break;
+                    			#endif
+                    		break; //0x07
+                    	}
+                    break; //0x00
+                    case 0x02:
+                    	switch(trigpin)
+                    	{
+                    		case 0x00:
+                    			#ifdef CY_PINS_GPIO_2_0_H 
+                    				GPIO_2_0_SetDriveMode(PIN_DM_STRONG); GPIO_2_0_Write(0); CyDelayUs(2); GPIO_2_0_Write(1); CyDelayUs(delayus); GPIO_2_0_Write(0); break;
+                    			#endif
+                    		break; //0x00
+                    		case 0x01:
+                    			#ifdef CY_PINS_GPIO_2_1_H 
+                    				GPIO_2_1_SetDriveMode(PIN_DM_STRONG); GPIO_2_1_Write(0); CyDelayUs(2); GPIO_2_1_Write(1); CyDelayUs(delayus); GPIO_2_1_Write(0); break;
+                    			#endif
+                    		break; //0x01
+                    		case 0x02:
+                    			#ifdef CY_PINS_GPIO_2_2_H 
+                    				GPIO_2_2_SetDriveMode(PIN_DM_STRONG); GPIO_2_2_Write(0); CyDelayUs(2); GPIO_2_2_Write(1); CyDelayUs(delayus); GPIO_2_2_Write(0); break;
+                    			#endif
+                    		break; //0x02
+                    		case 0x03:
+                    			#ifdef CY_PINS_GPIO_2_3_H 
+                    				GPIO_2_3_SetDriveMode(PIN_DM_STRONG); GPIO_2_3_Write(0); CyDelayUs(2); GPIO_2_3_Write(1); CyDelayUs(delayus); GPIO_2_3_Write(0); break;
+                    			#endif
+                    		break; //0x03
+                    		case 0x04:
+                    			#ifdef CY_PINS_GPIO_2_4_H 
+                    				GPIO_2_4_SetDriveMode(PIN_DM_STRONG); GPIO_2_4_Write(0); CyDelayUs(2); GPIO_2_4_Write(1); CyDelayUs(delayus); GPIO_2_4_Write(0); break;
+                    			#endif
+                    		break; //0x04
+                    		case 0x05:
+                    			#ifdef CY_PINS_GPIO_2_5_H 
+                    				GPIO_2_5_SetDriveMode(PIN_DM_STRONG); GPIO_2_5_Write(0); CyDelayUs(2); GPIO_2_5_Write(1); CyDelayUs(delayus); GPIO_2_5_Write(0); break;
+                    			#endif
+                    		break; //0x05
+                    		case 0x06:
+                    			#ifdef CY_PINS_GPIO_2_6_H 
+                    				GPIO_2_6_SetDriveMode(PIN_DM_STRONG); GPIO_2_6_Write(0); CyDelayUs(2); GPIO_2_6_Write(1); CyDelayUs(delayus); GPIO_2_6_Write(0); break;
+                    			#endif
+                    		break; //0x06
+                    		case 0x07:
+                    			#ifdef CY_PINS_GPIO_2_7_H 
+                    				GPIO_2_7_SetDriveMode(PIN_DM_STRONG); GPIO_2_7_Write(0); CyDelayUs(2); GPIO_2_7_Write(1); CyDelayUs(delayus); GPIO_2_7_Write(0); break;
+                    			#endif
+                    		break; //0x07
+                    	}
+                    break; //0x02
+                    case 0x03:
+                    	switch(trigpin)
+                    	{
+                    		case 0x00:
+                    			#ifdef CY_PINS_GPIO_3_0_H 
+                    				GPIO_3_0_SetDriveMode(PIN_DM_STRONG); GPIO_3_0_Write(0); CyDelayUs(2); GPIO_3_0_Write(1); CyDelayUs(delayus); GPIO_3_0_Write(0); break;
+                    			#endif
+                    		break; //0x00
+                    		case 0x01:
+                    			#ifdef CY_PINS_GPIO_3_1_H 
+                    				GPIO_3_1_SetDriveMode(PIN_DM_STRONG); GPIO_3_1_Write(0); CyDelayUs(2); GPIO_3_1_Write(1); CyDelayUs(delayus); GPIO_3_1_Write(0); break;
+                    			#endif
+                    		break; //0x01
+                    		case 0x02:
+                    			#ifdef CY_PINS_GPIO_3_2_H 
+                    				GPIO_3_2_SetDriveMode(PIN_DM_STRONG); GPIO_3_2_Write(0); CyDelayUs(2); GPIO_3_2_Write(1); CyDelayUs(delayus); GPIO_3_2_Write(0); break;
+                    			#endif
+                    		break; //0x02
+                    		case 0x03:
+                    			#ifdef CY_PINS_GPIO_3_3_H 
+                    				GPIO_3_3_SetDriveMode(PIN_DM_STRONG); GPIO_3_3_Write(0); CyDelayUs(2); GPIO_3_3_Write(1); CyDelayUs(delayus); GPIO_3_3_Write(0); break;
+                    			#endif
+                    		break; //0x03
+                    		case 0x04:
+                    			#ifdef CY_PINS_GPIO_3_4_H 
+                    				GPIO_3_4_SetDriveMode(PIN_DM_STRONG); GPIO_3_4_Write(0); CyDelayUs(2); GPIO_3_4_Write(1); CyDelayUs(delayus); GPIO_3_4_Write(0); break;
+                    			#endif
+                    		break; //0x04
+                    		case 0x05:
+                    			#ifdef CY_PINS_GPIO_3_5_H 
+                    				GPIO_3_5_SetDriveMode(PIN_DM_STRONG); GPIO_3_5_Write(0); CyDelayUs(2); GPIO_3_5_Write(1); CyDelayUs(delayus); GPIO_3_5_Write(0); break;
+                    			#endif
+                    		break; //0x05
+                    		case 0x06:
+                    			#ifdef CY_PINS_GPIO_3_6_H 
+                    				GPIO_3_6_SetDriveMode(PIN_DM_STRONG); GPIO_3_6_Write(0); CyDelayUs(2); GPIO_3_6_Write(1); CyDelayUs(delayus); GPIO_3_6_Write(0); break;
+                    			#endif
+                    		break; //0x06
+                    		case 0x07:
+                    			#ifdef CY_PINS_GPIO_3_7_H 
+                    				GPIO_3_7_SetDriveMode(PIN_DM_STRONG); GPIO_3_7_Write(0); CyDelayUs(2); GPIO_3_7_Write(1); CyDelayUs(delayus); GPIO_3_7_Write(0); break;
+                    			#endif
+                    		break; //0x07
+                    	}
+                    break; //0x03
+                    case 0x04:
+                    	switch(trigpin)
+                    	{
+                    		case 0x00:
+                    			#ifdef CY_PINS_GPIO_4_0_H 
+                    				GPIO_4_0_SetDriveMode(PIN_DM_STRONG); GPIO_4_0_Write(0); CyDelayUs(2); GPIO_4_0_Write(1); CyDelayUs(delayus); GPIO_4_0_Write(0); break;
+                    			#endif
+                    		break; //0x00
+                    		case 0x01:
+                    			#ifdef CY_PINS_GPIO_4_1_H 
+                    				GPIO_4_1_SetDriveMode(PIN_DM_STRONG); GPIO_4_1_Write(0); CyDelayUs(2); GPIO_4_1_Write(1); CyDelayUs(delayus); GPIO_4_1_Write(0); break;
+                    			#endif
+                    		break; //0x01
+                    		case 0x02:
+                    			#ifdef CY_PINS_GPIO_4_2_H 
+                    				GPIO_4_2_SetDriveMode(PIN_DM_STRONG); GPIO_4_2_Write(0); CyDelayUs(2); GPIO_4_2_Write(1); CyDelayUs(delayus); GPIO_4_2_Write(0); break;
+                    			#endif
+                    		break; //0x02
+                    		case 0x03:
+                    			#ifdef CY_PINS_GPIO_4_3_H 
+                    				GPIO_4_3_SetDriveMode(PIN_DM_STRONG); GPIO_4_3_Write(0); CyDelayUs(2); GPIO_4_3_Write(1); CyDelayUs(delayus); GPIO_4_3_Write(0); break;
+                    			#endif
+                    		break; //0x03
+                    		case 0x04:
+                    			#ifdef CY_PINS_GPIO_4_4_H 
+                    				GPIO_4_4_SetDriveMode(PIN_DM_STRONG); GPIO_4_4_Write(0); CyDelayUs(2); GPIO_4_4_Write(1); CyDelayUs(delayus); GPIO_4_4_Write(0); break;
+                    			#endif
+                    		break; //0x04
+                    		case 0x05:
+                    			#ifdef CY_PINS_GPIO_4_5_H 
+                    				GPIO_4_5_SetDriveMode(PIN_DM_STRONG); GPIO_4_5_Write(0); CyDelayUs(2); GPIO_4_5_Write(1); CyDelayUs(delayus); GPIO_4_5_Write(0); break;
+                    			#endif
+                    		break; //0x05
+                    		case 0x06:
+                    			#ifdef CY_PINS_GPIO_4_6_H 
+                    				GPIO_4_6_SetDriveMode(PIN_DM_STRONG); GPIO_4_6_Write(0); CyDelayUs(2); GPIO_4_6_Write(1); CyDelayUs(delayus); GPIO_4_6_Write(0); break;
+                    			#endif
+                    		break; //0x06
+                    	}
+                    break; //0x04
+                    case 0x05:
+                    	switch(trigpin)
+                    	{
+                    		case 0x00:
+                    			#ifdef CY_PINS_GPIO_5_0_H 
+                    				GPIO_5_0_SetDriveMode(PIN_DM_STRONG); GPIO_5_0_Write(0); CyDelayUs(2); GPIO_5_0_Write(1); CyDelayUs(delayus); GPIO_5_0_Write(0); break;
+                    			#endif
+                    		break; //0x00
+                    		case 0x01:
+                    			#ifdef CY_PINS_GPIO_5_1_H 
+                    				GPIO_5_1_SetDriveMode(PIN_DM_STRONG); GPIO_5_1_Write(0); CyDelayUs(2); GPIO_5_1_Write(1); CyDelayUs(delayus); GPIO_5_1_Write(0); break;
+                    			#endif
+                    		break; //0x01
+                    		case 0x02:
+                    			#ifdef CY_PINS_GPIO_5_2_H 
+                    				GPIO_5_2_SetDriveMode(PIN_DM_STRONG); GPIO_5_2_Write(0); CyDelayUs(2); GPIO_5_2_Write(1); CyDelayUs(delayus); GPIO_5_2_Write(0); break;
+                    			#endif
+                    		break; //0x02
+                    		case 0x03:
+                    			#ifdef CY_PINS_GPIO_5_3_H 
+                    				GPIO_5_3_SetDriveMode(PIN_DM_STRONG); GPIO_5_3_Write(0); CyDelayUs(2); GPIO_5_3_Write(1); CyDelayUs(delayus); GPIO_5_3_Write(0); break;
+                    			#endif
+                    		break; //0x03
+                    		case 0x04:
+                    			#ifdef CY_PINS_GPIO_5_4_H 
+                    				GPIO_5_4_SetDriveMode(PIN_DM_STRONG); GPIO_5_4_Write(0); CyDelayUs(2); GPIO_5_4_Write(1); CyDelayUs(delayus); GPIO_5_4_Write(0); break;
+                    			#endif
+                    		break; //0x04
+                    		case 0x05:
+                    			#ifdef CY_PINS_GPIO_5_5_H 
+                    				GPIO_5_5_SetDriveMode(PIN_DM_STRONG); GPIO_5_5_Write(0); CyDelayUs(2); GPIO_5_5_Write(1); CyDelayUs(delayus); GPIO_5_5_Write(0); break;
+                    			#endif
+                    		break; //0x05
+                    		case 0x06:
+                    			#ifdef CY_PINS_GPIO_5_6_H 
+                    				GPIO_5_6_SetDriveMode(PIN_DM_STRONG); GPIO_5_6_Write(0); CyDelayUs(2); GPIO_5_6_Write(1); CyDelayUs(delayus); GPIO_5_6_Write(0); break;
+                    			#endif
+                    		break; //0x06
+                    		case 0x07:
+                    			#ifdef CY_PINS_GPIO_5_7_H 
+                    				GPIO_5_7_SetDriveMode(PIN_DM_STRONG); GPIO_5_7_Write(0); CyDelayUs(2); GPIO_5_7_Write(1); CyDelayUs(delayus); GPIO_5_7_Write(0); break;
+                    			#endif
+                    		break; //0x07
+                    	}
+                    break; //0x05
+                    case 0x06:
+                    	switch(trigpin)
+                    	{
+                    		case 0x00:
+                    			#ifdef CY_PINS_GPIO_6_0_H 
+                    				GPIO_6_0_SetDriveMode(PIN_DM_STRONG); GPIO_6_0_Write(0); CyDelayUs(2); GPIO_6_0_Write(1); CyDelayUs(delayus); GPIO_6_0_Write(0); break;
+                    			#endif
+                    		break; //0x00
+                    		case 0x01:
+                    			#ifdef CY_PINS_GPIO_6_1_H 
+                    				GPIO_6_1_SetDriveMode(PIN_DM_STRONG); GPIO_6_1_Write(0); CyDelayUs(2); GPIO_6_1_Write(1); CyDelayUs(delayus); GPIO_6_1_Write(0); break;
+                    			#endif
+                    		break; //0x01
+                    		case 0x02:
+                    			#ifdef CY_PINS_GPIO_6_2_H 
+                    				GPIO_6_2_SetDriveMode(PIN_DM_STRONG); GPIO_6_2_Write(0); CyDelayUs(2); GPIO_6_2_Write(1); CyDelayUs(delayus); GPIO_6_2_Write(0); break;
+                    			#endif
+                    		break; //0x02
+                    		case 0x03:
+                    			#ifdef CY_PINS_GPIO_6_3_H 
+                    				GPIO_6_3_SetDriveMode(PIN_DM_STRONG); GPIO_6_3_Write(0); CyDelayUs(2); GPIO_6_3_Write(1); CyDelayUs(delayus); GPIO_6_3_Write(0); break;
+                    			#endif
+                    		break; //0x03
+                    		case 0x04:
+                    			#ifdef CY_PINS_GPIO_6_4_H 
+                    				GPIO_6_4_SetDriveMode(PIN_DM_STRONG); GPIO_6_4_Write(0); CyDelayUs(2); GPIO_6_4_Write(1); CyDelayUs(delayus); GPIO_6_4_Write(0); break;
+                    			#endif
+                    		break; //0x04
+                    		case 0x05:
+                    			#ifdef CY_PINS_GPIO_6_5_H 
+                    				GPIO_6_5_SetDriveMode(PIN_DM_STRONG); GPIO_6_5_Write(0); CyDelayUs(2); GPIO_6_5_Write(1); CyDelayUs(delayus); GPIO_6_5_Write(0); break;
+                    			#endif
+                    		break; //0x05
+                    		case 0x06:
+                    			#ifdef CY_PINS_GPIO_6_6_H 
+                    				GPIO_6_6_SetDriveMode(PIN_DM_STRONG); GPIO_6_6_Write(0); CyDelayUs(2); GPIO_6_6_Write(1); CyDelayUs(delayus); GPIO_6_6_Write(0); break;
+                    			#endif
+                    		break; //0x06
+                    		case 0x07:
+                    			#ifdef CY_PINS_GPIO_6_7_H 
+                    				GPIO_6_7_SetDriveMode(PIN_DM_STRONG); GPIO_6_7_Write(0); CyDelayUs(2); GPIO_6_7_Write(1); CyDelayUs(delayus); GPIO_6_7_Write(0); break;
+                    			#endif
+                    		break; //0x07
+                    	}
+                    break; //0x06
+                    case 0x0C:
+                    	switch(trigpin)
+                    	{
+                    		case 0x00:
+                    			#ifdef CY_PINS_GPIO_12_0_H 
+                    				GPIO_12_0_SetDriveMode(PIN_DM_STRONG); GPIO_12_0_Write(0); CyDelayUs(2); GPIO_12_0_Write(1); CyDelayUs(delayus); GPIO_12_0_Write(0); break;
+                    			#endif
+                    		break; //0x00
+                    		case 0x01:
+                    			#ifdef CY_PINS_GPIO_12_1_H 
+                    				GPIO_12_1_SetDriveMode(PIN_DM_STRONG); GPIO_12_1_Write(0); CyDelayUs(2); GPIO_12_1_Write(1); CyDelayUs(delayus); GPIO_12_1_Write(0); break;
+                    			#endif
+                    		break; //0x01
+                    		case 0x02:
+                    			#ifdef CY_PINS_GPIO_12_2_H 
+                    				GPIO_12_2_SetDriveMode(PIN_DM_STRONG); GPIO_12_2_Write(0); CyDelayUs(2); GPIO_12_2_Write(1); CyDelayUs(delayus); GPIO_12_2_Write(0); break;
+                    			#endif
+                    		break; //0x02
+                    		case 0x03:
+                    			#ifdef CY_PINS_GPIO_12_3_H 
+                    				GPIO_12_3_SetDriveMode(PIN_DM_STRONG); GPIO_12_3_Write(0); CyDelayUs(2); GPIO_12_3_Write(1); CyDelayUs(delayus); GPIO_12_3_Write(0); break;
+                    			#endif
+                    		break; //0x03
+                    		case 0x04:
+                    			#ifdef CY_PINS_GPIO_12_4_H 
+                    				GPIO_12_4_SetDriveMode(PIN_DM_STRONG); GPIO_12_4_Write(0); CyDelayUs(2); GPIO_12_4_Write(1); CyDelayUs(delayus); GPIO_12_4_Write(0); break;
+                    			#endif
+                    		break; //0x04
+                    		case 0x05:
+                    			#ifdef CY_PINS_GPIO_12_5_H 
+                    				GPIO_12_5_SetDriveMode(PIN_DM_STRONG); GPIO_12_5_Write(0); CyDelayUs(2); GPIO_12_5_Write(1); CyDelayUs(delayus); GPIO_12_5_Write(0); break;
+                    			#endif
+                    		break; //0x05
+                    		case 0x06:
+                    			#ifdef CY_PINS_GPIO_12_6_H 
+                    				GPIO_12_6_SetDriveMode(PIN_DM_STRONG); GPIO_12_6_Write(0); CyDelayUs(2); GPIO_12_6_Write(1); CyDelayUs(delayus); GPIO_12_6_Write(0); break;
+                    			#endif
+                    		break; //0x06
+                    		case 0x07:
+                    			#ifdef CY_PINS_GPIO_12_7_H 
+                    				GPIO_12_7_SetDriveMode(PIN_DM_STRONG); GPIO_12_7_Write(0); CyDelayUs(2); GPIO_12_7_Write(1); CyDelayUs(delayus); GPIO_12_7_Write(0); break;
+                    			#endif
+                    		break; //0x07
+                    	}
+                    break; //0x0C
+                    case 0x0F:
+                    	switch(trigpin)
+                    	{
+                    		case 0x00:
+                    			#ifdef CY_PINS_GPIO_15_0_H 
+                    				GPIO_15_0_SetDriveMode(PIN_DM_STRONG); GPIO_15_0_Write(0); CyDelayUs(2); GPIO_15_0_Write(1); CyDelayUs(delayus); GPIO_15_0_Write(0); break;
+                    			#endif
+                    		break; //0x00
+                    		case 0x01:
+                    			#ifdef CY_PINS_GPIO_15_1_H 
+                    				GPIO_15_1_SetDriveMode(PIN_DM_STRONG); GPIO_15_1_Write(0); CyDelayUs(2); GPIO_15_1_Write(1); CyDelayUs(delayus); GPIO_15_1_Write(0); break;
+                    			#endif
+                    		break; //0x01
+                    		case 0x02:
+                    			#ifdef CY_PINS_GPIO_15_2_H 
+                    				GPIO_15_2_SetDriveMode(PIN_DM_STRONG); GPIO_15_2_Write(0); CyDelayUs(2); GPIO_15_2_Write(1); CyDelayUs(delayus); GPIO_15_2_Write(0); break;
+                    			#endif
+                    		break; //0x02
+                    		case 0x03:
+                    			#ifdef CY_PINS_GPIO_15_3_H 
+                    				GPIO_15_3_SetDriveMode(PIN_DM_STRONG); GPIO_15_3_Write(0); CyDelayUs(2); GPIO_15_3_Write(1); CyDelayUs(delayus); GPIO_15_3_Write(0); break;
+                    			#endif
+                    		break; //0x03
+                    		case 0x04:
+                    			#ifdef CY_PINS_GPIO_15_4_H 
+                    				GPIO_15_4_SetDriveMode(PIN_DM_STRONG); GPIO_15_4_Write(0); CyDelayUs(2); GPIO_15_4_Write(1); CyDelayUs(delayus); GPIO_15_4_Write(0); break;
+                    			#endif
+                    		break; //0x04
+                    		case 0x05:
+                    			#ifdef CY_PINS_GPIO_15_5_H 
+                    				GPIO_15_5_SetDriveMode(PIN_DM_STRONG); GPIO_15_5_Write(0); CyDelayUs(2); GPIO_15_5_Write(1); CyDelayUs(delayus); GPIO_15_5_Write(0); break;
+                    			#endif
+                    		break; //0x05
+                    		case 0x06:
+                    			#ifdef CY_PINS_GPIO_15_6_H 
+                    				GPIO_15_6_SetDriveMode(PIN_DM_STRONG); GPIO_15_6_Write(0); CyDelayUs(2); GPIO_15_6_Write(1); CyDelayUs(delayus); GPIO_15_6_Write(0); break;
+                    			#endif
+                    		break; //0x06
+                    		case 0x07:
+                    			#ifdef CY_PINS_GPIO_15_7_H 
+                    				GPIO_15_7_SetDriveMode(PIN_DM_STRONG); GPIO_15_7_Write(0); CyDelayUs(2); GPIO_15_7_Write(1); CyDelayUs(delayus); GPIO_15_7_Write(0); break;
+                    			#endif
+                    		break; //0x07
+                    	}
+                    break; //0x0F
                     }
-                break; //case 0x0F
+                   switch(port)
+                {
+                        case 0x00:
+                        	switch(pin)
+                        	{
+                        		case 0x00:
+                        			#ifdef CY_PINS_GPIO_0_0_H 
+                        				GPIO_0_0_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_0_0_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_0_0_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x00
+                        		case 0x01:
+                        			#ifdef CY_PINS_GPIO_0_1_H 
+                        				GPIO_0_1_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_0_1_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_0_1_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x01
+                        		case 0x02:
+                        			#ifdef CY_PINS_GPIO_0_2_H 
+                        				GPIO_0_2_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_0_2_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_0_2_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x02
+                        		case 0x03:
+                        			#ifdef CY_PINS_GPIO_0_3_H 
+                        				GPIO_0_3_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_0_3_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_0_3_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x03
+                        		case 0x04:
+                        			#ifdef CY_PINS_GPIO_0_4_H 
+                        				GPIO_0_4_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_0_4_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_0_4_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x04
+                        		case 0x05:
+                        			#ifdef CY_PINS_GPIO_0_5_H 
+                        				GPIO_0_5_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_0_5_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_0_5_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x05
+                        		case 0x06:
+                        			#ifdef CY_PINS_GPIO_0_6_H 
+                        				GPIO_0_6_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_0_6_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_0_6_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x06
+                        		case 0x07:
+                        			#ifdef CY_PINS_GPIO_0_7_H 
+                        				GPIO_0_7_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_0_7_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_0_7_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x07
+                        	}
+                        break; //0x00
+                        case 0x02:
+                        	switch(pin)
+                        	{
+                        		case 0x00:
+                        			#ifdef CY_PINS_GPIO_2_0_H 
+                        				GPIO_2_0_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_2_0_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_2_0_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x00
+                        		case 0x01:
+                        			#ifdef CY_PINS_GPIO_2_1_H 
+                        				GPIO_2_1_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_2_1_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_2_1_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x01
+                        		case 0x02:
+                        			#ifdef CY_PINS_GPIO_2_2_H 
+                        				GPIO_2_2_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_2_2_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_2_2_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x02
+                        		case 0x03:
+                        			#ifdef CY_PINS_GPIO_2_3_H 
+                        				GPIO_2_3_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_2_3_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_2_3_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x03
+                        		case 0x04:
+                        			#ifdef CY_PINS_GPIO_2_4_H 
+                        				GPIO_2_4_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_2_4_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_2_4_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x04
+                        		case 0x05:
+                        			#ifdef CY_PINS_GPIO_2_5_H 
+                        				GPIO_2_5_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_2_5_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_2_5_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x05
+                        		case 0x06:
+                        			#ifdef CY_PINS_GPIO_2_6_H 
+                        				GPIO_2_6_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_2_6_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_2_6_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x06
+                        		case 0x07:
+                        			#ifdef CY_PINS_GPIO_2_7_H 
+                        				GPIO_2_7_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_2_7_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_2_7_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x07
+                        	}
+                        break; //0x02
+                        case 0x03:
+                        	switch(pin)
+                        	{
+                        		case 0x00:
+                        			#ifdef CY_PINS_GPIO_3_0_H 
+                        				GPIO_3_0_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_3_0_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_3_0_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x00
+                        		case 0x01:
+                        			#ifdef CY_PINS_GPIO_3_1_H 
+                        				GPIO_3_1_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_3_1_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_3_1_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x01
+                        		case 0x02:
+                        			#ifdef CY_PINS_GPIO_3_2_H 
+                        				GPIO_3_2_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_3_2_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_3_2_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x02
+                        		case 0x03:
+                        			#ifdef CY_PINS_GPIO_3_3_H 
+                        				GPIO_3_3_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_3_3_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_3_3_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x03
+                        		case 0x04:
+                        			#ifdef CY_PINS_GPIO_3_4_H 
+                        				GPIO_3_4_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_3_4_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_3_4_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x04
+                        		case 0x05:
+                        			#ifdef CY_PINS_GPIO_3_5_H 
+                        				GPIO_3_5_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_3_5_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_3_5_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x05
+                        		case 0x06:
+                        			#ifdef CY_PINS_GPIO_3_6_H 
+                        				GPIO_3_6_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_3_6_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_3_6_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x06
+                        		case 0x07:
+                        			#ifdef CY_PINS_GPIO_3_7_H 
+                        				GPIO_3_7_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_3_7_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_3_7_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x07
+                        	}
+                        break; //0x03
+                        case 0x04:
+                        	switch(pin)
+                        	{
+                        		case 0x00:
+                        			#ifdef CY_PINS_GPIO_4_0_H 
+                        				GPIO_4_0_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_4_0_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_4_0_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x00
+                        		case 0x01:
+                        			#ifdef CY_PINS_GPIO_4_1_H 
+                        				GPIO_4_1_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_4_1_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_4_1_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x01
+                        		case 0x02:
+                        			#ifdef CY_PINS_GPIO_4_2_H 
+                        				GPIO_4_2_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_4_2_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_4_2_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x02
+                        		case 0x03:
+                        			#ifdef CY_PINS_GPIO_4_3_H 
+                        				GPIO_4_3_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_4_3_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_4_3_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x03
+                        		case 0x04:
+                        			#ifdef CY_PINS_GPIO_4_4_H 
+                        				GPIO_4_4_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_4_4_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_4_4_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x04
+                        		case 0x05:
+                        			#ifdef CY_PINS_GPIO_4_5_H 
+                        				GPIO_4_5_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_4_5_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_4_5_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x05
+                        		case 0x06:
+                        			#ifdef CY_PINS_GPIO_4_6_H 
+                        				GPIO_4_6_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_4_6_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_4_6_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x06
+                        	}
+                        break; //0x04
+                        case 0x05:
+                        	switch(pin)
+                        	{
+                        		case 0x00:
+                        			#ifdef CY_PINS_GPIO_5_0_H 
+                        				GPIO_5_0_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_5_0_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_5_0_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x00
+                        		case 0x01:
+                        			#ifdef CY_PINS_GPIO_5_1_H 
+                        				GPIO_5_1_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_5_1_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_5_1_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x01
+                        		case 0x02:
+                        			#ifdef CY_PINS_GPIO_5_2_H 
+                        				GPIO_5_2_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_5_2_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_5_2_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x02
+                        		case 0x03:
+                        			#ifdef CY_PINS_GPIO_5_3_H 
+                        				GPIO_5_3_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_5_3_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_5_3_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x03
+                        		case 0x04:
+                        			#ifdef CY_PINS_GPIO_5_4_H 
+                        				GPIO_5_4_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_5_4_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_5_4_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x04
+                        		case 0x05:
+                        			#ifdef CY_PINS_GPIO_5_5_H 
+                        				GPIO_5_5_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_5_5_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_5_5_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x05
+                        		case 0x06:
+                        			#ifdef CY_PINS_GPIO_5_6_H 
+                        				GPIO_5_6_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_5_6_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_5_6_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x06
+                        		case 0x07:
+                        			#ifdef CY_PINS_GPIO_5_7_H 
+                        				GPIO_5_7_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_5_7_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_5_7_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x07
+                        	}
+                        break; //0x05
+                        case 0x06:
+                        	switch(pin)
+                        	{
+                        		case 0x00:
+                        			#ifdef CY_PINS_GPIO_6_0_H 
+                        				GPIO_6_0_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_6_0_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_6_0_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x00
+                        		case 0x01:
+                        			#ifdef CY_PINS_GPIO_6_1_H 
+                        				GPIO_6_1_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_6_1_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_6_1_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x01
+                        		case 0x02:
+                        			#ifdef CY_PINS_GPIO_6_2_H 
+                        				GPIO_6_2_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_6_2_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_6_2_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x02
+                        		case 0x03:
+                        			#ifdef CY_PINS_GPIO_6_3_H 
+                        				GPIO_6_3_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_6_3_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_6_3_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x03
+                        		case 0x04:
+                        			#ifdef CY_PINS_GPIO_6_4_H 
+                        				GPIO_6_4_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_6_4_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_6_4_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x04
+                        		case 0x05:
+                        			#ifdef CY_PINS_GPIO_6_5_H 
+                        				GPIO_6_5_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_6_5_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_6_5_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x05
+                        		case 0x06:
+                        			#ifdef CY_PINS_GPIO_6_6_H 
+                        				GPIO_6_6_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_6_6_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_6_6_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x06
+                        		case 0x07:
+                        			#ifdef CY_PINS_GPIO_6_7_H 
+                        				GPIO_6_7_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_6_7_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_6_7_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x07
+                        	}
+                        break; //0x06
+                        case 0x0C:
+                        	switch(pin)
+                        	{
+                        		case 0x00:
+                        			#ifdef CY_PINS_GPIO_12_0_H 
+                        				GPIO_12_0_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_12_0_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_12_0_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x00
+                        		case 0x01:
+                        			#ifdef CY_PINS_GPIO_12_1_H 
+                        				GPIO_12_1_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_12_1_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_12_1_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x01
+                        		case 0x02:
+                        			#ifdef CY_PINS_GPIO_12_2_H 
+                        				GPIO_12_2_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_12_2_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_12_2_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x02
+                        		case 0x03:
+                        			#ifdef CY_PINS_GPIO_12_3_H 
+                        				GPIO_12_3_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_12_3_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_12_3_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x03
+                        		case 0x04:
+                        			#ifdef CY_PINS_GPIO_12_4_H 
+                        				GPIO_12_4_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_12_4_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_12_4_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x04
+                        		case 0x05:
+                        			#ifdef CY_PINS_GPIO_12_5_H 
+                        				GPIO_12_5_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_12_5_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_12_5_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x05
+                        		case 0x06:
+                        			#ifdef CY_PINS_GPIO_12_6_H 
+                        				GPIO_12_6_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_12_6_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_12_6_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x06
+                        		case 0x07:
+                        			#ifdef CY_PINS_GPIO_12_7_H 
+                        				GPIO_12_7_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_12_7_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_12_7_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x07
+                        	}
+                        break; //0x0C
+                        case 0x0F:
+                        	switch(pin)
+                        	{
+                        		case 0x00:
+                        			#ifdef CY_PINS_GPIO_15_0_H 
+                        				GPIO_15_0_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_15_0_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_15_0_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x00
+                        		case 0x01:
+                        			#ifdef CY_PINS_GPIO_15_1_H 
+                        				GPIO_15_1_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_15_1_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_15_1_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x01
+                        		case 0x02:
+                        			#ifdef CY_PINS_GPIO_15_2_H 
+                        				GPIO_15_2_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_15_2_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_15_2_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x02
+                        		case 0x03:
+                        			#ifdef CY_PINS_GPIO_15_3_H 
+                        				GPIO_15_3_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_15_3_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_15_3_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x03
+                        		case 0x04:
+                        			#ifdef CY_PINS_GPIO_15_4_H 
+                        				GPIO_15_4_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_15_4_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_15_4_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x04
+                        		case 0x05:
+                        			#ifdef CY_PINS_GPIO_15_5_H 
+                        				GPIO_15_5_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_15_5_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_15_5_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x05
+                        		case 0x06:
+                        			#ifdef CY_PINS_GPIO_15_6_H 
+                        				GPIO_15_6_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_15_6_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_15_6_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x06
+                        		case 0x07:
+                        			#ifdef CY_PINS_GPIO_15_7_H 
+                        				GPIO_15_7_SetDriveMode(PIN_DM_DIG_HIZ);
+                        				counter_clock_Start();
+                        				COUNTER_RESET_Write(0);
+                        				
+                        				while ((!GPIO_15_7_Read()) && (!read_timeout)){
+                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
+                        				}
+                        				
+                        				if (!read_timeout){
+                        					COUNTER_RESET_Write(1);
+                        					COUNTER_RESET_Write(0);
+                        					
+                        					while((GPIO_15_7_Read()) && (!write_timeout)){
+                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
+                        					}
+                        					counter_clock_StopBlock();
+                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
+                        					else {us_count = Counter_1_ReadPeriod();}
+                        				}
+                        			#endif
+                        		break; //0x07
+                        	}
+                        break; //0x0F
+                }
+                break; //cmd 0x00
+                
+                case 0x01: Counter_1_WritePeriod(timeout); break;
+                
             }
+            Counter_1_Stop();
             *result = us_count;
             return true;
         }
