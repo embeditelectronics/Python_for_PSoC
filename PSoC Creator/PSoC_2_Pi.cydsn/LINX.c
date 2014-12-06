@@ -406,9 +406,9 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
             // TODO: For now, only supports the sequenced SAR ADC, could potentially add more ADC devices
             #ifdef CY_ADC_SAR_Seq_1_H
-                response_data_len = 10;
-                for (i = 1; i < 11; ++i) {
-                    response_data[i] = i;
+                response_data_len = 8;
+                for (i = 0; i < 8; ++i) {
+                    response_data[i] = i+1;
                 }
             #endif
             
