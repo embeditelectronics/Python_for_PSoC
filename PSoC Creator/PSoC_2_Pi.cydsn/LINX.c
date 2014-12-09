@@ -820,23 +820,20 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // I2C Write
         case 0xE2: {
-             #ifdef CY_I2C_I2C_1_H
-                    #if(I2C_1_MODE_MASTER_ENABLED)
             DEBUG_PRINT("I2C Write\r\n");
             
             // Set transfer type
             uint8 mode;
             switch(command[8]) {
-                case(0x00): mode = I2C_1_MODE_COMPLETE_XFER; break;
-                case(0x01): mode = I2C_1_MODE_REPEAT_START; break;
-                case(0x02): status = LINX_STATUS_LI2C_EOF; break;
-                case(0x03): mode = I2C_1_MODE_NO_STOP; break;
+                        case(0x00): mode = I2C_1_MODE_COMPLETE_XFER; break;
+                        case(0x01): mode = I2C_1_MODE_REPEAT_START; break;
+                        case(0x02): status = LINX_STATUS_LI2C_EOF; break;
+                        case(0x03): mode = I2C_1_MODE_NO_STOP; break;
             }
             
             // Break if status is non-okay
             if (status != LINX_STATUS_L_OK) break;
-                    #endif
-            #endif
+
             switch(command[6]) {
                 #ifdef CY_I2C_I2C_1_H
                     #if(I2C_1_MODE_MASTER_ENABLED)
@@ -871,15 +868,11 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
             // Set transfer type
             uint8 mode;
-            switch(command[8]) {
-            #ifdef CY_I2C_I2C_1_H
-                #if(I2C_1_MODE_MASTER_ENABLED)
+            switch(command[11]) {
                 case(0x00): mode = I2C_1_MODE_COMPLETE_XFER; break;
                 case(0x01): mode = I2C_1_MODE_REPEAT_START; break;
                 case(0x02): status = LINX_STATUS_LI2C_EOF; break;
                 case(0x03): mode = I2C_1_MODE_NO_STOP; break;
-                #endif
-            #endif
             }
             
             // Break if status is non-okay
