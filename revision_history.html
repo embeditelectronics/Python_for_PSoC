@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Revision History &mdash; RPiSoC Python API 1.2.0 documentation</title>
+    <title>Revision History &mdash; RPiSoC Python API 1.2.4 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.2.0',
+        VERSION:     '1.2.4',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="RPiSoC Python API 1.2.0 documentation" href="index.html" />
+    <link rel="top" title="RPiSoC Python API 1.2.4 documentation" href="index.html" />
     <link rel="prev" title="Example Projects!" href="examples.html" /> 
   </head>
   <body>
@@ -39,7 +39,7 @@
         <li class="right" >
           <a href="examples.html" title="Example Projects!"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.2.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.2.4 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -52,7 +52,143 @@
 <h1>Revision History<a class="headerlink" href="#revision-history" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="version-1-2">
 <h2>Version 1.2<a class="headerlink" href="#version-1-2" title="Permalink to this headline">¶</a></h2>
-<p>This version makes versioning the python much simpler. It allows for much easier modification to the RPiSoC code, without needing to version those changes in the python code. Instead, when a connection is established, the python will request specific compiled data from the RPiSoC and save it within a parent class for global use.</p>
+<p>This version makes versioning the python much simpler. It allows for much easier modification to the RPiSoC firmware, without needing to version those changes in the python code. It also simplifies the API expansion process greatly for new developers, and provides frameworks for easy integration of new interfaces.</p>
+<div class="section" id="new-to-v1-2-4">
+<h3>New to v1.2.4<a class="headerlink" href="#new-to-v1-2-4" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><dl class="docutils">
+<dt>In the RPiSoC code</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Added support for a standard Ultrasonic Range Finder, which should be useable by any SR-series range finer, excluding the 08 (which uses a different protocol), and the 3-pin Parallax ranger.</dt>
+<dd><ul class="first last simple">
+<li>Generally, it will support any range finder that uses a GPIO protocol based on pulse length measurements.</li>
+<li>This includes both 3-pin, 4-pin, and 5-pin devices</li>
+<li>Trigger length, and timeout duration is set on the application layer, so it can be as transportable as possible</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>It was originally implemented using a hardware timer capturing clock events between the rising and falling edge of an input pin, but it required the use of customized digital logic and cascaded hardware multiplexers to handle the routing of any GPIO to the Timers input.</dt>
+<dd><ul class="first last simple">
+<li>At full scale, this used more digital resources than was acceptable, and so it was abandoned for a software approach</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">The timer component is still used for accuracy purposes, but it is used in its fixed function state, so that no UDB resources are wasted, and the routing was handled in software</p>
+</li>
+</ul>
+</dd>
+<dt>In module <em>digital.py</em></dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Added class <em>rangeFinder()</em> with the following supported methods:</dt>
+<dd><ul class="first last simple">
+<li>readRaw(SIGNAL_PIN, TRIGGER_PIN, delay, timeout): gets a raw value from the RPiSoC, which is representative of how many microseconds the rangers echo pin was held high. It will trigger the range by sending a pulse of length <em>delay</em>, in microseconds. The result will be measured on SIGNAL_PIN, and stop measuring after <em>timeout</em> microseconds</li>
+<li>readMeters(): Uses readRaw to get a raw time value in microseconds, and then calculates the distance between the ranger and the pinged object in meters</li>
+<li>readCentimeters(): Uses readRaw to get a raw time value in microseconds, and then calculates the distance between the ranger and the pinged object in centimeters</li>
+<li>readInches(): Uses readRaw to get a raw time value, and then calculates the distance between the ranger and the pinged object in Inches</li>
+<li>setDelay(): Sets the length of the trigger pulse, in microseconds, which will be used to tell the device to send out a ping. This is handled in __init__, so it should only be called under unique circumstances.</li>
+<li>setTimeout(): Sets the timeout length in microseconds. If the RPiSoC is still waiting for a completed response after this amount of time, it will stop counting and immediately return the result</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="new-to-v1-2-3">
+<h3>New to v1.2.3<a class="headerlink" href="#new-to-v1-2-3" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><dl class="docutils">
+<dt>In the RPiSoC code</dt>
+<dd><ul class="first last simple">
+<li>Included custom component for NeoPixel (or general WS2812 strip light) control. Output is on Port 6, pin 0 (required by the shield).</li>
+<li>This means that the first PWM output, which was on P6[0], had to be moved to Port 0 Pin 2</li>
+</ul>
+</dd>
+<dt>In module digital.py</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Added class <em>NeoPixelShield()</em> which supports use of the NeoPixels Arduino shield through Python. Included methods are:</dt>
+<dd><ul class="first last simple">
+<li>Start(): Powers up and enables the needed hardware for the NeoPixels component</li>
+<li>Stop() : Powers down and disables the hardware used by the NeoPixels component</li>
+<li>Stripe(<em>len</em>, color): Draws a line of length <em>len</em> of the stated <em>color</em>, starting from the first pixel, and extending as far as the 40th (last) pixel. It will wrap around rows</li>
+<li>SetPixel(row, column, color): Sets a pixel of the stated <em>color</em> at position (x,y) = (<em>row</em>, <em>column</em>)</li>
+<li>DrawRow(row, color): Fully draws the chosen <em>row</em> the desired <em>color</em></li>
+<li>DrawColumn(column, color): Fully draws the chosen <em>column</em> the desired <em>color</em></li>
+<li>Dim(level): Preserves the color to be drawn to the shield, but dims the brightness.</li>
+<li>Added 140 predefined colors as class attributes. They are the standardized colors of the HTML and CSS interfaces, and they are called by their official names, so for an object constructed as &#8216;shield&#8217;, you could access the color black with <em>shield.Black</em></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</div>
+<div class="section" id="new-to-v1-2-2">
+<h3>New to v1.2.2<a class="headerlink" href="#new-to-v1-2-2" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><dl class="docutils">
+<dt>In the RPiSoC code</dt>
+<dd><ul class="first last simple">
+<li>USBUART (Serial) support has been added, allowing for use of the board through PC interfaces</li>
+</ul>
+</dd>
+<dt>In module rpisoc.py</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Added class <em>SERIAL()</em> which will open a Windows COM Port, or a <a href="#id1"><span class="problematic" id="id2">*</span></a>nix Serial Port, for communication with the RPiSoC over any baud rate</dt>
+<dd><ul class="first last simple">
+<li>It is chosen from the application layer by:</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="docutils">
+<dt>RPiSoC(port_name)</dt>
+<dd><ul class="first last simple">
+<li>For windows port name will be &#8216;COMx&#8217;, and for <a href="#id3"><span class="problematic" id="id4">*</span></a>nix it will be &#8216;/dev/...&#8217;</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="new-to-v1-2-1">
+<h3>New to v1.2.1<a class="headerlink" href="#new-to-v1-2-1" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><dl class="docutils">
+<dt>This was a largely structural change to the RPiSoC firmware. It redesigned the data structures in place for handling of device requests.</dt>
+<dd><ul class="first last">
+<li><p class="first">A bit-field struct is now used as the global data vessel, which will contain all needed data for any request made</p>
+</li>
+<li><dl class="first docutils">
+<dt>An additional layer of abstraction was added to the firmware, which should simplify the process of expansion for new developers</dt>
+<dd><ul class="first last simple">
+<li>Functions that make calls to hardware registers no longer handle any data packing- they all require meaningful, unpacked data as arguments</li>
+<li>The new abstraction layer handles bit unpacking, and then repacking into the bit-field for any supported device</li>
+<li>This bit-field, which should contain all relevant data, is then passed to the hardware layer where all arguments will be derived directly from an attribute of the struct</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Parallel work done by Mark Bradley has been merged with my work for LabVIEW support through a LINX bridge</p>
+</li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</div>
 <div class="section" id="new-to-v1-2-0">
 <h3>New to v1.2.0<a class="headerlink" href="#new-to-v1-2-0" title="Permalink to this headline">¶</a></h3>
 <blockquote>
@@ -307,6 +443,10 @@
   <ul>
 <li><a class="reference internal" href="#">Revision History</a><ul>
 <li><a class="reference internal" href="#version-1-2">Version 1.2</a><ul>
+<li><a class="reference internal" href="#new-to-v1-2-4">New to v1.2.4</a></li>
+<li><a class="reference internal" href="#new-to-v1-2-3">New to v1.2.3</a></li>
+<li><a class="reference internal" href="#new-to-v1-2-2">New to v1.2.2</a></li>
+<li><a class="reference internal" href="#new-to-v1-2-1">New to v1.2.1</a></li>
 <li><a class="reference internal" href="#new-to-v1-2-0">New to v1.2.0</a></li>
 </ul>
 </li>
@@ -358,12 +498,12 @@
         <li class="right" >
           <a href="examples.html" title="Example Projects!"
              >previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.2.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.2.4 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2014, Embedit Electronics.
-      Last updated on Nov 14, 2014.
+      Last updated on Dec 10, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

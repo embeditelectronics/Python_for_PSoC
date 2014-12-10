@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>API modules &mdash; RPiSoC Python API 1.2.0 documentation</title>
+    <title>API modules &mdash; RPiSoC Python API 1.2.4 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.2.0',
+        VERSION:     '1.2.4',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="RPiSoC Python API 1.2.0 documentation" href="index.html" />
+    <link rel="top" title="RPiSoC Python API 1.2.4 documentation" href="index.html" />
     <link rel="next" title="Making Changes to the API" href="making_changes.html" />
     <link rel="prev" title="Getting Started" href="getting_started.html" /> 
   </head>
@@ -43,7 +43,7 @@
         <li class="right" >
           <a href="getting_started.html" title="Getting Started"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.2.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.2.4 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -295,14 +295,14 @@ be initialized.</p>
 </dl>
 <dl class="staticmethod">
 <dt id="rpisoc.RPiSoC.__new__">
-<em class="property">static </em><tt class="descname">__new__</tt><big>(</big><em>commChannel</em>, <em>DEBUG=False</em><big>)</big><a class="headerlink" href="#rpisoc.RPiSoC.__new__" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><tt class="descname">__new__</tt><big>(</big><em>protocol</em>, <em>DEBUG=False</em><big>)</big><a class="headerlink" href="#rpisoc.RPiSoC.__new__" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt><strong>Description:</strong></dt>
 <dd>Called upon construction of the class. It will decide the communication
 protocol to be utilized by the API and it will attempt to learn what components are available on the RPiSoC, and some needed information about the available components.</dd>
 <dt><strong>Parameters:</strong></dt>
 <dd><ul class="first last simple">
-<li>commChannel: SPI or I2C</li>
+<li>commChannel: SPI, I2C, or COM&lt;#&gt;, as in COM1, COM2, COM3...</li>
 </ul>
 </dd>
 <dt><strong>Optional Parameters:</strong></dt>
@@ -317,6 +317,112 @@ protocol to be utilized by the API and it will attempt to learn what components 
 </li>
 </ul>
 </dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="rpisoc.SERIAL">
+<em class="property">class </em><tt class="descclassname">rpisoc.</tt><tt class="descname">SERIAL</tt><big>(</big><em>com</em>, <em>baudr=9600</em><big>)</big><a class="headerlink" href="#rpisoc.SERIAL" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Provides a Serial interface for communicating with the RPiSoC through a desired COM port</dd>
+<dt><strong>Description:</strong></dt>
+<dd>opens the desired COM port at the specified baud, defaults to 9600 if no additional parameter is given</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><em>com:</em> A string representative of the desired COM port. For instance &#8216;COM16&#8217; to open COM16.</dd>
+</dl>
+<dl class="method">
+<dt id="rpisoc.SERIAL.PrepareData">
+<tt class="descname">PrepareData</tt><big>(</big><em>dat</em><big>)</big><a class="headerlink" href="#rpisoc.SERIAL.PrepareData" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Makes sure that the data being sent is correctly formatted, so that the RPiSoC is able to more easily decode the received words.</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt><em>dat:</em> A tuple of length 2 or 3</dt>
+<dd><ul class="first last simple">
+<li>The size of the first two items of the tuple must be less than or equal to one byte each.</li>
+<li>The size of the third item in the tuple, if applicable, must be less than or equal to two bytes.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt><strong>Returns:</strong></dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt><em>dat_l:</em> A list of length 4, prepared for SPI transfer, with the following construction:</dt>
+<dd><ul class="first last simple">
+<li>[dat[0], dat[1], dat[2]__LOW_BYTE, dat[2]__HIGH_BYTE]</li>
+<li>The RPiSoC is expecting receipt of these 4 bytes, in this order.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="rpisoc.SERIAL.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>com</em>, <em>baudr=9600</em><big>)</big><a class="headerlink" href="#rpisoc.SERIAL.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>opens the desired COM port at the specified baud, defaults to 9600 if no additional parameter is given</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><em>com:</em> A string representative of the desired COM port. For instance &#8216;COM16&#8217; to open COM16.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="rpisoc.SERIAL.cleanup">
+<tt class="descname">cleanup</tt><big>(</big><big>)</big><a class="headerlink" href="#rpisoc.SERIAL.cleanup" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Forces a software reset on the RPiSoC to clean it up, then it closes and cleans up the serial port.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="rpisoc.SERIAL.receiveData">
+<tt class="descname">receiveData</tt><big>(</big><em>vals</em>, <em>delay=None</em><big>)</big><a class="headerlink" href="#rpisoc.SERIAL.receiveData" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>This function is called when a returned value from the RPiSoC is needed. It will send a command, and then wait for a response.</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><em>vals:</em> A tuple which will be sent to the <em>PrepareData()</em> function to be restructured into a list of length 4, and then sent to the RPiSoC over the requested COM/Serial port.</dd>
+<dt><strong>Returns:</strong></dt>
+<dd><dl class="first last docutils">
+<dt>The data packet received from the PSoC, which has been unpacked and reformatted.</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Since the largest possible value that the PSoC will generally send is a 20 bit number, if a number received is sufficiently large, it will assume that the number overflowed backwards because the PSoC tried to send a negative number.</dt>
+<dd><ul class="first last simple">
+<li>It will account for this by subtracting (2^32 - 1) from the received data, if that data is larger than (2^24 -1)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="rpisoc.SERIAL.sendData">
+<tt class="descname">sendData</tt><big>(</big><em>vals</em><big>)</big><a class="headerlink" href="#rpisoc.SERIAL.sendData" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>This function will send data to the RPiSoC, without waiting for a return</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><em>vals:</em> A tuple which will be sent to the <em>PrepareData()</em> function to be restructured into a list of length 4, and then sent to the rpisoc over the requested COM/Serial port.</dd>
 </dl>
 </dd></dl>
 
@@ -371,7 +477,7 @@ protocol to be utilized by the API and it will attempt to learn what components 
 <tt class="descname">cleanup</tt><big>(</big><big>)</big><a class="headerlink" href="#rpisoc.SPI.cleanup" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt><strong>Description:</strong></dt>
-<dd>Forces a software reset on the RPiSoC to clean up its GPIO, then it closes and cleans up the SPI bus.</dd>
+<dd>Forces a software reset on the RPiSoC and then closes and cleans up the SPI bus.</dd>
 </dl>
 </dd></dl>
 
@@ -417,9 +523,168 @@ protocol to be utilized by the API and it will attempt to learn what components 
 
 </dd></dl>
 
+<dl class="function">
+<dt id="rpisoc.Test_Read">
+<tt class="descclassname">rpisoc.</tt><tt class="descname">Test_Read</tt><big>(</big><em>val</em><big>)</big><a class="headerlink" href="#rpisoc.Test_Read" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Used to test the accuracy of data transfer between devices. It will simply echo back what is given to it as a parameter.</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><em>val:</em> a 16-bit number which will be sent to the RPiSoC, and then returned.</dd>
+<dt><strong>Returns:</strong></dt>
+<dd><em>echo:</em> The data returned from the RPiSoC; if transmission of <em>val</em> was successful, <em>echo</em> should be equal to <em>val</em></dd>
+</dl>
+</dd></dl>
+
 </div>
 <div class="section" id="module-digital">
 <span id="digital-py"></span><h2>digital.py<a class="headerlink" href="#module-digital" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="digital.NeoPixelShield">
+<em class="property">class </em><tt class="descclassname">digital.</tt><tt class="descname">NeoPixelShield</tt><a class="headerlink" href="#digital.NeoPixelShield" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd><p class="first">This class provides functionality for use of an Arduino NeoPixels shield on an RPiSoC through Python. Create a NeoPixelShield object in the following
+way:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="n">shield</span> <span class="o">=</span> <span class="n">NeoPixelShield</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p><strong>Description:</strong>
+the init method defines the register address for the striplight controller used by the NeoPixels, and it defines 140 colors as class attributes, named according to their</p>
+<blockquote>
+<div>standardized HTML and CSS names</div></blockquote>
+<dl class="method">
+<dt id="digital.NeoPixelShield.Dim">
+<tt class="descname">Dim</tt><big>(</big><em>DIM_LEVEL</em><big>)</big><a class="headerlink" href="#digital.NeoPixelShield.Dim" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Preserves the color to be drawn to the shield, but dims the brightness.</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><em>DIM_LEVEL:</em> an integer between 0 and 4, 0 indicating full brightness, and 4 indicating full dim levelhe</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.NeoPixelShield.DrawColumn">
+<tt class="descname">DrawColumn</tt><big>(</big><em>column</em>, <em>color</em><big>)</big><a class="headerlink" href="#digital.NeoPixelShield.DrawColumn" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Fully draws the chosen <em>column</em> the desired <em>color</em></dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><p class="first"><em>column:</em> column which will be fully drawn; valid entries between 0 and 7
+<em>color:</em> A 24-bit number representative of a BRG value</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>BRG components are given equal weight, so 8-bits each.</li>
+<li>There are predefined colors inside of the __init__ method, which can be called as shield.color</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.NeoPixelShield.DrawRow">
+<tt class="descname">DrawRow</tt><big>(</big><em>row</em>, <em>color</em><big>)</big><a class="headerlink" href="#digital.NeoPixelShield.DrawRow" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Fully draws the chosen <em>row</em> the desired <em>color</em></dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><p class="first"><em>row:</em> row which will be fully drawn; valid entries between 0 and 4
+<em>color:</em> A 24-bit number representative of a BRG value</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>BRG components are given equal weight, so 8-bits each.</li>
+<li>There are predefined colors inside of the __init__ method, which can be called as shield.color</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.NeoPixelShield.SetPixel">
+<tt class="descname">SetPixel</tt><big>(</big><em>row</em>, <em>column</em>, <em>color</em><big>)</big><a class="headerlink" href="#digital.NeoPixelShield.SetPixel" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Sets the given pixel at location (x,y) = (row, column), to a color defined by a 24 bit BRG value (8-bits each)</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><p class="first"><em>row:</em> row which contains the desired pixel to be set; valid between 0 and 4
+<em>column:</em> column which contains the desired pixel to be set; valid between 0 and 7
+<em>color:</em> A 24-bit number representative of a BRG value</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>BRG components are given equal weight, so 8-bits each.</li>
+<li>There are predefined colors inside of the __init__ method, which can be called as shield.color</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.NeoPixelShield.SetPixelRGB">
+<tt class="descname">SetPixelRGB</tt><big>(</big><em>row</em>, <em>column</em>, <em>RGB</em><big>)</big><a class="headerlink" href="#digital.NeoPixelShield.SetPixelRGB" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Sets the given pixel at location (x,y) = (row, column), to a color defined by its RGB values independently</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><p class="first"><em>row:</em> row which contains the desired pixel to be set; valid between 0 and 4
+<em>column:</em> column which contains the desired pixel to be set; valid between 0 and 7
+<em>RGB:</em> A list or tuple, describing the RGB construction of the color</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>The first element will contain a number between 0 and 255, corresponding to the red byte</li>
+<li>The second element will contain a number between 0 and 255, corresponding to the blue byte</li>
+<li>The third element will contain a number between 0 and 255, corresponding to the green byte</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.NeoPixelShield.Start">
+<tt class="descname">Start</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.NeoPixelShield.Start" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Powers up and enables the needed hardware for the NeoPixels component</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.NeoPixelShield.Stop">
+<tt class="descname">Stop</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.NeoPixelShield.Stop" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Powers down and disables the hardware used by the NeoPixels component</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.NeoPixelShield.Stripe">
+<tt class="descname">Stripe</tt><big>(</big><em>pixelnum</em>, <em>color</em><big>)</big><a class="headerlink" href="#digital.NeoPixelShield.Stripe" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Draws a line of length <em>pixelnum</em> of the stated <em>color</em>, starting from the first pixel, and extending as far as the 40th
+(last) pixel. It will wrap around rows</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><p class="first"><em>pixelnum:</em> A number between 1 and 40, which indicates how many pixels, starting with pixel (0,0), will be filled.
+<em>color:</em> A 24-bit number representative of a BRG value</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>BRG components are given equal weight, so 8-bits each.</li>
+<li>There are predefined colors inside of the __init__ method, which can be called as shield.color</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="class">
 <dt id="digital.PWM">
 <em class="property">class </em><tt class="descclassname">digital.</tt><tt class="descname">PWM</tt><big>(</big><em>portNumber</em><big>)</big><a class="headerlink" href="#digital.PWM" title="Permalink to this definition">¶</a></dt>
@@ -440,7 +705,7 @@ way:</p>
 <li><dl class="first docutils">
 <dt><em>portNumber:</em> Valid inputs are 0-(N-1), assuming that there are N PWM channels in your RPiSoC schematic (8 by default).</dt>
 <dd><ul class="first last simple">
-<li>For the default version of V1.2, this number corresponds to the respective pin on Port 6.</li>
+<li>For the default version of V1.2/4, this number corresponds to the respective pin on Port 6 for channels 1-7, and P0[2] for PWM(0)</li>
 </ul>
 </dd>
 </dl>
@@ -479,7 +744,7 @@ way:</p>
 
 <dl class="method">
 <dt id="digital.PWM.GetDutyCycle">
-<tt class="descname">GetDutyCycle</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.PWM.GetDutyCycle" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">GetDutyCycle</tt><big>(</big><em>PRECISION=2</em><big>)</big><a class="headerlink" href="#digital.PWM.GetDutyCycle" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt><strong>Description:</strong></dt>
 <dd>Calculates the current duty cycle based on the current period and comparison values.</dd>
@@ -491,7 +756,7 @@ on, relative to the total length of its period.</dd>
 
 <dl class="method">
 <dt id="digital.PWM.GetFrequency">
-<tt class="descname">GetFrequency</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.PWM.GetFrequency" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">GetFrequency</tt><big>(</big><em>PRECISION=2</em><big>)</big><a class="headerlink" href="#digital.PWM.GetFrequency" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt><strong>Description:</strong></dt>
 <dd>Calculates the current PWM wave frequency based on the current clock rate and period value</dd>
@@ -609,7 +874,7 @@ This value is then saved in the RPiSoC class so that it can be referenced to cal
 
 <dl class="method">
 <dt id="digital.PWM.SetFrequency">
-<tt class="descname">SetFrequency</tt><big>(</big><em>freq</em><big>)</big><a class="headerlink" href="#digital.PWM.SetFrequency" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">SetFrequency</tt><big>(</big><em>freq</em>, <em>MAX_ERROR=5</em>, <em>MIN_PERIOD=10</em><big>)</big><a class="headerlink" href="#digital.PWM.SetFrequency" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt><strong>Description:</strong></dt>
 <dd>Attempts to set the PWM wave frequency to a desired rate by calculating an appropriate period value and/or clock rate
@@ -996,6 +1261,167 @@ After you do this, confirm that it was done correctly by using the DEBUG feature
 
 </dd></dl>
 
+<dl class="class">
+<dt id="digital.rangeFinder">
+<em class="property">class </em><tt class="descclassname">digital.</tt><tt class="descname">rangeFinder</tt><big>(</big><em>SIG</em>, <em>TRIGGER=None</em>, <em>DELAYus=10</em>, <em>TIMEOUTus=30000</em><big>)</big><a class="headerlink" href="#digital.rangeFinder" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>This class provides functionality for use of ultrasonic range finder devices that use standard GPIO pulse width measurement protocols.</dd>
+<dt><strong>Description:</strong></dt>
+<dd>Initialize an object by telling it what pin the echo time will be measured on. Optionally, provide a trigger pin if the ranger is a 4 or 5 pin form factor,
+also optionally provide a trigger pulse width and timeout value in milliseconds</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><dl class="first last docutils">
+<dt><em>SIG:</em> A list constructed as <em>[PORT, PIN]</em> which defines which exact pin will be used to communicate with the rangers signal/echo pin</dt>
+<dd><ul class="first last simple">
+<li>PORT is the port on the RPiSoC connected to the rangers signal pin</li>
+<li>PIN is the pin relative to that port</li>
+</ul>
+</dd>
+<dt><em>TRIGGER:</em> A list constructed as <em>[PORT, PIN]</em> which defines which exact pin will be used to communicate with the rangers trigger pin</dt>
+<dd><ul class="first last simple">
+<li>By default, if no argument is provided, it will assume the trigger pin is the same as the echo pin; this is true for 3-pin devices and so no argument is needed</li>
+<li>PORT is the port on the RPiSoC connected to the rangers trigger pin</li>
+<li>PIN is the pin relative to that port</li>
+</ul>
+</dd>
+<dt><em>DELAYus:</em> The width of the trigger pulse, in microseconds, that will be sent from the TRIGGER pin, to signal the ranger to send a ping</dt>
+<dd><ul class="first last simple">
+<li>This defaults as 10 microseconds, but most rangers are okay with much less.</li>
+</ul>
+</dd>
+<dt><em>TIMEOUTus:</em> The maximum length of time, in microseconds, that the RPiSoC will wait for a confirmed echo.</dt>
+<dd><ul class="first last">
+<li><p class="first">If this time is exceeded, the ranger will immediately terminate its timing process and return the timeout as a response</p>
+</li>
+<li><dl class="first docutils">
+<dt>This defaults as 30000 microseconds, which is equivalent to 30 ms, and is much longer than generally needed and so won&#8217;t usually need to be altered.</dt>
+<dd><ul class="first last simple">
+<li>Refer to your devices documentation for a more specific timeout choice</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="digital.rangeFinder.readCentimeters">
+<tt class="descname">readCentimeters</tt><big>(</big><em>sound=340.29</em>, <em>PRECISION=2</em><big>)</big><a class="headerlink" href="#digital.rangeFinder.readCentimeters" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Uses readRaw to get a raw time value in microseconds, and then calculates the distance between the ranger and the pinged object in centimeters</dd>
+<dt><strong>Optional Parameters:</strong></dt>
+<dd><dl class="first docutils">
+<dt><em>sound:</em> The speed of sound which is used to calcuate the distance of the object detected by the ranger.</dt>
+<dd><ul class="first last simple">
+<li>Defaults to 343 m/s (approximate value based on room temperature of air)</li>
+<li>Must be m/s</li>
+<li>Modify this according to your environmental needs (different temperature/medium)</li>
+</ul>
+</dd>
+</dl>
+<p class="last"><em>PRECISION:</em> The number of decimal points to be included in the returned result. Defualts to 2</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.rangeFinder.readInches">
+<tt class="descname">readInches</tt><big>(</big><em>sound=340.29</em>, <em>PRECISION=2</em><big>)</big><a class="headerlink" href="#digital.rangeFinder.readInches" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Uses readRaw to get a raw time value in microseconds, and then calculates the distance between the ranger and the pinged object in inches</dd>
+<dt><strong>Optional Parameters:</strong></dt>
+<dd><dl class="first docutils">
+<dt><em>sound:</em> The speed of sound which is used to calcuate the distance of the object detected by the ranger.</dt>
+<dd><ul class="first last simple">
+<li>Defaults to 343 m/s (approximate value based on room temperature of air)</li>
+<li>Must be m/s</li>
+<li>Modify this according to your environmental needs (different temperature/medium)</li>
+</ul>
+</dd>
+</dl>
+<p class="last"><em>PRECISION:</em> The number of decimal points to be included in the returned result. Defualts to 2</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.rangeFinder.readMeters">
+<tt class="descname">readMeters</tt><big>(</big><em>sound=343.0</em>, <em>PRECISION=2</em><big>)</big><a class="headerlink" href="#digital.rangeFinder.readMeters" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Uses readRaw to get a raw time value in microseconds, and then calculates the distance between the ranger and the pinged object in meters</dd>
+<dt><strong>Optional Parameters:</strong></dt>
+<dd><dl class="first docutils">
+<dt><em>sound:</em> The speed of sound which is used to calcuate the distance of the object detected by the ranger.</dt>
+<dd><ul class="first last simple">
+<li>Defaults to 343 m/s (approximate value based on room temperature of air)</li>
+<li>Must be m/s</li>
+<li>Modify this according to your environmental needs (different temperature/medium)</li>
+</ul>
+</dd>
+</dl>
+<p class="last"><em>PRECISION:</em> The number of decimal points to be included in the returned result. Defualts to 2</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.rangeFinder.readRaw">
+<tt class="descname">readRaw</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.rangeFinder.readRaw" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Description:</strong>
+gets a raw value from the RPiSoC, which is representative of how many microseconds the
+rangers echo pin was held high. It will trigger the range by sending a short pulse, the length defined upon construction of the object.
+The result will be measured on the desired signal pin, and stop measuring when a timeout is reached</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.rangeFinder.setDelay">
+<tt class="descname">setDelay</tt><big>(</big><em>delay_us</em><big>)</big><a class="headerlink" href="#digital.rangeFinder.setDelay" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Sets the length of the trigger pulse, in microseconds, which will be used to tell the device to send out a ping.</dd>
+<dt><strong>Parameters:</strong></dt>
+<dd><dl class="first last docutils">
+<dt><em>delay_us:</em> Amount of time, in microseconds, that the RPiSoC will hold its trigger pulse high</dt>
+<dd><ul class="first last simple">
+<li>This is a bit limited value (6-bits maximum), and so it cannot exceed 63, nor can it be below 0</li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt><strong>Notes:</strong></dt>
+<dd>This is handled in __init__, so it should only be called under unique circumstances</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.rangeFinder.setTimeout">
+<tt class="descname">setTimeout</tt><big>(</big><em>timeout_us</em><big>)</big><a class="headerlink" href="#digital.rangeFinder.setTimeout" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Description:</strong>
+Sets the timeout length in microseconds. If the RPiSoC is still waiting for a completed response after this amount of time, it
+will stop counting and immediately return the result</p>
+<dl class="docutils">
+<dt><strong>Parameters:</strong></dt>
+<dd><dl class="first last docutils">
+<dt><em>timeout_us:</em> Amount of time, in microseconds, that the RPiSoC will wait for a completed response.</dt>
+<dd><ul class="first last simple">
+<li>This is a 16 bit value, and so it cannot exceed 65535, nor can it be below 0</li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt><strong>Notes:</strong></dt>
+<dd>This is handled in __init__, so it should only be called under unique circumstances</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-analog">
 <span id="analog-py"></span><h2>analog.py<a class="headerlink" href="#module-analog" title="Permalink to this headline">¶</a></h2>
@@ -1210,7 +1636,7 @@ way:</p>
 
 <dl class="class">
 <dt id="analog.CapSense">
-<em class="property">class </em><tt class="descclassname">analog.</tt><tt class="descname">CapSense</tt><big>(</big><em>PIN</em><big>)</big><a class="headerlink" href="#analog.CapSense" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">analog.</tt><tt class="descname">CapSense</tt><big>(</big><em>PIN</em>, <em>THRESHOLD=0</em><big>)</big><a class="headerlink" href="#analog.CapSense" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Description:</strong>
 Provides functionality for use of CapSense buttons on the RPiSoC. Define a CapSense object in the following
 way:</p>
@@ -1218,7 +1644,8 @@ way:</p>
 </pre></div>
 </div>
 <p><strong>Parameters:</strong></p>
-<ul>
+<blockquote>
+<div><ul>
 <li><dl class="first docutils">
 <dt><em>PIN</em>: The capsense pin number. PIN n directly corresponds to the pin which you assign to Capsense_BTN_N in your rpisoc firmware</dt>
 <dd><ul class="first last">
@@ -1236,12 +1663,27 @@ way:</p>
 </dl>
 </li>
 </ul>
+</div></blockquote>
+<p><strong>Optional Parameters:</strong></p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt><em>THRESHOLD</em>: The number of counts, between 0 and 255, which will be added to your calibrated baseline value to determine if a button has been touched.</dt>
+<dd><ul class="first last simple">
+<li><em>0</em> means that the baseline value itself will be used as a comparison value. Generally, baseline + THRESHOLD is used</li>
+<li>The threshold may need to be high if the button data is noisy. Try printing the results of <em>readRaw()</em> to get an understanding of the output behavior as you touch the button, this will help determine a suitable value</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
 <dl class="method">
 <dt id="analog.CapSense.Read">
 <tt class="descname">Read</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.CapSense.Read" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt><strong>Description:</strong></dt>
-<dd>Gives the state of the capsense button</dd>
+<dd>Gives the state of the capsense button, as determined by the PSoC firmware. This will need to be calibrated in the CapSense component for optimal results. Use isTouched for more general application.</dd>
 <dt><strong>Returns:</strong></dt>
 <dd>state: bool which represents the current state of the capsense button.</dd>
 </dl>
@@ -1261,7 +1703,8 @@ way:</p>
 <tt class="descname">Start</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.CapSense.Start" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt><strong>Description:</strong></dt>
-<dd>Initializes registers and enables active mode power template bits of the subcomponents used within CapSense.</dd>
+<dd>Initializes registers and enables active mode power template bits of the subcomponents used within CapSense. It also attempts to establish a CapSense baseline, which will be used as a comparison value in the <em>isTouched()</em> method.
+The button should not be touched when this method is called, otherwise the baseline value will be calibrated with a touched value. It will only set the baseline if it sees two identical readings in a row.</dd>
 </dl>
 </dd></dl>
 
@@ -1280,6 +1723,26 @@ way:</p>
 <dd><dl class="docutils">
 <dt><strong>Description:</strong></dt>
 <dd>Restores CapSense configuration and nonretention register values after the device wake from a low power mode sleep mode.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="analog.CapSense.isTouched">
+<tt class="descname">isTouched</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.CapSense.isTouched" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Uses the calibrated baseline and provided threshold value to determine if the requested CapSense button is being touched</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="analog.CapSense.readRaw">
+<tt class="descname">readRaw</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.CapSense.readRaw" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="docutils">
+<dt><strong>Description:</strong></dt>
+<dd>Gives an 8-bit raw value from the capsense raw data array. This is used to generate a baseline in <em>Start()</em></dd>
+<dt><strong>Returns:</strong></dt>
+<dd>val: int which represents the raw value on the capsense button</dd>
 </dl>
 </dd></dl>
 
@@ -1344,7 +1807,7 @@ Sets a current in milliamps to be output on the specified IDAC. Valid values dep
 <dd><ul class="first last simple">
 <li><em>0</em>: Sets full scale range to <strong>31.875 uA</strong></li>
 <li><em>1</em>: Sets full scale range to <strong>255 uA</strong></li>
-<li><em>2</em>: Sets full scale range to <strong>2 mA</strong></li>
+<li><em>2</em>: Sets full scale range to <strong>2.04 mA</strong></li>
 </ul>
 </dd>
 </dl>
@@ -1613,7 +2076,7 @@ the waveforms peak voltage and the DC Bias, respectively. These are defaulted to
 </ul>
 </dd>
 </dl>
-<p><strong>Note:</strong> <em>V1.1</em> intends to introduce defining your own custom waveforms.</p>
+<p><strong>Note:</strong> <em>V1.3</em> intends to introduce defining your own custom waveforms.</p>
 </dd></dl>
 
 <dl class="method">
@@ -1822,10 +2285,19 @@ way:</p>
 
 <dl class="method">
 <dt id="analog.analogPin.ReadVolts">
-<tt class="descname">ReadVolts</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.analogPin.ReadVolts" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">ReadVolts</tt><big>(</big><em>PRECISION=2</em><big>)</big><a class="headerlink" href="#analog.analogPin.ReadVolts" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt><strong>Description:</strong></dt>
 <dd>Reads the specified analog pin and converts that digital reading to a voltage in Volts.</dd>
+<dt><strong>Optional Parameters:</strong></dt>
+<dd><dl class="first last docutils">
+<dt><em>PRECISION:</em> The number of decimal points the voltage will be rounded to.</dt>
+<dd><ul class="first last simple">
+<li>The default value is 2, but precision up to 5 points is available.</li>
+</ul>
+</dd>
+</dl>
+</dd>
 <dt><strong>Returns:</strong></dt>
 <dd>Value in <em>Volts</em> which is being applied to the specified analog pin. The resolution of the ADC does not affect this method; the conversion process accounts for the ADC resolution.</dd>
 </dl>
@@ -1943,12 +2415,12 @@ way:</p>
         <li class="right" >
           <a href="getting_started.html" title="Getting Started"
              >previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.2.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.2.4 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2014, Embedit Electronics.
-      Last updated on Nov 14, 2014.
+      Last updated on Dec 10, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

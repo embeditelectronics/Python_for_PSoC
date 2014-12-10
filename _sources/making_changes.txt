@@ -9,7 +9,8 @@ By default, the API (V1.2) is configured with the following components available
 		* This includes all of Port 2, 5, and 6, as well as P0[5], P0[6], P15[4], and P15[5]
 	- 8 PWMs
 		* All are 16-bit resolution by default
-		* They are available on Port 6
+		* PWM channel 0 is available on Port 0 Pin 2
+		* PWM channels 1-7 are available on Port 6 Pins 1-7
 		* They are clocked by 4 different clock sources
 			+ PWM 1 and 2 are connected (default 3MHz)
 			+ PWM 3 and 4 are connected (default 3MHz)
@@ -58,7 +59,7 @@ This is the only change that will require a slight change to the code, but it is
 		* Modify the remaining parameters as you see fit
 		* Connect the PWM output to a digital output pin, with HW connection
 		* Connect the PWM to a clock source
-			+ There a number of ways to do this, and you should be aware of the effects. Each PWM block can potentially be driven independently by it's own clock source, or it can share the clock source of another unit. Keep in mind that if you use the SetFrequency(), SetClockDivider(), or SetClocks() method of the PWM class, you will be changind this clock, and not necessarily anything about the PWM block itself. This means your changes will affect the behavior of all PWM's assosiated with it. 
+			+ There a number of ways to do this, and you should be aware of the effects. Each PWM block can potentially be driven independently by it's own clock source, or it can share the clock source of another unit. Keep in mind that if you use the SetFrequency(), SetClockDivider(), or SetClocks() method of the PWM class, you will be changing this clock, and not necessarily anything about the PWM block itself (except for possible with SetFrequency). This means your changes will affect the behavior of all PWM's associated with it. 
 			+ If you add a new clock, make sure it is named in accordance with the others. A fifth clock would be named as PWM_CLK_5
 			+ If you wish to tie the PWM's clock to a clock already available (this is often required since there are a limited number of clocks available), simply draw a wire from the clk input of the PWM component, to the existing wire on the clock you wish to share. (TAKE NOTE OF THAT CLOCK NAME)
 	- Assign your pins a location
@@ -154,6 +155,10 @@ To add these features back:
 	- Make sure to attach your component outputs to an analog pin, and then assign that pin to a physical location in your design wide resources (.cydwr)
 	- In this case, certain components are restricted to certain pin assignments. For instance, the IDAC's will want to be placed at only a couple different locations, otherwise they cannot operate at full power. When you search for a pin location in the drop down menu, next to the pin location will be the suggested use. For an IDAC_out pin, find one with a label that reads "IDAC:HI" -- If you are buffering your DACs, you need you connect the pin to a location labled with "OpAmp:out"
 
+Notes about included Peripheral components
+++++++++++++++++++++++++++++++++++++++++++
+You will notice an extra page on the schematic file which contains a StripLights custom component, and a Timer block. Both of these are needed, configured exactly as they are, for the NeoPixels shield and Ultrasonic Range Finder, respectively. If you do not need one or both of these, you can simply delete them to save your resources
+
 Expanding the API to include features/components that are not yet supported
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-I like to think I included the overwhelming majority of use cases with this API, but for more advanced users, this is of course not entirely the case. There are a number of components that could be added, but don't have support, such as quadrature decoding, op-amps, digital filters, etc. I did keep this in mind when designing the software architecture though, and so there exists a very specific, and relatively easy to follow procedure for how to work these kinds of things in, but for now, I will ask that any requests for new features be sent to me, and we can work on getting your suggested feature into the official version. In the future, I will update this section to explain exactly the procedure to follow for handling this.
+I like to think I included the overwhelming majority of use cases with this API, but for more advanced users, this is of course not entirely the case. There are a number of components that could be added, but don't have support, such as quadrature decoding, op-amps, digital filters, etc. I did keep this in mind when designing the software architecture though, and so there exists a very specific, and relatively easy to follow procedure for how to work these kinds of things in, but for now, I will ask that any requests for new features be sent to me, and we can work on getting your suggested feature into the official version. In the future, I will add a new section to explain exactly the procedure to follow for handling this.

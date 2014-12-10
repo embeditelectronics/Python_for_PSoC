@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Example Projects! &mdash; RPiSoC Python API 1.2.0 documentation</title>
+    <title>Example Projects! &mdash; RPiSoC Python API 1.2.4 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.2.0',
+        VERSION:     '1.2.4',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="RPiSoC Python API 1.2.0 documentation" href="index.html" />
+    <link rel="top" title="RPiSoC Python API 1.2.4 documentation" href="index.html" />
     <link rel="next" title="Revision History" href="revision_history.html" />
     <link rel="prev" title="Making Changes to the API" href="making_changes.html" /> 
   </head>
@@ -43,7 +43,7 @@
         <li class="right" >
           <a href="making_changes.html" title="Making Changes to the API"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.2.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.2.4 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -90,55 +90,16 @@ code:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="voltmeter-using-the-12-bit-successive-approximation-adc">
-<h2>Voltmeter using the 12-bit Successive Approximation ADC<a class="headerlink" href="#voltmeter-using-the-12-bit-successive-approximation-adc" title="Permalink to this headline">¶</a></h2>
-<p>This is the same concept as the previous example, except it is done in a totally different way using the SAR ADC. Here, we are using the <em>StartConvert()</em> and <em>StopConvert()</em> methods to manually control each conversion, instead of using <em>Read()</em> like in the above example, which hides that functionality.</p>
-<p>Remember that the SAR ADC being used here is on P15[4] now, not P15[5] like in the previous example!</p>
-<p>code:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span>
-
-<span class="n">My_SAR_ADC</span> <span class="o">=</span> <span class="n">ADC</span><span class="p">(</span><span class="s">&#39;SAR0&#39;</span><span class="p">)</span>
-
-<span class="n">out_3v3</span> <span class="o">=</span> <span class="n">digitalPin</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s">&#39;OUT&#39;</span><span class="p">)</span>
-<span class="n">out_3v3</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
-        <span class="c">#My_SAR_ADC.SetOffset(40)</span>
-        <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">StartConvert</span><span class="p">()</span>
-
-        <span class="k">while</span> <span class="ow">not</span> <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">IsEndConversion</span><span class="p">():</span>
-            <span class="k">pass</span>
-
-        <span class="n">Counts</span> <span class="o">=</span> <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">GetResult</span><span class="p">()</span>
-        <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">StopConvert</span><span class="p">()</span>
-        <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">Stop</span><span class="p">()</span>
-
-        <span class="n">Volts</span> <span class="o">=</span> <span class="n">My_SAR_ADC</span><span class="o">.</span><span class="n">CountsTo_Volts</span><span class="p">(</span><span class="n">Counts</span><span class="p">)</span>
-        <span class="k">print</span><span class="p">(</span><span class="s">&#39;ADC OUTPUT:</span><span class="se">\t</span><span class="s"> </span><span class="si">%d</span><span class="s"> </span><span class="se">\n</span><span class="s">VOLTAGE:</span><span class="se">\t</span><span class="s"> </span><span class="si">%.5f</span><span class="s"> Volts </span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span><span class="p">(</span><span class="n">Counts</span><span class="p">,</span> <span class="n">Volts</span><span class="p">))</span>
-
-        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
-
-
-<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-    <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="simple-pwm-demo">
-<h2>Simple PWM Demo<a class="headerlink" href="#simple-pwm-demo" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pwm-demo">
+<h2>PWM Demo<a class="headerlink" href="#pwm-demo" title="Permalink to this headline">¶</a></h2>
 <p>This program demonstrates basic use of the PWM channels on the RPiSoC.</p>
-<p>To see the desired output, connect an LED to P6[0] and P6[2]</p>
+<p>To see the desired output, connect an LED to P0[2] and P6[2]</p>
 <p>The program will initialize two PWM objects, one of which will remain blinking
 with the same duty cycle and frequency, while the other will change according to user input</p>
 <p>While the program runs, the user will give terminal commands to modify the PWM&#8217;s
 period, comparison values, duty cycle, clock frequency, or wave frequency. These changes will then be read back by the RPiSoC, and displayed on the terminal.</p>
 <p>code:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span>
-
 <span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span>
 
 <span class="n">My_PWM</span> <span class="o">=</span> <span class="n">PWM</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
@@ -327,8 +288,7 @@ held at a constant position.</p>
   <ul>
 <li><a class="reference internal" href="#">Example Projects!</a><ul>
 <li><a class="reference internal" href="#voltmeter-using-the-16-bit-delta-sigma-adc">Voltmeter using the 16-bit Delta-Sigma ADC</a></li>
-<li><a class="reference internal" href="#voltmeter-using-the-12-bit-successive-approximation-adc">Voltmeter using the 12-bit Successive Approximation ADC</a></li>
-<li><a class="reference internal" href="#simple-pwm-demo">Simple PWM Demo</a></li>
+<li><a class="reference internal" href="#pwm-demo">PWM Demo</a></li>
 <li><a class="reference internal" href="#simple-usage-of-digital-inputs-and-outputs">Simple usage of  digital inputs and outputs</a></li>
 <li><a class="reference internal" href="#function-generator">Function Generator!</a></li>
 <li><a class="reference internal" href="#servo-testing">Servo testing</a></li>
@@ -379,12 +339,12 @@ held at a constant position.</p>
         <li class="right" >
           <a href="making_changes.html" title="Making Changes to the API"
              >previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.2.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.2.4 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2014, Embedit Electronics.
-      Last updated on Nov 14, 2014.
+      Last updated on Dec 10, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

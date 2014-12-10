@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Making Changes to the API &mdash; RPiSoC Python API 1.2.0 documentation</title>
+    <title>Making Changes to the API &mdash; RPiSoC Python API 1.2.4 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.2.0',
+        VERSION:     '1.2.4',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="RPiSoC Python API 1.2.0 documentation" href="index.html" />
+    <link rel="top" title="RPiSoC Python API 1.2.4 documentation" href="index.html" />
     <link rel="next" title="Example Projects!" href="examples.html" />
     <link rel="prev" title="API modules" href="code.html" /> 
   </head>
@@ -43,7 +43,7 @@
         <li class="right" >
           <a href="code.html" title="API modules"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.2.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.2.4 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -73,7 +73,9 @@
 <dd><ul class="first last">
 <li><p class="first">All are 16-bit resolution by default</p>
 </li>
-<li><p class="first">They are available on Port 6</p>
+<li><p class="first">PWM channel 0 is available on Port 0 Pin 2</p>
+</li>
+<li><p class="first">PWM channels 1-7 are available on Port 6 Pins 1-7</p>
 </li>
 <li><dl class="first docutils">
 <dt>They are clocked by 4 different clock sources</dt>
@@ -205,7 +207,7 @@
 <li><dl class="first docutils">
 <dt>Connect the PWM to a clock source</dt>
 <dd><ul class="first last simple">
-<li>There a number of ways to do this, and you should be aware of the effects. Each PWM block can potentially be driven independently by it&#8217;s own clock source, or it can share the clock source of another unit. Keep in mind that if you use the SetFrequency(), SetClockDivider(), or SetClocks() method of the PWM class, you will be changind this clock, and not necessarily anything about the PWM block itself. This means your changes will affect the behavior of all PWM&#8217;s assosiated with it.</li>
+<li>There a number of ways to do this, and you should be aware of the effects. Each PWM block can potentially be driven independently by it&#8217;s own clock source, or it can share the clock source of another unit. Keep in mind that if you use the SetFrequency(), SetClockDivider(), or SetClocks() method of the PWM class, you will be changing this clock, and not necessarily anything about the PWM block itself (except for possible with SetFrequency). This means your changes will affect the behavior of all PWM&#8217;s associated with it.</li>
 <li>If you add a new clock, make sure it is named in accordance with the others. A fifth clock would be named as PWM_CLK_5</li>
 <li>If you wish to tie the PWM&#8217;s clock to a clock already available (this is often required since there are a limited number of clocks available), simply draw a wire from the clk input of the PWM component, to the existing wire on the clock you wish to share. (TAKE NOTE OF THAT CLOCK NAME)</li>
 </ul>
@@ -448,9 +450,13 @@
 </dd>
 </dl>
 </div>
+<div class="section" id="notes-about-included-peripheral-components">
+<h2>Notes about included Peripheral components<a class="headerlink" href="#notes-about-included-peripheral-components" title="Permalink to this headline">¶</a></h2>
+<p>You will notice an extra page on the schematic file which contains a StripLights custom component, and a Timer block. Both of these are needed, configured exactly as they are, for the NeoPixels shield and Ultrasonic Range Finder, respectively. If you do not need one or both of these, you can simply delete them to save your resources</p>
+</div>
 <div class="section" id="expanding-the-api-to-include-features-components-that-are-not-yet-supported">
 <h2>Expanding the API to include features/components that are not yet supported<a class="headerlink" href="#expanding-the-api-to-include-features-components-that-are-not-yet-supported" title="Permalink to this headline">¶</a></h2>
-<p>I like to think I included the overwhelming majority of use cases with this API, but for more advanced users, this is of course not entirely the case. There are a number of components that could be added, but don&#8217;t have support, such as quadrature decoding, op-amps, digital filters, etc. I did keep this in mind when designing the software architecture though, and so there exists a very specific, and relatively easy to follow procedure for how to work these kinds of things in, but for now, I will ask that any requests for new features be sent to me, and we can work on getting your suggested feature into the official version. In the future, I will update this section to explain exactly the procedure to follow for handling this.</p>
+<p>I like to think I included the overwhelming majority of use cases with this API, but for more advanced users, this is of course not entirely the case. There are a number of components that could be added, but don&#8217;t have support, such as quadrature decoding, op-amps, digital filters, etc. I did keep this in mind when designing the software architecture though, and so there exists a very specific, and relatively easy to follow procedure for how to work these kinds of things in, but for now, I will ask that any requests for new features be sent to me, and we can work on getting your suggested feature into the official version. In the future, I will add a new section to explain exactly the procedure to follow for handling this.</p>
 </div>
 </div>
 
@@ -472,6 +478,7 @@
 <li><a class="reference internal" href="#changing-analog-pins-available">Changing Analog Pins available</a></li>
 <li><a class="reference internal" href="#changing-capsense-buttons-available">Changing CapSense Buttons available</a></li>
 <li><a class="reference internal" href="#changing-general-analog-features-available-for-advanced-users">Changing general Analog Features available for advanced users</a></li>
+<li><a class="reference internal" href="#notes-about-included-peripheral-components">Notes about included Peripheral components</a></li>
 <li><a class="reference internal" href="#expanding-the-api-to-include-features-components-that-are-not-yet-supported">Expanding the API to include features/components that are not yet supported</a></li>
 </ul>
 </li>
@@ -520,12 +527,12 @@
         <li class="right" >
           <a href="code.html" title="API modules"
              >previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.2.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.2.4 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
         &copy; Copyright 2014, Embedit Electronics.
-      Last updated on Nov 14, 2014.
+      Last updated on Dec 10, 2014.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
