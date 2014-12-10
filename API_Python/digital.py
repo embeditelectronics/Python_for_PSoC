@@ -1,5 +1,5 @@
 __author__ = 'Brian Bradley'
-__version__ = '1.2.3'
+__version__ = '1.2.4'
 
 from rpisoc import *
 
@@ -605,10 +605,30 @@ class Servo:
 class rangeFinder(object):
     """
     **Description:**
-        TODO
+        This class provides functionality for use of ultrasonic range finder devices that use standard GPIO pulse width measurement protocols.
     """
 
     def __init__(self, SIG, TRIGGER = None, DELAYus = 10, TIMEOUTus = 30000):
+        """
+        **Description:**
+            Initialize an object by telling it what pin the echo time will be measured on. Optionally, provide a trigger pin if the ranger is a 4 or 5 pin form factor,
+            also optionally provide a trigger pulse width and timeout value in milliseconds
+        **Parameters:**
+            *SIG:* A list constructed as *[PORT, PIN]* which defines which exact pin will be used to communicate with the rangers signal/echo pin
+                - PORT is the port on the RPiSoC connected to the rangers signal pin
+                - PIN is the pin relative to that port
+            *TRIGGER:* A list constructed as *[PORT, PIN]* which defines which exact pin will be used to communicate with the rangers trigger pin
+                - By default, if no argument is provided, it will assume the trigger pin is the same as the echo pin; this is true for 3-pin devices and so no argument is needed
+                - PORT is the port on the RPiSoC connected to the rangers trigger pin
+                - PIN is the pin relative to that port
+            *DELAYus:* The width of the trigger pulse, in microseconds, that will be sent from the TRIGGER pin, to signal the ranger to send a ping
+                - This defaults as 10 microseconds, but most rangers are okay with much less.
+            *TIMEOUTus:* The maximum length of time, in microseconds, that the RPiSoC will wait for a confirmed echo.
+                - If this time is exceeded, the ranger will immediately terminate its timing process and return the timeout as a response
+                - This defaults as 30000 microseconds, which is equivalent to 30 ms, and is much longer than generally needed and so won't usually need to be altered.
+                        * Refer to your devices documentation for a more specific timeout choice
+
+        """
 
         if TRIGGER == None:
             TRIGGER = SIG[:]
@@ -632,6 +652,7 @@ class rangeFinder(object):
             raise ValueError('Invalid PIN for trigger: the second argument should be the pin number relative to the desired port. Valid entries on this port are ', RPiSoC.GPIO[self.trigport])
         else:
             self.trigpin = TRIGGER[1]
+
         self.address = RPiSoC.RANGE_FINDER
         self.delayus = DELAYus
         self.packed_dat = (self.trigport<<10)|(self.trigpin<<7)|(self.sigport<<3)|(self.sigpin)
@@ -639,28 +660,73 @@ class rangeFinder(object):
         self.setTimeout(TIMEOUTus)
 
     def setTimeout(self, timeout_us):
+        """
+        **Description:**
+        Sets the timeout length in microseconds. If the RPiSoC is still waiting for a completed response after this amount of time, it
+        will stop counting and immediately return the result
+
+        **Parameters:**
+            *timeout_us:* Amount of time, in microseconds, that the RPiSoC will wait for a completed response.
+                - This is a 16 bit value, and so it cannot exceed 65535, nor can it be below 0
+
+        **Notes:**
+            This is handled in __init__, so it should only be called under unique circumstances
+        """
+
         cmd = 0x01
         if ((timeout_us>65535) or (timeout_us<=0)):
             raise ValueError('Timeout must be between 1 and 65535 microseconds: provided %d' %timeout_us)
         RPiSoC.commChannel.sendData((self.address, cmd, timeout_us))
+        self.timeout = timeout_us
 
     def setDelay(self, delay_us):
+        """
+        **Description:**
+            Sets the length of the trigger pulse, in microseconds, which will be used to tell the device to send out a ping.
+
+        **Parameters:**
+            *delay_us:* Amount of time, in microseconds, that the RPiSoC will hold its trigger pulse high
+                - This is a bit limited value (6-bits maximum), and so it cannot exceed 63, nor can it be below 0
+
+        **Notes:**
+            This is handled in __init__, so it should only be called under unique circumstances
+        """
         cmd = 0x02
         if (delay_us>63 or delay_us<=0):
             raise ValueError('Delay must be between 1 and 63 microseconds: provided %d' %delay_us)
         RPiSoC.commChannel.sendData((self.address, cmd, delay_us))
 
     def readRaw(self):
+        """
+        **Description:**
+        gets a raw value from the RPiSoC, which is representative of how many microseconds the
+        rangers echo pin was held high. It will trigger the range by sending a short pulse, the length defined upon construction of the object.
+        The result will be measured on the desired signal pin, and stop measuring when a timeout is reached
+        """
         cmd = 0x00
-        reading = RPiSoC.commChannel.receiveData((self.address, cmd, self.packed_dat), delay = 0.04)
-        if RPiSoC.DEBUG:
-            if reading <= 0:
-                print ('Timeout occured waiting for signal pin to be asserted; verify connection')
-            elif reading>=30000:
-                print('Timeout occured while reading signal pin; verify hardware is functional')
+        reading = 0
+        while reading <=0 or reading>=self.timeout:
+            reading = RPiSoC.commChannel.receiveData((self.address, cmd, self.packed_dat), delay = 0.04)
+            if RPiSoC.DEBUG:
+                print (reading)
+                if reading <= 0:
+                    print ('Timeout occured waiting for signal pin to be asserted; verify connection')
+                elif reading>=self.timeout:
+                    print('Timeout occured while reading signal pin; verify hardware is functional')
         return reading
 
-    def readMeters(self, sound = 340.29, PRECISION = 2):
+    def readMeters(self, sound = 343.0, PRECISION = 2):
+        """
+        **Description:**
+            Uses readRaw to get a raw time value in microseconds, and then calculates the distance between the ranger and the pinged object in meters
+        **Optional Parameters:**
+            *sound:* The speed of sound which is used to calcuate the distance of the object detected by the ranger.
+                - Defaults to 343 m/s (approximate value based on room temperature of air)
+                - Must be m/s
+                - Modify this according to your environmental needs (different temperature/medium)
+            *PRECISION:* The number of decimal points to be included in the returned result. Defualts to 2
+
+        """
         period_counts = 1850
         period_time = .00185
 
@@ -670,167 +736,219 @@ class rangeFinder(object):
         return round((sound*time_high)/2.0, PRECISION)
 
     def readCentimeters(self, sound = 340.29, PRECISION = 2):
+        """
+        **Description:**
+            Uses readRaw to get a raw time value in microseconds, and then calculates the distance between the ranger and the pinged object in centimeters
+        **Optional Parameters:**
+            *sound:* The speed of sound which is used to calcuate the distance of the object detected by the ranger.
+                - Defaults to 343 m/s (approximate value based on room temperature of air)
+                - Must be m/s
+                - Modify this according to your environmental needs (different temperature/medium)
+            *PRECISION:* The number of decimal points to be included in the returned result. Defualts to 2
+        """
         return round((self.readMeters(sound, PRECISION = 9))*100.0, PRECISION)
 
     def readInches(self, sound = 340.29, PRECISION = 2):
+        """
+        **Description:**
+            Uses readRaw to get a raw time value in microseconds, and then calculates the distance between the ranger and the pinged object in inches
+        **Optional Parameters:**
+            *sound:* The speed of sound which is used to calcuate the distance of the object detected by the ranger.
+                - Defaults to 343 m/s (approximate value based on room temperature of air)
+                - Must be m/s
+                - Modify this according to your environmental needs (different temperature/medium)
+            *PRECISION:* The number of decimal points to be included in the returned result. Defualts to 2
+        """
         return round(self.readCentimeters(sound, PRECISION = 9)/2.54, PRECISION)
 class NeoPixelShield(object):
-    def __init__(self, includeColors = True):
+    """
+    **Description:**
+        This class provides functionality for use of an Arduino NeoPixels shield on an RPiSoC through Python. Create a NeoPixelShield object in the following
+        way:
+            shield = NeoPixelShield()
+
+	"""
+    def __init__(self):
+        """
+        **Description:**
+            the init method defines the register address for the striplight controller used by the NeoPixels, and it defines 140 colors as class attributes, named according to their
+             standardized HTML and CSS names
+        """
         self.address = RPiSoC.STRIPLIGHT_REGISTER
-        if includeColors:
-            self.AliceBlue = 0xfff0f8
-            self.AntiqueWhite = 0xd7faeb
-            self.Aqua = 0xff00ff
-            self.Aquamarine = 0xd47fff
-            self.Azure = 0xfff0ff
-            self.Beige = 0xdcf5f5
-            self.Bisque = 0xc4ffe4
-            self.Black = 0x0
-            self.BlanchedAlmond = 0xcdffeb
-            self.Blue = 0xff0000
-            self.BlueViolet = 0xe28a2b
-            self.Brown = 0x2aa52a
-            self.BurlyWood = 0x87deb8
-            self.CadetBlue = 0xa05f9e
-            self.Chartreuse = 0x7fff
-            self.Chocolate = 0x1ed269
-            self.Coral = 0x50ff7f
-            self.CornflowerBlue = 0xed6495
-            self.Cornsilk = 0xdcfff8
-            self.Crimson = 0x3cdc14
-            self.Cyan = 0xff00ff
-            self.DarkBlue = 0x8b0000
-            self.DarkCyan = 0x8b008b
-            self.DarkGoldenRod = 0xbb886
-            self.DarkGray = 0xa9a9a9
-            self.DarkGreen = 0x64
-            self.DarkKhaki = 0x6bbdb7
-            self.DarkMagenta = 0x8b8b00
-            self.DarkOliveGreen = 0x2f556b
-            self.DarkOrange = 0xff8c
-            self.DarkOrchid = 0xcc9932
-            self.DarkRed = 0x8b00
-            self.DarkSalmon = 0x7ae996
-            self.DarkSeaGreen = 0x8f8fbc
-            self.DarkSlateBlue = 0x8b483d
-            self.DarkSlateGray = 0x4f2f4f
-            self.DarkTurquoise = 0xd100ce
-            self.DarkViolet = 0xd39400
-            self.DeepPink = 0x93ff14
-            self.DeepSkyBlue = 0xff00bf
-            self.DimGray = 0x696969
-            self.DodgerBlue = 0xff1e90
-            self.FireBrick = 0x22b222
-            self.FloralWhite = 0xf0fffa
-            self.ForestGreen = 0x22228b
-            self.Fuchsia = 0xffff00
-            self.Gainsboro = 0xdcdcdc
-            self.GhostWhite = 0xfff8f8
-            self.Gold = 0xffd7
-            self.GoldenRod = 0x20daa5
-            self.Gray = 0x808080
-            self.Green = 0x80
-            self.GreenYellow = 0x2fadff
-            self.HoneyDew = 0xf0f0ff
-            self.HotPink = 0xb4ff69
-            self.IndianRed = 0x5ccd5c
-            self.Indigo = 0x824b00
-            self.Ivory = 0xf0ffff
-            self.Khaki = 0x8cf0e6
-            self.Lavender = 0xfae6e6
-            self.LavenderBlush = 0xf5fff0
-            self.LawnGreen = 0x7cfc
-            self.LemonChiffon = 0xcdfffa
-            self.LightBlue = 0xe6add8
-            self.LightCoral = 0x80f080
-            self.LightCyan = 0xffe0ff
-            self.LightGoldenRodYellow = 0xd2fafa
-            self.LightGray = 0xd3d3d3
-            self.LightGreen = 0x9090ee
-            self.LightPink = 0xc1ffb6
-            self.LightSalmon = 0x7affa0
-            self.LightSeaGreen = 0xaa20b2
-            self.LightSkyBlue = 0xfa87ce
-            self.LightSlateGray = 0x997788
-            self.LightSteelBlue = 0xdeb0c4
-            self.LightYellow = 0xe0ffff
-            self.Lime = 0xff
-            self.LimeGreen = 0x3232cd
-            self.Linen = 0xe6faf0
-            self.Magenta = 0xffff00
-            self.Maroon = 0x8000
-            self.MediumAquaMarine = 0xaa66cd
-            self.MediumBlue = 0xcd0000
-            self.MediumOrchid = 0xd3ba55
-            self.MediumPurple = 0xdb9370
-            self.MediumSeaGreen = 0x713cb3
-            self.MediumSlateBlue = 0xee7b68
-            self.MediumSpringGreen = 0x9a00fa
-            self.MediumTurquoise = 0xcc48d1
-            self.MediumVioletRed = 0x85c715
-            self.MidnightBlue = 0x701919
-            self.MintCream = 0xfaf5ff
-            self.MistyRose = 0xe1ffe4
-            self.Moccasin = 0xb5ffe4
-            self.NavajoWhite = 0xadffde
-            self.Navy = 0x800000
-            self.OldLace = 0xe6fdf5
-            self.Olive = 0x8080
-            self.OliveDrab = 0x236b8e
-            self.Orange = 0xffa5
-            self.OrangeRed = 0xff45
-            self.Orchid = 0xd6da70
-            self.PaleGoldenRod = 0xaaeee8
-            self.PaleGreen = 0x9898fb
-            self.PaleTurquoise = 0xeeafee
-            self.PaleVioletRed = 0x93db70
-            self.PapayaWhip = 0xd5ffef
-            self.PeachPuff = 0xb9ffda
-            self.Peru = 0x3fcd85
-            self.Pink = 0xcbffc0
-            self.Plum = 0xdddda0
-            self.PowderBlue = 0xe6b0e0
-            self.Purple = 0x808000
-            self.Red = 0xff00
-            self.RosyBrown = 0x8fbc8f
-            self.RoyalBlue = 0xe14169
-            self.SaddleBrown = 0x138b45
-            self.Salmon = 0x72fa80
-            self.SandyBrown = 0x60f4a4
-            self.SeaGreen = 0x572e8b
-            self.SeaShell = 0xeefff5
-            self.Sienna = 0x2da052
-            self.Silver = 0xc0c0c0
-            self.SkyBlue = 0xeb87ce
-            self.SlateBlue = 0xcd6a5a
-            self.SlateGray = 0x907080
-            self.Snow = 0xfafffa
-            self.SpringGreen = 0x7f00ff
-            self.SteelBlue = 0xb44682
-            self.Tan = 0x8cd2b4
-            self.Teal = 0x800080
-            self.Thistle = 0xd8d8bf
-            self.Tomato = 0x47ff63
-            self.Turquoise = 0xd040e0
-            self.Violet = 0xeeee82
-            self.Wheat = 0xb3f5de
-            self.White = 0xffffff
-            self.WhiteSmoke = 0xf5f5f5
-            self.Yellow = 0xffff
-            self.YellowGreen = 0x329acd
-
-
+        self.AliceBlue = 0xfff0f8
+        self.AntiqueWhite = 0xd7faeb
+        self.Aqua = 0xff00ff
+        self.Aquamarine = 0xd47fff
+        self.Azure = 0xfff0ff
+        self.Beige = 0xdcf5f5
+        self.Bisque = 0xc4ffe4
+        self.Black = 0x0
+        self.BlanchedAlmond = 0xcdffeb
+        self.Blue = 0xff0000
+        self.BlueViolet = 0xe28a2b
+        self.Brown = 0x2aa52a
+        self.BurlyWood = 0x87deb8
+        self.CadetBlue = 0xa05f9e
+        self.Chartreuse = 0x7fff
+        self.Chocolate = 0x1ed269
+        self.Coral = 0x50ff7f
+        self.CornflowerBlue = 0xed6495
+        self.Cornsilk = 0xdcfff8
+        self.Crimson = 0x3cdc14
+        self.Cyan = 0xff00ff
+        self.DarkBlue = 0x8b0000
+        self.DarkCyan = 0x8b008b
+        self.DarkGoldenRod = 0xbb886
+        self.DarkGray = 0xa9a9a9
+        self.DarkGreen = 0x64
+        self.DarkKhaki = 0x6bbdb7
+        self.DarkMagenta = 0x8b8b00
+        self.DarkOliveGreen = 0x2f556b
+        self.DarkOrange = 0xff8c
+        self.DarkOrchid = 0xcc9932
+        self.DarkRed = 0x8b00
+        self.DarkSalmon = 0x7ae996
+        self.DarkSeaGreen = 0x8f8fbc
+        self.DarkSlateBlue = 0x8b483d
+        self.DarkSlateGray = 0x4f2f4f
+        self.DarkTurquoise = 0xd100ce
+        self.DarkViolet = 0xd39400
+        self.DeepPink = 0x93ff14
+        self.DeepSkyBlue = 0xff00bf
+        self.DimGray = 0x696969
+        self.DodgerBlue = 0xff1e90
+        self.FireBrick = 0x22b222
+        self.FloralWhite = 0xf0fffa
+        self.ForestGreen = 0x22228b
+        self.Fuchsia = 0xffff00
+        self.Gainsboro = 0xdcdcdc
+        self.GhostWhite = 0xfff8f8
+        self.Gold = 0xffd7
+        self.GoldenRod = 0x20daa5
+        self.Gray = 0x808080
+        self.Green = 0x80
+        self.GreenYellow = 0x2fadff
+        self.HoneyDew = 0xf0f0ff
+        self.HotPink = 0xb4ff69
+        self.IndianRed = 0x5ccd5c
+        self.Indigo = 0x824b00
+        self.Ivory = 0xf0ffff
+        self.Khaki = 0x8cf0e6
+        self.Lavender = 0xfae6e6
+        self.LavenderBlush = 0xf5fff0
+        self.LawnGreen = 0x7cfc
+        self.LemonChiffon = 0xcdfffa
+        self.LightBlue = 0xe6add8
+        self.LightCoral = 0x80f080
+        self.LightCyan = 0xffe0ff
+        self.LightGoldenRodYellow = 0xd2fafa
+        self.LightGray = 0xd3d3d3
+        self.LightGreen = 0x9090ee
+        self.LightPink = 0xc1ffb6
+        self.LightSalmon = 0x7affa0
+        self.LightSeaGreen = 0xaa20b2
+        self.LightSkyBlue = 0xfa87ce
+        self.LightSlateGray = 0x997788
+        self.LightSteelBlue = 0xdeb0c4
+        self.LightYellow = 0xe0ffff
+        self.Lime = 0xff
+        self.LimeGreen = 0x3232cd
+        self.Linen = 0xe6faf0
+        self.Magenta = 0xffff00
+        self.Maroon = 0x8000
+        self.MediumAquaMarine = 0xaa66cd
+        self.MediumBlue = 0xcd0000
+        self.MediumOrchid = 0xd3ba55
+        self.MediumPurple = 0xdb9370
+        self.MediumSeaGreen = 0x713cb3
+        self.MediumSlateBlue = 0xee7b68
+        self.MediumSpringGreen = 0x9a00fa
+        self.MediumTurquoise = 0xcc48d1
+        self.MediumVioletRed = 0x85c715
+        self.MidnightBlue = 0x701919
+        self.MintCream = 0xfaf5ff
+        self.MistyRose = 0xe1ffe4
+        self.Moccasin = 0xb5ffe4
+        self.NavajoWhite = 0xadffde
+        self.Navy = 0x800000
+        self.OldLace = 0xe6fdf5
+        self.Olive = 0x8080
+        self.OliveDrab = 0x236b8e
+        self.Orange = 0xffa5
+        self.OrangeRed = 0xff45
+        self.Orchid = 0xd6da70
+        self.PaleGoldenRod = 0xaaeee8
+        self.PaleGreen = 0x9898fb
+        self.PaleTurquoise = 0xeeafee
+        self.PaleVioletRed = 0x93db70
+        self.PapayaWhip = 0xd5ffef
+        self.PeachPuff = 0xb9ffda
+        self.Peru = 0x3fcd85
+        self.Pink = 0xcbffc0
+        self.Plum = 0xdddda0
+        self.PowderBlue = 0xe6b0e0
+        self.Purple = 0x808000
+        self.Red = 0xff00
+        self.RosyBrown = 0x8fbc8f
+        self.RoyalBlue = 0xe14169
+        self.SaddleBrown = 0x138b45
+        self.Salmon = 0x72fa80
+        self.SandyBrown = 0x60f4a4
+        self.SeaGreen = 0x572e8b
+        self.SeaShell = 0xeefff5
+        self.Sienna = 0x2da052
+        self.Silver = 0xc0c0c0
+        self.SkyBlue = 0xeb87ce
+        self.SlateBlue = 0xcd6a5a
+        self.SlateGray = 0x907080
+        self.Snow = 0xfafffa
+        self.SpringGreen = 0x7f00ff
+        self.SteelBlue = 0xb44682
+        self.Tan = 0x8cd2b4
+        self.Teal = 0x800080
+        self.Thistle = 0xd8d8bf
+        self.Tomato = 0x47ff63
+        self.Turquoise = 0xd040e0
+        self.Violet = 0xeeee82
+        self.Wheat = 0xb3f5de
+        self.White = 0xffffff
+        self.WhiteSmoke = 0xf5f5f5
+        self.Yellow = 0xffff
+        self.YellowGreen = 0x329acd
 
 
     def Start(self):
+        """
+        **Description:**
+            Powers up and enables the needed hardware for the NeoPixels component
+        """
         cmd = 0x00
         RPiSoC.commChannel.sendData((self.address, cmd))
 
     def Stop(self):
+        """
+        **Description:**
+            Powers down and disables the hardware used by the NeoPixels component
+        """
         cmd = 0x01
         RPiSoC.commChannel.sendData((self.address, cmd))
 
     def SetPixelRGB(self, row, column, RGB):
+        """
+        *Description:**
+            Sets the given pixel at location (x,y) = (row, column), to a color defined by its RGB values independently
+        *Parameters:**
+            *row:* row which contains the desired pixel to be set; valid between 0 and 4
+            *column:* column which contains the desired pixel to be set; valid between 0 and 7
+            *RGB:* A list or tuple, describing the RGB construction of the color
+                    - The first element will contain a number between 0 and 255, corresponding to the red byte
+                    - The second element will contain a number between 0 and 255, corresponding to the blue byte
+                    - The third element will contain a number between 0 and 255, corresponding to the green byte
+
+        """
+        for i in RGB:
+            if i >255 or i<0:
+                raise ValueError('Each color is limited to one byte only (0-255): provided %d as an element' %i)
         RED = RGB[0]
         GREEN = RGB[1]
         BLUE = RGB[2]
@@ -839,6 +957,17 @@ class NeoPixelShield(object):
 
 
     def SetPixel(self, row, column, color):
+        """
+        *Description:**
+            Sets the given pixel at location (x,y) = (row, column), to a color defined by a 24 bit BRG value (8-bits each)
+        *Parameters:**
+            *row:* row which contains the desired pixel to be set; valid between 0 and 4
+            *column:* column which contains the desired pixel to be set; valid between 0 and 7
+            *color:* A 24-bit number representative of a BRG value
+                    - BRG components are given equal weight, so 8-bits each.
+                    - There are predefined colors inside of the __init__ method, which can be called as shield.color
+
+        """
         cmd = 0x02
         if color>0xFFFFFF:
             raise ValueError('Color value too large. Color is 24 bit only.')
@@ -853,7 +982,16 @@ class NeoPixelShield(object):
         RPiSoC.commChannel.sendData((row, column, color&0xFFFF))
 
     def Stripe(self, pixelnum, color):
-
+        """
+        *Description:**
+             Draws a line of length *pixelnum* of the stated *color*, starting from the first pixel, and extending as far as the 40th
+             (last) pixel. It will wrap around rows
+        **Parameters:**
+            *pixelnum:* A number between 1 and 40, which indicates how many pixels, starting with pixel (0,0), will be filled.
+            *color:* A 24-bit number representative of a BRG value
+                    - BRG components are given equal weight, so 8-bits each.
+                    - There are predefined colors inside of the __init__ method, which can be called as shield.color
+        """
         if pixelnum not in range(1, 41):
             raise ValueError('Valid stripe length is between 1 and 40: stripe length of %d was requested' %pixelnum)
         pixelnum-=1
@@ -866,7 +1004,16 @@ class NeoPixelShield(object):
         RPiSoC.commChannel.sendData((pixelnum, cmd, color&0xFFFF))
 
     def DrawRow(self, row, color):
+        """
+        *Description:**
+            Fully draws the chosen *row* the desired *color*
+        *Parameters:**
+            *row:* row which will be fully drawn; valid entries between 0 and 4
+            *color:* A 24-bit number representative of a BRG value
+                    - BRG components are given equal weight, so 8-bits each.
+                    - There are predefined colors inside of the __init__ method, which can be called as shield.color
 
+        """
         cmd = 0x05
         if color>0xFFFFFF:
             raise ValueError('Color value too large. Color is 24 bit only.')
@@ -876,6 +1023,16 @@ class NeoPixelShield(object):
         RPiSoC.commChannel.sendData((row, cmd, color&0xFFFF))
 
     def DrawColumn(self, column, color):
+        """
+        *Description:**
+            Fully draws the chosen *column* the desired *color*
+        *Parameters:**
+            *column:* column which will be fully drawn; valid entries between 0 and 7
+            *color:* A 24-bit number representative of a BRG value
+                    - BRG components are given equal weight, so 8-bits each.
+                    - There are predefined colors inside of the __init__ method, which can be called as shield.color
+
+        """
 
         cmd = 0x06
         if color>0xFFFFFF:
@@ -886,6 +1043,12 @@ class NeoPixelShield(object):
         RPiSoC.commChannel.sendData((column, cmd, color&0xFFFF))
 
     def Dim(self, DIM_LEVEL):
+        """
+        **Description:**
+            Preserves the color to be drawn to the shield, but dims the brightness.
+        **Parameters:**
+            *DIM_LEVEL:* an integer between 0 and 4, 0 indicating full brightness, and 4 indicating full dim levelhe
+        """
         cmd = 0x04
         if DIM_LEVEL not in range(5):
             raise ValueError('Dim level must be between 0 and 4')

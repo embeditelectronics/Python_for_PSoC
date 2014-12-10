@@ -6,7 +6,7 @@ This program is the highest level module for the RPiSoC API, which the user shou
 import into their scripts for full use of the API.
 """
 __author__ = 'Brian Bradley'
-__version__ = '1.2.3'
+__version__ = '1.2.4'
 
 import math
 import time
@@ -710,14 +710,14 @@ class SERIAL(object):
     **Description:**
         Provides a Serial interface for communicating with the RPiSoC through a desired COM port
     """
-    def __init__(self, com):
+    def __init__(self, com, baudr = 9600):
         """
         **Description:**
-            opens the desired COM port at 9600 baud
+            opens the desired COM port at the specified baud, defaults to 9600 if no additional parameter is given
         **Parameters:**
             *com:* A string representative of the desired COM port. For instance 'COM16' to open COM16.
         """
-        self.ser = serial.Serial(com, 115200, timeout = 2, writeTimeout = 2)
+        self.ser = serial.Serial(com, baudr, timeout = 4, writeTimeout = 4)
 
     def PrepareData(self, dat):
         """
@@ -766,7 +766,7 @@ class SERIAL(object):
             This function will send data to the RPiSoC, without waiting for a return
 
         **Parameters:**
-            *vals:* A tuple which will be sent to the *PrepareData()* function to be restructured into a list of length 4, and then sent to the rpisoc over the requested COM port.
+            *vals:* A tuple which will be sent to the *PrepareData()* function to be restructured into a list of length 4, and then sent to the rpisoc over the requested COM/Serial port.
         """
 
         xfer_packet = self.PrepareData(vals)
@@ -778,7 +778,7 @@ class SERIAL(object):
             This function is called when a returned value from the RPiSoC is needed. It will send a command, and then wait for a response.
 
         **Parameters:**
-            *vals:* A tuple which will be sent to the *PrepareData()* function to be restructured into a list of length 4, and then sent to the RPiSoC over SPI.
+            *vals:* A tuple which will be sent to the *PrepareData()* function to be restructured into a list of length 4, and then sent to the RPiSoC over the requested COM/Serial port.
 
         **Returns:**
             The data packet received from the PSoC, which has been unpacked and reformatted.

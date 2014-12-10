@@ -16,7 +16,7 @@ Px[y] means Port x Pin y
 
 from rpisoc import *
 
-RPiSoC('COM16') #Establish connection to RPiSoC over SPI
+RPiSoC('SPI') #Establish connection to RPiSoC over SPI
 
 My_Wave = WaveDAC()
 My_Wave.Start() #Starts the default wave

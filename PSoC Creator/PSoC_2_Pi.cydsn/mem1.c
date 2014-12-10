@@ -148,8 +148,9 @@ bool readData(vessel_type vessel, uint32 *result)
             case CAPSENSE_REGISTER: return_flag = CapSense_Read(cmd, dat, result); break;
         #endif
         
-        case RANGE_FINDER: return_flag = Range_Finder(cmd, vessel.port, vessel.pin, vessel.trigport, vessel.trigpin, vessel.delayus, dat, result); break;
-        
+        #ifdef CY_Timer_v2_60_Timer_H
+            case RANGE_FINDER: return_flag = Range_Finder(cmd, vessel.port, vessel.pin, vessel.trigport, vessel.trigpin, vessel.delayus, dat, result); break;
+        #endif
         #ifdef CY_SLIGHTS_StripLights_H
             case STRIPLIGHT_REGISTER: return_flag = StripLightsControl(cmd, dat, vessel.row, vessel.column, vessel.color); break;
         #endif
@@ -1606,996 +1607,999 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
 *              function, or modify the component's operation, if applicable.
 *
 *********************************************************************************************/
-     #ifdef CY_PWM_PWM_8_H
-        bool PWM_Control_7(uint8 cmd, uint16 val, uint32 *result)
-        {
-            bool return_flag = 0;
-            
-            switch(cmd)
-            {
-                case 0x00: PWM_8_Start(); break;
-                case 0x01: PWM_8_Stop(); break;
-                case 0x0C: PWM_8_WritePeriod(val); break;
-                case 0x0D: *result = PWM_8_ReadPeriod(); return_flag = 1; break;
-                case 0x0E: PWM_8_WriteCompare(val); break;
-                case 0x0F: *result  = PWM_8_ReadCompare(); return_flag = 1; break;
-                case 0x18: PWM_8_ClearFIFO(); break; 
-                case 0x19: PWM_8_Sleep(); break; 
-                case 0x1A: PWM_8_Wakeup(); break;
-                case 0xFF: PWM_CLK_4_SetDividerValue(val); *result = PWM_CLK_4_GetDividerRegister(); return_flag = 1; break;
-            }
-            
-            return return_flag;
-        }
-    #endif
-    
-    
-    #ifdef CY_PWM_PWM_9_H
-        bool PWM_Control_8(uint8 cmd, uint16 val, uint32 *result)
-        {
-            bool return_flag = 0;
-            
-            switch(cmd)
-            {
-                case 0x00: PWM_9_Start(); break;
-                case 0x01: PWM_9_Stop(); break;
-                case 0x0C: PWM_9_WritePeriod(val); break;
-                case 0x0D: *result = PWM_9_ReadPeriod(); return_flag = 1; break;
-                case 0x0E: PWM_9_WriteCompare(val); break;
-                case 0x0F: *result  = PWM_9_ReadCompare(); return_flag = 1; break;
-                case 0x18: PWM_9_ClearFIFO(); break; 
-                case 0x19: PWM_9_Sleep(); break; 
-                case 0x1A: PWM_9_Wakeup(); break;
-                case 0xFF: PWM_CLK_5_SetDividerValue(val); *result = PWM_CLK_5_GetDividerRegister(); return_flag = 1; break;
-            }
-            
-            return return_flag;
-        }
-    #endif
-    
-    #ifdef CY_PWM_PWM_10_H
-        bool PWM_Control_9(uint8 cmd, uint16 val, uint32 *result)
-        {
-            bool return_flag = 0;
-            
-            switch(cmd)
-            {
-                case 0x00: PWM_10_Start(); break;
-                case 0x01: PWM_10_Stop(); break;
-                case 0x0C: PWM_10_WritePeriod(val); break;
-                case 0x0D: *result = PWM_10_ReadPeriod(); return_flag = 1; break;
-                case 0x0E: PWM_10_WriteCompare(val); break;
-                case 0x0F: *result  = PWM_10_ReadCompare(); return_flag = 1; break;
-                case 0x18: PWM_10_ClearFIFO(); break; 
-                case 0x19: PWM_10_Sleep(); break; 
-                case 0x1A: PWM_10_Wakeup(); break;
-                case 0xFF: PWM_CLK_5_SetDividerValue(val); *result = PWM_CLK_5_GetDividerRegister(); return_flag = 1; break;
-            }
-            
-            return return_flag;
-        }
-    #endif
-    
-    #ifdef CY_PWM_PWM_11_H
-        bool PWM_Control_10(uint8 cmd, uint16 val, uint32 *result)
-        {
-            bool return_flag = 0;
-            
-            switch(cmd)
-            {
-                case 0x00: PWM_11_Start(); break;
-                case 0x01: PWM_11_Stop(); break;
-                case 0x0C: PWM_11_WritePeriod(val); break;
-                case 0x0D: *result = PWM_11_ReadPeriod(); return_flag = 1; break;
-                case 0x0E: PWM_11_WriteCompare(val); break;
-                case 0x0F: *result  = PWM_11_ReadCompare(); return_flag = 1; break;
-                case 0x18: PWM_11_ClearFIFO(); break; 
-                case 0x19: PWM_11_Sleep(); break; 
-                case 0x1A: PWM_11_Wakeup(); break;
-                case 0xFF: PWM_CLK_5_SetDividerValue(val); *result = PWM_CLK_5_GetDividerRegister(); return_flag = 1; break;
-            }
-            
-            return return_flag;
-        }
-    #endif
-    
-    #ifdef CY_PWM_PWM_12_H
-        bool PWM_Control_11(uint8 cmd, uint16 val, uint32 *result)
-        {
-            bool return_flag = 0;
-            
-            switch(cmd)
-            {
-                case 0x00: PWM_12_Start(); break;
-                case 0x01: PWM_12_Stop(); break;
-                case 0x0C: PWM_12_WritePeriod(val); break;
-                case 0x0D: *result = PWM_12_ReadPeriod(); return_flag = 1; break;
-                case 0x0E: PWM_12_WriteCompare(val); break;
-                case 0x0F: *result  = PWM_12_ReadCompare(); return_flag = 1; break;
-                case 0x18: PWM_12_ClearFIFO(); break; 
-                case 0x19: PWM_12_Sleep(); break; 
-                case 0x1A: PWM_12_Wakeup(); break;
-                case 0xFF: PWM_CLK_5_SetDividerValue(val); *result = PWM_CLK_5_GetDividerRegister(); return_flag = 1; break;
-            }
-            
-            return return_flag;
-        }
-    #endif
-    
-    bool GPIO_Control(uint8 cmd, uint8 port, uint8 pin, uint16 val, uint32 *result)
+ #ifdef CY_PWM_PWM_8_H
+    bool PWM_Control_7(uint8 cmd, uint16 val, uint32 *result)
     {
-      
-        uint16 config_MASK = 0x00;
-        
         bool return_flag = 0;
         
         switch(cmd)
-                {
-                    
-                    case 0x00://Read
-                    
-                        switch(port)
-                            {
-                                case 0x00: 
-                                        switch(pin)
-                                        {   
-                                            #ifdef CY_PINS_GPIO_0_0_H 
-                                                case 0x00: *result = GPIO_0_0_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_0_1_H 
-                                                case 0x01: *result = GPIO_0_1_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_0_2_H 
-                                                case 0x02: *result = GPIO_0_2_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_0_3_H 
-                                                case 0x03: *result = GPIO_0_3_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_0_4_H 
-                                                case 0x04: *result = GPIO_0_4_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_0_5_H 
-                                                case 0x05: *result = GPIO_0_5_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_0_6_H 
-                                                case 0x06: *result = GPIO_0_6_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_0_7_H 
-                                                case 0x07: *result = GPIO_0_7_Read(); return_flag = 1; break;
-                                            #endif
-                                        }
-                                        break;
-                                
-                                case 0x02: 
-                                        switch(pin)
-                                        {   
-                                            #ifdef CY_PINS_GPIO_2_0_H 
-                                                case 0x00: *result = GPIO_2_0_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_2_1_H 
-                                                case 0x01: *result = GPIO_2_1_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_2_2_H 
-                                                case 0x02: *result = GPIO_2_2_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_2_3_H 
-                                                case 0x03: *result = GPIO_2_3_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_2_4_H 
-                                                case 0x04: *result = GPIO_2_4_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_2_5_H 
-                                                case 0x05: *result = GPIO_2_5_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_2_6_H 
-                                                case 0x06: *result = GPIO_2_6_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_2_7_H 
-                                                case 0x07: *result = GPIO_2_7_Read(); return_flag = 1; break;
-                                            #endif
-                                        }
-                                        break;
-                                        
-                                case 0x03: 
-                                        switch(pin)
-                                        {   
-                                            #ifdef CY_PINS_GPIO_3_0_H 
-                                                case 0x00: *result = GPIO_3_0_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_3_1_H 
-                                                case 0x01: *result = GPIO_3_1_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_3_2_H 
-                                                case 0x02: *result = GPIO_3_2_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_3_3_H 
-                                                case 0x03: *result = GPIO_3_3_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_3_4_H 
-                                                case 0x04: *result = GPIO_3_4_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_3_5_H 
-                                                case 0x05: *result = GPIO_3_5_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_3_6_H 
-                                                case 0x06: *result = GPIO_3_6_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_3_7_H 
-                                                case 0x07: *result = GPIO_3_7_Read(); return_flag = 1; break;
-                                            #endif
-                                        }
-                                        break;
-                                        
-                                case 0x04: 
-                                        switch(pin)
-                                        {   
-                                            #ifdef CY_PINS_GPIO_4_0_H 
-                                                case 0x00: *result = GPIO_2_0_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_4_1_H 
-                                                case 0x01: *result = GPIO_4_1_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_4_2_H 
-                                                case 0x02: *result = GPIO_4_2_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_4_3_H 
-                                                case 0x03: *result = GPIO_4_3_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_4_4_H 
-                                                case 0x04: *result = GPIO_4_4_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_4_5_H 
-                                                case 0x05: *result = GPIO_4_5_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_4_6_H 
-                                                case 0x06: *result = GPIO_4_6_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_4_7_H 
-                                                case 0x07: *result = GPIO_4_7_Read(); return_flag = 1; break;
-                                            #endif
-                                        }
-                                        break;
-                                        
-                                case 0x05: 
-                                        switch(pin)
-                                        {   
-                                            #ifdef CY_PINS_GPIO_5_0_H 
-                                                case 0x00: *result = GPIO_5_0_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_5_1_H 
-                                                case 0x01: *result = GPIO_5_1_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_5_2_H 
-                                                case 0x02: *result = GPIO_5_2_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_5_3_H 
-                                                case 0x03: *result = GPIO_5_3_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_5_4_H 
-                                                case 0x04: *result = GPIO_5_4_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_5_5_H 
-                                                case 0x05: *result = GPIO_5_5_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_5_6_H 
-                                                case 0x06: *result = GPIO_5_6_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_5_7_H 
-                                                case 0x07: *result = GPIO_5_7_Read(); return_flag = 1; break;
-                                            #endif
-                                        }
-                                        break;
-                                        
-                                case 0x06: 
-                                        switch(pin)
-                                        {   
-                                           #ifdef CY_PINS_GPIO_6_0_H 
-                                                case 0x00: *result = GPIO_6_0_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_6_1_H 
-                                                case 0x01: *result = GPIO_6_1_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_6_2_H 
-                                                case 0x02: *result = GPIO_6_2_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_6_3_H 
-                                                case 0x03: *result = GPIO_6_3_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_6_4_H 
-                                                case 0x04: *result = GPIO_6_4_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_6_5_H 
-                                                case 0x05: *result = GPIO_6_5_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_6_6_H 
-                                                case 0x06: *result = GPIO_6_6_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_6_7_H 
-                                                case 0x07: *result = GPIO_6_7_Read(); return_flag = 1; break;
-                                            #endif
-                                        }
-                                        break;
-                                
-                                case 0x0C: 
-                                        switch(pin)
-                                        {   
-                                            #ifdef CY_PINS_GPIO_12_0_H 
-                                                case 0x00: *result = GPIO_12_0_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_12_1_H 
-                                                case 0x01: *result = GPIO_12_1_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_12_2_H 
-                                                case 0x02: *result = GPIO_12_2_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_12_3_H 
-                                                case 0x03: *result = GPIO_12_3_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_12_4_H 
-                                                case 0x04: *result = GPIO_12_4_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_12_5_H 
-                                                case 0x05: *result = GPIO_12_5_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_12_6_H 
-                                                case 0x06: *result = GPIO_12_6_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_12_7_H 
-                                                case 0x07: *result = GPIO_12_7_Read(); return_flag = 1; break;
-                                            #endif
-                                        }
-                                        break;
-                                        
-                                    case 0x0F: 
-                                        switch(pin)
-                                        {   
-                                            #ifdef CY_PINS_GPIO_15_0_H 
-                                                case 0x00: *result = GPIO_15_0_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_15_1_H 
-                                                case 0x01: *result = GPIO_15_1_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_15_2_H 
-                                                case 0x02: *result = GPIO_15_2_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_15_3_H 
-                                                case 0x03: *result = GPIO_15_3_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_15_4_H 
-                                                case 0x04: *result = GPIO_15_4_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_15_5_H 
-                                                case 0x05: *result = GPIO_15_5_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_15_6_H 
-                                                case 0x06: *result = GPIO_15_6_Read(); return_flag = 1; break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_15_7_H 
-                                                case 0x07: *result = GPIO_15_7_Read(); return_flag = 1; break;
-                                            #endif
-                                        }
-                                        break;
-                                
-                            }
-                            break;     
-                    
-                    
-                    case 0x01://Write
-                    
-                       switch(port)
-                            {
-                                case 0x00: 
-                                        switch(pin)
-                                        {   
-                                            #ifdef CY_PINS_GPIO_0_0_H 
-                                                case 0x00: GPIO_0_0_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_0_1_H 
-                                                case 0x01: GPIO_0_1_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_0_2_H 
-                                                case 0x02: GPIO_0_2_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_0_3_H 
-                                                case 0x03: GPIO_0_3_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_0_4_H 
-                                                case 0x04: GPIO_0_4_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_0_5_H 
-                                                case 0x05: GPIO_0_5_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_0_6_H 
-                                                case 0x06: GPIO_0_6_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_0_7_H 
-                                                case 0x07: GPIO_0_7_Write(val); break;
-                                            #endif
-                                        }
-                                        break;
-                                
-                                case 0x02: 
-                                        switch(pin)
-                                        {   
-                                            #ifdef CY_PINS_GPIO_2_0_H 
-                                                case 0x00: GPIO_2_0_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_2_1_H 
-                                                case 0x01: GPIO_2_1_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_2_2_H 
-                                                case 0x02: GPIO_2_2_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_2_3_H 
-                                                case 0x03: GPIO_2_3_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_2_4_H 
-                                                case 0x04: GPIO_2_4_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_2_5_H 
-                                                case 0x05: GPIO_2_5_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_2_6_H 
-                                                case 0x06: GPIO_2_6_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_2_7_H 
-                                                case 0x07: GPIO_2_7_Write(val); break;
-                                            #endif
-                                        }
-                                        break;
-                                
-                                case 0x03: 
-                                        switch(pin)
-                                        {   
-                                            #ifdef CY_PINS_GPIO_3_0_H 
-                                                case 0x00: GPIO_3_0_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_3_1_H 
-                                                case 0x01: GPIO_3_1_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_3_2_H 
-                                                case 0x02: GPIO_3_2_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_3_3_H 
-                                                case 0x03: GPIO_3_3_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_3_4_H 
-                                                case 0x04: GPIO_3_4_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_3_5_H 
-                                                case 0x05: GPIO_3_5_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_3_6_H 
-                                                case 0x06: GPIO_3_6_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_3_7_H 
-                                                case 0x07: GPIO_3_7_Write(val); break;
-                                            #endif
-                                        }
-                                        break;
-                                        
-                                case 0x04: 
-                                        switch(pin)
-                                        {   
-                                            #ifdef CY_PINS_GPIO_4_0_H 
-                                                case 0x00: GPIO_4_0_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_4_1_H 
-                                                case 0x01: GPIO_4_1_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_4_2_H 
-                                                case 0x02: GPIO_4_2_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_4_3_H 
-                                                case 0x03: GPIO_4_3_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_4_4_H 
-                                                case 0x04: GPIO_4_4_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_4_5_H 
-                                                case 0x05: GPIO_4_5_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_4_6_H 
-                                                case 0x06: GPIO_4_6_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_4_7_H 
-                                                case 0x07: GPIO_4_7_Write(val); break;
-                                            #endif
-                                        }
-                                        break;
-                                        
-                                case 0x05: 
-                                        switch(pin)
-                                        {   
-                                            #ifdef CY_PINS_GPIO_5_0_H 
-                                                case 0x00: GPIO_5_0_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_5_1_H 
-                                                case 0x01: GPIO_5_1_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_5_2_H 
-                                                case 0x02: GPIO_5_2_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_5_3_H 
-                                                case 0x03: GPIO_5_3_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_5_4_H 
-                                                case 0x04: GPIO_5_4_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_5_5_H 
-                                                case 0x05: GPIO_5_5_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_5_6_H 
-                                                case 0x06: GPIO_5_6_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_5_7_H 
-                                                case 0x07: GPIO_5_7_Write(val); break;
-                                            #endif
-                                        }
-                                        break;
-                                        
-                                case 0x06: 
-                                        switch(pin)
-                                        {   
-                                            #ifdef CY_PINS_GPIO_6_0_H 
-                                                case 0x00: GPIO_6_0_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_6_1_H 
-                                                case 0x01: GPIO_6_1_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_6_2_H 
-                                                case 0x02: GPIO_6_2_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_6_3_H 
-                                                case 0x03: GPIO_6_3_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_6_4_H 
-                                                case 0x04: GPIO_6_4_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_6_5_H 
-                                                case 0x05: GPIO_6_5_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_6_6_H 
-                                                case 0x06: GPIO_6_6_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_6_7_H 
-                                                case 0x07: GPIO_6_7_Write(val); break;
-                                            #endif
-                                        }
-                                        break;
-                                
-                                case 0x0C: 
-                                        switch(pin)
-                                        {   
-                                            #ifdef CY_PINS_GPIO_12_0_H 
-                                                case 0x00: GPIO_12_0_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_12_1_H 
-                                                case 0x01: GPIO_12_1_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_12_2_H 
-                                                case 0x02: GPIO_12_2_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_12_3_H 
-                                                case 0x03: GPIO_12_3_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_12_4_H 
-                                                case 0x04: GPIO_12_4_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_12_5_H 
-                                                case 0x05: GPIO_12_5_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_12_6_H 
-                                                case 0x06: GPIO_12_6_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_12_7_H 
-                                                case 0x07: GPIO_12_7_Write(val); break;
-                                            #endif
-                                        }
-                                        break;
-                                        
-                                case 0x0F: 
-                                        switch(pin)
-                                        {   
-                                            #ifdef CY_PINS_GPIO_15_0_H 
-                                                case 0x00: GPIO_15_0_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_15_1_H 
-                                                case 0x01: GPIO_15_1_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_15_2_H 
-                                                case 0x02: GPIO_15_2_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_15_3_H 
-                                                case 0x03: GPIO_15_3_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_15_4_H 
-                                                case 0x04: GPIO_15_4_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_15_5_H 
-                                                case 0x05: GPIO_15_5_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_15_6_H 
-                                                case 0x06: GPIO_15_6_Write(val); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_15_7_H 
-                                                case 0x07: GPIO_15_7_Write(val); break;
-                                            #endif
-                                        }
-                                        break;
-                                
-                            }
-                            break;      
-                    
-                    
-                    case 0x03: //set drive mode
-                            switch(val)
-                            {
-                                    case 0x01: config_MASK = PIN_DM_ALG_HIZ; break;
-                                    case 0x02: config_MASK = PIN_DM_DIG_HIZ; break;
-                                    case 0x03: config_MASK = PIN_DM_RES_UP; break;
-                                    case 0x04: config_MASK = PIN_DM_RES_DWN; break;
-                                    case 0x05: config_MASK = PIN_DM_OD_LO; break;
-                                    case 0x06: config_MASK = PIN_DM_OD_HI; break;
-                                    case 0x07: config_MASK = PIN_DM_STRONG; break;
-                                    case 0x08: config_MASK = PIN_DM_RES_UPDWN; break;
-                                    
-                                    
-                            }
-                            
-                            switch(port)
-                            {
-                                case 0x00: 
-                                        switch(pin)
-                                        {   
-                                            #ifdef CY_PINS_GPIO_0_0_H 
-                                                case 0x00: GPIO_0_0_SetDriveMode(config_MASK); break; 
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_0_1_H 
-                                                case 0x01: GPIO_0_1_SetDriveMode(config_MASK); break; 
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_0_2_H 
-                                                case 0x02: GPIO_0_2_SetDriveMode(config_MASK); break; 
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_0_3_H 
-                                                case 0x03: GPIO_0_3_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_0_4_H 
-                                                case 0x04: GPIO_0_4_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_0_5_H 
-                                                case 0x05: GPIO_0_5_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_0_6_H 
-                                                case 0x06: GPIO_0_6_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_0_7_H 
-                                                case 0x07: GPIO_0_7_SetDriveMode(config_MASK); break;
-                                            #endif
-                                        }
-                                        break;
-                                        
-                                case 0x02: 
-                                        switch(pin)
-                                        {   
-                                            #ifdef CY_PINS_GPIO_2_0_H 
-                                                case 0x00: GPIO_2_0_SetDriveMode(config_MASK); break; 
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_2_1_H 
-                                                case 0x01: GPIO_2_1_SetDriveMode(config_MASK); break; 
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_2_2_H 
-                                                case 0x02: GPIO_2_2_SetDriveMode(config_MASK); break; 
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_2_3_H 
-                                                case 0x03: GPIO_2_3_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_2_4_H 
-                                                case 0x04: GPIO_2_4_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_2_5_H 
-                                                case 0x05: GPIO_2_5_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_2_6_H 
-                                                case 0x06: GPIO_2_6_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_2_7_H 
-                                                case 0x07: GPIO_2_7_SetDriveMode(config_MASK); break;
-                                            #endif
-                                        }
-                                        break;
-                                case 0x03: 
-                                        switch(pin)
-                                        {   
-                                            #ifdef CY_PINS_GPIO_3_0_H 
-                                                case 0x00: GPIO_3_0_SetDriveMode(config_MASK); break; 
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_3_1_H 
-                                                case 0x01: GPIO_3_1_SetDriveMode(config_MASK); break; 
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_3_2_H 
-                                                case 0x02: GPIO_3_2_SetDriveMode(config_MASK); break; 
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_3_3_H 
-                                                case 0x03: GPIO_3_3_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_3_4_H 
-                                                case 0x04: GPIO_3_4_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_3_5_H 
-                                                case 0x05: GPIO_3_5_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_3_6_H 
-                                                case 0x06: GPIO_3_6_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_3_7_H 
-                                                case 0x07: GPIO_3_7_SetDriveMode(config_MASK); break;
-                                            #endif
-                                        }
-                                        break;
-                                        
-                                case 0x04: 
-                                        switch(pin)
-                                        {   
-                                            #ifdef CY_PINS_GPIO_4_0_H 
-                                                case 0x00: GPIO_4_0_SetDriveMode(config_MASK); break; 
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_4_1_H 
-                                                case 0x01: GPIO_4_1_SetDriveMode(config_MASK); break; 
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_4_2_H 
-                                                case 0x02: GPIO_4_2_SetDriveMode(config_MASK); break; 
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_4_3_H 
-                                                case 0x03: GPIO_4_3_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_4_4_H 
-                                                case 0x04: GPIO_4_4_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_4_5_H 
-                                                case 0x05: GPIO_4_5_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_4_6_H 
-                                                case 0x06: GPIO_4_6_SetDriveMode(config_MASK); break;
-                                            #endif
-                                        }
-                                        break;
-                                        
-                                case 0x05: 
-                                        switch(pin)
-                                        {   
-                                            #ifdef CY_PINS_GPIO_5_0_H 
-                                                case 0x00: GPIO_5_0_SetDriveMode(config_MASK); break; 
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_5_1_H 
-                                                case 0x01: GPIO_5_1_SetDriveMode(config_MASK); break; 
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_5_2_H 
-                                                case 0x02: GPIO_5_2_SetDriveMode(config_MASK); break; 
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_5_3_H 
-                                                case 0x03: GPIO_5_3_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_5_4_H 
-                                                case 0x04: GPIO_5_4_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_5_5_H 
-                                                case 0x05: GPIO_5_5_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_5_6_H 
-                                                case 0x06: GPIO_5_6_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_5_7_H 
-                                                case 0x07: GPIO_5_7_SetDriveMode(config_MASK); break;
-                                            #endif
-                                        }
-                                        break;
-                                        
-                                case 0x06: 
-                                        switch(pin)
-                                        {   
-                                            #ifdef CY_PINS_GPIO_6_0_H 
-                                                case 0x00: GPIO_6_0_SetDriveMode(config_MASK); break; 
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_6_1_H 
-                                                case 0x01: GPIO_6_1_SetDriveMode(config_MASK); break; 
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_6_2_H 
-                                                case 0x02: GPIO_6_2_SetDriveMode(config_MASK); break; 
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_6_3_H 
-                                                case 0x03: GPIO_6_3_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_6_4_H 
-                                                case 0x04: GPIO_6_4_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_6_5_H 
-                                                case 0x05: GPIO_6_5_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_6_6_H 
-                                                case 0x06: GPIO_6_6_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_6_7_H 
-                                                case 0x07: GPIO_6_7_SetDriveMode(config_MASK); break;
-                                            #endif
-                                        }
-                                        break;
-                                
-                                case 0x0C: 
-                                        switch(pin)
-                                        {   
-                                            #ifdef CY_PINS_GPIO_12_0_H 
-                                                case 0x00: GPIO_12_0_SetDriveMode(config_MASK); break; 
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_12_1_H 
-                                                case 0x01: GPIO_12_1_SetDriveMode(config_MASK); break; 
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_12_2_H 
-                                                case 0x02: GPIO_12_2_SetDriveMode(config_MASK); break; 
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_12_3_H 
-                                                case 0x03: GPIO_12_3_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_12_4_H 
-                                                case 0x04: GPIO_12_4_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_12_5_H 
-                                                case 0x05: GPIO_12_5_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_12_6_H 
-                                                case 0x06: GPIO_12_6_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_12_7_H 
-                                                case 0x07: GPIO_12_7_SetDriveMode(config_MASK); break;
-                                            #endif
-                                        }
-                                        break;
-                                
-                                case 0x0F: 
-                                        switch(pin)
-                                        {   
-                                            #ifdef CY_PINS_GPIO_15_0_H 
-                                                case 0x00: GPIO_15_0_SetDriveMode(config_MASK); break; 
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_15_1_H 
-                                                case 0x01: GPIO_15_1_SetDriveMode(config_MASK); break; 
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_15_2_H 
-                                                case 0x02: GPIO_15_2_SetDriveMode(config_MASK); break; 
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_15_3_H 
-                                                case 0x03: GPIO_15_3_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_15_4_H 
-                                                case 0x04: GPIO_15_4_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_15_5_H 
-                                                case 0x05: GPIO_15_5_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_15_6_H 
-                                                case 0x06: GPIO_15_6_SetDriveMode(config_MASK); break;
-                                            #endif
-                                            #ifdef CY_PINS_GPIO_15_7_H 
-                                                case 0x07: GPIO_15_7_SetDriveMode(config_MASK); break;
-                                            #endif
-                                        }
-                                        break;
-                                
-                            }
-                            break; 
-                            
-                            case 0x04: //ranger
-                            
-                            break;
-                            
-                
-                }
-                
-                return return_flag;
-    }
-    
-    #ifdef CY_ADC_SAR_Seq_1_H
-        bool Analog_Read(uint8 cmd, uint16 dat, uint32 *result)
         {
-            bool return_flag = false;
-            
-            ADC_SAR_Seq_1_Start();
-            if (cmd == 0x00 || cmd == 0x01)
+            case 0x00: PWM_8_Start(); break;
+            case 0x01: PWM_8_Stop(); break;
+            case 0x0C: PWM_8_WritePeriod(val); break;
+            case 0x0D: *result = PWM_8_ReadPeriod(); return_flag = 1; break;
+            case 0x0E: PWM_8_WriteCompare(val); break;
+            case 0x0F: *result  = PWM_8_ReadCompare(); return_flag = 1; break;
+            case 0x18: PWM_8_ClearFIFO(); break; 
+            case 0x19: PWM_8_Sleep(); break; 
+            case 0x1A: PWM_8_Wakeup(); break;
+            case 0xFF: PWM_CLK_4_SetDividerValue(val); *result = PWM_CLK_4_GetDividerRegister(); return_flag = 1; break;
+        }
+        
+        return return_flag;
+    }
+#endif
+
+
+#ifdef CY_PWM_PWM_9_H
+    bool PWM_Control_8(uint8 cmd, uint16 val, uint32 *result)
+    {
+        bool return_flag = 0;
+        
+        switch(cmd)
+        {
+            case 0x00: PWM_9_Start(); break;
+            case 0x01: PWM_9_Stop(); break;
+            case 0x0C: PWM_9_WritePeriod(val); break;
+            case 0x0D: *result = PWM_9_ReadPeriod(); return_flag = 1; break;
+            case 0x0E: PWM_9_WriteCompare(val); break;
+            case 0x0F: *result  = PWM_9_ReadCompare(); return_flag = 1; break;
+            case 0x18: PWM_9_ClearFIFO(); break; 
+            case 0x19: PWM_9_Sleep(); break; 
+            case 0x1A: PWM_9_Wakeup(); break;
+            case 0xFF: PWM_CLK_5_SetDividerValue(val); *result = PWM_CLK_5_GetDividerRegister(); return_flag = 1; break;
+        }
+        
+        return return_flag;
+    }
+#endif
+
+#ifdef CY_PWM_PWM_10_H
+    bool PWM_Control_9(uint8 cmd, uint16 val, uint32 *result)
+    {
+        bool return_flag = 0;
+        
+        switch(cmd)
+        {
+            case 0x00: PWM_10_Start(); break;
+            case 0x01: PWM_10_Stop(); break;
+            case 0x0C: PWM_10_WritePeriod(val); break;
+            case 0x0D: *result = PWM_10_ReadPeriod(); return_flag = 1; break;
+            case 0x0E: PWM_10_WriteCompare(val); break;
+            case 0x0F: *result  = PWM_10_ReadCompare(); return_flag = 1; break;
+            case 0x18: PWM_10_ClearFIFO(); break; 
+            case 0x19: PWM_10_Sleep(); break; 
+            case 0x1A: PWM_10_Wakeup(); break;
+            case 0xFF: PWM_CLK_5_SetDividerValue(val); *result = PWM_CLK_5_GetDividerRegister(); return_flag = 1; break;
+        }
+        
+        return return_flag;
+    }
+#endif
+
+#ifdef CY_PWM_PWM_11_H
+    bool PWM_Control_10(uint8 cmd, uint16 val, uint32 *result)
+    {
+        bool return_flag = 0;
+        
+        switch(cmd)
+        {
+            case 0x00: PWM_11_Start(); break;
+            case 0x01: PWM_11_Stop(); break;
+            case 0x0C: PWM_11_WritePeriod(val); break;
+            case 0x0D: *result = PWM_11_ReadPeriod(); return_flag = 1; break;
+            case 0x0E: PWM_11_WriteCompare(val); break;
+            case 0x0F: *result  = PWM_11_ReadCompare(); return_flag = 1; break;
+            case 0x18: PWM_11_ClearFIFO(); break; 
+            case 0x19: PWM_11_Sleep(); break; 
+            case 0x1A: PWM_11_Wakeup(); break;
+            case 0xFF: PWM_CLK_5_SetDividerValue(val); *result = PWM_CLK_5_GetDividerRegister(); return_flag = 1; break;
+        }
+        
+        return return_flag;
+    }
+#endif
+
+#ifdef CY_PWM_PWM_12_H
+    bool PWM_Control_11(uint8 cmd, uint16 val, uint32 *result)
+    {
+        bool return_flag = 0;
+        
+        switch(cmd)
+        {
+            case 0x00: PWM_12_Start(); break;
+            case 0x01: PWM_12_Stop(); break;
+            case 0x0C: PWM_12_WritePeriod(val); break;
+            case 0x0D: *result = PWM_12_ReadPeriod(); return_flag = 1; break;
+            case 0x0E: PWM_12_WriteCompare(val); break;
+            case 0x0F: *result  = PWM_12_ReadCompare(); return_flag = 1; break;
+            case 0x18: PWM_12_ClearFIFO(); break; 
+            case 0x19: PWM_12_Sleep(); break; 
+            case 0x1A: PWM_12_Wakeup(); break;
+            case 0xFF: PWM_CLK_5_SetDividerValue(val); *result = PWM_CLK_5_GetDividerRegister(); return_flag = 1; break;
+        }
+        
+        return return_flag;
+    }
+#endif
+
+bool GPIO_Control(uint8 cmd, uint8 port, uint8 pin, uint16 val, uint32 *result)
+{
+  
+    uint16 config_MASK = 0x00;
+    
+    bool return_flag = 0;
+    
+    switch(cmd)
             {
-                ADC_SAR_Seq_1_StartConvert();
-                ADC_SAR_Seq_1_IsEndConversion(ADC_SAR_Seq_1_WAIT_FOR_RESULT);
-                *result = ADC_SAR_Seq_1_GetResult16(dat);
-                ADC_SAR_Seq_1_StopConvert();
-                ADC_SAR_Seq_1_Stop();
-            }
-            
-            switch(cmd)
-            {
-                case 0x00: return_flag = true; break;
-                case 0x01: *result = ADC_SAR_Seq_1_CountsTo_uVolts(*result); return_flag = true; break;
-                case 0x02: ADC_SAR_Seq_1_SetOffset(dat); ADC_SAR_Seq_1_Stop(); break;
-                case 0x03: 
-                    switch(dat)
-                    {   
-                        case 0x08: ADC_SAR_Seq_1_SetResolution(ADC_SAR_Seq_1_BITS_8); break;
-                        case 0x0A: ADC_SAR_Seq_1_SetResolution(ADC_SAR_Seq_1_BITS_10); break;
-                        case 0x0C: ADC_SAR_Seq_1_SetResolution(ADC_SAR_Seq_1_BITS_12); break;
+                
+                case 0x00://Read
+                
+                    switch(port)
+                        {
+                            case 0x00: 
+                                    switch(pin)
+                                    {   
+                                        #ifdef CY_PINS_GPIO_0_0_H 
+                                            case 0x00: *result = GPIO_0_0_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_0_1_H 
+                                            case 0x01: *result = GPIO_0_1_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_0_2_H 
+                                            case 0x02: *result = GPIO_0_2_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_0_3_H 
+                                            case 0x03: *result = GPIO_0_3_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_0_4_H 
+                                            case 0x04: *result = GPIO_0_4_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_0_5_H 
+                                            case 0x05: *result = GPIO_0_5_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_0_6_H 
+                                            case 0x06: *result = GPIO_0_6_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_0_7_H 
+                                            case 0x07: *result = GPIO_0_7_Read(); return_flag = 1; break;
+                                        #endif
+                                    }
+                                    break;
+                            
+                            case 0x02: 
+                                    switch(pin)
+                                    {   
+                                        #ifdef CY_PINS_GPIO_2_0_H 
+                                            case 0x00: *result = GPIO_2_0_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_2_1_H 
+                                            case 0x01: *result = GPIO_2_1_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_2_2_H 
+                                            case 0x02: *result = GPIO_2_2_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_2_3_H 
+                                            case 0x03: *result = GPIO_2_3_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_2_4_H 
+                                            case 0x04: *result = GPIO_2_4_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_2_5_H 
+                                            case 0x05: *result = GPIO_2_5_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_2_6_H 
+                                            case 0x06: *result = GPIO_2_6_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_2_7_H 
+                                            case 0x07: *result = GPIO_2_7_Read(); return_flag = 1; break;
+                                        #endif
+                                    }
+                                    break;
+                                    
+                            case 0x03: 
+                                    switch(pin)
+                                    {   
+                                        #ifdef CY_PINS_GPIO_3_0_H 
+                                            case 0x00: *result = GPIO_3_0_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_3_1_H 
+                                            case 0x01: *result = GPIO_3_1_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_3_2_H 
+                                            case 0x02: *result = GPIO_3_2_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_3_3_H 
+                                            case 0x03: *result = GPIO_3_3_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_3_4_H 
+                                            case 0x04: *result = GPIO_3_4_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_3_5_H 
+                                            case 0x05: *result = GPIO_3_5_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_3_6_H 
+                                            case 0x06: *result = GPIO_3_6_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_3_7_H 
+                                            case 0x07: *result = GPIO_3_7_Read(); return_flag = 1; break;
+                                        #endif
+                                    }
+                                    break;
+                                    
+                            case 0x04: 
+                                    switch(pin)
+                                    {   
+                                        #ifdef CY_PINS_GPIO_4_0_H 
+                                            case 0x00: *result = GPIO_2_0_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_4_1_H 
+                                            case 0x01: *result = GPIO_4_1_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_4_2_H 
+                                            case 0x02: *result = GPIO_4_2_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_4_3_H 
+                                            case 0x03: *result = GPIO_4_3_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_4_4_H 
+                                            case 0x04: *result = GPIO_4_4_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_4_5_H 
+                                            case 0x05: *result = GPIO_4_5_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_4_6_H 
+                                            case 0x06: *result = GPIO_4_6_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_4_7_H 
+                                            case 0x07: *result = GPIO_4_7_Read(); return_flag = 1; break;
+                                        #endif
+                                    }
+                                    break;
+                                    
+                            case 0x05: 
+                                    switch(pin)
+                                    {   
+                                        #ifdef CY_PINS_GPIO_5_0_H 
+                                            case 0x00: *result = GPIO_5_0_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_5_1_H 
+                                            case 0x01: *result = GPIO_5_1_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_5_2_H 
+                                            case 0x02: *result = GPIO_5_2_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_5_3_H 
+                                            case 0x03: *result = GPIO_5_3_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_5_4_H 
+                                            case 0x04: *result = GPIO_5_4_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_5_5_H 
+                                            case 0x05: *result = GPIO_5_5_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_5_6_H 
+                                            case 0x06: *result = GPIO_5_6_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_5_7_H 
+                                            case 0x07: *result = GPIO_5_7_Read(); return_flag = 1; break;
+                                        #endif
+                                    }
+                                    break;
+                                    
+                            case 0x06: 
+                                    switch(pin)
+                                    {   
+                                       #ifdef CY_PINS_GPIO_6_0_H 
+                                            case 0x00: *result = GPIO_6_0_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_6_1_H 
+                                            case 0x01: *result = GPIO_6_1_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_6_2_H 
+                                            case 0x02: *result = GPIO_6_2_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_6_3_H 
+                                            case 0x03: *result = GPIO_6_3_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_6_4_H 
+                                            case 0x04: *result = GPIO_6_4_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_6_5_H 
+                                            case 0x05: *result = GPIO_6_5_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_6_6_H 
+                                            case 0x06: *result = GPIO_6_6_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_6_7_H 
+                                            case 0x07: *result = GPIO_6_7_Read(); return_flag = 1; break;
+                                        #endif
+                                    }
+                                    break;
+                            
+                            case 0x0C: 
+                                    switch(pin)
+                                    {   
+                                        #ifdef CY_PINS_GPIO_12_0_H 
+                                            case 0x00: *result = GPIO_12_0_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_12_1_H 
+                                            case 0x01: *result = GPIO_12_1_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_12_2_H 
+                                            case 0x02: *result = GPIO_12_2_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_12_3_H 
+                                            case 0x03: *result = GPIO_12_3_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_12_4_H 
+                                            case 0x04: *result = GPIO_12_4_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_12_5_H 
+                                            case 0x05: *result = GPIO_12_5_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_12_6_H 
+                                            case 0x06: *result = GPIO_12_6_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_12_7_H 
+                                            case 0x07: *result = GPIO_12_7_Read(); return_flag = 1; break;
+                                        #endif
+                                    }
+                                    break;
+                                    
+                                case 0x0F: 
+                                    switch(pin)
+                                    {   
+                                        #ifdef CY_PINS_GPIO_15_0_H 
+                                            case 0x00: *result = GPIO_15_0_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_15_1_H 
+                                            case 0x01: *result = GPIO_15_1_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_15_2_H 
+                                            case 0x02: *result = GPIO_15_2_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_15_3_H 
+                                            case 0x03: *result = GPIO_15_3_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_15_4_H 
+                                            case 0x04: *result = GPIO_15_4_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_15_5_H 
+                                            case 0x05: *result = GPIO_15_5_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_15_6_H 
+                                            case 0x06: *result = GPIO_15_6_Read(); return_flag = 1; break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_15_7_H 
+                                            case 0x07: *result = GPIO_15_7_Read(); return_flag = 1; break;
+                                        #endif
+                                    }
+                                    break;
+                            
+                        }
+                        break;     
+                
+                
+                case 0x01://Write
+                
+                   switch(port)
+                        {
+                            case 0x00: 
+                                    switch(pin)
+                                    {   
+                                        #ifdef CY_PINS_GPIO_0_0_H 
+                                            case 0x00: GPIO_0_0_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_0_1_H 
+                                            case 0x01: GPIO_0_1_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_0_2_H 
+                                            case 0x02: GPIO_0_2_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_0_3_H 
+                                            case 0x03: GPIO_0_3_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_0_4_H 
+                                            case 0x04: GPIO_0_4_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_0_5_H 
+                                            case 0x05: GPIO_0_5_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_0_6_H 
+                                            case 0x06: GPIO_0_6_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_0_7_H 
+                                            case 0x07: GPIO_0_7_Write(val); break;
+                                        #endif
+                                    }
+                                    break;
+                            
+                            case 0x02: 
+                                    switch(pin)
+                                    {   
+                                        #ifdef CY_PINS_GPIO_2_0_H 
+                                            case 0x00: GPIO_2_0_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_2_1_H 
+                                            case 0x01: GPIO_2_1_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_2_2_H 
+                                            case 0x02: GPIO_2_2_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_2_3_H 
+                                            case 0x03: GPIO_2_3_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_2_4_H 
+                                            case 0x04: GPIO_2_4_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_2_5_H 
+                                            case 0x05: GPIO_2_5_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_2_6_H 
+                                            case 0x06: GPIO_2_6_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_2_7_H 
+                                            case 0x07: GPIO_2_7_Write(val); break;
+                                        #endif
+                                    }
+                                    break;
+                            
+                            case 0x03: 
+                                    switch(pin)
+                                    {   
+                                        #ifdef CY_PINS_GPIO_3_0_H 
+                                            case 0x00: GPIO_3_0_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_3_1_H 
+                                            case 0x01: GPIO_3_1_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_3_2_H 
+                                            case 0x02: GPIO_3_2_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_3_3_H 
+                                            case 0x03: GPIO_3_3_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_3_4_H 
+                                            case 0x04: GPIO_3_4_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_3_5_H 
+                                            case 0x05: GPIO_3_5_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_3_6_H 
+                                            case 0x06: GPIO_3_6_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_3_7_H 
+                                            case 0x07: GPIO_3_7_Write(val); break;
+                                        #endif
+                                    }
+                                    break;
+                                    
+                            case 0x04: 
+                                    switch(pin)
+                                    {   
+                                        #ifdef CY_PINS_GPIO_4_0_H 
+                                            case 0x00: GPIO_4_0_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_4_1_H 
+                                            case 0x01: GPIO_4_1_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_4_2_H 
+                                            case 0x02: GPIO_4_2_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_4_3_H 
+                                            case 0x03: GPIO_4_3_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_4_4_H 
+                                            case 0x04: GPIO_4_4_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_4_5_H 
+                                            case 0x05: GPIO_4_5_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_4_6_H 
+                                            case 0x06: GPIO_4_6_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_4_7_H 
+                                            case 0x07: GPIO_4_7_Write(val); break;
+                                        #endif
+                                    }
+                                    break;
+                                    
+                            case 0x05: 
+                                    switch(pin)
+                                    {   
+                                        #ifdef CY_PINS_GPIO_5_0_H 
+                                            case 0x00: GPIO_5_0_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_5_1_H 
+                                            case 0x01: GPIO_5_1_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_5_2_H 
+                                            case 0x02: GPIO_5_2_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_5_3_H 
+                                            case 0x03: GPIO_5_3_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_5_4_H 
+                                            case 0x04: GPIO_5_4_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_5_5_H 
+                                            case 0x05: GPIO_5_5_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_5_6_H 
+                                            case 0x06: GPIO_5_6_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_5_7_H 
+                                            case 0x07: GPIO_5_7_Write(val); break;
+                                        #endif
+                                    }
+                                    break;
+                                    
+                            case 0x06: 
+                                    switch(pin)
+                                    {   
+                                        #ifdef CY_PINS_GPIO_6_0_H 
+                                            case 0x00: GPIO_6_0_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_6_1_H 
+                                            case 0x01: GPIO_6_1_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_6_2_H 
+                                            case 0x02: GPIO_6_2_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_6_3_H 
+                                            case 0x03: GPIO_6_3_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_6_4_H 
+                                            case 0x04: GPIO_6_4_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_6_5_H 
+                                            case 0x05: GPIO_6_5_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_6_6_H 
+                                            case 0x06: GPIO_6_6_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_6_7_H 
+                                            case 0x07: GPIO_6_7_Write(val); break;
+                                        #endif
+                                    }
+                                    break;
+                            
+                            case 0x0C: 
+                                    switch(pin)
+                                    {   
+                                        #ifdef CY_PINS_GPIO_12_0_H 
+                                            case 0x00: GPIO_12_0_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_12_1_H 
+                                            case 0x01: GPIO_12_1_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_12_2_H 
+                                            case 0x02: GPIO_12_2_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_12_3_H 
+                                            case 0x03: GPIO_12_3_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_12_4_H 
+                                            case 0x04: GPIO_12_4_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_12_5_H 
+                                            case 0x05: GPIO_12_5_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_12_6_H 
+                                            case 0x06: GPIO_12_6_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_12_7_H 
+                                            case 0x07: GPIO_12_7_Write(val); break;
+                                        #endif
+                                    }
+                                    break;
+                                    
+                            case 0x0F: 
+                                    switch(pin)
+                                    {   
+                                        #ifdef CY_PINS_GPIO_15_0_H 
+                                            case 0x00: GPIO_15_0_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_15_1_H 
+                                            case 0x01: GPIO_15_1_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_15_2_H 
+                                            case 0x02: GPIO_15_2_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_15_3_H 
+                                            case 0x03: GPIO_15_3_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_15_4_H 
+                                            case 0x04: GPIO_15_4_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_15_5_H 
+                                            case 0x05: GPIO_15_5_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_15_6_H 
+                                            case 0x06: GPIO_15_6_Write(val); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_15_7_H 
+                                            case 0x07: GPIO_15_7_Write(val); break;
+                                        #endif
+                                    }
+                                    break;
+                            
+                        }
+                        break;      
+                
+                
+                case 0x03: //set drive mode
+                        switch(val)
+                        {
+                                case 0x01: config_MASK = PIN_DM_ALG_HIZ; break;
+                                case 0x02: config_MASK = PIN_DM_DIG_HIZ; break;
+                                case 0x03: config_MASK = PIN_DM_RES_UP; break;
+                                case 0x04: config_MASK = PIN_DM_RES_DWN; break;
+                                case 0x05: config_MASK = PIN_DM_OD_LO; break;
+                                case 0x06: config_MASK = PIN_DM_OD_HI; break;
+                                case 0x07: config_MASK = PIN_DM_STRONG; break;
+                                case 0x08: config_MASK = PIN_DM_RES_UPDWN; break;
+                                
+                                
+                        }
                         
-                    }
-                    ADC_SAR_Seq_1_Stop();
-                    break;
+                        switch(port)
+                        {
+                            case 0x00: 
+                                    switch(pin)
+                                    {   
+                                        #ifdef CY_PINS_GPIO_0_0_H 
+                                            case 0x00: GPIO_0_0_SetDriveMode(config_MASK); break; 
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_0_1_H 
+                                            case 0x01: GPIO_0_1_SetDriveMode(config_MASK); break; 
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_0_2_H 
+                                            case 0x02: GPIO_0_2_SetDriveMode(config_MASK); break; 
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_0_3_H 
+                                            case 0x03: GPIO_0_3_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_0_4_H 
+                                            case 0x04: GPIO_0_4_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_0_5_H 
+                                            case 0x05: GPIO_0_5_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_0_6_H 
+                                            case 0x06: GPIO_0_6_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_0_7_H 
+                                            case 0x07: GPIO_0_7_SetDriveMode(config_MASK); break;
+                                        #endif
+                                    }
+                                    break;
+                                    
+                            case 0x02: 
+                                    switch(pin)
+                                    {   
+                                        #ifdef CY_PINS_GPIO_2_0_H 
+                                            case 0x00: GPIO_2_0_SetDriveMode(config_MASK); break; 
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_2_1_H 
+                                            case 0x01: GPIO_2_1_SetDriveMode(config_MASK); break; 
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_2_2_H 
+                                            case 0x02: GPIO_2_2_SetDriveMode(config_MASK); break; 
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_2_3_H 
+                                            case 0x03: GPIO_2_3_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_2_4_H 
+                                            case 0x04: GPIO_2_4_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_2_5_H 
+                                            case 0x05: GPIO_2_5_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_2_6_H 
+                                            case 0x06: GPIO_2_6_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_2_7_H 
+                                            case 0x07: GPIO_2_7_SetDriveMode(config_MASK); break;
+                                        #endif
+                                    }
+                                    break;
+                            case 0x03: 
+                                    switch(pin)
+                                    {   
+                                        #ifdef CY_PINS_GPIO_3_0_H 
+                                            case 0x00: GPIO_3_0_SetDriveMode(config_MASK); break; 
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_3_1_H 
+                                            case 0x01: GPIO_3_1_SetDriveMode(config_MASK); break; 
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_3_2_H 
+                                            case 0x02: GPIO_3_2_SetDriveMode(config_MASK); break; 
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_3_3_H 
+                                            case 0x03: GPIO_3_3_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_3_4_H 
+                                            case 0x04: GPIO_3_4_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_3_5_H 
+                                            case 0x05: GPIO_3_5_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_3_6_H 
+                                            case 0x06: GPIO_3_6_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_3_7_H 
+                                            case 0x07: GPIO_3_7_SetDriveMode(config_MASK); break;
+                                        #endif
+                                    }
+                                    break;
+                                    
+                            case 0x04: 
+                                    switch(pin)
+                                    {   
+                                        #ifdef CY_PINS_GPIO_4_0_H 
+                                            case 0x00: GPIO_4_0_SetDriveMode(config_MASK); break; 
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_4_1_H 
+                                            case 0x01: GPIO_4_1_SetDriveMode(config_MASK); break; 
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_4_2_H 
+                                            case 0x02: GPIO_4_2_SetDriveMode(config_MASK); break; 
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_4_3_H 
+                                            case 0x03: GPIO_4_3_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_4_4_H 
+                                            case 0x04: GPIO_4_4_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_4_5_H 
+                                            case 0x05: GPIO_4_5_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_4_6_H 
+                                            case 0x06: GPIO_4_6_SetDriveMode(config_MASK); break;
+                                        #endif
+                                    }
+                                    break;
+                                    
+                            case 0x05: 
+                                    switch(pin)
+                                    {   
+                                        #ifdef CY_PINS_GPIO_5_0_H 
+                                            case 0x00: GPIO_5_0_SetDriveMode(config_MASK); break; 
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_5_1_H 
+                                            case 0x01: GPIO_5_1_SetDriveMode(config_MASK); break; 
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_5_2_H 
+                                            case 0x02: GPIO_5_2_SetDriveMode(config_MASK); break; 
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_5_3_H 
+                                            case 0x03: GPIO_5_3_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_5_4_H 
+                                            case 0x04: GPIO_5_4_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_5_5_H 
+                                            case 0x05: GPIO_5_5_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_5_6_H 
+                                            case 0x06: GPIO_5_6_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_5_7_H 
+                                            case 0x07: GPIO_5_7_SetDriveMode(config_MASK); break;
+                                        #endif
+                                    }
+                                    break;
+                                    
+                            case 0x06: 
+                                    switch(pin)
+                                    {   
+                                        #ifdef CY_PINS_GPIO_6_0_H 
+                                            case 0x00: GPIO_6_0_SetDriveMode(config_MASK); break; 
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_6_1_H 
+                                            case 0x01: GPIO_6_1_SetDriveMode(config_MASK); break; 
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_6_2_H 
+                                            case 0x02: GPIO_6_2_SetDriveMode(config_MASK); break; 
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_6_3_H 
+                                            case 0x03: GPIO_6_3_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_6_4_H 
+                                            case 0x04: GPIO_6_4_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_6_5_H 
+                                            case 0x05: GPIO_6_5_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_6_6_H 
+                                            case 0x06: GPIO_6_6_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_6_7_H 
+                                            case 0x07: GPIO_6_7_SetDriveMode(config_MASK); break;
+                                        #endif
+                                    }
+                                    break;
+                            
+                            case 0x0C: 
+                                    switch(pin)
+                                    {   
+                                        #ifdef CY_PINS_GPIO_12_0_H 
+                                            case 0x00: GPIO_12_0_SetDriveMode(config_MASK); break; 
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_12_1_H 
+                                            case 0x01: GPIO_12_1_SetDriveMode(config_MASK); break; 
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_12_2_H 
+                                            case 0x02: GPIO_12_2_SetDriveMode(config_MASK); break; 
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_12_3_H 
+                                            case 0x03: GPIO_12_3_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_12_4_H 
+                                            case 0x04: GPIO_12_4_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_12_5_H 
+                                            case 0x05: GPIO_12_5_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_12_6_H 
+                                            case 0x06: GPIO_12_6_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_12_7_H 
+                                            case 0x07: GPIO_12_7_SetDriveMode(config_MASK); break;
+                                        #endif
+                                    }
+                                    break;
+                            
+                            case 0x0F: 
+                                    switch(pin)
+                                    {   
+                                        #ifdef CY_PINS_GPIO_15_0_H 
+                                            case 0x00: GPIO_15_0_SetDriveMode(config_MASK); break; 
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_15_1_H 
+                                            case 0x01: GPIO_15_1_SetDriveMode(config_MASK); break; 
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_15_2_H 
+                                            case 0x02: GPIO_15_2_SetDriveMode(config_MASK); break; 
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_15_3_H 
+                                            case 0x03: GPIO_15_3_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_15_4_H 
+                                            case 0x04: GPIO_15_4_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_15_5_H 
+                                            case 0x05: GPIO_15_5_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_15_6_H 
+                                            case 0x06: GPIO_15_6_SetDriveMode(config_MASK); break;
+                                        #endif
+                                        #ifdef CY_PINS_GPIO_15_7_H 
+                                            case 0x07: GPIO_15_7_SetDriveMode(config_MASK); break;
+                                        #endif
+                                    }
+                                    break;
+                            
+                        }
+                        break; 
+                        
+                        case 0x04: //ranger
+                        
+                        break;
+                        
+            
             }
             
             return return_flag;
-        }
-    #endif
-    
-    #ifdef CY_CAPSENSE_CSD_CapSense_1_H
-        bool CapSense_Read(uint8 cmd, uint16 dat, uint32 *result)
+}
+
+#ifdef CY_ADC_SAR_Seq_1_H
+    bool Analog_Read(uint8 cmd, uint16 dat, uint32 *result)
+    {
+        bool return_flag = false;
+        
+        ADC_SAR_Seq_1_Start();
+        if (cmd == 0x00 || cmd == 0x01)
         {
-             bool return_flag = 0;
-             unsigned int j = 0;
-
-                    switch(cmd)
-                    {
-                        case 0x00: CapSense_1_Start(); CapSense_1_InitializeAllBaselines(); break;
-                        case 0x01: CapSense_1_Stop(); break;
-                        case 0x02: CapSense_1_Sleep(); break;
-                        case 0x03: CapSense_1_Wakeup(); break;
-                        case 0x0F:
-                            /* Update all baselines */
-                            CapSense_1_UpdateEnabledBaselines();
-                       		/* Start scanning all enabled sensors */
-                        	CapSense_1_ScanEnabledWidgets();
-                            /* Wait for scanning to complete */
-                    		while(CapSense_1_IsBusy() != 0);
-                            *result = CapSense_1_ReadSensorRaw(dat); return_flag = 1;
-                            break;
-                        case 0x18:
-                            /* Update all baselines */
-                            CapSense_1_UpdateEnabledBaselines();
-                       		/* Start scanning all enabled sensors */
-                        	CapSense_1_ScanEnabledWidgets();
-                            /* Wait for scanning to complete */
-                    		while(CapSense_1_IsBusy() != 0);
-                            *result = CapSense_1_CheckIsWidgetActive(dat); return_flag = 1;
-                            break;
-                        case 0xFF:
-                            
-                            /* Update all baselines */
-                            CapSense_1_UpdateEnabledBaselines();
-                            
-                            for (j = 0; j<CapSense_1_TOTAL_SENSOR_COUNT; j++)
-                            {
-                           		/* Start scanning all enabled sensors */
-                            	CapSense_1_ScanEnabledWidgets();
-                                /* Wait for scanning to complete */
-                        		while(CapSense_1_IsBusy() != 0);
-                                if (CapSense_1_ReadSensorRaw(j)>=dat)
-                                {
-                                    *result|=(0x01<<j);
-                                }
-                            }
-                            return_flag = true;
-                            
-                            
-
-                    }
-
-                    return return_flag;
+            ADC_SAR_Seq_1_StartConvert();
+            ADC_SAR_Seq_1_IsEndConversion(ADC_SAR_Seq_1_WAIT_FOR_RESULT);
+            *result = ADC_SAR_Seq_1_GetResult16(dat);
+            ADC_SAR_Seq_1_StopConvert();
+            ADC_SAR_Seq_1_Stop();
         }
-    #endif
+        
+        switch(cmd)
+        {
+            case 0x00: return_flag = true; break;
+            case 0x01: *result = ADC_SAR_Seq_1_CountsTo_uVolts(*result); return_flag = true; break;
+            case 0x02: ADC_SAR_Seq_1_SetOffset(dat); ADC_SAR_Seq_1_Stop(); break;
+            case 0x03: 
+                switch(dat)
+                {   
+                    case 0x08: ADC_SAR_Seq_1_SetResolution(ADC_SAR_Seq_1_BITS_8); break;
+                    case 0x0A: ADC_SAR_Seq_1_SetResolution(ADC_SAR_Seq_1_BITS_10); break;
+                    case 0x0C: ADC_SAR_Seq_1_SetResolution(ADC_SAR_Seq_1_BITS_12); break;
+                    
+                }
+                ADC_SAR_Seq_1_Stop();
+                break;
+        }
+        
+        return return_flag;
+    }
+#endif
+
+#ifdef CY_CAPSENSE_CSD_CapSense_1_H
+    bool CapSense_Read(uint8 cmd, uint16 dat, uint32 *result)
+    {
+         bool return_flag = 0;
+         unsigned int j = 0;
+
+                switch(cmd)
+                {
+                    case 0x00: CapSense_1_Start(); CapSense_1_InitializeAllBaselines(); break;
+                    case 0x01: CapSense_1_Stop(); break;
+                    case 0x02: CapSense_1_Sleep(); break;
+                    case 0x03: CapSense_1_Wakeup(); break;
+                    case 0x0F:
+                        /* Update all baselines */
+                        CapSense_1_UpdateEnabledBaselines();
+                   		/* Start scanning all enabled sensors */
+                    	CapSense_1_ScanEnabledWidgets();
+                        /* Wait for scanning to complete */
+                		while(CapSense_1_IsBusy() != 0);
+                        *result = CapSense_1_ReadSensorRaw(dat); return_flag = 1;
+                        break;
+                    case 0x18:
+                        /* Update all baselines */
+                        CapSense_1_UpdateEnabledBaselines();
+                   		/* Start scanning all enabled sensors */
+                    	CapSense_1_ScanEnabledWidgets();
+                        /* Wait for scanning to complete */
+                		while(CapSense_1_IsBusy() != 0);
+                        *result = CapSense_1_CheckIsWidgetActive(dat); return_flag = 1;
+                        break;
+                    case 0xFF:
+                        
+                        /* Update all baselines */
+                        CapSense_1_UpdateEnabledBaselines();
+                        
+                        for (j = 0; j<CapSense_1_TOTAL_SENSOR_COUNT; j++)
+                        {
+                       		/* Start scanning all enabled sensors */
+                        	CapSense_1_ScanEnabledWidgets();
+                            /* Wait for scanning to complete */
+                    		while(CapSense_1_IsBusy() != 0);
+                            if (CapSense_1_ReadSensorRaw(j)>=dat)
+                            {
+                                *result|=(0x01<<j);
+                            }
+                        }
+                        return_flag = true;
+                        
+                        
+
+                }
+
+                return return_flag;
+    }
+#endif
+#ifdef CY_Timer_v2_60_Timer_H
     bool Range_Finder(uint8 cmd, uint8 port, uint8 pin, uint8 trigport, uint8 trigpin, uint8 delayus, uint16 timeout, uint32 *result)
         {
             uint32 us_count = 0;
             bool read_timeout = false;
             bool write_timeout = false;
-            //counter_clock_StopBlock();
-            Counter_1_Start();
-            COUNTER_RESET_Write(1);
+            Timer_Start();
+            TIMER_REG_Write(1);
+            bool return_flag = false;
+           
             switch (cmd)
             {
                 case 0x00: //cmd case
+                    return_flag = true;
                     switch (trigport)
                     {
                     case 0x00:
@@ -2873,7 +2877,7 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
                     		break; //0x00
                     		case 0x01:
                     			#ifdef CY_PINS_GPIO_12_1_H 
-                    				GPIO_12_1_SetDriveMode(PIN_DM_STRONG); GPIO_12_1_Write(0); CyDelayUs(2); GPIO_12_1_Write(1); CyDelayUs(delayus); GPIO_12_1_Write(0); break;
+                    			    GPIO_12_1_SetDriveMode(PIN_DM_STRONG); GPIO_12_1_Write(0); CyDelayUs(2); GPIO_12_1_Write(1); CyDelayUs(delayus); GPIO_12_1_Write(0);  break;
                     			#endif
                     		break; //0x01
                     		case 0x02:
@@ -2954,1543 +2958,882 @@ bool CheckBuild(uint8 cmd, uint16 val, uint32 *result)
                     	}
                     break; //0x0F
                     }
-                   switch(port)
-                {
-                        case 0x00:
-                        	switch(pin)
-                        	{
-                        		case 0x00:
-                        			#ifdef CY_PINS_GPIO_0_0_H 
-                        				GPIO_0_0_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_0_0_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_0_0_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x00
-                        		case 0x01:
-                        			#ifdef CY_PINS_GPIO_0_1_H 
-                        				GPIO_0_1_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_0_1_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_0_1_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x01
-                        		case 0x02:
-                        			#ifdef CY_PINS_GPIO_0_2_H 
-                        				GPIO_0_2_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_0_2_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_0_2_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x02
-                        		case 0x03:
-                        			#ifdef CY_PINS_GPIO_0_3_H 
-                        				GPIO_0_3_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_0_3_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_0_3_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x03
-                        		case 0x04:
-                        			#ifdef CY_PINS_GPIO_0_4_H 
-                        				GPIO_0_4_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_0_4_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_0_4_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x04
-                        		case 0x05:
-                        			#ifdef CY_PINS_GPIO_0_5_H 
-                        				GPIO_0_5_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_0_5_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_0_5_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x05
-                        		case 0x06:
-                        			#ifdef CY_PINS_GPIO_0_6_H 
-                        				GPIO_0_6_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_0_6_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_0_6_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x06
-                        		case 0x07:
-                        			#ifdef CY_PINS_GPIO_0_7_H 
-                        				GPIO_0_7_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_0_7_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_0_7_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x07
-                        	}
-                        break; //0x00
-                        case 0x02:
-                        	switch(pin)
-                        	{
-                        		case 0x00:
-                        			#ifdef CY_PINS_GPIO_2_0_H 
-                        				GPIO_2_0_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_2_0_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_2_0_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x00
-                        		case 0x01:
-                        			#ifdef CY_PINS_GPIO_2_1_H 
-                        				GPIO_2_1_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_2_1_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_2_1_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x01
-                        		case 0x02:
-                        			#ifdef CY_PINS_GPIO_2_2_H 
-                        				GPIO_2_2_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_2_2_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_2_2_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x02
-                        		case 0x03:
-                        			#ifdef CY_PINS_GPIO_2_3_H 
-                        				GPIO_2_3_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_2_3_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_2_3_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x03
-                        		case 0x04:
-                        			#ifdef CY_PINS_GPIO_2_4_H 
-                        				GPIO_2_4_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_2_4_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_2_4_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x04
-                        		case 0x05:
-                        			#ifdef CY_PINS_GPIO_2_5_H 
-                        				GPIO_2_5_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_2_5_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_2_5_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x05
-                        		case 0x06:
-                        			#ifdef CY_PINS_GPIO_2_6_H 
-                        				GPIO_2_6_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_2_6_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_2_6_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x06
-                        		case 0x07:
-                        			#ifdef CY_PINS_GPIO_2_7_H 
-                        				GPIO_2_7_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_2_7_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_2_7_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x07
-                        	}
-                        break; //0x02
-                        case 0x03:
-                        	switch(pin)
-                        	{
-                        		case 0x00:
-                        			#ifdef CY_PINS_GPIO_3_0_H 
-                        				GPIO_3_0_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_3_0_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_3_0_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x00
-                        		case 0x01:
-                        			#ifdef CY_PINS_GPIO_3_1_H 
-                        				GPIO_3_1_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_3_1_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_3_1_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x01
-                        		case 0x02:
-                        			#ifdef CY_PINS_GPIO_3_2_H 
-                        				GPIO_3_2_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_3_2_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_3_2_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x02
-                        		case 0x03:
-                        			#ifdef CY_PINS_GPIO_3_3_H 
-                        				GPIO_3_3_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_3_3_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_3_3_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x03
-                        		case 0x04:
-                        			#ifdef CY_PINS_GPIO_3_4_H 
-                        				GPIO_3_4_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_3_4_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_3_4_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x04
-                        		case 0x05:
-                        			#ifdef CY_PINS_GPIO_3_5_H 
-                        				GPIO_3_5_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_3_5_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_3_5_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x05
-                        		case 0x06:
-                        			#ifdef CY_PINS_GPIO_3_6_H 
-                        				GPIO_3_6_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_3_6_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_3_6_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x06
-                        		case 0x07:
-                        			#ifdef CY_PINS_GPIO_3_7_H 
-                        				GPIO_3_7_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_3_7_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_3_7_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x07
-                        	}
-                        break; //0x03
-                        case 0x04:
-                        	switch(pin)
-                        	{
-                        		case 0x00:
-                        			#ifdef CY_PINS_GPIO_4_0_H 
-                        				GPIO_4_0_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_4_0_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_4_0_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x00
-                        		case 0x01:
-                        			#ifdef CY_PINS_GPIO_4_1_H 
-                        				GPIO_4_1_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_4_1_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_4_1_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x01
-                        		case 0x02:
-                        			#ifdef CY_PINS_GPIO_4_2_H 
-                        				GPIO_4_2_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_4_2_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_4_2_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x02
-                        		case 0x03:
-                        			#ifdef CY_PINS_GPIO_4_3_H 
-                        				GPIO_4_3_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_4_3_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_4_3_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x03
-                        		case 0x04:
-                        			#ifdef CY_PINS_GPIO_4_4_H 
-                        				GPIO_4_4_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_4_4_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_4_4_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x04
-                        		case 0x05:
-                        			#ifdef CY_PINS_GPIO_4_5_H 
-                        				GPIO_4_5_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_4_5_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_4_5_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x05
-                        		case 0x06:
-                        			#ifdef CY_PINS_GPIO_4_6_H 
-                        				GPIO_4_6_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_4_6_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_4_6_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x06
-                        	}
-                        break; //0x04
-                        case 0x05:
-                        	switch(pin)
-                        	{
-                        		case 0x00:
-                        			#ifdef CY_PINS_GPIO_5_0_H 
-                        				GPIO_5_0_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_5_0_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_5_0_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x00
-                        		case 0x01:
-                        			#ifdef CY_PINS_GPIO_5_1_H 
-                        				GPIO_5_1_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_5_1_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_5_1_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x01
-                        		case 0x02:
-                        			#ifdef CY_PINS_GPIO_5_2_H 
-                        				GPIO_5_2_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_5_2_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_5_2_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x02
-                        		case 0x03:
-                        			#ifdef CY_PINS_GPIO_5_3_H 
-                        				GPIO_5_3_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_5_3_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_5_3_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x03
-                        		case 0x04:
-                        			#ifdef CY_PINS_GPIO_5_4_H 
-                        				GPIO_5_4_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_5_4_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_5_4_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x04
-                        		case 0x05:
-                        			#ifdef CY_PINS_GPIO_5_5_H 
-                        				GPIO_5_5_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_5_5_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_5_5_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x05
-                        		case 0x06:
-                        			#ifdef CY_PINS_GPIO_5_6_H 
-                        				GPIO_5_6_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_5_6_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_5_6_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x06
-                        		case 0x07:
-                        			#ifdef CY_PINS_GPIO_5_7_H 
-                        				GPIO_5_7_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_5_7_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_5_7_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x07
-                        	}
-                        break; //0x05
-                        case 0x06:
-                        	switch(pin)
-                        	{
-                        		case 0x00:
-                        			#ifdef CY_PINS_GPIO_6_0_H 
-                        				GPIO_6_0_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_6_0_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_6_0_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x00
-                        		case 0x01:
-                        			#ifdef CY_PINS_GPIO_6_1_H 
-                        				GPIO_6_1_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_6_1_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_6_1_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x01
-                        		case 0x02:
-                        			#ifdef CY_PINS_GPIO_6_2_H 
-                        				GPIO_6_2_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_6_2_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_6_2_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x02
-                        		case 0x03:
-                        			#ifdef CY_PINS_GPIO_6_3_H 
-                        				GPIO_6_3_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_6_3_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_6_3_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x03
-                        		case 0x04:
-                        			#ifdef CY_PINS_GPIO_6_4_H 
-                        				GPIO_6_4_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_6_4_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_6_4_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x04
-                        		case 0x05:
-                        			#ifdef CY_PINS_GPIO_6_5_H 
-                        				GPIO_6_5_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_6_5_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_6_5_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x05
-                        		case 0x06:
-                        			#ifdef CY_PINS_GPIO_6_6_H 
-                        				GPIO_6_6_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_6_6_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_6_6_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x06
-                        		case 0x07:
-                        			#ifdef CY_PINS_GPIO_6_7_H 
-                        				GPIO_6_7_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_6_7_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_6_7_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x07
-                        	}
-                        break; //0x06
-                        case 0x0C:
-                        	switch(pin)
-                        	{
-                        		case 0x00:
-                        			#ifdef CY_PINS_GPIO_12_0_H 
-                        				GPIO_12_0_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_12_0_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_12_0_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x00
-                        		case 0x01:
-                        			#ifdef CY_PINS_GPIO_12_1_H 
-                        				GPIO_12_1_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_12_1_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_12_1_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x01
-                        		case 0x02:
-                        			#ifdef CY_PINS_GPIO_12_2_H 
-                        				GPIO_12_2_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_12_2_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_12_2_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x02
-                        		case 0x03:
-                        			#ifdef CY_PINS_GPIO_12_3_H 
-                        				GPIO_12_3_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_12_3_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_12_3_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x03
-                        		case 0x04:
-                        			#ifdef CY_PINS_GPIO_12_4_H 
-                        				GPIO_12_4_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_12_4_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_12_4_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x04
-                        		case 0x05:
-                        			#ifdef CY_PINS_GPIO_12_5_H 
-                        				GPIO_12_5_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_12_5_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_12_5_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x05
-                        		case 0x06:
-                        			#ifdef CY_PINS_GPIO_12_6_H 
-                        				GPIO_12_6_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_12_6_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_12_6_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x06
-                        		case 0x07:
-                        			#ifdef CY_PINS_GPIO_12_7_H 
-                        				GPIO_12_7_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_12_7_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_12_7_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x07
-                        	}
-                        break; //0x0C
-                        case 0x0F:
-                        	switch(pin)
-                        	{
-                        		case 0x00:
-                        			#ifdef CY_PINS_GPIO_15_0_H 
-                        				GPIO_15_0_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_15_0_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_15_0_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x00
-                        		case 0x01:
-                        			#ifdef CY_PINS_GPIO_15_1_H 
-                        				GPIO_15_1_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_15_1_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_15_1_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x01
-                        		case 0x02:
-                        			#ifdef CY_PINS_GPIO_15_2_H 
-                        				GPIO_15_2_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_15_2_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_15_2_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x02
-                        		case 0x03:
-                        			#ifdef CY_PINS_GPIO_15_3_H 
-                        				GPIO_15_3_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_15_3_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_15_3_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x03
-                        		case 0x04:
-                        			#ifdef CY_PINS_GPIO_15_4_H 
-                        				GPIO_15_4_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_15_4_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_15_4_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x04
-                        		case 0x05:
-                        			#ifdef CY_PINS_GPIO_15_5_H 
-                        				GPIO_15_5_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_15_5_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_15_5_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x05
-                        		case 0x06:
-                        			#ifdef CY_PINS_GPIO_15_6_H 
-                        				GPIO_15_6_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_15_6_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_15_6_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x06
-                        		case 0x07:
-                        			#ifdef CY_PINS_GPIO_15_7_H 
-                        				GPIO_15_7_SetDriveMode(PIN_DM_DIG_HIZ);
-                        				counter_clock_Start();
-                        				COUNTER_RESET_Write(0);
-                        				
-                        				while ((!GPIO_15_7_Read()) && (!read_timeout)){
-                        					if ((Counter_1_ReadPeriod() - Counter_1_ReadCounter())> 3000){read_timeout = true; us_count = 0;}
-                        				}
-                        				
-                        				if (!read_timeout){
-                        					COUNTER_RESET_Write(1);
-                        					COUNTER_RESET_Write(0);
-                        					
-                        					while((GPIO_15_7_Read()) && (!write_timeout)){
-                        					if((Counter_1_ReadStatusRegister()&COUNTER_TC_TRIGGERED) != 0){write_timeout = true;}
-                        					}
-                        					counter_clock_StopBlock();
-                        					if (!write_timeout){us_count = Counter_1_ReadPeriod() - Counter_1_ReadCounter() - COUNTER_ERROR_COMP;}
-                        					else {us_count = Counter_1_ReadPeriod();}
-                        				}
-                        			#endif
-                        		break; //0x07
-                        	}
-                        break; //0x0F
-                }
+                    
+                    switch(port)
+                    {
+                            case 0x00:
+                            	switch(pin)
+                            	{
+                            		case 0x00:
+                            			#ifdef CY_PINS_GPIO_0_0_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_0_0_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT0_PC0)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT0_PC0)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x00
+                            		case 0x01:
+                            			#ifdef CY_PINS_GPIO_0_1_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_0_1_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT0_PC1)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT0_PC1)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x01
+                            		case 0x02:
+                            			#ifdef CY_PINS_GPIO_0_2_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_0_2_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT0_PC2)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT0_PC2)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x02
+                            		case 0x03:
+                            			#ifdef CY_PINS_GPIO_0_3_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_0_3_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT0_PC3)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT0_PC3)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x03
+                            		case 0x04:
+                            			#ifdef CY_PINS_GPIO_0_4_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_0_4_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT0_PC4)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT0_PC4)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x04
+                            		case 0x05:
+                            			#ifdef CY_PINS_GPIO_0_5_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_0_5_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT0_PC5)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT0_PC5)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x05
+                            		case 0x06:
+                            			#ifdef CY_PINS_GPIO_0_6_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_0_6_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT0_PC6)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT0_PC6)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x06
+                            		case 0x07:
+                            			#ifdef CY_PINS_GPIO_0_7_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_0_7_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT0_PC7)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT0_PC7)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x07
+                            	}
+                            break; //0x00
+                            case 0x02:
+                            	switch(pin)
+                            	{
+                            		case 0x00:
+                            			#ifdef CY_PINS_GPIO_2_0_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_2_0_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT2_PC0)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT2_PC0)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x00
+                            		case 0x01:
+                            			#ifdef CY_PINS_GPIO_2_1_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_2_1_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT2_PC1)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT2_PC1)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x01
+                            		case 0x02:
+                            			#ifdef CY_PINS_GPIO_2_2_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_2_2_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT2_PC2)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT2_PC2)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x02
+                            		case 0x03:
+                            			#ifdef CY_PINS_GPIO_2_3_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_2_3_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT2_PC3)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT2_PC3)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x03
+                            		case 0x04:
+                            			#ifdef CY_PINS_GPIO_2_4_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_2_4_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT2_PC4)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT2_PC4)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x04
+                            		case 0x05:
+                            			#ifdef CY_PINS_GPIO_2_5_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_2_5_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT2_PC5)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT2_PC5)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x05
+                            		case 0x06:
+                            			#ifdef CY_PINS_GPIO_2_6_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_2_6_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT2_PC6)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT2_PC6)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x06
+                            		case 0x07:
+                            			#ifdef CY_PINS_GPIO_2_7_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_2_7_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT2_PC7)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT2_PC7)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x07
+                            	}
+                            break; //0x02
+                            case 0x03:
+                            	switch(pin)
+                            	{
+                            		case 0x00:
+                            			#ifdef CY_PINS_GPIO_3_0_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_3_0_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT3_PC0)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT3_PC0)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x00
+                            		case 0x01:
+                            			#ifdef CY_PINS_GPIO_3_1_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_3_1_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT3_PC1)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT3_PC1)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x01
+                            		case 0x02:
+                            			#ifdef CY_PINS_GPIO_3_2_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_3_2_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT3_PC2)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT3_PC2)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x02
+                            		case 0x03:
+                            			#ifdef CY_PINS_GPIO_3_3_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_3_3_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT3_PC3)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT3_PC3)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x03
+                            		case 0x04:
+                            			#ifdef CY_PINS_GPIO_3_4_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_3_4_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT3_PC4)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT3_PC4)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x04
+                            		case 0x05:
+                            			#ifdef CY_PINS_GPIO_3_5_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_3_5_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT3_PC5)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT3_PC5)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x05
+                            		case 0x06:
+                            			#ifdef CY_PINS_GPIO_3_6_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_3_6_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT3_PC6)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT3_PC6)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x06
+                            		case 0x07:
+                            			#ifdef CY_PINS_GPIO_3_7_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_3_7_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT3_PC7)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT3_PC7)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x07
+                            	}
+                            break; //0x03
+                            case 0x04:
+                            	switch(pin)
+                            	{
+                            		case 0x00:
+                            			#ifdef CY_PINS_GPIO_4_0_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_4_0_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT4_PC0)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT4_PC0)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x00
+                            		case 0x01:
+                            			#ifdef CY_PINS_GPIO_4_1_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_4_1_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT4_PC1)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT4_PC1)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x01
+                            		case 0x02:
+                            			#ifdef CY_PINS_GPIO_4_2_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_4_2_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT4_PC2)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT4_PC2)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x02
+                            		case 0x03:
+                            			#ifdef CY_PINS_GPIO_4_3_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_4_3_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT4_PC3)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT4_PC3)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x03
+                            		case 0x04:
+                            			#ifdef CY_PINS_GPIO_4_4_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_4_4_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT4_PC4)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT4_PC4)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x04
+                            		case 0x05:
+                            			#ifdef CY_PINS_GPIO_4_5_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_4_5_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT4_PC5)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT4_PC5)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x05
+                            		case 0x06:
+                            			#ifdef CY_PINS_GPIO_4_6_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_4_6_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT4_PC6)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT4_PC6)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x06
+                            	}
+                            break; //0x04
+                            case 0x05:
+                            	switch(pin)
+                            	{
+                            		case 0x00:
+                            			#ifdef CY_PINS_GPIO_5_0_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_5_0_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT5_PC0)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT5_PC0)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x00
+                            		case 0x01:
+                            			#ifdef CY_PINS_GPIO_5_1_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_5_1_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT5_PC1)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT5_PC1)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x01
+                            		case 0x02:
+                            			#ifdef CY_PINS_GPIO_5_2_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_5_2_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT5_PC2)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT5_PC2)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x02
+                            		case 0x03:
+                            			#ifdef CY_PINS_GPIO_5_3_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_5_3_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT5_PC3)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT5_PC3)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x03
+                            		case 0x04:
+                            			#ifdef CY_PINS_GPIO_5_4_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_5_4_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT5_PC4)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT5_PC4)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x04
+                            		case 0x05:
+                            			#ifdef CY_PINS_GPIO_5_5_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_5_5_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT5_PC5)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT5_PC5)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x05
+                            		case 0x06:
+                            			#ifdef CY_PINS_GPIO_5_6_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_5_6_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT5_PC6)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT5_PC6)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x06
+                            		case 0x07:
+                            			#ifdef CY_PINS_GPIO_5_7_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_5_7_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT5_PC7)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT5_PC7)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x07
+                            	}
+                            break; //0x05
+                            case 0x06:
+                            	switch(pin)
+                            	{
+                            		case 0x00:
+                            			#ifdef CY_PINS_GPIO_6_0_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_6_0_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT6_PC0)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT6_PC0)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x00
+                            		case 0x01:
+                            			#ifdef CY_PINS_GPIO_6_1_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_6_1_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT6_PC1)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT6_PC1)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x01
+                            		case 0x02:
+                            			#ifdef CY_PINS_GPIO_6_2_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_6_2_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT6_PC2)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT6_PC2)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x02
+                            		case 0x03:
+                            			#ifdef CY_PINS_GPIO_6_3_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_6_3_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT6_PC3)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT6_PC3)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x03
+                            		case 0x04:
+                            			#ifdef CY_PINS_GPIO_6_4_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_6_4_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT6_PC4)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT6_PC4)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x04
+                            		case 0x05:
+                            			#ifdef CY_PINS_GPIO_6_5_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_6_5_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT6_PC5)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT6_PC5)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x05
+                            		case 0x06:
+                            			#ifdef CY_PINS_GPIO_6_6_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_6_6_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT6_PC6)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT6_PC6)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x06
+                            		case 0x07:
+                            			#ifdef CY_PINS_GPIO_6_7_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_6_7_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT6_PC7)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT6_PC7)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x07
+                            	}
+                            break; //0x06
+                            case 0x0C:
+                            	switch(pin)
+                            	{
+                            		case 0x00:
+                            			#ifdef CY_PINS_GPIO_12_0_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_12_0_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT12_PC0)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT12_PC0)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x00
+                            		case 0x01:
+                            			#ifdef CY_PINS_GPIO_12_1_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_12_1_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT12_PC1)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT12_PC1)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x01
+                            		case 0x02:
+                            			#ifdef CY_PINS_GPIO_12_2_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_12_2_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT12_PC2)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT12_PC2)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x02
+                            		case 0x03:
+                            			#ifdef CY_PINS_GPIO_12_3_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_12_3_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT12_PC3)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT12_PC3)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x03
+                            		case 0x04:
+                            			#ifdef CY_PINS_GPIO_12_4_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_12_4_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT12_PC4)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT12_PC4)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x04
+                            		case 0x05:
+                            			#ifdef CY_PINS_GPIO_12_5_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_12_5_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT12_PC5)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT12_PC5)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x05
+                            		case 0x06:
+                            			#ifdef CY_PINS_GPIO_12_6_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_12_6_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT12_PC6)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT12_PC6)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x06
+                            		case 0x07:
+                            			#ifdef CY_PINS_GPIO_12_7_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_12_7_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT12_PC7)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT12_PC7)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x07
+                            	}
+                            break; //0x0C
+                            case 0x0F:
+                            	switch(pin)
+                            	{
+                            		case 0x00:
+                            			#ifdef CY_PINS_GPIO_15_0_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_15_0_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT15_PC0)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT15_PC0)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x00
+                            		case 0x01:
+                            			#ifdef CY_PINS_GPIO_15_1_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_15_1_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT15_PC1)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT15_PC1)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x01
+                            		case 0x02:
+                            			#ifdef CY_PINS_GPIO_15_2_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_15_2_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT15_PC2)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT15_PC2)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x02
+                            		case 0x03:
+                            			#ifdef CY_PINS_GPIO_15_3_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_15_3_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT15_PC3)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT15_PC3)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x03
+                            		case 0x04:
+                            			#ifdef CY_PINS_GPIO_15_4_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_15_4_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT15_PC4)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT15_PC4)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x04
+                            		case 0x05:
+                            			#ifdef CY_PINS_GPIO_15_5_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_15_5_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT15_PC5)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT15_PC5)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x05
+                            		case 0x06:
+                            			#ifdef CY_PINS_GPIO_15_6_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_15_6_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT15_PC6)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT15_PC6)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x06
+                            		case 0x07:
+                            			#ifdef CY_PINS_GPIO_15_7_H 
+                            				TIMER_REG_Write(0);
+                            				GPIO_15_7_SetDriveMode(PIN_DM_DIG_HIZ);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if(*(reg8 *)(CYREG_PRT15_PC7)&CY_PINS_PC_PIN_STATE){break;}
+                            				}
+                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
+                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
+                            				if (!(*(reg8 *)(CYREG_PRT15_PC7)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				}
+                            			#endif
+                            		break; //0x07
+                            	}
+                            break; //0x0F
+ 
+                    }
                 break; //cmd 0x00
                 
-                case 0x01: Counter_1_WritePeriod(timeout); break;
+                case 0x01: Timer_WritePeriod(timeout); break;
                 
             }
-            Counter_1_Stop();
+            TIMER_REG_Write(1);
+            Timer_Stop();
             *result = us_count;
-            return true;
-        }
-/*
-#ifdef CY_Timer_v2_60_SRF05_Ranger_H
-    bool Range_Finder(uint32 *result)
-        {
-           // Start the timer component
-            SRF05_Ranger_Start();
-            
-           // Clear the capture fifo of the timer
-            Control_Reg_1_Write(1);
-            Ranger_SetDriveMode(Ranger_DM_STRONG);
-           // Trigger the Range Finder to tell it to echo
-            Ranger_Write(1);
-            
-          //  Wait the needed time so that the ranger knows it is being triggered
-            CyDelayUs(10);
-            
-           // Kill the trigger 
-            Ranger_Write(0);
-            
-           // Start Counting
-            Ranger_SetDriveMode(Ranger_DM_DIG_HIZ);
-            Control_Reg_1_Write(0);
-            
-          //  Wait as long as needed to get a result. (Max of 30 ms) 
-            CyDelay(19);
-            
-          // Read the most recent capture value
-            *result = 1850 - SRF05_Ranger_ReadCapture();
-            
-          //  Stop the timer component
-            SRF05_Ranger_Stop();
-            
-            return true;
+            return return_flag;
         }
 #endif
-    */
+
 bool test_read(uint16 dat, uint32 *result)
     {
         *result = dat;

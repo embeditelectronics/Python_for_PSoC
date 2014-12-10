@@ -617,7 +617,6 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             }
             
             break;
-            
         // Get AI Reference
         case 0x61:
             DEBUG_PRINT("Get AI Reference\r\n");

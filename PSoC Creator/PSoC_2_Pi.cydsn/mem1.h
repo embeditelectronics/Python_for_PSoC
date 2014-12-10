@@ -133,7 +133,7 @@ typedef struct vessel_tag{
 
 #define COUNTER_TC_TRIGGERED        (0x80)
 #define COUNTER_CAPTURE_TRIGGERED   (0x40)
-#define COUNTER_ERROR_COMP          (2u) //Initial testing shows closer to 9 uS, will test with o-scope   
+#define COUNTER_ERROR_COMP          (0u) //Initial testing shows closer to 9 uS, will test with o-scope   
 
 /* GET PWM MAX NUMBER */
 

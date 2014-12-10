@@ -1,10 +1,10 @@
 from rpisoc import *
 import random
-RPiSoC('COM16')
+RPiSoC('SPI', DEBUG = True)
 
 
 print('starting...')
-SIZE = 100
+SIZE = 1000
 try:
     '''
     correct = 0

@@ -9,7 +9,9 @@ def main():
 
     try:
         while True:
-            pin.Write(capsense_button.isTouched())
+            cap_state = capsense_button.isTouched()
+            pin.Write(cap_state)
+            print cap_state
     except KeyboardInterrupt:
     	RPiSoC.commChannel.cleanup()
 

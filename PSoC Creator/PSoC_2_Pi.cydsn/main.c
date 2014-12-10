@@ -32,11 +32,7 @@ vessel_type vessel;
 
 int main()
 {
-    //StripLights_Start();
-    //StripLights_Dim(2); 
-    
     CyGlobalIntEnable;  /* enable global interrupts. */
-    //SetNeoPixel(2,2,255);
     #if defined(LINX_H)
         LINX_Initialize();
         
@@ -64,10 +60,8 @@ int main()
                 
             }
         #elif defined(PYTHON_H)
-            
             Python_getData(&vessel);
             Python_parser(&vessel);
-            
             uint32 result;
             if (readData(vessel, &result)) {
                 Python_sendData(result);

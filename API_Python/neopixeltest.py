@@ -1,5 +1,5 @@
 from rpisoc import *
-RPiSoC('COM16')
+RPiSoC('SPI')
 def main():
     shield = NeoPixelShield()
     shield.Start()
