@@ -406,9 +406,9 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
             // TODO: For now, only supports the sequenced SAR ADC, could potentially add more ADC devices
             #ifdef CY_ADC_SAR_Seq_1_H
-                response_data_len = 10;
-                for (i = 1; i < 11; ++i) {
-                    response_data[i] = i;
+                response_data_len = 8;
+                for (i = 0; i < 8; ++i) {
+                    response_data[i] = i+1;
                 }
             #endif
             
@@ -613,7 +613,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                     response_data[i / 8] = 0x00;
                     ++response_data_len;
                 }
-                response_data[i / 8] |= (((result >> pin) & 0x01) << (7 - (i % 8)));
+                response_data[i / 8] |= ((result & 0x01) << (7 - (i % 8)));
             }
             
             break;
@@ -819,23 +819,22 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
         // I2C Write
         case 0xE2: {
-             #ifdef CY_I2C_I2C_1_H
-                    #if(I2C_1_MODE_MASTER_ENABLED)
             DEBUG_PRINT("I2C Write\r\n");
             
             // Set transfer type
             uint8 mode;
             switch(command[8]) {
-                case(0x00): mode = I2C_1_MODE_COMPLETE_XFER; break;
-                case(0x01): mode = I2C_1_MODE_REPEAT_START; break;
-                case(0x02): status = LINX_STATUS_LI2C_EOF; break;
-                case(0x03): mode = I2C_1_MODE_NO_STOP; break;
+                #ifdef CY_I2C_I2C_1_H
+                    case(0x00): mode = I2C_1_MODE_COMPLETE_XFER; break;
+                    case(0x01): mode = I2C_1_MODE_REPEAT_START; break;
+                    case(0x02): status = LINX_STATUS_LI2C_EOF; break;
+                    case(0x03): mode = I2C_1_MODE_NO_STOP; break;
+                #endif
             }
             
             // Break if status is non-okay
             if (status != LINX_STATUS_L_OK) break;
-                    #endif
-            #endif
+
             switch(command[6]) {
                 #ifdef CY_I2C_I2C_1_H
                     #if(I2C_1_MODE_MASTER_ENABLED)
@@ -870,15 +869,13 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             
             // Set transfer type
             uint8 mode;
-            switch(command[8]) {
-            #ifdef CY_I2C_I2C_1_H
-                #if(I2C_1_MODE_MASTER_ENABLED)
-                case(0x00): mode = I2C_1_MODE_COMPLETE_XFER; break;
-                case(0x01): mode = I2C_1_MODE_REPEAT_START; break;
-                case(0x02): status = LINX_STATUS_LI2C_EOF; break;
-                case(0x03): mode = I2C_1_MODE_NO_STOP; break;
+            switch(command[11]) {
+                #ifdef CY_I2C_I2C_1_H
+                    case(0x00): mode = I2C_1_MODE_COMPLETE_XFER; break;
+                    case(0x01): mode = I2C_1_MODE_REPEAT_START; break;
+                    case(0x02): status = LINX_STATUS_LI2C_EOF; break;
+                    case(0x03): mode = I2C_1_MODE_NO_STOP; break;
                 #endif
-            #endif
             }
             
             // Break if status is non-okay
