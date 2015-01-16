@@ -5,14 +5,14 @@
 
 Welcome to the RPiSoC Python API documentation!
 ===============================================
-This API intends to augment the functionality of the Raspberry Pi by introducing it to the RPiSoC.
+This API brings the PSoC to Python, and the Raspberry Pi!
 
-The latest version of the API is *V1.2*
+The latest version of the API is |version|
 
 Contents
 ++++++++
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    getting_started
    code

@@ -1,59 +1,79 @@
+.. _getting-started-label:
+
 Getting Started
 ===============
 Here is everything you should need to get yourself moving with development on the RPiSoC through the Raspberry Pi! 
 
+.. _getting-started-rpisoc:
+
 Using the RPiSoC
 ++++++++++++++++
 If you're new to the RPiSoC, it would greatly benefit you to read through its documentation before going any further. The documentation can be found here:
-	- https://github.com/EmbeditElectronics/RPiSoC_Bootloader/blob/master/RPiSoC_RevC_User_Guide.pdf
+
+- https://github.com/EmbeditElectronics/RPiSoC_Bootloader/blob/master/RPiSoC_RevC_User_Guide.pdf
+
 Pay special attention to the sections discussing how to download a program to the board using the Bootloader Host Tool. 
 
 
 Program your RPiSoC
 +++++++++++++++++++
 Once you know how to program the RPiSoC, you're ready to go! Just download the PSoC Creator project from git and download it to the RPiSoC. 
-	- https://github.com/EmbeditElectronics/psoc_2_pi/tree/master/PSoC%20Creator
+
+- https://github.com/EmbeditElectronics/psoc_2_pi/tree/master/PSoC%20Creator
+
+
+.. _getting-started-rpi:
+
+Using the RPiSoC with the Raspberry Pi
+++++++++++++++++++++++++++++++++++++++
+The following is necessary set up the RPiSoC in the Raspberry Pi environment
+
+.. _getting-started-git:
+
 Download the Python files from git
-++++++++++++++++++++++++++++++++++
-First, make sure that you have git installed on your raspberry Pi. From the terminal
-window::
+----------------------------------
+First, make sure that you have git installed on your raspberry Pi. From the terminal window::
+
 	sudo apt-get install git-core
 
-Then, create a folder for the RPiSoC API, and download it from 
-git::
+Then, create a folder for the RPiSoC API, and download it from git::
+
 	git clone git://github.com/EmbeditElectronics/psoc_2_pi.git
 
-And navigate into the Python folder to get 
-started::
+And navigate into the Python folder to get started::
+
 	cd API_Python_v_1_1
 
+.. _getting-started-spi:
+
 Configure SPI and download spidev
-+++++++++++++++++++++++++++++++++
-Now, if you want to use all of the API on the Raspberry Pi, you will need to have the SPI bus enabled, and you will need to have the spidev ibraries installed and in your working directory. Luckily, this is a very easy process. First though, you will need to do an update/upgrade on your pi. Open a new terminal window and enter the following 
-commands::
+---------------------------------
+Now, if you want to use all of the API on the Raspberry Pi, you will need to have the SPI bus enabled, and you will need to have the spidev libraries installed and in your working directory. 
+Luckily, this is a very easy process. First though, you will need to do an update/upgrade on your pi. Open a new terminal window and enter the following  commands::
+
 	sudo apt-get clean
 	sudo apt-get update
 	sudo apt-get upgrade
 	sudo reboot
 
-Next, you will need to install the python-dev libraries, if they aren't already 
-installed::
+Next, you will need to install the python-dev libraries, if they aren't already installed::
+
 	sudo apt-get install python-dev
 
-Now you need to enable the SPI bus on your Pi, which is disabled by default to speed up the boot 
-process::
+Now you need to enable the SPI bus on your Pi, which is disabled by default to speed up the boot process::
+
 	sudo nano /etc/modprobe.d/raspi-blacklist.conf
 
-This will bring up a text editor where you will find a line that 
-reads::
+This will bring up a text editor where you will find a line that reads::
+
 	blacklist spi-bcm2708
 
-Simply comment this line out by adding a *#* to the front of it, and reboot your 
-pi::
+Simply comment this line out by adding a *#* to the front of it, and reboot your pi:: 
+
 	sudo reboot
 
-Now, navigate to your working directory, the one with the API downloaded to it, and make a new directory for 
-spidev::
+Now, navigate to your working directory, the one with the API downloaded to it, and make a new directory for spidev::
+
 	mkdir python-spi
 	cd python-spi
 	wget https://raw.github.com/doceme/py-spidev/master/setup.py
@@ -62,80 +82,106 @@ spidev::
 
 And now SPI should be good to go!
 
+.. _getting-started-i2c:
+
 Configure I2C and download smbus
-++++++++++++++++++++++++++++++++
+--------------------------------
 To use I2C for your communications between RPi and RPiSoC, you will need to configure your i2c bus, similarly to how it was done for SPI.
 
-Assuming you have done an update/upgrade recently, as you should have if you followed the previous step, you must now enable i2c. As was the case with SPI, I2C is disabled by the Pi by default. To change this, you must modify the blacklist 
-again::
+Assuming you have done an update/upgrade recently, as you should have if you followed the previous step, you must now enable i2c. 
+As was the case with SPI, I2C is disabled by the Pi by default. To change this, you must modify the blacklist again::
+
 	sudo nano /etc/modprobe.d/raspi-blacklist.conf
 
-Now change the 
-line::
+Now change the line::
+	
 	blacklist i2c-bcm2708 
-so that it instead 	
-reads::
+	
+so that it instead reads::
+
 	#blacklist i2c-bcm2708
 
-Now you need to add the I2C module to the 
-kernel::
+Now you need to add the I2C module to the kernel::
+
 	sudo nano /etc/modules
-And you should add to the end of this file the following 
-line::
+
+And you should add to the end of this file the following line::
+
 	i2c-dev
-Now you simply must install the needed 
-packages::
+	
+Now you simply must install the needed packages::
+
 	sudo apt-get install i2c-tools
 	sudo apt-get install python-smbus
-And to configure the software, you must add your username to the I2C access group. In this case I'll assume your username is *pi* 
-so::
-	sudo adduser pi i2c
-Now 
-reboot::
-	sudo reboot
-And when the pi boots back up, open the terminal, connect the RPiSoC with the program loaded, and test the i2c 
-bus::
-	i2cdetect -y 1
-This should display dashed lines where no address was identified, except for where it found an address, and this should read *08* in the case of the RPiSoC API. If you do not see any results, 
-try::
-	i2cdetect -y 0
-And if you see the 8, make sure to modify communication.py so that it reflects the usage of the correct bus.
 
-If in either case you find that the address 0x3b is being used, and reflected by the appearance of *UU*, then try adding one of these three lines to your 
-blacklist::
+And to configure the software, you must add your username to the I2C access group. 
+In this case I'll assume your username is *pi* so::
+
+	sudo adduser pi i2c
+
+Now reboot::
+
+	sudo reboot
+
+And when the pi boots back up, open the terminal, connect the RPiSoC with the program loaded, and test the i2c bus::
+
+	i2cdetect -y 1
+
+This should display dashed lines where no address was identified, except for where it found an address, and this should read *08* in the case of the RPiSoC API. If you do not see any results, try::
+
+	i2cdetect -y 0
+
+And if you see the 8, make sure to modify :meth:`__init__` of :class:`rpisoc.I2C` so that it reflects the usage of the correct bus.
+
+If in either case you find that the address 0x3b is being used, and reflected by the appearance of *UU*, then try adding one of these three lines to your  blacklist::
+
 	blacklist snd_soc_wm8804
 	blacklist snd_soc_bcm2708_i2s
 	blacklist snd_soc_pcm512x
+
 This will disable the pi's native audio driver, i2s support, and the stereo DAC driver, in that order, but it is likely that blacklisting one of them will fix the problem. 
 
-The final thing to change is the baudrate of the pi's I2C driver. I found that its default value was slightly error prone, and so I increased it, which resulted in error free results. To do this, you will need to create a config file in the modprobe.d folder; I called mine i2cbaud.conf. To create this file, simply enter into the 
-terminal::
+The final thing to change is the baudrate of the pi's I2C driver. 
+I found that its default value was slightly error prone, and so I increased it, which resulted in error free results. 
+To do this, you will need to create a config file in the modprobe.d folder; I called mine i2cbaud.conf. To create this file, simply enter into the terminal::
+
 	sudo nano /etc/modprobe.d/i2cbaud.conf
-and add this single line to it from your text 
-editor::
+	
+and add this single line to it from your text editor::
+
 	options i2c_bcm2708 baudrate=500000
-Now just 
-reboot::
+	
+Now just reboot::
+
 	sudo reboot
+	
 And you should be good to go!
 
+.. _getting-started-mods:
+
 Changing communication protocol used by the API
-+++++++++++++++++++++++++++++++++++++++++++++++
+-----------------------------------------------
 By default, the API uses SPI. To change this to I2C, it is designed to be very simple, so don't fret!
 
-On the Pi Side, simply change your initialization of the RPiSoC object 
-from::
+On the Pi Side, simply change your initialization of the RPiSoC object from::
+
 	RPiSoC('SPI') 
-so that it instead 
-reads:: 
+
+so that it instead reads:: 
+
 	RPiSoC('I2C')
 
-Now, in the PSoC Creator program navigate to *mem1.h* and you will find two lines that look like 
-this::
-	#define USE_SPI
+Now, in the PSoC Creator program navigate to *mem1.h* and you will find two lines that look like this:
+
+.. code-block:: c
+
+	#define USE_SPI	
 	//#define USE_I2C
-This indicates that I2C is to be undefined, and so SPI is to be used. To reverse this, just change which one is commented 
-out::	
+
+This indicates that I2C is to be undefined, and so SPI is to be used. To reverse this, just change which one is commented out:	
+
+.. code-block:: c
+
 	//#define USE_SPI
 	#define USE_I2C
 	
@@ -143,6 +189,13 @@ Now, SPI will be undefined, and the RPiSoC will be expecting I2C communication.
 Now just compile the program, and redownload it to the RPiSoC using the Bootloader Host Tool. 
 
 And with that, you should be good to go without any problems! 
+
+.. _getting-started-computer:
+
+Using the RPiSoC with your computer!
+++++++++++++++++++++++++++++++++++++
+*Documentation coming soon*
+
 	
 
 

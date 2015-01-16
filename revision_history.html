@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Revision History &mdash; RPiSoC Python API 1.2.4 documentation</title>
+    <title>Revision History &mdash; RPiSoC Python API 1.2.5 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.2.4',
+        VERSION:     '1.2.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,8 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="RPiSoC Python API 1.2.4 documentation" href="index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="RPiSoC Python API 1.2.5 documentation" href="index.html" />
     <link rel="prev" title="Example Projects!" href="examples.html" /> 
   </head>
   <body>
@@ -34,12 +35,9 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
           <a href="examples.html" title="Example Projects!"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.2.4 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.2.5 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -52,13 +50,39 @@
 <h1>Revision History<a class="headerlink" href="#revision-history" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="version-1-2">
 <h2>Version 1.2<a class="headerlink" href="#version-1-2" title="Permalink to this headline">¶</a></h2>
-<p>This version makes versioning the python much simpler. It allows for much easier modification to the RPiSoC firmware, without needing to version those changes in the python code. It also simplifies the API expansion process greatly for new developers, and provides frameworks for easy integration of new interfaces.</p>
+<p><em>V1.2</em> makes versioning the python much simpler. It allows for much easier modification to the RPiSoC firmware, without needing to version those changes in the python code. It also simplifies the API expansion process greatly for new developers, and provides frameworks for easy integration of new interfaces.</p>
+<div class="section" id="new-to-v1-2-5">
+<h3>New to v1.2.5<a class="headerlink" href="#new-to-v1-2-5" title="Permalink to this headline">¶</a></h3>
+<p>In RPiSoC code:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>Changed tuning method of CapSense CSD component from SmartSense to None. Tuning is now handled manually.</dt>
+<dd><ul class="first last simple">
+<li>Without SmartSense <a class="reference internal" href="code_analog.html#analog.CapSense.Read" title="analog.CapSense.Read"><tt class="xref py py-meth docutils literal"><span class="pre">analog.CapSense.Read()</span></tt></a> does not behave correctly, and so it will likely become deprecated</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Updated project to use PSoC Creator 3.1</p>
+</li>
+</ul>
+<p>In <a class="reference internal" href="code_analog.html#analog.CapSense" title="analog.CapSense"><tt class="xref py py-class docutils literal"><span class="pre">analog.CapSense</span></tt></a></p>
+<ul class="simple">
+<li>Added <a class="reference internal" href="code_analog.html#analog.CapSense.readRaw" title="analog.CapSense.readRaw"><tt class="xref py py-meth docutils literal"><span class="pre">analog.CapSense.readRaw()</span></tt></a> for reading raw data form the CapSense buffer, to be used for manual calibration</li>
+<li>Added <a class="reference internal" href="code_analog.html#analog.CapSense.isTouched" title="analog.CapSense.isTouched"><tt class="xref py py-meth docutils literal"><span class="pre">analog.CapSense.isTouched()</span></tt></a> to replace <a class="reference internal" href="code_analog.html#analog.CapSense.Read" title="analog.CapSense.Read"><tt class="xref py py-meth docutils literal"><span class="pre">analog.CapSense.Read()</span></tt></a> for when SmartSense is disabled (it is by default)</li>
+<li>Added calibration code to <a class="reference internal" href="code_analog.html#analog.CapSense.Start" title="analog.CapSense.Start"><tt class="xref py py-meth docutils literal"><span class="pre">analog.CapSense.Start()</span></tt></a> so that <cite>analog.CapSense.isTouched</cite> gives desired behavior without SmartSense</li>
+</ul>
+<p>In <a class="reference internal" href="code_rpisoc.html#rpisoc.SERIAL" title="rpisoc.SERIAL"><tt class="xref py py-class docutils literal"><span class="pre">rpisoc.SERIAL</span></tt></a></p>
+<ul class="simple">
+<li>Changed the initialization so that a serial port does not need to be provided. It will be determined at run time, and should be platform independent.</li>
+<li>Added <a class="reference internal" href="code_rpisoc.html#rpisoc.SERIAL.reconnect" title="rpisoc.SERIAL.reconnect"><tt class="xref py py-meth docutils literal"><span class="pre">rpisoc.SERIAL.reconnect()</span></tt></a> for situations where the RPiSoC might lose connection, and the user can check for this and reconnect if needed</li>
+<li>Added <a class="reference internal" href="code_rpisoc.html#rpisoc.SERIAL.isConnected" title="rpisoc.SERIAL.isConnected"><tt class="xref py py-meth docutils literal"><span class="pre">rpisoc.SERIAL.isConnected()</span></tt></a> to check the status of the serial connection with the RPiSoC.</li>
+</ul>
+</div>
 <div class="section" id="new-to-v1-2-4">
 <h3>New to v1.2.4<a class="headerlink" href="#new-to-v1-2-4" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><dl class="docutils">
-<dt>In the RPiSoC code</dt>
-<dd><ul class="first last">
+<p>In the RPiSoC code</p>
+<ul>
 <li><dl class="first docutils">
 <dt>Added support for a standard Ultrasonic Range Finder, which should be useable by any SR-series range finer, excluding the 08 (which uses a different protocol), and the 3-pin Parallax ranger.</dt>
 <dd><ul class="first last simple">
@@ -80,96 +104,74 @@
 <li><p class="first">The timer component is still used for accuracy purposes, but it is used in its fixed function state, so that no UDB resources are wasted, and the routing was handled in software</p>
 </li>
 </ul>
-</dd>
-<dt>In module <em>digital.py</em></dt>
-<dd><ul class="first last">
+<p>In <a class="reference internal" href="code_digital.html#digital-module-label"><em>module digital.py</em></a></p>
+<ul>
 <li><dl class="first docutils">
-<dt>Added class <em>rangeFinder()</em> with the following supported methods:</dt>
+<dt>Added <a class="reference internal" href="code_digital.html#digital.rangeFinder" title="digital.rangeFinder"><tt class="xref py py-class docutils literal"><span class="pre">digital.rangeFinder</span></tt></a> with the following supported methods:</dt>
 <dd><ul class="first last simple">
-<li>readRaw(SIGNAL_PIN, TRIGGER_PIN, delay, timeout): gets a raw value from the RPiSoC, which is representative of how many microseconds the rangers echo pin was held high. It will trigger the range by sending a pulse of length <em>delay</em>, in microseconds. The result will be measured on SIGNAL_PIN, and stop measuring after <em>timeout</em> microseconds</li>
-<li>readMeters(): Uses readRaw to get a raw time value in microseconds, and then calculates the distance between the ranger and the pinged object in meters</li>
-<li>readCentimeters(): Uses readRaw to get a raw time value in microseconds, and then calculates the distance between the ranger and the pinged object in centimeters</li>
-<li>readInches(): Uses readRaw to get a raw time value, and then calculates the distance between the ranger and the pinged object in Inches</li>
-<li>setDelay(): Sets the length of the trigger pulse, in microseconds, which will be used to tell the device to send out a ping. This is handled in __init__, so it should only be called under unique circumstances.</li>
-<li>setTimeout(): Sets the timeout length in microseconds. If the RPiSoC is still waiting for a completed response after this amount of time, it will stop counting and immediately return the result</li>
+<li><a class="reference internal" href="code_digital.html#digital.rangeFinder.readRaw" title="digital.rangeFinder.readRaw"><tt class="xref py py-meth docutils literal"><span class="pre">digital.rangeFinder.readRaw()</span></tt></a>: gets a raw value from the RPiSoC, which is representative of how many microseconds the rangers echo pin was held high. It will trigger the range by sending a short pulse, the length defined upon construction of the object. The result will be measured on the desired signal pin, and stop measuring when a timeout is reached</li>
+<li><a class="reference internal" href="code_digital.html#digital.rangeFinder.readMeters" title="digital.rangeFinder.readMeters"><tt class="xref py py-meth docutils literal"><span class="pre">digital.rangeFinder.readMeters()</span></tt></a>: Uses readRaw to get a raw time value in microseconds, and then calculates the distance between the ranger and the pinged object in meters</li>
+<li><a class="reference internal" href="code_digital.html#digital.rangeFinder.readCentimeters" title="digital.rangeFinder.readCentimeters"><tt class="xref py py-meth docutils literal"><span class="pre">digital.rangeFinder.readCentimeters()</span></tt></a>: Uses readRaw to get a raw time value in microseconds, and then calculates the distance between the ranger and the pinged object in centimeters</li>
+<li><a class="reference internal" href="code_digital.html#digital.rangeFinder.readInches" title="digital.rangeFinder.readInches"><tt class="xref py py-meth docutils literal"><span class="pre">digital.rangeFinder.readInches()</span></tt></a>: Uses readRaw to get a raw time value, and then calculates the distance between the ranger and the pinged object in Inches</li>
+<li><a class="reference internal" href="code_digital.html#digital.rangeFinder.setDelay" title="digital.rangeFinder.setDelay"><tt class="xref py py-meth docutils literal"><span class="pre">digital.rangeFinder.setDelay()</span></tt></a>: Sets the length of the trigger pulse, in microseconds, which will be used to tell the device to send out a ping. This is handled in __init__, so it should only be called under unique circumstances.</li>
+<li><a class="reference internal" href="code_digital.html#digital.rangeFinder.setTimeout" title="digital.rangeFinder.setTimeout"><tt class="xref py py-meth docutils literal"><span class="pre">digital.rangeFinder.setTimeout()</span></tt></a>: Sets the timeout length in microseconds. If the RPiSoC is still waiting for a completed response after this amount of time, it will stop counting and immediately return the result. This is handled in __init__, so it should only be called under unique circumstances.</li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
-</dd>
-</dl>
-</div></blockquote>
 </div>
 <div class="section" id="new-to-v1-2-3">
 <h3>New to v1.2.3<a class="headerlink" href="#new-to-v1-2-3" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><dl class="docutils">
-<dt>In the RPiSoC code</dt>
-<dd><ul class="first last simple">
+<p>In the RPiSoC code</p>
+<ul class="simple">
 <li>Included custom component for NeoPixel (or general WS2812 strip light) control. Output is on Port 6, pin 0 (required by the shield).</li>
 <li>This means that the first PWM output, which was on P6[0], had to be moved to Port 0 Pin 2</li>
 </ul>
-</dd>
-<dt>In module digital.py</dt>
-<dd><ul class="first last">
+<p>In <a class="reference internal" href="code_digital.html#digital-module-label"><em>module digital.py</em></a></p>
+<ul>
 <li><dl class="first docutils">
-<dt>Added class <em>NeoPixelShield()</em> which supports use of the NeoPixels Arduino shield through Python. Included methods are:</dt>
+<dt>Added <a class="reference internal" href="code_digital.html#digital.NeoPixelShield" title="digital.NeoPixelShield"><tt class="xref py py-class docutils literal"><span class="pre">digital.NeoPixelShield</span></tt></a> which supports use of the NeoPixels Arduino shield through Python. Included methods are:</dt>
 <dd><ul class="first last simple">
-<li>Start(): Powers up and enables the needed hardware for the NeoPixels component</li>
-<li>Stop() : Powers down and disables the hardware used by the NeoPixels component</li>
-<li>Stripe(<em>len</em>, color): Draws a line of length <em>len</em> of the stated <em>color</em>, starting from the first pixel, and extending as far as the 40th (last) pixel. It will wrap around rows</li>
-<li>SetPixel(row, column, color): Sets a pixel of the stated <em>color</em> at position (x,y) = (<em>row</em>, <em>column</em>)</li>
-<li>DrawRow(row, color): Fully draws the chosen <em>row</em> the desired <em>color</em></li>
-<li>DrawColumn(column, color): Fully draws the chosen <em>column</em> the desired <em>color</em></li>
-<li>Dim(level): Preserves the color to be drawn to the shield, but dims the brightness.</li>
+<li><a class="reference internal" href="code_digital.html#digital.NeoPixelShield.Start" title="digital.NeoPixelShield.Start"><tt class="xref py py-meth docutils literal"><span class="pre">digital.NeoPixelShield.Start()</span></tt></a>: Powers up and enables the needed hardware for the NeoPixels component</li>
+<li><a class="reference internal" href="code_digital.html#digital.NeoPixelShield.Stop" title="digital.NeoPixelShield.Stop"><tt class="xref py py-meth docutils literal"><span class="pre">digital.NeoPixelShield.Stop()</span></tt></a> : Powers down and disables the hardware used by the NeoPixels component</li>
+<li><a class="reference internal" href="code_digital.html#digital.NeoPixelShield.Stripe" title="digital.NeoPixelShield.Stripe"><tt class="xref py py-meth docutils literal"><span class="pre">digital.NeoPixelShield.Stripe()</span></tt></a>: Draws a line of length <em>len</em> of the stated <em>color</em>, starting from the first pixel, and extending as far as the 40th (last) pixel. It will wrap around rows</li>
+<li><a class="reference internal" href="code_digital.html#digital.NeoPixelShield.SetPixel" title="digital.NeoPixelShield.SetPixel"><tt class="xref py py-meth docutils literal"><span class="pre">digital.NeoPixelShield.SetPixel()</span></tt></a>: Sets a pixel of the stated <em>color</em> at position (x,y) = (<em>row</em>, <em>column</em>)</li>
+<li><a class="reference internal" href="code_digital.html#digital.NeoPixelShield.DrawRow" title="digital.NeoPixelShield.DrawRow"><tt class="xref py py-meth docutils literal"><span class="pre">digital.NeoPixelShield.DrawRow()</span></tt></a>: Fully draws the chosen <em>row</em> the desired <em>color</em></li>
+<li><a class="reference internal" href="code_digital.html#digital.NeoPixelShield.DrawColumn" title="digital.NeoPixelShield.DrawColumn"><tt class="xref py py-meth docutils literal"><span class="pre">digital.NeoPixelShield.DrawColumn()</span></tt></a>: Fully draws the chosen <em>column</em> the desired <em>color</em></li>
+<li><a class="reference internal" href="code_digital.html#digital.NeoPixelShield.Dim" title="digital.NeoPixelShield.Dim"><tt class="xref py py-meth docutils literal"><span class="pre">digital.NeoPixelShield.Dim()</span></tt></a>: Preserves the color to be drawn to the shield, but dims the brightness.</li>
 <li>Added 140 predefined colors as class attributes. They are the standardized colors of the HTML and CSS interfaces, and they are called by their official names, so for an object constructed as &#8216;shield&#8217;, you could access the color black with <em>shield.Black</em></li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
-</dd>
-</dl>
-</div></blockquote>
 </div>
 <div class="section" id="new-to-v1-2-2">
 <h3>New to v1.2.2<a class="headerlink" href="#new-to-v1-2-2" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><dl class="docutils">
-<dt>In the RPiSoC code</dt>
-<dd><ul class="first last simple">
+<p>In the RPiSoC code</p>
+<ul class="simple">
 <li>USBUART (Serial) support has been added, allowing for use of the board through PC interfaces</li>
 </ul>
-</dd>
-<dt>In module rpisoc.py</dt>
-<dd><ul class="first last">
+<p>In <a class="reference internal" href="code_rpisoc.html#rpisoc-module-label"><em>module rpisoc.py</em></a></p>
+<ul>
 <li><dl class="first docutils">
-<dt>Added class <em>SERIAL()</em> which will open a Windows COM Port, or a <a href="#id1"><span class="problematic" id="id2">*</span></a>nix Serial Port, for communication with the RPiSoC over any baud rate</dt>
-<dd><ul class="first last simple">
+<dt>Added class <em>SERIAL()</em> which will open a Windows COM Port, or Linux or OS X Serial Port for communication with the RPiSoC over any baud rate</dt>
+<dd><ul class="first simple">
 <li>It is chosen from the application layer by:</li>
 </ul>
+<div class="last highlight-python"><div class="highlight"><pre><span class="n">RPiSoC</span><span class="p">(</span><span class="n">port</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd>
 </dl>
 </li>
 </ul>
-</dd>
-</dl>
-</div></blockquote>
-<dl class="docutils">
-<dt>RPiSoC(port_name)</dt>
-<dd><ul class="first last simple">
-<li>For windows port name will be &#8216;COMx&#8217;, and for <a href="#id3"><span class="problematic" id="id4">*</span></a>nix it will be &#8216;/dev/...&#8217;</li>
-</ul>
-</dd>
-</dl>
 </div>
 <div class="section" id="new-to-v1-2-1">
 <h3>New to v1.2.1<a class="headerlink" href="#new-to-v1-2-1" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><dl class="docutils">
-<dt>This was a largely structural change to the RPiSoC firmware. It redesigned the data structures in place for handling of device requests.</dt>
-<dd><ul class="first last">
+<p>This was a largely structural change to the RPiSoC firmware. It redesigned the data structures in place for handling of device requests.</p>
+<ul>
 <li><p class="first">A bit-field struct is now used as the global data vessel, which will contain all needed data for any request made</p>
 </li>
 <li><dl class="first docutils">
@@ -185,16 +187,11 @@
 <li><p class="first">Parallel work done by Mark Bradley has been merged with my work for LabVIEW support through a LINX bridge</p>
 </li>
 </ul>
-</dd>
-</dl>
-</div></blockquote>
 </div>
 <div class="section" id="new-to-v1-2-0">
 <h3>New to v1.2.0<a class="headerlink" href="#new-to-v1-2-0" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><dl class="docutils">
-<dt>In the RPiSoC code</dt>
-<dd><ul class="first last">
+<p>In the RPiSoC code:</p>
+<ul>
 <li><dl class="first docutils">
 <dt>Added a way for the RPiSoC to scan its generated source to determine</dt>
 <dd><ul class="first last simple">
@@ -219,34 +216,30 @@
 <li><p class="first">Made a skeleton for UART support, but haven&#8217;t yet completed the implementation</p>
 </li>
 </ul>
-</dd>
-<dt>In class <em>RPiSoC</em></dt>
-<dd><ul class="first last simple">
-<li>Added the ability to determine what is in the RPiSoC firmare during the construction of the object, inside of the <em>__new__</em> method</li>
+<p>In <a class="reference internal" href="code_rpisoc.html#rpisoc.RPiSoC" title="rpisoc.RPiSoC"><tt class="xref py py-class docutils literal"><span class="pre">rpisoc.RPiSoC</span></tt></a>:</p>
+<ul class="simple">
+<li>Added the ability to determine what is in the RPiSoC firmare during the construction of the object.</li>
 <li>Added a DEBUG feature, which when set to <em>True</em> will print warnings and other diagnostic information to the terminal during run time</li>
 </ul>
-</dd>
-<dt>In module <em>analog</em></dt>
-<dd><ul class="first last">
+<p>In <a class="reference internal" href="code_analog.html#analog-module-label"><em>module analog.py</em></a></p>
+<ul>
 <li><dl class="first docutils">
-<dt>Added class <em>CapSense</em> with the following methods</dt>
+<dt>Added <a class="reference internal" href="code_analog.html#analog.CapSense" title="analog.CapSense"><tt class="xref py py-class docutils literal"><span class="pre">analog.CapSense</span></tt></a> with the following methods</dt>
 <dd><ul class="first last simple">
-<li>Start() : Starts the CapSense component, and all sub-components, preparing them for operation</li>
-<li>Stop()  : Disables CapSense components, and all sub-components, and puts them in their lowest power mode</li>
-<li>Read()  : Returns the state of the desired CapSense button</li>
+<li><a class="reference internal" href="code_analog.html#analog.CapSense.Start" title="analog.CapSense.Start"><tt class="xref py py-meth docutils literal"><span class="pre">analog.CapSense.Start()</span></tt></a> : Starts the CapSense component, and all sub-components, preparing them for operation</li>
+<li><a class="reference internal" href="code_analog.html#analog.CapSense.Stop" title="analog.CapSense.Stop"><tt class="xref py py-meth docutils literal"><span class="pre">analog.CapSense.Stop()</span></tt></a>  : Disables CapSense components, and all sub-components, and puts them in their lowest power mode</li>
+<li><a class="reference internal" href="code_analog.html#analog.CapSense.Read" title="analog.CapSense.Read"><tt class="xref py py-meth docutils literal"><span class="pre">analog.CapSense.Read()</span></tt></a>  : Returns the state of the desired CapSense button</li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
-</dd>
-<dt>In class <em>Servo</em></dt>
-<dd><ul class="first last simple">
+<p>In <a class="reference internal" href="code_digital.html#digital.Servo" title="digital.Servo"><tt class="xref py py-class docutils literal"><span class="pre">digital.Servo</span></tt></a></p>
+<ul class="simple">
 <li>Fixed a bug which caused errors with 8-bit PWMs, due to a poorly derived (non-generalized) formula for calculation of a comparison value</li>
 </ul>
-</dd>
-<dt>In all classes</dt>
-<dd><ul class="first last">
+<p>In all classes</p>
+<ul>
 <li><dl class="first docutils">
 <dt>Removed hard coded constraints, dependent on the version of the API, and replaced them with references to the data collected at construction of the RPiSoC object.</dt>
 <dd><ul class="first last simple">
@@ -256,14 +249,10 @@
 </dl>
 </li>
 </ul>
-</dd>
-<dt>In classes <em>SPI</em> and <em>I2C</em></dt>
-<dd><ul class="first last simple">
+<p>In <a class="reference internal" href="code_rpisoc.html#rpisoc.SPI" title="rpisoc.SPI"><tt class="xref py py-class docutils literal"><span class="pre">rpisoc.SPI</span></tt></a> and <a class="reference internal" href="code_rpisoc.html#rpisoc.I2C" title="rpisoc.I2C"><tt class="xref py py-class docutils literal"><span class="pre">rpisoc.I2C</span></tt></a></p>
+<ul class="simple">
 <li>Provided an optional second argument to the <em>receiveData()</em> method, which will accept a delay, in seconds, to be called between the write operation and read operation. This is to be used by advanced users expanding the API. If a feature they implement requires a highly complex operation to be executed on the RPiSoC, the Python may have to wait a small amount of time between the request and the response. Otherwise, a garbage response will be returned by the method.</li>
 </ul>
-</dd>
-</dl>
-</div></blockquote>
 </div>
 </div>
 <div class="section" id="version-1-1">
@@ -271,35 +260,29 @@
 <p>This version provides the Pi with a lot more functionality, and use of the API is intended to be more flexible than in the previous version.</p>
 <div class="section" id="new-to-v1-1-2">
 <h3>New to v1.1.2<a class="headerlink" href="#new-to-v1-1-2" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><dl class="docutils">
-<dt>In the RPiSoC code</dt>
-<dd><ul class="first last simple">
+<p>In the RPiSoC code</p>
+<ul class="simple">
 <li>Removed the second SAR ADC and replaced it with a sequenced ADC, with 10 analog inputs. This allows for simplified use of analog pins, and gives 10 more.</li>
 <li>Removed Port 6 as a GPIO register so that more analog pins could be added</li>
 <li>PWM (and consequently servo) pins were moved from Port 3 to Port 6, so that Port 3 could be used for the new analog pins (Ports 0 and 3 have slightly better analog performance than the other ports)</li>
 <li>Changed the structure of the GPIO functionality enumeration. I concatenated all of the seperate GPIO registers into one register, and changed the packing and unpacking process of each transfer to contain the port, pin, command, and value to be written if applicable.</li>
 <li>Added the ability to change drive modes to each GPIO at run time.</li>
 </ul>
-</dd>
-<dt>In module <em>rpisoc</em></dt>
-<dd><ul class="first last simple">
+<p>In <a class="reference internal" href="code_rpisoc.html#rpisoc-module-label"><em>module rpisoc.py</em></a></p>
+<ul class="simple">
 <li>Fixed the import structure so that both smbus and spidev aren&#8217;t needed. This means you don&#8217;t have to configure the Pi for I2C if you only intend to use SPI, or vice versa.</li>
 </ul>
-</dd>
-<dt>In module <em>digital</em></dt>
-<dd><ul class="first last simple">
-<li>Removed classes <em>DigitalInput</em> and <em>DigitalOutput</em></li>
+<p>In <a class="reference internal" href="code_digital.html#digital-module-label"><em>module digital.py</em></a></p>
+<ul class="simple">
+<li>Removed classes <tt class="xref py py-class docutils literal"><span class="pre">digital.DigitalInput</span></tt> and <tt class="xref py py-class docutils literal"><span class="pre">digital.DigitalOutput</span></tt></li>
 <li>Added class <em>digitalPin</em> which allows one to instantiate any of the GPIO as input or output, or in any of several different drive modes if needed.</li>
 </ul>
-</dd>
-<dt>In module <em>analog</em></dt>
-<dd><ul class="first last simple">
-<li>Added class <em>analogPin</em> which simplifies the process of getting an analog reading from an ADC, and it adds an aditional 10 analog inputs.</li>
+<p>In <a class="reference internal" href="code_analog.html#analog-module-label"><em>module analog.py</em></a></p>
+<ul class="simple">
+<li>Added <a class="reference internal" href="code_analog.html#analog.analogPin" title="analog.analogPin"><tt class="xref py py-class docutils literal"><span class="pre">analog.analogPin</span></tt></a> which simplifies the process of getting an analog reading from an ADC, and it adds an aditional 10 analog inputs.</li>
 </ul>
-</dd>
-<dt>In class <em>Servo</em></dt>
-<dd><ul class="first last">
+<p>In <a class="reference internal" href="code_digital.html#digital.Servo" title="digital.Servo"><tt class="xref py py-class docutils literal"><span class="pre">digital.Servo</span></tt></a></p>
+<ul>
 <li><dl class="first docutils">
 <dt>Simplified instantiation. It is now only required to provide a servo location relative to Port 6.</dt>
 <dd><ul class="first last simple">
@@ -310,49 +293,35 @@
 </dl>
 </li>
 </ul>
-</dd>
-</dl>
-</div></blockquote>
 </div>
 <div class="section" id="new-to-v1-1-1">
 <h3>New to V1.1.1<a class="headerlink" href="#new-to-v1-1-1" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><dl class="docutils">
-<dt>Code structure</dt>
-<dd><ul class="first last simple">
-<li>communication.py was removed and merged with rpisoc.py to simplify the overall structure.</li>
+<p>Code structure</p>
+<ul class="simple">
+<li><em>communication.py</em> was removed and merged with <a class="reference internal" href="code_rpisoc.html#rpisoc-module-label"><em>module rpisoc.py</em></a> to simplify the overall structure.</li>
 </ul>
-</dd>
-<dt>In class <em>SPI</em></dt>
-<dd><ul class="first last simple">
+<p>In <a class="reference internal" href="code_rpisoc.html#rpisoc.SPI" title="rpisoc.SPI"><tt class="xref py py-class docutils literal"><span class="pre">rpisoc.SPI</span></tt></a></p>
+<ul class="simple">
 <li>Further minimized latency inherent to each SPI transfer.</li>
-<li><em>cleanup()</em> method will now reset any global data tracked within the RPiSoC class, in case cleanup is not called at termination (which is should be...)</li>
+<li><a class="reference internal" href="code_rpisoc.html#rpisoc.SPI.cleanup" title="rpisoc.SPI.cleanup"><tt class="xref py py-meth docutils literal"><span class="pre">rpisoc.SPI.cleanup()</span></tt></a> will now reset any global data tracked within the RPiSoC class, in case <a class="reference internal" href="code_rpisoc.html#rpisoc.SPI.cleanup" title="rpisoc.SPI.cleanup"><tt class="xref py py-meth docutils literal"><span class="pre">rpisoc.SPI.cleanup()</span></tt></a> is not called at termination</li>
 </ul>
-</dd>
-<dt>In class <em>I2C</em></dt>
-<dd><ul class="first last simple">
-<li><em>cleanup()</em> method will now reset any global data tracked within the RPiSoC class, in case cleanup is not called at termination (which is should be...)</li>
+<p>In <a class="reference internal" href="code_rpisoc.html#rpisoc.I2C" title="rpisoc.I2C"><tt class="xref py py-class docutils literal"><span class="pre">rpisoc.I2C</span></tt></a></p>
+<ul class="simple">
+<li><a class="reference internal" href="code_rpisoc.html#rpisoc.I2C.cleanup" title="rpisoc.I2C.cleanup"><tt class="xref py py-meth docutils literal"><span class="pre">rpisoc.I2C.cleanup()</span></tt></a>  method will now reset any global data tracked within the RPiSoC class, in case <a class="reference internal" href="code_rpisoc.html#rpisoc.I2C.cleanup" title="rpisoc.I2C.cleanup"><tt class="xref py py-meth docutils literal"><span class="pre">rpisoc.I2C.cleanup()</span></tt></a>  is not called at termination</li>
 </ul>
-</dd>
-<dt>In class <em>VDAC</em></dt>
-<dd><ul class="first last simple">
-<li>Added a <em>SetVoltage()</em> method, so that the user can directly input a voltage within the specified DAC&#8217;s full scale range</li>
+<p>In <a class="reference internal" href="code_analog.html#analog.VDAC" title="analog.VDAC"><tt class="xref py py-class docutils literal"><span class="pre">analog.VDAC</span></tt></a></p>
+<ul class="simple">
+<li>Added <a class="reference internal" href="code_analog.html#analog.VDAC.SetVoltage" title="analog.VDAC.SetVoltage"><tt class="xref py py-meth docutils literal"><span class="pre">analog.VDAC.SetVoltage()</span></tt></a> method, so that the user can directly input a voltage within the specified DAC&#8217;s full scale range</li>
 </ul>
-</dd>
-<dt>In class <em>IDAC</em></dt>
-<dd><ul class="first last simple">
-<li>Added a <em>SetCurrent()</em> method, so that the user can directly input a current in milliamperes within the specified DAC&#8217;s full scale range</li>
+<p>In <a class="reference internal" href="code_analog.html#analog.IDAC" title="analog.IDAC"><tt class="xref py py-class docutils literal"><span class="pre">analog.IDAC</span></tt></a></p>
+<ul class="simple">
+<li>Added a <a class="reference internal" href="code_analog.html#analog.IDAC.SetCurrent" title="analog.IDAC.SetCurrent"><tt class="xref py py-meth docutils literal"><span class="pre">analog.IDAC.SetCurrent()</span></tt></a> method, so that the user can directly input a current in milliamperes within the specified DAC&#8217;s full scale range</li>
 </ul>
-</dd>
-</dl>
-</div></blockquote>
 </div>
 <div class="section" id="new-to-v1-1-0">
 <h3>New to V1.1.0<a class="headerlink" href="#new-to-v1-1-0" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><dl class="docutils">
-<dt>In the RPiSoC code</dt>
-<dd><ul class="first last simple">
+<p>In the RPiSoC code</p>
+<ul class="simple">
 <li>Added I2C support</li>
 <li>Added the ability to software reset the RPiSoC through the Raspberry Pi</li>
 <li>Removed unneeded delays, speeding up the init process</li>
@@ -360,55 +329,50 @@
 <li>clocked the PWM&#8217;s seperately, such that they aren&#8217;t all sharing the same clock; they are only sharing their clock with one other PWM instead of 7, as was the case in <em>V1.0.0</em></li>
 <li>Fixed a bug discovered in the WaveDAC class, which was generating waves that appeared to be very noisy.</li>
 </ul>
-</dd>
-<dt>In class <em>PWM</em></dt>
-<dd><ul class="first last simple">
-<li>Added ability to modify the frequency of the clocks which drive the PWM signals</li>
-<li>Added ability to read back the actual PWM clocking frequency.</li>
-<li>Added a warning when the clock range of the PWM clocks might be innacurate (since the frequencies are generated using clock dividers, and they can be innacurate at high frequencies)</li>
-<li>Changed the SetDutyCycle() method to be a float value instead of an int, for more precision</li>
-<li>Added a GetDutyCycle() method which will give back the percentage of time between 0 and 100 how long your PWM is high.</li>
-<li>Added a SetClockDivider() method which lets you give the PWM clock a specific divider value, so you don&#8217;t have to be worried about an innacurate result using SetClocks()</li>
-<li>Added a GetClockDivder() method to see what the most recently confirmed clock divider value is</li>
-<li>Added the ability to modify the actual wave frequency of the PWM, between 0.006 Hz and 2.4MHz, without affecting the duty cycle too profoundly.</li>
-<li>Added a GetFrequency() method which will return the actual frequency of the PWM wave</li>
-<li>Added class attributes to the RPiSoC class which indicate whether a register address is already in use. So if the user attempts to initialize an object that is already in use, a warning will be issued.</li>
+<p>In <a class="reference internal" href="code_digital.html#digital.PWM" title="digital.PWM"><tt class="xref py py-class docutils literal"><span class="pre">digital.PWM</span></tt></a></p>
+<ul class="simple">
+<li>Added ability to modify the frequency of the clocks which drive the PWM signals with <a class="reference internal" href="code_digital.html#digital.PWM.SetClocks" title="digital.PWM.SetClocks"><tt class="xref py py-meth docutils literal"><span class="pre">digital.PWM.SetClocks()</span></tt></a></li>
+<li>Added ability to read back the actual PWM clocking frequency with <a class="reference internal" href="code_digital.html#digital.PWM.GetClocks" title="digital.PWM.GetClocks"><tt class="xref py py-meth docutils literal"><span class="pre">digital.PWM.GetClocks()</span></tt></a></li>
+<li>Added a warning when the clock range of the PWM clocks might be inaccurate (since the frequencies are generated using clock dividers, and they can be inaccurate at high frequencies)</li>
+<li>Changed <a class="reference internal" href="code_digital.html#digital.PWM.SetDutyCycle" title="digital.PWM.SetDutyCycle"><tt class="xref py py-meth docutils literal"><span class="pre">digital.PWM.SetDutyCycle()</span></tt></a> to be a float value instead of an int, for more precision</li>
+<li>Added <a class="reference internal" href="code_digital.html#digital.PWM.GetDutyCycle" title="digital.PWM.GetDutyCycle"><tt class="xref py py-meth docutils literal"><span class="pre">digital.PWM.GetDutyCycle()</span></tt></a> which will give back the percentage of time between 0 and 100 how long your PWM is high.</li>
+<li>Added <a class="reference internal" href="code_digital.html#digital.PWM.SetClockDivider" title="digital.PWM.SetClockDivider"><tt class="xref py py-meth docutils literal"><span class="pre">digital.PWM.SetClockDivider()</span></tt></a> which lets you give the PWM clock a specific divider value, so you don&#8217;t have to be worried about an inaccurate result using <a class="reference internal" href="code_digital.html#digital.PWM.SetClocks" title="digital.PWM.SetClocks"><tt class="xref py py-meth docutils literal"><span class="pre">digital.PWM.SetClocks()</span></tt></a></li>
+<li>Added <tt class="xref py py-meth docutils literal"><span class="pre">digital.PWM.GetClockDivder()</span></tt> method to see what the most recently confirmed clock divider value is</li>
+<li>Added <a class="reference internal" href="code_digital.html#digital.PWM.SetFrequency" title="digital.PWM.SetFrequency"><tt class="xref py py-meth docutils literal"><span class="pre">digital.PWM.SetFrequency()</span></tt></a> which provides the ability to modify the actual wave frequency of the PWM, between 0.006 Hz and 2.4MHz, without affecting the duty cycle too profoundly.</li>
+<li>Added <a class="reference internal" href="code_digital.html#digital.PWM.GetFrequency" title="digital.PWM.GetFrequency"><tt class="xref py py-meth docutils literal"><span class="pre">digital.PWM.GetFrequency()</span></tt></a> method which will return the actual frequency of the PWM wave</li>
 </ul>
-</dd>
-<dt>In class <em>ADC</em></dt>
-<dd><ul class="first last simple">
-<li>Changed return value of CountsTo_Volts() method for the ADC&#8217;s from a millivolt value to a microvolt value, so that precision is increased. The return value of the Python method when called is still in Volts.</li>
+<p>In <a class="reference internal" href="code_rpisoc.html#rpisoc.RPiSoC" title="rpisoc.RPiSoC"><tt class="xref py py-class docutils literal"><span class="pre">rpisoc.RPiSoC</span></tt></a></p>
+<ul class="simple">
+<li>Added class attributes to the RPiSoC indicate whether a register address is already in use. So if the user attempts to initialize an object that is already in use, a warning will be issued.</li>
 </ul>
-</dd>
-<dt>In classes <em>DigitalInput</em> and <em>DigitalOutput</em></dt>
-<dd><ul class="first last simple">
+<p>In <a class="reference internal" href="code_analog.html#analog.ADC" title="analog.ADC"><tt class="xref py py-class docutils literal"><span class="pre">analog.ADC</span></tt></a></p>
+<ul class="simple">
+<li>Changed return value of <tt class="xref py py-meth docutils literal"><span class="pre">analog.CountsTo_Volts()</span></tt> from a millivolt value to a microvolt value, so that precision is increased. The return value of the Python method when called is still in Volts.</li>
+</ul>
+<p>In classes <tt class="xref py py-class docutils literal"><span class="pre">digital.DigitalInput</span></tt> and <tt class="xref py py-class docutils literal"><span class="pre">digital.DigitalOutput</span></tt></p>
+<ul class="simple">
 <li>Moved the bit masking process of the digital inputs and outputs to the C code, where it can be executed more quickly, and with fewer data transfers</li>
 </ul>
-</dd>
-<dt>In class <em>WaveDAC</em></dt>
-<dd><ul class="first last simple">
+<p>In <a class="reference internal" href="code_analog.html#analog.WaveDAC" title="analog.WaveDAC"><tt class="xref py py-class docutils literal"><span class="pre">analog.WaveDAC</span></tt></a></p>
+<ul class="simple">
 <li>Added a warning when the frequency might be out of range</li>
 </ul>
-</dd>
-<dt>In modeule <em>digital</em></dt>
-<dd><ul class="first last">
+<p>In <a class="reference internal" href="code_digital.html#digital-module-label"><em>module digital.py</em></a></p>
+<ul>
 <li><dl class="first docutils">
-<dt>Added class <em>Servo</em> with the following methods:</dt>
+<dt>Added <a class="reference internal" href="code_digital.html#digital.Servo" title="digital.Servo"><tt class="xref py py-class docutils literal"><span class="pre">digital.Servo</span></tt></a> with the following methods:</dt>
 <dd><ul class="first last simple">
-<li>SetPulse() : Sets a PWM pulse in milliseconds</li>
-<li>ReadPulse(): Gets the actual pulse in milliseconds that is being applied to the servo</li>
-<li>SetAngle() : sets the servomotor to a designated angle based on the user defined minimum angle, maximum angle, minimum pulse width, and maximum pulse width.</li>
-<li>ReadAngle(): Reads the actual angle based on the same parameter set as <em>SetAngle()</em></li>
-<li>Stop(): Stops the PWM signal which is driving the servo</li>
-<li>Start(): Starts the PWM signal which will drive the servo</li>
+<li><a class="reference internal" href="code_digital.html#digital.Servo.SetPulse" title="digital.Servo.SetPulse"><tt class="xref py py-meth docutils literal"><span class="pre">digital.Servo.SetPulse()</span></tt></a> : Sets a PWM pulse in milliseconds</li>
+<li><a class="reference internal" href="code_digital.html#digital.Servo.ReadPulse" title="digital.Servo.ReadPulse"><tt class="xref py py-meth docutils literal"><span class="pre">digital.Servo.ReadPulse()</span></tt></a>: Gets the actual pulse in milliseconds that is being applied to the servo</li>
+<li><a class="reference internal" href="code_digital.html#digital.Servo.SetAngle" title="digital.Servo.SetAngle"><tt class="xref py py-meth docutils literal"><span class="pre">digital.Servo.SetAngle()</span></tt></a>: sets the servomotor to a designated angle based on the user defined minimum angle, maximum angle, minimum pulse width, and maximum pulse width.</li>
+<li><a class="reference internal" href="code_digital.html#digital.Servo.ReadAngle" title="digital.Servo.ReadAngle"><tt class="xref py py-meth docutils literal"><span class="pre">digital.Servo.ReadAngle()</span></tt></a>: Reads the actual angle based on the same parameter set as <em>SetAngle()</em></li>
+<li><a class="reference internal" href="code_digital.html#digital.Servo.Stop" title="digital.Servo.Stop"><tt class="xref py py-meth docutils literal"><span class="pre">digital.Servo.Stop()</span></tt></a>: Stops the PWM signal which is driving the servo</li>
+<li><a class="reference internal" href="code_digital.html#digital.Servo.Start" title="digital.Servo.Start"><tt class="xref py py-meth docutils literal"><span class="pre">digital.Servo.Start()</span></tt></a>: Starts the PWM signal which will drive the servo</li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
-</dd>
-</dl>
-</div></blockquote>
 </div>
 </div>
 <div class="section" id="version-1-0">
@@ -443,6 +407,7 @@
   <ul>
 <li><a class="reference internal" href="#">Revision History</a><ul>
 <li><a class="reference internal" href="#version-1-2">Version 1.2</a><ul>
+<li><a class="reference internal" href="#new-to-v1-2-5">New to v1.2.5</a></li>
 <li><a class="reference internal" href="#new-to-v1-2-4">New to v1.2.4</a></li>
 <li><a class="reference internal" href="#new-to-v1-2-3">New to v1.2.3</a></li>
 <li><a class="reference internal" href="#new-to-v1-2-2">New to v1.2.2</a></li>
@@ -493,17 +458,14 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
           <a href="examples.html" title="Example Projects!"
              >previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.2.4 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.2.5 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2014, Embedit Electronics.
-      Last updated on Dec 10, 2014.
+        &copy; Copyright 2015, EmbeditElectronics.
+      Last updated on Jan 16, 2015.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

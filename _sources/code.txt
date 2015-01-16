@@ -1,39 +1,14 @@
 API modules
 ===========
-Here is a quick look at what is under the hood of the RPiSoC Python API, as of *V1.1.1*
+Here is a quick look at what is under the hood of the RPiSoC Python API, as of version |version|
 
-rpisoc.py
-+++++++++
-This is the highest level module import for the RPiSoC API, which the user should
- import into their scripts for full use of it. It is used to keep records of some globally used variables between all classes. 
+.. toctree::
+   :maxdepth: 2
 
+   code_rpisoc
+   code_digital
+   code_analog
 
-It is also used to send data to, and receive data from the RPiSoC using 
-a user chosen communication protocol.
-
-At the beginning of each script, insert the following
-two lines::
-		from rpisoc import * #This will handle dependencies
-		RPiSoC('SPI') 
-		#or RPiSoC('I2C')
-
-.. automodule:: rpisoc
-   :members:
-   :special-members:
-   :exclude-members: __dict__,__weakref__
-
-
-digital.py
-++++++++++
-
-.. automodule:: digital
-   :members:
-
-analog.py
-+++++++++
-
-.. automodule:: analog
-   :members:
 
 .. codeauthor:: Brian Bradley <embedit@embeditelectronics.com>
 .. sectionauthor:: Brian Bradley <embedit@embeditelectronics.com>

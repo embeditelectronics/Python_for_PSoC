@@ -1,0 +1,2412 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>digital.py &mdash; RPiSoC Python API 1.2.5 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.2.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="RPiSoC Python API 1.2.5 documentation" href="index.html" />
+    <link rel="up" title="API modules" href="code.html" />
+    <link rel="next" title="analog.py" href="code_analog.html" />
+    <link rel="prev" title="rpisoc.py" href="code_rpisoc.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="code_analog.html" title="analog.py"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="code_rpisoc.html" title="rpisoc.py"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">RPiSoC Python API 1.2.5 documentation</a> &raquo;</li>
+          <li><a href="code.html" accesskey="U">API modules</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="digital-py">
+<span id="digital-module-label"></span><h1>digital.py<a class="headerlink" href="#digital-py" title="Permalink to this headline">¶</a></h1>
+<p>The digital functionality currently supported by the RPiSoC Python API</p>
+<div class="section" id="digital-input-and-output">
+<h2>Digital Input and Output<a class="headerlink" href="#digital-input-and-output" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="digital.digitalPin">
+<em class="property">class </em><tt class="descclassname">digital.</tt><tt class="descname">digitalPin</tt><big>(</big><em>PORT</em>, <em>PIN</em>, <em>CONFIG=None</em><big>)</big><a class="headerlink" href="#digital.digitalPin" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Class:</th><td class="field-body"><p class="first">Provides functionality for use of the GPIO on the RPiSoC as a digital input or output, with a number of different drive mode configurations.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"><p class="first">Define a digitalPin object in the following way:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">My_input</span> <span class="o">=</span> <span class="n">digitalPin</span><span class="p">(</span><span class="n">Port</span><span class="p">,</span><span class="n">Pin</span><span class="p">,</span><span class="s">&#39;IN&#39;</span><span class="p">)</span>
+<span class="n">My_output</span> <span class="o">=</span> <span class="n">digitalPin</span><span class="p">(</span><span class="n">Port</span><span class="p">,</span><span class="n">Pin</span><span class="p">,</span><span class="s">&#39;OUT&#39;</span><span class="p">)</span>
+<span class="sd">&#39;&#39;&#39;or more generally&#39;&#39;&#39;</span>
+<span class="n">My_pin</span> <span class="o">=</span> <span class="n">digitalPin</span><span class="p">(</span><span class="n">Port</span><span class="p">,</span><span class="n">Pin</span><span class="p">,</span><span class="n">DRIVE_MODE</span><span class="p">)</span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body"><p class="first last">Modification of which pins are available should be easy. Just add new pins to you RPiSoC schematic, give them an input and an output, and then name them as GPIO_PORT_PIN.
+After you do this, confirm that it was done correctly by using the DEBUG feature of the RPiSoC class.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="88%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">__init__</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Constructs and initializes a digitalPin object</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><ul class="first last simple">
+<li><strong>int</strong>      <em>PORT</em></li>
+<li><strong>int</strong>      <em>PIN</em></li>
+<li><strong>string</strong>   <em>CONFIG</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>PORT</em></td>
+<td><dl class="first last docutils">
+<dt>Port on the RPiSoC</dt>
+<dd><ul class="first last simple">
+<li>GPIO Ports are chosen by default as Ports <em>2, 5</em> and <em>12</em> for V1.2, but they are easily changed</li>
+<li>Port <em>4</em> does not contain Pin <em>7</em> (it is reserved)</li>
+<li>Port 5 uses 3.3V logic instead of 5V, as do pins 12[6] and 12[7].</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><em>PIN</em></td>
+<td><dl class="first last docutils">
+<dt>Pin relative to the chosen Port</dt>
+<dd><ul class="first last simple">
+<li>Valid arguments are between <em>0</em> and <em>7</em>, unless noted to have a Port specific exception, or if that pin is removed from your RPiSoC schematic</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td><em>CONFIG</em></td>
+<td><dl class="first last docutils">
+<dt>Drive mode of the pin. Valid choices are:</dt>
+<dd><ul class="first last simple">
+<li>&#8216;IN&#8217; - sets pin as input</li>
+<li>&#8216;OUT&#8217; - sets pin as output</li>
+<li>&#8216;PULL_UP&#8217; - sets pin as resisitive pullup</li>
+<li>&#8216;PULL_DWN&#8217; - sets pin as resistive pulldown</li>
+<li>&#8216;OPEN_DRAIN_LO&#8217; - sets pin as open-drain (drives low)</li>
+<li>&#8216;OPEN_DRAIN_HI&#8217; - sets pin as open-drain (drives high)</li>
+<li>&#8216;PULL_UP_DWN&#8217; - sets pin as resistive pull-up/down</li>
+<li>&#8216;HIGH_Z_DIG&#8217; - sets pin as high impedence (digital)</li>
+<li>&#8216;STRONG_DRIVE&#8217; - sets pin as strong drive</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="digital.digitalPin.Configure">
+<tt class="descname">Configure</tt><big>(</big><em>CONFIG</em><big>)</big><a class="headerlink" href="#digital.digitalPin.Configure" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Configure</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Sets the drive mode of the pin as input (high impedence digital), resistive pullup, resistive pull down, open drain (drives low), open drain (drives high), output (strong drive), or resistive pull-up/down</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><ul class="first last simple">
+<li><strong>string</strong>   <em>CONFIG</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>CONFIG</em></td>
+<td><dl class="first last docutils">
+<dt>Drive mode of the pin. Valid choices are:</dt>
+<dd><ul class="first last simple">
+<li>&#8216;IN&#8217; - sets pin as input</li>
+<li>&#8216;OUT&#8217; - sets pin as output</li>
+<li>&#8216;PULL_UP&#8217; - sets pin as resisitive pullup</li>
+<li>&#8216;PULL_DWN&#8217; - sets pin as resistive pulldown</li>
+<li>&#8216;OPEN_DRAIN_LO&#8217; - sets pin as open-drain (drives low)</li>
+<li>&#8216;OPEN_DRAIN_HI&#8217; - sets pin as open-drain (drives high)</li>
+<li>&#8216;PULL_UP_DWN&#8217; - sets pin as resistive pull-up/down</li>
+<li>&#8216;HIGH_Z_DIG&#8217; - sets pin as high impedence (digital)</li>
+<li>&#8216;STRONG_DRIVE&#8217; - sets pin as strong drive</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.digitalPin.Read">
+<tt class="descname">Read</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.digitalPin.Read" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Read</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Determines the state of the digital pin on the RPiSoC</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td><strong>bool</strong> <em>state</em></td>
+</tr>
+<tr class="row-odd"><td><em>state</em></td>
+<td>A True or False value when the output is determined to be HIGH or LOW, respectively</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.digitalPin.Toggle">
+<tt class="descname">Toggle</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.digitalPin.Toggle" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Toggle</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Toggles the state of the specified output and commits that value to the RPiSoC</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.digitalPin.Write">
+<tt class="descname">Write</tt><big>(</big><em>val</em><big>)</big><a class="headerlink" href="#digital.digitalPin.Write" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Write</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td><ul class="first last simple">
+<li>Writes a new value to the output port, without affecting the other pins attached to that port</li>
+<li>Before committing the write operation, this function will confirm that the new value is different than the previous value, and only operate on the RPiSoC&#8217;s I/O if it is</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><ul class="first last simple">
+<li><strong>int</strong>     <em>val</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>val</em></td>
+<td><ul class="first last simple">
+<li>Value to be written to the initialized digitalPin object</li>
+<li>Accepts only <em>1</em> or <em>0</em> for writing the output HIGH or LOW, respectively</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="pwm">
+<h2>PWM<a class="headerlink" href="#pwm" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="digital.PWM">
+<em class="property">class </em><tt class="descclassname">digital.</tt><tt class="descname">PWM</tt><big>(</big><em>portNumber</em><big>)</big><a class="headerlink" href="#digital.PWM" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Class:</th><td class="field-body"><p class="first">This class provides functionality for use of the PWM components available on the RPiSoC.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"><p class="first">Define PWM objects in the following way:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="n">My_PWM</span>       <span class="o">=</span> <span class="n">PWM</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">My_other_PWM</span> <span class="o">=</span> <span class="n">PWM</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="sd">&#39;&#39;&#39;etc etc...    &#39;&#39;&#39;</span>
+<span class="n">My_last_PWM</span>  <span class="o">=</span> <span class="n">PWM</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">__init__</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Constructs and initializes PWM object</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><strong>int</strong>   <em>portNumber</em></td>
+</tr>
+<tr class="row-even"><td><em>portNumber</em></td>
+<td><dl class="first last docutils">
+<dt>Corresponds to one of the physical PWM pins on your RPiSoC</dt>
+<dd><ul class="first last simple">
+<li>By default, there are 8 PWM channels available, so valid inputs are 0-7</li>
+<li>Valid inputs are 0-(N-1), assuming that there are N PWM channels in your RPiSoC schematic</li>
+<li>For the default version of V1.2.4, this number corresponds to the respective pin on Port 6 for channels 1-7, and P0[2] for PWM(0)</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="digital.PWM.ClearFIFO">
+<tt class="descname">ClearFIFO</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.PWM.ClearFIFO" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">ClearFIFO</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Clears the capture FIFO of any previously captured data. Here PWM_ReadCapture() is called until the FIFO is empty</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.PWM.GetClockDivider">
+<tt class="descname">GetClockDivider</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.PWM.GetClockDivider" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">GetClockDivider</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Gets the most recently confirmed clock divider value, which is used to determine the clocking frequency of the PWM</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td><strong>int</strong> <em>div</em></td>
+</tr>
+<tr class="row-odd"><td><em>div</em></td>
+<td>16-bit clock divider value</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.PWM.GetClocks">
+<tt class="descname">GetClocks</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.PWM.GetClocks" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">GetClocks</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Calculates the actual clock rate of the PWM&#8217;s based on the most recently confirmed clock divider value</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td><strong>float</strong> <em>clk</em></td>
+</tr>
+<tr class="row-odd"><td><em>clk</em></td>
+<td>The actual frequency of the PWM clock</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.PWM.GetDutyCycle">
+<tt class="descname">GetDutyCycle</tt><big>(</big><em>PRECISION=2</em><big>)</big><a class="headerlink" href="#digital.PWM.GetDutyCycle" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">GetDutyCycle</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Calculates the current duty cycle based on the current period and comparison values</td>
+</tr>
+<tr class="row-odd"><td><em>Optional</em>
+<em>Parameters</em></td>
+<td><strong>int</strong> PRECISION</td>
+</tr>
+<tr class="row-even"><td><em>PRECISION</em></td>
+<td><dl class="first last docutils">
+<dt>The number of decimal places which the result should be calculated to</dt>
+<dd><ul class="first last simple">
+<li>Defaults to 2</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td><strong>float</strong> <em>duty_cycle</em></td>
+</tr>
+<tr class="row-even"><td><em>duty_cycle</em></td>
+<td>A value which is representative of the percentage of time, between 0 and 100%, that the PWM signal is on, relative to the total length of its period</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.PWM.GetFrequency">
+<tt class="descname">GetFrequency</tt><big>(</big><em>PRECISION=2</em><big>)</big><a class="headerlink" href="#digital.PWM.GetFrequency" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">GetFrequency</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Calculates the current PWM wave frequency based on the current clock rate and period value</td>
+</tr>
+<tr class="row-odd"><td><em>Optional</em>
+<em>Parameters</em></td>
+<td><strong>int</strong> PRECISION</td>
+</tr>
+<tr class="row-even"><td><em>PRECISION</em></td>
+<td><dl class="first last docutils">
+<dt>The number of decimal places which the result should be calculated to</dt>
+<dd><ul class="first last simple">
+<li>Defaults to 2</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td><strong>float</strong> <em>freq</em></td>
+</tr>
+<tr class="row-even"><td><em>freq</em></td>
+<td>A frequency in Hz, which is representative of the current PWM signal frequency</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.PWM.GetMIDI">
+<tt class="descname">GetMIDI</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.PWM.GetMIDI" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">GetMIDI</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Calculates what MIDI note corresponds to the current PWM frequency</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td><strong>int</strong> <em>MIDI</em></td>
+</tr>
+<tr class="row-odd"><td><em>MIDI</em></td>
+<td>The MIDI note, as defined by the MIDI standard to correspond with a specific musical note, which most closely resembles the PWM frequency</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.PWM.ReadCompare">
+<tt class="descname">ReadCompare</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.PWM.ReadCompare" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">ReadCompare</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Determines the compare value, in counts, currently used by the PWM component</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td><strong>int</strong> <em>cmp</em></td>
+</tr>
+<tr class="row-odd"><td><em>cmp</em></td>
+<td>The compare value, in counts, currently used by the PWM component</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.PWM.ReadPeriod">
+<tt class="descname">ReadPeriod</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.PWM.ReadPeriod" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">ReadPeriod</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Determines the period value, in counts, currently used by the PWM component</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td><strong>int</strong> <em>period</em></td>
+</tr>
+<tr class="row-odd"><td><em>period</em></td>
+<td>The period value, in counts, currently used by the PWM component</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.PWM.SetClockDivider">
+<tt class="descname">SetClockDivider</tt><big>(</big><em>divider</em><big>)</big><a class="headerlink" href="#digital.PWM.SetClockDivider" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">SetClockDivider</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Sets a divider to the desired PWM&#8217;s clock source</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><strong>int</strong> divider</td>
+</tr>
+<tr class="row-even"><td><em>div</em></td>
+<td><dl class="first last docutils">
+<dt>An integer between <em>0</em> and <em>65535</em> which the PWM clock will be divided by</dt>
+<dd><ul class="first last simple">
+<li>Changing the clock&#8217;s divider, and consequently its frequency, will affect any other PWMs which share that clock</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.PWM.SetClocks">
+<tt class="descname">SetClocks</tt><big>(</big><em>frequency</em>, <em>safety=False</em><big>)</big><a class="headerlink" href="#digital.PWM.SetClocks" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">SetClocks</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td><ul class="first last simple">
+<li>Attempts to set the PWM Clock rate to a desired frequency using an appropriate clock divider</li>
+<li>It will wait for a response from the RPiSoC which represents the actual clock divider which was set</li>
+<li>This value is then saved in the RPiSoC class so that it can be referenced to calculate the actual clock frequency at request</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><strong>float</strong>   <em>frequency</em></td>
+</tr>
+<tr class="row-even"><td><em>frequency</em></td>
+<td><dl class="first last docutils">
+<dt>A frequency in Hz which represents the desired clock rate</dt>
+<dd><ul class="first last simple">
+<li>This is NOT the frequency of the PWM, it is the frequency of the clock which drives it</li>
+<li>Changing the clock frequency for any single PWM that shares it&#8217;s clock source will affect all PWMs that share this clock</li>
+<li>For the suggested clock source of 24 MHz, this value cannot be less than <em>367</em> Hz and cannot be more than 24 MHz (<em>24000000</em> Hz)</li>
+<li>Generally, the frequency cannot be less than your clock source divided by 65535, and cannot be greater than your clock source itself</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+<tr class="row-even"><td><strong>Warning</strong></td>
+<td><dl class="first last docutils">
+<dt>Because frequencies are achieved with dividers, high frequencies are difficult to accurately achieve, and they might have more error.</dt>
+<dd><ul class="first last simple">
+<li>For a 24 MHz source, frequencies higher than 2.526 MHz (<em>2526318</em> Hz) accuracy cannot be guaranteed to be within a tolerance of 5%</li>
+<li>For a 24 MHz source, frequencies higher than 5.333 MHz (<em>5333345</em> Hz) accuracy cannot be guaranteed to be within a tolerance of 10%</li>
+<li>The frequency might still be accurate at high frequencies; tolerances are worst case scenarios</li>
+<li>Use <a class="reference internal" href="#digital.PWM.GetClocks" title="digital.PWM.GetClocks"><tt class="xref py py-meth docutils literal"><span class="pre">GetClocks()</span></tt></a> to get the actually achieved frequency</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.PWM.SetDutyCycle">
+<tt class="descname">SetDutyCycle</tt><big>(</big><em>duty_cycle</em>, <em>safety=False</em><big>)</big><a class="headerlink" href="#digital.PWM.SetDutyCycle" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">SetDutyCycle</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Simplifies the process of setting a meaningful comparison value by calculating the correct cmp value based on a desired duty cycle</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><strong>float</strong> <em>duty_cycle</em></td>
+</tr>
+<tr class="row-even"><td><em>duty_cycle</em></td>
+<td><dl class="first last docutils">
+<dt>A a number between 0 and 100 which indicates the percentage of time that the PWM should be HIGH during one period</dt>
+<dd><ul class="first last simple">
+<li>A <em>duty_cycle</em> of 100 indicates that the PWM is always on</li>
+<li>A <em>duty_cycle</em> of 50 indicates that the PWM is on half of the time</li>
+<li>A <em>duty_cycle</em> of 0 indicates that the PWM is always off</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.PWM.SetFrequency">
+<tt class="descname">SetFrequency</tt><big>(</big><em>freq</em>, <em>MAX_ERROR=5</em>, <em>MIN_PERIOD=10</em>, <em>safety=False</em><big>)</big><a class="headerlink" href="#digital.PWM.SetFrequency" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">SetFrequency</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td><ul class="first last simple">
+<li>Attempts to set the PWM wave frequency to a desired rate by calculating an appropriate period value and/or clock rate</li>
+<li>It will try to maintain the clock rate, unless it is impossible without compromising the duty cycle too severely</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><ul class="first last simple">
+<li><strong>float</strong> freq</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>Optional</em>
+<em>Parameters</em></td>
+<td><ul class="first last simple">
+<li><strong>float</strong> MAX_ERROR</li>
+<li><strong>int</strong> MIN_PERIOD</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><em>freq</em></td>
+<td><dl class="first last docutils">
+<dt>A frequency in Hz which represents the desired wave rate</dt>
+<dd><ul class="first last simple">
+<li>This is NOT the frequency of the clock which drive the PWM, it is the actual output frequency</li>
+<li>If the frequency cannot be reached without changing the clock rate, any PWM&#8217;s sharing that clock will be affected</li>
+<li>For the suggested source clock rate of 24MHz, <em>freq</em> cannot be less than .006 Hz and cannot be more than 2.4 MHz (<em>2400000</em> Hz)</li>
+<li>Generally, freq cannot be less than <span class="math">\(\frac{clock freq}{65535*(2^n - 1)}\)</span>, where n is the PWM resolution in bits, and it cannot be more than <span class="math">\(\frac{clock freq}{MIN PERIOD}\)</span></li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td><em>MAX_ERROR</em></td>
+<td><dl class="first last docutils">
+<dt>The largest percentage of error that can be tolerated between the desired frequency and the achieved frequency</dt>
+<dd><ul class="first last simple">
+<li>This defaults to 5</li>
+<li>Verify the actual frequency with <a class="reference internal" href="#digital.PWM.GetFrequency" title="digital.PWM.GetFrequency"><tt class="xref py py-meth docutils literal"><span class="pre">GetFrequency()</span></tt></a></li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><em>MIN_PERIOD</em></td>
+<td><dl class="first last docutils">
+<dt>The lowest possible period that can be tolerated when the wave parameters are being calculated</dt>
+<dd><ul class="first last simple">
+<li>Valid between 0 and 65535 for a 16-bit PWM</li>
+<li>Valid between 0 and 255 for an 8-bit PWM</li>
+<li>Default behavior is a <em>MIN_PERIOD</em> of 10 on 16-bit PWM</li>
+<li>Lower values allow for easier wave parameter calculation, without having to modify the clock source</li>
+<li>Higher values allow finer Duty Cycle maintenence</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.PWM.SetMIDI">
+<tt class="descname">SetMIDI</tt><big>(</big><em>MIDI</em>, <em>MAX_ERROR=5</em>, <em>MIN_PERIOD=10</em><big>)</big><a class="headerlink" href="#digital.PWM.SetMIDI" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">SetMIDI</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Generates a PWM wave frequency the corresponds to the specified MIDI note</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><ul class="first last simple">
+<li><strong>int</strong> MIDI</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>Optional</em>
+<em>Parameters</em></td>
+<td><ul class="first last simple">
+<li><strong>float</strong> MAX_ERROR</li>
+<li><strong>int</strong> MIN_PERIOD</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><em>MIDI</em></td>
+<td>A MIDI note, as defined by the MIDI standard to correspond with a specific musical note</td>
+</tr>
+<tr class="row-even"><td><em>MAX_ERROR</em></td>
+<td><dl class="first last docutils">
+<dt>The largest percentage of error that can be tolerated between the desired frequency and the achieved frequency</dt>
+<dd><ul class="first last simple">
+<li>This defaults to 5</li>
+<li>This error rate is in reference to the wave frquency, in Hz, not the MIDI note number which is scaled differently than the frequency</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><em>MIN_PERIOD</em></td>
+<td><dl class="first last docutils">
+<dt>The lowest possible period that can be tolerated when the wave parameters are being calculated</dt>
+<dd><ul class="first last simple">
+<li>Valid between 0 and 65535 for a 16-bit PWM</li>
+<li>Valid between 0 and 255 for an 8-bit PWM</li>
+<li>Default behavior is a <em>MIN_PERIOD</em> of 10 on 16-bit PWM</li>
+<li>Lower values allow for easier wave parameter calculation, without having to modify the clock source</li>
+<li>Higher values allow finer Duty Cycle maintenence</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.PWM.Sleep">
+<tt class="descname">Sleep</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.PWM.Sleep" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Sleep</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Stops the PWM operation, puts the PWM component into it&#8217;s lowest power state, and saves the current configuration</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.PWM.Start">
+<tt class="descname">Start</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.PWM.Start" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Start</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Starts component operation. Sets the initVar variable, calls the PWM_Init function, and then calls the PWM_Enable function</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.PWM.Stop">
+<tt class="descname">Stop</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.PWM.Stop" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Stop</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Disables the PWM operation</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.PWM.Wakeup">
+<tt class="descname">Wakeup</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.PWM.Wakeup" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Wakeup</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Restores and enables the most recently saved configuration</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.PWM.WriteCompare">
+<tt class="descname">WriteCompare</tt><big>(</big><em>cmp</em>, <em>safety=False</em><big>)</big><a class="headerlink" href="#digital.PWM.WriteCompare" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">WriteCompare</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Writes the period value used by the PWM hardware</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><strong>int</strong>   <em>cmp</em></td>
+</tr>
+<tr class="row-even"><td><em>cmp</em></td>
+<td><dl class="first last docutils">
+<dt>An integer value, in <em>counts</em>, which determines how long during a PWM cycle that the output is HIGH</dt>
+<dd><ul class="first last simple">
+<li>The value must not be greater than <strong>65535</strong> (for 16-bit mode, which is the default)</li>
+<li>for 8-bit mode it must not be greater than <strong>255</strong></li>
+<li>The comparison value must also be less than or equal to the period</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.PWM.WritePeriod">
+<tt class="descname">WritePeriod</tt><big>(</big><em>period</em>, <em>safety=False</em><big>)</big><a class="headerlink" href="#digital.PWM.WritePeriod" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">WritePeriod</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Writes the period value used by the PWM hardware</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><strong>int</strong>   <em>period</em></td>
+</tr>
+<tr class="row-even"><td><em>period</em></td>
+<td><dl class="first last docutils">
+<dt>The length, in <em>counts</em>, which defines how long a PWM Cycle will be</dt>
+<dd><ul class="first last simple">
+<li>The value must not be greater than <strong>65535</strong> (for 16-bit mode, which is the default)</li>
+<li>for 8-bit mode it must not be greater than <strong>255</strong></li>
+<li>The period must be greater than the comparison value</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.PWM.isRunning">
+<tt class="descname">isRunning</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.PWM.isRunning" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">isRunning</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Checks to see if the PWM component is currently operational</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td><strong>bool</strong> <em>__running</em></td>
+</tr>
+<tr class="row-odd"><td><em>__running</em></td>
+<td>A private boolean variable which evaluates to <em>True</em> if the PWM component is operational, or <em>False</em> if it is not</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="servo-motors">
+<h2>Servo Motors<a class="headerlink" href="#servo-motors" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="digital.Servo">
+<em class="property">class </em><tt class="descclassname">digital.</tt><tt class="descname">Servo</tt><big>(</big><em>servo_id</em>, <em>min_pulse=1.0</em>, <em>max_pulse=2.0</em>, <em>min_angle=0</em>, <em>max_angle=180</em><big>)</big><a class="headerlink" href="#digital.Servo" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Class:</th><td class="field-body"><p class="first">This class provides allows for easy manipulation of standard Servo Motors using PWM.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"><p class="first">Define Servo objects in any the following ways:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="n">My_simple_servo</span>       <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">My_calibrated_servo</span>   <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+<span class="n">My_descriptive_servo</span>  <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">180</span><span class="p">)</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">__init__</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Creates a servo object with the given parameter set</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><ul class="first last simple">
+<li><strong>int</strong> servo_id</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>Optional</em>
+<em>Parameters</em></td>
+<td><ul class="first last simple">
+<li><strong>float</strong> min_pulse</li>
+<li><strong>float</strong> max_pulse</li>
+<li><strong>float</strong> min_angle</li>
+<li><strong>float</strong> max_angle</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><em>servo_id</em></td>
+<td><dl class="first last docutils">
+<dt>Corresponds to the pin which the signal line of the servo will be connected to</dt>
+<dd><ul class="first last simple">
+<li>These pins will be defined exactly the same way that PWM pins are defined</li>
+<li>By default, servo 0 is on P0[2], and servos 1-7 are on Port 6 Pins 1-7</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td><em>min_pulse</em></td>
+<td><dl class="first last docutils">
+<dt>The pulse width necessary to obtain angular position min_angle.</dt>
+<dd><ul class="first last simple">
+<li>Values must be greater than zero</li>
+<li>Normal values are between 0.8 and 1.2</li>
+<li>Find an appropriate value through calibration; it will default to 1.0 if no parameter is given</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><em>max_pulse</em></td>
+<td><dl class="first last docutils">
+<dt>The pulse width necessary to obtain angular position max_angle.</dt>
+<dd><ul class="first last simple">
+<li>Values must be greater than zero</li>
+<li>Normal values are between 1.8 and 2.3</li>
+<li>Find an appropriate value through calibration; it will default to 2.0 if no parameter is given</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td><em>min_angle</em></td>
+<td><dl class="first last docutils">
+<dt>the angle which the servo will return to if applied with a pulse width of <em>min_pulse</em></dt>
+<dd><ul class="first last simple">
+<li>This defaults to 0</li>
+<li>Negative angular positions are valid</li>
+<li>Angles can be any angular unit: degrees, radians, or other arbitrary (linear) scale</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><em>max_angle</em></td>
+<td><dl class="first last docutils">
+<dt>the angle which the servo will return to if applied with a pulse width of <em>max_pulse</em></dt>
+<dd><ul class="first last simple">
+<li>This defaults to 180</li>
+<li>Negative angular positions are valid</li>
+<li>Angles can be any angular unit: degrees, radians, or other arbitrary (linear) scale</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+<tr class="row-odd"><td><strong>Note</strong></td>
+<td>A servo with servo_id, n, will make PWM(n) unnavailable, since the servo controller is implemented using that PWM object. For fine control over
+that PWM, you can expose the object using My_servo.servo_PWM, and then you can use any of the PWM methods using My_servo.servo_PWM.method(). This is
+advised against though, because servos are very particular about the construction of their data signals. If you change the wrong parameter of the PWM signal, you
+might damage the servo</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="digital.Servo.ReadAngle">
+<tt class="descname">ReadAngle</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.Servo.ReadAngle" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">ReadAngle</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Calculates the current angle of the servomotor, linearized relative to the provided maximum and minimum angles</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td><strong>float</strong> <em>angle_cur</em></td>
+</tr>
+<tr class="row-odd"><td><em>angle_cur</em></td>
+<td>A value representative of the angle that the servo motor is held, according to the provided scale</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.Servo.ReadPulse">
+<tt class="descname">ReadPulse</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.Servo.ReadPulse" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">ReadPulse</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Calculates the current pulse width of the PWM which is driving the servomotor</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td><strong>float</strong> <em>pulse</em></td>
+</tr>
+<tr class="row-odd"><td><em>pulse</em></td>
+<td>A pulse duration in milliseconds, representative of the PWM signal pulse width being applied ot the servomotor</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.Servo.SetAngle">
+<tt class="descname">SetAngle</tt><big>(</big><em>angle</em><big>)</big><a class="headerlink" href="#digital.Servo.SetAngle" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">SetAngle</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Calculates a pulse width based on the given angular position and the current min/max configuration parameters, then calls <a class="reference internal" href="#digital.Servo.SetPulse" title="digital.Servo.SetPulse"><tt class="xref py py-meth docutils literal"><span class="pre">SetPulse()</span></tt></a> to set the position of the servo</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><strong>float</strong> <em>angle</em></td>
+</tr>
+<tr class="row-even"><td><em>angle</em></td>
+<td>The angle to which the servo should be set, linearized relative to the defined minimum and maximum angles</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.Servo.SetPulse">
+<tt class="descname">SetPulse</tt><big>(</big><em>pulse_ms</em><big>)</big><a class="headerlink" href="#digital.Servo.SetPulse" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">SetPulse</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Sets a servo position based on a pulse width in ms</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><strong>float</strong> <em>pulse_ms</em></td>
+</tr>
+<tr class="row-even"><td><em>pulse_ms</em></td>
+<td><dl class="first last docutils">
+<dt>A pulse width in milliseconds, which will be applied to the signal wire of the Servo at 50 Hz</dt>
+<dd><ul class="first last simple">
+<li>Normal values are between 0.8 and 2.3, but they must be between the defined <em>min_pulse</em> and <em>max_pulse</em> values</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.Servo.Start">
+<tt class="descname">Start</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.Servo.Start" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Start</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Starts component operation.</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.Servo.Stop">
+<tt class="descname">Stop</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.Servo.Stop" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Stop</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Stops the servo object by terminating the PWM channel that drives it</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+<tr class="row-odd"><td><strong>Side Effects</strong></td>
+<td>This may cause the servo to move slightly out of position</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.Servo.changeAngles">
+<tt class="descname">changeAngles</tt><big>(</big><em>MIN</em>, <em>MAX</em><big>)</big><a class="headerlink" href="#digital.Servo.changeAngles" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">changeAngles</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Changes the angle range that defines the minimum and maximum positions of the motor</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><ul class="first last simple">
+<li><strong>float</strong> <em>MIN</em></li>
+<li><strong>float</strong> <em>MAX</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>MIN</em></td>
+<td><dl class="first last docutils">
+<dt>the new angle which the servo will return to if applied with the minimum pulse width</dt>
+<dd><ul class="first last simple">
+<li>Negative angular positions are valid</li>
+<li>Angles can be any angular unit: degrees, radians, or other arbitrary (linear) scale</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><em>MAX</em></td>
+<td><dl class="first last docutils">
+<dt>the new angle which the servo will return to if applied with the maximum pulse width</dt>
+<dd><ul class="first last simple">
+<li>Negative angular positions are valid</li>
+<li>Angles can be any angular unit: degrees, radians, or other arbitrary (linear) scale</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.Servo.isRunning">
+<tt class="descname">isRunning</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.Servo.isRunning" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">isRunning</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Checks to see if the Servo component is currently operational</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td><strong>bool</strong> <em>__running</em></td>
+</tr>
+<tr class="row-odd"><td><em>__running</em></td>
+<td>A private boolean variable which evaluates to <em>True</em> if the PWM component is operational, or <em>False</em> if it is not</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="neopixels">
+<h2>NeoPixels<a class="headerlink" href="#neopixels" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="digital.NeoPixelShield">
+<em class="property">class </em><tt class="descclassname">digital.</tt><tt class="descname">NeoPixelShield</tt><a class="headerlink" href="#digital.NeoPixelShield" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Class:</th><td class="field-body"><p class="first">This class provides functionality for use of an Arduino NeoPixels shield on an RPiSoC through Python.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"><p class="first">Create a NeoPixelShield object in the following way:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="n">shield</span> <span class="o">=</span> <span class="n">NeoPixelShield</span><span class="p">()</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">__init__</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Defines the register address for the striplight controller used by the NeoPixels, and it defines 140 colors as class attributes, named according to their standardized HTML and CSS names</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="digital.NeoPixelShield.Dim">
+<tt class="descname">Dim</tt><big>(</big><em>DIM_LEVEL</em><big>)</big><a class="headerlink" href="#digital.NeoPixelShield.Dim" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Dim</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Preserves the color to be drawn to the shield, but dims the brightness. Effects take place immediately.</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><ul class="first last simple">
+<li><strong>int</strong>   <em>DIM_LEVEL</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>DIM_LEVEL</em></td>
+<td><dl class="first last docutils">
+<dt>An integer between 0 and 4</dt>
+<dd><ul class="first last simple">
+<li>0 indicating full brightness, or minimum dim level</li>
+<li>4 indicating minimum brightness, or full dim level</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.NeoPixelShield.DrawColumn">
+<tt class="descname">DrawColumn</tt><big>(</big><em>column</em>, <em>color</em><big>)</big><a class="headerlink" href="#digital.NeoPixelShield.DrawColumn" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">DrawColumn</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Fully draws the chosen <em>column</em> the desired <em>color</em></td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><ul class="first last simple">
+<li><strong>int</strong>   <em>column</em></li>
+<li><strong>int</strong>   <em>color</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>column</em></td>
+<td><dl class="first last docutils">
+<dt>Column which will be fully drawn</dt>
+<dd><ul class="first last simple">
+<li>valid between 0 and 7</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><em>color</em></td>
+<td><dl class="first last docutils">
+<dt>A 24-bit number representative of a BRG value</dt>
+<dd><ul class="first last simple">
+<li>BRG components are given equal weight, so 8-bits each</li>
+<li>There are predefined colors inside of <tt class="xref py py-meth docutils literal"><span class="pre">__init__()</span></tt>, which can be called as shield.[<em>color name</em>]; example: <tt class="code docutils literal"><span class="pre">shield.Blue</span></tt></li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.NeoPixelShield.DrawRow">
+<tt class="descname">DrawRow</tt><big>(</big><em>row</em>, <em>color</em><big>)</big><a class="headerlink" href="#digital.NeoPixelShield.DrawRow" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">DrawRow</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Fully draws the chosen <em>row</em> the desired <em>color</em></td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><ul class="first last simple">
+<li><strong>int</strong>   <em>row</em></li>
+<li><strong>int</strong>   <em>color</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>row</em></td>
+<td><dl class="first last docutils">
+<dt>Row which will be fully drawn</dt>
+<dd><ul class="first last simple">
+<li>valid between 0 and 4</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><em>color</em></td>
+<td><dl class="first last docutils">
+<dt>A 24-bit number representative of a BRG value</dt>
+<dd><ul class="first last simple">
+<li>BRG components are given equal weight, so 8-bits each</li>
+<li>There are predefined colors inside of <tt class="xref py py-meth docutils literal"><span class="pre">__init__()</span></tt>, which can be called as shield.[<em>color name</em>]; example: <tt class="code docutils literal"><span class="pre">shield.Blue</span></tt></li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.NeoPixelShield.RGB_toHex">
+<tt class="descname">RGB_toHex</tt><big>(</big><em>RGB</em><big>)</big><a class="headerlink" href="#digital.NeoPixelShield.RGB_toHex" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">RGB_toHex</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Converts RGB content to the needed BRG Hex value taken by the NeoPixelShield device</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><strong>list</strong> or <strong>tuple</strong> <em>RGB</em></td>
+</tr>
+<tr class="row-even"><td><em>RGB</em></td>
+<td><dl class="first last docutils">
+<dt>A list or tuple containing three elements, each of which is limited to one byte (0-255)</dt>
+<dd><ul class="first last simple">
+<li>The first element is the Red byte</li>
+<li>The second element is the Green byte</li>
+<li>The thirf element is the Blue byte</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td><strong>int</strong> <em>hex_val</em></td>
+</tr>
+<tr class="row-even"><td><em>hex_val</em></td>
+<td>A hex value which can be given to a NeoPixelShield object as a valid color</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.NeoPixelShield.SetPixel">
+<tt class="descname">SetPixel</tt><big>(</big><em>row</em>, <em>column</em>, <em>color</em><big>)</big><a class="headerlink" href="#digital.NeoPixelShield.SetPixel" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">SetPixel</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Sets the given pixel at location (x,y) = (row, column), to a color defined by a 24 bit Blue-Red-Green (BRG) value (8-bits each)</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><ul class="first last simple">
+<li><strong>int</strong>   <em>row</em></li>
+<li><strong>int</strong>   <em>column</em></li>
+<li><strong>int</strong>   <em>color</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>row</em></td>
+<td><dl class="first last docutils">
+<dt>Row which contains the desired pixel to be set</dt>
+<dd><ul class="first last simple">
+<li>valid between 0 and 4</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><em>column</em></td>
+<td><dl class="first last docutils">
+<dt>Column which contains the desired pixel to be set</dt>
+<dd><ul class="first last simple">
+<li>valid between 0 and 7</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td><em>color</em></td>
+<td><dl class="first last docutils">
+<dt>A 24-bit number representative of a BRG value</dt>
+<dd><ul class="first last simple">
+<li>BRG components are given equal weight, so 8-bits each</li>
+<li>There are predefined colors inside of <tt class="xref py py-meth docutils literal"><span class="pre">__init__()</span></tt>, which can be called as shield.[<em>color name</em>]; example: <tt class="code docutils literal"><span class="pre">shield.Blue</span></tt></li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.NeoPixelShield.Start">
+<tt class="descname">Start</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.NeoPixelShield.Start" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Start</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Powers up and enables the needed hardware for the NeoPixels component</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.NeoPixelShield.Stop">
+<tt class="descname">Stop</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.NeoPixelShield.Stop" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Stop</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Powers down and disables the needed hardware for the NeoPixels component</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.NeoPixelShield.Stripe">
+<tt class="descname">Stripe</tt><big>(</big><em>pixelnum</em>, <em>color</em>, <em>safety=False</em><big>)</big><a class="headerlink" href="#digital.NeoPixelShield.Stripe" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">Stripe</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Draws a line of length <em>pixelnum</em> of the stated <em>color</em>, starting from the first pixel, and extending as far as the 40th (last) pixel. It will wrap around rows</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><ul class="first last simple">
+<li><strong>int</strong>   <em>pixelnum</em></li>
+<li><strong>int</strong>   <em>color</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>pixelnum</em></td>
+<td><dl class="first last docutils">
+<dt>Indicates how many pixels, starting with pixel (0,0), will be filled</dt>
+<dd><ul class="first last simple">
+<li>valid between 1 and 40</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><em>color</em></td>
+<td><dl class="first last docutils">
+<dt>A 24-bit number representative of a BRG value</dt>
+<dd><ul class="first last simple">
+<li>BRG components are given equal weight, so 8-bits each</li>
+<li>There are predefined colors inside of <tt class="xref py py-meth docutils literal"><span class="pre">__init__()</span></tt>, which can be called as shield.[<em>color name</em>]; example: <tt class="code docutils literal"><span class="pre">shield.Blue</span></tt></li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.NeoPixelShield.isRunning">
+<tt class="descname">isRunning</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.NeoPixelShield.isRunning" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">isRunning</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Checks to see if the NeoPixels display is currently powered up</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td><strong>bool</strong> <em>__running</em></td>
+</tr>
+<tr class="row-odd"><td><em>__running</em></td>
+<td>A private boolean variable which evaluates to <em>True</em> if the NeoPixels display is running, or <em>False</em> if it is not</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="ultrasonic-range-finding">
+<h2>Ultrasonic Range Finding<a class="headerlink" href="#ultrasonic-range-finding" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="digital.rangeFinder">
+<em class="property">class </em><tt class="descclassname">digital.</tt><tt class="descname">rangeFinder</tt><big>(</big><em>SIG</em>, <em>TRIGGER=None</em>, <em>DELAYus=10</em>, <em>TIMEOUTus=30000</em><big>)</big><a class="headerlink" href="#digital.rangeFinder" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Class:</th><td class="field-body"><p class="first">This class provides functionality for use of ultrasonic range finder devices that use standard GPIO pulse width measurement protocols</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"><p class="first">Define a rangeFinder object in the following way:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="n">my_ranger</span> <span class="o">=</span> <span class="n">rangerFinder</span><span class="p">([</span><span class="n">SIG_PORT</span><span class="p">,</span><span class="n">SIG_PIN</span><span class="p">],</span> <span class="p">[</span><span class="n">TRIG_PORT</span><span class="p">,</span> <span class="n">TRIG_PIN</span><span class="p">])</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">__init__</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Initializes an object by describing which pin the echo will be measured on. Optionally, provide a trigger pin if the ranger is a 4 or 5 pin form factor,
+also optionally provide a trigger pulse width and timeout value in milliseconds</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><ul class="first last simple">
+<li><strong>list</strong>   <em>SIG</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>Optional</em>
+<em>Parameters</em></td>
+<td><ul class="first last simple">
+<li><strong>list</strong>   <em>TRIGGER</em></li>
+<li><strong>int</strong>    <em>DELAYus</em></li>
+<li><strong>int</strong>    <em>TIMEOUTus</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><em>SIG</em></td>
+<td><dl class="first last docutils">
+<dt>A list constructed as <em>[PORT, PIN]</em> which defines which exact pin will be used to communicate with the rangers signal/echo pin</dt>
+<dd><ul class="first last simple">
+<li>PORT is the port on the RPiSoC connected to the rangers signal pin</li>
+<li>PIN is the pin relative to that port</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td><em>TRIGGER</em></td>
+<td><dl class="first last docutils">
+<dt>A list constructed as <em>[PORT, PIN]</em> which defines which exact pin will be used to communicate with the rangers trigger pin</dt>
+<dd><ul class="first last simple">
+<li>By default, if no argument is provided, it will assume the trigger pin is the same as the echo pin; this is true for 3-pin devices and so no argument is needed</li>
+<li>PORT is the port on the RPiSoC connected to the rangers trigger pin</li>
+<li>PIN is the pin relative to that port</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><em>DELAYus</em></td>
+<td><dl class="first last docutils">
+<dt>The width of the trigger pulse, in microseconds, that will be sent from the TRIGGER pin, to signal the ranger to send a ping</dt>
+<dd><ul class="first last simple">
+<li>This defaults as 10 microseconds, but most rangers are okay with much less</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td><em>TIMEOUTus</em></td>
+<td><dl class="first last docutils">
+<dt>The maximum length of time, in microseconds, that the RPiSoC will wait for a confirmed echo</dt>
+<dd><ul class="first last simple">
+<li>If this time is exceeded, the ranger will immediately terminate its timing process and return the timeout as a response</li>
+<li>This defaults as 30000 microseconds, which is equivalent to 30 ms, and is much longer than generally needed and so won&#8217;t usually need to be altered</li>
+<li>Refer to your devices documentation for a more specific timeout choice</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="digital.rangeFinder.readCentimeters">
+<tt class="descname">readCentimeters</tt><big>(</big><em>sound=343.0</em>, <em>PRECISION=2</em><big>)</big><a class="headerlink" href="#digital.rangeFinder.readCentimeters" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">readCentimeters</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Uses readRaw to get a raw time value in microseconds, and then calculates the distance between the ranger and the pinged object in centimeters</td>
+</tr>
+<tr class="row-odd"><td><em>Optional</em>
+<em>Parameters</em></td>
+<td><ul class="first last simple">
+<li><strong>float</strong>   <em>sound</em></li>
+<li><strong>int</strong>    <em>PRECISION</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>sound</em></td>
+<td><dl class="first last docutils">
+<dt>The speed of sound which is used to calcuate the distance of the object detected by the ranger</dt>
+<dd><ul class="first last simple">
+<li>Defaults to 343 m/s (approximate value based on room temperature of air)</li>
+<li>Must be m/s</li>
+<li>Modify this according to your environmental needs (different temperature/medium)</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><em>PRECISION</em></td>
+<td><dl class="first last docutils">
+<dt>The number of decimal points to be included in the returned result</dt>
+<dd><ul class="first last simple">
+<li>Defaults to 2</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td><strong>float</strong> meters</td>
+</tr>
+<tr class="row-odd"><td><em>meters</em></td>
+<td>The distance, in meters, between the ultrasonic ranger and the pinged object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.rangeFinder.readInches">
+<tt class="descname">readInches</tt><big>(</big><em>sound=343.0</em>, <em>PRECISION=2</em><big>)</big><a class="headerlink" href="#digital.rangeFinder.readInches" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">readInches</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Uses readRaw to get a raw time value in microseconds, and then calculates the distance between the ranger and the pinged object in inches</td>
+</tr>
+<tr class="row-odd"><td><em>Optional</em>
+<em>Parameters</em></td>
+<td><ul class="first last simple">
+<li><strong>float</strong>   <em>sound</em></li>
+<li><strong>int</strong>    <em>PRECISION</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>sound</em></td>
+<td><dl class="first last docutils">
+<dt>The speed of sound which is used to calcuate the distance of the object detected by the ranger</dt>
+<dd><ul class="first last simple">
+<li>Defaults to 343 m/s (approximate value based on room temperature of air)</li>
+<li>Must be m/s</li>
+<li>Modify this according to your environmental needs (different temperature/medium)</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><em>PRECISION</em></td>
+<td><dl class="first last docutils">
+<dt>The number of decimal points to be included in the returned result</dt>
+<dd><ul class="first last simple">
+<li>Defaults to 2</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td><strong>float</strong> meters</td>
+</tr>
+<tr class="row-odd"><td><em>meters</em></td>
+<td>The distance, in meters, between the ultrasonic ranger and the pinged object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.rangeFinder.readMeters">
+<tt class="descname">readMeters</tt><big>(</big><em>sound=343.0</em>, <em>PRECISION=2</em><big>)</big><a class="headerlink" href="#digital.rangeFinder.readMeters" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">readMeters</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Uses readRaw to get a raw time value in microseconds, and then calculates the distance between the ranger and the pinged object in meters</td>
+</tr>
+<tr class="row-odd"><td><em>Optional</em>
+<em>Parameters</em></td>
+<td><ul class="first last simple">
+<li><strong>float</strong>   <em>sound</em></li>
+<li><strong>int</strong>    <em>PRECISION</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>sound</em></td>
+<td><dl class="first last docutils">
+<dt>The speed of sound which is used to calcuate the distance of the object detected by the ranger</dt>
+<dd><ul class="first last simple">
+<li>Defaults to 343 m/s (approximate value based on room temperature of air)</li>
+<li>Must be m/s</li>
+<li>Modify this according to your environmental needs (different temperature/medium)</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><em>PRECISION</em></td>
+<td><dl class="first last docutils">
+<dt>The number of decimal points to be included in the returned result</dt>
+<dd><ul class="first last simple">
+<li>Defaults to 2</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td><strong>float</strong> meters</td>
+</tr>
+<tr class="row-odd"><td><em>meters</em></td>
+<td>The distance, in meters, between the ultrasonic ranger and the pinged object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.rangeFinder.readRaw">
+<tt class="descname">readRaw</tt><big>(</big><big>)</big><a class="headerlink" href="#digital.rangeFinder.readRaw" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">readRaw</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td><ul class="first last simple">
+<li>Gets a raw value from the RPiSoC, which is representative of how many microseconds the rangers echo pin was held high</li>
+<li>It will trigger the ranger by sending a short pulse, the length of which was defined upon construction of the object</li>
+<li>The result will be measured on the desired signal pin, and stop measuring when a timeout is reached</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td><strong>int</strong> <em>reading</em></td>
+</tr>
+<tr class="row-odd"><td><em>reading</em></td>
+<td><ul class="first last simple">
+<li>The length of time, in microseconds, that it took for the ping to echo back to the ultrasonic ranger</li>
+<li>This value can be used to calculate distance to an object using the speed of sound</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.rangeFinder.setDelay">
+<tt class="descname">setDelay</tt><big>(</big><em>delay_us</em><big>)</big><a class="headerlink" href="#digital.rangeFinder.setDelay" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">setDelay</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Sets the length of the trigger pulse, in microseconds, which will be used to tell the device to send out a ping</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><ul class="first last simple">
+<li><strong>int</strong>   <em>delay_us</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>delay_us</em></td>
+<td><dl class="first last docutils">
+<dt>Amount of time, in microseconds, that the RPiSoC will hold its trigger pulse high</dt>
+<dd><ul class="first last simple">
+<li>This is a 6 bit value, and so it must be between <em>0</em> and <em>63</em></li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+<tr class="row-even"><td><strong>Notes</strong></td>
+<td>This is handled in <tt class="xref py py-meth docutils literal"><span class="pre">__init__()</span></tt>, so it should only be called under unique circumstances</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="digital.rangeFinder.setTimeout">
+<tt class="descname">setTimeout</tt><big>(</big><em>timeout_us</em><big>)</big><a class="headerlink" href="#digital.rangeFinder.setTimeout" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="8%" />
+<col width="92%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">setTimeout</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Sets the timeout length in microseconds. If the RPiSoC is still waiting for a completed response after this amount of time, it
+will stop counting and immediately return the result</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><ul class="first last simple">
+<li><strong>int</strong>   <em>timeout_us</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>timeout_us</em></td>
+<td><dl class="first last docutils">
+<dt>Amount of time, in microseconds, that the RPiSoC will wait for a completed response</dt>
+<dd><ul class="first last simple">
+<li>This is a 16 bit value, and so it must be between <em>0</em> and <em>65535</em></li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+<tr class="row-even"><td><strong>Notes</strong></td>
+<td>This is handled in <tt class="xref py py-meth docutils literal"><span class="pre">__init__()</span></tt>, so it should only be called under unique circumstances</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/Embedit_flat.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">digital.py</a><ul>
+<li><a class="reference internal" href="#digital-input-and-output">Digital Input and Output</a></li>
+<li><a class="reference internal" href="#pwm">PWM</a></li>
+<li><a class="reference internal" href="#servo-motors">Servo Motors</a></li>
+<li><a class="reference internal" href="#neopixels">NeoPixels</a></li>
+<li><a class="reference internal" href="#ultrasonic-range-finding">Ultrasonic Range Finding</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="code_rpisoc.html"
+                        title="previous chapter">rpisoc.py</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="code_analog.html"
+                        title="next chapter">analog.py</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/code_digital.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="code_analog.html" title="analog.py"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="code_rpisoc.html" title="rpisoc.py"
+             >previous</a> |</li>
+        <li><a href="index.html">RPiSoC Python API 1.2.5 documentation</a> &raquo;</li>
+          <li><a href="code.html" >API modules</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, EmbeditElectronics.
+      Last updated on Jan 16, 2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -2,95 +2,138 @@ Revision History
 ================
 Version 1.2
 +++++++++++
-This version makes versioning the python much simpler. It allows for much easier modification to the RPiSoC firmware, without needing to version those changes in the python code. It also simplifies the API expansion process greatly for new developers, and provides frameworks for easy integration of new interfaces.
+*V1.2* makes versioning the python much simpler. It allows for much easier modification to the RPiSoC firmware, without needing to version those changes in the python code. It also simplifies the API expansion process greatly for new developers, and provides frameworks for easy integration of new interfaces.
+
+New to v1.2.5
+*************
+In RPiSoC code:
+
+- Changed tuning method of CapSense CSD component from SmartSense to None. Tuning is now handled manually.
+	* Without SmartSense :meth:`analog.CapSense.Read` does not behave correctly, and so it will likely become deprecated
+- Updated project to use PSoC Creator 3.1
+	
+In :class:`analog.CapSense`
+
+- Added :meth:`analog.CapSense.readRaw` for reading raw data form the CapSense buffer, to be used for manual calibration
+- Added :meth:`analog.CapSense.isTouched` to replace :meth:`analog.CapSense.Read` for when SmartSense is disabled (it is by default)
+- Added calibration code to :meth:`analog.CapSense.Start` so that `analog.CapSense.isTouched` gives desired behavior without SmartSense
+
+In :class:`rpisoc.SERIAL`
+
+- Changed the initialization so that a serial port does not need to be provided. It will be determined at run time, and should be platform independent. 
+- Added :meth:`rpisoc.SERIAL.reconnect` for situations where the RPiSoC might lose connection, and the user can check for this and reconnect if needed
+- Added :meth:`rpisoc.SERIAL.isConnected` to check the status of the serial connection with the RPiSoC. 
 
 New to v1.2.4
 *************
-	In the RPiSoC code
-		- Added support for a standard Ultrasonic Range Finder, which should be useable by any SR-series range finer, excluding the 08 (which uses a different protocol), and the 3-pin Parallax ranger. 
-			* Generally, it will support any range finder that uses a GPIO protocol based on pulse length measurements.
-			* This includes both 3-pin, 4-pin, and 5-pin devices
-			* Trigger length, and timeout duration is set on the application layer, so it can be as transportable as possible
-		- It was originally implemented using a hardware timer capturing clock events between the rising and falling edge of an input pin, but it required the use of customized digital logic and cascaded hardware multiplexers to handle the routing of any GPIO to the Timers input. 
-			* At full scale, this used more digital resources than was acceptable, and so it was abandoned for a software approach
+In the RPiSoC code
 
-		- The timer component is still used for accuracy purposes, but it is used in its fixed function state, so that no UDB resources are wasted, and the routing was handled in software
+- Added support for a standard Ultrasonic Range Finder, which should be useable by any SR-series range finer, excluding the 08 (which uses a different protocol), and the 3-pin Parallax ranger. 
+	* Generally, it will support any range finder that uses a GPIO protocol based on pulse length measurements.
+	* This includes both 3-pin, 4-pin, and 5-pin devices
+	* Trigger length, and timeout duration is set on the application layer, so it can be as transportable as possible
+- It was originally implemented using a hardware timer capturing clock events between the rising and falling edge of an input pin, but it required the use of customized digital logic and cascaded hardware multiplexers to handle the routing of any GPIO to the Timers input. 
+	* At full scale, this used more digital resources than was acceptable, and so it was abandoned for a software approach
+- The timer component is still used for accuracy purposes, but it is used in its fixed function state, so that no UDB resources are wasted, and the routing was handled in software
 
-	In module *digital.py*
-		- Added class *rangeFinder()* with the following supported methods:
-			* readRaw(SIGNAL_PIN, TRIGGER_PIN, delay, timeout): gets a raw value from the RPiSoC, which is representative of how many microseconds the rangers echo pin was held high. It will trigger the range by sending a pulse of length *delay*, in microseconds. The result will be measured on SIGNAL_PIN, and stop measuring after *timeout* microseconds
-			* readMeters(): Uses readRaw to get a raw time value in microseconds, and then calculates the distance between the ranger and the pinged object in meters
-			* readCentimeters(): Uses readRaw to get a raw time value in microseconds, and then calculates the distance between the ranger and the pinged object in centimeters
-			* readInches(): Uses readRaw to get a raw time value, and then calculates the distance between the ranger and the pinged object in Inches
-			* setDelay(): Sets the length of the trigger pulse, in microseconds, which will be used to tell the device to send out a ping. This is handled in __init__, so it should only be called under unique circumstances.
-			* setTimeout(): Sets the timeout length in microseconds. If the RPiSoC is still waiting for a completed response after this amount of time, it will stop counting and immediately return the result
-	
+In :ref:`module digital.py <digital-module-label>`
+
+- Added :class:`digital.rangeFinder` with the following supported methods:
+	* :meth:`digital.rangeFinder.readRaw`: gets a raw value from the RPiSoC, which is representative of how many microseconds the rangers echo pin was held high. It will trigger the range by sending a short pulse, the length defined upon construction of the object. The result will be measured on the desired signal pin, and stop measuring when a timeout is reached
+	* :meth:`digital.rangeFinder.readMeters`: Uses readRaw to get a raw time value in microseconds, and then calculates the distance between the ranger and the pinged object in meters
+	* :meth:`digital.rangeFinder.readCentimeters`: Uses readRaw to get a raw time value in microseconds, and then calculates the distance between the ranger and the pinged object in centimeters
+	* :meth:`digital.rangeFinder.readInches`: Uses readRaw to get a raw time value, and then calculates the distance between the ranger and the pinged object in Inches
+	* :meth:`digital.rangeFinder.setDelay`: Sets the length of the trigger pulse, in microseconds, which will be used to tell the device to send out a ping. This is handled in __init__, so it should only be called under unique circumstances.
+	* :meth:`digital.rangeFinder.setTimeout`: Sets the timeout length in microseconds. If the RPiSoC is still waiting for a completed response after this amount of time, it will stop counting and immediately return the result. This is handled in __init__, so it should only be called under unique circumstances.
+
 
 New to v1.2.3
 *************
-	In the RPiSoC code
-		- Included custom component for NeoPixel (or general WS2812 strip light) control. Output is on Port 6, pin 0 (required by the shield). 
-		- This means that the first PWM output, which was on P6[0], had to be moved to Port 0 Pin 2
-	In module digital.py
-		- Added class *NeoPixelShield()* which supports use of the NeoPixels Arduino shield through Python. Included methods are:
-			* Start(): Powers up and enables the needed hardware for the NeoPixels component
-			* Stop() : Powers down and disables the hardware used by the NeoPixels component
-			* Stripe(*len*, color): Draws a line of length *len* of the stated *color*, starting from the first pixel, and extending as far as the 40th (last) pixel. It will wrap around rows
-			* SetPixel(row, column, color): Sets a pixel of the stated *color* at position (x,y) = (*row*, *column*)
-			* DrawRow(row, color): Fully draws the chosen *row* the desired *color*
-			* DrawColumn(column, color): Fully draws the chosen *column* the desired *color*
-			* Dim(level): Preserves the color to be drawn to the shield, but dims the brightness.
-			* Added 140 predefined colors as class attributes. They are the standardized colors of the HTML and CSS interfaces, and they are called by their official names, so for an object constructed as 'shield', you could access the color black with *shield.Black*
+
+In the RPiSoC code
+
+- Included custom component for NeoPixel (or general WS2812 strip light) control. Output is on Port 6, pin 0 (required by the shield). 
+- This means that the first PWM output, which was on P6[0], had to be moved to Port 0 Pin 2
+
+In :ref:`module digital.py <digital-module-label>`
+
+- Added :class:`digital.NeoPixelShield` which supports use of the NeoPixels Arduino shield through Python. Included methods are:
+	* :meth:`digital.NeoPixelShield.Start`: Powers up and enables the needed hardware for the NeoPixels component
+	* :meth:`digital.NeoPixelShield.Stop` : Powers down and disables the hardware used by the NeoPixels component
+	* :meth:`digital.NeoPixelShield.Stripe`: Draws a line of length *len* of the stated *color*, starting from the first pixel, and extending as far as the 40th (last) pixel. It will wrap around rows
+	* :meth:`digital.NeoPixelShield.SetPixel`: Sets a pixel of the stated *color* at position (x,y) = (*row*, *column*)
+	* :meth:`digital.NeoPixelShield.DrawRow`: Fully draws the chosen *row* the desired *color*
+	* :meth:`digital.NeoPixelShield.DrawColumn`: Fully draws the chosen *column* the desired *color*
+	* :meth:`digital.NeoPixelShield.Dim`: Preserves the color to be drawn to the shield, but dims the brightness.
+	* Added 140 predefined colors as class attributes. They are the standardized colors of the HTML and CSS interfaces, and they are called by their official names, so for an object constructed as 'shield', you could access the color black with *shield.Black*
 
 New to v1.2.2
 *************
-	In the RPiSoC code
-		- USBUART (Serial) support has been added, allowing for use of the board through PC interfaces
-	In module rpisoc.py
-		- Added class *SERIAL()* which will open a Windows COM Port, or a *nix Serial Port, for communication with the RPiSoC over any baud rate
-			* It is chosen from the application layer by::
-RPiSoC(port_name)
-			* For windows port name will be 'COMx', and for *nix it will be '/dev/...'
+In the RPiSoC code
 
+- USBUART (Serial) support has been added, allowing for use of the board through PC interfaces
+	
+In :ref:`module rpisoc.py <rpisoc-module-label>`
+
+- Added class *SERIAL()* which will open a Windows COM Port, or Linux or OS X Serial Port for communication with the RPiSoC over any baud rate
+	* It is chosen from the application layer by:
+		
+	.. code-block:: python
+	
+		RPiSoC(port)
+	
 New to v1.2.1
 *************
-	This was a largely structural change to the RPiSoC firmware. It redesigned the data structures in place for handling of device requests. 
-		- A bit-field struct is now used as the global data vessel, which will contain all needed data for any request made
-		- An additional layer of abstraction was added to the firmware, which should simplify the process of expansion for new developers
-			* Functions that make calls to hardware registers no longer handle any data packing- they all require meaningful, unpacked data as arguments
-			* The new abstraction layer handles bit unpacking, and then repacking into the bit-field for any supported device
-			* This bit-field, which should contain all relevant data, is then passed to the hardware layer where all arguments will be derived directly from an attribute of the struct
-		- Parallel work done by Mark Bradley has been merged with my work for LabVIEW support through a LINX bridge
+This was a largely structural change to the RPiSoC firmware. It redesigned the data structures in place for handling of device requests. 
+
+- A bit-field struct is now used as the global data vessel, which will contain all needed data for any request made
+- An additional layer of abstraction was added to the firmware, which should simplify the process of expansion for new developers
+	* Functions that make calls to hardware registers no longer handle any data packing- they all require meaningful, unpacked data as arguments
+	* The new abstraction layer handles bit unpacking, and then repacking into the bit-field for any supported device
+	* This bit-field, which should contain all relevant data, is then passed to the hardware layer where all arguments will be derived directly from an attribute of the struct
+- Parallel work done by Mark Bradley has been merged with my work for LabVIEW support through a LINX bridge
+
 New to v1.2.0
 *************
-	In the RPiSoC code
-		- Added a way for the RPiSoC to scan its generated source to determine
-			* What GPIO were being used
-			* How many PWMs, analog pins, and capsense buttons are being used
-			* If there existed one or more VDACs, IDACs, Delsig ADCs, SAR ADCs, or Wave DACs
-			* The full scale ranges on any DACs that are found
-			* The resolution of every PWM being used, as well as how many unique clocks are driving them
-			* Details about exactly which PWMs are sharing specific clocks, and the source frequency and default divider placed on those clocks
-		- That data was then packed appropriately so that it could easily and efficiently be sent to the Raspberry Pi on request
-		- Changed the GPIO structure to support all possible GPIO, and removed the control/status registers which were previously writing to, and polling these GPIO. With this approach, modification is simplified and digital resources are reserved.
-		- Added full support for up to 24 PWM channels (previously there was only support for 8)
-		- Added support for 6 CapSense buttons, located on Port 4, pins 0-5, with P4[6] needing a ~2.2nF Cmod
-		- Made a skeleton for UART support, but haven't yet completed the implementation
-	In class *RPiSoC*
-		- Added the ability to determine what is in the RPiSoC firmare during the construction of the object, inside of the *__new__* method
-		- Added a DEBUG feature, which when set to *True* will print warnings and other diagnostic information to the terminal during run time
-	In module *analog*
-		- Added class *CapSense* with the following methods
-			* Start() : Starts the CapSense component, and all sub-components, preparing them for operation
-			* Stop()  : Disables CapSense components, and all sub-components, and puts them in their lowest power mode
-			* Read()  : Returns the state of the desired CapSense button
-	In class *Servo*
-		- Fixed a bug which caused errors with 8-bit PWMs, due to a poorly derived (non-generalized) formula for calculation of a comparison value
-	In all classes
-		- Removed hard coded constraints, dependent on the version of the API, and replaced them with references to the data collected at construction of the RPiSoC object.
-			* For instance, instead of raising an exception when you ask to initialize an analog pin not in range(10), as it was previously, I will raise an exception when trying to initialize an analog pin not in range(RPiSoC.ANALOG_IN_NUM), where RPiSoC.ANALOG_IN_NUM is the number of analog inputs which were discovered when the RPiSoC class was constructed. This makes the API more portable and easier to version.
-	In classes *SPI* and *I2C*
-		- Provided an optional second argument to the *receiveData()* method, which will accept a delay, in seconds, to be called between the write operation and read operation. This is to be used by advanced users expanding the API. If a feature they implement requires a highly complex operation to be executed on the RPiSoC, the Python may have to wait a small amount of time between the request and the response. Otherwise, a garbage response will be returned by the method.
+In the RPiSoC code:
+
+- Added a way for the RPiSoC to scan its generated source to determine
+	* What GPIO were being used
+	* How many PWMs, analog pins, and capsense buttons are being used
+	* If there existed one or more VDACs, IDACs, Delsig ADCs, SAR ADCs, or Wave DACs
+	* The full scale ranges on any DACs that are found
+	* The resolution of every PWM being used, as well as how many unique clocks are driving them
+	* Details about exactly which PWMs are sharing specific clocks, and the source frequency and default divider placed on those clocks
+- That data was then packed appropriately so that it could easily and efficiently be sent to the Raspberry Pi on request
+- Changed the GPIO structure to support all possible GPIO, and removed the control/status registers which were previously writing to, and polling these GPIO. With this approach, modification is simplified and digital resources are reserved.
+- Added full support for up to 24 PWM channels (previously there was only support for 8)
+- Added support for 6 CapSense buttons, located on Port 4, pins 0-5, with P4[6] needing a ~2.2nF Cmod
+- Made a skeleton for UART support, but haven't yet completed the implementation
+
+In :class:`rpisoc.RPiSoC`:
+
+- Added the ability to determine what is in the RPiSoC firmare during the construction of the object.
+- Added a DEBUG feature, which when set to *True* will print warnings and other diagnostic information to the terminal during run time
+
+In :ref:`module analog.py <analog-module-label>`
+
+- Added :class:`analog.CapSense` with the following methods
+	* :meth:`analog.CapSense.Start` : Starts the CapSense component, and all sub-components, preparing them for operation
+	* :meth:`analog.CapSense.Stop`  : Disables CapSense components, and all sub-components, and puts them in their lowest power mode
+	* :meth:`analog.CapSense.Read`  : Returns the state of the desired CapSense button
+	
+In :class:`digital.Servo`
+
+- Fixed a bug which caused errors with 8-bit PWMs, due to a poorly derived (non-generalized) formula for calculation of a comparison value
+
+In all classes
+
+- Removed hard coded constraints, dependent on the version of the API, and replaced them with references to the data collected at construction of the RPiSoC object.
+	* For instance, instead of raising an exception when you ask to initialize an analog pin not in range(10), as it was previously, I will raise an exception when trying to initialize an analog pin not in range(RPiSoC.ANALOG_IN_NUM), where RPiSoC.ANALOG_IN_NUM is the number of analog inputs which were discovered when the RPiSoC class was constructed. This makes the API more portable and easier to version.
+
+In :class:`rpisoc.SPI` and :class:`rpisoc.I2C`
+
+- Provided an optional second argument to the *receiveData()* method, which will accept a delay, in seconds, to be called between the write operation and read operation. This is to be used by advanced users expanding the API. If a feature they implement requires a highly complex operation to be executed on the RPiSoC, the Python may have to wait a small amount of time between the request and the response. Otherwise, a garbage response will be returned by the method.
 
 Version 1.1
 +++++++++++
@@ -98,78 +141,106 @@ This version provides the Pi with a lot more functionality, and use of the API i
 
 New to v1.1.2
 *************
-	In the RPiSoC code
-		- Removed the second SAR ADC and replaced it with a sequenced ADC, with 10 analog inputs. This allows for simplified use of analog pins, and gives 10 more.
-		- Removed Port 6 as a GPIO register so that more analog pins could be added
-		- PWM (and consequently servo) pins were moved from Port 3 to Port 6, so that Port 3 could be used for the new analog pins (Ports 0 and 3 have slightly better analog performance than the other ports)
-		- Changed the structure of the GPIO functionality enumeration. I concatenated all of the seperate GPIO registers into one register, and changed the packing and unpacking process of each transfer to contain the port, pin, command, and value to be written if applicable. 
-		- Added the ability to change drive modes to each GPIO at run time.
-	In module *rpisoc*
-		- Fixed the import structure so that both smbus and spidev aren't needed. This means you don't have to configure the Pi for I2C if you only intend to use SPI, or vice versa. 
-	In module *digital*
-		- Removed classes *DigitalInput* and *DigitalOutput*
-		- Added class *digitalPin* which allows one to instantiate any of the GPIO as input or output, or in any of several different drive modes if needed.
-	In module *analog*
-		- Added class *analogPin* which simplifies the process of getting an analog reading from an ADC, and it adds an aditional 10 analog inputs.
-	In class *Servo*
-		- Simplified instantiation. It is now only required to provide a servo location relative to Port 6.
-			* Pulse width and angle ranges can still be input, but they will simply default to standard values if only the servo location is given
-			* Minimum pulse width defaults to 1.0; maximum pulse width defaults to 2.0; minimum angle defaults to 0; maximum angle defaults to 180
+In the RPiSoC code
+
+- Removed the second SAR ADC and replaced it with a sequenced ADC, with 10 analog inputs. This allows for simplified use of analog pins, and gives 10 more.
+- Removed Port 6 as a GPIO register so that more analog pins could be added
+- PWM (and consequently servo) pins were moved from Port 3 to Port 6, so that Port 3 could be used for the new analog pins (Ports 0 and 3 have slightly better analog performance than the other ports)
+- Changed the structure of the GPIO functionality enumeration. I concatenated all of the seperate GPIO registers into one register, and changed the packing and unpacking process of each transfer to contain the port, pin, command, and value to be written if applicable. 
+- Added the ability to change drive modes to each GPIO at run time.
+
+In :ref:`module rpisoc.py <rpisoc-module-label>`
+
+- Fixed the import structure so that both smbus and spidev aren't needed. This means you don't have to configure the Pi for I2C if you only intend to use SPI, or vice versa. 
+
+In :ref:`module digital.py <digital-module-label>`
+
+- Removed classes :class:`digital.DigitalInput` and :class:`digital.DigitalOutput`
+- Added class *digitalPin* which allows one to instantiate any of the GPIO as input or output, or in any of several different drive modes if needed.
+
+In :ref:`module analog.py <analog-module-label>`
+
+- Added :class:`analog.analogPin` which simplifies the process of getting an analog reading from an ADC, and it adds an aditional 10 analog inputs.
+
+In :class:`digital.Servo`
+
+- Simplified instantiation. It is now only required to provide a servo location relative to Port 6.
+	* Pulse width and angle ranges can still be input, but they will simply default to standard values if only the servo location is given
+	* Minimum pulse width defaults to 1.0; maximum pulse width defaults to 2.0; minimum angle defaults to 0; maximum angle defaults to 180
 
 
 New to V1.1.1
 *************
-	Code structure
-		- communication.py was removed and merged with rpisoc.py to simplify the overall structure.	
-	In class *SPI*
-		- Further minimized latency inherent to each SPI transfer. 
-		- *cleanup()* method will now reset any global data tracked within the RPiSoC class, in case cleanup is not called at termination (which is should be...)
-	In class *I2C*
-		- *cleanup()* method will now reset any global data tracked within the RPiSoC class, in case cleanup is not called at termination (which is should be...) 
-	In class *VDAC*
-		- Added a *SetVoltage()* method, so that the user can directly input a voltage within the specified DAC's full scale range
-	In class *IDAC*
-		- Added a *SetCurrent()* method, so that the user can directly input a current in milliamperes within the specified DAC's full scale range
-	
+Code structure
+
+- *communication.py* was removed and merged with :ref:`module rpisoc.py <rpisoc-module-label>` to simplify the overall structure.	
+
+In :class:`rpisoc.SPI`
+
+- Further minimized latency inherent to each SPI transfer. 
+- :meth:`rpisoc.SPI.cleanup` will now reset any global data tracked within the RPiSoC class, in case :meth:`rpisoc.SPI.cleanup` is not called at termination
+
+In :class:`rpisoc.I2C`
+
+- :meth:`rpisoc.I2C.cleanup`  method will now reset any global data tracked within the RPiSoC class, in case :meth:`rpisoc.I2C.cleanup`  is not called at termination 
+
+In :class:`analog.VDAC`
+
+- Added :meth:`analog.VDAC.SetVoltage` method, so that the user can directly input a voltage within the specified DAC's full scale range
+
+In :class:`analog.IDAC`
+
+- Added a :meth:`analog.IDAC.SetCurrent` method, so that the user can directly input a current in milliamperes within the specified DAC's full scale range
+
 
 New to V1.1.0
 *************
-	In the RPiSoC code
-		- Added I2C support
-		- Added the ability to software reset the RPiSoC through the Raspberry Pi
-		- Removed unneeded delays, speeding up the init process
-		- changed which bootloader is used
-		- clocked the PWM's seperately, such that they aren't all sharing the same clock; they are only sharing their clock with one other PWM instead of 7, as was the case in *V1.0.0*
-		- Fixed a bug discovered in the WaveDAC class, which was generating waves that appeared to be very noisy. 
+In the RPiSoC code
 
-	In class *PWM*
-		- Added ability to modify the frequency of the clocks which drive the PWM signals
-		- Added ability to read back the actual PWM clocking frequency.
-		- Added a warning when the clock range of the PWM clocks might be innacurate (since the frequencies are generated using clock dividers, and they can be innacurate at high frequencies)
-		- Changed the SetDutyCycle() method to be a float value instead of an int, for more precision
-		- Added a GetDutyCycle() method which will give back the percentage of time between 0 and 100 how long your PWM is high.
-		- Added a SetClockDivider() method which lets you give the PWM clock a specific divider value, so you don't have to be worried about an innacurate result using SetClocks()
-		- Added a GetClockDivder() method to see what the most recently confirmed clock divider value is
-		- Added the ability to modify the actual wave frequency of the PWM, between 0.006 Hz and 2.4MHz, without affecting the duty cycle too profoundly. 
-		- Added a GetFrequency() method which will return the actual frequency of the PWM wave
-		- Added class attributes to the RPiSoC class which indicate whether a register address is already in use. So if the user attempts to initialize an object that is already in use, a warning will be issued.
+- Added I2C support
+- Added the ability to software reset the RPiSoC through the Raspberry Pi
+- Removed unneeded delays, speeding up the init process
+- changed which bootloader is used
+- clocked the PWM's seperately, such that they aren't all sharing the same clock; they are only sharing their clock with one other PWM instead of 7, as was the case in *V1.0.0*
+- Fixed a bug discovered in the WaveDAC class, which was generating waves that appeared to be very noisy. 
 
-	In class *ADC*
-		- Changed return value of CountsTo_Volts() method for the ADC's from a millivolt value to a microvolt value, so that precision is increased. The return value of the Python method when called is still in Volts.
+In :class:`digital.PWM`
 
-	In classes *DigitalInput* and *DigitalOutput*
-		- Moved the bit masking process of the digital inputs and outputs to the C code, where it can be executed more quickly, and with fewer data transfers
-	
-	In class *WaveDAC*
-		- Added a warning when the frequency might be out of range
-	In modeule *digital*
-		- Added class *Servo* with the following methods:
-			* SetPulse() : Sets a PWM pulse in milliseconds
-			* ReadPulse(): Gets the actual pulse in milliseconds that is being applied to the servo
-			* SetAngle() : sets the servomotor to a designated angle based on the user defined minimum angle, maximum angle, minimum pulse width, and maximum pulse width. 
-			* ReadAngle(): Reads the actual angle based on the same parameter set as *SetAngle()*
-			* Stop(): Stops the PWM signal which is driving the servo
-			* Start(): Starts the PWM signal which will drive the servo
+- Added ability to modify the frequency of the clocks which drive the PWM signals with :meth:`digital.PWM.SetClocks`
+- Added ability to read back the actual PWM clocking frequency with :meth:`digital.PWM.GetClocks`
+- Added a warning when the clock range of the PWM clocks might be inaccurate (since the frequencies are generated using clock dividers, and they can be inaccurate at high frequencies)
+- Changed :meth:`digital.PWM.SetDutyCycle` to be a float value instead of an int, for more precision
+- Added :meth:`digital.PWM.GetDutyCycle` which will give back the percentage of time between 0 and 100 how long your PWM is high.
+- Added :meth:`digital.PWM.SetClockDivider` which lets you give the PWM clock a specific divider value, so you don't have to be worried about an inaccurate result using :meth:`digital.PWM.SetClocks`
+- Added :meth:`digital.PWM.GetClockDivder` method to see what the most recently confirmed clock divider value is
+- Added :meth:`digital.PWM.SetFrequency` which provides the ability to modify the actual wave frequency of the PWM, between 0.006 Hz and 2.4MHz, without affecting the duty cycle too profoundly. 
+- Added :meth:`digital.PWM.GetFrequency` method which will return the actual frequency of the PWM wave
+
+In :class:`rpisoc.RPiSoC`
+
+- Added class attributes to the RPiSoC indicate whether a register address is already in use. So if the user attempts to initialize an object that is already in use, a warning will be issued.
+
+In :class:`analog.ADC`
+
+- Changed return value of :meth:`analog.CountsTo_Volts` from a millivolt value to a microvolt value, so that precision is increased. The return value of the Python method when called is still in Volts.
+
+In classes :class:`digital.DigitalInput` and :class:`digital.DigitalOutput`
+
+- Moved the bit masking process of the digital inputs and outputs to the C code, where it can be executed more quickly, and with fewer data transfers
+
+In :class:`analog.WaveDAC`
+
+- Added a warning when the frequency might be out of range
+
+In :ref:`module digital.py <digital-module-label>`
+
+- Added :class:`digital.Servo` with the following methods:
+	* :meth:`digital.Servo.SetPulse` : Sets a PWM pulse in milliseconds
+	* :meth:`digital.Servo.ReadPulse`: Gets the actual pulse in milliseconds that is being applied to the servo
+	* :meth:`digital.Servo.SetAngle`: sets the servomotor to a designated angle based on the user defined minimum angle, maximum angle, minimum pulse width, and maximum pulse width. 
+	* :meth:`digital.Servo.ReadAngle`: Reads the actual angle based on the same parameter set as *SetAngle()*
+	* :meth:`digital.Servo.Stop`: Stops the PWM signal which is driving the servo
+	* :meth:`digital.Servo.Start`: Starts the PWM signal which will drive the servo
 
 
 Version 1.0

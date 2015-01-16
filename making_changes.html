@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Making Changes to the API &mdash; RPiSoC Python API 1.2.4 documentation</title>
+    <title>Making Changes to the API &mdash; RPiSoC Python API 1.2.5 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.2.4',
+        VERSION:     '1.2.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,9 +23,10 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="RPiSoC Python API 1.2.4 documentation" href="index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="RPiSoC Python API 1.2.5 documentation" href="index.html" />
     <link rel="next" title="Example Projects!" href="examples.html" />
-    <link rel="prev" title="API modules" href="code.html" /> 
+    <link rel="prev" title="analog.py" href="code_analog.html" /> 
   </head>
   <body>
     <div class="related">
@@ -35,15 +36,12 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
           <a href="examples.html" title="Example Projects!"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="code.html" title="API modules"
+          <a href="code_analog.html" title="analog.py"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.2.4 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.2.5 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -57,9 +55,8 @@
 <p>The default API is intended to have very diverse usage, so it essentially provides &#8220;a little bit of everything.&#8221; The folliwng section shows exactly what you have to play with by default, but an advanced user might have different needs based on their unique design constraints. Luckily, the code was designed to easily facilitate this kind of need, and changing it to fit any project should not be too difficult.</p>
 <div class="section" id="what-comes-with-this-version-by-default">
 <h2>What comes with this version by default<a class="headerlink" href="#what-comes-with-this-version-by-default" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>By default, the API (V1.2) is configured with the following components available:</dt>
-<dd><ul class="first last">
+<p>By default, the API (V1.2) is configured with the following components available:</p>
+<ul>
 <li><dl class="first docutils">
 <dt>28 GPIO</dt>
 <dd><ul class="first last simple">
@@ -129,14 +126,11 @@
 <li><p class="first">Wave DAC connected to P0[0]</p>
 </li>
 </ul>
-</dd>
-</dl>
 </div>
 <div class="section" id="changing-gpios-available">
 <h2>Changing GPIOs available<a class="headerlink" href="#changing-gpios-available" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>This should be very simple.</dt>
-<dd><ul class="first last">
+<p>This should be very simple.</p>
+<ul>
 <li><p class="first">Open the PSoC_2_Pi .cywrk file</p>
 </li>
 <li><p class="first">Navigate to your schematic (the .cysch file)</p>
@@ -170,15 +164,12 @@
 <li><p class="first">Assign the pin to your desired location (P0[7])</p>
 </li>
 </ul>
-</dd>
-</dl>
 <p>And that should do it! No code changes needed!</p>
 </div>
 <div class="section" id="changing-pwms-available">
 <h2>Changing PWMs available<a class="headerlink" href="#changing-pwms-available" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>This is the only change that will require a slight change to the code, but it is not extreme, you will mostly just be changing a couple numbers. I simply couldn&#8217;t conceive a better way to handle this. First though, you only need to change the schematic, similar to the GPIO modification.</dt>
-<dd><ul class="first last">
+<p>This is the only change that will require a slight change to the code, but it is not extreme, you will mostly just be changing a couple numbers. I simply couldn&#8217;t conceive a better way to handle this. First though, you only need to change the schematic, similar to the GPIO modification.</p>
+<ul>
 <li><p class="first">Open the PSoC_2_Pi .cywrk file</p>
 </li>
 <li><p class="first">Navigate to your schematic (the .cysch file)</p>
@@ -233,46 +224,49 @@
 <dd><ul class="first last">
 <li><dl class="first docutils">
 <dt>First, navigate to mem1.c, and to the PWM_Control_n function. Here, n is the &#8220;PWM channel number&#8221;, so if you added a PWM_9 component, you would be navigating to the PWM_Control_8 function.</dt>
-<dd><ul class="first last simple">
-<li>In PWM_Control_n, go to the switch-case, and find case 0xFF. Here change the code to call the correct clock. If you tied PWM_9 to PWM_CLK_2, make sure that case 0xFF in PWM_Control_8 reads as</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-</dd>
-</dl>
-<div class="highlight-python"><div class="highlight"><pre>case 0xFF: PWM_CLK_2_SetDividerValue(val); result = PWM_CLK_2_GetDividerRegister(); return_flag = 1; break;
+<dd><ul class="first last">
+<li><p class="first">In PWM_Control_n, go to the switch-case, and find <tt class="code docutils literal"><span class="pre">case</span> <span class="pre">0xFF</span></tt> Here change the code to call the correct clock. If you tied PWM_9 to PWM_CLK_2, make sure that case 0xFF in PWM_Control_8 reads as:</p>
+<blockquote>
+<div><div class="highlight-c"><div class="highlight"><pre><span class="k">case</span> <span class="mh">0xFF</span>: <span class="n">PWM_CLK_2_SetDividerValue</span><span class="p">(</span><span class="n">val</span><span class="p">);</span> <span class="n">result</span> <span class="o">=</span> <span class="n">PWM_CLK_2_GetDividerRegister</span><span class="p">();</span> <span class="n">return_flag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span>
 </pre></div>
 </div>
-<ul>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
 <li><dl class="first docutils">
 <dt>Match your clocks together in the code</dt>
-<dd><ul class="first last simple">
-<li>Navigate to mem1.h</li>
-<li>Find the section which asks you to match the clocks together, it should be the section towards the bottom, but just above all the function prototypes</li>
-<li>Essentially what you do here, is define you PWM_x_CLK to be using PWM_CLK_y. So lets consider the same example as eariler. You are adding PWM_9, and it is sharing PWM_CLK_2. In this case, find the block of code associated with PWM_9 (it should already exist!) and change it so that it reads</li>
+<dd><ul class="first last">
+<li><p class="first">Navigate to mem1.h</p>
+</li>
+<li><p class="first">Find the section which asks you to match the clocks together, it should be the section towards the bottom, but just above all the function prototypes</p>
+</li>
+<li><p class="first">Essentially what you do here, is define you PWM_x_CLK to be using PWM_CLK_y. So lets consider the same example as earlier. You are adding PWM_9, and it is sharing PWM_CLK_2. In this case, find the block of code associated with PWM_9 (it should already exist!) and change it so that it reads:</p>
+<blockquote>
+<div><div class="highlight-c"><div class="highlight"><pre>#ifdef CY_PWM_PWM_9_H
+        #define PWM_9_CLK               (PWM_CLK_2)
+#endif
+</pre></div>
+</div>
+</div></blockquote>
+</li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
-<div class="highlight-python"><div class="highlight"><pre><span class="c">#ifdef CY_PWM_PWM_9_H</span>
-        <span class="c">#define PWM_9_CLK               (PWM_CLK_2)</span>
-<span class="c">#endif</span>
-</pre></div>
-</div>
 <p>And now you should be all set with your PWM changes.</p>
 </div>
 <div class="section" id="changing-analog-pins-available">
 <h2>Changing Analog Pins available<a class="headerlink" href="#changing-analog-pins-available" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>This again should be quite simple, and can be done without code changes.</dt>
-<dd><ul class="first last">
+<p>This again should be quite simple, and can be done without code changes.</p>
+<ul>
 <li><p class="first">Open the PSoC_2_Pi .cywrk file</p>
 </li>
 <li><p class="first">Navigate to your schematic (the .cysch file)</p>
@@ -310,15 +304,12 @@
 </dl>
 </li>
 </ul>
-</dd>
-</dl>
 <p>Note that when you call analog pin N, it is referring to whatever pin is connected to index N on the sequenced SAR, where 0 is the top pin.</p>
 </div>
 <div class="section" id="changing-capsense-buttons-available">
 <h2>Changing CapSense Buttons available<a class="headerlink" href="#changing-capsense-buttons-available" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>This is a similar process to the analog pin modifications.</dt>
-<dd><ul class="first last">
+<p>This is a similar process to the analog pin modifications.</p>
+<ul>
 <li><p class="first">Open the PSoC_2_Pi .cywrk file</p>
 </li>
 <li><p class="first">Navigate to your schematic (the .cysch file)</p>
@@ -357,14 +348,11 @@
 </dl>
 </li>
 </ul>
-</dd>
-</dl>
 </div>
 <div class="section" id="changing-general-analog-features-available-for-advanced-users">
 <h2>Changing general Analog Features available for advanced users<a class="headerlink" href="#changing-general-analog-features-available-for-advanced-users" title="Permalink to this headline">¶</a></h2>
 <p>Here I will discuss how to add/remove general analog features, like the WaveDAC, IDACs, VDACs, and ADC&#8217;s. They all share the same process, so I will explain them all in the same section. First, note that the API makes available the following general analog features, in addition to the Analog Pins and the CapSense Buttons</p>
-<blockquote>
-<div><ul>
+<ul>
 <li><dl class="first docutils">
 <dt>One WaveDAC</dt>
 <dd><ul class="first last simple">
@@ -406,11 +394,9 @@
 </dl>
 </li>
 </ul>
-</div></blockquote>
 <p>To remove any of these feature, you only need to navigate to the schematic file (.cysch) and delete the components that are named as shown above, and anything connected to them.</p>
-<dl class="docutils">
-<dt>To add these features back:</dt>
-<dd><ul class="first last">
+<p>To add these features back:</p>
+<ul>
 <li><p class="first">Open the PSoC_2_Pi .cywrk file</p>
 </li>
 <li><p class="first">Navigate to your schematic (the .cysch file)</p>
@@ -447,8 +433,6 @@
 <li><p class="first">In this case, certain components are restricted to certain pin assignments. For instance, the IDAC&#8217;s will want to be placed at only a couple different locations, otherwise they cannot operate at full power. When you search for a pin location in the drop down menu, next to the pin location will be the suggested use. For an IDAC_out pin, find one with a label that reads &#8220;IDAC:HI&#8221; &#8211; If you are buffering your DACs, you need you connect the pin to a location labled with &#8220;OpAmp:out&#8221;</p>
 </li>
 </ul>
-</dd>
-</dl>
 </div>
 <div class="section" id="notes-about-included-peripheral-components">
 <h2>Notes about included Peripheral components<a class="headerlink" href="#notes-about-included-peripheral-components" title="Permalink to this headline">¶</a></h2>
@@ -485,8 +469,8 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="code.html"
-                        title="previous chapter">API modules</a></p>
+  <p class="topless"><a href="code_analog.html"
+                        title="previous chapter">analog.py</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="examples.html"
                         title="next chapter">Example Projects!</a></p>
@@ -519,20 +503,17 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
           <a href="examples.html" title="Example Projects!"
              >next</a> |</li>
         <li class="right" >
-          <a href="code.html" title="API modules"
+          <a href="code_analog.html" title="analog.py"
              >previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.2.4 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.2.5 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2014, Embedit Electronics.
-      Last updated on Dec 10, 2014.
+        &copy; Copyright 2015, EmbeditElectronics.
+      Last updated on Jan 16, 2015.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

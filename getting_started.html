@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Getting Started &mdash; RPiSoC Python API 1.2.4 documentation</title>
+    <title>Getting Started &mdash; RPiSoC Python API 1.2.5 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.2.4',
+        VERSION:     '1.2.5',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,7 +23,8 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="RPiSoC Python API 1.2.4 documentation" href="index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="RPiSoC Python API 1.2.5 documentation" href="index.html" />
     <link rel="next" title="API modules" href="code.html" />
     <link rel="prev" title="Welcome to the RPiSoC Python API documentation!" href="index.html" /> 
   </head>
@@ -35,15 +36,12 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
           <a href="code.html" title="API modules"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="index.html" title="Welcome to the RPiSoC Python API documentation!"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.2.4 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.2.5 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -53,79 +51,68 @@
           <div class="body">
             
   <div class="section" id="getting-started">
-<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<span id="getting-started-label"></span><h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
 <p>Here is everything you should need to get yourself moving with development on the RPiSoC through the Raspberry Pi!</p>
 <div class="section" id="using-the-rpisoc">
-<h2>Using the RPiSoC<a class="headerlink" href="#using-the-rpisoc" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>If you&#8217;re new to the RPiSoC, it would greatly benefit you to read through its documentation before going any further. The documentation can be found here:</dt>
-<dd><ul class="first last simple">
+<span id="getting-started-rpisoc"></span><h2>Using the RPiSoC<a class="headerlink" href="#using-the-rpisoc" title="Permalink to this headline">¶</a></h2>
+<p>If you&#8217;re new to the RPiSoC, it would greatly benefit you to read through its documentation before going any further. The documentation can be found here:</p>
+<ul class="simple">
 <li><a class="reference external" href="https://github.com/EmbeditElectronics/RPiSoC_Bootloader/blob/master/RPiSoC_RevC_User_Guide.pdf">https://github.com/EmbeditElectronics/RPiSoC_Bootloader/blob/master/RPiSoC_RevC_User_Guide.pdf</a></li>
 </ul>
-</dd>
-</dl>
 <p>Pay special attention to the sections discussing how to download a program to the board using the Bootloader Host Tool.</p>
 </div>
 <div class="section" id="program-your-rpisoc">
 <h2>Program your RPiSoC<a class="headerlink" href="#program-your-rpisoc" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>Once you know how to program the RPiSoC, you&#8217;re ready to go! Just download the PSoC Creator project from git and download it to the RPiSoC.</dt>
-<dd><ul class="first last simple">
+<p>Once you know how to program the RPiSoC, you&#8217;re ready to go! Just download the PSoC Creator project from git and download it to the RPiSoC.</p>
+<ul class="simple">
 <li><a class="reference external" href="https://github.com/EmbeditElectronics/psoc_2_pi/tree/master/PSoC%20Creator">https://github.com/EmbeditElectronics/psoc_2_pi/tree/master/PSoC%20Creator</a></li>
 </ul>
-</dd>
-</dl>
 </div>
+<div class="section" id="using-the-rpisoc-with-the-raspberry-pi">
+<span id="getting-started-rpi"></span><h2>Using the RPiSoC with the Raspberry Pi<a class="headerlink" href="#using-the-rpisoc-with-the-raspberry-pi" title="Permalink to this headline">¶</a></h2>
+<p>The following is necessary set up the RPiSoC in the Raspberry Pi environment</p>
 <div class="section" id="download-the-python-files-from-git">
-<h2>Download the Python files from git<a class="headerlink" href="#download-the-python-files-from-git" title="Permalink to this headline">¶</a></h2>
-<p>First, make sure that you have git installed on your raspberry Pi. From the terminal
-window:</p>
+<span id="getting-started-git"></span><h3>Download the Python files from git<a class="headerlink" href="#download-the-python-files-from-git" title="Permalink to this headline">¶</a></h3>
+<p>First, make sure that you have git installed on your raspberry Pi. From the terminal window:</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo apt-get install git-core
 </pre></div>
 </div>
-<p>Then, create a folder for the RPiSoC API, and download it from
-git:</p>
+<p>Then, create a folder for the RPiSoC API, and download it from git:</p>
 <div class="highlight-python"><div class="highlight"><pre>git clone git://github.com/EmbeditElectronics/psoc_2_pi.git
 </pre></div>
 </div>
-<p>And navigate into the Python folder to get
-started:</p>
+<p>And navigate into the Python folder to get started:</p>
 <div class="highlight-python"><div class="highlight"><pre>cd API_Python_v_1_1
 </pre></div>
 </div>
 </div>
 <div class="section" id="configure-spi-and-download-spidev">
-<h2>Configure SPI and download spidev<a class="headerlink" href="#configure-spi-and-download-spidev" title="Permalink to this headline">¶</a></h2>
-<p>Now, if you want to use all of the API on the Raspberry Pi, you will need to have the SPI bus enabled, and you will need to have the spidev ibraries installed and in your working directory. Luckily, this is a very easy process. First though, you will need to do an update/upgrade on your pi. Open a new terminal window and enter the following
-commands:</p>
+<span id="getting-started-spi"></span><h3>Configure SPI and download spidev<a class="headerlink" href="#configure-spi-and-download-spidev" title="Permalink to this headline">¶</a></h3>
+<p>Now, if you want to use all of the API on the Raspberry Pi, you will need to have the SPI bus enabled, and you will need to have the spidev libraries installed and in your working directory.
+Luckily, this is a very easy process. First though, you will need to do an update/upgrade on your pi. Open a new terminal window and enter the following  commands:</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo apt-get clean
 sudo apt-get update
 sudo apt-get upgrade
 sudo reboot
 </pre></div>
 </div>
-<p>Next, you will need to install the python-dev libraries, if they aren&#8217;t already
-installed:</p>
+<p>Next, you will need to install the python-dev libraries, if they aren&#8217;t already installed:</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo apt-get install python-dev
 </pre></div>
 </div>
-<p>Now you need to enable the SPI bus on your Pi, which is disabled by default to speed up the boot
-process:</p>
+<p>Now you need to enable the SPI bus on your Pi, which is disabled by default to speed up the boot process:</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo nano /etc/modprobe.d/raspi-blacklist.conf
 </pre></div>
 </div>
-<p>This will bring up a text editor where you will find a line that
-reads:</p>
+<p>This will bring up a text editor where you will find a line that reads:</p>
 <div class="highlight-python"><div class="highlight"><pre>blacklist spi-bcm2708
 </pre></div>
 </div>
-<p>Simply comment this line out by adding a <em>#</em> to the front of it, and reboot your
-pi:</p>
+<p>Simply comment this line out by adding a <em>#</em> to the front of it, and reboot your pi:</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo reboot
 </pre></div>
 </div>
-<p>Now, navigate to your working directory, the one with the API downloaded to it, and make a new directory for
-spidev:</p>
+<p>Now, navigate to your working directory, the one with the API downloaded to it, and make a new directory for spidev:</p>
 <div class="highlight-python"><div class="highlight"><pre>mkdir python-spi
 cd python-spi
 wget https://raw.github.com/doceme/py-spidev/master/setup.py
@@ -136,113 +123,104 @@ sudo python setup.py install
 <p>And now SPI should be good to go!</p>
 </div>
 <div class="section" id="configure-i2c-and-download-smbus">
-<h2>Configure I2C and download smbus<a class="headerlink" href="#configure-i2c-and-download-smbus" title="Permalink to this headline">¶</a></h2>
+<span id="getting-started-i2c"></span><h3>Configure I2C and download smbus<a class="headerlink" href="#configure-i2c-and-download-smbus" title="Permalink to this headline">¶</a></h3>
 <p>To use I2C for your communications between RPi and RPiSoC, you will need to configure your i2c bus, similarly to how it was done for SPI.</p>
-<p>Assuming you have done an update/upgrade recently, as you should have if you followed the previous step, you must now enable i2c. As was the case with SPI, I2C is disabled by the Pi by default. To change this, you must modify the blacklist
-again:</p>
+<p>Assuming you have done an update/upgrade recently, as you should have if you followed the previous step, you must now enable i2c.
+As was the case with SPI, I2C is disabled by the Pi by default. To change this, you must modify the blacklist again:</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo nano /etc/modprobe.d/raspi-blacklist.conf
 </pre></div>
 </div>
-<p>Now change the
-line:</p>
+<p>Now change the line:</p>
 <div class="highlight-python"><div class="highlight"><pre>blacklist i2c-bcm2708
 </pre></div>
 </div>
-<p>so that it instead
-reads:</p>
+<p>so that it instead reads:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="c">#blacklist i2c-bcm2708</span>
 </pre></div>
 </div>
-<p>Now you need to add the I2C module to the
-kernel:</p>
+<p>Now you need to add the I2C module to the kernel:</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo nano /etc/modules
 </pre></div>
 </div>
-<p>And you should add to the end of this file the following
-line:</p>
+<p>And you should add to the end of this file the following line:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">i2c</span><span class="o">-</span><span class="n">dev</span>
 </pre></div>
 </div>
-<p>Now you simply must install the needed
-packages:</p>
+<p>Now you simply must install the needed packages:</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo apt-get install i2c-tools
 sudo apt-get install python-smbus
 </pre></div>
 </div>
-<p>And to configure the software, you must add your username to the I2C access group. In this case I&#8217;ll assume your username is <em>pi</em>
-so:</p>
+<p>And to configure the software, you must add your username to the I2C access group.
+In this case I&#8217;ll assume your username is <em>pi</em> so:</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo adduser pi i2c
 </pre></div>
 </div>
-<p>Now
-reboot:</p>
+<p>Now reboot:</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo reboot
 </pre></div>
 </div>
-<p>And when the pi boots back up, open the terminal, connect the RPiSoC with the program loaded, and test the i2c
-bus:</p>
+<p>And when the pi boots back up, open the terminal, connect the RPiSoC with the program loaded, and test the i2c bus:</p>
 <div class="highlight-python"><div class="highlight"><pre>i2cdetect -y 1
 </pre></div>
 </div>
-<p>This should display dashed lines where no address was identified, except for where it found an address, and this should read <em>08</em> in the case of the RPiSoC API. If you do not see any results,
-try:</p>
+<p>This should display dashed lines where no address was identified, except for where it found an address, and this should read <em>08</em> in the case of the RPiSoC API. If you do not see any results, try:</p>
 <div class="highlight-python"><div class="highlight"><pre>i2cdetect -y 0
 </pre></div>
 </div>
-<p>And if you see the 8, make sure to modify communication.py so that it reflects the usage of the correct bus.</p>
-<p>If in either case you find that the address 0x3b is being used, and reflected by the appearance of <em>UU</em>, then try adding one of these three lines to your
-blacklist:</p>
+<p>And if you see the 8, make sure to modify <tt class="xref py py-meth docutils literal"><span class="pre">__init__()</span></tt> of <a class="reference internal" href="code_rpisoc.html#rpisoc.I2C" title="rpisoc.I2C"><tt class="xref py py-class docutils literal"><span class="pre">rpisoc.I2C</span></tt></a> so that it reflects the usage of the correct bus.</p>
+<p>If in either case you find that the address 0x3b is being used, and reflected by the appearance of <em>UU</em>, then try adding one of these three lines to your  blacklist:</p>
 <div class="highlight-python"><div class="highlight"><pre>blacklist snd_soc_wm8804
 blacklist snd_soc_bcm2708_i2s
 blacklist snd_soc_pcm512x
 </pre></div>
 </div>
 <p>This will disable the pi&#8217;s native audio driver, i2s support, and the stereo DAC driver, in that order, but it is likely that blacklisting one of them will fix the problem.</p>
-<p>The final thing to change is the baudrate of the pi&#8217;s I2C driver. I found that its default value was slightly error prone, and so I increased it, which resulted in error free results. To do this, you will need to create a config file in the modprobe.d folder; I called mine i2cbaud.conf. To create this file, simply enter into the
-terminal:</p>
+<p>The final thing to change is the baudrate of the pi&#8217;s I2C driver.
+I found that its default value was slightly error prone, and so I increased it, which resulted in error free results.
+To do this, you will need to create a config file in the modprobe.d folder; I called mine i2cbaud.conf. To create this file, simply enter into the terminal:</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo nano /etc/modprobe.d/i2cbaud.conf
 </pre></div>
 </div>
-<p>and add this single line to it from your text
-editor:</p>
+<p>and add this single line to it from your text editor:</p>
 <div class="highlight-python"><div class="highlight"><pre>options i2c_bcm2708 baudrate=500000
 </pre></div>
 </div>
-<p>Now just
-reboot:</p>
+<p>Now just reboot:</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo reboot
 </pre></div>
 </div>
 <p>And you should be good to go!</p>
 </div>
 <div class="section" id="changing-communication-protocol-used-by-the-api">
-<h2>Changing communication protocol used by the API<a class="headerlink" href="#changing-communication-protocol-used-by-the-api" title="Permalink to this headline">¶</a></h2>
+<span id="getting-started-mods"></span><h3>Changing communication protocol used by the API<a class="headerlink" href="#changing-communication-protocol-used-by-the-api" title="Permalink to this headline">¶</a></h3>
 <p>By default, the API uses SPI. To change this to I2C, it is designed to be very simple, so don&#8217;t fret!</p>
-<p>On the Pi Side, simply change your initialization of the RPiSoC object
-from:</p>
+<p>On the Pi Side, simply change your initialization of the RPiSoC object from:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>so that it instead
-reads:</p>
+<p>so that it instead reads:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;I2C&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Now, in the PSoC Creator program navigate to <em>mem1.h</em> and you will find two lines that look like
-this:</p>
-<div class="highlight-python"><div class="highlight"><pre>#define USE_SPI
-//#define USE_I2C
+<p>Now, in the PSoC Creator program navigate to <em>mem1.h</em> and you will find two lines that look like this:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="cp">#define USE_SPI</span>
+<span class="c1">//#define USE_I2C</span>
 </pre></div>
 </div>
-<p>This indicates that I2C is to be undefined, and so SPI is to be used. To reverse this, just change which one is commented
-out:</p>
-<div class="highlight-python"><div class="highlight"><pre>//#define USE_SPI
-#define USE_I2C
+<p>This indicates that I2C is to be undefined, and so SPI is to be used. To reverse this, just change which one is commented out:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="c1">//#define USE_SPI</span>
+<span class="cp">#define USE_I2C</span>
 </pre></div>
 </div>
 <p>Now, SPI will be undefined, and the RPiSoC will be expecting I2C communication.
 Now just compile the program, and redownload it to the RPiSoC using the Bootloader Host Tool.</p>
 <p>And with that, you should be good to go without any problems!</p>
+</div>
+</div>
+<div class="section" id="using-the-rpisoc-with-your-computer">
+<span id="getting-started-computer"></span><h2>Using the RPiSoC with your computer!<a class="headerlink" href="#using-the-rpisoc-with-your-computer" title="Permalink to this headline">¶</a></h2>
+<p><em>Documentation coming soon</em></p>
 </div>
 </div>
 
@@ -260,10 +238,14 @@ Now just compile the program, and redownload it to the RPiSoC using the Bootload
 <li><a class="reference internal" href="#">Getting Started</a><ul>
 <li><a class="reference internal" href="#using-the-rpisoc">Using the RPiSoC</a></li>
 <li><a class="reference internal" href="#program-your-rpisoc">Program your RPiSoC</a></li>
+<li><a class="reference internal" href="#using-the-rpisoc-with-the-raspberry-pi">Using the RPiSoC with the Raspberry Pi</a><ul>
 <li><a class="reference internal" href="#download-the-python-files-from-git">Download the Python files from git</a></li>
 <li><a class="reference internal" href="#configure-spi-and-download-spidev">Configure SPI and download spidev</a></li>
 <li><a class="reference internal" href="#configure-i2c-and-download-smbus">Configure I2C and download smbus</a></li>
 <li><a class="reference internal" href="#changing-communication-protocol-used-by-the-api">Changing communication protocol used by the API</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#using-the-rpisoc-with-your-computer">Using the RPiSoC with your computer!</a></li>
 </ul>
 </li>
 </ul>
@@ -303,20 +285,17 @@ Now just compile the program, and redownload it to the RPiSoC using the Bootload
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
           <a href="code.html" title="API modules"
              >next</a> |</li>
         <li class="right" >
           <a href="index.html" title="Welcome to the RPiSoC Python API documentation!"
              >previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.2.4 documentation</a> &raquo;</li> 
+        <li><a href="index.html">RPiSoC Python API 1.2.5 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2014, Embedit Electronics.
-      Last updated on Dec 10, 2014.
+        &copy; Copyright 2015, EmbeditElectronics.
+      Last updated on Jan 16, 2015.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

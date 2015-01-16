@@ -1,0 +1,50 @@
+.. _rpisoc-module-label:
+
+rpisoc.py
++++++++++
+This is the highest level module import for the RPiSoC API, which the user should import into their scripts for full use of it. It is used to keep records of some globally used variables between all classes. 
+
+It is also used to send data to, and receive data from the RPiSoC using 
+a user chosen communication protocol.
+
+At the beginning of each script, insert the following
+two lines::
+
+	from rpisoc import * #This will handle dependencies
+	RPiSoC('SPI') #for SPI
+	#or RPiSoC('I2C')
+	#or RPiSoC('USB') or RPiSoC ('SERIAL') for USB UART
+		
+RPiSoC parent class
+-------------------
+.. currentmodule:: rpisoc
+.. autoclass:: RPiSoC
+   :members:
+   :special-members:
+   :exclude-members: __dict__,__weakref__
+
+USB communication
+-----------------
+.. currentmodule:: rpisoc
+.. autoclass:: SERIAL
+   :members:
+
+SPI communication
+-----------------
+.. currentmodule:: rpisoc
+.. autoclass:: SPI
+   :members:
+
+I2C communication
+-----------------
+.. currentmodule:: rpisoc
+.. autoclass:: I2C
+   :members:
+
+Exceptions
+----------
+.. currentmodule:: rpisoc
+.. autoclass:: LostConnection
+
+.. currentmodule:: rpisoc
+.. autoclass:: ClosedPortException

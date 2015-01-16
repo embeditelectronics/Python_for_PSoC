@@ -1,0 +1,969 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>rpisoc.py &mdash; RPiSoC Python API 1.2.5 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.2.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="RPiSoC Python API 1.2.5 documentation" href="index.html" />
+    <link rel="up" title="API modules" href="code.html" />
+    <link rel="next" title="digital.py" href="code_digital.html" />
+    <link rel="prev" title="API modules" href="code.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="code_digital.html" title="digital.py"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="code.html" title="API modules"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">RPiSoC Python API 1.2.5 documentation</a> &raquo;</li>
+          <li><a href="code.html" accesskey="U">API modules</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="rpisoc-py">
+<span id="rpisoc-module-label"></span><h1>rpisoc.py<a class="headerlink" href="#rpisoc-py" title="Permalink to this headline">¶</a></h1>
+<p>This is the highest level module import for the RPiSoC API, which the user should import into their scripts for full use of it. It is used to keep records of some globally used variables between all classes.</p>
+<p>It is also used to send data to, and receive data from the RPiSoC using
+a user chosen communication protocol.</p>
+<p>At the beginning of each script, insert the following
+two lines:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span> <span class="c">#This will handle dependencies</span>
+<span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span> <span class="c">#for SPI</span>
+<span class="c">#or RPiSoC(&#39;I2C&#39;)</span>
+<span class="c">#or RPiSoC(&#39;USB&#39;) or RPiSoC (&#39;SERIAL&#39;) for USB UART</span>
+</pre></div>
+</div>
+<div class="section" id="rpisoc-parent-class">
+<h2>RPiSoC parent class<a class="headerlink" href="#rpisoc-parent-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rpisoc.RPiSoC">
+<em class="property">class </em><tt class="descclassname">rpisoc.</tt><tt class="descname">RPiSoC</tt><a class="headerlink" href="#rpisoc.RPiSoC" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Class:</th><td class="field-body"><p class="first">This class is used to define the register locations of each component on the
+RPiSoC, it defines which communication protocol will be utilized by the
+API, and it collects compiled data from the RPiSoC. The class is not to be assigned to an object; it only needs to be called so
+that addresses can be defined, compiled data on the RPiSoC can be verified, and so that the communication protocol can
+be initialized.</p>
+<p class="last">Optionally, one can construct the object with a DEBUG parameter, as described in the <a class="reference internal" href="#rpisoc.RPiSoC.__new__" title="rpisoc.RPiSoC.__new__"><tt class="xref py py-meth docutils literal"><span class="pre">__new__()</span></tt></a> description, which will print diagnostic information to the terminal.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="staticmethod">
+<dt id="rpisoc.RPiSoC.__new__">
+<em class="property">static </em><tt class="descname">__new__</tt><big>(</big><em>protocol</em>, <em>baud=9600</em>, <em>DEBUG=False</em><big>)</big><a class="headerlink" href="#rpisoc.RPiSoC.__new__" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">__new__</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td><ul class="first last simple">
+<li>Constructs the RPiSoC object</li>
+<li>It will decide the communication protocol to be utilized by the API and it will attempt to learn what components are available on the RPiSoC</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><ul class="first last simple">
+<li><strong>string</strong>   <em>protocol</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>Optional</em>
+<em>Parameters</em></td>
+<td><ul class="first last simple">
+<li><strong>int</strong>      <em>baud</em></li>
+<li><strong>bool</strong>     <em>DEBUG</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><em>protocol</em></td>
+<td><em>USB, SPI,</em> or <em>I2C</em></td>
+</tr>
+<tr class="row-even"><td><em>baud</em></td>
+<td>baud rate for use use with the <em>SERIAL</em> protocol. Any standard baud rate supported</td>
+</tr>
+<tr class="row-odd"><td><em>DEBUG</em></td>
+<td><ul class="first last simple">
+<li>Defaults to False. Changing it to True will print debugging data to the terminal</li>
+<li>This data includes, at least, what information is found on the rpisoc when __new__ is called</li>
+<li>This can be used to identify errors in your RPiSoC firmware changes or to verify connection with the RPiSoC</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="usb-communication">
+<h2>USB communication<a class="headerlink" href="#usb-communication" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rpisoc.SERIAL">
+<em class="property">class </em><tt class="descclassname">rpisoc.</tt><tt class="descname">SERIAL</tt><big>(</big><em>baudr=9600</em><big>)</big><a class="headerlink" href="#rpisoc.SERIAL" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Class:</th><td class="field-body">Provides a serial (USB UART) interface for communicating with the RPiSoC</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body">pyserial 2.7 must be available to use this class</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">__init__</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td><ul class="first last simple">
+<li>Constructs and initializes a SERIAL object</li>
+<li>Searches through available serial ports to find the RPiSoCs vendor and product ID, then opens the port if found</li>
+<li>If the RPiSoC is not found <a class="reference internal" href="#rpisoc.RPiSoC" title="rpisoc.RPiSoC"><tt class="xref py py-class docutils literal"><span class="pre">RPiSoC</span></tt></a> will invoke the <a class="reference internal" href="#rpisoc.SERIAL.reconnect" title="rpisoc.SERIAL.reconnect"><tt class="xref py py-meth docutils literal"><span class="pre">reconnect()</span></tt></a> method until it is found</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><em>Optional</em>
+<em>Parameters</em></td>
+<td><strong>int</strong>    <em>baudr</em></td>
+</tr>
+<tr class="row-even"><td><em>baudr</em></td>
+<td><ul class="first last simple">
+<li>baud rate for serial communication</li>
+<li>Supports all standard baud rates</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="rpisoc.SERIAL.PrepareData">
+<tt class="descname">PrepareData</tt><big>(</big><em>dat</em><big>)</big><a class="headerlink" href="#rpisoc.SERIAL.PrepareData" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">PrepareData</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Makes sure that the data being sent is correctly formatted, so that the RPiSoC is able to more easily decode the received words</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><strong>tuple</strong>   <em>dat</em></td>
+</tr>
+<tr class="row-even"><td><em>dat</em></td>
+<td><ul class="first last simple">
+<li>A tuple of either length 2 or 3, depending on the message</li>
+<li>The size of the first two items of the tuple must be less than or equal to one byte each, and they correspond to a register address and command</li>
+<li>The size of the third item in the tuple, if applicable, must be less than or equal to two bytes, and this is any data to be written</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td><strong>list</strong> <em>dat_l</em></td>
+</tr>
+<tr class="row-even"><td><em>dat_l</em></td>
+<td><ul class="first last simple">
+<li>A list of length 4, prepared for serial transfer</li>
+<li>The list is constructed as [dat[0], dat[1], dat[2]__LOW_BYTE, dat[2]__HIGH_BYTE]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rpisoc.SERIAL.cleanup">
+<tt class="descname">cleanup</tt><big>(</big><big>)</big><a class="headerlink" href="#rpisoc.SERIAL.cleanup" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">cleanup</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Forces a software reset on the RPiSoC and then closes and cleans up the serial port</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rpisoc.SERIAL.disconnect">
+<tt class="descname">disconnect</tt><big>(</big><big>)</big><a class="headerlink" href="#rpisoc.SERIAL.disconnect" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">disconnect</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Forces a clean disconnection from the RPiSoC</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rpisoc.SERIAL.isConnected">
+<tt class="descname">isConnected</tt><big>(</big><big>)</big><a class="headerlink" href="#rpisoc.SERIAL.isConnected" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">isConnected</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Checks to see if the serial port is open, and that it is connected to an RPiSoC</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td><strong>bool</strong> <em>status*</em></td>
+</tr>
+<tr class="row-odd"><td><em>status</em></td>
+<td><ul class="first last simple">
+<li>True if there exists a valid connection to the RPiSoC</li>
+<li>False if the port is not functional, or the RPiSoC is not found</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rpisoc.SERIAL.receiveData">
+<tt class="descname">receiveData</tt><big>(</big><em>vals</em>, <em>delay=None</em><big>)</big><a class="headerlink" href="#rpisoc.SERIAL.receiveData" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">receiveData</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Called when a returned value is desired from the RPiSoC. It will send a command, and then wait for a response</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><strong>tuple</strong>   <em>vals</em></td>
+</tr>
+<tr class="row-even"><td><em>vals</em></td>
+<td>A tuple which will be sent to <a class="reference internal" href="#rpisoc.SERIAL.PrepareData" title="rpisoc.SERIAL.PrepareData"><tt class="xref py py-meth docutils literal"><span class="pre">PrepareData()</span></tt></a> to be restructured into a list of length 4, and then sent to the RPiSoC over serial</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td><strong>int</strong> dat</td>
+</tr>
+<tr class="row-even"><td><em>dat</em></td>
+<td><ul class="first last simple">
+<li>The data packet received from the PSoC, which has been unpacked and reformatted</li>
+<li>If the received packet is sufficiently large (&gt;24 bits), it will assume the number overflowed in the negative direction, and is a negative number</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Raises</strong></td>
+<td><ul class="first last simple">
+<li><a class="reference internal" href="#rpisoc.ClosedPortException" title="rpisoc.ClosedPortException"><tt class="xref py py-class docutils literal"><span class="pre">ClosedPortException</span></tt></a></li>
+<li><a class="reference internal" href="#rpisoc.LostConnection" title="rpisoc.LostConnection"><tt class="xref py py-class docutils literal"><span class="pre">LostConnection</span></tt></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rpisoc.SERIAL.reconnect">
+<tt class="descname">reconnect</tt><big>(</big><big>)</big><a class="headerlink" href="#rpisoc.SERIAL.reconnect" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">reconnect</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Used to reestablish a connection to the RPiSoC after it has been lost</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td><strong>bool</strong> status</td>
+</tr>
+<tr class="row-odd"><td><em>status</em></td>
+<td><ul class="first last simple">
+<li>True if the reconnection was successful</li>
+<li>False if the reconnection failed</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rpisoc.SERIAL.sendData">
+<tt class="descname">sendData</tt><big>(</big><em>vals</em><big>)</big><a class="headerlink" href="#rpisoc.SERIAL.sendData" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">sendData</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Sends data to the RPiSoC, without waiting for a return</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><strong>tuple</strong>   <em>vals</em></td>
+</tr>
+<tr class="row-even"><td><em>val</em></td>
+<td>A tuple which will be sent to <a class="reference internal" href="#rpisoc.SERIAL.PrepareData" title="rpisoc.SERIAL.PrepareData"><tt class="xref py py-meth docutils literal"><span class="pre">PrepareData()</span></tt></a> to be restructured into a list of length 4, and then sent to the RPiSoC over serial</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+<tr class="row-even"><td><strong>Raises</strong></td>
+<td><ul class="first last simple">
+<li><a class="reference internal" href="#rpisoc.ClosedPortException" title="rpisoc.ClosedPortException"><tt class="xref py py-class docutils literal"><span class="pre">ClosedPortException</span></tt></a></li>
+<li><a class="reference internal" href="#rpisoc.LostConnection" title="rpisoc.LostConnection"><tt class="xref py py-class docutils literal"><span class="pre">LostConnection</span></tt></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="spi-communication">
+<h2>SPI communication<a class="headerlink" href="#spi-communication" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rpisoc.SPI">
+<em class="property">class </em><tt class="descclassname">rpisoc.</tt><tt class="descname">SPI</tt><a class="headerlink" href="#rpisoc.SPI" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Class:</th><td class="field-body">This class defines usage of the SPI bus for transfer between the RPi and the PSoC. __init__ is called as soon as an <em>RPiSoC</em> object is defined, and it opens and configures the SPI bus.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body">The spidev libraries with its python wrapper must be installed to use this class</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">__init__</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Constructs and initializes an SPI object</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="rpisoc.SPI.PrepareData">
+<tt class="descname">PrepareData</tt><big>(</big><em>dat</em><big>)</big><a class="headerlink" href="#rpisoc.SPI.PrepareData" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">PrepareData</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Makes sure that the data being sent is correctly formatted, so that the RPiSoC is able to more easily decode the received words</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><strong>tuple</strong>   <em>dat</em></td>
+</tr>
+<tr class="row-even"><td><em>dat</em></td>
+<td><ul class="first last simple">
+<li>A tuple of either length 2 or 3, depending on the message</li>
+<li>The size of the first two items of the tuple must be less than or equal to one byte each, and they correspond to a register address and command</li>
+<li>The size of the third item in the tuple, if applicable, must be less than or equal to two bytes, and this is any data to be written</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td><strong>list</strong> <em>dat_l</em></td>
+</tr>
+<tr class="row-even"><td><em>dat_l</em></td>
+<td><ul class="first last simple">
+<li>A list of length 4, prepared for SPI transfer</li>
+<li>The list is constructed as [dat[0], dat[1], dat[2]__LOW_BYTE, dat[2]__HIGH_BYTE]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rpisoc.SPI.cleanup">
+<tt class="descname">cleanup</tt><big>(</big><big>)</big><a class="headerlink" href="#rpisoc.SPI.cleanup" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">cleanup</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Forces a software reset on the RPiSoC and then closes and cleans up the SPI bus</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rpisoc.SPI.receiveData">
+<tt class="descname">receiveData</tt><big>(</big><em>vals</em>, <em>delay=0.01</em><big>)</big><a class="headerlink" href="#rpisoc.SPI.receiveData" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">receiveData</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Called when the RPi desires a returned value from the RPiSoC. It will send a command, and then wait for a response</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><ul class="first last simple">
+<li><strong>tuple</strong>   <em>vals</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>Optional</em>
+<em>Parameters</em></td>
+<td><ul class="first last simple">
+<li><strong>float</strong>    <em>delay</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><em>vals</em></td>
+<td>A tuple which will be sent to <a class="reference internal" href="#rpisoc.SPI.PrepareData" title="rpisoc.SPI.PrepareData"><tt class="xref py py-meth docutils literal"><span class="pre">PrepareData()</span></tt></a> to be restructured into a list of length 4, and then sent to the RPiSoC over SPI</td>
+</tr>
+<tr class="row-even"><td><em>delay</em></td>
+<td><ul class="first last simple">
+<li>The amount of time that the Python code will wait after sending a request, and before expecting a response</li>
+<li>This is to be used when one is requesting a complex operation, and more time is needed by the RPiSoC to generate a result</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td><strong>int</strong> dat</td>
+</tr>
+<tr class="row-even"><td><em>dat</em></td>
+<td><ul class="first last simple">
+<li>The data packet received from the PSoC, which has been unpacked and reformatted</li>
+<li>If the received packet is sufficiently large (&gt;24 bits), it will assume the number overflowed in the negative direction, and is a negative number</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rpisoc.SPI.sendData">
+<tt class="descname">sendData</tt><big>(</big><em>vals</em><big>)</big><a class="headerlink" href="#rpisoc.SPI.sendData" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">sendData</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Sends data to the RPiSoC, without waiting for a return</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><strong>tuple</strong>   <em>vals</em></td>
+</tr>
+<tr class="row-even"><td><em>val</em></td>
+<td>A tuple which will be sent to <a class="reference internal" href="#rpisoc.SPI.PrepareData" title="rpisoc.SPI.PrepareData"><tt class="xref py py-meth docutils literal"><span class="pre">PrepareData()</span></tt></a> to be restructured into a list of length 4, and then sent to the RPiSoC over SPI</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="i2c-communication">
+<h2>I2C communication<a class="headerlink" href="#i2c-communication" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rpisoc.I2C">
+<em class="property">class </em><tt class="descclassname">rpisoc.</tt><tt class="descname">I2C</tt><big>(</big><em>bus_location=1</em>, <em>f_address=8</em><big>)</big><a class="headerlink" href="#rpisoc.I2C" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Class:</th><td class="field-body">This class defines usage of the I2C bus for transfer between the RPi and the PSoC. __init__ is called as soon as an <em>RPiSoC</em> object is defined, and it opens and configures the bus.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body">i2c must be configured and the smbus libraries must be installed to call this class</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">__init__</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Constructs and initializes an I2C object</td>
+</tr>
+<tr class="row-odd"><td><em>Optional</em>
+<em>Parameters</em></td>
+<td><ul class="first last simple">
+<li><strong>int</strong>    <em>bus_location</em></li>
+<li><strong>int</strong>    <em>f_address</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>bus_location</em></td>
+<td><ul class="first last simple">
+<li>Location of the smbus on the pi, this should be 1, but confirm in the terminal with <tt class="samp docutils literal"><span class="pre">i2cdetect</span> <em><span class="pre">-y</span> <span class="pre">1</span></em></tt> and notice an address, 08, shown</li>
+<li>If this command does not show the 08 address, try <tt class="samp docutils literal"><span class="pre">i2cdetect</span> <em><span class="pre">-y</span> <span class="pre">0</span></em></tt></li>
+<li>If neither terminal command shows the correct bus location, be sure that <a class="reference internal" href="getting_started.html#getting-started-i2c"><em>i2c is configured correctly</em></a></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><em>bus_location</em></td>
+<td><ul class="first last simple">
+<li>The i2c address on the RPiSoC</li>
+<li>This address is 0x08 by default</li>
+<li>If this is changed in your RPiSoC firmware, the change must be reflected here</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="rpisoc.I2C.PrepareData">
+<tt class="descname">PrepareData</tt><big>(</big><em>dat</em><big>)</big><a class="headerlink" href="#rpisoc.I2C.PrepareData" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">PrepareData</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Makes sure that the data being sent is correctly formatted, so that the RPiSoC is able to more easily decode the received words</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><strong>tuple</strong>   <em>dat</em></td>
+</tr>
+<tr class="row-even"><td><em>dat</em></td>
+<td><ul class="first last simple">
+<li>A tuple of either length 2 or 3, depending on the message</li>
+<li>The size of the first two items of the tuple must be less than or equal to one byte each, and they correspond to a register address and command</li>
+<li>The size of the third item in the tuple, if applicable, must be less than or equal to two bytes, and this is any data to be written</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td><strong>list</strong> <em>dat_l</em></td>
+</tr>
+<tr class="row-even"><td><em>dat_l</em></td>
+<td><ul class="first last simple">
+<li>A list of length 4, prepared for I2C transfer</li>
+<li>The list is constructed as [dat[0], dat[1], dat[2]__LOW_BYTE, dat[2]__HIGH_BYTE]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rpisoc.I2C.cleanup">
+<tt class="descname">cleanup</tt><big>(</big><big>)</big><a class="headerlink" href="#rpisoc.I2C.cleanup" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">cleanup</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Forces a software reset on the RPiSoC and then closes and cleans up the I2C bus</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td>None</td>
+</tr>
+<tr class="row-even"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rpisoc.I2C.receiveData">
+<tt class="descname">receiveData</tt><big>(</big><em>vals</em>, <em>delay=0.05</em><big>)</big><a class="headerlink" href="#rpisoc.I2C.receiveData" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">receiveData</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Called when the RPi desires a returned value from the RPiSoC. It will send a command, and then wait for a response</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><ul class="first last simple">
+<li><strong>tuple</strong>   <em>vals</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><em>Optional</em>
+<em>Parameters</em></td>
+<td><ul class="first last simple">
+<li><strong>float</strong>    <em>delay</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><em>vals</em></td>
+<td>A tuple which will be sent to <a class="reference internal" href="#rpisoc.I2C.PrepareData" title="rpisoc.I2C.PrepareData"><tt class="xref py py-meth docutils literal"><span class="pre">PrepareData()</span></tt></a> to be restructured into a list of length 4, and then sent to the RPiSoC over I2C</td>
+</tr>
+<tr class="row-even"><td><em>delay</em></td>
+<td><ul class="first last simple">
+<li>The amount of time that the Python code will wait after sending a request, and before expecting a response</li>
+<li>This is to be used when one is requesting a complex operation, and more time is needed by the RPiSoC to generate a result</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td><strong>int</strong> dat</td>
+</tr>
+<tr class="row-even"><td><em>dat</em></td>
+<td><ul class="first last simple">
+<li>The data packet received from the PSoC, which has been unpacked and reformatted</li>
+<li>If the received packet is sufficiently large (&gt;24 bits), it will assume the number overflowed in the negative direction, and is a negative number</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rpisoc.I2C.sendData">
+<tt class="descname">sendData</tt><big>(</big><em>vals</em><big>)</big><a class="headerlink" href="#rpisoc.I2C.sendData" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Method</th>
+<th class="head">sendData</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Sends data to the RPiSoC, without waiting for a return</td>
+</tr>
+<tr class="row-odd"><td><strong>Parameters</strong></td>
+<td><strong>tuple</strong>   <em>vals</em></td>
+</tr>
+<tr class="row-even"><td><em>val</em></td>
+<td>A tuple which will be sent to <a class="reference internal" href="#rpisoc.I2C.PrepareData" title="rpisoc.I2C.PrepareData"><tt class="xref py py-meth docutils literal"><span class="pre">PrepareData()</span></tt></a> to be restructured into a list of length 4, and then sent to the RPiSoC over I2C</td>
+</tr>
+<tr class="row-odd"><td><strong>Returns</strong></td>
+<td>No return</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="exceptions">
+<h2>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="rpisoc.LostConnection">
+<em class="property">class </em><tt class="descclassname">rpisoc.</tt><tt class="descname">LostConnection</tt><a class="headerlink" href="#rpisoc.LostConnection" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Exception</th>
+<th class="head">LostConnection</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Raised when connection to the RPiSoC is lost</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="rpisoc.ClosedPortException">
+<em class="property">class </em><tt class="descclassname">rpisoc.</tt><tt class="descname">ClosedPortException</tt><a class="headerlink" href="#rpisoc.ClosedPortException" title="Permalink to this definition">¶</a></dt>
+<dd><table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Exception</th>
+<th class="head">ClosedPortException</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><strong>Description</strong></td>
+<td>Raised when a write or read attempt is being made on a closed serial port</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/Embedit_flat.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">rpisoc.py</a><ul>
+<li><a class="reference internal" href="#rpisoc-parent-class">RPiSoC parent class</a></li>
+<li><a class="reference internal" href="#usb-communication">USB communication</a></li>
+<li><a class="reference internal" href="#spi-communication">SPI communication</a></li>
+<li><a class="reference internal" href="#i2c-communication">I2C communication</a></li>
+<li><a class="reference internal" href="#exceptions">Exceptions</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="code.html"
+                        title="previous chapter">API modules</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="code_digital.html"
+                        title="next chapter">digital.py</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/code_rpisoc.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="code_digital.html" title="digital.py"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="code.html" title="API modules"
+             >previous</a> |</li>
+        <li><a href="index.html">RPiSoC Python API 1.2.5 documentation</a> &raquo;</li>
+          <li><a href="code.html" >API modules</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, EmbeditElectronics.
+      Last updated on Jan 16, 2015.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

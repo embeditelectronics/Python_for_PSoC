@@ -5,155 +5,168 @@ The default API is intended to have very diverse usage, so it essentially provid
 What comes with this version by default
 +++++++++++++++++++++++++++++++++++++++
 By default, the API (V1.2) is configured with the following components available:
-	- 28 GPIO
-		* This includes all of Port 2, 5, and 6, as well as P0[5], P0[6], P15[4], and P15[5]
-	- 8 PWMs
-		* All are 16-bit resolution by default
-		* PWM channel 0 is available on Port 0 Pin 2
-		* PWM channels 1-7 are available on Port 6 Pins 1-7
-		* They are clocked by 4 different clock sources
-			+ PWM 1 and 2 are connected (default 3MHz)
-			+ PWM 3 and 4 are connected (default 3MHz)
-			+ PWM 5 and 6 are connected (default 3MHz)
-			+ PWM 7 and 8 are connected (default 3MHz)
-	- 8 Analog pins
-		* These are the pins connected to the sequenced SAR ADC
-		* They are available on Port 3
-	- 6 Capsense buttons
-		* Available on Port 4, pins 0 - 5
-		* Requires the placement of a 2.2nF external capacitor (Cmod) between P4[6] and ground
-	- Current DAC (IDAC) connected to P0[7]
-		* Has a 32uA full scale range
-	- Voltage DAC (VDAC) connected to P0[1]
-		* Has a 4.080V full scale range
-	- Wave DAC connected to P0[0]
+
+- 28 GPIO
+	* This includes all of Port 2, 5, and 6, as well as P0[5], P0[6], P15[4], and P15[5]
+- 8 PWMs
+	* All are 16-bit resolution by default
+	* PWM channel 0 is available on Port 0 Pin 2
+	* PWM channels 1-7 are available on Port 6 Pins 1-7
+	* They are clocked by 4 different clock sources
+		+ PWM 1 and 2 are connected (default 3MHz)
+		+ PWM 3 and 4 are connected (default 3MHz)
+		+ PWM 5 and 6 are connected (default 3MHz)
+		+ PWM 7 and 8 are connected (default 3MHz)
+- 8 Analog pins
+	* These are the pins connected to the sequenced SAR ADC
+	* They are available on Port 3
+- 6 Capsense buttons
+	* Available on Port 4, pins 0 - 5
+	* Requires the placement of a 2.2nF external capacitor (Cmod) between P4[6] and ground
+- Current DAC (IDAC) connected to P0[7]
+	* Has a 32uA full scale range
+- Voltage DAC (VDAC) connected to P0[1]
+	* Has a 4.080V full scale range
+- Wave DAC connected to P0[0]
 
 Changing GPIOs available
 ++++++++++++++++++++++++
 This should be very simple. 
-	- Open the PSoC_2_Pi .cywrk file
-	- Navigate to your schematic (the .cysch file)
-	- Double click on the GPIO page at the bottom of your schematic
-	- Make your changes here
-		* To delete, for example, P0[5] as a GPIO, simply click the component named GPIO_0_5, and press delete.
-		* To add P0[7] (assuming it is available, which it is not by default), simply add a new pins component
-			+ You can most easily do this just by copy/pasting one of the other pins on the GPIO page
-			+ You can also navigate to the components pane on the right of your .cysch file, fnd the "pins" component, drop it into your schematic, double click it to configure it, use the checkboxes to give it make it a Digital Input and Digital output, and remove the HW connection.
-		* Once the pin component is in place, make sure that you name it in the same way the other pins are named. It needs to be named GPIO_0_7 in this case, or GPIO_<PORT#>_<PIN#> more generally
-	- Now, navigate to your design wide resources page (.cydwr)
-	- Find your new pin in the list of pins shown on the right (it should be highlighted in white since it hasn't been assigned a location yet)
-	- Assign the pin to your desired location (P0[7])
+
+- Open the PSoC_2_Pi .cywrk file
+- Navigate to your schematic (the .cysch file)
+- Double click on the GPIO page at the bottom of your schematic
+- Make your changes here
+	* To delete, for example, P0[5] as a GPIO, simply click the component named GPIO_0_5, and press delete.
+	* To add P0[7] (assuming it is available, which it is not by default), simply add a new pins component
+		+ You can most easily do this just by copy/pasting one of the other pins on the GPIO page
+		+ You can also navigate to the components pane on the right of your .cysch file, fnd the "pins" component, drop it into your schematic, double click it to configure it, use the checkboxes to give it make it a Digital Input and Digital output, and remove the HW connection.
+	* Once the pin component is in place, make sure that you name it in the same way the other pins are named. It needs to be named GPIO_0_7 in this case, or GPIO_<PORT#>_<PIN#> more generally
+- Now, navigate to your design wide resources page (.cydwr)
+- Find your new pin in the list of pins shown on the right (it should be highlighted in white since it hasn't been assigned a location yet)
+- Assign the pin to your desired location (P0[7])
+
 And that should do it! No code changes needed!
 
 Changing PWMs available
 +++++++++++++++++++++++
 This is the only change that will require a slight change to the code, but it is not extreme, you will mostly just be changing a couple numbers. I simply couldn't conceive a better way to handle this. First though, you only need to change the schematic, similar to the GPIO modification.
-	- Open the PSoC_2_Pi .cywrk file
-	- Navigate to your schematic (the .cysch file)
-	- Double click on the PWM page at the bottom of your schematic
-	- Make your schematic changes here
-		* To delete a PWM, you need to make sure you do it in reverse order. For instance, do NOT delete only PWM_7, and keep PWM_8. It is important that the PWMs are in order for how the raspberry pi interprets what components are available (meaning you cannot skip numbers, PWMs must be named as PWM_1, PWM_2, ..., PWM_(n-1), PWM_n, where n is the number of PWMs you want in your schematic.
-			+ If you delete a PWM, make sure to remove the wire (or net) which was there to connect the clock, and make sure to delete the pin which was connected to it
-		* To add a PWM, simply find the PWM component in your components tab to the right and drag and drop it into your build. You should not have to change the name (it defaults to the expected name)
-		* Double click on the components to configure it, and make sure that your Implementation is selected as "UDB" and your PWM mode is selected as "One Output."
-		* Modify the remaining parameters as you see fit
-		* Connect the PWM output to a digital output pin, with HW connection
-		* Connect the PWM to a clock source
-			+ There a number of ways to do this, and you should be aware of the effects. Each PWM block can potentially be driven independently by it's own clock source, or it can share the clock source of another unit. Keep in mind that if you use the SetFrequency(), SetClockDivider(), or SetClocks() method of the PWM class, you will be changing this clock, and not necessarily anything about the PWM block itself (except for possible with SetFrequency). This means your changes will affect the behavior of all PWM's associated with it. 
-			+ If you add a new clock, make sure it is named in accordance with the others. A fifth clock would be named as PWM_CLK_5
-			+ If you wish to tie the PWM's clock to a clock already available (this is often required since there are a limited number of clocks available), simply draw a wire from the clk input of the PWM component, to the existing wire on the clock you wish to share. (TAKE NOTE OF THAT CLOCK NAME)
-	- Assign your pins a location
-		* Go to you design wide resources tab (.cydwr)
-		* Find your new PWM output pin in the list of pins to the right (should be highlighted in white)
-		* Assign it to a pin location. This PWM will now output from that chosen pin.
-	- Now make your code changes
-		* First, navigate to mem1.c, and to the PWM_Control_n function. Here, n is the "PWM channel number", so if you added a PWM_9 component, you would be navigating to the PWM_Control_8 function.
-			+ In PWM_Control_n, go to the switch-case, and find case 0xFF. Here change the code to call the correct clock. If you tied PWM_9 to PWM_CLK_2, make sure that case 0xFF in PWM_Control_8 reads as
-::
 
-	case 0xFF: PWM_CLK_2_SetDividerValue(val); result = PWM_CLK_2_GetDividerRegister(); return_flag = 1; break;
+- Open the PSoC_2_Pi .cywrk file
+- Navigate to your schematic (the .cysch file)
+- Double click on the PWM page at the bottom of your schematic
+- Make your schematic changes here
+	* To delete a PWM, you need to make sure you do it in reverse order. For instance, do NOT delete only PWM_7, and keep PWM_8. It is important that the PWMs are in order for how the raspberry pi interprets what components are available (meaning you cannot skip numbers, PWMs must be named as PWM_1, PWM_2, ..., PWM_(n-1), PWM_n, where n is the number of PWMs you want in your schematic.
+		+ If you delete a PWM, make sure to remove the wire (or net) which was there to connect the clock, and make sure to delete the pin which was connected to it
+	* To add a PWM, simply find the PWM component in your components tab to the right and drag and drop it into your build. You should not have to change the name (it defaults to the expected name)
+	* Double click on the components to configure it, and make sure that your Implementation is selected as "UDB" and your PWM mode is selected as "One Output."
+	* Modify the remaining parameters as you see fit
+	* Connect the PWM output to a digital output pin, with HW connection
+	* Connect the PWM to a clock source
+		+ There a number of ways to do this, and you should be aware of the effects. Each PWM block can potentially be driven independently by it's own clock source, or it can share the clock source of another unit. Keep in mind that if you use the SetFrequency(), SetClockDivider(), or SetClocks() method of the PWM class, you will be changing this clock, and not necessarily anything about the PWM block itself (except for possible with SetFrequency). This means your changes will affect the behavior of all PWM's associated with it. 
+		+ If you add a new clock, make sure it is named in accordance with the others. A fifth clock would be named as PWM_CLK_5
+		+ If you wish to tie the PWM's clock to a clock already available (this is often required since there are a limited number of clocks available), simply draw a wire from the clk input of the PWM component, to the existing wire on the clock you wish to share. (TAKE NOTE OF THAT CLOCK NAME)
+- Assign your pins a location
+	* Go to you design wide resources tab (.cydwr)
+	* Find your new PWM output pin in the list of pins to the right (should be highlighted in white)
+	* Assign it to a pin location. This PWM will now output from that chosen pin.
+- Now make your code changes
+	* First, navigate to mem1.c, and to the PWM_Control_n function. Here, n is the "PWM channel number", so if you added a PWM_9 component, you would be navigating to the PWM_Control_8 function.
+		+ In PWM_Control_n, go to the switch-case, and find :code:`case 0xFF` Here change the code to call the correct clock. If you tied PWM_9 to PWM_CLK_2, make sure that case 0xFF in PWM_Control_8 reads as:
+		
+			.. code-block:: c
+			
+					case 0xFF: PWM_CLK_2_SetDividerValue(val); result = PWM_CLK_2_GetDividerRegister(); return_flag = 1; break;
 
 - Match your clocks together in the code
 	* Navigate to mem1.h
 	* Find the section which asks you to match the clocks together, it should be the section towards the bottom, but just above all the function prototypes
-	* Essentially what you do here, is define you PWM_x_CLK to be using PWM_CLK_y. So lets consider the same example as eariler. You are adding PWM_9, and it is sharing PWM_CLK_2. In this case, find the block of code associated with PWM_9 (it should already exist!) and change it so that it reads
-::
-
-	#ifdef CY_PWM_PWM_9_H
-		#define PWM_9_CLK               (PWM_CLK_2)
-	#endif
+	* Essentially what you do here, is define you PWM_x_CLK to be using PWM_CLK_y. So lets consider the same example as earlier. You are adding PWM_9, and it is sharing PWM_CLK_2. In this case, find the block of code associated with PWM_9 (it should already exist!) and change it so that it reads:
+	
+		.. code-block:: c
+		
+			#ifdef CY_PWM_PWM_9_H
+				#define PWM_9_CLK               (PWM_CLK_2)
+			#endif
 
 And now you should be all set with your PWM changes.
 
 Changing Analog Pins available
 ++++++++++++++++++++++++++++++
+
 This again should be quite simple, and can be done without code changes.
-	- Open the PSoC_2_Pi .cywrk file
-	- Navigate to your schematic (the .cysch file)
-	- Double click on the ANALOG page at the bottom of your schematic
-	- Make your changes here
-		* If you want to remove all of the analog pins, you can simply delete the entire Sequenced SAR ADC (named ADC_SAR_Seq_1), and make sure to delete the pins connected to it.
-		* To otherwise change the amount of pins..
-			+ Double click the ADC_SAR_Seq_1 component
-			+ Change the "Channels" parameter to your desired number
-			+ Select "Apply" and "OK"
-			+ If you reduced the number of channels, be sure to delete the pins that are now floating next to the ADC
-			+ If you increased the number of channels, make sure to connect ANALOG pins to the newly available connections on the ADC component
-		* If you added new pins, navigate to the design wide resources tab (.cydwr)
-			+ Find your new pin in the list of available pins listed on the right (it should be highlighted in white)
-			+ Assign that pin to your desired location on the RPiSoC
+
+- Open the PSoC_2_Pi .cywrk file
+- Navigate to your schematic (the .cysch file)
+- Double click on the ANALOG page at the bottom of your schematic
+- Make your changes here
+	* If you want to remove all of the analog pins, you can simply delete the entire Sequenced SAR ADC (named ADC_SAR_Seq_1), and make sure to delete the pins connected to it.
+	* To otherwise change the amount of pins..
+		+ Double click the ADC_SAR_Seq_1 component
+		+ Change the "Channels" parameter to your desired number
+		+ Select "Apply" and "OK"
+		+ If you reduced the number of channels, be sure to delete the pins that are now floating next to the ADC
+		+ If you increased the number of channels, make sure to connect ANALOG pins to the newly available connections on the ADC component
+	* If you added new pins, navigate to the design wide resources tab (.cydwr)
+		+ Find your new pin in the list of available pins listed on the right (it should be highlighted in white)
+		+ Assign that pin to your desired location on the RPiSoC
+		
 Note that when you call analog pin N, it is referring to whatever pin is connected to index N on the sequenced SAR, where 0 is the top pin.
 
 Changing CapSense Buttons available
 +++++++++++++++++++++++++++++++++++
+
 This is a similar process to the analog pin modifications.
-	- Open the PSoC_2_Pi .cywrk file
-	- Navigate to your schematic (the .cysch file)
-	- Double click on the ANALOG page at the bottom of your schematic
-	- Make your changes here
-		* If you want to remove all of the CapSense buttons, you can simply delete the entire CapSense component (named CapSense_1), this saves a lot of analog resources
-		* To otherwise change the amount of buttons..
-			+ Double click the CapSense_1 component
-			+ Change the Tuning Method to "None" (TEMPORARILY)
-			+ Navigate to the "Widgets Config" tab
-			+ If you wish to reduce the number of buttons, simply choose to delete a Button (STARTING WITH THE HIGHEST INDEXED BUTTON -- don't delete Button3 before Button4 and Button5, for instance.)
-			+ If you wish to add a new button, click "Add Button" then change the Scan resolution parameter for that button from 10 bits to 8 bits
-			+ IMPORTANT: Change the tuning method back to Auto (Smart Sense) 
-		* If you added new pins, navigate to the design wide resources tab (.cydwr)
-			+ Find your new button in the list of available pins listed on the right (it should be highlighted in white)
-			+ Assign that pin to your desired location on the RPiSoC
+
+- Open the PSoC_2_Pi .cywrk file
+- Navigate to your schematic (the .cysch file)
+- Double click on the ANALOG page at the bottom of your schematic
+- Make your changes here
+	* If you want to remove all of the CapSense buttons, you can simply delete the entire CapSense component (named CapSense_1), this saves a lot of analog resources
+	* To otherwise change the amount of buttons..
+		+ Double click the CapSense_1 component
+		+ Change the Tuning Method to "None" (TEMPORARILY)
+		+ Navigate to the "Widgets Config" tab
+		+ If you wish to reduce the number of buttons, simply choose to delete a Button (STARTING WITH THE HIGHEST INDEXED BUTTON -- don't delete Button3 before Button4 and Button5, for instance.)
+		+ If you wish to add a new button, click "Add Button" then change the Scan resolution parameter for that button from 10 bits to 8 bits
+		+ IMPORTANT: Change the tuning method back to Auto (Smart Sense) 
+	* If you added new pins, navigate to the design wide resources tab (.cydwr)
+		+ Find your new button in the list of available pins listed on the right (it should be highlighted in white)
+		+ Assign that pin to your desired location on the RPiSoC
 
 Changing general Analog Features available for advanced users
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 Here I will discuss how to add/remove general analog features, like the WaveDAC, IDACs, VDACs, and ADC's. They all share the same process, so I will explain them all in the same section. First, note that the API makes available the following general analog features, in addition to the Analog Pins and the CapSense Buttons
 	
-	- One WaveDAC
-		* MUST BE NAMED WaveDAC8_1
-	- Two IDAC's (current DAC's)
-		* MUST BE NAMED IDAC8_1 and IDAC8_2 
-	- Two VDAC's (voltage DAC's)	
-		* MUST BE NAMED VDAC8_1 and VDAC8_2 
-	- Two SAR ADC's	
-		* MUST BE NAMED ADC_SAR_1 and ADC_SAR_2 
-	- One Delta-Sigma (DELSIG) ADC
-		* MUST BE NAMED ADC_DelSig_1
+- One WaveDAC
+	* MUST BE NAMED WaveDAC8_1
+- Two IDAC's (current DAC's)
+	* MUST BE NAMED IDAC8_1 and IDAC8_2 
+- Two VDAC's (voltage DAC's)	
+	* MUST BE NAMED VDAC8_1 and VDAC8_2 
+- Two SAR ADC's	
+	* MUST BE NAMED ADC_SAR_1 and ADC_SAR_2 
+- One Delta-Sigma (DELSIG) ADC
+	* MUST BE NAMED ADC_DelSig_1
 
 To remove any of these feature, you only need to navigate to the schematic file (.cysch) and delete the components that are named as shown above, and anything connected to them.
 
 To add these features back:
-	- Open the PSoC_2_Pi .cywrk file
-	- Navigate to your schematic (the .cysch file)
-	- Double click on the ANALOG page at the bottom of your schematic
-	- Make your changes here
-		* To add any component, simply find it in the components catalog to the right, and drop it into your schematic. It should be named appropriately by default, but confirm that it is named according to my comments above anyway.
-		* Double click on the component to configure it as desired
-		* For the WaveDAC component, you must connect a clock to its clock input. 
-			+ For this clock, configure the source as IMO, and the divider to be 12 (it works best with a 250kHz clock), and make sure to name is WaveDAC_clk
-		* I prefer to buffer the outputs of all Voltage DACs (including the WaveDac), but it isn't necessary. For the WaveDAC you can choose that the output be buffered. For the VDACs, you can simply connect an Op-Amp in "follower" configuration operating at Med or High power between your output pin and the output of your DAC. Keep in mind that I am not suggesting you physically connect an external op-amp -- There are op-amps internal to the PSoC, and you can find them in the component catalog to the right
-		* Also for the WaveDAC component, be sure to attach the "ws" connection to a "Logic High" component from the component catalog to the right.
-		* For the ADCs, I traditionally use Single-Ended, but you can use differential inputs if you desire, just know that if you leave the differential inputs floating, it will produce bad results, so the lesson is to pay close attention to the parameters you choose.
-	- Make sure to attach your component outputs to an analog pin, and then assign that pin to a physical location in your design wide resources (.cydwr)
-	- In this case, certain components are restricted to certain pin assignments. For instance, the IDAC's will want to be placed at only a couple different locations, otherwise they cannot operate at full power. When you search for a pin location in the drop down menu, next to the pin location will be the suggested use. For an IDAC_out pin, find one with a label that reads "IDAC:HI" -- If you are buffering your DACs, you need you connect the pin to a location labled with "OpAmp:out"
+
+- Open the PSoC_2_Pi .cywrk file
+- Navigate to your schematic (the .cysch file)
+- Double click on the ANALOG page at the bottom of your schematic
+- Make your changes here
+	* To add any component, simply find it in the components catalog to the right, and drop it into your schematic. It should be named appropriately by default, but confirm that it is named according to my comments above anyway.
+	* Double click on the component to configure it as desired
+	* For the WaveDAC component, you must connect a clock to its clock input. 
+		+ For this clock, configure the source as IMO, and the divider to be 12 (it works best with a 250kHz clock), and make sure to name is WaveDAC_clk
+	* I prefer to buffer the outputs of all Voltage DACs (including the WaveDac), but it isn't necessary. For the WaveDAC you can choose that the output be buffered. For the VDACs, you can simply connect an Op-Amp in "follower" configuration operating at Med or High power between your output pin and the output of your DAC. Keep in mind that I am not suggesting you physically connect an external op-amp -- There are op-amps internal to the PSoC, and you can find them in the component catalog to the right
+	* Also for the WaveDAC component, be sure to attach the "ws" connection to a "Logic High" component from the component catalog to the right.
+	* For the ADCs, I traditionally use Single-Ended, but you can use differential inputs if you desire, just know that if you leave the differential inputs floating, it will produce bad results, so the lesson is to pay close attention to the parameters you choose.
+- Make sure to attach your component outputs to an analog pin, and then assign that pin to a physical location in your design wide resources (.cydwr)
+- In this case, certain components are restricted to certain pin assignments. For instance, the IDAC's will want to be placed at only a couple different locations, otherwise they cannot operate at full power. When you search for a pin location in the drop down menu, next to the pin location will be the suggested use. For an IDAC_out pin, find one with a label that reads "IDAC:HI" -- If you are buffering your DACs, you need you connect the pin to a location labled with "OpAmp:out"
 
 Notes about included Peripheral components
 ++++++++++++++++++++++++++++++++++++++++++

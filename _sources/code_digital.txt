@@ -1,0 +1,37 @@
+.. _digital-module-label:
+
+digital.py
+++++++++++
+The digital functionality currently supported by the RPiSoC Python API
+
+
+Digital Input and Output
+------------------------
+.. currentmodule:: digital
+.. autoclass:: digitalPin
+   :members:
+
+PWM
+---
+.. currentmodule:: digital
+.. autoclass:: PWM
+   :members:
+
+Servo Motors
+------------
+.. currentmodule:: digital
+.. autoclass:: Servo
+   :members:
+
+NeoPixels
+---------
+.. currentmodule:: digital
+.. autoclass:: NeoPixelShield
+   :members:
+
+
+Ultrasonic Range Finding
+------------------------
+.. currentmodule:: digital
+.. autoclass:: rangeFinder
+   :members:

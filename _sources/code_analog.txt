@@ -1,0 +1,49 @@
+.. _analog-module-label:
+
+analog.py
+=========
+The analog functionality currently supported by the RPiSoC API
+
+.. _analog-input-label:
+
+Analog Input Pins
++++++++++++++++++
+.. currentmodule:: analog
+.. autoclass:: analogPin
+   :members:
+
+Capacitive Sensing (CapSense)
++++++++++++++++++++++++++++++
+.. currentmodule:: analog
+.. autoclass:: CapSense
+   :members:
+
+ADCs (advanced)
++++++++++++++++
+Use these for fine control of your analog input. For general analog input needs, :class:`analogPin` is almost always sufficient
+
+.. currentmodule:: analog
+.. autoclass:: ADC
+   :members:
+
+Analog Output
++++++++++++++
+Use these to generate analog voltages, currents, or waveforms.
+
+Voltage DAC (VDAC)
+------------------
+.. currentmodule:: analog
+.. autoclass:: VDAC
+   :members:
+
+Current DAC (IDAC)
+------------------
+.. currentmodule:: analog
+.. autoclass:: IDAC
+   :members:
+
+Wave DAC 
+--------
+.. currentmodule:: analog
+.. autoclass:: WaveDAC
+   :members:

@@ -2,162 +2,160 @@ Example Projects!
 =================
 Here are a few example projects to show just how easy the API is to use.
 
-Voltmeter using the 16-bit Delta-Sigma ADC
-++++++++++++++++++++++++++++++++++++++++++
-This program demonstrates basic usage of the RPiSoC's DELSIG ADC as a Voltmeter.
+- Note: Px[y] means Port x, Pin y
 
-The program will output the voltage of whatever is connected to P15[5] every .1
+Blinky!
++++++++
+The "hello world" of physical computing. Just connect your RPiSoC and watch it go! Output is on the on-board LED
+
+.. code-block:: python
+	:linenos:
+	:emphasize-lines: 4, 7, 9
+	
+	from rpisoc import *
+	RPiSoC('SERIAL')
+	
+	blinky = digitalPin(12,0,'OUT')
+	try:
+		while True:
+			blinky.Toggle()
+	except KeyboardInterrupt:
+		RPiSoC.commChannel.cleanup()
+
+Voltmeter
++++++++++
+This program demonstrates basic usage of :class:`analog.analogPin`
+
+The program will output the voltage of whatever is connected to P3[0] every .1
 seconds.
 
 Note that P5[0], which is a 3.3V pin (slightly higher when powering with the Pi)
-is initialized as HIGH, and so connecting to to P0[3] should show between 3.2
+is initialized as HIGH, and so connecting to to P3[0] should show between 3.2
 and 3.5V.
 
 The Power supply on each port should read close to 5V as well.
-You can confirm the accuracy with a Voltmeter
+You can confirm the accuracy with a Voltmeter.
 
-Note: Px[y] means Port x, Pin y.
-code::
+.. code-block:: python
+	:linenos:
+	:emphasize-lines: 4, 5, 6, 10, 14
 
 	from rpisoc import * 
-	RPiSoC('SPI') 
+	RPiSoC('SERIAL') 
 
-	My_DELSIG  = ADC('DELSIG')
-	My_DELSIG.Start()
-
+	voltmeter  = analogPin(0)
 	out_3v3 = digitalPin(5,0,'OUT') 
 	out_3v3.Write(1)
 
 	try: 
 		while True:
-			ADC_counts = My_DELSIG.Read()
-			Voltage = My_DELSIG.CountsTo_Volts(ADC_counts)
-
-			print('ADC OUTPUT: %d' %ADC_counts)
+			Voltage = voltmeter.ReadVolts()
 			print('VOLTAGE:    %.3f' %Voltage)
-
 			time.sleep(.1)
 	except KeyboardInterrupt:
 		RPiSoC.commChannel.cleanup()
 
 
-PWM Demo
-++++++++
-This program demonstrates basic use of the PWM channels on the RPiSoC.
+Theremin using PWM and Ultrasonic Range Finding
++++++++++++++++++++++++++++++++++++++++++++++++
+This will demonstrate some basic use of Ultrasonic Range Finding and tone generation with :class:`digital.rangeFinder` and :class:`digital.PWM`
 
-To see the desired output, connect an LED to P0[2] and P6[2]
+To set this program up, you will want to connect your Ultrasonic Range Finders echo Pin to P12[0], and it's trigger pin to P12[1].
+Also be sure to provide power and ground to the Range Finder from the RPiSoC.
 
-The program will initialize two PWM objects, one of which will remain blinking
-with the same duty cycle and frequency, while the other will change according to user input
+Then, connect one end of a piezo buzzer to the RPiSoC's ground, and the other end to P6[1]
+Run this code on the platform of your choosing, and make some noise!
 
-While the program runs, the user will give terminal commands to modify the PWM's
-period, comparison values, duty cycle, clock frequency, or wave frequency. These changes will then be read back by the RPiSoC, and displayed on the terminal.
+.. code-block:: python
+	:linenos:
+	:emphasize-lines: 4, 5, 6, 7, 9, 11
+	
+	from rpisoc import *
+	RPiSoC('SERIAL')
+	try:
+		ranger = rangeFinder([12,0], [12,1])
+		piezo = PWM(1)
+		piezo.Start()
+		piezo.SetDutyCycle(50) #Max volume
+		while True:
+			piezo.SetFrequency(ranger.readRaw())
+	except KeyboardInterrupt:
+		RPiSoC.commChannel.cleanup()
+		
+Play with some fruit!
++++++++++++++++++++++
+This one will be demonstrating use of the Capacitive Sensing libraries with :class:`analog.CapSense`
 
-code::
+Simply connect any kind of fruit (or anything conductive at all) to P4[0], and watch the onboard LED.
 
-    from rpisoc import *
-    RPiSoC('SPI')
+.. code-block:: python
+	:linenos:
+	:emphasize-lines: 4, 5, 8, 9, 10, 12
 
-    My_PWM = PWM(0)
-    My_other_PWM = PWM(2)
+	from rpisoc import *
+	RPiSoC('SERIAL')
+	
+	touch = CapSense(0, THRESHOLD = 4) #raise or lower the threshold depenging on results!
+	output = digitalPin(12,0,'OUT')
+	try:
+		while True:
+			while touch.isTouched():
+				output.Write(1)
+			output.Write(0)
+	except KeyboardInterrupt:
+		RPiSoC.commChannel.cleanup()
+	
+Comprehensive usage of  digital inputs and outputs
+++++++++++++++++++++++++++++++++++++++++++++++++++
+This gives a little bit of a deeper look into the GPIO using :class:`digital.digitalPin`
 
-    My_PWM.Start()
-    My_other_PWM.Start()
-    My_PWM.WritePeriod(65535)
-    My_other_PWM.WritePeriod(65535)
-    My_PWM.SetDutyCycle(50)
-    My_other_PWM.SetDutyCycle(50)
-
-    try:
-        while True:
-            print('\nMy_PWM: \t\t\t My_other_PWM: \nPERIOD: %d \t\t\t PERIOD: %d \nCOMPARE: %d \t\t\t COMPARE: %d \nDUTY CYCLE: %.2f%s \t\t DUTY CYCLE: %.2f%s \nCLOCK RATE: %d Hz \t\t CLOCK RATE: %d Hz\nWAVE FREQ: %.3f Hz \t\t WAVE FREQ: %.3f Hz' %(My_PWM.ReadPeriod(), My_other_PWM.ReadPeriod(),My_PWM.ReadCompare(), My_other_PWM.ReadCompare(), My_PWM.GetDutyCycle(), '%', My_other_PWM.GetDutyCycle(), '%',My_PWM.GetClocks(), My_other_PWM.GetClocks(), My_PWM.GetFrequency(), My_other_PWM.GetFrequency()))
-
-            choice = raw_input('\nChange [P]eriod [D]uty Cycle [C]omparison Value or [F]requency: ')
-            if choice =='P' or choice =='p':
-                new_period = int(raw_input('New Period: '))
-                My_PWM.WritePeriod(new_period)
-
-            elif choice == 'C' or choice == 'c':
-                new_compare = int(raw_input('New Compare: '))
-
-                My_PWM.WriteCompare(new_compare)
-
-            elif choice == 'D' or choice == 'd':
-                new_DC = int(raw_input('New Duty Cycle: '))
-                My_PWM.SetDutyCycle(new_DC)
-
-            elif choice == 'F' or choice ==  'f':
-                new_choice = raw_input('[W]ave frequency or [C]lock frequency?')
-                if new_choice == 'C' or new_choice =='c':
-                    new_clk_freq = float(raw_input('New clock frequency: '))
-                    My_PWM.SetClocks(new_clk_freq)
-                elif new_choice == 'W' or new_choice == 'w':
-                    new_wave_freq = float(raw_input('New wave frequency: '))
-                    My_PWM.SetFrequency(new_wave_freq)
-                else:
-                    print ('Invalid input!!!')
-
-            else:
-                print ('Invalid input!!!')
-
-
-    except KeyboardInterrupt:
-        RPiSoC.commChannel.cleanup()
-
-
-
-
-
-Simple usage of  digital inputs and outputs
-+++++++++++++++++++++++++++++++++++++++++++
 To set this demo up, wire P12[0], P12[1], P5[0], and P5[1] to LEDs in series
 with a resistor. Also wire the outputs to one of the initialized inputs, in the following way:
-	- wire P12[0] to P4[0]
-	- wire P12[1] to P4[1]
-	- wire P5[0] to P5[4]
-	- wire P5[1] to P5[5]
+- wire P12[0] to P4[0]
+- wire P12[1] to P4[1]
+- wire P5[0] to P5[4]
+- wire P5[1] to P5[5]
 
 The demo should light the LEDS in forwards order, and then turn off the LEDs in
 reverse order
 
 The terminal will output the state of the inputs at each step, along with their port/pin number and they should
-correlate with the LEDs (if wired in the way noted above)
+correlate with the LEDs (if wired in the way noted above). Check it out!
 
-code::
+.. code-block:: python
+	:linenos:
+	:emphasize-lines: 5, 6, 11, 14, 18, 21, 25
 
-    from rpisoc import *
-    import os
-    RPiSoC('SPI')
+	from rpisoc import *
+	import os
+	RPiSoC('SERIAL')
 
-    My_outputs = [digitalPin(12,0,'OUT'), digitalPin(12,1,'OUT'), digitalPin(5,0,'OUT'), digitalPin(5,1,'OUT')]
-    My_inputs = [digitalPin(4,0,'IN'), digitalPin(4,1,'IN'), digitalPin(5,4,'IN'), digitalPin(5,5,'IN')]
+	My_outputs = [digitalPin(12,0,'OUT'), digitalPin(12,1,'OUT'), digitalPin(5,0,'OUT'), digitalPin(5,1,'OUT')]
+	My_inputs = [digitalPin(4,0,'IN'), digitalPin(4,1,'IN'), digitalPin(5,4,'IN'), digitalPin(5,5,'IN')]
 
-    try: #exception handling
-        while True:
-            for i in My_outputs: #Writes each output high, one by one, in forwards order
-                i.Write(1)
-                os.system('clear')
-                for inputs in My_inputs:#Prints the state of each input
-                    print ("P%d[%d]:%d" %(inputs.port, inputs.pin, inputs.Read()))
-                time.sleep(1)
+	try: 
+		while True:
+			for i in My_outputs: #Writes each output high, one by one, in forwards order
+				i.Write(1)
+				os.system('clear')
+				for inputs in My_inputs:#Prints the state of each input
+					print ("P%d[%d]:%d" %(inputs.port, inputs.pin, inputs.Read()))
+				time.sleep(1)
 
-            for i in reversed(My_outputs):#Turns off the LEDs in reverse order
-                i.Write(0)
-                os.system('clear')
-                for inputs in My_inputs:#Prints the state of each input
-                    print ("P%d[%d]:%d" %(inputs.port, inputs.pin, inputs.Read()))
-                time.sleep(1)
+			for i in reversed(My_outputs):#Turns off the LEDs in reverse order
+				i.Write(0)
+				os.system('clear')
+				for inputs in My_inputs: #Prints the state of each input
+					print ("P%d[%d]:%d" %(inputs.port, inputs.pin, inputs.Read()))
+				time.sleep(1)
 
-
-
-
-    except KeyboardInterrupt:
-        RPiSoC.commChannel.cleanup()
+	except KeyboardInterrupt:
+		RPiSoC.commChannel.cleanup()
 
 
 Function Generator!
 +++++++++++++++++++
-This program demonstrates the use of the RPiSoC's WaveDAC.
+This program demonstrates the use of :class:`analog.WaveDAC`
 
 It will begin by initializing a WaveDAC object and generating it's default wave, which happens to be a 4V 2.5kHz Sine wave, with no DC Bias. It will then wait for the user to choose to generate a new wave, and ask for
 the configuration details.
@@ -166,17 +164,17 @@ Once it receives these values, it will stop the current wave, load the new confi
 
 To see the desired functionality, connect P0[0] to an Oscilliscope(or to another RPiSoC with the Oscilliscope program running!)
 
-code::
+.. code-block:: python
+	:linenos:
+	:emphasize-lines: 4, 5, 15, 16, 17, 19, 20, 21, 24
 
 	from rpisoc import *
-
-	RPiSoC('SPI') #Establish connection to RPiSoC over SPI
+	RPiSoC('SERIAL')
 
 	My_Wave = WaveDAC()
 	My_Wave.Start() #Starts the default wave
 
-
-	try: #exception handling, not crucial but it is advised.
+	try: 
 		while True:
 			print('My_Wave Frequency: ', My_Wave.GetFrequency())
 			w_type = raw_input("Input Wave Type (SINE TRIANGLE SAWTOOTH or SQUARE) ")
@@ -195,43 +193,70 @@ code::
 	except KeyboardInterrupt:
 		RPiSoC.commChannel.cleanup()
 
-Servo testing
-+++++++++++++
+Servo Controller
+++++++++++++++++
+This is to show some stuff you can do with :class:`digital.Servo`
 
-This is a test for the Servo class. It will initialize three servo objects with default paramaters, and then the user will have the option to modify the first servo, and watch that the changes are reflected in the terminal
-as well as by the servomotor itself.
+This will use voltage readings from a joystick (or potentiometers), to move two servomotors, possibly connected to a pan-tilt bracket like the one for our face tracker
 
-Connect three servos to P6[0], P6[1], and P6[2] to see the desired results.
-P6[0] should be moved according to user input, while the other two should be
-held at a constant position. 
+To make this work, connect your servomotor signal wires to P6[1] and P6[2]
+Then connect the analog outputs of your joystick (or potentiometers) to P3[0] and P3[1]
 
-code::
+Also, make sure your joystick or potentiometer are powered by the RPiSoC, and your servomotors are powered externally, but share a ground connection with the RPiSoC.
 
-    from rpisoc import *
+.. code-block:: python
+	:linenos:
+	:emphasize-lines: 5, 6, 8, 9, 13, 14, 16
 
-    RPiSoC('SPI')
+	from rpisoc import *
+	RPiSoC('SERIAL')
 
-    My_servo = Servo(0) #simple init
-    My_other_servo = Servo(1,1.2,2.5) #init with custom min and max pulse widths
-    My_last_servo = Servo(2,1.0,2.5,0,180) # init with custom min and max pulse widths, and custom min and max angles.
+	#normally max_angle is 180, but you can change the scale to be whatever is best for the project
+	Pan = Servo(1, max_angle = 5) 	# I chose 5 because the joysticks can output up to 5 Volts 
+	Tilt = Servo(2, max_angle = 5)	# This means that when I get the max volts (5), the servo will be in max position	
 
-    My_servo.Start()
-    My_other_servo.Start()
-    My_last_servo.Start()
+	x_axis = analogPin(0)
+	y_axis = analogPin(1)
 
-    try:
-        while True:
-            print('\nServo\tPeriod\t\tPulse Width\n1    :\t%.2f ms\t%.2f ms\n2    :\t%.2f ms\t%.2f ms\n3    :\t%.2f ms\t%.2f ms\n' %(1000.0/My_servo.servo_PWM.GetFrequency(), My_servo.ReadPulse(), 1000.0/My_other_servo.servo_PWM.GetFrequency(), My_other_servo.ReadPulse(), 1000.0/My_last_servo.servo_PWM.GetFrequency(), My_last_servo.ReadPulse() ))
+	try:
+		while True:
+			Pan.SetAngle(x_axis.ReadVolts()) #set each servo position to the voltage reading
+			Tilt.SetAngle(y_axis.ReadVolts())
+	except KeyboardInterrupt:
+		RPiSoC.commChannel.cleanup()
 
-            choice = raw_input('Change [P]ulse width or [A]ngle')
-            if choice == 'P' or choice == 'p':
-                pulse_new = float(raw_input('New pulse width: '))
-                My_servo.SetPulse(pulse_new)
-            elif choice == 'A' or choice == 'a':
-                angle_new = float(raw_input('New angle: '))
-                My_servo.SetAngle(angle_new)
-    except KeyboardInterrupt:
-        RPiSoC.commChannel.cleanup()
+NeoPixels
++++++++++
+This is just a quick example of some fun with :class:`digital.NeoPixelShield`
+Simply connect your NeoPixel Shield to the Arduino headers of your RPiSoC, and you're ready to go!
+
+.. code-block:: python
+	:linenos:
+	:emphasize-lines: 5, 6, 7, 8, 12, 19
+
+	from rpisoc import *
+	RPiSoC('SERIAL', DEBUG = True)
+
+	try:
+		pixels = NeoPixelShield()
+		pixels.Start()
+		pixels.Dim(1)
+		colors = [pixels.Green, pixels.Yellow, pixels.Orange, pixels.Red, pixels.Purple, pixels.Blue, pixels.PowderBlue, pixels.White]
+		while True:
+			for column in range(8):
+				for row in range(5):
+					pixels.SetPixel(row, column, colors[column])
+				time.sleep(0.01) #so you can see the animation happening
+				
+			time.sleep(0.25)
+			
+			for column in reversed(range(1,8)):
+				for row in range(5):
+					pixels.SetPixel(row, column, 0)
+				time.sleep(0.01) #so you can see the animation happening
+		
+	except KeyboardInterrupt:
+		RPiSoC.commChannel.cleanup()
 
 
 .. codeauthor:: Brian Bradley <embedit@embeditelectronics.com>
