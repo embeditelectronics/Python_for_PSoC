@@ -11,25 +11,44 @@ from time import sleep
 
 class CapSense(object):
     """
-    **Description:**
-    Provides functionality for use of CapSense buttons on the RPiSoC. Define a CapSense object in the following
-    way::
-        My_capsense_button = CapSense(PIN)
+    :Class:
+
+        Provides functionality for use of CapSense buttons on the RPiSoC
+
+    :Example:
+
+        Define a CapSense object in the following way::
+
+            CapSense(0)
     """
     def __init__(self,PIN, THRESHOLD = 0):
         """
-        **Parameters:**
-
-             - *PIN*: The capsense pin number. PIN n directly corresponds to the pin which you assign to Capsense_BTN_N in your rpisoc firmware
-                    * The following is valid for the default version of the API (v1.2) which contains 6 capsense buttons
-                        + The Cmod pin, which should be a 2.2nF capacitor, should be connected between ground and P4[6]
-                        + PIN is the number relative to Port 4, between *0* and *5*.
-
-        **Optional Parameters:**
-
-            - *THRESHOLD*: The number of counts, between 0 and 255, which will be added to your calibrated baseline value to determine if a button has been touched.
-                    * *0* means that the baseline value itself will be used as a comparison value. Generally, baseline + THRESHOLD is used
-                    * The threshold may need to be high if the button data is noisy. Try printing the results of *readRaw()* to get an understanding of the output behavior as you touch the button, this will help determine a suitable value
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | __init__                                                                                                                                                                                                      |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Initializes a Capsense object for use as a touch sensor                                                                                                                                                        |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |* **list**   *PIN*                                                                                                                                                                                             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *Optional*        |* **list**   *THRESHOLD*                                                                                                                                                                                       |
+        | *Parameters*      |                                                                                                                                                                                                               |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *PIN*             |The capsense pin number. PIN n directly corresponds to the pin which you assign to Capsense_BTN_N in your rpisoc firmware                                                                                      |
+        |                   |   * The default version (V1.2) comes with 8 CapSense pins, and so 0-7 are valid arguments                                                                                                                     |
+        |                   |   * The default version has CapSense pins 0-5 on Port 4, pins 0-5. *PIN* 6 is on P0[5] and *PIN* 7 is on P0[6]                                                                                                |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *THRESHOLD*       |The number of counts, between 0 and 255, which will be added to your calibrated baseline value to determine if a button has been touched                                                                       |
+        |                   |   * By default, this argument is 0, which means there is no *THRESHOLD* being used                                                                                                                            |
+        |                   |   * 0 means that the baseline value itself will be used as a comparison value. Generally, baseline + THRESHOLD is used                                                                                        |
+        |                   |   * The threshold may need to be high if the button data is noisy. Try printing the results of :meth:`~readRaw` to get an understanding of the output behavior as you touch the button, this will help        |
+        |                   |     determine a suitable value                                                                                                                                                                                |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Notes**         |* *THRESHOLD* is only needed if using :meth:`~isTouched` to read sensors, which is the suggested method. :meth:`~Read` is only valid when SmartSense is used in your PSoC Creator firmware                     |
+        |                   |   - The default version uses no tuning method, because the calibration is manually handled seperately                                                                                                         |
+        |                   |* If SmartSense is used as a tuning method in your PSoC Creator software, for instance if you want to implement sliding capability, you will need to connect a 2.2 nF capacitor to P4[6]                       |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
         """
         if RPiSoC.CAPSENSE_SENSOR_NUM is 0:
@@ -40,11 +59,24 @@ class CapSense(object):
             self.number = PIN
             self.address = RPiSoC.CAPSENSE_REGISTER
         self.threshold = THRESHOLD
+
+        self.__running = False
+
     def Start(self):
         """
-        **Description:**
-            Initializes registers and enables active mode power template bits of the subcomponents used within CapSense. It also attempts to establish a CapSense baseline, which will be used as a comparison value in the *isTouched()* method.
-            The button should not be touched when this method is called, otherwise the baseline value will be calibrated with a touched value. It will only set the baseline if it sees two identical readings in a row.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | Start                                                                                                                                                                                                         |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |* Initializes registers and enables active mode power template bits of the subcomponents used within CapSense                                                                                                  |
+        |                   |* Establishes a CapSense baseline, which is used as a comparison value in :meth:`~isTouched`                                                                                                                   |
+        |                   |* The button should not be touched when this method is called, otherwise the baseline value will be calibrated with a touched value. It will only set the baseline if it sees two identical readings in a row  |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
         """
         cmd = 0x00
         RPiSoC.commChannel.sendData((self.address,cmd))
@@ -52,38 +84,96 @@ class CapSense(object):
             self.baseline = self.readRaw()
             if self.baseline == self.readRaw():
                 break
+        self.__running = True
 
+    def isRunning(self):
+        """
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | isRunning                                                                                                                                                                                                     |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Checks to see if the CapSense component and all subcomponents are currently operational                                                                                                                        |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |**bool** *__running*                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *__running*       |A private boolean variable which evaluates to *True* if CapSense is active, or *False* if it is not                                                                                                            |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+        """
+        return self.__running
 
     def Stop(self):
         """
-        **Description:**
-            Disables component interrupts, and calls CapSense_ClearSensors() to reset all sensors to an inactive state.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | Stop                                                                                                                                                                                                          |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Disables component interrupts, and calls CapSense_ClearSensors() to reset all sensors to an inactive state                                                                                                     |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Side Effects**  |This will affect *all* CapSense sensors, use it only if this is your intention                                                                                                                                 |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
         """
         cmd = 0x01
         RPiSoC.commChannel.sendData((self.address,cmd))
+        self.__running = False
 
     def Sleep(self):
         """
-        **Description:**
-            Prepares the component for the device entering a low-power mode. Disables Active mode power template bits of the sub components used within CapSense, saves nonretention registers, and resets all sensors to an inactive state.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | Sleep                                                                                                                                                                                                         |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Prepares the component for the device entering a low-power mode. Disables Active mode power template bits of the sub components used within CapSense, saves nonretention registers, and resets all sensors to  |
+        |                   |an inactive state                                                                                                                                                                                              |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Side Effects**  |This will affect *all* CapSense sensors, use it only if this is your intention                                                                                                                                 |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
         """
         cmd = 0x02
         RPiSoC.commChannel.sendData((self.address,cmd))
 
     def Wakeup(self):
         """
-        **Description:**
-            Restores CapSense configuration and nonretention register values after the device wake from a low power mode sleep mode.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | Wakeup                                                                                                                                                                                                        |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Restores CapSense configuration and nonretention register values after the device wake from a low power mode sleep mode                                                                                        |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Side Effects**  |This will affect *all* CapSense sensors, use it only if this is your intention                                                                                                                                 |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
         """
         cmd = 0x03
         RPiSoC.commChannel.sendData((self.address,cmd))
 
     def Read(self):
         """
-        **Description:**
-            Gives the state of the capsense button, as determined by the PSoC firmware. This will need to be calibrated in the CapSense component for optimal results. Use isTouched for more general application.
-        **Returns:**
-            state: bool which represents the current state of the capsense button.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | Read                                                                                                                                                                                                          |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |* Determines the state of the capsense button, as determined by PSoC SmartSensing. This will need to be calibrated in PSoC Creator for optimal results                                                         |
+        |                   |* Use :meth:`isTouched` for more general application                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        |**Parameters**     |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |**bool** *state*                                                                                                                                                                                               |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        |*state*            |A True or False value when the output is determined to be touched or not touched, respectively                                                                                                                 |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
         """
         cmd = 0x18
         val = self.number
@@ -91,10 +181,20 @@ class CapSense(object):
 
     def readRaw(self):
         """
-        **Description:**
-            Gives an 8-bit raw value from the capsense raw data array. This is used to generate a baseline in *Start()*
-        **Returns:**
-            val: int which represents the raw value on the capsense button
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | readRaw                                                                                                                                                                                                       |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |* Gives an 8-bit raw value from the capsense raw data array, which represents capacitance detection and is thus correlated with touch data                                                                     |
+        |                   |* This is used to generate a baseline in :meth:`~Start`                                                                                                                                                        |
+        |                   |* Use this to calibrate touch buttons by deciding an approriate *THRESHOLD* as described in :meth:`~__init__`                                                                                                  |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        |**Parameters**     |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |**int** *val*                                                                                                                                                                                                  |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        |*state*            |The raw value on the capsense button, which can be used to determine a touch event                                                                                                                             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
         """
         cmd = 0x0F
         val = self.number
@@ -102,8 +202,18 @@ class CapSense(object):
 
     def isTouched(self):
         """
-        **Description:**
-            Uses the calibrated baseline and provided threshold value to determine if the requested CapSense button is being touched
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | isTouched                                                                                                                                                                                                     |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Uses the calibrated baseline and provided threshold value to determine if the requested CapSense button is being touched. This is the suggested method for touch detection.                                    |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |**bool** *state*                                                                                                                                                                                               |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *state*           |A True or False value when the output is determined to be touched or not touched, respectively                                                                                                                 |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
         """
         if self.readRaw()>(self.baseline + self.threshold):
             return True
@@ -112,19 +222,31 @@ class CapSense(object):
 
 class analogPin(object):
     """
-    **Description:**
-        Provides functionality for use of the analog pins exposed on the RPiSoC. Define an analogPin object in the following
-        way::
+    :Class:
+
+        Provides functionality for use of the general purpose analog input pins exposed on the RPiSoC
+
+    :Example:
+
+        Define an analogPin object in the following way::
+
             My_analog_pin = analogPin(PIN)
     """
     def __init__(self, PIN):
         """
-        **Parameters:**
-
-             - *PIN*: The analog pin number - This directly corresponds to the pins connected to your sequenced SAR ADC, where 0 is the top pin.
-                    * The following is valid for the default version of the API (v1.2) which containts 8 analog pins.
-                        + Valid arguments are between *0* and *7*
-                        + PINs *0-7* are relative to Port 3. So PIN = 0 an analog pin on Port 3 Pin 0 (P3[0]), and PIN = 7 is on Port 3 Pin 7 (P3[7])
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | __init__                                                                                                                                                                                                      |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Constructs and initializes an analogPin object for general purpose analog input                                                                                                                                |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |**int**   *PIN*                                                                                                                                                                                                |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *PIN*             |The analog pin number - This directly corresponds to the pins connected to your sequenced SAR ADC, where 0 is the top pin                                                                                      |
+        |                   |   * The default version (V1.2) comes with 8 CapSense pins, and so 0-7 are valid arguments                                                                                                                     |
+        |                   |   * For the default version, *PIN* *0-7* are relative to Port 3. So *PIN* = 0 an analog pin on Port 3 Pin 0 (P3[0]), and *PIN* = 7 is on Port 3 Pin 7 (P3[7])                                                 |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
         """
 
         if int(PIN) not in range(RPiSoC.ANALOG_IN_NUM):
@@ -133,57 +255,101 @@ class analogPin(object):
             self.pin = PIN
 
         self.address = RPiSoC.ANALOG_IN_REGISTER
+        self.__resolution = 12 #this needs to be updated so that it is read in during init...
+        self.__max_counts = pow(2,self.__resolution)
+        self.__offset = 0
+
     def Read(self):
         """
-        **Description:**
-            Reads the specified analog pin
-        **Returns:**
-            Value in *counts* which represents the digital value after an A/D conversion on the specified pin. The voltage the is represented by the count value will depend on the resolution set by the SetResolution() method
+
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | Read                                                                                                                                                                                                          |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Reads the calculated digital value after analog to digital conversion                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        |**Parameters**     |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |**int** *counts*                                                                                                                                                                                               |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *counts*          |* Digital value after an A/D conversion                                                                                                                                                                        |
+        |                   |* The voltage which is represented by this value will depend on the resolution set by :meth:`~SetResolution`                                                                                                   |
+        |                   |* Default resolution is 12, so :math:`V = 5.0*\\frac{counts}{2^{12} - 1}`                                                                                                                                       |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
         """
         cmd = 0x00
         counts = int(RPiSoC.commChannel.receiveData((self.address, cmd, self.pin)))
         return counts
-    def ReadVolts(self, PRECISION = 2):
+    def ReadVolts(self, PRECISION = 2, COUNTS = None):
         """
-        **Description:**
-            Reads the specified analog pin and converts that digital reading to a voltage in Volts.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | ReadVolts                                                                                                                                                                                                     |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Reads the specified analog pin and converts that digital reading to a voltage in Volts, or converts a given count value to Volts                                                                               |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *Optional*        |* **int**    *PRECISION*                                                                                                                                                                                       |
+        | *Parameters*      |* **int**    *COUNTS*                                                                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        |   *PRECISION*     |The number of decimal points to be included in the returned result                                                                                                                                             |
+        |                   |   * Defaults to 2 if no parameter is given                                                                                                                                                                    |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        |   *COUNTS*        |The count value which should be converted to an analog voltage                                                                                                                                                 |
+        |                   |   * Only provide this parameter if you only want to convert the given count value, but not get a new one. No data request will be sent to the RPiSoC if this argument is provided                             |
+        |                   |   * If no parameter is provided, this method will get a digital value from the RPiSoC, and then convert it                                                                                                    |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |**float** volts                                                                                                                                                                                                |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *volts*           |The converted digital value into a representative analog voltage.                                                                                                                                              |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-        **Optional Parameters:**
-            *PRECISION:* The number of decimal points the voltage will be rounded to.
-                    - The default value is 2, but precision up to 5 points is available.
-        **Returns:**
-            Value in *Volts* which is being applied to the specified analog pin. The resolution of the ADC does not affect this method; the conversion process accounts for the ADC resolution.
         """
         cmd = 0x01
-        return round((float(((RPiSoC.commChannel.receiveData((self.address,cmd, self.pin)))/1000000.0))), PRECISION)
+        if COUNTS is None:
+            return round((float(((RPiSoC.commChannel.receiveData((self.address,cmd, self.pin)))/1000000.0))), PRECISION)
+        else:
+            return round(float(float(COUNTS - self.__offset)/self.__max_counts)*5.0, PRECISION)
 
     def SetOffset(self,counts):
         """
-        **Description:**
-            Sets an offset on the ADC which is used by the CountsTo_Volts function. It will subtract the given offset before making the conversion.
-
-        **Parameters:**
-            - *offset*: ADC Value in *counts*, which will be used by the *CountsTo_Volts()* function by subtracting the given offset before making the conversion.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | SetOffset                                                                                                                                                                                                     |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Sets an offset on the ADC which is used for the voltage conversion. It will subtract the given offset before making the conversion                                                                             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |**int**   *counts*                                                                                                                                                                                             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *counts*          |Digital value which will be subtracted from any digital result before its conversion to a voltage takes place                                                                                                  |
+        |                   |   * For example, if a digital value of 255 is to be converted to a voltage, and the offset has been provided by this method at any point as 10, the result will be the conversion of 245 instead of 255       |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
         """
         cmd = 0x02
+        self.__offset = counts
         RPiSoC.commChannel.sendData((self.address, cmd, counts))
 
     def SetResolution(self, resolution):
         """
-
-        **Description:**
-            - This function sets the resolution of ALL analogPin objects. The resolution is defaulted to 12.
-
-        **Parameters:**
-            - *resolution:* An integer value, in bits, that represents the new resolution of the SAR ADC.
-                * Valid entries are *8, 10, or 12.*
-
-        **Side Effects:**
-            - The ADC resolution cannot be changed during a conversion cycle. The recommended bestpractice is to stop conversions with *Stop()* before changint the resolution, and then restarting with *Start().* If you call *SetResolution()* during a conversion, the resolution will not change until the current conversion is complete. Data will not be available in the new resolution for another 6 + *resolution* clock cycles. You may need add a delay of this number of clock cycles after *SetResolution()* is called before data is valid again.
+        +-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | SetResolution                                                                                                                                                                                                                 |
+        +===================+===============================================================================================================================================================================================================================+
+        | **Description**   |* This function sets the resolution of ALL analogPin objects.                                                                                                                                                                  |
+        |                   |* The resolution is defaulted to 12, so this method is only needed if this needs to be changed                                                                                                                                 |
+        +-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |**int**   *resolution*                                                                                                                                                                                                         |
+        +-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *resolution*      | An integer value, in bits, that represents the new resolution of the SAR ADC                                                                                                                                                  |
+        |                   |   * Valid arguments are *8, 10, or 12* only                                                                                                                                                                                   |
+        +-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                                      |
+        +-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
         """
         if resolution not in [8, 10, 12]:
             raise ValueError('Invalid resolution specified: valid entries are 8, 10, or 12')
+        self.__resolution = resolution
+        self.__max_counts = pow(2,self.__resolution)
 
         cmd = 0x03
         RPiSoC.commChannel.sendData((self.address, cmd, resolution))
@@ -193,10 +359,15 @@ class analogPin(object):
 
 class ADC(object):
     """
-    **Description:**
+    :Class:
+
         The ADC class provides functionality for using the Delta Sigma ADC and two
-        Succesive Approximation ADC's on the RPiSoC. Define ADC objects in the following
-        way::
+        Succesive Approximation ADC's on the RPiSoC.
+
+    :Example:
+
+        Define ADC objects in the following way::
+
                 My_DELSIG    = ADC('DELSIG')
                 My_SAR       = ADC('SAR0')
                 My_other_SAR = ADC('SAR1')
@@ -204,14 +375,21 @@ class ADC(object):
 
     def __init__(self, c_type):
         """
-        **Paramaters:**
-            *c_type:* The type of ADC to be used. Choose:
-                - *DELSIG*
-                - *SAR0*
-                - *SAR1*
-
-        **Note:**
-            None of the ADCs are included by default in V1.2. You are able to add them by simply placing them in your schematic on your RPiSoC program.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | __init__                                                                                                                                                                                                      |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Constructs and initializes an ADC object for use of a SAR or DELSIG ADC                                                                                                                                        |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |**string**   *c_type*                                                                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *c_type*          |The type of ADC to be used. Valid arguments are:                                                                                                                                                               |
+        |                   |   * 'DELSIG'- This is for the Delta sigma ADC, which has resolution up to 20 bits, but a slower conversion rate                                                                                               |
+        |                   |   * 'SAR0' or 'SAR1' - These are for the two Successive Approximation ADCs, which has resolution of 8, 10, or 12 bits, but with a very fast conversion rate                                                   |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Note**          |None of the ADCs are included by default in V1.2, so this class will be unavailable. You are able to add them by simply placing them in your schematic on your RPiSoC program and reprogramming the board      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
         """
 
@@ -238,33 +416,75 @@ class ADC(object):
                 print('WARNING: Attempting to initialize object at register %d which is already in use.' %self.address)
         RPiSoC.REGISTERS_IN_USE.append(self.address)
 
+        self.__running = False
+
     def Start(self):
         """
-        **Description:**
-            Sets the initVar variable on the RPiSoC, calls the ADC_Init() function, and then calls the ADC_Enable() function. This function configures and powers up the ADC, but does not start conversions.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | Start                                                                                                                                                                                                         |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Sets the initVar variable on the RPiSoC, calls the ADC_Init() function, and then calls the ADC_Enable() function. This function configures and powers up the ADC, but does not start conversions               |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
         """
         cmd = 0x00
         data = (self.address, cmd)
         RPiSoC.commChannel.sendData(data)
+        self.__running =True
 
     def Stop(self):
         """
-        **Description:**
-            Disables and powers down the ADC
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | Stop                                                                                                                                                                                                          |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Disables and powers down the ADC                                                                                                                                                                               |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
         """
         cmd = 0x01
         data = (self.address, cmd)
         RPiSoC.commChannel.sendData(data)
+        self.__runnning = False
+
+    def isRunning(self):
+        """
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | isRunning                                                                                                                                                                                                     |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Checks to see if the ADC component and all subcomponents are currently operational                                                                                                                             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |**bool** *__running*                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *__running*       |A private boolean variable which evaluates to *True* if the ADC is active, or *False* if it is not                                                                                                            `|
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        """
+        return self.__running
 
     def SetBufferGain(self, gain):
         """
-        **Description:**
-            Sets the input buffer gain.
-
-        **Paramaters:**
-            - *gain:* valid entries are *1, 2, 4,* or *8.* The output will be multiplied by this number
-
-        **Side effects:** Increasing the gain will lower the buffer bandwidth
+        +-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | SetBufferGain                                                                                                                                                                                                                 |
+        +===================+===============================================================================================================================================================================================================================+
+        | **Description**   |Sets the input buffer gain                                                                                                                                                                                                     |
+        +-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |**int**   *gain*                                                                                                                                                                                                               |
+        +-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *gain*            |The number by which the ADC output will be multiplied after conversion                                                                                                                                                         |
+        |                   |   * Valid arguments are *1, 2, 4,* or *8*                                                                                                                                                                                     |
+        +-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                                      |
+        +-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Side Effects**  |Increasing the gain will lower the buffer bandwidth                                                                                                                                                                            |
+        +-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
         """
 
         if self.type != 'DELSIG':
@@ -281,16 +501,23 @@ class ADC(object):
     def SetResolution(self, resolution):
         """
 
-        **Description:**
-            - This function sets the resolution of the SAR ADC's
-            - *SetResolution()* is **not** valid for the DELSIG ADC, which is defaulted to 16 bits resolution.
+        +-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | SetResolution                                                                                                                                                                                                                 |
+        +===================+===============================================================================================================================================================================================================================+
+        | **Description**   |* This function sets the resolution of the SAR ADCs only. This method is unavailable for the DELSIG ADC                                                                                                                        |
+        |                   |* The resolution is defaulted to 12, so this method is only needed if this needs to be changed                                                                                                                                 |
+        +-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |**int**   *resolution*                                                                                                                                                                                                         |
+        +-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *resolution*      | An integer value, in bits, that represents the new resolution of the SAR ADC                                                                                                                                                  |
+        |                   |   * Valid arguments are *8, 10, or 12* only                                                                                                                                                                                   |
+        +-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                                      |
+        +-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Side Effects**  |* The ADC resolution cannot be changed during a conversion cycle. The recommended bestpractice is to stop conversions with :meth:`~Stop` before changint the resolution, and then restarting with :meth:`~Start`               |
+        |                   |* If you call :meth:`~SetResolution` during a conversion, the resolution will not change until the current conversion is complete, and data will not be available in the new resolution for another 6+resolution clock cycles  |
+        +-------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-        **Parameters:**
-            - *resolution:* An integer value, in bits, that represents the new resolution of the SAR ADC.
-                * Valid entries are *8, 10, or 12.*
-
-        **Side Effects:**
-            - The ADC resolution cannot be changed during a conversion cycle. The recommended bestpractice is to stop conversions with *StopConvert(),* change the resolution, then restart the conversions with *StartConvert().* If you decide not to stop conversions before calling this API, use *IsEndConversion()* to wait until conversion is complete before changing the resolution. If you call *SetResolution()* during a conversion, the resolution will not change until the current conversion is complete. Data will not be available in the new resolution for another 6 + *resolution* clock cycles. You may need add a delay of this number of clock cycles after *SetResolution()* is called before data is valid again.
         """
 
         if self.type == 'DELSIG':
@@ -304,8 +531,16 @@ class ADC(object):
 
     def StartConvert(self):
         """
-        **Description:**
-            Forces the ADC to initialize a conversion. This is handled internally for the Delsig ADC, using the *Read()* function, but it is kept seperate for the SAR. It can be done seperately for the Delsig as well, if desired.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | StartConvert                                                                                                                                                                                                  |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Forces the ADC to initialize a conversion. This is handled internally for the Delsig ADC, using the :meth:`~Read` function, but it is kept seperate for the SAR. However, It can also be used for the Delsig   |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
         """
         if self.type == "SAR0" or self.type == "SAR1":
             cmd = 0x04
@@ -316,8 +551,16 @@ class ADC(object):
 
     def StopConvert(self):
         """
-        **Description:**
-            Forces the ADC to end conversion. This is handled internally for the Delsig ADC, using the *Read()* function, but it is kept seperate for the SAR. It can be done seperately for the DELSIG as well, if desired.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | StopConvert                                                                                                                                                                                                   |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Forces the ADC to end conversion. This is handled internally for the Delsig ADC, using the :meth:`~Read` function, but it is kept seperate for the SAR. However, It can also be used for the Delsig            |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
         """
         if self.type == "SAR0" or self.type == "SAR1":
             cmd = 0x05
@@ -328,11 +571,17 @@ class ADC(object):
 
     def GetResult(self):
         """
-        **Description:**
-            This function will get the result of a conversion which has been completed. *StartConvert()* must be called prior to this function, and *StopConvert()* must be called after.
-
-        **Returns:**
-            Value in *counts* of the most recent A/D conversion.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | GetResult                                                                                                                                                                                                     |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Gets the result of a conversion which has been completed. :meth:`~StartConvert` must be called prior to this function, and :meth:`~StopConvert` must be called after                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        |**Parameters**     |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |**int** *counts*                                                                                                                                                                                               |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *counts*          |Digital value which represents the result of the most recent AD conversion                                                                                                                                     |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
         """
 
         cmd = 0x0A
@@ -348,11 +597,18 @@ class ADC(object):
 
     def Read(self):
         """
-        **Description:**
-            This function simplifies the reading process by starting conversion, waiting for conversion to complete, stopping conversion, and returing the result, when called. It is only valid for the *DELSIG*
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | Read                                                                                                                                                                                                          |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Simplifies the reading process by starting conversion, waiting for conversion to complete, stopping conversion, and returing the result, when called. It is only valid for the *DELSIG*                        |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        |**Parameters**     |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |**int** *counts*                                                                                                                                                                                               |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *counts*          |Digital value which represents the result of the most recent AD conversion                                                                                                                                     |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-        **Returns:**
-            Value in *counts* of the most recent A/D conversion.
         """
         if self.type != 'DELSIG':
             raise ValueError('Read function is only valid for the DELSIG ADC')
@@ -370,12 +626,19 @@ class ADC(object):
 
     def IsEndConversion(self):
         """
-        **Description:**
-            This function checks to see if the ADC is done converting.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | IsEndConversion                                                                                                                                                                                               |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Checks to see if the ADC is done converting                                                                                                                                                                    |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        |**Parameters**     |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |**int** *counts*                                                                                                                                                                                               |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *counts*          |* Digital value which represents the result of the most recent AD conversion, if it is complete                                                                                                                |
+        |                   |* *0*  if conversions are not complete                                                                                                                                                                         |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-        **Returns:**
-            - The value of the most recent conversion, if it is complete.
-            - *0* if the conversion is not complete
         """
         if self.type == 'DELSIG':
             cmd = 0x07
@@ -386,11 +649,19 @@ class ADC(object):
 
     def SetOffset(self, offset):
         """
-        **Description:**
-            Sets an offset on the ADC which is used by the CountsTo_Volts function. It will subtract the given offset before making the conversion.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | SetOffset                                                                                                                                                                                                     |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Sets an offset on the ADC which is used for the voltage conversion. It will subtract the given offset before making the conversion                                                                             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |**int**   *counts*                                                                                                                                                                                             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *counts*          |Digital value which will be subtracted from any digital result before its conversion to a voltage takes place                                                                                                  |
+        |                   |   * For example, if a digital value of 255 is to be converted to a voltage, and the offset has been provided by this method at any point as 10, the result will be the conversion of 245 instead of 255       |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-        **Parameters:**
-            - *offset*: ADC Value in *counts*, which will be used by the *CountsTo_Volts()* function by subtracting the given offset before making the conversion.
 
         """
         if self.type == 'DELSIG':
@@ -402,14 +673,20 @@ class ADC(object):
 
     def SetGain(self, gain):
         """
-        **Description:**
-            Sets the ADC *gain* in counts per volt for the *CountsTo_Volts()* function.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | SetGain                                                                                                                                                                                                       |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Sets the ADC *gain* in counts per volt, which will be applied before voltage conversion                                                                                                                        |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |**int**   *gain*                                                                                                                                                                                               |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *gain*            |Output gain in counts per volt to be applied before conversion                                                                                                                                                 |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Warning**       |*gain* is set by default by the reference and input range settings. It should only be used to further calibrate the ADC with a known input or if an external reference is used                                 |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-        **Parameters:**
-           - *gain:* Output gain in counts per volt to be applied before conversion.
-
-        **Warning:**
-            *gain* is set by default by the reference and input range settings. It should only be used to further calibrate the ADC with a known input or if an external reference is used.
         """
 
         if self.type == 'DELSIG':
@@ -422,11 +699,20 @@ class ADC(object):
 
     def CountsTo_Volts(self, counts):
         """
-        **Description:**
-            Converts the ADC output to a Voltage.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | CountsTo_Volts                                                                                                                                                                                                |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Converts the ADC output to a Voltage, taking into account any set gains or offsets                                                                                                                             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |**int**   *counts*                                                                                                                                                                                             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *counts*          |Digital value to be converted to it's analog equivalent                                                                                                                                                        |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |**float** volts                                                                                                                                                                                                |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *volts*           |The resulting voltage after conversion of *counts*                                                                                                                                                             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-        **Returns:**
-            A float which represents the converted count number in Volts.
         """
         if self.type == 'DELSIG':
             cmd = 0x10
@@ -439,8 +725,15 @@ class ADC(object):
 
     def Sleep(self):
         """
-        **Description:**
-            The ADC Sleep function checks to see if the component is enabled, then it stops the ADC and saves the current configuration for later use.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | Sleep                                                                                                                                                                                                         |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Checks to see if the component is enabled, then it stops the ADC and saves the current configuration for later use                                                                                             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
         """
         if self.type == 'DELSIG':
             cmd = 0x14
@@ -451,8 +744,15 @@ class ADC(object):
 
     def Wakeup(self):
         """
-        **Description:**
-            The ADC Wakeup function restores the most recently saved ADC configuration so that it can be restarted.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | Wakeup                                                                                                                                                                                                        |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Restores and enables the most recently saved configuration of the ADC                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
         """
         if self.type == 'DELSIG':
             cmd = 0x15
@@ -463,22 +763,33 @@ class ADC(object):
 
 class IDAC(object):
     """
-    **Description:**
-        The IDAC class provides functionality for using the IDAC's available on the RPiSoC. Define IDAC objects in the following
-        way::
+    :Class:
+
+        The IDAC class provides functionality for using the IDAC's available on the RPiSoC.
+
+    :Example:
+
+        Define IDAC objects in the following way::
+
             My_IDAC       = IDAC(0)
             My_other_IDAC = IDAC(1)
 
     """
     def __init__(self, channel):
         """
-
-        **Parameter:**
-
-            - *channel* Determines which IDAC is the be utilized
-                * *0* for the first IDAC; output is on P0[7] by default
-                * *1* for the second IDAC; not available by default
-
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | __init__                                                                                                                                          |
+        +===================+===================================================================================================================================================+
+        | **Description**   |Constructs and initializes an IDAC object                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |* **int**      *channel*                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *channel*         |Determines which IDAC is to be utilized                                                                                                            |
+        |                   |   * *0* for the first IDAC; output is on P0[7] by default                                                                                         |
+        |                   |   * *1* for the second IDAC; not available by default                                                                                             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 
         """
         self.channel = channel
@@ -500,33 +811,74 @@ class IDAC(object):
             if self.address in RPiSoC.REGISTERS_IN_USE:
                 print('WARNING: Attempting to initialize object at register %d which is already in use.' %self.address)
         RPiSoC.REGISTERS_IN_USE.append(self.address)
-
+        self.__running = False
 
     def Start(self):
         """
-        **Description:**
-            Sets the initVar variable on the RPiSoC, calls the IDAC8_Init() function and then calls the IDAC8_Enable() function. Enables and powers up the IDAC
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | Start                                                                                                                                                                                                         |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Sets the initVar variable on the RPiSoC, calls the IDAC8_Init() function and then calls the IDAC8_Enable() function. Enables and powers up the IDAC                                                            |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
         """
         cmd = 0x00
         RPiSoC.commChannel.sendData((self.address, cmd))
+        self.__running = True
 
     def Stop(self):
         """
-        **Description:**
-            Powers down IDAC to lowest power state and disables output.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | Stop                                                                                                                                                                                                          |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Powers down IDAC to lowest power state and disables output                                                                                                                                                     |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
         """
         cmd = 0x01
         RPiSoC.commChannel.sendData((self.address, cmd))
+        self.__running = False
+
+    def isRunning(self):
+        """
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | isRunning                                                                                                                                                                                                     |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Checks to see if the DAC component and all subcomponents are currently operational                                                                                                                             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |**bool** *__running*                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *__running*       |A private boolean variable which evaluates to *True* if the DAC is active, or *False* if it is not                                                                                                            `|
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        """
+        return self.__running
 
     def SetSpeed(self,speed):
         """
-        **Description:**
-            Sets the DAC speed, and consequently the power level.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | SetSpeed                                                                                                                                          |
+        +===================+===================================================================================================================================================+
+        | **Description**   |Sets the DAC speed, and consequently the power level                                                                                               |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |**string**      *speed*                                                                                                                            |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *speed*           |*HIGH* or *LOW* for high speed or low speed, respectively                                                                                          |
+        |                   |   * *HIGH* speed puts the DAC in high power mode                                                                                                  |
+        |                   |   * *LOW* speed puts the DAC in low power mode                                                                                                    |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 
-        **Parameters:**
-            - speed: *HIGH* or *LOW*
-                * *HIGH* speed puts the DAC in high power mode
-                * *LOW* speed puts the DAC in low power mode.
         """
         cmd = 0x02
         if speed =='LOW':
@@ -540,11 +892,18 @@ class IDAC(object):
 
     def SetPolarity(self,polarity):
         """
-        **Description:**
-            Sets the DAC output polarity.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | SetPolarity                                                                                                                                       |
+        +===================+===================================================================================================================================================+
+        | **Description**   |Sets the DAC output polarity                                                                                                                       |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |**string**      *polarity*                                                                                                                         |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *polarity*        |*SOURCE* or *SINK*                                                                                                                                 |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 
-        **Parameters:**
-            *polarity:* *SOURCE* or *SINK*
         """
 
         cmd = 0x03
@@ -560,14 +919,20 @@ class IDAC(object):
 
     def SetRange(self, mode):
         """
-        **Description:**
-            Sets the Full scale range for the IDAC
-
-        **Parameter:**
-            - *mode:* *0, 1, or 2*
-                * *0*: Sets full scale range to **31.875 uA**
-                * *1*: Sets full scale range to **255 uA**
-                * *2*: Sets full scale range to **2.04 mA**
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | SetRange                                                                                                                                          |
+        +===================+===================================================================================================================================================+
+        | **Description**   |Sets the full scale range for the IDAC                                                                                                             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |**int**      *mode*                                                                                                                                |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *mode*            |Choices are *0, 1,* or *2*                                                                                                                         |
+        |                   |   * *0*: Sets full scale range to **31.875 uA**                                                                                                   |
+        |                   |   * *1*: Sets full scale range to **255 uA**                                                                                                      |
+        |                   |   * *2*: Sets full scale range to **2.04 mA**                                                                                                     |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
         """
         cmd = 0x04
         if mode not in range(3):
@@ -584,13 +949,20 @@ class IDAC(object):
 
     def SetValue(self, value):
         """
-        **Description:**
-            Sets value to output on IDAC. Valid values are between 0 and 255.
-
-        **Parameters:**
-            - *value*: number between 0 and 255.
-                 * A value of 0 is the lowest and a value of 255 is the full-scale value.
-                     + The full-scale value depends on the range, which is selected with SetRange()
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | SetValue                                                                                                                                          |
+        +===================+===================================================================================================================================================+
+        | **Description**   |Sets a digital value to be converted into an analog current and output by the IDAC                                                                 |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |**int**      *value*                                                                                                                               |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *value*           |Digital number between *0* and *255*                                                                                                               |
+        |                   |   * A value of 0 will correspond to an output of the lowest possible current output                                                               |
+        |                   |   * A value of 255 will output the full scale value, as selected with :meth:`~SetRange`                                                           |
+        |                   |   * All values between *0* and *255* are linearized according to the full scale range                                                             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
         """
         cmd = 0x05
         if value not in range(256):
@@ -600,12 +972,17 @@ class IDAC(object):
 
     def SetCurrent(self, amps):
         """
-        **Description:**
-        Sets a current in milliamps to be output on the specified IDAC. Valid values depend on the chosen full scale range
-
-        **Parameters:**
-        - *amps*: number between 0 and the full scale range in milliamperes.
-        * The full scale value depends on the range, which is chosen with the SetRange() method.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | SetCurrent                                                                                                                                        |
+        +===================+===================================================================================================================================================+
+        | **Description**   |Sets a current in milliamps to be output on the specified IDAC                                                                                     |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |**float**      *amps*                                                                                                                              |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *amps*            |A number between 0 and the full scale range, as selected by :meth:`~SetRange`. This will be converted to an analog current and output.             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
         """
 
         if amps <= self.full_range and amps>=0:
@@ -618,36 +995,64 @@ class IDAC(object):
 
     def Sleep(self):
         """
-        **Description:**
-            The IDAC Sleep function checks to see if the component is enabled, then it stops the IDAC and saves the current configuration for later use.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | Sleep                                                                                                                                                                                                         |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Checks to see if the component is enabled, then it stops the DAC and saves the current configuration for later use                                                                                             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
         """
         cmd = 0x06
         RPiSoC.commChannel.sendData((self.address, cmd))
 
     def Wakeup(self):
         """
-        **Description:**
-            Restores the most recently saved IDAC configuration so that it can be restarted.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | Wakeup                                                                                                                                                                                                        |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Restores and enables the most recently saved configuration of the DAC                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
         """
         cmd = 0x07
         RPiSoC.commChannel.sendData((self.address, cmd))
 
 class VDAC(object):
     """
-    **Description:**
-        The VDAC class provides functionality for using the VDAC's available on the RPiSoC. Define VDAC objects in the following
-        way::
+    :Class:
+
+        The VDAC class provides functionality for using the VDAC's available on the RPiSoC.
+
+    :Example:
+
+        Define VDAC objects in the following way::
+
             My_VDAC       = VDAC(0)
             My_other_VDAC = VDAC(1)
     """
     def __init__(self, channel):
         """
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | __init__                                                                                                                                          |
+        +===================+===================================================================================================================================================+
+        | **Description**   |Constructs and initializes a VDAC object                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |* **int**      *channel*                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *channel*         |Determines which IDAC is to be utilized                                                                                                            |
+        |                   |   * *0* for the first VDAC; output is on P0[1] by default                                                                                         |
+        |                   |   * *1* for the second VDAC; not available by default                                                                                             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 
-        **Parameters:**
-
-            - *channel:* Determines which VDAC is to be utilized
-                * *0* for the first VDAC; output is on P0[1] by default
-                * *1* for the second VDAC; not available by default
         """
 
         self.channel = channel
@@ -669,32 +1074,74 @@ class VDAC(object):
             if self.address in RPiSoC.REGISTERS_IN_USE:
                 print('WARNING: Attempting to initialize object at register %d which is already in use.' %self.address)
         RPiSoC.REGISTERS_IN_USE.append(self.address)
+        self.__running = False
 
     def Start(self):
         """
-        **Description:**
-            Sets the initVar variable on the RPiSoC, calls the VDAC8_Init() function and then calls the VDAC8_Enable() function. Enables and powers up the IDAC
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | Start                                                                                                                                                                                                         |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   | Enables and powers up the VDAC                                                                                                                                                                                |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
         """
         cmd = 0x00
         RPiSoC.commChannel.sendData((self.address, cmd))
+        self.__running = True
 
     def Stop(self):
         """
-        **Description:**
-            Powers down the VDAC to lowest power state and disables output.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | Stop                                                                                                                                                                                                          |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Powers down VDAC to lowest power state and disables output                                                                                                                                                     |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
         """
         cmd = 0x01
         RPiSoC.commChannel.sendData((self.address, cmd))
+        self.__running = False
+
+    def isRunning(self):
+        """
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | isRunning                                                                                                                                                                                                     |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Checks to see if the DAC component and all subcomponents are currently operational                                                                                                                             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |**bool** *__running*                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *__running*       |A private boolean variable which evaluates to *True* if the DAC is active, or *False* if it is not                                                                                                            `|
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        """
+        return self.__running
 
     def SetSpeed(self,speed):
         """
-        **Description:**
-            Sets the DAC speed, and consequently the power level.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | SetSpeed                                                                                                                                          |
+        +===================+===================================================================================================================================================+
+        | **Description**   |Sets the DAC speed, and consequently the power level                                                                                               |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |**string**      *speed*                                                                                                                            |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *speed*           |*HIGH* or *LOW* for high speed or low speed, respectively                                                                                          |
+        |                   |   * *HIGH* speed puts the DAC in high power mode                                                                                                  |
+        |                   |   * *LOW* speed puts the DAC in low power mode                                                                                                    |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 
-        **Parameters:**
-            *speed:* *HIGH* or *LOW*
-                - *HIGH* speed puts the DAC in high power mode
-                - *LOW* speed puts the DAC in low power mode
         """
         cmd = 0x02
         if speed =='LOW':
@@ -708,13 +1155,20 @@ class VDAC(object):
 
     def SetRange(self,Range):
         """
-        **Description:**
-            Sets the Full scale range for the IDAC
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | SetRange                                                                                                                                          |
+        +===================+===================================================================================================================================================+
+        | **Description**   |Sets the full scale range for the VDAC                                                                                                             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |**string**      *Range*                                                                                                                            |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *Range*           |Choices are *HIGH* or *LOW*                                                                                                                        |
+        |                   |   * *HIGH*: Sets full scale range to **4.080V**                                                                                                   |
+        |                   |   * *LOW*: Sets full scale range to **1.020V**                                                                                                    |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 
-        **Parameters:**
-            *Range:* *HIGH* or *LOW*
-                - *HIGH:* Sets full scale range to **4.080V**
-                - *LOW :* Sets full scale range to **1.020V**
         """
         cmd = 0x03
         if Range =='LOW': #Range of 1.020 V
@@ -730,12 +1184,18 @@ class VDAC(object):
 
     def SetVoltage(self, volts):
         """
-        **Description:**
-        Sets a voltage in Volts to be output on the specified VDAC. Valid values depend on the chosen full scale range
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | SetVoltage                                                                                                                                        |
+        +===================+===================================================================================================================================================+
+        | **Description**   |Sets a voltage in Volts to be output on the specified VDAC                                                                                         |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |**float**      *volts*                                                                                                                             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *amps*            |A number between 0 and the full scale range, as selected by  :meth:`~SetRange`. This will be converted to an analog voltage and output.            |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 
-        **Parameters:**
-        - *volts*: number between 0 and the full scale range in Volts.
-        * The full scale value depends on the range, which is chosen with the SetRange() method.
         """
 
 
@@ -747,13 +1207,21 @@ class VDAC(object):
 
     def SetValue(self, value):
         """
-        **Description:**
-            Sets value to output on VDAC.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | SetValue                                                                                                                                          |
+        +===================+===================================================================================================================================================+
+        | **Description**   |Sets a digital value to be converted into an analog voltage and output by the VDAC                                                                 |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |**int**      *value*                                                                                                                               |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *value*           |Digital number between *0* and *255*                                                                                                               |
+        |                   |   * A value of 0 will correspond to an output of the lowest possible voltage output                                                               |
+        |                   |   * A value of 255 will output the full scale value, as selected with :meth:`~SetRange`                                                           |
+        |                   |   * All values between *0* and *255* are linearized according to the full scale range                                                             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 
-        **Parameters:**
-            *value:* integer between *0* and *255.*
-                - A value of *0* is the lowest and a value of *255* is the full-scale value.
-                    * The full-scale value depends on the range, which is selected with SetRange()
         """
         cmd = 0x04
         if value not in range(256):
@@ -764,16 +1232,32 @@ class VDAC(object):
 
     def Sleep(self):
         """
-        **Description:**
-            Checks to see if the component is enabled, then it stops the VDAC and saves the current configuration for later use.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | Sleep                                                                                                                                                                                                         |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Checks to see if the component is enabled, then it stops the VDAC and saves the current configuration for later use                                                                                            |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
         """
         cmd = 0x05
         RPiSoC.commChannel.sendData((self.address, cmd))
 
     def Wakeup(self):
         """
-        **Description:**
-            Restores the most recently saved VDAC configuration so that it can be restarted.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | Wakeup                                                                                                                                                                                                        |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Restores and enables the most recently saved configuration of the VDAC                                                                                                                                         |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
         """
 
         cmd = 0x06
@@ -781,13 +1265,30 @@ class VDAC(object):
 
 class WaveDAC(object):
     """
-    **Description:**
-        The WaveDAC class provides functionality for using the WaveDAC available on the RPiSoC. Define WaveDAC objects in the following
-        way::
+    :Class:
+
+        The WaveDAC class provides functionality for using the WaveDAC available on the RPiSoC.
+
+    :Example:
+
+        Define WaveDAC objects in the following way::
+
             My_Wave = WaveDAC()
     """
 
     def __init__(self):
+        """
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | __init__                                                                                                                                          |
+        +===================+===================================================================================================================================================+
+        | **Description**   |Constructs and initializes an WaveDAC object                                                                                                       |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                               |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+
+        """
 
         if not RPiSoC.WAVEDAC:
                 raise ValueError('Wave DAC not found on PSoC Creator program, verify that it is in your schematic and named correctly')
@@ -803,36 +1304,73 @@ class WaveDAC(object):
             if self.address in RPiSoC.REGISTERS_IN_USE:
                 print('WARNING: Attempting to initialize object at register %d which is already in use.' %self.address)
         RPiSoC.REGISTERS_IN_USE.append(self.address)
+        self.__running = False
 
     def Start(self):
         """
-        **Description:**
-            Performs all of the required initialization for the component and enables power to the block.
-            The first time the routine is executed, the range, polarity (if any), and power (speed)
-            settings are configured for the operating mode selected in the design. When called to
-            restart the WaveDAC8 following a Stop() call, the current component parameter settings are retained.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | Start                                                                                                                                                                                                         |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Performs all of the required initialization for the component and enables power to the block                                                                                                                   |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
         """
         cmd = 0x00
         RPiSoC.commChannel.sendData((self.address, cmd))
+        self.__running = True
 
     def Stop(self):
         """
-        **Description:**
-            Turn off the WaveDAC8 block.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | Stop                                                                                                                                                                                                          |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Powers down the WaveDAC to its lowest power state and disables output                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
         """
         cmd = 0x01
         RPiSoC.commChannel.sendData((self.address, cmd))
+        self.__running = False
+
+    def isRunning(self):
+        """
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | isRunning                                                                                                                                                                                                     |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Checks to see if the DAC component and all subcomponents are currently operational                                                                                                                             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |**bool** *__running*                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *__running*       |A private boolean variable which evaluates to *True* if the DAC is active, or *False* if it is not                                                                                                            `|
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        """
+        return self.__running
 
     def SetSpeed(self, speed):
         """
-        **Description:**
-            Sets the drive mode / speed to one of the settings.
-
-        **Parameters:**
-            *speed:* *HIGH* or *LOW*
-                - *HIGH :* Highest power and fastest slew rate
-                - *LOW  :* Lowest active power and slowest slew rate
-
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | SetSpeed                                                                                                                                          |
+        +===================+===================================================================================================================================================+
+        | **Description**   |Sets the DAC speed to one of the defined settings                                                                                                  |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |**string**      *speed*                                                                                                                            |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *speed*           |*HIGH* or *LOW* for high speed or low speed, respectively                                                                                          |
+        |                   |   * *HIGH:* Highest power and fastest slew rate                                                                                                   |
+        |                   |   * *LOW:* Lowest active power and slowest slew rate                                                                                              |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
         """
         cmd = 0x07
 
@@ -846,20 +1384,25 @@ class WaveDAC(object):
 
         RPiSoC.commChannel.sendData((self.address, cmd, val))
 
-    def Generate_Wave(self, waveType):
+    def GenerateWave(self, waveType):
         """
-        **Description:**
-            Provides functionality for generating a specific waveform. It uses the class attributes *self.amplitude* and *self.dcB,* which define
-            the waveforms peak voltage and the DC Bias, respectively. These are defaulted to 4V amplitude and 0V DC Bias, unless modifed by using the *setAmplitude()* and *setdcBias()* functions.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | GenerateWave                                                                                                                                      |
+        +===================+===================================================================================================================================================+
+        | **Description**   |* Provides functionality for generating a specific waveform                                                                                        |
+        |                   |* It uses the class attributes *amplitude* and *dcB,* which define the waveforms peak voltage and the DC Bias, respectively                        |
+        |                   |* *amplitude* and *dcB* are defaulted to 4V amplitude and 0V DC Bias, unless modifed by using :meth:`~setAmplitude` and :meth:`~setdcBias`         |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |**string**      *waveType*                                                                                                                         |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *waveType*        |The output behavior of the WaveDAC, Valid choices are:                                                                                             |
+        |                   |   * *SINE, SQUARE, TRIANGLE,* or *SAWTOOTH*                                                                                                       |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Note**          |*V1.3* intends to introduce inputting custom waveforms                                                                                             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 
-        **Parameters:**
-               - *waveType:* string
-                    * *SINE*
-                    * *SQUARE*
-                    * *TRIANGLE*
-                    * *SAWTOOTH*
-
-        **Note:** *V1.3* intends to introduce defining your own custom waveforms.
         """
 
         cmd = 0x04
@@ -882,13 +1425,20 @@ class WaveDAC(object):
 
     def SetValue(self, val):
         """
-        **Description:**
-            Sets the output of the DAC to the desired value. It is preferable to use this function when
-            the clock is stopped. If this function is used during normal operation (clock is running), the
-            predefined waveform may be interrupted.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | SetValue                                                                                                                                          |
+        +===================+===================================================================================================================================================+
+        | **Description**   |Sets a digital value to be converted into a voltage and output by the WaveDAC.                                                                     |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |**int**      *val*                                                                                                                                 |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *val*             |Digital number between *0* and *255*                                                                                                               |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Warning**       |The WaveDAC should be stopped before using this function                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 
-        **Parameters:**
-            - *val:* 8-bit DAC value between *0* and *255*
         """
         cmd = 0x09
         if val not in range(256):
@@ -898,16 +1448,31 @@ class WaveDAC(object):
 
     def Sleep(self):
         """
-        **Description:**
-            Checks to see if the component is enabled, then it stops the WaveDAC and saves the current configuration for later use.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | Sleep                                                                                                                                                                                                         |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Checks to see if the component is enabled, then it stops the DAC and saves the current configuration for later use                                                                                             |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
         """
         cmd = 0x0B
         RPiSoC.commChannel.sendData((self.address, cmd))
 
     def Wakeup(self):
         """
-        **Description:**
-            Restores the most recently saved WaveDAC configuration so that it can be restarted.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | Wakeup                                                                                                                                                                                                        |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Restores and enables the most recently saved configuration of the DAC                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
         """
         cmd = 0x0C
         RPiSoC.commChannel.sendData((self.address, cmd))
@@ -915,11 +1480,19 @@ class WaveDAC(object):
 
     def SetFrequency(self, frequency):
         """
-        **Description:**
-            Sets an approximate frequency by using an appropriate clock divider so that the resulting wave is as close to the desired frequency as possible.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | SetFrequency                                                                                                                                      |
+        +===================+===================================================================================================================================================+
+        | **Description**   |Sets an approximate frequency by using an appropriate clock divider so that the resulting wave is as close to the desired frequency as possible    |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |**float**      *frequency*                                                                                                                         |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *frequency*       |A frequency in Hz that will be representative of the output wave rate                                                                              |
+        |                   |   * Valid range is between 0.46 and 2500                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 
-        **Parameters:**
-            - *frequency:* A frequency in Hz between *0* and *2500.*
         """
         cmd = 0xFF
 
@@ -935,50 +1508,90 @@ class WaveDAC(object):
 
     def GetFrequency(self):
         """
-        **Description:**
-            Calculates the actual wave frequency based on the most recently confirmed clock divider value.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | GetFrequency                                                                                                                                                                                                  |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Calculates the actual wave frequency based on the most recently confirmed clock divider value                                                                                                                  |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |**float**  *freq*                                                                                                                                                                                              |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *freq*            |The *actual* frequency of the wave, *not* a requested frequency                                                                                                                                                |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-        **Returns:**
-            The *actual* frequency of the wave, *not* of the requested frequency.
+
         """
         return int(((self.master_clk/self.divider_value)/100.0))
 
     def StartClock(self):
         """
-        **Description:**
-            Restarts the WaveDAC clock after it has been stopped.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | StartClock                                                                                                                                                                                                    |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Restarts the WaveDAC clock after it has been stopped                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
         """
         cmd = 0xFD
         RPiSoC.commChannel.sendData((self.address,cmd))
 
     def StopClock(self):
         """
-        **Description:**
-            Stops the WaveDAC clock so that a value can be set without interference by the clock.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | StopClock                                                                                                                                                                                                     |
+        +===================+===============================================================================================================================================================================================================+
+        | **Description**   |Stops the WaveDAC clock so that a value can be set without interference by the clock                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |None                                                                                                                                                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
         """
         cmd = 0xFE
         RPiSoC.commChannel.sendData((self.address,cmd))
 
     def setAmplitude(self, amplitude):
         """
-        **Description:**
-            Modifies the class attribute associated with peak voltage of a generated wave.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | setAmplitude                                                                                                                                      |
+        +===================+===================================================================================================================================================+
+        | **Description**   |Modifies the class attribute associated with peak voltage of a generated wave                                                                      |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |**float**      *amplitude*                                                                                                                         |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *amplitude*       |A peak amplitude, in Volts, between *0* and *4.08*                                                                                                 |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Warning**       |This method will become deprecated in *V1.3.* There will be an alternate way of accomplishing this                                                 |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 
-        **Parameters:**
-            - *amplitude:* a peak amplitude, in Volts, between *0* and *4.*
-                * The amplitude can be greater than 4V, but the output will saturate at 4.080 V.
+
         """
         self.amplitude = int(255/4.0*float(amplitude))
 
     def setdcBias(self, dcBias):
         """
-        **Description:**
-            Modifies the class attribute associated withthe DC Bias of a generated wave.
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | Method            | setdcBias                                                                                                                                         |
+        +===================+===================================================================================================================================================+
+        | **Description**   |Modifies the class attribute associated with DC Bias of a generated wave                                                                           |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Parameters**    |**float**      *dcBias*                                                                                                                            |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | *dcBias*          |A DC bias, in Volts, between *0* and *4.08*                                                                                                        |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Returns**       |No return                                                                                                                                          |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
+        | **Warning**       |This method will become deprecated in *V1.3.* There will be an alternate way of accomplishing this                                                 |
+        +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------+
 
-        **Parameters:**
-            - *dcBias:* a DC Bias, in Volts, between *0* and *4.*
-                * The generated wave will be offset by this amount.
-                * The DC Bias can be greater than 4 Volts, but the output will saturate at 4.080 V.
         """
         self.dcBias = int(255/4.0*float(dcBias))
 

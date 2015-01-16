@@ -1,5 +1,5 @@
 from rpisoc import *
-RPiSoC('SPI')
+RPiSoC('SERIAL', DEBUG = True)
 
 def init_servos(servos, file = None):
         my_servos = []

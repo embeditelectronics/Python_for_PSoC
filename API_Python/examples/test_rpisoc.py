@@ -1,6 +1,6 @@
 from rpisoc import *
 import random
-RPiSoC('SPI', DEBUG = True)
+RPiSoC('SERIAL', DEBUG = True)
 
 
 print('starting...')

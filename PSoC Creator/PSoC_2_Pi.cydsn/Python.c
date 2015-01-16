@@ -293,7 +293,8 @@ void Python_Initialize(void)
                 
         
         #elif defined(USE_SERIAL)       /* USBUART READ HANDLER */
-            while (!USBUART_DataIsReady()){/*wait until data is ready*/}
+            while (!USBUART_DataIsReady()){}
+            
             uint8 data_len = USBUART_GetAll(buffer);
             
             addr = buffer[0];
@@ -349,7 +350,7 @@ void Python_Initialize(void)
                 
         #elif defined(USE_SERIAL)      /* USBUART WRITE HANDLER */
             
-            while(!USBUART_CDCIsReady()){/* Wait until ready to send*/}
+            while(!USBUART_CDCIsReady()){}
             uint8 dat_out[4] = {out_lo, out_mid_lo, out_mid_hi, out_hi};
             USBUART_PutData(dat_out, 4);
             
