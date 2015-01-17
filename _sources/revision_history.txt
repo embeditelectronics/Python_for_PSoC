@@ -16,7 +16,7 @@ In :class:`analog.CapSense`
 
 - Added :meth:`analog.CapSense.readRaw` for reading raw data form the CapSense buffer, to be used for manual calibration
 - Added :meth:`analog.CapSense.isTouched` to replace :meth:`analog.CapSense.Read` for when SmartSense is disabled (it is by default)
-- Added calibration code to :meth:`analog.CapSense.Start` so that `analog.CapSense.isTouched` gives desired behavior without SmartSense
+- Added calibration code to :meth:`analog.CapSense.Start` so that :meth:`analog.CapSense.isTouched` gives desired behavior without SmartSense
 
 In :class:`rpisoc.SERIAL`
 
