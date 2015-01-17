@@ -72,11 +72,16 @@
 <li>Added <a class="reference internal" href="code_analog.html#analog.CapSense.isTouched" title="analog.CapSense.isTouched"><tt class="xref py py-meth docutils literal"><span class="pre">analog.CapSense.isTouched()</span></tt></a> to replace <a class="reference internal" href="code_analog.html#analog.CapSense.Read" title="analog.CapSense.Read"><tt class="xref py py-meth docutils literal"><span class="pre">analog.CapSense.Read()</span></tt></a> for when SmartSense is disabled (it is by default)</li>
 <li>Added calibration code to <a class="reference internal" href="code_analog.html#analog.CapSense.Start" title="analog.CapSense.Start"><tt class="xref py py-meth docutils literal"><span class="pre">analog.CapSense.Start()</span></tt></a> so that <a class="reference internal" href="code_analog.html#analog.CapSense.isTouched" title="analog.CapSense.isTouched"><tt class="xref py py-meth docutils literal"><span class="pre">analog.CapSense.isTouched()</span></tt></a> gives desired behavior without SmartSense</li>
 </ul>
+<p>In <a class="reference internal" href="code_rpisoc.html#rpisoc-module-label"><em>module rpisoc.py</em></a></p>
+<ul class="simple">
+<li>Added Exceptions <a class="reference internal" href="code_rpisoc.html#rpisoc.LostConnection" title="rpisoc.LostConnection"><tt class="xref py py-class docutils literal"><span class="pre">rpisoc.LostConnection</span></tt></a> and <a class="reference internal" href="code_rpisoc.html#rpisoc.ClosedPortException" title="rpisoc.ClosedPortException"><tt class="xref py py-class docutils literal"><span class="pre">rpisoc.ClosedPortException</span></tt></a> for more descriptive and consistent problem reporting</li>
+</ul>
 <p>In <a class="reference internal" href="code_rpisoc.html#rpisoc.SERIAL" title="rpisoc.SERIAL"><tt class="xref py py-class docutils literal"><span class="pre">rpisoc.SERIAL</span></tt></a></p>
 <ul class="simple">
 <li>Changed the initialization so that a serial port does not need to be provided. It will be determined at run time, and should be platform independent.</li>
 <li>Added <a class="reference internal" href="code_rpisoc.html#rpisoc.SERIAL.reconnect" title="rpisoc.SERIAL.reconnect"><tt class="xref py py-meth docutils literal"><span class="pre">rpisoc.SERIAL.reconnect()</span></tt></a> for situations where the RPiSoC might lose connection, and the user can check for this and reconnect if needed</li>
-<li>Added <a class="reference internal" href="code_rpisoc.html#rpisoc.SERIAL.isConnected" title="rpisoc.SERIAL.isConnected"><tt class="xref py py-meth docutils literal"><span class="pre">rpisoc.SERIAL.isConnected()</span></tt></a> to check the status of the serial connection with the RPiSoC.</li>
+<li>Added <a class="reference internal" href="code_rpisoc.html#rpisoc.SERIAL.disconnect" title="rpisoc.SERIAL.disconnect"><tt class="xref py py-meth docutils literal"><span class="pre">rpisoc.SERIAL.disconnect()</span></tt></a> for a clean closing of the serial port</li>
+<li>Added <a class="reference internal" href="code_rpisoc.html#rpisoc.SERIAL.isConnected" title="rpisoc.SERIAL.isConnected"><tt class="xref py py-meth docutils literal"><span class="pre">rpisoc.SERIAL.isConnected()</span></tt></a> to check the status of the serial connection with the RPiSoC</li>
 </ul>
 </div>
 <div class="section" id="new-to-v1-2-4">

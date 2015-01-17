@@ -18,11 +18,17 @@ In :class:`analog.CapSense`
 - Added :meth:`analog.CapSense.isTouched` to replace :meth:`analog.CapSense.Read` for when SmartSense is disabled (it is by default)
 - Added calibration code to :meth:`analog.CapSense.Start` so that :meth:`analog.CapSense.isTouched` gives desired behavior without SmartSense
 
+In :ref:`module rpisoc.py <rpisoc-module-label>`
+
+- Added Exceptions :class:`rpisoc.LostConnection` and :class:`rpisoc.ClosedPortException` for more descriptive and consistent problem reporting
+
 In :class:`rpisoc.SERIAL`
 
 - Changed the initialization so that a serial port does not need to be provided. It will be determined at run time, and should be platform independent. 
 - Added :meth:`rpisoc.SERIAL.reconnect` for situations where the RPiSoC might lose connection, and the user can check for this and reconnect if needed
-- Added :meth:`rpisoc.SERIAL.isConnected` to check the status of the serial connection with the RPiSoC. 
+- Added :meth:`rpisoc.SERIAL.disconnect` for a clean closing of the serial port
+- Added :meth:`rpisoc.SERIAL.isConnected` to check the status of the serial connection with the RPiSoC 
+
 
 New to v1.2.4
 *************
