@@ -2,7 +2,7 @@
 
 from distutils.core import setup
 
-setup(name='Distutils',
+setup(name='RPiSoC',
       version='1.2.5',
       description='RPiSoC Python API',
       author='Brian Bradley',
