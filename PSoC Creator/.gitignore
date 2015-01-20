@@ -25,6 +25,9 @@
 !*.c
 !*.v
 
+# Add back device drivers
+!*.inf
+
 # Ignore the generated source directories.
 
 codegentemp
