@@ -16,9 +16,9 @@ Contents
 
    getting_started
    code
-   making_changes
    examples
    revision_history
+   making_changes
 
 Tools
 ==================

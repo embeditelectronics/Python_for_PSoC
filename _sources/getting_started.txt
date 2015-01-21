@@ -8,19 +8,17 @@ Here is everything you should need to get yourself moving with development on th
 
 Using the RPiSoC
 ++++++++++++++++
-If you're new to the RPiSoC, it would greatly benefit you to read through its documentation before going any further. The documentation can be found here:
+If you're new to the RPiSoC, it would greatly benefit you to read through `its documentation <https://github.com/EmbeditElectronics/RPiSoC_Bootloader/blob/master/RPiSoC_RevC_User_Guide.pdf>`_ before going any further.
 
-- https://github.com/EmbeditElectronics/RPiSoC_Bootloader/blob/master/RPiSoC_RevC_User_Guide.pdf
+:Note:
 
-Pay special attention to the sections discussing how to download a program to the board using the Bootloader Host Tool. 
+	Pay special attention to the sections discussing how to download a program to the board using the Bootloader Host Tool. However, if you do not intend to make modifications to the API, you do not need to reprogram the device. 
 
 
 Program your RPiSoC
 +++++++++++++++++++
-Once you know how to program the RPiSoC, you're ready to go! Just download the PSoC Creator project from git and download it to the RPiSoC. 
-
-- https://github.com/EmbeditElectronics/psoc_2_pi/tree/master/PSoC%20Creator
-
+Once you know how to program the RPiSoC, if you need to redownload the API, or if you intend to make firmware changes (as required for :ref:`getting-started-mods`) 
+Just `download the PSoC Creator project from git <https://github.com/EmbeditElectronics/psoc_2_pi/tree/master/PSoC%20Creator>`_, make your changes if desired, and download it to the RPiSoC using the Bootloader host tool.
 
 .. _getting-started-rpi:
 
@@ -28,28 +26,45 @@ Using the RPiSoC with the Raspberry Pi
 ++++++++++++++++++++++++++++++++++++++
 The following is necessary set up the RPiSoC in the Raspberry Pi environment
 
-.. _getting-started-git:
+.. _getting-started-source:
 
-Download the Python files from git
-----------------------------------
-First, make sure that you have git installed on your raspberry Pi. From the terminal window::
+Download the Python source
+--------------------------
+This can be achieved using the source hosted on our github, or by using the simplified pip process. Note that you should download the github content anyway if you intend to try the example projects
+
+Installation using pip
+**********************
+Installing packages using pip is a convenient way to manage package updates, so this is the suggested method. But, you should still download the github content without installing it if you intend to make use of the examples. 
+First, make sure that pip is installed. From the terminal window::
+
+	sudo apt-get install python-setuptools
+	sudo easy_install pip
+
+Then, simply install the rpisoc source using pip::
+
+	sudo pip install rpisoc
+	
+Installation using Git
+**********************
+First, be sure that you have git installed on your Raspberry Pi. From the Terminal window::
 
 	sudo apt-get install git-core
-
-Then, create a folder for the RPiSoC API, and download it from git::
+	
+Then clone our git repo to the directory of your choice::
 
 	git clone git://github.com/EmbeditElectronics/psoc_2_pi.git
 
-And navigate into the Python folder to get started::
-
-	cd API_Python_v_1_1
+Navigate to the Python folder and install the source::
+	
+	cd API_Python
+	sudo python setup.py install
 
 .. _getting-started-spi:
 
 Configure SPI and download spidev
 ---------------------------------
 Now, if you want to use all of the API on the Raspberry Pi, you will need to have the SPI bus enabled, and you will need to have the spidev libraries installed and in your working directory. 
-Luckily, this is a very easy process. First though, you will need to do an update/upgrade on your pi. Open a new terminal window and enter the following  commands::
+Luckily, this is a very easy process. First though, you will should do an update/upgrade on your pi. Open a new terminal window and enter the following  commands::
 
 	sudo apt-get clean
 	sudo apt-get update
@@ -68,19 +83,17 @@ This will bring up a text editor where you will find a line that reads::
 
 	blacklist spi-bcm2708
 
-Simply comment this line out by adding a *#* to the front of it, and reboot your pi:: 
+Simply comment this line out by adding a :code:`#` to the front of it, and reboot your pi:: 
 
 	sudo reboot
 
-Now, navigate to your working directory, the one with the API downloaded to it, and make a new directory for spidev::
+Now, make a new directory for the spidev installation, and download the source and perform the installation::
 
 	mkdir python-spi
 	cd python-spi
 	wget https://raw.github.com/doceme/py-spidev/master/setup.py
 	wget https://raw.github.com/doceme/py-spidev/master/spidev_module.c
 	sudo python setup.py install
-
-And now SPI should be good to go!
 
 .. _getting-started-i2c:
 
@@ -154,8 +167,6 @@ and add this single line to it from your text editor::
 Now just reboot::
 
 	sudo reboot
-	
-And you should be good to go!
 
 .. _getting-started-computer:
 
@@ -165,12 +176,15 @@ To use the RPiSoC on your PC, you will need to have the RPiSoC device driver ins
 
 :Note:
 
-	This has only been tested for Windows 7 and Windows 8. Theoretically everything should work on OS X and of course Linux, but this has not yet been tested.
+	This has only been tested for Windows 7, Windows 8, and Ubuntu. Theoretically everything should work on OS X, but this has not yet been tested and there are no installation instructions
 
+Windows Installation
+--------------------
+This will cover installation procedures for Windows 7 and Windows 8
 
 Installing the RPiSoC device driver
------------------------------------
-The details of this step will depend on your Operating System. For Windows 7, the process is relatively easy. The driver which ultimately must be installed is `this one <https://github.com/EmbeditElectronics/psoc_2_pi/blob/master/PSoC%20Creator/USBUART_cdc.inf>`_
+***********************************
+The details of this step will depend on your Operating System. The driver which ultimately must be installed is `this one <https://github.com/EmbeditElectronics/psoc_2_pi/blob/master/PSoC%20Creator/USBUART_cdc.inf>`_
 
 :Windows 7:
 
@@ -184,17 +198,17 @@ The details of this step will depend on your Operating System. For Windows 7, th
 	- Choose **Browse my computer for driver software**
 	- Now, simply provide the address bar with the folder that contains the driver linked above
 	- If the driver cannot be found, make sure that the driver is saved as a .inf
-	- Once the driver is found, it will warn you that the driver cannot be verified. Simply choose to install the driver anyway.
+	- Once the driver is found, it might warn you that the driver cannot be verified. Simply choose to install the driver anyway if this happens
 	
 	
 :Windows 8:
 
-	The final steps will be the same as above, but there are preliminary steps that must be taken. You must disable driver signature verification so that you are able to install unsigned drivers. This will require a couple of restarts. A good guide on this procedure is shown `in this SparkFun tutorial <https://learn.sparkfun.com/tutorials/disabling-driver-signature-on-windows-8/disabling-signed-driver-enforcement-on-windows-8>`_
+	The process should be the same as above, except you might have a problem if the driver isn't being recognized correctly as signed. If this happens, simply disable driver signature verification so that you are able to install unsigned drivers. This will require a couple of restarts. A good guide on this procedure is shown `in this SparkFun tutorial <https://learn.sparkfun.com/tutorials/disabling-driver-signature-on-windows-8/disabling-signed-driver-enforcement-on-windows-8>`_
 
 With the driver successfully installed on your system as *Cypress USB UART* you can move onto the next step
 
 Installing Python
------------------
+*****************
 On OS X and Linux, Python comes preinstalled. For Windows it does not, and so it must be downloaded and installed. 
 
 - Navigate to the `release page for Python 2.7.8 <https://www.python.org/download/releases/2.7.8/>`_ and scroll down to the **Download** section
@@ -204,7 +218,7 @@ On OS X and Linux, Python comes preinstalled. For Windows it does not, and so it
 - During installation, make sure Python is installed to :code:`C:\Python27`
 
 Edit Windows path variables to include Python
----------------------------------------------
+*********************************************
 This step will allow you to call python and any packages you might have installed without having to explicitly provide their paths.  This process will be slightly different between Windows 7 and 8
 
 :Windows 7:
@@ -228,11 +242,35 @@ From here, the steps are identical.
 To test this, restart your computer, then open the windows command prompt, and type :code:`python`. If everything so far has been successful, this will launch the python interpreter in your console window.
 
 Install required packages
--------------------------
+*************************
 For your PC, there is only one third party package apart from our own that is required- pyserial. You must install this and the rpisoc package to use the API.
 
-- pyserials installer can be found on their `PyPi page <https://pypi.python.org/pypi/pyserial>`_. Simply navigate to this page and choose to download *pyserial-2.7.win32.exe (md5)*. When the download completes, run the .exe that is downloaded and follow the on screen instructions. 
-- Next, you must install the rpisoc package. The process will be very similar to the above. The rpisoc installers are located `on our github <https://github.com/EmbeditElectronics/psoc_2_pi/tree/master/API_Python/dist>`_. Simply download the one which corresponds to your operating system (64-bit vs 32-bit), and then run the .exe when it has downloaded.
+The installer for each package can be found on our respective PyPi pages.
+
+:PySerial:
+
+	- `pyserial PyPi page <https://pypi.python.org/pypi/pyserial>`_
+	- From that page, download and run *pyserial-2.7.win32.exe (md5)*
+	- Run the .exe when it finishes downloading and follow the on-screen instructions to install pyserial
+	
+:RPiSoC:
+
+	- `rpisoc PyPi page <https://pypi.python.org/pypi/RPiSoC>`_
+	- From that page, download and run *RPiSoC-1.2.5.win32.exe (md5)* if you are using the 32-bit Python installation, or *RPiSoC-1.2.5.win-amd64.exe (md5)* if you are using the 64-but installation
+	- Run the .exe when it finishes downloading and follow the on-screen instructions to install pyserial
+
+:Note:
+	
+	If in either case there is a problem with the installer (such as it being unable to locate your python installation), use pip to install the packages instead. 
+	To install the packages using pip, open the command prompt and enter the following commands::
+		
+		easy_install pip
+		pip install pyserial
+		pip install rpisoc
+		
+Linux Installation
+------------------
+Since the Raspberry Pi itself runs a Linux distribution, the installation process should be identical. Refer to :ref:`getting-started-source` for instructions.
 
 Using the API
 -------------
@@ -245,10 +283,9 @@ Here, the following two lines should always be at the top of your scripts::
 To test that everything is working:
 
 - Plug your RPiSoC into your PC using a USB cable
-- Run any of `these <https://github.com/EmbeditElectronics/psoc_2_pi/tree/master/API_Python/examples>`_ scripts
+- Run any of `these scripts <https://github.com/EmbeditElectronics/psoc_2_pi/tree/master/API_Python/examples>`_
 	* To run any script, either open it using python (double clicking it will work if it opens using python by default), or navigate to the directory containing the script with you command prompt and enter :code:`python script_name.py`. So to run *blinky.py* from the examples, navigate to the *examples* folder in your command prompt and enter :code:`python blinky.py` into the console
 	
-
 .. _getting-started-mods:
 
 Changing communication protocol used by the API
@@ -299,7 +336,7 @@ But, you will still need to have the SPI and I2C components included in your sch
 	* Assign *SDA_1* to P1[6]
 	* Assign *SCL_1* to P1[7]
 
-Now just compile the program, and redownload it to the RPiSoC using the Bootloader Host Tool. 
+Now just compile the program, and redownload it to the RPiSoC using the Bootloader Host Tool. For more information on this step, be sure to review :ref:`getting-started-rpisoc`
 
 
 
