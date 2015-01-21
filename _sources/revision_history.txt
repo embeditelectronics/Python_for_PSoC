@@ -1,5 +1,7 @@
 Revision History
 ================
+A running log of all changes that are made to this API with each iteration.
+
 Version 1.2
 +++++++++++
 *V1.2* makes versioning the python much simpler. It allows for much easier modification to the RPiSoC firmware, without needing to version those changes in the python code. It also simplifies the API expansion process greatly for new developers, and provides frameworks for easy integration of new interfaces.
@@ -162,7 +164,7 @@ In :ref:`module rpisoc.py <rpisoc-module-label>`
 In :ref:`module digital.py <digital-module-label>`
 
 - Removed classes :class:`digital.DigitalInput` and :class:`digital.DigitalOutput`
-- Added class *digitalPin* which allows one to instantiate any of the GPIO as input or output, or in any of several different drive modes if needed.
+- Added class :class:`digital.digitalPin` which allows one to instantiate any of the GPIO as input or output, or in any of several different drive modes if needed.
 
 In :ref:`module analog.py <analog-module-label>`
 
@@ -228,7 +230,7 @@ In :class:`rpisoc.RPiSoC`
 
 In :class:`analog.ADC`
 
-- Changed return value of :meth:`analog.CountsTo_Volts` from a millivolt value to a microvolt value, so that precision is increased. The return value of the Python method when called is still in Volts.
+- Changed return value of :meth:`analog.ADC.CountsTo_Volts` from a millivolt value to a microvolt value, so that precision is increased. The return value of the Python method when called is still in Volts.
 
 In classes :class:`digital.DigitalInput` and :class:`digital.DigitalOutput`
 

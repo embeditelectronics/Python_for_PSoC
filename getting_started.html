@@ -192,35 +192,197 @@ To do this, you will need to create a config file in the modprobe.d folder; I ca
 </div>
 <p>And you should be good to go!</p>
 </div>
-<div class="section" id="changing-communication-protocol-used-by-the-api">
-<span id="getting-started-mods"></span><h3>Changing communication protocol used by the API<a class="headerlink" href="#changing-communication-protocol-used-by-the-api" title="Permalink to this headline">¶</a></h3>
-<p>By default, the API uses SPI. To change this to I2C, it is designed to be very simple, so don&#8217;t fret!</p>
-<p>On the Pi Side, simply change your initialization of the RPiSoC object from:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>so that it instead reads:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;I2C&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Now, in the PSoC Creator program navigate to <em>mem1.h</em> and you will find two lines that look like this:</p>
-<div class="highlight-c"><div class="highlight"><pre><span class="cp">#define USE_SPI</span>
-<span class="c1">//#define USE_I2C</span>
-</pre></div>
-</div>
-<p>This indicates that I2C is to be undefined, and so SPI is to be used. To reverse this, just change which one is commented out:</p>
-<div class="highlight-c"><div class="highlight"><pre><span class="c1">//#define USE_SPI</span>
-<span class="cp">#define USE_I2C</span>
-</pre></div>
-</div>
-<p>Now, SPI will be undefined, and the RPiSoC will be expecting I2C communication.
-Now just compile the program, and redownload it to the RPiSoC using the Bootloader Host Tool.</p>
-<p>And with that, you should be good to go without any problems!</p>
-</div>
 </div>
 <div class="section" id="using-the-rpisoc-with-your-computer">
 <span id="getting-started-computer"></span><h2>Using the RPiSoC with your computer!<a class="headerlink" href="#using-the-rpisoc-with-your-computer" title="Permalink to this headline">¶</a></h2>
-<p><em>Documentation coming soon</em></p>
+<p>To use the RPiSoC on your PC, you will need to have the RPiSoC device driver installer, you will need python 2.7 installed, your system will need to have python added to its environmental variables, and you will need to download a couple of Python packages, specifically pyserial and the rpisoc package.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body">This has only been tested for Windows 7 and Windows 8. Theoretically everything should work on OS X and of course Linux, but this has not yet been tested.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="installing-the-rpisoc-device-driver">
+<h3>Installing the RPiSoC device driver<a class="headerlink" href="#installing-the-rpisoc-device-driver" title="Permalink to this headline">¶</a></h3>
+<p>The details of this step will depend on your Operating System. For Windows 7, the process is relatively easy. The driver which ultimately must be installed is <a class="reference external" href="https://github.com/EmbeditElectronics/psoc_2_pi/blob/master/PSoC%20Creator/USBUART_cdc.inf">this one</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Windows 7:</th><td class="field-body"><p class="first">When you connect your RPiSoC to a USB port on your PC, it will try to find a driver to install. Of course, it will fail because you need to manually provide it the driver.</p>
+<ul class="simple">
+<li>Open your Device Manager</li>
+<li>In &#8220;Other Devices&#8221; you should see <em>RPiSoC</em> with an exclamation sign next to it, indicating that it is an unknown device</li>
+<li>Right click on <em>RPiSoC</em> and choose <strong>Properties</strong></li>
+<li>On the <em>General</em> tab, there should be an option for <strong>Update Driver...</strong> If this option is not available, disconnect and reconnect the device.</li>
+<li>Click <strong>Update Driver...</strong></li>
+<li>Choose <strong>Browse my computer for driver software</strong></li>
+<li>Now, simply provide the address bar with the folder that contains the driver linked above</li>
+<li>If the driver cannot be found, make sure that the driver is saved as a .inf</li>
+<li>Once the driver is found, it will warn you that the driver cannot be verified. Simply choose to install the driver anyway.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Windows 8:</th><td class="field-body"><p class="first last">The final steps will be the same as above, but there are preliminary steps that must be taken. You must disable driver signature verification so that you are able to install unsigned drivers. This will require a couple of restarts. A good guide on this procedure is shown <a class="reference external" href="https://learn.sparkfun.com/tutorials/disabling-driver-signature-on-windows-8/disabling-signed-driver-enforcement-on-windows-8">in this SparkFun tutorial</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>With the driver successfully installed on your system as <em>Cypress USB UART</em> you can move onto the next step</p>
+</div>
+<div class="section" id="installing-python">
+<h3>Installing Python<a class="headerlink" href="#installing-python" title="Permalink to this headline">¶</a></h3>
+<p>On OS X and Linux, Python comes preinstalled. For Windows it does not, and so it must be downloaded and installed.</p>
+<ul>
+<li><p class="first">Navigate to the <a class="reference external" href="https://www.python.org/download/releases/2.7.8/">release page for Python 2.7.8</a> and scroll down to the <strong>Download</strong> section</p>
+</li>
+<li><dl class="first docutils">
+<dt>Choose the appropriate installer for your Operating system.</dt>
+<dd><ul class="first last simple">
+<li>For 32 bit Windows systems choose <em>Windows x86 MSI Installer (2.7.8)</em></li>
+<li>For 64 bit Windows systems choose <em>Windows X86-64 MSI Installer (2.7.8)</em></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">During installation, make sure Python is installed to <tt class="code docutils literal"><span class="pre">C:\Python27</span></tt></p>
+</li>
+</ul>
+</div>
+<div class="section" id="edit-windows-path-variables-to-include-python">
+<h3>Edit Windows path variables to include Python<a class="headerlink" href="#edit-windows-path-variables-to-include-python" title="Permalink to this headline">¶</a></h3>
+<p>This step will allow you to call python and any packages you might have installed without having to explicitly provide their paths.  This process will be slightly different between Windows 7 and 8</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Windows 7:</th><td class="field-body"><ul class="first simple">
+<li>Right click on <strong>Computer</strong> and select <strong>Properties</strong></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Windows 8:</th><td class="field-body"><ul class="first last simple">
+<li>Press <strong>Windows key + C</strong> to bring up your charms panel.</li>
+<li>Navigate to <em>Settings</em> and then <em>Control Panel</em></li>
+<li>Then, select <em>Systems and Security</em> then <em>System</em></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>From here, the steps are identical.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>To the left, there will be a toolbar called <em>Control Panel Home</em></dt>
+<dd><ul class="first last simple">
+<li>In this toolbar, select <strong>Advanced system settings</strong></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">In the <em>Advanced</em> tab, select <strong>Environmental Variables...</strong></p>
+</li>
+<li><p class="first">In the console window on the bottom, labeled <em>System variables</em>, scroll to the variable <strong>PATH</strong> and select <strong>Edit</strong></p>
+</li>
+<li><p class="first">In the <em>Variable value</em> window, scroll to the very end and enter the following text exactly <tt class="code docutils literal"><span class="pre">;C:\Python27;C:\Python27\Scripts</span></tt></p>
+</li>
+</ul>
+<p>To test this, restart your computer, then open the windows command prompt, and type <tt class="code docutils literal"><span class="pre">python</span></tt>. If everything so far has been successful, this will launch the python interpreter in your console window.</p>
+</div>
+<div class="section" id="install-required-packages">
+<h3>Install required packages<a class="headerlink" href="#install-required-packages" title="Permalink to this headline">¶</a></h3>
+<p>For your PC, there is only one third party package apart from our own that is required- pyserial. You must install this and the rpisoc package to use the API.</p>
+<ul class="simple">
+<li>pyserials installer can be found on their <a class="reference external" href="https://pypi.python.org/pypi/pyserial">PyPi page</a>. Simply navigate to this page and choose to download <em>pyserial-2.7.win32.exe (md5)</em>. When the download completes, run the .exe that is downloaded and follow the on screen instructions.</li>
+<li>Next, you must install the rpisoc package. The process will be very similar to the above. The rpisoc installers are located <a class="reference external" href="https://github.com/EmbeditElectronics/psoc_2_pi/tree/master/API_Python/dist">on our github</a>. Simply download the one which corresponds to your operating system (64-bit vs 32-bit), and then run the .exe when it has downloaded.</li>
+</ul>
+</div>
+<div class="section" id="using-the-api">
+<h3>Using the API<a class="headerlink" href="#using-the-api" title="Permalink to this headline">¶</a></h3>
+<p>Of course, you will need to download an appropriate IDE to begin writing your python scripts, but which one you use is up to you. The only difference between this code and your Raspberry Pi code will be in the construction of the <a class="reference internal" href="code_rpisoc.html#rpisoc.RPiSoC" title="rpisoc.RPiSoC"><tt class="xref py py-class docutils literal"><span class="pre">rpisoc.RPiSoC</span></tt></a> object.
+Here, the following two lines should always be at the top of your scripts:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SERIAL&#39;</span><span class="p">,</span> <span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To test that everything is working:</p>
+<ul>
+<li><p class="first">Plug your RPiSoC into your PC using a USB cable</p>
+</li>
+<li><dl class="first docutils">
+<dt>Run any of <a class="reference external" href="https://github.com/EmbeditElectronics/psoc_2_pi/tree/master/API_Python/examples">these</a> scripts</dt>
+<dd><ul class="first last simple">
+<li>To run any script, either open it using python (double clicking it will work if it opens using python by default), or navigate to the directory containing the script with you command prompt and enter <tt class="code docutils literal"><span class="pre">python</span> <span class="pre">script_name.py</span></tt>. So to run <em>blinky.py</em> from the examples, navigate to the <em>examples</em> folder in your command prompt and enter <tt class="code docutils literal"><span class="pre">python</span> <span class="pre">blinky.py</span></tt> into the console</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="changing-communication-protocol-used-by-the-api">
+<span id="getting-started-mods"></span><h2>Changing communication protocol used by the API<a class="headerlink" href="#changing-communication-protocol-used-by-the-api" title="Permalink to this headline">¶</a></h2>
+<p>By default, the API uses Serial for convenience of PC usage. To change this to SPI or I2C (which can only be used on the Raspberry Pi of course), it is designed to be very simple, so don&#8217;t fret!</p>
+<p>On the Python Side, simply change your initialization of the RPiSoC object from:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SERIAL&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>so that it instead reads:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SPI&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;I2C&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now, in the PSoC Creator program navigate to <em>mem1.h</em> and you will find three lines that look like this:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="c1">//#define USE_SPI                     // KEEP THIS UNCOMMENTED TO USE SPI -- COMMENT THE OTHER PROTOCOLS!!</span>
+<span class="c1">//#define USE_I2C                     // KEEP THIS UNCOMMENTED TO USE I2C -- COMMENT THE OTHER PROTOCOLS!!</span>
+<span class="cp">#define USE_SERIAL                    </span><span class="c1">// KEEP THIS UNCOMMENTED TO USE SERIAL -- COMMENT THE OTHER PROTOCOLS!!</span>
+</pre></div>
+</div>
+<p>This of course indicates that Serial is to be used. To change this, simply change which protocols are commented out. For instance, to change to SPI, you would replace those lines with:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="cp">#define USE_SPI                     </span><span class="c1">// KEEP THIS UNCOMMENTED TO USE SPI -- COMMENT THE OTHER PROTOCOLS!!</span>
+<span class="c1">//#define USE_I2C                   // KEEP THIS UNCOMMENTED TO USE I2C -- COMMENT THE OTHER PROTOCOLS!!</span>
+<span class="c1">//#define USE_SERIAL                // KEEP THIS UNCOMMENTED TO USE SERIAL -- COMMENT THE OTHER PROTOCOLS!!</span>
+</pre></div>
+</div>
+<p>Now, the firmware will compile itself so that SPI will be used.
+But, you will still need to have the SPI and I2C components included in your schematic file. To do this:</p>
+<ul>
+<li><p class="first">Navigate to the <em>.cysch</em> page of your workspace, and go to the <em>COMMUNICATIONS</em> tab</p>
+</li>
+<li><p class="first">Here delete the USB component, and replace it with either the SPI or I2C component, depending on which you intend to use.</p>
+</li>
+<li><p class="first">For SPI, make sure to choose <em>SPI Slave Full Duplex mode Macro v2.60</em> from the component catalog.</p>
+</li>
+<li><p class="first">For I2C, choose <em>I2C Slave (UDB) v3.30</em> make sure, to delete the <em>RST_1</em> pin, and wire it to a <em>Logic Low 0</em> component instead.</p>
+</li>
+<li><p class="first">Navigate to your design wide resources page (<em>.cydwr</em>) to give pin assignments to your new pins</p>
+</li>
+<li><dl class="first docutils">
+<dt>For SPI:</dt>
+<dd><ul class="first last simple">
+<li>Assign <em>MISO_1</em> to P1[3]</li>
+<li>Assign <em>MOSI_1</em> to P1[4]</li>
+<li>Assign <em>SCLK_1</em> to P1[1]</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>For I2C:</dt>
+<dd><ul class="first last simple">
+<li>Assign <em>SDA_1</em> to P1[6]</li>
+<li>Assign <em>SCL_1</em> to P1[7]</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Now just compile the program, and redownload it to the RPiSoC using the Bootloader Host Tool.</p>
 </div>
 </div>
 
@@ -242,10 +404,17 @@ Now just compile the program, and redownload it to the RPiSoC using the Bootload
 <li><a class="reference internal" href="#download-the-python-files-from-git">Download the Python files from git</a></li>
 <li><a class="reference internal" href="#configure-spi-and-download-spidev">Configure SPI and download spidev</a></li>
 <li><a class="reference internal" href="#configure-i2c-and-download-smbus">Configure I2C and download smbus</a></li>
-<li><a class="reference internal" href="#changing-communication-protocol-used-by-the-api">Changing communication protocol used by the API</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#using-the-rpisoc-with-your-computer">Using the RPiSoC with your computer!</a></li>
+<li><a class="reference internal" href="#using-the-rpisoc-with-your-computer">Using the RPiSoC with your computer!</a><ul>
+<li><a class="reference internal" href="#installing-the-rpisoc-device-driver">Installing the RPiSoC device driver</a></li>
+<li><a class="reference internal" href="#installing-python">Installing Python</a></li>
+<li><a class="reference internal" href="#edit-windows-path-variables-to-include-python">Edit Windows path variables to include Python</a></li>
+<li><a class="reference internal" href="#install-required-packages">Install required packages</a></li>
+<li><a class="reference internal" href="#using-the-api">Using the API</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#changing-communication-protocol-used-by-the-api">Changing communication protocol used by the API</a></li>
 </ul>
 </li>
 </ul>
@@ -295,7 +464,7 @@ Now just compile the program, and redownload it to the RPiSoC using the Bootload
     </div>
     <div class="footer">
         &copy; Copyright 2015, EmbeditElectronics.
-      Last updated on Jan 16, 2015.
+      Last updated on Jan 20, 2015.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

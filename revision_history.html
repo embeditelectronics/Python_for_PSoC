@@ -48,6 +48,7 @@
             
   <div class="section" id="revision-history">
 <h1>Revision History<a class="headerlink" href="#revision-history" title="Permalink to this headline">¶</a></h1>
+<p>A running log of all changes that are made to this API with each iteration.</p>
 <div class="section" id="version-1-2">
 <h2>Version 1.2<a class="headerlink" href="#version-1-2" title="Permalink to this headline">¶</a></h2>
 <p><em>V1.2</em> makes versioning the python much simpler. It allows for much easier modification to the RPiSoC firmware, without needing to version those changes in the python code. It also simplifies the API expansion process greatly for new developers, and provides frameworks for easy integration of new interfaces.</p>
@@ -280,7 +281,7 @@
 <p>In <a class="reference internal" href="code_digital.html#digital-module-label"><em>module digital.py</em></a></p>
 <ul class="simple">
 <li>Removed classes <tt class="xref py py-class docutils literal"><span class="pre">digital.DigitalInput</span></tt> and <tt class="xref py py-class docutils literal"><span class="pre">digital.DigitalOutput</span></tt></li>
-<li>Added class <em>digitalPin</em> which allows one to instantiate any of the GPIO as input or output, or in any of several different drive modes if needed.</li>
+<li>Added class <a class="reference internal" href="code_digital.html#digital.digitalPin" title="digital.digitalPin"><tt class="xref py py-class docutils literal"><span class="pre">digital.digitalPin</span></tt></a> which allows one to instantiate any of the GPIO as input or output, or in any of several different drive modes if needed.</li>
 </ul>
 <p>In <a class="reference internal" href="code_analog.html#analog-module-label"><em>module analog.py</em></a></p>
 <ul class="simple">
@@ -352,7 +353,7 @@
 </ul>
 <p>In <a class="reference internal" href="code_analog.html#analog.ADC" title="analog.ADC"><tt class="xref py py-class docutils literal"><span class="pre">analog.ADC</span></tt></a></p>
 <ul class="simple">
-<li>Changed return value of <tt class="xref py py-meth docutils literal"><span class="pre">analog.CountsTo_Volts()</span></tt> from a millivolt value to a microvolt value, so that precision is increased. The return value of the Python method when called is still in Volts.</li>
+<li>Changed return value of <a class="reference internal" href="code_analog.html#analog.ADC.CountsTo_Volts" title="analog.ADC.CountsTo_Volts"><tt class="xref py py-meth docutils literal"><span class="pre">analog.ADC.CountsTo_Volts()</span></tt></a> from a millivolt value to a microvolt value, so that precision is increased. The return value of the Python method when called is still in Volts.</li>
 </ul>
 <p>In classes <tt class="xref py py-class docutils literal"><span class="pre">digital.DigitalInput</span></tt> and <tt class="xref py py-class docutils literal"><span class="pre">digital.DigitalOutput</span></tt></p>
 <ul class="simple">
@@ -470,7 +471,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2015, EmbeditElectronics.
-      Last updated on Jan 16, 2015.
+      Last updated on Jan 20, 2015.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
