@@ -1,7 +1,8 @@
 from rpisoc import *
 RPiSoC('SERIAL', DEBUG =True)
 
-touch = CapSense(0, THRESHOLD = 4) #raise or lower the threshold depenging on results!
+touch = CapSense(0, THRESHOLD = 1) #raise or lower the threshold depending on results!
+touch.Start()
 output = digitalPin(12,0,'OUT')
 try:
     while True:

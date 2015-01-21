@@ -82,7 +82,11 @@ class CapSense(object):
         RPiSoC.commChannel.sendData((self.address,cmd))
         while True:
             self.baseline = self.readRaw()
+            if RPiSoC.DEBUG:
+                print("Calibrating Sensor %d->Raw data:%d"%(self.number,self.baseline))
             if self.baseline == self.readRaw():
+                if RPiSoC.DEBUG:
+                    print("Sensor %d calibrated for raw values of %d"%(self.number,self.baseline))
                 break
         self.__running = True
 

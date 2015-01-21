@@ -6,7 +6,7 @@ This program is the highest level module for the RPiSoC API, which the user shou
 import into their scripts for full use of the API.
 """
 __author__ = 'Brian Bradley'
-__version__ = '1.2.4'
+__version__ = '1.2.5'
 
 import math
 import time
@@ -850,7 +850,11 @@ class SERIAL(object):
         self.baudr = baudr
         search_passed = False
         for port, desc, hwid in sorted(lp.comports()):
-            if desc.find('Cypress USB UART') !=-1:
+            if hwid.find('VID:PID=') !=-1:
+                vidpid = hwid.split('VID:PID=')[1].split(' ')[0]
+            else:
+                vidpid = None
+            if desc.find('Cypress USB UART') !=-1 or vidpid == '04b4:f232':
                 self.com = port
                 self.desc = desc
                 self.hwid = hwid
@@ -1080,7 +1084,11 @@ class SERIAL(object):
         search_passed = False
         time.sleep(.1)
         for port, desc, hwid in sorted(lp.comports()):
-            if desc.find('Cypress USB UART') !=-1:
+            if hwid.find('VID:PID=') !=-1:
+                vidpid = hwid.split('VID:PID=')[1].split(' ')[0]
+            else:
+                vidpid = None
+            if desc.find('Cypress USB UART') !=-1 or vidpid == '04b4:f232':
                 self.com = port
                 self.desc = desc
                 self.hwid = hwid
