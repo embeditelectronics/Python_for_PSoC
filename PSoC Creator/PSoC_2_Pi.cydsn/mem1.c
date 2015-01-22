@@ -4,14 +4,11 @@
 *        all components included in the build. It will do so according to
 *        sets of instructions provided by a Master Device.
 *
-* Version 1.2.4
+* Version 1.2.5
 *
 * \author Brian Bradley
 *
 * \bug No known bugs
-*
-*
-* Copyright Embedit Electronics
 * 
 */
 
@@ -3719,11 +3716,11 @@ bool GPIO_Control(uint8 cmd, uint8 port, uint8 pin, uint16 val, uint32 *result)
                             				TIMER_REG_Write(0);
                             				GPIO_15_0_SetDriveMode(PIN_DM_DIG_HIZ);
                             				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
-                            				if(*(reg8 *)(CYREG_PRT15_PC0)&CY_PINS_PC_PIN_STATE){break;}
+                            				if(*(reg8 *)(CYREG_IO_PC_PRT15_PC0)&CY_PINS_PC_PIN_STATE){break;}
                             				}
                             				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
                             				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
-                            				if (!(*(reg8 *)(CYREG_PRT15_PC0)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				if (!(*(reg8 *)(CYREG_IO_PC_PRT15_PC0)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
                             				}
                             			#endif
                             		break; //0x00
@@ -3732,11 +3729,11 @@ bool GPIO_Control(uint8 cmd, uint8 port, uint8 pin, uint16 val, uint32 *result)
                             				TIMER_REG_Write(0);
                             				GPIO_15_1_SetDriveMode(PIN_DM_DIG_HIZ);
                             				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
-                            				if(*(reg8 *)(CYREG_PRT15_PC1)&CY_PINS_PC_PIN_STATE){break;}
+                            				if(*(reg8 *)(CYREG_IO_PC_PRT15_PC1)&CY_PINS_PC_PIN_STATE){break;}
                             				}
                             				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
                             				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
-                            				if (!(*(reg8 *)(CYREG_PRT15_PC1)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				if (!(*(reg8 *)(CYREG_IO_PC_PRT15_PC1)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
                             				}
                             			#endif
                             		break; //0x01
@@ -3745,11 +3742,11 @@ bool GPIO_Control(uint8 cmd, uint8 port, uint8 pin, uint16 val, uint32 *result)
                             				TIMER_REG_Write(0);
                             				GPIO_15_2_SetDriveMode(PIN_DM_DIG_HIZ);
                             				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
-                            				if(*(reg8 *)(CYREG_PRT15_PC2)&CY_PINS_PC_PIN_STATE){break;}
+                            				if(*(reg8 *)(CYREG_IO_PC_PRT15_PC2)&CY_PINS_PC_PIN_STATE){break;}
                             				}
                             				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
                             				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
-                            				if (!(*(reg8 *)(CYREG_PRT15_PC2)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				if (!(*(reg8 *)(CYREG_IO_PC_PRT15_PC2)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
                             				}
                             			#endif
                             		break; //0x02
@@ -3758,11 +3755,11 @@ bool GPIO_Control(uint8 cmd, uint8 port, uint8 pin, uint16 val, uint32 *result)
                             				TIMER_REG_Write(0);
                             				GPIO_15_3_SetDriveMode(PIN_DM_DIG_HIZ);
                             				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
-                            				if(*(reg8 *)(CYREG_PRT15_PC3)&CY_PINS_PC_PIN_STATE){break;}
+                            				if(*(reg8 *)(CYREG_IO_PC_PRT15_PC3)&CY_PINS_PC_PIN_STATE){break;}
                             				}
                             				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
                             				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
-                            				if (!(*(reg8 *)(CYREG_PRT15_PC3)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				if (!(*(reg8 *)(CYREG_IO_PC_PRT15_PC3)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
                             				}
                             			#endif
                             		break; //0x03
@@ -3771,11 +3768,11 @@ bool GPIO_Control(uint8 cmd, uint8 port, uint8 pin, uint16 val, uint32 *result)
                             				TIMER_REG_Write(0);
                             				GPIO_15_4_SetDriveMode(PIN_DM_DIG_HIZ);
                             				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
-                            				if(*(reg8 *)(CYREG_PRT15_PC4)&CY_PINS_PC_PIN_STATE){break;}
+                            				if(*(reg8 *)(CYREG_IO_PC_PRT15_PC4)&CY_PINS_PC_PIN_STATE){break;}
                             				}
                             				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
                             				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
-                            				if (!(*(reg8 *)(CYREG_PRT15_PC4)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				if (!(*(reg8 *)(CYREG_IO_PC_PRT15_PC4)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
                             				}
                             			#endif
                             		break; //0x04
@@ -3784,40 +3781,14 @@ bool GPIO_Control(uint8 cmd, uint8 port, uint8 pin, uint16 val, uint32 *result)
                             				TIMER_REG_Write(0);
                             				GPIO_15_5_SetDriveMode(PIN_DM_DIG_HIZ);
                             				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
-                            				if(*(reg8 *)(CYREG_PRT15_PC5)&CY_PINS_PC_PIN_STATE){break;}
+                            				if(*(reg8 *)(CYREG_IO_PC_PRT15_PC5)&CY_PINS_PC_PIN_STATE){break;}
                             				}
                             				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
                             				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
-                            				if (!(*(reg8 *)(CYREG_PRT15_PC5)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
+                            				if (!(*(reg8 *)(CYREG_IO_PC_PRT15_PC5)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
                             				}
                             			#endif
                             		break; //0x05
-                            		case 0x06:
-                            			#ifdef CY_PINS_GPIO_15_6_H 
-                            				TIMER_REG_Write(0);
-                            				GPIO_15_6_SetDriveMode(PIN_DM_DIG_HIZ);
-                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
-                            				if(*(reg8 *)(CYREG_PRT15_PC6)&CY_PINS_PC_PIN_STATE){break;}
-                            				}
-                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
-                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
-                            				if (!(*(reg8 *)(CYREG_PRT15_PC6)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
-                            				}
-                            			#endif
-                            		break; //0x06
-                            		case 0x07:
-                            			#ifdef CY_PINS_GPIO_15_7_H 
-                            				TIMER_REG_Write(0);
-                            				GPIO_15_7_SetDriveMode(PIN_DM_DIG_HIZ);
-                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
-                            				if(*(reg8 *)(CYREG_PRT15_PC7)&CY_PINS_PC_PIN_STATE){break;}
-                            				}
-                            				TIMER_REG_Write(1); CyDelayUs(1); TIMER_REG_Write(0);
-                            				while (!(Timer_ReadStatusRegister()&Timer_STATUS_TC)){
-                            				if (!(*(reg8 *)(CYREG_PRT15_PC7)&CY_PINS_PC_PIN_STATE)){us_count = Timer_ReadPeriod() - Timer_ReadCounter() + 2; break;}
-                            				}
-                            			#endif
-                            		break; //0x07
                             	}
                             break; //0x0F
  

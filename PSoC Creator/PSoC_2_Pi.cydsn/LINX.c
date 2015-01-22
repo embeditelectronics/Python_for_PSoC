@@ -2,15 +2,13 @@
 * \file LINX.c
 * \brief TODO
 *
-* Version 1.2.4
+* Version 1.2.5
 *
 * \author Mark Bradley
 *
 * \bug TODO
 *
 *
-* Copyright Embedit Electronics
-* 
 */
 
 #ifndef LINX_H

@@ -3,15 +3,11 @@
 * \brief Handles all communication and parsing of data for a python device, such as the raspberry pi. 
            This should work for any device where both sides of the API were created, extending beyond Python
 *
-* Version 1.2.4
+* Version 1.2.5
 *
 * \author Brian Bradley
 *
 * \bug None known, but this is untested
-*
-*
-* Copyright Embedit Electronics
-* 
 */
 #ifndef PYTHON_H
     #include "Python.h"

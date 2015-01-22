@@ -7,15 +7,12 @@
 *           it to the master device if needed.
 *   
 *
-* Version 1.2.4
+* Version 1.2.5
 *
 * \author Brian Bradley
 *
 * \bug No known bugs, but new I2C implementation is untested
 *
-* 
-*
-* Copyright Embedit Electronics
 * 
 */
 #include <project.h>
