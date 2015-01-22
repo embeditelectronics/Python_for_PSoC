@@ -290,7 +290,7 @@ To test that everything is working:
 
 Changing communication protocol used by the API
 +++++++++++++++++++++++++++++++++++++++++++++++
-By default, the API uses Serial for convenience of PC usage. To change this to SPI or I2C (which can only be used on the Raspberry Pi of course), it is designed to be very simple, so don't fret!
+By default, the API uses Serial since it can be used on both PC and the Pi. But to change this to SPI or I2C (which can only be used on the Raspberry Pi of course), it is designed to be very simple, so don't fret!
 
 On the Python Side, simply change your initialization of the RPiSoC object from::
 
@@ -320,27 +320,27 @@ This of course indicates that Serial is to be used. To change this, simply chang
 	//#define USE_I2C                   // KEEP THIS UNCOMMENTED TO USE I2C -- COMMENT THE OTHER PROTOCOLS!! 
 	//#define USE_SERIAL                // KEEP THIS UNCOMMENTED TO USE SERIAL -- COMMENT THE OTHER PROTOCOLS!!	
 
-Now, the firmware will compile itself so that SPI will be used. 
-But, you will still need to have the SPI and I2C components included in your schematic file. To do this:
+Now, the firmware will compile itself so that SPI will be used. And for SPI, this is all that needs to be done. 
+
+For I2C, there is an additional step. Including all communication protocols was a waste of resources, so I2C was left out in place of including additional features. This means to use it, you must add the component back to your schematic file, and recompile the program. To do this:
 
 - Navigate to the *.cysch* page of your workspace, and go to the *COMMUNICATION* tab
-- Here delete the USB component, and replace it with either the SPI or I2C component, depending on which you intend to use.
-- For SPI, make sure to choose *SPI Slave Full Duplex mode Macro v2.60* from the component catalog.
-- For I2C, choose *I2C Slave (UDB) v3.30*, but make sure to delete the *RST_1* pin, and wire it to a *Logic Low 0* component instead.
+- Here delete the SPI component, and replace it with either the I2C component.
+- Make sure to choose *I2C Slave (UDB) v3.30*, and be sure to delete the *RST_1* pin, and wire it to a *Logic Low 0* component instead.
 - Navigate to your design wide resources page (*.cydwr*) to give pin assignments to your new pins
-- For SPI:
-	* Assign *MISO_1* to P1[3]
-	* Assign *MOSI_1* to P1[4]
-	* Assign *SCLK_1* to P1[1]
-- For I2C:
 	* Assign *SDA_1* to P1[6]
 	* Assign *SCL_1* to P1[7]
 
 Now just compile the program, and redownload it to the RPiSoC using the Bootloader Host Tool. For more information on this step, be sure to review :ref:`getting-started-rpisoc`
 
+If you decide that you would like to revert back to SPI. You can of course just redownload the source code from our github and compile that, or you can add the component back in manually. To do this:
 
-
-
+- Once again, navigate to the *.cysch* file and the *COMMUNICATION* page
+- From the component catalog, choose *SPI Slave Full Duplex mode Macro v2.60* and drag the component into your design
+- Assign your new pins to their required locations
+	* Assign *MISO_1* to P1[3]
+	* Assign *MOSI_1* to P1[4]
+	* Assign *SCLK_1* to P1[1]
 
 	
 

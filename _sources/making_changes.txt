@@ -6,28 +6,32 @@ What comes with this version by default
 +++++++++++++++++++++++++++++++++++++++
 By default, the API (V1.2) is configured with the following components available:
 
-- 28 GPIO
-	* This includes all of Port 2, 5, and 6, as well as P0[5], P0[6], P15[4], and P15[5]
+- 26 GPIO
+	* This includes all of Port 2, 5, and 12, as well as P15[4], and P15[5]
 - 8 PWMs
 	* All are 16-bit resolution by default
-	* PWM channel 0 is available on Port 0 Pin 2
+	* PWM channel 0 is available on P0[2]
 	* PWM channels 1-7 are available on Port 6 Pins 1-7
 	* They are clocked by 4 different clock sources
 		+ PWM 1 and 2 are connected (default 3MHz)
 		+ PWM 3 and 4 are connected (default 3MHz)
 		+ PWM 5 and 6 are connected (default 3MHz)
 		+ PWM 7 and 8 are connected (default 3MHz)
-- 8 Analog pins
+- 10 Analog pins
 	* These are the pins connected to the sequenced SAR ADC
-	* They are available on Port 3
-- 6 Capsense buttons
-	* Available on Port 4, pins 0 - 5
-	* Requires the placement of a 2.2nF external capacitor (Cmod) between P4[6] and ground
+	* Analog pins 0-7 are available on Port 3, pins 0-7
+	* Analog pins 8 and 9 are availabe on P0[3] and P0[4], respectively
+- 8 Capsense buttons
+	* Buttons 0-5 are on Port 4, pins 0 - 5
+	* Buttons 6 and 7 are on P0[5] and P0[6], respectively
+	* You can optionally provide a 2.2nF external capacitor (Cmod) between P4[6] and ground. This is required if using SmartSense (disabled by default)
 - Current DAC (IDAC) connected to P0[7]
-	* Has a 32uA full scale range
+	* Has a 2.04mA full scale range
 - Voltage DAC (VDAC) connected to P0[1]
-	* Has a 4.080V full scale range
+	* Has a 1.02 V full scale range
 - Wave DAC connected to P0[0]
+- Ultrasonic Range Finding capability on all GPIO using 3, 4, or 5 pin form factor standards - Be sure that the logic level is correct though.
+- NeoPixel control through P6[0]
 
 Changing GPIOs available
 ++++++++++++++++++++++++

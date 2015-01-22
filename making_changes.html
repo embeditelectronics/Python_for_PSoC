@@ -54,9 +54,9 @@
 <p>By default, the API (V1.2) is configured with the following components available:</p>
 <ul>
 <li><dl class="first docutils">
-<dt>28 GPIO</dt>
+<dt>26 GPIO</dt>
 <dd><ul class="first last simple">
-<li>This includes all of Port 2, 5, and 6, as well as P0[5], P0[6], P15[4], and P15[5]</li>
+<li>This includes all of Port 2, 5, and 12, as well as P15[4], and P15[5]</li>
 </ul>
 </dd>
 </dl>
@@ -66,7 +66,7 @@
 <dd><ul class="first last">
 <li><p class="first">All are 16-bit resolution by default</p>
 </li>
-<li><p class="first">PWM channel 0 is available on Port 0 Pin 2</p>
+<li><p class="first">PWM channel 0 is available on P0[2]</p>
 </li>
 <li><p class="first">PWM channels 1-7 are available on Port 6 Pins 1-7</p>
 </li>
@@ -86,19 +86,21 @@
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>8 Analog pins</dt>
+<dt>10 Analog pins</dt>
 <dd><ul class="first last simple">
 <li>These are the pins connected to the sequenced SAR ADC</li>
-<li>They are available on Port 3</li>
+<li>Analog pins 0-7 are available on Port 3, pins 0-7</li>
+<li>Analog pins 8 and 9 are availabe on P0[3] and P0[4], respectively</li>
 </ul>
 </dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>6 Capsense buttons</dt>
+<dt>8 Capsense buttons</dt>
 <dd><ul class="first last simple">
-<li>Available on Port 4, pins 0 - 5</li>
-<li>Requires the placement of a 2.2nF external capacitor (Cmod) between P4[6] and ground</li>
+<li>Buttons 0-5 are on Port 4, pins 0 - 5</li>
+<li>Buttons 6 and 7 are on P0[5] and P0[6], respectively</li>
+<li>You can optionally provide a 2.2nF external capacitor (Cmod) between P4[6] and ground. This is required if using SmartSense (disabled by default)</li>
 </ul>
 </dd>
 </dl>
@@ -106,7 +108,7 @@
 <li><dl class="first docutils">
 <dt>Current DAC (IDAC) connected to P0[7]</dt>
 <dd><ul class="first last simple">
-<li>Has a 32uA full scale range</li>
+<li>Has a 2.04mA full scale range</li>
 </ul>
 </dd>
 </dl>
@@ -114,12 +116,16 @@
 <li><dl class="first docutils">
 <dt>Voltage DAC (VDAC) connected to P0[1]</dt>
 <dd><ul class="first last simple">
-<li>Has a 4.080V full scale range</li>
+<li>Has a 1.02 V full scale range</li>
 </ul>
 </dd>
 </dl>
 </li>
 <li><p class="first">Wave DAC connected to P0[0]</p>
+</li>
+<li><p class="first">Ultrasonic Range Finding capability on all GPIO using 3, 4, or 5 pin form factor standards - Be sure that the logic level is correct though.</p>
+</li>
+<li><p class="first">NeoPixel control through P6[0]</p>
 </li>
 </ul>
 </div>

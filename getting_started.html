@@ -376,7 +376,7 @@ Here, the following two lines should always be at the top of your scripts:</p>
 </div>
 <div class="section" id="changing-communication-protocol-used-by-the-api">
 <span id="getting-started-mods"></span><h2>Changing communication protocol used by the API<a class="headerlink" href="#changing-communication-protocol-used-by-the-api" title="Permalink to this headline">¶</a></h2>
-<p>By default, the API uses Serial for convenience of PC usage. To change this to SPI or I2C (which can only be used on the Raspberry Pi of course), it is designed to be very simple, so don&#8217;t fret!</p>
+<p>By default, the API uses Serial since it can be used on both PC and the Pi. But to change this to SPI or I2C (which can only be used on the Raspberry Pi of course), it is designed to be very simple, so don&#8217;t fret!</p>
 <p>On the Python Side, simply change your initialization of the RPiSoC object from:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SERIAL&#39;</span><span class="p">)</span>
 </pre></div>
@@ -401,31 +401,17 @@ Here, the following two lines should always be at the top of your scripts:</p>
 <span class="c1">//#define USE_SERIAL                // KEEP THIS UNCOMMENTED TO USE SERIAL -- COMMENT THE OTHER PROTOCOLS!!</span>
 </pre></div>
 </div>
-<p>Now, the firmware will compile itself so that SPI will be used.
-But, you will still need to have the SPI and I2C components included in your schematic file. To do this:</p>
+<p>Now, the firmware will compile itself so that SPI will be used. And for SPI, this is all that needs to be done.</p>
+<p>For I2C, there is an additional step. Including all communication protocols was a waste of resources, so I2C was left out in place of including additional features. This means to use it, you must add the component back to your schematic file, and recompile the program. To do this:</p>
 <ul>
 <li><p class="first">Navigate to the <em>.cysch</em> page of your workspace, and go to the <em>COMMUNICATION</em> tab</p>
 </li>
-<li><p class="first">Here delete the USB component, and replace it with either the SPI or I2C component, depending on which you intend to use.</p>
+<li><p class="first">Here delete the SPI component, and replace it with either the I2C component.</p>
 </li>
-<li><p class="first">For SPI, make sure to choose <em>SPI Slave Full Duplex mode Macro v2.60</em> from the component catalog.</p>
-</li>
-<li><p class="first">For I2C, choose <em>I2C Slave (UDB) v3.30</em>, but make sure to delete the <em>RST_1</em> pin, and wire it to a <em>Logic Low 0</em> component instead.</p>
-</li>
-<li><p class="first">Navigate to your design wide resources page (<em>.cydwr</em>) to give pin assignments to your new pins</p>
+<li><p class="first">Make sure to choose <em>I2C Slave (UDB) v3.30</em>, and be sure to delete the <em>RST_1</em> pin, and wire it to a <em>Logic Low 0</em> component instead.</p>
 </li>
 <li><dl class="first docutils">
-<dt>For SPI:</dt>
-<dd><ul class="first last simple">
-<li>Assign <em>MISO_1</em> to P1[3]</li>
-<li>Assign <em>MOSI_1</em> to P1[4]</li>
-<li>Assign <em>SCLK_1</em> to P1[1]</li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt>For I2C:</dt>
+<dt>Navigate to your design wide resources page (<em>.cydwr</em>) to give pin assignments to your new pins</dt>
 <dd><ul class="first last simple">
 <li>Assign <em>SDA_1</em> to P1[6]</li>
 <li>Assign <em>SCL_1</em> to P1[7]</li>
@@ -435,6 +421,23 @@ But, you will still need to have the SPI and I2C components included in your sch
 </li>
 </ul>
 <p>Now just compile the program, and redownload it to the RPiSoC using the Bootloader Host Tool. For more information on this step, be sure to review <a class="reference internal" href="#getting-started-rpisoc"><em>Using the RPiSoC</em></a></p>
+<p>If you decide that you would like to revert back to SPI. You can of course just redownload the source code from our github and compile that, or you can add the component back in manually. To do this:</p>
+<ul>
+<li><p class="first">Once again, navigate to the <em>.cysch</em> file and the <em>COMMUNICATION</em> page</p>
+</li>
+<li><p class="first">From the component catalog, choose <em>SPI Slave Full Duplex mode Macro v2.60</em> and drag the component into your design</p>
+</li>
+<li><dl class="first docutils">
+<dt>Assign your new pins to their required locations</dt>
+<dd><ul class="first last simple">
+<li>Assign <em>MISO_1</em> to P1[3]</li>
+<li>Assign <em>MOSI_1</em> to P1[4]</li>
+<li>Assign <em>SCLK_1</em> to P1[1]</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
 </div>
 </div>
 
