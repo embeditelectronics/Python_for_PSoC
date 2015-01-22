@@ -329,8 +329,8 @@ To do this, you will need to create a config file in the modprobe.d folder; I ca
 </tr>
 <tr class="field-even field"><th class="field-name">RPiSoC:</th><td class="field-body"><ul class="first simple">
 <li><a class="reference external" href="https://pypi.python.org/pypi/RPiSoC">rpisoc PyPi page</a></li>
-<li>From that page, download and run <em>RPiSoC-1.2.5.win32.exe (md5)</em> if you are using the 32-bit Python installation, or <em>RPiSoC-1.2.5.win-amd64.exe (md5)</em> if you are using the 64-but installation</li>
-<li>Run the .exe when it finishes downloading and follow the on-screen instructions to install pyserial</li>
+<li>From that page, download and run <em>RPiSoC-1.2.5.win32.exe (md5)</em> if you are using the 32-bit Python installation, or <em>RPiSoC-1.2.5.win-amd64.exe (md5)</em> if you are using the 64-bit installation</li>
+<li>Run the .exe when it finishes downloading and follow the on-screen instructions to install the rpisoc package</li>
 </ul>
 </td>
 </tr>
@@ -404,13 +404,13 @@ Here, the following two lines should always be at the top of your scripts:</p>
 <p>Now, the firmware will compile itself so that SPI will be used.
 But, you will still need to have the SPI and I2C components included in your schematic file. To do this:</p>
 <ul>
-<li><p class="first">Navigate to the <em>.cysch</em> page of your workspace, and go to the <em>COMMUNICATIONS</em> tab</p>
+<li><p class="first">Navigate to the <em>.cysch</em> page of your workspace, and go to the <em>COMMUNICATION</em> tab</p>
 </li>
 <li><p class="first">Here delete the USB component, and replace it with either the SPI or I2C component, depending on which you intend to use.</p>
 </li>
 <li><p class="first">For SPI, make sure to choose <em>SPI Slave Full Duplex mode Macro v2.60</em> from the component catalog.</p>
 </li>
-<li><p class="first">For I2C, choose <em>I2C Slave (UDB) v3.30</em> make sure, to delete the <em>RST_1</em> pin, and wire it to a <em>Logic Low 0</em> component instead.</p>
+<li><p class="first">For I2C, choose <em>I2C Slave (UDB) v3.30</em>, but make sure to delete the <em>RST_1</em> pin, and wire it to a <em>Logic Low 0</em> component instead.</p>
 </li>
 <li><p class="first">Navigate to your design wide resources page (<em>.cydwr</em>) to give pin assignments to your new pins</p>
 </li>
@@ -524,7 +524,7 @@ But, you will still need to have the SPI and I2C components included in your sch
     </div>
     <div class="footer">
         &copy; Copyright 2015, EmbeditElectronics.
-      Last updated on Jan 21, 2015.
+      Last updated on Jan 22, 2015.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

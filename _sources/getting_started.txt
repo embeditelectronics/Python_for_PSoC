@@ -256,8 +256,8 @@ The installer for each package can be found on our respective PyPi pages.
 :RPiSoC:
 
 	- `rpisoc PyPi page <https://pypi.python.org/pypi/RPiSoC>`_
-	- From that page, download and run *RPiSoC-1.2.5.win32.exe (md5)* if you are using the 32-bit Python installation, or *RPiSoC-1.2.5.win-amd64.exe (md5)* if you are using the 64-but installation
-	- Run the .exe when it finishes downloading and follow the on-screen instructions to install pyserial
+	- From that page, download and run *RPiSoC-1.2.5.win32.exe (md5)* if you are using the 32-bit Python installation, or *RPiSoC-1.2.5.win-amd64.exe (md5)* if you are using the 64-bit installation
+	- Run the .exe when it finishes downloading and follow the on-screen instructions to install the rpisoc package
 
 :Note:
 	
@@ -323,10 +323,10 @@ This of course indicates that Serial is to be used. To change this, simply chang
 Now, the firmware will compile itself so that SPI will be used. 
 But, you will still need to have the SPI and I2C components included in your schematic file. To do this:
 
-- Navigate to the *.cysch* page of your workspace, and go to the *COMMUNICATIONS* tab
+- Navigate to the *.cysch* page of your workspace, and go to the *COMMUNICATION* tab
 - Here delete the USB component, and replace it with either the SPI or I2C component, depending on which you intend to use.
 - For SPI, make sure to choose *SPI Slave Full Duplex mode Macro v2.60* from the component catalog.
-- For I2C, choose *I2C Slave (UDB) v3.30* make sure, to delete the *RST_1* pin, and wire it to a *Logic Low 0* component instead.
+- For I2C, choose *I2C Slave (UDB) v3.30*, but make sure to delete the *RST_1* pin, and wire it to a *Logic Low 0* component instead.
 - Navigate to your design wide resources page (*.cydwr*) to give pin assignments to your new pins
 - For SPI:
 	* Assign *MISO_1* to P1[3]
