@@ -1,7 +1,7 @@
 from rpisoc import *
 RPiSoC('SERIAL', DEBUG = True)
 
-voltmeter  = analogPin(0)
+voltmeter  = analogPin(9)
 out_3v3 = digitalPin(5,0,'OUT')
 out_3v3.Write(1)
 
