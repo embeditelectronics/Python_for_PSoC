@@ -7,20 +7,23 @@
 //    
 //    05/27/2013  v1.0  Mark Hastings   Initial working version
 //    05/28/2013  v1.1  Mark Hastings   Added complete state
+//    10/01/2014  v1.3  Mark Hastings   Seperated the two interrupts
 //
 // ========================================
 `include "cypress.v"
 //`#end` -- edit above this line, do not edit this line
 // Generated on 11/12/2011 at 15:55
-// Component: B_WS2811_v1_2
-module B_WS2811_v1_2 (
-	irq,
+// Component: B_WS2811_v1_3
+module B_WS2811_v1_3 (
+	firq,
+	cirq,
 	sout,
 	cntl,
 	clk,
 	reset
 );
-	output  irq;
+	output  cirq;
+	output  firq;
 	output  sout;
 	output  cntl;
 	input   clk;
@@ -103,7 +106,8 @@ module B_WS2811_v1_2 (
 	assign status[7]   = enable;       // Reading enable status
 	assign status[5:2] = 4'b0000;
     
-  assign irq  = ((fifoEmpty & fifo_irq_en) | (xferCmpt & xfrCmpt_irq_en)) & enable;
+  assign firq  = (fifoEmpty & fifo_irq_en) & enable;
+  assign cirq  =  (xferCmpt & xfrCmpt_irq_en) & enable;
 
 	always @(posedge clk or posedge reset )
 	begin

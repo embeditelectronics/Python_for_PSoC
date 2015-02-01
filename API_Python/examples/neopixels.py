@@ -6,6 +6,10 @@ try:
     pixels.Start()
     pixels.Dim(1)
     colors = [pixels.Green, pixels.Yellow, pixels.Orange, pixels.Red, pixels.Purple, pixels.Blue, pixels.PowderBlue, pixels.White]
+    for color in colors:
+        pixels.Fill(color)
+        time.sleep(1)
+    pixels.Fill(pixels.Black)
     while True:
         for column in range(8):
             for row in range(5):

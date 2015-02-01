@@ -21,7 +21,7 @@ class CapSense(object):
 
             CapSense(0)
     """
-    def __init__(self,PIN, THRESHOLD = 0):
+    def __init__(self,PIN, THRESHOLD = 1):
         """
         +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
         | Method            | __init__                                                                                                                                                                                                      |
@@ -84,7 +84,7 @@ class CapSense(object):
             self.baseline = self.readRaw()
             if RPiSoC.DEBUG:
                 print("Calibrating Sensor %d->Raw data:%d"%(self.number,self.baseline))
-            if self.baseline == self.readRaw():
+            if abs(self.baseline - self.readRaw())<=1:
                 if RPiSoC.DEBUG:
                     print("Sensor %d calibrated for raw values of %d"%(self.number,self.baseline))
                 break

@@ -9,6 +9,7 @@
 *
 * \bug None known, but this is untested
 */
+
 #ifndef PYTHON_H
     #include "Python.h"
 #endif
@@ -207,6 +208,12 @@ void Python_parser(vessel_type *vessel)
                     Python_getData(vessel);
                     vessel->color = vessel->dat|(temp_data<<16);
                     vessel->column = vessel->addr;
+                    vessel->addr = addr;
+                    vessel->cmd = cmd;
+                    break;
+                case 0x07:
+                    Python_getData(vessel);
+                    vessel->color = ((vessel->addr)<<16)|((vessel->cmd)<<8)|(vessel->dat);
                     vessel->addr = addr;
                     vessel->cmd = cmd;
                     break;

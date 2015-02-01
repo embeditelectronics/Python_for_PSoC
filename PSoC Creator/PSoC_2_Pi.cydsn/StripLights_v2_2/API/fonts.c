@@ -9,7 +9,7 @@
  *
  * ========================================
 */
-//#include <device.h>
+#include <project.h>
 #include "cytypes.h"
 #include "stdlib.h"
 #include "cyfitter.h"
@@ -178,18 +178,14 @@ void `$INSTANCE_NAME`_SetFont( uint32 font)
 void `$INSTANCE_NAME`_PrintString(int32 xpos, int32 ypos, char * theString, uint32 fg, uint32 bg)
 {
     uint32 strPos = 0;
-    uint32 y, yStop;
-    #if(`$INSTANCE_NAME`_MEMORY_TYPE == `$INSTANCE_NAME`_MEMORY_RGB)
-       extern uint32  `$INSTANCE_NAME`_ledArray[`$INSTANCE_NAME`_ROWS][`$INSTANCE_NAME`_COLUMNS];
-    #else  /* Else use lookup table */
-       extern uint8  `$INSTANCE_NAME`_ledArray[`$INSTANCE_NAME`_ROWS][`$INSTANCE_NAME`_COLUMNS];
-    #endif
+    uint32 yStop;
     
     yStop = ypos + `$INSTANCE_NAME`_fontY;
-    if(yStop > `$INSTANCE_NAME`_ROWS) yStop = `$INSTANCE_NAME`_ROWS;
+    if(yStop > `$INSTANCE_NAME`_MAX_Y) yStop = `$INSTANCE_NAME`_MAX_Y;
     
     while(theString[strPos] != 0)
     {
+		// Print character
         if(fg == `$INSTANCE_NAME`_COLORWHEEL_FONT)
         {
             `$INSTANCE_NAME`_PutChar(xpos, ypos, theString[strPos], `$INSTANCE_NAME`_ColorInc(1), bg);
@@ -198,19 +194,23 @@ void `$INSTANCE_NAME`_PrintString(int32 xpos, int32 ypos, char * theString, uint
         {
             `$INSTANCE_NAME`_PutChar(xpos, ypos, theString[strPos], fg, bg);
         }
-        strPos++;
-        xpos += `$INSTANCE_NAME`_fontX;
+        strPos++;   // Advance to next character
+        xpos += `$INSTANCE_NAME`_fontX;  // Advance to next x location for next character
+		
+		// If not last character clear out area between characters.
         if(theString[strPos] != 0)
         {
-            for(y = ypos; y < yStop; y++ )
-            {
-                if((y >= 0) && (y < `$INSTANCE_NAME`_ROWS)&& (xpos >= 0) && (xpos < `$INSTANCE_NAME`_COLUMNS) )
-                   `$INSTANCE_NAME`_ledArray[y][xpos] = bg;
-            }
+			if(bg != `$INSTANCE_NAME`_TRANS_BG)
+			{
+			     `$INSTANCE_NAME`_DrawLine(xpos, ypos, xpos, ypos+`$INSTANCE_NAME`_fontY, bg);
+			}
         }
         xpos++;
     }
-    `$INSTANCE_NAME`_DrawLine(xpos-1, ypos, xpos-1, ypos+`$INSTANCE_NAME`_fontY, bg);
+	if(bg != `$INSTANCE_NAME`_TRANS_BG)
+	{
+        `$INSTANCE_NAME`_DrawLine(xpos-1, ypos, xpos-1, ypos+`$INSTANCE_NAME`_fontY, bg);
+	}
 }
 
 /*******************************************************************************
@@ -232,43 +232,41 @@ void `$INSTANCE_NAME`_PrintString(int32 xpos, int32 ypos, char * theString, uint
 *******************************************************************************/
 void `$INSTANCE_NAME`_PutChar(int32 xpos, int32 ypos, uint8 theChar, uint32 fg, uint32 bg)
 {
-   int32 x,y, fp;
-   uint8 mask;
-   int32 yStop, xStop;
-    #if(`$INSTANCE_NAME`_MEMORY_TYPE == `$INSTANCE_NAME`_MEMORY_RGB)
-       extern uint32  `$INSTANCE_NAME`_ledArray[`$INSTANCE_NAME`_ROWS][`$INSTANCE_NAME`_COLUMNS];
-    #else  /* Else use lookup table */
-       extern uint8  `$INSTANCE_NAME`_ledArray[`$INSTANCE_NAME`_ROWS][`$INSTANCE_NAME`_COLUMNS];;
-    #endif
+    int32 x,y, fp;
+    uint8 mask;
+    int32 yStop, xStop;
    
-   fp = (theChar - `$INSTANCE_NAME`_fontOffset) * `$INSTANCE_NAME`_fontX;
+    fp = (theChar - `$INSTANCE_NAME`_fontOffset) * `$INSTANCE_NAME`_fontX;
    
-   xStop = xpos + `$INSTANCE_NAME`_fontX;
-   if(xStop > `$INSTANCE_NAME`_COLUMNS) xStop = `$INSTANCE_NAME`_COLUMNS;
+    xStop = xpos + `$INSTANCE_NAME`_fontX;
+    if(xStop > `$INSTANCE_NAME`_MAX_X) xStop = `$INSTANCE_NAME`_MAX_X;
    
-   yStop = ypos + `$INSTANCE_NAME`_fontY;
-   if(yStop > `$INSTANCE_NAME`_ROWS) yStop = `$INSTANCE_NAME`_ROWS;
+    yStop = ypos + `$INSTANCE_NAME`_fontY;
+    if(yStop > `$INSTANCE_NAME`_MAX_Y) yStop = `$INSTANCE_NAME`_MAX_Y;
    
-   for( x = xpos; x < xStop; x++)
-   {
-       mask = 0x01;
-       for(y = ypos; y < yStop; y++)
-       {
-          if((y >= 0) && (x >= 0))
-          {
-              if(mask & `$INSTANCE_NAME`_fontPtr[fp])
-              {
-                   `$INSTANCE_NAME`_ledArray[y][x] = fg;   
-              }
-              else
-              {
-                  `$INSTANCE_NAME`_ledArray[y][x] = bg;
-              }
-          }
-          mask = mask << 1;
-       }
-       fp++;
-   }
+    for( x = xpos; x < xStop; x++)
+    {
+        mask = 0x01;
+        for(y = ypos; y <= yStop; y++)
+        {
+            if((y >= 0) && (x >= 0))
+            {
+                if(mask & `$INSTANCE_NAME`_fontPtr[fp])
+                { 
+				     `$INSTANCE_NAME`_Pixel( x, y, fg);
+                }
+                else
+                {
+					if(bg != `$INSTANCE_NAME`_TRANS_BG)
+					{
+				        `$INSTANCE_NAME`_Pixel( x, y, bg);
+					}
+                }
+            }
+            mask = mask << 1;
+        }
+        fp++;
+    }
 }
 
 

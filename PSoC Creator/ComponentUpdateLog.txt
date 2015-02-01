@@ -122,3 +122,15 @@ PSoC_2_Pi: Design Wide APIs
 	cy_boot [v4.11] to [v4.20]
 
 
+Last Modified Date & Time: 01/31/2015 12:40:17
+
+PSoC_2_Pi: StripLights_v2_2
+	Clock [v2.0] to [v2.20]
+
+PSoC_2_Pi: StripLights_v2_2
+	Clock [v2.0] to [v2.20]
+
+PSoC_2_Pi: StripLights_v2_2
+	HFCLK [v2.10] to [v2.20]
+
+

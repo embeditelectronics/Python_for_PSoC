@@ -21,6 +21,7 @@
 #define `$INSTANCE_NAME`_Font5x7_YSIZE  7
 #define `$INSTANCE_NAME`_Font5x7_OFFSET 32u
 #define `$INSTANCE_NAME`_COLORWHEEL_FONT  0x80000000
+#define `$INSTANCE_NAME`_TRANS_BG         0xFF000000
 
 
 void `$INSTANCE_NAME`_SetFont( uint32 font);

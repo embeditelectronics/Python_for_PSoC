@@ -8,7 +8,7 @@
  * ========================================
 */
 
-#if !defined(CY_SLIGHTS_`$INSTANCE_NAME`_H)
+#if (!defined(CY_SLIGHTS_`$INSTANCE_NAME`_H))
 #define CY_SLIGHTS_`$INSTANCE_NAME`_H
 
 #include "cytypes.h"
@@ -27,6 +27,7 @@ void   `$INSTANCE_NAME`_DrawRect(int32 x0, int32 y0, int32 x1, int32 y1, int32 f
 void   `$INSTANCE_NAME`_DrawLine(int32 x0, int32 y0, int32 x1, int32 y1, uint32 color);
 void   `$INSTANCE_NAME`_DrawCircle (int32 x0, int32 y0, int32 radius, uint32 color);
 void   `$INSTANCE_NAME`_Pixel(int32 x, int32 y, uint32 color);
+uint32 `$INSTANCE_NAME`_GetPixel(int32 x, int32 y);
 uint32 `$INSTANCE_NAME`_ColorInc(uint32 incValue);
 void   `$INSTANCE_NAME`_Dim(uint32 dimLevel); 
 
@@ -36,9 +37,16 @@ void   `$INSTANCE_NAME`_Dim(uint32 dimLevel);
 #define `$INSTANCE_NAME`_DimLevel_3   3
 #define `$INSTANCE_NAME`_DimLevel_4   4
 
-#define `$INSTANCE_NAME`_IRQ_Enable() CyIntEnable(`$INSTANCE_NAME`_IRQ__INTC_NUMBER ); 
-#define `$INSTANCE_NAME`_IRQ_Disable() CyIntDisable(`$INSTANCE_NAME`_IRQ__INTC_NUMBER );
-CY_ISR_PROTO(`$INSTANCE_NAME`_ISR);
+
+
+
+#define `$INSTANCE_NAME`_CIRQ_Enable() CyIntEnable(`$INSTANCE_NAME`_CIRQ__INTC_NUMBER ); 
+#define `$INSTANCE_NAME`_CIRQ_Disable() CyIntDisable(`$INSTANCE_NAME`_CIRQ__INTC_NUMBER );
+CY_ISR_PROTO(`$INSTANCE_NAME`_CISR);
+
+#define `$INSTANCE_NAME`_FIRQ_Enable() CyIntEnable(`$INSTANCE_NAME`_FIRQ__INTC_NUMBER ); 
+#define `$INSTANCE_NAME`_FIRQ_Disable() CyIntDisable(`$INSTANCE_NAME`_FIRQ__INTC_NUMBER );
+CY_ISR_PROTO(`$INSTANCE_NAME`_FISR);
 
 /* Register Definitions */
 #define `$INSTANCE_NAME`_DATA         (*(reg8 *) `$INSTANCE_NAME`_B_WS2811_dshifter_u0__F0_REG)
@@ -113,54 +121,74 @@ CY_ISR_PROTO(`$INSTANCE_NAME`_ISR);
     #define `$INSTANCE_NAME`_WORD_TIME_US 60u
 #endif
 
-
 #define `$INSTANCE_NAME`_COLUMNS     `$LEDs_per_Strip`
 #define `$INSTANCE_NAME`_ROWS        `$Channels`
-#define `$INSTANCE_NAME`_MIN_X        0u
-#define `$INSTANCE_NAME`_MAX_X        (`$INSTANCE_NAME`_COLUMNS - 1)
-#define `$INSTANCE_NAME`_MIN_Y        0u
-#define `$INSTANCE_NAME`_MAX_Y        (`$INSTANCE_NAME`_ROWS - 1)
+#define `$INSTANCE_NAME`_TOTAL_LEDS   (`$INSTANCE_NAME`_COLUMNS*`$INSTANCE_NAME`_ROWS)
+
+#define `$INSTANCE_NAME`_ARRAY_COLS  (int32)(`$LEDs_per_Strip`)
+#define `$INSTANCE_NAME`_ARRAY_ROWS  (int32)(`$Channels`)
+#define `$INSTANCE_NAME`_CHIP        (`$WS281x_Type`)
+#define `$INSTANCE_NAME`_CHIP_WS2811 1
+#define `$INSTANCE_NAME`_CHIP_WS2812 2
+
+#define `$INSTANCE_NAME`_MIN_X        (int32)0u
+#define `$INSTANCE_NAME`_MAX_X        (int32)(`$INSTANCE_NAME`_COLUMNS - 1)
+#define `$INSTANCE_NAME`_MIN_Y        (int32)0u
+#define `$INSTANCE_NAME`_MAX_Y        (int32)(`$INSTANCE_NAME`_ROWS - 1)
 
 //#define `$INSTANCE_NAME`_RBCOLORS     48
 #define `$INSTANCE_NAME`_COLOR_WHEEL_SIZE  24
 
-
+#if(`$INSTANCE_NAME`_CHIP == `$INSTANCE_NAME`_CHIP_WS2812)
 #define `$INSTANCE_NAME`_RED_MASK   0x0000FF00
 #define `$INSTANCE_NAME`_GREEN_MASK 0x000000FF
 #define `$INSTANCE_NAME`_BLUE_MASK  0x00FF0000
+#else
+#define `$INSTANCE_NAME`_RED_MASK   0x000000FF
+#define `$INSTANCE_NAME`_GREEN_MASK 0x0000FF00
+#define `$INSTANCE_NAME`_BLUE_MASK  0x00FF0000	
+#endif
 
 #if(`$INSTANCE_NAME`_MEMORY_TYPE == `$INSTANCE_NAME`_MEMORY_RGB)
-   #define getColor( a ) `$INSTANCE_NAME`_CLUT[a]
+   #define `$INSTANCE_NAME`_getColor( a ) `$INSTANCE_NAME`_CLUT[a]
 #else  /* Else use lookup table */
-   #define getColor( a ) a
+   #define `$INSTANCE_NAME`_getColor( a ) a
 #endif
 
 
 #define `$INSTANCE_NAME`_CWHEEL_SIZE 24
-#define `$INSTANCE_NAME`_YELLOW      getColor(1)
-#define `$INSTANCE_NAME`_GREEN       getColor(5)
-#define `$INSTANCE_NAME`_ORANGE      getColor(20)
-#define `$INSTANCE_NAME`_BLACK       getColor((0 + `$INSTANCE_NAME`_CWHEEL_SIZE))
-#define `$INSTANCE_NAME`_OFF         getColor((0 + `$INSTANCE_NAME`_CWHEEL_SIZE))
-#define `$INSTANCE_NAME`_LTBLUE      getColor((1 + `$INSTANCE_NAME`_CWHEEL_SIZE))
-#define `$INSTANCE_NAME`_MBLUE       getColor((2 + `$INSTANCE_NAME`_CWHEEL_SIZE))
-#define `$INSTANCE_NAME`_BLUE        getColor((3 + `$INSTANCE_NAME`_CWHEEL_SIZE))
-#define `$INSTANCE_NAME`_LTGREEN     getColor((4 + `$INSTANCE_NAME`_CWHEEL_SIZE))
-#define `$INSTANCE_NAME`_MGREEN      getColor((8 + `$INSTANCE_NAME`_CWHEEL_SIZE))
+#define `$INSTANCE_NAME`_YELLOW      `$INSTANCE_NAME`_getColor(1)
+#define `$INSTANCE_NAME`_GREEN       `$INSTANCE_NAME`_getColor((70 + `$INSTANCE_NAME`_CWHEEL_SIZE))
+#define `$INSTANCE_NAME`_ORANGE      `$INSTANCE_NAME`_getColor(20)
+#define `$INSTANCE_NAME`_BLACK       `$INSTANCE_NAME`_getColor((0 + `$INSTANCE_NAME`_CWHEEL_SIZE))
+#define `$INSTANCE_NAME`_OFF         `$INSTANCE_NAME`_getColor((0 + `$INSTANCE_NAME`_CWHEEL_SIZE))
+#define `$INSTANCE_NAME`_LTBLUE      `$INSTANCE_NAME`_getColor((1 + `$INSTANCE_NAME`_CWHEEL_SIZE))
+#define `$INSTANCE_NAME`_MBLUE       `$INSTANCE_NAME`_getColor((2 + `$INSTANCE_NAME`_CWHEEL_SIZE))
+#define `$INSTANCE_NAME`_BLUE        `$INSTANCE_NAME`_getColor((3 + `$INSTANCE_NAME`_CWHEEL_SIZE))
+#define `$INSTANCE_NAME`_LTGREEN     `$INSTANCE_NAME`_getColor((4 + `$INSTANCE_NAME`_CWHEEL_SIZE))
+#define `$INSTANCE_NAME`_MGREEN      `$INSTANCE_NAME`_getColor((8 + `$INSTANCE_NAME`_CWHEEL_SIZE))
 //#define `$INSTANCE_NAME`_GREEN       (12 + `$INSTANCE_NAME`_CWHEEL_SIZE) 
-#define `$INSTANCE_NAME`_LTRED       getColor((16 + `$INSTANCE_NAME`_CWHEEL_SIZE)) 
-#define `$INSTANCE_NAME`_LTYELLOW    getColor((20 + `$INSTANCE_NAME`_CWHEEL_SIZE))
-#define `$INSTANCE_NAME`_MGRED       getColor((32 + `$INSTANCE_NAME`_CWHEEL_SIZE)) 
-#define `$INSTANCE_NAME`_RED         getColor((48 + `$INSTANCE_NAME`_CWHEEL_SIZE)) 
-#define `$INSTANCE_NAME`_MAGENTA     getColor((51 + `$INSTANCE_NAME`_CWHEEL_SIZE))
-#define `$INSTANCE_NAME`_WHITE       getColor((63 + `$INSTANCE_NAME`_CWHEEL_SIZE)) 
+#define `$INSTANCE_NAME`_LTRED       `$INSTANCE_NAME`_getColor((16 + `$INSTANCE_NAME`_CWHEEL_SIZE)) 
+#define `$INSTANCE_NAME`_LTYELLOW    `$INSTANCE_NAME`_getColor((20 + `$INSTANCE_NAME`_CWHEEL_SIZE))
+#define `$INSTANCE_NAME`_MGRED       `$INSTANCE_NAME`_getColor((32 + `$INSTANCE_NAME`_CWHEEL_SIZE)) 
+#define `$INSTANCE_NAME`_RED         `$INSTANCE_NAME`_getColor((48 + `$INSTANCE_NAME`_CWHEEL_SIZE)) 
+#define `$INSTANCE_NAME`_MAGENTA     `$INSTANCE_NAME`_getColor((51 + `$INSTANCE_NAME`_CWHEEL_SIZE))
+#define `$INSTANCE_NAME`_WHITE       `$INSTANCE_NAME`_getColor((63 + `$INSTANCE_NAME`_CWHEEL_SIZE)) 
 
-#define `$INSTANCE_NAME`_SPRING_GREEN getColor((64 + `$INSTANCE_NAME`_CWHEEL_SIZE)) 
-#define `$INSTANCE_NAME`_TURQUOSE    getColor((65 + `$INSTANCE_NAME`_CWHEEL_SIZE)) 
-#define `$INSTANCE_NAME`_CYAN        getColor((66 + `$INSTANCE_NAME`_CWHEEL_SIZE)) 
-#define `$INSTANCE_NAME`_OCEAN       getColor((67 + `$INSTANCE_NAME`_CWHEEL_SIZE)) 
-#define `$INSTANCE_NAME`_VIOLET      getColor((68 + `$INSTANCE_NAME`_CWHEEL_SIZE)) 
-#define `$INSTANCE_NAME`_RASPBERRY   getColor((69 + `$INSTANCE_NAME`_CWHEEL_SIZE)) 
+#define `$INSTANCE_NAME`_SPRING_GREEN `$INSTANCE_NAME`_getColor((64 + `$INSTANCE_NAME`_CWHEEL_SIZE)) 
+#define `$INSTANCE_NAME`_TURQUOSE    `$INSTANCE_NAME`_getColor((65 + `$INSTANCE_NAME`_CWHEEL_SIZE)) 
+#define `$INSTANCE_NAME`_CYAN        `$INSTANCE_NAME`_getColor((66 + `$INSTANCE_NAME`_CWHEEL_SIZE)) 
+#define `$INSTANCE_NAME`_OCEAN       `$INSTANCE_NAME`_getColor((67 + `$INSTANCE_NAME`_CWHEEL_SIZE)) 
+#define `$INSTANCE_NAME`_VIOLET      `$INSTANCE_NAME`_getColor((68 + `$INSTANCE_NAME`_CWHEEL_SIZE)) 
+#define `$INSTANCE_NAME`_RASPBERRY   `$INSTANCE_NAME`_getColor((69 + `$INSTANCE_NAME`_CWHEEL_SIZE)) 
+#define `$INSTANCE_NAME`_DIM_WHITE   `$INSTANCE_NAME`_getColor((71 + `$INSTANCE_NAME`_CWHEEL_SIZE)) 
+#define `$INSTANCE_NAME`_DIM_BLUE    `$INSTANCE_NAME`_getColor((72 + `$INSTANCE_NAME`_CWHEEL_SIZE)) 
+#define `$INSTANCE_NAME`_INVISIBLE   `$INSTANCE_NAME`_getColor((73 + `$INSTANCE_NAME`_CWHEEL_SIZE))
+
+#define `$INSTANCE_NAME`_COLD_TEMP   `$INSTANCE_NAME`_getColor((80 + `$INSTANCE_NAME`_CWHEEL_SIZE)) 
+#define `$INSTANCE_NAME`_HOT_TEMP    `$INSTANCE_NAME`_getColor((95 + `$INSTANCE_NAME`_CWHEEL_SIZE)) 
+
+#define `$INSTANCE_NAME`_CLUT_SIZE  (96 + `$INSTANCE_NAME`_CWHEEL_SIZE)
 
 #define `$INSTANCE_NAME`_RESET_DELAY_US  55
 

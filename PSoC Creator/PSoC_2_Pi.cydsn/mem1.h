@@ -532,7 +532,7 @@ bool GPIO_Control(uint8 cmd, uint8 port, uint8 pin, uint16 val, uint32 *result);
 bool Analog_Read(uint8 cmd, uint16 val, uint32 *result);
 bool CapSense_Read(uint8 cmd, uint16 val, uint32 *result);
 
-bool StripLightsControl(uint8 cmd, uint16 dat, uint8 column, uint8 row, uint32 color);
+bool StripLightsControl(uint8 cmd, uint16 dat, uint8 column, uint8 row, uint32 color, uint32 *result);
 //bool Range_Finder(uint32 *result);
 bool Range_Finder(uint8 cmd, uint8 port, uint8 pin, uint8 trigport, uint8 trigpin, uint8 delayus, uint16 timeout, uint32 *result);
 bool CheckBuild(uint8 cmd, uint16 val, uint32 *result);

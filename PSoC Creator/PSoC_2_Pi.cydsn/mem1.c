@@ -149,7 +149,7 @@ bool readData(vessel_type vessel, uint32 *result)
             case RANGE_FINDER: return_flag = Range_Finder(cmd, vessel.port, vessel.pin, vessel.trigport, vessel.trigpin, vessel.delayus, dat, result); break;
         #endif
         #ifdef CY_SLIGHTS_StripLights_H
-            case STRIPLIGHT_REGISTER: return_flag = StripLightsControl(cmd, dat, vessel.row, vessel.column, vessel.color); break;
+            case STRIPLIGHT_REGISTER: return_flag = StripLightsControl(cmd, dat, vessel.row, vessel.column, vessel.color, result); break;
         #endif
         
         case TEST_REGISTER: return_flag = test_read(dat, result); break;
@@ -2491,7 +2491,6 @@ bool GPIO_Control(uint8 cmd, uint8 port, uint8 pin, uint16 val, uint32 *result)
             
             return return_flag;
 }
-
 #ifdef CY_ADC_SAR_Seq_1_H
     bool Analog_Read(uint8 cmd, uint16 dat, uint32 *result)
     {
@@ -2504,7 +2503,6 @@ bool GPIO_Control(uint8 cmd, uint8 port, uint8 pin, uint16 val, uint32 *result)
             ADC_SAR_Seq_1_IsEndConversion(ADC_SAR_Seq_1_WAIT_FOR_RESULT);
             *result = ADC_SAR_Seq_1_GetResult16(dat);
             ADC_SAR_Seq_1_StopConvert();
-            ADC_SAR_Seq_1_Stop();
         }
         
         switch(cmd)
@@ -2520,14 +2518,47 @@ bool GPIO_Control(uint8 cmd, uint8 port, uint8 pin, uint16 val, uint32 *result)
                     case 0x0C: ADC_SAR_Seq_1_SetResolution(ADC_SAR_Seq_1_BITS_12); break;
                     
                 }
-                ADC_SAR_Seq_1_Stop();
+                
                 break;
         }
-        
+        ADC_SAR_Seq_1_Stop();
         return return_flag;
     }
 #endif
-
+/*
+    bool Analog_Read(uint8 cmd, uint16 dat, uint32 *result)
+    {
+        bool return_flag = false;
+        
+        SAR_MUXED_Start();
+        if (cmd == 0x00 || cmd == 0x01)
+        {
+            SAR_SELECT_Write(dat);
+            SAR_MUXED_StartConvert();
+            SAR_MUXED_IsEndConversion(SAR_MUXED_WAIT_FOR_RESULT);
+            *result = SAR_MUXED_GetResult16();
+            SAR_MUXED_StopConvert();
+        }
+        
+        switch(cmd)
+        {
+            case 0x00: return_flag = true; break;
+            case 0x01: *result = SAR_MUXED_CountsTo_uVolts(*result); return_flag = true; break;
+            case 0x02: SAR_MUXED_SetOffset(dat); break;
+            case 0x03: 
+                switch(dat)
+                {   
+                    case 0x08: SAR_MUXED_SetResolution(SAR_MUXED__BITS_8); break;
+                    case 0x0A: SAR_MUXED_SetResolution(SAR_MUXED__BITS_10); break;
+                    case 0x0C: SAR_MUXED_SetResolution(SAR_MUXED__BITS_12); break;
+                    
+                }
+                break;
+        }
+        SAR_MUXED_Stop();
+        return return_flag;
+    }
+*/
 #ifdef CY_CAPSENSE_CSD_CapSense_1_H
     bool CapSense_Read(uint8 cmd, uint16 dat, uint32 *result)
     {
@@ -3810,68 +3841,98 @@ bool test_read(uint16 dat, uint32 *result)
         *result = dat;
         return true;
     }
-
 #ifdef CY_SLIGHTS_StripLights_H
     bool StripLightsControl(uint8 cmd, uint16 dat, uint8 row, uint8 column, uint32 color)
         {
             switch(cmd)
             {
-                case 0x00: StripLights_Start(); break;
+                case 0x00: 
+                    StripLights_MemClear(0);
+                    CyDelay(1);
+                    StripLights_Start(); 
+                    CyDelay(1);
+                    StripLights_DisplayClear(0);
+                break;
                 case 0x01: StripLights_Stop(); break;
                 case 0x02: SetNeoPixel(row, column, color); break;
                 case 0x03: Stripe(dat, color); break;
-                case 0x04: StripLights_Dim(dat); break; 
+                case 0x04: 
+                    StripLights_Dim(dat);
+                    while( StripLights_Ready() == 0){}
+                    StripLights_Trigger(1);
+                break; 
                 case 0x05: NeoPixel_DrawRow(row, color); break;
                 case 0x06: NeoPixel_DrawColumn(column, color); break;
+                case 0x07: StripLights_DisplayClear(color); break;
+                case 0x08: 
+                    while( StripLights_Ready() == 0){}
+                    StripLights_Trigger(1);
+                break;
+                case 0x09: StripLights_MemClear(0); break;
+                    
                 
             }
-            
-            return false;
+            *result = 0xBBBBBBBB;
+            return true;
+            /*
+            Timer_Start();
+                    TIMER_REG_Write(1);
+                    TIMER_REG_Write(0);
+                    while( StripLights_Ready() == 0)
+                    {
+                       if (Timer_ReadStatusRegister()&Timer_STATUS_TC){break;}
+                    }
+                    StripLights_Trigger(1);
+                    Timer_Stop();
+            */
         }
         
     void Stripe(uint16 MAX, uint32 color)
     {
-       uint32 x;
+        uint32 x;
         
            for(x = 0; x <= MAX; x++)
            {
-     //          color = getColor((lp+x) % StripLights_COLOR_WHEEL_SIZE);
-               //StripLights_DrawLine(x, StripLights_MIN_Y, x, StripLights_MAX_Y, color);
-                StripLights_Pixel(x, 0, color);
-                while( StripLights_Ready() == 0);
-                StripLights_Trigger(1);
-                
-           }
-           
+            StripLights_Pixel(x, 0, color);
+            while( StripLights_Ready() == 0){}
+            StripLights_Trigger(1);
+            }
+            
         
 
     }
     void NeoPixel_DrawRow(uint8 row, uint32 color)
     {
+       
         int x = 0;
         for (x = 0; x<8 ; x++)
         {
             StripLights_Pixel(8*row + x, 0, color);
-            while( StripLights_Ready() == 0);
+            
+            while( StripLights_Ready() == 0){}
             StripLights_Trigger(1);
         }
+        
         
     }
     void NeoPixel_DrawColumn(uint8 column, uint32 color)
     {
+        
         int x = 0;
         for (x = 0; x<5 ; x++)
         {
             StripLights_Pixel(column + 8*x, 0, color);
-            while( StripLights_Ready() == 0);
+            while( StripLights_Ready() == 0){}
             StripLights_Trigger(1);
         }
         
     }
     void SetNeoPixel(uint8 row, uint8 column, uint32 color)
     {
+        
         StripLights_Pixel(8*row + column, 0, color);
-        while( StripLights_Ready() == 0);
+        
+        while( StripLights_Ready() == 0){}
         StripLights_Trigger(1);
     }
 #endif

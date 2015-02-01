@@ -5,6 +5,7 @@
  *
  * 05/27/2013  v1.0  Mark Hastings   Initial working version
  * 09/04/2013  v1.3  Mark Hastings   Add more features and color lookup.
+ * 12/02/2013  v1.6  Mark Hastings   Added a couple more functions.
  *
  * This file contains the functions required to control each
  * lighting control channel.
@@ -12,7 +13,7 @@
  * =========================================================
 */
 
-//#include <device.h>
+#include <project.h>
 #include "cytypes.h"
 #include "stdlib.h"
 #include "cyfitter.h"
@@ -22,9 +23,9 @@
 uint8  `$INSTANCE_NAME`_initvar = 0;
 
 #if(`$INSTANCE_NAME`_MEMORY_TYPE == `$INSTANCE_NAME`_MEMORY_RGB)
-uint32  `$INSTANCE_NAME`_ledArray[`$INSTANCE_NAME`_ROWS][`$INSTANCE_NAME`_COLUMNS];
+uint32  `$INSTANCE_NAME`_ledArray[`$INSTANCE_NAME`_ARRAY_ROWS][`$INSTANCE_NAME`_ARRAY_COLS];
 #else
-uint8   `$INSTANCE_NAME`_ledArray[`$INSTANCE_NAME`_ROWS][`$INSTANCE_NAME`_COLUMNS];
+uint8   `$INSTANCE_NAME`_ledArray[`$INSTANCE_NAME`_ARRAY_ROWS][`$INSTANCE_NAME`_ARRAY_COLS];
 #endif
 
 uint32  `$INSTANCE_NAME`_ledIndex = 0;  
@@ -35,13 +36,15 @@ uint32  `$INSTANCE_NAME`_DimMask;
 uint32  `$INSTANCE_NAME`_DimShift;
 
 
+#if(`$INSTANCE_NAME`_CHIP == `$INSTANCE_NAME`_CHIP_WS2812)
 const uint32 `$INSTANCE_NAME`_CLUT[ ] = {
-//xxBBRRGG  (24)
+//xxBBRRGG (WS2812)
+//     (24)   [ Index = 0 ]
 0x0000FFFF,  // 0 Yellow
 0x0000CCFF,
 0x000099FF,
 0x000033FF,
-0x000000CC,  // 5  Green
+0x000000FF,  // 5  Green
 0x006600B3,
 0x00990099, 
 0x00B30066, 
@@ -63,7 +66,7 @@ const uint32 `$INSTANCE_NAME`_CLUT[ ] = {
 0x0000FFE5,
 // #24
 
-//xxBBRRGG
+//xxBBRRGG  (64)  [ Index = 24 ]
 0x00000000, 0x00550000, 0x00AA0000, 0x00FF0000,  // 0, Black,  LtBlue, MBlue, Blue
 0x00000055, 0x00550055, 0x00AA0055, 0x00FF0055,  // 4, LtGreen
 0x000000AA, 0x005500AA, 0x00AA00AA, 0x00FF00AA,  // 8, MGreen
@@ -84,14 +87,105 @@ const uint32 `$INSTANCE_NAME`_CLUT[ ] = {
 0x0000FFAA, 0x0055FFAA, 0x00AAFFAA, 0x00FFFFAA,  // 56,
 0x0000FFFF, 0x0055FFFF, 0x00AAFFFF, 0x00FFFFFF,  // 60, Yellow,??, ??, White
 
-// 64
+// Misc ( 16 )  [ Index = 88 ]
 0x000080FF,  // SPRING_GREEN
 0x008000FF,  // TURQUOSE
 0x00FF00FF,  // CYAN
 0x00FF0080,  // OCEAN
 0x00FF8000,  // VIOLET
-0x0080FF00   // RASPBERRY
+0x0080FF00,  // RASPBERRY
+0x000000FF,  // GREEN
+0x00202020,  // DIM WHITE
+0x00200000,  // DIM BLUE
+0x10000000,  // INVISIBLE
+0x00000000,  // Spare
+0x00000000,  // Spare
+0x00000000,  // Spare
+0x00000000,  // Spare
+0x00000000,  // Spare
+0x00000000,  // Spare
+
+// Temperture Color Blue to Red (16) [ Index = 104 ]
+0x00FF0000, 0x00F01000, 0x00E02000, 0x00D03000,
+0x00C04000, 0x00B05000, 0x00A06000, 0x00907000,
+0x00808000, 0x00709000, 0x0060A000, 0x0050B000,
+0x0040C000, 0x0030D000, 0x0020E000, 0x0000FF00
 };
+#else  //xxBBGGRR (WS2811)
+const uint32 `$INSTANCE_NAME`_CLUT[ ] = {
+//     (24)   [ Index = 0 ]
+0x0000FFFF,  // 0 Yellow
+0x0000FFCC,
+0x0000FF99,
+0x0000FF33,
+0x0000FF00,  // 5  Green
+0x0066B300,
+0x00999900, 
+0x00B36600, 
+0x00CC3300,  // 9 Blue
+0x00B31919, 
+0x00990033, 
+0x00990040, 
+0x00990066, 
+0x00990099, 
+0x009900CC, 
+0x006600E6, 
+0x000000FF, 
+0x000033FF, 
+0x000066FF, 
+0x000080FF, 
+0x000099FF,  // 20 Orange
+0x0000B2FF, 
+0x0000CCFF, 
+0x0000E5FF,
+// #24
+
+//xxBBRRGG  (64)  [ Index = 24 ]
+0x00000000, 0x00550000, 0x00AA0000, 0x00FF0000,  // 0, Black,  LtBlue, MBlue, Blue
+0x00005500, 0x00555500, 0x00AA5500, 0x00FF5500,  // 4, LtGreen
+0x0000AA00, 0x0055AA00, 0x00AAAA00, 0x00FFAA00,  // 8, MGreen
+0x0000FF00, 0x0055FF00, 0x00AAFF00, 0x00FFFF00,  // 12 Green
+
+0x00000055, 0x00550055, 0x00AA0055, 0x00FF0055,  // 16, LtRed
+0x00005555, 0x00555555, 0x00AA5555, 0x00FF5555,  // 20, LtYellow
+0x0000AA55, 0x0055AA55, 0x00AAAA55, 0x00FFAA55,  // 24, 
+0x0000FF55, 0x0055FF55, 0x00AAFF55, 0x00FFFF55,  // 28,
+
+0x000000AA, 0x005500AA, 0x00AA00AA, 0x00FF00AA,  // 32, MRed
+0x000055AA, 0x005555AA, 0x00AA55AA, 0x00FF55AA,  // 36, 
+0x0000AAAA, 0x0055AAAA, 0x00AAAAAA, 0x00FFAAAA,  // 55, 
+0x0000FFAA, 0x0055FFAA, 0x00AAFFAA, 0x00FFFFAA,  // 44, 
+
+0x000000FF, 0x005500FF, 0x00AA00FF, 0x00F00FFF,  // 48, Red, ??, ??, Magenta
+0x000055FF, 0x005555FF, 0x00AA55FF, 0x00FF55FF,  // 52,
+0x0000AAFF, 0x0055AAFF, 0x00AAAAFF, 0x00FFAAFF,  // 56,
+0x0000FFFF, 0x0055FFFF, 0x00AAFFFF, 0x00FFFFFF,  // 60, Yellow,??, ??, White
+
+// Misc ( 16 )  [ Index = 88 ]
+0x0000FF80,  // SPRING_GREEN
+0x0080FF00,  // TURQUOSE
+0x00FFFF00,  // CYAN
+0x00FF8000,  // OCEAN
+0x00FF0080,  // VIOLET
+0x008000FF,  // RASPBERRY
+0x0000FF00,  // GREEN
+0x00202020,  // DIM WHITE
+0x00200000,  // DIM BLUE
+0x10000000,  // INVISIBLE
+0x00000000,  // Spare
+0x00000000,  // Spare
+0x00000000,  // Spare
+0x00000000,  // Spare
+0x00000000,  // Spare
+0x00000000,  // Spare
+
+// Temperture Color Blue to Red (16) [ Index = 104 ]
+0x00FF0000, 0x00F00010, 0x00E00020, 0x00D00030,
+0x00C00040, 0x00B00050, 0x00A00060, 0x00900070,
+0x00800080, 0x00700090, 0x006000A0, 0x005000B0,
+0x004000C0, 0x003000D0, 0x002000E0, 0x000000FF
+};
+#endif
 
 
 
@@ -138,7 +232,8 @@ void `$INSTANCE_NAME`_Start()
 
 #if(`$INSTANCE_NAME`_TRANSFER == `$INSTANCE_NAME`_TRANSFER_ISR)
        {
-           `$INSTANCE_NAME`_isr_StartEx(`$INSTANCE_NAME`_ISR);
+           `$INSTANCE_NAME`_cisr_StartEx(`$INSTANCE_NAME`_CISR);
+		   `$INSTANCE_NAME`_fisr_StartEx(`$INSTANCE_NAME`_FISR);
        }
 #endif       
        if(`$INSTANCE_NAME`_TRANSFER == `$INSTANCE_NAME`_TRANSFER_FIRMWARE)
@@ -188,21 +283,23 @@ void `$INSTANCE_NAME`_Trigger(uint32 rst)
     `$INSTANCE_NAME`_DATA = (uint8)(color & 0x000000FF);  // Write green
     
     `$INSTANCE_NAME`_ledIndex = 1;
-    `$INSTANCE_NAME`_CONTROL = `$INSTANCE_NAME`_ENABLE | `$INSTANCE_NAME`_FIFO_IRQ_EN; 
+ //   `$INSTANCE_NAME`_CONTROL = `$INSTANCE_NAME`_ENABLE | `$INSTANCE_NAME`_FIFO_IRQ_EN; 
+	
+	`$INSTANCE_NAME`_CONTROL = `$INSTANCE_NAME`_ENABLE | `$INSTANCE_NAME`_XFRCMPT_IRQ_EN | `$INSTANCE_NAME`_FIFO_IRQ_EN; 
     `$INSTANCE_NAME`_refreshComplete = 0;
 }
 
 /*******************************************************************************
-* Function Name: `$INSTANCE_NAME`_CheckXfer
+* Function Name: `$INSTANCE_NAME`_Ready
 ********************************************************************************
 * Summary:
-*  
+*  Checks to see if transfer is complete.
 *
 * Parameters:  
-*  void  
+*  none  
 *
 * Return: 
-*  void
+*  Zero if not complete, non-zero if transfer complete.
 *
 *******************************************************************************/
 uint32 `$INSTANCE_NAME`_Ready(void)
@@ -223,10 +320,10 @@ uint32 `$INSTANCE_NAME`_Ready(void)
 * Function Name: `$INSTANCE_NAME`_Stop
 ********************************************************************************
 * Summary:
-*  
+*  Stop all transfers.
 *
 * Parameters:  
-*  void  
+*  None 
 *
 * Return: 
 *  void
@@ -243,13 +340,13 @@ void `$INSTANCE_NAME`_Stop()
 * Function Name: `$INSTANCE_NAME`_ColorInc
 ********************************************************************************
 * Summary:
-*  
+*  Increment color throught the color lookup table.
 *
 * Parameters:  
-*  void  
+*  uint32 incValue: Increment through color table by incValue. 
 *
-* Return: 
-*  void
+* Return: Color at next location.
+*  
 *
 *******************************************************************************/
 uint32 `$INSTANCE_NAME`_ColorInc(uint32 incValue)
@@ -271,11 +368,11 @@ uint32 `$INSTANCE_NAME`_ColorInc(uint32 incValue)
     return(color);
 }
 /*****************************************************************************
-* Function Name: `$INSTANCE_NAME`_ISR
+* Function Name: `$INSTANCE_NAME`_FISR
 ******************************************************************************
 *
 * Summary:
-*  Handle Interrupt Service Routine.  
+*  Interrupt service handler for data transfer for each LED 
 *
 * Parameters:  
 *  void
@@ -287,62 +384,88 @@ uint32 `$INSTANCE_NAME`_ColorInc(uint32 incValue)
 *  No
 *
 *****************************************************************************/
-CY_ISR( `$INSTANCE_NAME`_ISR)
+CY_ISR( `$INSTANCE_NAME`_FISR)
 {
     extern uint32  `$INSTANCE_NAME`_DimMask;
     extern uint32  `$INSTANCE_NAME`_DimShift;
     uint32 static color;
-    uint8 static status;
-    extern uint32 `$INSTANCE_NAME`_refreshComplete;
-    /***************************************************************************
-    *  Custom Code
-    *  - add user ISR code between the following #START and #END tags
-    **************************************************************************/
-    /* `#START MAIN_CLIGHTS_ISR`  */
-    
-    /* `#END`  */
-    status = `$INSTANCE_NAME`_STATUS;
-    if( status & `$INSTANCE_NAME`_STATUS_XFER_CMPT)
+
+    if(`$INSTANCE_NAME`_ledIndex < `$INSTANCE_NAME`_ARRAY_COLS)
     {
-        `$INSTANCE_NAME`_row++;
-        if( `$INSTANCE_NAME`_row < `$INSTANCE_NAME`_ROWS)  /* More Rows to do  */
-        {
-            `$INSTANCE_NAME`_Channel = `$INSTANCE_NAME`_row;  
-            `$INSTANCE_NAME`_CONTROL = `$INSTANCE_NAME`_ENABLE |`$INSTANCE_NAME`_NEXT_ROW;
-            `$INSTANCE_NAME`_Trigger(0);
-        }
-        else
-        {
-            `$INSTANCE_NAME`_CONTROL = `$INSTANCE_NAME`_ENABLE |`$INSTANCE_NAME`_NEXT_ROW;
-            `$INSTANCE_NAME`_refreshComplete = 1u;
-        }
+        #if(`$INSTANCE_NAME`_MEMORY_TYPE == `$INSTANCE_NAME`_MEMORY_RGB)
+            color = `$INSTANCE_NAME`_ledArray[`$INSTANCE_NAME`_row][`$INSTANCE_NAME`_ledIndex++];
+        #else  /* Else use lookup table */
+            color = `$INSTANCE_NAME`_CLUT[ (`$INSTANCE_NAME`_ledArray[`$INSTANCE_NAME`_row][`$INSTANCE_NAME`_ledIndex++]) ];
+        #endif
+
+        color = (color >> `$INSTANCE_NAME`_DimShift) & `$INSTANCE_NAME`_DimMask;  
+
+        `$INSTANCE_NAME`_DATA = (uint8)(color & 0x000000FF);  // Write Green
+        color = color >> 8;
+        `$INSTANCE_NAME`_DATA = (uint8)(color & 0x000000FF);  // Write Red
+        color = color >> 8;
+        `$INSTANCE_NAME`_DATA = (uint8)(color & 0x000000FF);  // Write Blue
+    }
+    else 
+    {
+         `$INSTANCE_NAME`_CONTROL = `$INSTANCE_NAME`_ENABLE | `$INSTANCE_NAME`_XFRCMPT_IRQ_EN; 
+    }
+
+}
+
+/*****************************************************************************
+* Function Name: `$INSTANCE_NAME`_CISR
+******************************************************************************
+*
+* Summary:
+*  Interrupt service handler after each row is complete.
+*
+* Parameters:  
+*  void
+*
+* Return: 
+*  void 
+*
+* Reentrant: 
+*  No
+*
+*****************************************************************************/
+CY_ISR( `$INSTANCE_NAME`_CISR)
+{
+    extern uint32  `$INSTANCE_NAME`_DimMask;
+    extern uint32  `$INSTANCE_NAME`_DimShift;
+    uint32 static color;
+    extern uint32 `$INSTANCE_NAME`_refreshComplete;
+
+	`$INSTANCE_NAME`_CONTROL = `$INSTANCE_NAME`_ENABLE |`$INSTANCE_NAME`_NEXT_ROW;
+    `$INSTANCE_NAME`_row++;
+    if( `$INSTANCE_NAME`_row < `$INSTANCE_NAME`_ARRAY_ROWS)  /* More Rows to do  */
+    {
+        `$INSTANCE_NAME`_Channel = `$INSTANCE_NAME`_row;  
+
+		#if(`$INSTANCE_NAME`_MEMORY_TYPE == `$INSTANCE_NAME`_MEMORY_RGB)
+             color = `$INSTANCE_NAME`_ledArray[`$INSTANCE_NAME`_row][0];
+        #else  /* Else use lookup table */
+             color = `$INSTANCE_NAME`_CLUT[ (`$INSTANCE_NAME`_ledArray[`$INSTANCE_NAME`_row][0]) ];
+        #endif
+
+        color = (color >> `$INSTANCE_NAME`_DimShift) & `$INSTANCE_NAME`_DimMask;
+ 
+        `$INSTANCE_NAME`_DATA = (uint8)(color & 0x000000FF);  /* Write Red   */
+        color = color >> 8;
+        `$INSTANCE_NAME`_DATA = (uint8)(color & 0x000000FF);  /* Write green */
+        color = color >> 8;
+        `$INSTANCE_NAME`_DATA = (uint8)(color & 0x000000FF);  /* Write green */
+
+        `$INSTANCE_NAME`_ledIndex = 1;
+		`$INSTANCE_NAME`_CONTROL = `$INSTANCE_NAME`_ENABLE | `$INSTANCE_NAME`_FIFO_IRQ_EN; 
+		
     }
     else
     {
-        if(`$INSTANCE_NAME`_ledIndex < `$INSTANCE_NAME`_COLUMNS)
-        {
-            #if(`$INSTANCE_NAME`_MEMORY_TYPE == `$INSTANCE_NAME`_MEMORY_RGB)
-                color = `$INSTANCE_NAME`_ledArray[`$INSTANCE_NAME`_row][`$INSTANCE_NAME`_ledIndex++];
-            #else  /* Else use lookup table */
-                color = `$INSTANCE_NAME`_CLUT[ (`$INSTANCE_NAME`_ledArray[`$INSTANCE_NAME`_row][`$INSTANCE_NAME`_ledIndex++]) ];
-            #endif
-
-            color = (color >> `$INSTANCE_NAME`_DimShift) & `$INSTANCE_NAME`_DimMask;  
-
-            `$INSTANCE_NAME`_DATA = (uint8)(color & 0x000000FF);  // Write Green
-            color = color >> 8;
-            `$INSTANCE_NAME`_DATA = (uint8)(color & 0x000000FF);  // Write Red
-            color = color >> 8;
-            `$INSTANCE_NAME`_DATA = (uint8)(color & 0x000000FF);  // Write Blue
-        }
-        else 
-        {
-             `$INSTANCE_NAME`_CONTROL = `$INSTANCE_NAME`_ENABLE | `$INSTANCE_NAME`_XFRCMPT_IRQ_EN; 
-        }
+        `$INSTANCE_NAME`_refreshComplete = 1u;
     }
-    /* `#START END_CLIGHTS_ISR`  */
-    
-    /* `#END`  */
+  
 }
 
 
@@ -350,10 +473,10 @@ CY_ISR( `$INSTANCE_NAME`_ISR)
 * Function Name: `$INSTANCE_NAME`_DisplayClear
 ********************************************************************************
 * Summary:
-*  
+*   Clear memory with a given value and update the display.
 *
 * Parameters:  
-*  void  
+*  uint32 color: Color to clear display. 
 *
 * Return: 
 *  void
@@ -369,10 +492,10 @@ void `$INSTANCE_NAME`_DisplayClear(uint32 color)
 * Function Name: `$INSTANCE_NAME`_MemClear
 ********************************************************************************
 * Summary:
-*  
+*   Clear LED memory with given color, but do not update display.
 *
 * Parameters:  
-*  void  
+*  uint32 color: Color to clear display.  
 *
 * Return: 
 *  void
@@ -382,9 +505,9 @@ void `$INSTANCE_NAME`_MemClear(uint32 color)
 {
     uint32  row, col;
     
-    for(row=0; row < `$INSTANCE_NAME`_ROWS; row++)
+    for(row=0; row < `$INSTANCE_NAME`_ARRAY_ROWS; row++)
     {
-        for(col=0; col < `$INSTANCE_NAME`_COLUMNS; col++)
+        for(col=0; col < `$INSTANCE_NAME`_ARRAY_COLS; col++)
         {
             `$INSTANCE_NAME`_ledArray[row][col] = color;
             #if(`$INSTANCE_NAME`_MEMORY_TYPE == `$INSTANCE_NAME`_MEMORY_RGB)
@@ -402,10 +525,10 @@ void `$INSTANCE_NAME`_MemClear(uint32 color)
 * Function Name: `$INSTANCE_NAME`_WriteColor
 ********************************************************************************
 * Summary:
-*  
+*   Write given color directly to output register.
 *
 * Parameters:  
-*  void  
+*  uint32 color: Color to write to display. 
 *
 * Return: 
 *  void
@@ -440,8 +563,9 @@ void `$INSTANCE_NAME`_WriteColor(uint32 color)
 void `$INSTANCE_NAME`_Pixel(int32 x, int32 y, uint32 color)
 {
 
-    if((x>=0) && (y>=0) && (x < `$INSTANCE_NAME`_COLUMNS) && (y < `$INSTANCE_NAME`_ROWS))
+	if((x >= `$INSTANCE_NAME`_MIN_X) && (y >= `$INSTANCE_NAME`_MIN_Y) && (x <= `$INSTANCE_NAME`_MAX_X) && (y <= `$INSTANCE_NAME`_MAX_Y))
     {
+
     #if(`$INSTANCE_NAME`_MEMORY_TYPE == `$INSTANCE_NAME`_MEMORY_RGB)
        `$INSTANCE_NAME`_ledArray[y][x] = color;
     #else  /* Else use lookup table */
@@ -449,6 +573,33 @@ void `$INSTANCE_NAME`_Pixel(int32 x, int32 y, uint32 color)
     #endif
     }
   
+}
+
+/*******************************************************************************
+* Function Name: `$INSTANCE_NAME`_GetPixel
+********************************************************************************
+*
+* Summary:
+*  Get Pixel Color  
+*
+* Parameters:  
+*  x,y:    Location to get pixel color
+*
+* Return: 
+*  None 
+*******************************************************************************/
+uint32 `$INSTANCE_NAME`_GetPixel(int32 x, int32 y)
+{
+    uint32 color;
+    if((x>=0) && (y>=0) && (x < `$INSTANCE_NAME`_ARRAY_COLS) && (y < `$INSTANCE_NAME`_ARRAY_ROWS))
+    {
+    #if(`$INSTANCE_NAME`_MEMORY_TYPE == `$INSTANCE_NAME`_MEMORY_RGB)
+       color = `$INSTANCE_NAME`_ledArray[y][x];
+    #else  /* Else use lookup table */
+       color = (uint32)`$INSTANCE_NAME`_ledArray[y][x];
+    #endif
+    }
+    return(color);
 }
 
 /*******************************************************************************
@@ -690,6 +841,23 @@ extern uint32  `$INSTANCE_NAME`_DimShift;
     }
 }
 
+void `$INSTANCE_NAME`_bplot( int32 x, int32 y, uint8 * bitMap, int32 update)
+{
+    int32 dx, dy;
+    int32 aindex = 0;
+    int32 maxX, maxY;
 
+    maxX = x + (int32)bitMap[aindex++];
+    maxY = y  + (int32)bitMap[aindex++];
+
+	for(dy = y; dy < maxY; dy++)
+    {
+		for(dx = x; dx < maxX; dx++)
+        {
+            `$INSTANCE_NAME`_Pixel(dx, dy, bitMap[aindex++]);
+        }
+    }
+	if(update) `$INSTANCE_NAME`_Trigger(1);
+}
 
 /* [] END OF FILE */

@@ -1,5 +1,5 @@
 __author__ = 'Brian Bradley'
-__version__ = '1.2.4'
+__version__ = '1.2.6'
 
 from rpisoc import *
 from math import log
@@ -1438,7 +1438,7 @@ class NeoPixelShield(object):
         self.Yellow = 0xffff
         self.YellowGreen = 0x329acd
         self.__running = False
-        self.__recentpixel = [0,0,self.Black]
+        #self.__recentpixel = [0,0,self.Black]
 
 
     def Start(self):
@@ -1454,7 +1454,8 @@ class NeoPixelShield(object):
         +-------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
         """
         cmd = 0x00
-        RPiSoC.commChannel.sendData((self.address, cmd))
+        RPiSoC.commChannel.receiveData((self.address, cmd))
+        self.__clearMem()
         self.__running = True
 
     def __refresh(self, recentpixel):
@@ -1508,7 +1509,7 @@ class NeoPixelShield(object):
 
         """
         cmd = 0x01
-        RPiSoC.commChannel.sendData((self.address, cmd))
+        RPiSoC.commChannel.receiveData((self.address, cmd))
         self.__running = False
 
     def RGB_toHex(self, RGB):
@@ -1583,8 +1584,8 @@ class NeoPixelShield(object):
         #first send high 16 bits bits of color
         RPiSoC.commChannel.sendData((self.address, cmd, color>>16))
         #now send the remaining 16 bits in the data bytes, set the row as the addr, and set the column as the cmd
-        RPiSoC.commChannel.sendData((row, column, color&0xFFFF))
-        self.__recentpixel = [row, column, color]
+        RPiSoC.commChannel.receiveData((row, column, color&0xFFFF))
+        #self.__recentpixel = [row, column, color]
 
     def Stripe(self, pixelnum, color, safety = False):
         """
@@ -1628,8 +1629,9 @@ class NeoPixelShield(object):
         #first send high 8 bits bits of color
         RPiSoC.commChannel.sendData((self.address, cmd, color>>16))
         #now send the remaining 16 bits in the data bytes, and the pixel num set as the address, cmd is arbitrary
-        RPiSoC.commChannel.sendData((pixelnum, cmd, color&0xFFFF))
-        self.__recentpixel = [0,0, color]
+        RPiSoC.commChannel.receiveData((pixelnum, cmd, color&0xFFFF))
+        #self.__recentpixel = [0,0, color]
+        self.__Trigger()
 
     def DrawRow(self, row, color):
         """
@@ -1658,8 +1660,9 @@ class NeoPixelShield(object):
         #first send high 8 bits bits of color
         RPiSoC.commChannel.sendData((self.address, cmd, color>>16))
         #now send the remaining 16 bits in the data bytes, and the pixel num set as the address, cmd is arbitrary
-        RPiSoC.commChannel.sendData((row, cmd, color&0xFFFF))
-        self.__recentpixel = [row, 0, color]
+        RPiSoC.commChannel.receiveData((row, cmd, color&0xFFFF))
+        #self.__recentpixel = [row, 0, color]
+        self.__Trigger()
 
     def DrawColumn(self, column, color):
         """
@@ -1690,8 +1693,9 @@ class NeoPixelShield(object):
         #first send high 8 bits bits of color
         RPiSoC.commChannel.sendData((self.address, cmd, color>>16))
         #now send the remaining 16 bits in the data bytes, and the pixel num set as the address, cmd is arbitrary
-        RPiSoC.commChannel.sendData((column, cmd, color&0xFFFF))
-        self.__recentpixel = [0, column, color]
+        RPiSoC.commChannel.receiveData((column, cmd, color&0xFFFF))
+        #self.__recentpixel = [0, column, color]
+        self.__Trigger()
 
     def Dim(self, DIM_LEVEL):
         """
@@ -1713,8 +1717,21 @@ class NeoPixelShield(object):
         cmd = 0x04
         if DIM_LEVEL not in range(5):
             raise ValueError('Dim level must be between 0 and 4')
-        RPiSoC.commChannel.sendData((self.address, cmd, DIM_LEVEL))
-        self.__refresh(self.__recentpixel)
+        RPiSoC.commChannel.receiveData((self.address, cmd, DIM_LEVEL))
+
+    def Fill(self, color):
+        cmd = 0x07
+        RPiSoC.commChannel.sendData((self.address, cmd))#address and command
+        RPiSoC.commChannel.receiveData((color>>16, (color>>8)&0xFF, color&0xFF))#color split into GRB bytes
+        self.__Trigger()
+
+    def __Trigger(self):
+        cmd = 0x08
+        RPiSoC.commChannel.receiveData((self.address, cmd))
+
+    def __clearMem(self):
+        cmd = 0x09
+        RPiSoC.commChannel.receiveData((self.address, cmd))
 
 
 
