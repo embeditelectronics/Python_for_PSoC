@@ -3,11 +3,11 @@ PSoC_2_Pi
 
 The full changelog can be found in the documentation page. 
 
-API for communication and control of the RPiSoC through Python on the Raspberry Pi
+API for communication and control of the PiSoC through Python on the Raspberry Pi
 
-Documentation can be found here: http://embeditelectronics.github.io/psoc_2_pi/
+Documentation can be found here: http://embeditelectronics.github.io/Python_for_PSoC/
 
-You will need the RPiSoC bootloader: https://github.com/EmbeditElectronics/RPiSoC_Bootloader
+You will need the RPiSoC bootloader: https://github.com/EmbeditElectronics/PiSoC_Bootloader
 
 1. The PSoC Creator folder contains the PSoC Creator project created in PSoC Creator 3.1 SP2. It includes mem1.c and mem1.h, the files which define the hardware usage by any master device. It also contains LINX.c and LINX.h, which is an abstraction layer between a LabVIEW device using a LINX bridge, and mem1.c which controls the hardware. Finally, it contains Python.c and Python.h which is used similarly to LINX.c and LINX.h. It provides an abstraction layer between hardware communication on the RPiSoC and a python device communicating over USBUART, I2C, or SPI. 
 
