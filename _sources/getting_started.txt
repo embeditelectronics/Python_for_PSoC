@@ -17,7 +17,7 @@ If you're new to the PiSoC, it would greatly benefit you to read through `its do
 
 Program your PiSoC
 +++++++++++++++++++
-Once you know how to program the PiSoC, if you need to redownload the API, or if you intend to make firmware changes (as required for :ref:`getting-started-mods`) 
+Once you know how to program the PiSoC, if you need to redownload the API, or if you intend to make firmware changes
 Just `download the PSoC Creator project from git <https://github.com/EmbeditElectronics/psoc_2_pi/tree/master/PSoC%20Creator>`_, make your changes if desired, and download it to the PiSoC using the Bootloader host tool.
 
 .. _getting-started-rpi:
@@ -105,108 +105,7 @@ You should see that the address 0x07 appears, which is the PiSoC.
 
 Using the PiSoC with your computer!
 ++++++++++++++++++++++++++++++++++++
-To use the PiSoC on your PC, you will need to have the PiSoC device driver installer, you will need python 2.7 installed, your system will need to have python added to its environmental variables, and you will need to download a couple of Python packages, specifically pyserial and the pisoc package.
-
-:Note:
-
-	This has only been tested for Windows 7, Windows 8, and Ubuntu. Theoretically everything should work on OS X, but this has not yet been tested and there are no installation instructions
-
-Windows Installation
---------------------
-This will cover installation procedures for Windows 7 and Windows 8
-
-Installing the PiSoC device driver
-***********************************
-The details of this step will depend on your Operating System. The driver which ultimately must be installed is `this one <https://github.com/EmbeditElectronics/psoc_2_pi/blob/master/PSoC%20Creator/USBUART_cdc.inf>`_
-
-:Windows 7:
-
-	When you connect your PiSoC to a USB port on your PC, it will try to find a driver to install. Of course, it will fail because you need to manually provide it the driver.
-		
-	- Open your Device Manager
-	- In "Other Devices" you should see *PiSoC* with an exclamation sign next to it, indicating that it is an unknown device
-	- Right click on *PiSoC* and choose **Properties**
-	- On the *General* tab, there should be an option for **Update Driver...** If this option is not available, disconnect and reconnect the device.
-	- Click **Update Driver...**
-	- Choose **Browse my computer for driver software**
-	- Now, simply provide the address bar with the folder that contains the driver linked above
-	- If the driver cannot be found, make sure that the driver is saved as a .inf
-	- Once the driver is found, it might warn you that the driver cannot be verified. Simply choose to install the driver anyway if this happens
-	
-	
-:Windows 8:
-
-	The process should be the same as above, except you might have a problem if the driver isn't being recognized correctly as signed. If this happens, simply disable driver signature verification so that you are able to install unsigned drivers. This will require a couple of restarts. A good guide on this procedure is shown `in this SparkFun tutorial <https://learn.sparkfun.com/tutorials/disabling-driver-signature-on-windows-8/disabling-signed-driver-enforcement-on-windows-8>`_
-
-With the driver successfully installed on your system as *Cypress USB UART* you can move onto the next step
-
-Installing Python
-*****************
-On OS X and Linux, Python comes preinstalled. For Windows it does not, and so it must be downloaded and installed. 
-
-- Navigate to the `release page for Python 2.7.8 <https://www.python.org/download/releases/2.7.8/>`_ and scroll down to the **Download** section
-- Choose the appropriate installer for your Operating system. 
-	* For 32 bit Windows systems choose *Windows x86 MSI Installer (2.7.8)*
-	* For 64 bit Windows systems choose *Windows X86-64 MSI Installer (2.7.8)*
-- During installation, make sure Python is installed to :code:`C:\Python27`
-
-Edit Windows path variables to include Python
-*********************************************
-This step will allow you to call python and any packages you might have installed without having to explicitly provide their paths.  This process will be slightly different between Windows 7 and 8
-
-:Windows 7:
-
-	- Right click on **Computer** and select **Properties**
-	
-:Windows 8:
-
-	- Press **Windows key + C** to bring up your charms panel. 
-	- Navigate to *Settings* and then *Control Panel*
-	- Then, select *Systems and Security* then *System*
-	
-From here, the steps are identical.
-
-- To the left, there will be a toolbar called *Control Panel Home*
-	* In this toolbar, select **Advanced system settings**
-- In the *Advanced* tab, select **Environmental Variables...**
-- In the console window on the bottom, labeled *System variables*, scroll to the variable **PATH** and select **Edit**
-- In the *Variable value* window, scroll to the very end and enter the following text exactly :code:`;C:\Python27;C:\Python27\Scripts`
-
-To test this, restart your computer, then open the windows command prompt, and type :code:`python`. If everything so far has been successful, this will launch the python interpreter in your console window.
-
-Install required packages
-*************************
-For your PC, there is only one third party package apart from our own that is required- pyserial. You must install this and the pisoc package to use the API.
-
-The installer for each package can be found on our respective PyPi pages.
-
-:PySerial:
-
-	- `pyserial PyPi page <https://pypi.python.org/pypi/pyserial>`_
-	- From that page, download and run *pyserial-2.7.win32.exe (md5)*
-	- Run the .exe when it finishes downloading and follow the on-screen instructions to install pyserial
-	
-:PiSoC:
-
-	- `pisoc PyPi page <https://pypi.python.org/pypi/PiSoC>`_
-	- From that page, download and run *PiSoC-1.2.5.win32.exe (md5)* if you are using the 32-bit Python installation, or *PiSoC-1.2.5.win-amd64.exe (md5)* if you are using the 64-bit installation
-	- Run the .exe when it finishes downloading and follow the on-screen instructions to install the pisoc package
-
-:Note:
-	
-	If in either case there is a problem with the installer (such as it being unable to locate your python installation), use pip to install the packages instead. 
-	To install the packages using pip, open the command prompt and enter the following commands::
-		
-		easy_install pip
-		pip install pyserial
-		pip install pisoc
-		
-Linux Installation
-------------------
-Since the Raspberry Pi itself runs a Linux distribution, the installation process should be identical. Refer to :ref:`getting-started-source` for instructions.
-	
-
-
+Everything you should need to know is covered `within our home page <http://www.embeditelectronics.com/blog/project/pisoc-installation/>`_.
 
 
 	

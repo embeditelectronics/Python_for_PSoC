@@ -60,14 +60,14 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body">The PiSoC comes preloaded with the Python API.</td>
+<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body">Pay special attention to the sections discussing how to download a program to the board using the Bootloader Host Tool. However, if you do not intend to make modifications to the API, you do not need to reprogram the device.</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="program-your-pisoc">
 <h2>Program your PiSoC<a class="headerlink" href="#program-your-pisoc" title="Permalink to this headline">¶</a></h2>
-<p>Once you know how to program the PiSoC, if you need to redownload the API, or if you intend to make firmware changes (as required for <em class="xref std std-ref">getting-started-mods</em>)
+<p>Once you know how to program the PiSoC, if you need to redownload the API, or if you intend to make firmware changes
 Just <a class="reference external" href="https://github.com/EmbeditElectronics/psoc_2_pi/tree/master/PSoC%20Creator">download the PSoC Creator project from git</a>, make your changes if desired, and download it to the PiSoC using the Bootloader host tool.</p>
 </div>
 <div class="section" id="using-the-pisoc-with-the-raspberry-pi">
@@ -143,144 +143,7 @@ sudo apt-get install python-smbus
 </div>
 <div class="section" id="using-the-pisoc-with-your-computer">
 <span id="getting-started-computer"></span><h2>Using the PiSoC with your computer!<a class="headerlink" href="#using-the-pisoc-with-your-computer" title="Permalink to this headline">¶</a></h2>
-<p>To use the PiSoC on your PC, you will need to have the PiSoC device driver installer, you will need python 2.7 installed, your system will need to have python added to its environmental variables, and you will need to download a couple of Python packages, specifically pyserial and the pisoc package.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body">This has only been tested for Windows 7, Windows 8, and Ubuntu. Theoretically everything should work on OS X, but this has not yet been tested and there are no installation instructions</td>
-</tr>
-</tbody>
-</table>
-<div class="section" id="windows-installation">
-<h3>Windows Installation<a class="headerlink" href="#windows-installation" title="Permalink to this headline">¶</a></h3>
-<p>This will cover installation procedures for Windows 7 and Windows 8. <a class="reference external" href="http://www.embeditelectronics.com/blog/project/pisoc-installation/">We have a full installer here.</a> If you want to manually install, read on.</p>
-<div class="section" id="installing-the-pisoc-device-driver">
-<h4>Installing the PiSoC device driver<a class="headerlink" href="#installing-the-pisoc-device-driver" title="Permalink to this headline">¶</a></h4>
-<p>The details of this step will depend on your Operating System. The driver which ultimately must be installed is <a class="reference external" href="http://embeditelectronics.com/blog/wp-content/downloads/pisoc_usb_driver.zip">this one</a></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Windows 7:</th><td class="field-body"><p class="first">When you connect your PiSoC to a USB port on your PC, it will try to find a driver to install. Of course, it will fail because you need to manually provide it the driver.</p>
-<ul class="simple">
-<li>Open your Device Manager</li>
-<li>In &#8220;Other Devices&#8221; you should see <em>PiSoC</em> with an exclamation sign next to it, indicating that it is an unknown device</li>
-<li>Right click on <em>PiSoC</em> and choose <strong>Properties</strong></li>
-<li>On the <em>General</em> tab, there should be an option for <strong>Update Driver...</strong> If this option is not available, disconnect and reconnect the device.</li>
-<li>Click <strong>Update Driver...</strong></li>
-<li>Choose <strong>Browse my computer for driver software</strong></li>
-<li>Now, simply provide the address bar with the folder that contains the driver linked above</li>
-<li>If the driver cannot be found, make sure that the driver is saved as a .inf</li>
-<li>Once the driver is found, it might warn you that the driver cannot be verified. Simply choose to install the driver anyway if this happens</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Windows 8:</th><td class="field-body"><p class="first last">The process should be the same as above, except you might have a problem if the driver isn&#8217;t being recognized correctly as signed. If this happens, simply disable driver signature verification so that you are able to install unsigned drivers. This will require a couple of restarts. A good guide on this procedure is shown <a class="reference external" href="https://learn.sparkfun.com/tutorials/disabling-driver-signature-on-windows-8/disabling-signed-driver-enforcement-on-windows-8">in this SparkFun tutorial</a></p>
-</td>
-</tr>
-</tbody>
-</table>
-<p>With the driver successfully installed on your system as <em>PiSoC USB UART</em> you can move onto the next step</p>
-</div>
-<div class="section" id="installing-python">
-<h4>Installing Python<a class="headerlink" href="#installing-python" title="Permalink to this headline">¶</a></h4>
-<p>On OS X and Linux, Python comes preinstalled. For Windows it does not, and so it must be downloaded and installed.</p>
-<ul>
-<li><p class="first">Navigate to the <a class="reference external" href="https://www.python.org/download/releases/2.7.8/">release page for Python 2.7.8</a> and scroll down to the <strong>Download</strong> section</p>
-</li>
-<li><dl class="first docutils">
-<dt>Choose the appropriate installer for your Operating system.</dt>
-<dd><ul class="first last simple">
-<li>For 32 bit Windows systems choose <em>Windows x86 MSI Installer (2.7.8)</em></li>
-<li>For 64 bit Windows systems choose <em>Windows X86-64 MSI Installer (2.7.8)</em></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><p class="first">During installation, make sure Python is installed to <tt class="code docutils literal"><span class="pre">C:\Python27</span></tt></p>
-</li>
-</ul>
-</div>
-<div class="section" id="edit-windows-path-variables-to-include-python">
-<h4>Edit Windows path variables to include Python<a class="headerlink" href="#edit-windows-path-variables-to-include-python" title="Permalink to this headline">¶</a></h4>
-<p>This step will allow you to call python and any packages you might have installed without having to explicitly provide their paths.  This process will be slightly different between Windows 7 and 8</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Windows 7:</th><td class="field-body"><ul class="first simple">
-<li>Right click on <strong>Computer</strong> and select <strong>Properties</strong></li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Windows 8:</th><td class="field-body"><ul class="first last simple">
-<li>Press <strong>Windows key + C</strong> to bring up your charms panel.</li>
-<li>Navigate to <em>Settings</em> and then <em>Control Panel</em></li>
-<li>Then, select <em>Systems and Security</em> then <em>System</em></li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-<p>From here, the steps are identical.</p>
-<ul>
-<li><dl class="first docutils">
-<dt>To the left, there will be a toolbar called <em>Control Panel Home</em></dt>
-<dd><ul class="first last simple">
-<li>In this toolbar, select <strong>Advanced system settings</strong></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><p class="first">In the <em>Advanced</em> tab, select <strong>Environmental Variables...</strong></p>
-</li>
-<li><p class="first">In the console window on the bottom, labeled <em>System variables</em>, scroll to the variable <strong>PATH</strong> and select <strong>Edit</strong></p>
-</li>
-<li><p class="first">In the <em>Variable value</em> window, scroll to the very end and enter the following text exactly <tt class="code docutils literal"><span class="pre">;C:\Python27;C:\Python27\Scripts</span></tt></p>
-</li>
-</ul>
-<p>To test this, restart your computer, then open the windows command prompt, and type <tt class="code docutils literal"><span class="pre">python</span></tt>. If everything so far has been successful, this will launch the python interpreter in your console window.</p>
-</div>
-<div class="section" id="install-required-packages">
-<h4>Install required packages<a class="headerlink" href="#install-required-packages" title="Permalink to this headline">¶</a></h4>
-<p>For your PC, there is only one third party package apart from our own that is required- pyserial. You must install this and the pisoc package to use the API.</p>
-<p>The installer for each package can be found on our respective PyPi pages.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">PySerial:</th><td class="field-body"><ul class="first simple">
-<li><a class="reference external" href="https://pypi.python.org/pypi/pyserial">pyserial PyPi page</a></li>
-<li>From that page, download and run <em>pyserial-2.7.win32.exe (md5)</em></li>
-<li>Run the .exe when it finishes downloading and follow the on-screen instructions to install pyserial</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">PiSoC:</th><td class="field-body"><ul class="first simple">
-<li><a class="reference external" href="https://pypi.python.org/pypi/PiSoC">pisoc PyPi page</a></li>
-<li>From that page, download and run <em>PiSoC-1.2.5.win32.exe (md5)</em> if you are using the 32-bit Python installation, or <em>PiSoC-1.2.5.win-amd64.exe (md5)</em> if you are using the 64-bit installation</li>
-<li>Run the .exe when it finishes downloading and follow the on-screen instructions to install the pisoc package</li>
-</ul>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body"><p class="first">If in either case there is a problem with the installer (such as it being unable to locate your python installation), use pip to install the packages instead.
-To install the packages using pip, open the command prompt and enter the following commands:</p>
-<div class="last highlight-python"><div class="highlight"><pre>easy_install pip
-pip install pyserial
-pip install pisoc
-</pre></div>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="section" id="linux-installation">
-<h3>Linux Installation<a class="headerlink" href="#linux-installation" title="Permalink to this headline">¶</a></h3>
-<p>Since the Raspberry Pi itself runs a Linux distribution, the installation process should be identical. Refer to <a class="reference internal" href="#getting-started-source"><em>Download the Python source</em></a> for instructions.</p>
-</div>
+<p>Everything you should need to know is covered <a class="reference external" href="http://www.embeditelectronics.com/blog/project/pisoc-installation/">within our home page</a>.</p>
 </div>
 </div>
 
@@ -308,17 +171,7 @@ pip install pisoc
 <li><a class="reference internal" href="#configure-i2c-and-download-smbus">Configure I2C and download smbus</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#using-the-pisoc-with-your-computer">Using the PiSoC with your computer!</a><ul>
-<li><a class="reference internal" href="#windows-installation">Windows Installation</a><ul>
-<li><a class="reference internal" href="#installing-the-pisoc-device-driver">Installing the PiSoC device driver</a></li>
-<li><a class="reference internal" href="#installing-python">Installing Python</a></li>
-<li><a class="reference internal" href="#edit-windows-path-variables-to-include-python">Edit Windows path variables to include Python</a></li>
-<li><a class="reference internal" href="#install-required-packages">Install required packages</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#linux-installation">Linux Installation</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#using-the-pisoc-with-your-computer">Using the PiSoC with your computer!</a></li>
 </ul>
 </li>
 </ul>
