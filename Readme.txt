@@ -9,7 +9,7 @@ Documentation can be found here: http://embeditelectronics.github.io/Python_for_
 
 Our learning page with projects can be found here: http://www.embeditelectronics.com/blog/learn/
 
-You will need the PiSoC bootloader if you reprogrammed your PiSoC in PSoC Creator: https://github.com/EmbeditElectronics/PiSoC_Bootloader
+You will need the PSoC Creator files if you reprogrammed your PiSoC in PSoC Creator. Follow this tutorial if you need to reprogram: http://www.embeditelectronics.com/blog/project/using-psoc-creator-with-the-pisoc/
 
 1. The PSoC Creator folder contains the PSoC Creator project created in PSoC Creator 3.1 SP2. It includes mem1.c and mem1.h, the files which define the hardware usage by any master device. It also contains LINX.c and LINX.h, which is an abstraction layer between a LabVIEW device using a LINX bridge, and mem1.c which controls the hardware. Finally, it contains Python.c and Python.h which is used similarly to LINX.c and LINX.h. It provides an abstraction layer between hardware communication on the RPiSoC and a python device communicating over USBUART, I2C, or SPI. 
 

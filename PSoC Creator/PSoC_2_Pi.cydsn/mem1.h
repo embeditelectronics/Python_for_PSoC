@@ -17,15 +17,40 @@
 #ifndef MEM1_H
 #define MEM1_H
 
+#define FIRMWARE_MAJOR_VERSION      2
+#define FIRMWARE_MINOR_VERSION      0
+    
+#define I2C_SIGNAL  0xAC
+#define I2C_DONE    0xEB
+#define I2C_BAD     0xBA
+    
 #include <stdbool.h>
 #include "cyfitter.h"
 #include "cytypes.h"
 #include "CyLib.h"
 #include "project.h"
     
-typedef struct vessel_tag{
-    uint8 addr              : 8;
+//#define DEBUG_PISOC
+typedef union comm_packet
+{
+    uint32 word;
+    uint8 bytes[4];
+}comm_packet_t;
+typedef struct xferdata{
+    uint32 ready;
+    comm_packet_t response;
+    uint8 vals[62]; 
+}xfer_t;
+
+typedef struct commData{
+    uint8 pos;
+    uint8 mode;
+    uint8 DataReady;
+}comms_t;
+
+typedef struct vessel{
     uint8 cmd               : 8;
+    uint8 addr              : 8;
     uint16 dat              : 16;
     uint8 port              : 4;
     uint8 pin               : 3;
@@ -38,11 +63,44 @@ typedef struct vessel_tag{
     uint8 row               : 3;
     uint8 delayus           : 6;
     uint32 color            : 24;
-}vessel_type;
+}vessel_t;
+
+typedef struct Component{
+    bool DelSig;
+    bool Sar_0, Sar_1; 
+    bool VDac_0, VDac_1; 
+    bool IDac_0, IDac_1;
+    bool WaveDac; 
+    bool Pwm_1, Pwm_2, Pwm_3, Pwm_4, Pwm_5, Pwm_6, Pwm_7, Pwm_8, Pwm_9, Pwm_10, Pwm_11, Pwm_12;
+    bool CapSense; 
+    bool I2C_M; 
+    bool StripLight; 
+}Component_t;
+
+#ifdef CY_CAPSENSE_CSD_CapSense_1_H
+    typedef struct CalibrationData{
+        uint8 Baseline[CapSense_1_TOTAL_SENSOR_COUNT];
+        uint8 Threshold[CapSense_1_TOTAL_SENSOR_COUNT];
+     }CalibrationData_t;
+#endif
+
+typedef struct GPIO_Data{
+    uint8 ports[9];
+    uint32 Register_Map[72];
+    uint8 pin_count; 
+}GPIO_t;
+
+#define PISOC_PI_MODE                       (0x00)
+#define PISOC_PC_MODE                       (0x01)
+#define SPI_TX_BUFFER_SIZE                  (4u)
+#define MAX_RX_BUFFER_SIZE                  (60u)
+//#define GET_TX_ARRAY(val)           {(uint8)(val&0x000000FF), (uint8)((val & 0x0000FF00)>>8), (uint8)((val & 0x00FF0000)>>16), (uint8)((val & 0xFF000000)>>24)}
+#define GET_TX_ARRAY(val)           {LO8(LO16(val)), HI8(LO16(val)), LO8(HI16(val)), HI8(HI16(val))}
+
 
 //extern vessel_type vessel;
 
-/*DEFINE DESIRED PROTOCOL*/
+/*DEFINE DESIRED PROTOCOL FOR PI*/
 //#define USE_SPI                     /* KEEP THIS UNCOMMENTED TO USE SPI -- COMMENT THE OTHER PROTOCOLS!! */
 //#define USE_I2C                     /* KEEP THIS UNCOMMENTED TO USE I2C -- COMMENT THE OTHER PROTOCOLS!! */
 #define USE_SERIAL                    /* KEEP THIS UNCOMMENTED TO USE SERIAL -- COMMENT THE OTHER PROTOCOLS!! */
@@ -76,47 +134,49 @@ typedef struct vessel_tag{
     #endif
 #endif
 
-
-#define MAX_32                      (0xFFFFFFFF)
 #define I2C_BUFFER_SIZE             (4u)
 
-#define DELSIG_ADC_CONTROL          (0x01) //No 0x00 because the Pi's SPI readbytes function sends 0x00 every time it's called
-#define SAR_ADC0_CONTROL            (DELSIG_ADC_CONTROL +1)
-#define SAR_ADC1_CONTROL            (SAR_ADC0_CONTROL +1)
+enum{
+    DELSIG_ADC_CONTROL              = 0x01,
+    SAR_ADC0_CONTROL,
+    SAR_ADC1_CONTROL,           
 
 
-#define VDAC0_CONTROL               (SAR_ADC1_CONTROL +1)
-#define VDAC1_CONTROL               (VDAC0_CONTROL +1)
+    VDAC0_CONTROL,              
+    VDAC1_CONTROL,
 
-#define IDAC0_CONTROL               (VDAC1_CONTROL +1)
-#define IDAC1_CONTROL               (IDAC0_CONTROL +1)
+    IDAC0_CONTROL,
+    IDAC1_CONTROL,
 
-#define WAVEDAC_CONTROL             (IDAC1_CONTROL +1)
+    WAVEDAC_CONTROL,
+    
+    PWM_REGISTER0,
+    PWM_REGISTER1,
+    PWM_REGISTER2,
+    PWM_REGISTER3,
+    PWM_REGISTER4,
+    PWM_REGISTER5,
+    PWM_REGISTER6,
+    PWM_REGISTER7,
+    PWM_REGISTER8,
+    PWM_REGISTER9,
+    PWM_REGISTER10,
+    PWM_REGISTER11,
+    PWM_REGISTER12,
 
-#define PWM_REGISTER0               (WAVEDAC_CONTROL +1)
-#define PWM_REGISTER1               (PWM_REGISTER0 +1)
-#define PWM_REGISTER2               (PWM_REGISTER1 +1)
-#define PWM_REGISTER3               (PWM_REGISTER2 +1)
-#define PWM_REGISTER4               (PWM_REGISTER3 +1)
-#define PWM_REGISTER5               (PWM_REGISTER4 +1)
-#define PWM_REGISTER6               (PWM_REGISTER5 +1)
-#define PWM_REGISTER7               (PWM_REGISTER6 +1)
-#define PWM_REGISTER8               (PWM_REGISTER7 +1)
-#define PWM_REGISTER9               (PWM_REGISTER8 +1)
-#define PWM_REGISTER10              (PWM_REGISTER9 +1)
-#define PWM_REGISTER11              (PWM_REGISTER10 +1)
-#define PWM_REGISTER12              (PWM_REGISTER11 +1)
+    GPIO_REGISTER,
+    ANALOG_IN_REGISTER,
 
-#define GPIO_REGISTER               (PWM_REGISTER12 + 1)
-#define ANALOG_IN_REGISTER          (GPIO_REGISTER + 1)
+    CAPSENSE_REGISTER,
 
-#define CAPSENSE_REGISTER           (ANALOG_IN_REGISTER + 1)
+    I2CM_REGISTER               = 0xFA,
+    STRIPLIGHT_REGISTER         = 0xFB,
+    RANGE_FINDER                = 0xFC,
+    TEST_REGISTER               = 0xFD,
+    CHECK_BUILD                 = 0xFE,
+    RESET_ADDRESS               = 0xFF
+};
 
-#define STRIPLIGHT_REGISTER         (0xFB)
-#define RANGE_FINDER                (0xFC)
-#define TEST_REGISTER               (0xFD)
-#define CHECK_BUILD                 (0xFE)
-#define RESET_ADDRESS               (0xFF)
 
 /*
 #define TIMER_TC_TRIGGERED          (0x01)
@@ -130,6 +190,10 @@ typedef struct vessel_tag{
 #define TIMER_STOP_CAPTURE          (TIMER_CONTROL_Write(TIMER_CONTROL_Read()&TIMER_CAPTURE)); (TIMER_CONTROL_Write(TIMER_CONTROL_Read()&~TIMER_TRIGGER))
 #define TIMER_TOGGLE_RESET          (TIMER_CONTROL_Write(TIMER_CONTROL_Read()&TIMER_RESET)); (TIMER_CONTROL_Write(TIMER_CONTROL_Read()&~TIMER_RESET))
 */
+
+#define BAD_PARAM                   (0xFBAD0080)
+#define PISOC_BUSY                  (0xFBAD0001)
+#define GOOD_PARAM                  (0x0A11600D)
 
 #define COUNTER_TC_TRIGGERED        (0x80)
 #define COUNTER_CAPTURE_TRIGGERED   (0x40)
@@ -506,37 +570,37 @@ typedef struct vessel_tag{
 #endif
     
 /*FUNCTION PROTOTYPES*/
-bool readData(vessel_type vessel, uint32 *result);
+void readData();
 
-bool DELSIG_ADC_Control(uint8 cmd, uint16 val, uint32 *result);
-bool SAR0_ADC_Control(uint8 cmd, uint16 val, uint32 *result);
-bool SAR1_ADC_Control(uint8 cmd, uint16 val, uint32 *result);
-bool VDAC0_Control(uint8 cmd, uint16 val, uint32 *result);
-bool VDAC1_Control(uint8 cmd, uint16 val, uint32 *result);
-bool IDAC0_Control(uint8 cmd, uint16 val, uint32 *result);
-bool IDAC1_Control(uint8 cmd, uint16 val, uint32 *result);
-bool WAVEDAC_Control(uint8 cmd, uint16 val, uint8 waveType, uint8 amp, uint8 dcB, uint32 *result);
-bool PWM_Control_0(uint8 cmd, uint16 val, uint32 *result);
-bool PWM_Control_1(uint8 cmd, uint16 val, uint32 *result);
-bool PWM_Control_2(uint8 cmd, uint16 val, uint32 *result);
-bool PWM_Control_3(uint8 cmd, uint16 val, uint32 *result);
-bool PWM_Control_4(uint8 cmd, uint16 val, uint32 *result);
-bool PWM_Control_5(uint8 cmd, uint16 val, uint32 *result);
-bool PWM_Control_6(uint8 cmd, uint16 val, uint32 *result);
-bool PWM_Control_7(uint8 cmd, uint16 val, uint32 *result);
-bool PWM_Control_8(uint8 cmd, uint16 val, uint32 *result);
-bool PWM_Control_9(uint8 cmd, uint16 val, uint32 *result);
-bool PWM_Control_10(uint8 cmd, uint16 val, uint32 *result);
-bool PWM_Control_11(uint8 cmd, uint16 val, uint32 *result);
-bool GPIO_Control(uint8 cmd, uint8 port, uint8 pin, uint16 val, uint32 *result);
-bool Analog_Read(uint8 cmd, uint16 val, uint32 *result);
-bool CapSense_Read(uint8 cmd, uint16 val, uint32 *result);
+void DELSIG_ADC_Control(uint8 cmd, uint16 val);
+void SAR0_ADC_Control(uint8 cmd, uint16 val);
+void SAR1_ADC_Control(uint8 cmd, uint16 val);
+void VDAC0_Control(uint8 cmd, uint16 val);
+void VDAC1_Control(uint8 cmd, uint16 val);
+void IDAC0_Control(uint8 cmd, uint16 val);
+void IDAC1_Control(uint8 cmd, uint16 val);
+void WAVEDAC_Control(uint8 cmd, uint16 val, uint8 waveType, uint8 amp, uint8 dcB);
+void PWM_Control_0(uint8 cmd, uint16 val);
+void PWM_Control_1(uint8 cmd, uint16 val);
+void PWM_Control_2(uint8 cmd, uint16 val);
+void PWM_Control_3(uint8 cmd, uint16 val);
+void PWM_Control_4(uint8 cmd, uint16 val);
+void PWM_Control_5(uint8 cmd, uint16 val);
+void PWM_Control_6(uint8 cmd, uint16 val);
+void PWM_Control_7(uint8 cmd, uint16 val);
+void PWM_Control_8(uint8 cmd, uint16 val);
+void PWM_Control_9(uint8 cmd, uint16 val);
+void PWM_Control_10(uint8 cmd, uint16 val);
+void PWM_Control_11(uint8 cmd, uint16 val);
+void GPIO_Control(uint8 cmd, uint8 port, uint8 pin, uint16 val);
+void Analog_Read(uint8 cmd, uint16 val);
+void CapSense_Read(uint8 cmd, uint8 pin, uint16 val);
+void I2C_Control(uint8 cmd, uint16 val); 
 
-bool StripLightsControl(uint8 cmd, uint16 dat, uint8 column, uint8 row, uint32 color, uint32 *result);
-//bool Range_Finder(uint32 *result);
-bool Range_Finder(uint8 cmd, uint8 port, uint8 pin, uint8 trigport, uint8 trigpin, uint8 delayus, uint16 timeout, uint32 *result);
-bool CheckBuild(uint8 cmd, uint16 val, uint32 *result);
-bool test_read(uint16 dat, uint32 *result);
+void StripLightsControl(uint8 cmd, uint16 dat, uint8 column, uint8 row, uint32 color);
+void Range_Finder(uint8 cmd, uint8 port, uint8 pin, uint8 trigport, uint8 trigpin, uint8 delayus, uint16 timeout);
+void CheckBuild(uint8 cmd, uint16 val);
+void test_read(uint16 dat);
 
 //helper functions
 void Generate_Wave(uint8 waveType, uint8 amp, uint8 dcB);
@@ -544,5 +608,24 @@ void Stripe(uint16 MAX, uint32 color);
 void SetNeoPixel(uint8 row, uint8 column, uint32 color);
 void NeoPixel_DrawRow(uint8 row, uint32 color);
 void NeoPixel_DrawColumn(uint8 column, uint32 color);
+void TriggerLoop(void);
+uint32 GetPerPinMacro(uint8 port, uint8 pin);
+uint32 GetPinPICU(uint8 port, uint8 pin);
+uint32 GetPortInterruptStatus(uint8 port);
+void Construct_Components(Component_t *component, bool value);
+void Contruct_CapSense_Data(CalibrationData_t *config, uint8 value);
+void Construct_GPIO_Data(GPIO_t *data);
+
 #endif
+
+
+
+
+
 /* [] END OF FILE */
+
+
+
+
+
+

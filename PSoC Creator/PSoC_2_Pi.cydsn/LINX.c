@@ -15,7 +15,7 @@
     #include "LINX.h"
 #endif
 
-vessel_type vessel;
+vessel_t vessel;
 
 // Macro for easily outputting debug statements
 #ifdef LINX_DEBUG
@@ -48,13 +48,13 @@ void LINX_Initialize() {
         vessel.addr = VDAC0_CONTROL;
         vessel.cmd = 0x00;
         vessel.dat = 0x00;
-        readData(vessel, 0x00);
+        readData(&vessel, 0x00);
     #endif
     #ifdef CY_VDAC8_VDAC8_2_H
         vessel.addr = VDAC1_CONTROL;
         vessel.cmd = 0x00;
         vessel.dat = 0x00;
-        readData(vessel, 0x00);
+        readData(&vessel, 0x00);
     #endif
     
     // Start QE
@@ -570,12 +570,12 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 vessel.port = port;
                 vessel.dat = 0x07;              // Set to strong drive
                 uint32 result = 0x00;
-                readData(vessel, &result);
+                readData(&vessel, &result);
 
                 // Write value
                 vessel.cmd = 0x01;                     // Write command
                 vessel.dat = value;
-                readData(vessel, &result);
+                readData(&vessel, &result);
             }
             
             break;
@@ -598,11 +598,11 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 vessel.port = port;
                 vessel.dat = 0x02;              // Set to digital high impedance
                 uint32 result = 0x00;
-                readData(vessel, &result);
+                readData(&vessel, &result);
                 
                 // Read value
                 vessel.cmd = 0x00;                     // Read command
-                readData(vessel, &result);
+                readData(&vessel, &result);
                 
                 DEBUG_PRINT("\t\tResult: %x\r\n", (unsigned int)result);
                 
@@ -651,7 +651,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 vessel.cmd = 0x00;
                 vessel.dat = pin;
                 uint32 result;
-                readData(vessel, &result);
+                readData(&vessel, &result);
                 
                 DEBUG_PRINT("\t\t\tResult: %x\r\n", (unsigned int)result);
                 
@@ -684,7 +684,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 vessel.cmd = 0x04;                   // Set value command
                 vessel.dat = value;                 // Set value
                 uint32 result = 0x00;
-                readData(vessel, &result);
+                readData(&vessel, &result);
             }
             
             break;
@@ -715,7 +715,7 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 
                 // Get period counts
                 vessel.cmd = 0x0D;         // Read period command
-                readData(vessel, &result);
+                readData(&vessel, &result);
                 
                 DEBUG_PRINT("\t\tPeriod: %lu\r\n", result);
                 
@@ -726,11 +726,11 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
                 
                 // Start PWM channel
                 vessel.cmd = 0x00;
-                readData(vessel, &result);
+                readData(&vessel, &result);
                 
                 // Set PWM compare value
                 vessel.cmd = 0x0E;
-                readData(vessel, &result);
+                readData(&vessel, &result);
             }
             
             break;
@@ -820,7 +820,6 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             DEBUG_PRINT("I2C Write\r\n");
             
             // Set transfer type
-            uint8 mode;
             switch(command[8]) {
                 #ifdef CY_I2C_I2C_1_H
                     case(0x00): mode = I2C_1_MODE_COMPLETE_XFER; break;
@@ -866,7 +865,6 @@ void LINX_ProcessCommand(uint8 *command, uint8 *response) {
             DEBUG_PRINT("I2C Read\r\n");
             
             // Set transfer type
-            uint8 mode;
             switch(command[11]) {
                 #ifdef CY_I2C_I2C_1_H
                     case(0x00): mode = I2C_1_MODE_COMPLETE_XFER; break;
