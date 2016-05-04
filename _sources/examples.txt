@@ -1,6 +1,6 @@
 Example Projects!
 =================
-Here are a few example projects to show just how easy the API is to use.
+Here are a few examples to get you started
 
 - Note: Px[y] means Port x, Pin y
 
@@ -10,77 +10,63 @@ The "hello world" of physical computing. Just connect your PiSoC and watch it go
 
 .. code-block:: python
 	:linenos:
-	:emphasize-lines: 4, 7, 9
 	
 	from pisoc import *
-	PiSoC('SERIAL')
-	
-	blinky = digitalPin(12,0,'OUT')
-	try:
-		while True:
-			blinky.Toggle()
-	except KeyboardInterrupt:
-		PiSoC.commChannel.cleanup()
+	from time import sleep
+	PiSoC("PC")
+
+	blinky = DigitalPin(12, 0, 'output')
+
+	while True:
+		blinky.Toggle()
+		sleep(1)
 
 Voltmeter
 +++++++++
-This program demonstrates basic usage of :class:`analog.analogPin`
+This program demonstrates basic usage of :class:`analog.AnalogPin`
 
 The program will output the voltage of whatever is connected to P3[0] every .1
 seconds.
 
-Note that P5[0], which is a 3.3V pin (slightly higher when powering with the Pi)
-is initialized as HIGH, and so connecting to to P3[0] should show between 3.2
-and 3.5V.
-
-The Power supply on each port should read close to 5V as well.
-You can confirm the accuracy with a Voltmeter.
-
 .. code-block:: python
 	:linenos:
-	:emphasize-lines: 4, 5, 6, 10, 14
 
-	from pisoc import * 
-	PiSoC('SERIAL') 
+	from pisoc import *
+	from time import sleep
+	PiSoC("PC")
 
-	voltmeter  = analogPin(0)
-	out_3v3 = digitalPin(5,0,'OUT') 
-	out_3v3.Write(1)
+	voltmeter = AnalogPin(0)
 
-	try: 
-		while True:
-			Voltage = voltmeter.ReadVolts()
-			print('VOLTAGE:    %.3f' %Voltage)
-			time.sleep(.1)
-	except KeyboardInterrupt:
-		PiSoC.commChannel.cleanup()
+	while True:
+		voltage = voltmeter.ReadVolts()
+		print ("Voltage is %s"%voltage)
+		sleep(0.1)
+
+Don't measure anything more than 5 volts!!
 
 
 Theremin using PWM and Ultrasonic Range Finding
 +++++++++++++++++++++++++++++++++++++++++++++++
-This will demonstrate some basic use of Ultrasonic Range Finding and tone generation with :class:`digital.rangeFinder` and :class:`digital.PWM`
+This will demonstrate some basic use of Ultrasonic Range Finding and tone generation with :class:`digital.RangeFinder` and :class:`digital.PWM`
 
-To set this program up, you will want to connect your Ultrasonic Range Finders echo Pin to P12[0], and it's trigger pin to P12[1].
+To set this program up, you will want to connect your Ultrasonic Range Finders echo Pin to P12[1], and it's trigger pin to P12[2].
 Also be sure to provide power and ground to the Range Finder from the PiSoC.
 
-Then, connect one end of a piezo buzzer to the PiSoC's ground, and the other end to P6[1]
-Run this code on the platform of your choosing, and make some noise!
+Then, connect one end of a piezo buzzer to the PiSoC's ground, and the other end to 
+P2[1]
 
 .. code-block:: python
 	:linenos:
-	:emphasize-lines: 4, 5, 6, 7, 9, 11
 	
 	from pisoc import *
-	PiSoC('SERIAL')
-	try:
-		ranger = rangeFinder([12,0], [12,1])
-		piezo = PWM(1)
-		piezo.Start()
-		piezo.SetDutyCycle(50) #Max volume
-		while True:
-			piezo.SetFrequency(ranger.readRaw())
-	except KeyboardInterrupt:
-		PiSoC.commChannel.cleanup()
+	PiSoC('PC')
+
+	ranger = RangeFinder([12,1], [12,2])
+	piezo = PWM(1)
+	piezo.Start()
+	piezo.SetDutyCycle(50) #Max volume
+	while True:
+	        piezo.SetFrequency(ranger.readRaw())
 		
 Play with some fruit!
 +++++++++++++++++++++
@@ -90,32 +76,29 @@ Simply connect any kind of fruit (or anything conductive at all) to P4[0], and w
 
 .. code-block:: python
 	:linenos:
-	:emphasize-lines: 4, 5, 6, 9, 10, 11,13
 
 	from pisoc import *
-	PiSoC('SERIAL')
-	
-	touch = CapSense(0, THRESHOLD = 4) #raise or lower the threshold depenging on results!
+	PiSoC('PC')
+
+	touch = CapSense(0, threshold = 6) #raise or lower the threshold depenging on results!
 	touch.Start()
-	output = digitalPin(12,0,'OUT')
-	try:
-		while True:
-			while touch.isTouched():
-				output.Write(1)
-			output.Write(0)
-	except KeyboardInterrupt:
-		PiSoC.commChannel.cleanup()
+	light = digitalPin(12,0,'output')
+
+	while True:
+	    while touch.isTouched():
+	        light.Write(1)
+	    light.Write(0)
 	
 Comprehensive usage of  digital inputs and outputs
 ++++++++++++++++++++++++++++++++++++++++++++++++++
-This gives a little bit of a deeper look into the GPIO using :class:`digital.digitalPin`
+This gives a little bit of a deeper look into the GPIO using :class:`digital.DigitalPin`
 
-To set this demo up, wire P12[0], P12[1], P5[0], and P5[1] to LEDs in series
-with a resistor. Also wire the outputs to one of the initialized inputs, in the following way:
-- wire P12[0] to P4[0]
-- wire P12[1] to P4[1]
-- wire P5[0] to P5[4]
-- wire P5[1] to P5[5]
+To set this demo up, wire P12[0], P12[1], P12[2], and P12[3] to LEDs in series
+with a resistor. Also wire the outputs to one of the inputs, in the following way to see accurate data in the terminal:
+- wire P12[0] to P6[0]
+- wire P12[1] to P6[1]
+- wire 12[2] to P6[2]
+- wire 12[3] to P6[3]
 
 The demo should light the LEDS in forwards order, and then turn off the LEDs in
 reverse order
@@ -125,74 +108,26 @@ correlate with the LEDs (if wired in the way noted above). Check it out!
 
 .. code-block:: python
 	:linenos:
-	:emphasize-lines: 5, 6, 11, 14, 18, 21, 25
 
 	from pisoc import *
-	import os
-	PiSoC('SERIAL')
-	
-	My_outputs = [digitalPin(12, x, 'OUT') for x in range(4)]
-	M_inputs = [digitalPin(2, x, 'IN') for x in range(4)]
+	from time import sleep
+	PiSoC('PC')
 
-	try: 
-		while True:
-			for i in My_outputs: #Writes each output high, one by one, in forwards order
-				i.Write(1)
-				os.system('clear')
-				for inputs in My_inputs:#Prints the state of each input
-					print ("P%d[%d]:%d" %(inputs.port, inputs.pin, inputs.Read()))
-				time.sleep(1)
+	My_outputs = [DigitalPin(12, x, 'output') for x in range(4)]
+	My_inputs = [DigitalPin(6, x, 'pull_down') for x in range(4)]
 
-			for i in reversed(My_outputs):#Turns off the LEDs in reverse order
-				i.Write(0)
-				os.system('clear')
-				for inputs in My_inputs: #Prints the state of each input
-					print ("P%d[%d]:%d" %(inputs.port, inputs.pin, inputs.Read()))
-				time.sleep(1)
+	while True:
+	        for i in My_outputs: #Writes each output high, one by one, in forwards order
+	                i.Write(1)
+	                for inputs in My_inputs:#Prints the state of each input
+	                        print ("P%d[%d]:%d" %(inputs.port, inputs.pin, inputs.Read()))
+	                sleep(0.5)
 
-	except KeyboardInterrupt:
-		PiSoC.commChannel.cleanup()
-
-
-Function Generator!
-+++++++++++++++++++
-This program demonstrates the use of :class:`analog.WaveDAC`
-
-It will begin by initializing a WaveDAC object and generating it's default wave, which happens to be a 4V 2.5kHz Sine wave, with no DC Bias. It will then wait for the user to choose to generate a new wave, and ask for
-the configuration details.
-
-Once it receives these values, it will stop the current wave, load the new configuration, and restart the wave to the users specifications!
-
-To see the desired functionality, connect P0[0] to an Oscilliscope(or to another PiSoC with the Oscilliscope program running!)
-
-.. code-block:: python
-	:linenos:
-	:emphasize-lines: 4, 5, 15, 16, 17, 19, 20, 21, 24
-
-	from pisoc import *
-	PiSoC('SERIAL')
-
-	My_Wave = WaveDAC()
-	My_Wave.Start() #Starts the default wave
-
-	try: 
-		while True:
-			print('My_Wave Frequency: ', My_Wave.GetFrequency())
-			w_type = raw_input("Input Wave Type (SINE TRIANGLE SAWTOOTH or SQUARE) ")
-			dcB = float(raw_input('Input DC Bias in Volts (0-4)'))
-			amp = float(raw_input('Input amplitude in Volts (0-4) ' ))
-			freq = int(raw_input('Input Frequency in Hz (46 - 2500) '))
-
-			My_Wave.setAmplitude(amp)
-			My_Wave.setdcBias(dcB)
-			My_Wave.SetFrequency(freq)
-
-			My_Wave.Stop() #Stops waveform generator to prepare for loading a new one
-			My_Wave.Generate_Wave(w_type)
-			My_Wave.Start() #Restarts the waveDAC with the new wave loaded
-
-	except KeyboardInterrupt:
-		PiSoC.commChannel.cleanup()
+	        for i in reversed(My_outputs):#Turns off the output in reverse order
+	                i.Write(0)
+	                for inputs in My_inputs: #Prints the state of each input
+	                        print ("P%d[%d]:%d" %(inputs.port, inputs.pin, inputs.Read()))
+	                sleep(0.5)
 
 Servo Controller
 ++++++++++++++++
@@ -200,31 +135,25 @@ This is to show some stuff you can do with :class:`digital.Servo`
 
 This will use voltage readings from a joystick (or potentiometers), to move two servomotors, possibly connected to a pan-tilt bracket like the one for our face tracker
 
-To make this work, connect your servomotor signal wires to P6[1] and P6[2]
+To make this work, connect your servomotor signal wires to P2[0] and P2[1] (or use the onboard servo connectors)
 Then connect the analog outputs of your joystick (or potentiometers) to P3[0] and P3[1]
-
-Also, make sure your joystick or potentiometer are powered by the PiSoC, and your servomotors are powered externally, but share a ground connection with the PiSoC.
 
 .. code-block:: python
 	:linenos:
-	:emphasize-lines: 5, 6, 8, 9, 13, 14, 16
 
 	from pisoc import *
-	PiSoC('SERIAL')
+	PiSoC('PC')
 
 	#normally max_angle is 180, but you can change the scale to be whatever is best for the project
-	Pan = Servo(1, max_angle = 5) 	# I chose 5 because the joysticks can output up to 5 Volts 
-	Tilt = Servo(2, max_angle = 5)	# This means that when I get the max volts (5), the servo will be in max position	
+	Pan = Servo(0, max_angle = 5)   # I chose 5 because the joysticks can output up to 5 Volts
+	Tilt = Servo(1, max_angle = 5)  # This means that when I get the max volts (5), the servo will be in max position
 
-	x_axis = analogPin(0)
-	y_axis = analogPin(1)
+	x_axis = AnalogPin(0)
+	y_axis = AnalogPin(1)
 
-	try:
-		while True:
-			Pan.SetAngle(x_axis.ReadVolts()) #set each servo position to the voltage reading
-			Tilt.SetAngle(y_axis.ReadVolts())
-	except KeyboardInterrupt:
-		PiSoC.commChannel.cleanup()
+	while True:
+	        Pan.SetAngle(x_axis.ReadVolts()) #set each servo position to the voltage reading
+	        Tilt.SetAngle(y_axis.ReadVolts())
 
 NeoPixels
 +++++++++
@@ -233,32 +162,27 @@ Simply connect your NeoPixel Shield to the Arduino headers of your PiSoC, and yo
 
 .. code-block:: python
 	:linenos:
-	:emphasize-lines: 5, 6, 7, 8, 12, 19
 
 	from pisoc import *
-	PiSoC('SERIAL', DEBUG = True)
+	from time import sleep
+	PiSoC('PC')
 
-	try:
-		pixels = NeoPixelShield()
-		pixels.Start()
-		pixels.Dim(1)
-		colors = [pixels.Green, pixels.Yellow, pixels.Orange, pixels.Red, pixels.Purple, pixels.Blue, pixels.PowderBlue, pixels.White]
-		while True:
-			for column in range(8):
-				for row in range(5):
-					pixels.SetPixel(row, column, colors[column])
-				time.sleep(0.01) #so you can see the animation happening
-				
-			time.sleep(0.25)
-			
-			for column in reversed(range(1,8)):
-				for row in range(5):
-					pixels.SetPixel(row, column, 0)
-				time.sleep(0.01) #so you can see the animation happening
-		
-	except KeyboardInterrupt:
-		PiSoC.commChannel.cleanup()
+	pixels = NeoPixelShield()
+	pixels.Start()
+	pixels.SetBrightness(3)
+	colors = [pixels.Green, pixels.Yellow, pixels.Orange, pixels.Red, pixels.Purple, pixels.Blue, pixels.PowderBlue, pixels.White]
+	while True:
+	        for column in range(8):
+	                for row in range(5):
+	                        pixels.SetPixel(row, column, colors[column])
+	                sleep(0.01) #so you can see the animation happening
 
+	        sleep(0.25)
+
+	        for column in reversed(range(1,8)):
+	                for row in range(5):
+	                        pixels.SetPixel(row, column, 0)
+	                sleep(0.01) #so you can see the animation happening
 
 .. codeauthor:: Brian Bradley <embedit@embeditelectronics.com>
 .. sectionauthor:: Brian Bradley <embedit@embeditelectronics.com>
