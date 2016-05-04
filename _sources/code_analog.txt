@@ -2,14 +2,14 @@
 
 analog.py
 =========
-The analog functionality currently supported by the RPiSoC API
+The analog functionality currently supported by the PiSoC API
 
 .. _analog-input-label:
 
 Analog Input Pins
 +++++++++++++++++
 .. currentmodule:: analog
-.. autoclass:: analogPin
+.. autoclass:: AnalogPin
    :members:
 
 Capacitive Sensing (CapSense)

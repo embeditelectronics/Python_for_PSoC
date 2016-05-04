@@ -2,13 +2,28 @@ Revision History
 ================
 A running log of all changes that are made to this API with each iteration.
 
+Version 2.0
++++++++++++
+
+Many things... Documentation coming.
+
 Version 1.2
 +++++++++++
-*V1.2* makes versioning the python much simpler. It allows for much easier modification to the RPiSoC firmware, without needing to version those changes in the python code. It also simplifies the API expansion process greatly for new developers, and provides frameworks for easy integration of new interfaces.
+*V1.2* makes versioning the python much simpler. It allows for much easier modification to the PiSoC firmware, without needing to version those changes in the python code. It also simplifies the API expansion process greatly for new developers, and provides frameworks for easy integration of new interfaces.
+
+New to v1.2.7
+*************
+- Changed all references of RPiSoC to PiSoC in the Python API and the documentation to be consistent with the official branding.
+
+New to v1.2.6
+*************
+- Fixed bugs in :meth:`digital.NeoPixelShield.DrawRow` and :meth:`digital.NeoPixelShield.DrawColumn`
+- Added :class:`digital.Tone` for using the PiSoC to easily generate musical notes.
+- Added :class:`digital.SpeedController` which inherits entirely from Servo.
 
 New to v1.2.5
 *************
-In RPiSoC code:
+In PiSoC code:
 
 - Changed tuning method of CapSense CSD component from SmartSense to None. Tuning is now handled manually.
 	* Without SmartSense :meth:`analog.CapSense.Read` does not behave correctly, and so it will likely become deprecated
@@ -20,21 +35,21 @@ In :class:`analog.CapSense`
 - Added :meth:`analog.CapSense.isTouched` to replace :meth:`analog.CapSense.Read` for when SmartSense is disabled (it is by default)
 - Added calibration code to :meth:`analog.CapSense.Start` so that :meth:`analog.CapSense.isTouched` gives desired behavior without SmartSense
 
-In :ref:`module rpisoc.py <rpisoc-module-label>`
+In :ref:`module pisoc.py <pisoc-module-label>`
 
-- Added Exceptions :class:`rpisoc.LostConnection` and :class:`rpisoc.ClosedPortException` for more descriptive and consistent problem reporting
+- Added Exceptions :class:`pisoc.LostConnection` and :class:`pisoc.ClosedPortException` for more descriptive and consistent problem reporting
 
-In :class:`rpisoc.SERIAL`
+In :class:`pisoc.SERIAL`
 
 - Changed the initialization so that a serial port does not need to be provided. It will be determined at run time, and should be platform independent. 
-- Added :meth:`rpisoc.SERIAL.reconnect` for situations where the RPiSoC might lose connection, and the user can check for this and reconnect if needed
-- Added :meth:`rpisoc.SERIAL.disconnect` for a clean closing of the serial port
-- Added :meth:`rpisoc.SERIAL.isConnected` to check the status of the serial connection with the RPiSoC 
+- Added :meth:`pisoc.SERIAL.reconnect` for situations where the PiSoC might lose connection, and the user can check for this and reconnect if needed
+- Added :meth:`pisoc.SERIAL.disconnect` for a clean closing of the serial port
+- Added :meth:`pisoc.SERIAL.isConnected` to check the status of the serial connection with the PiSoC 
 
 
 New to v1.2.4
 *************
-In the RPiSoC code
+In the PiSoC code
 
 - Added support for a standard Ultrasonic Range Finder, which should be useable by any SR-series range finer, excluding the 08 (which uses a different protocol), and the 3-pin Parallax ranger. 
 	* Generally, it will support any range finder that uses a GPIO protocol based on pulse length measurements.
@@ -47,18 +62,18 @@ In the RPiSoC code
 In :ref:`module digital.py <digital-module-label>`
 
 - Added :class:`digital.rangeFinder` with the following supported methods:
-	* :meth:`digital.rangeFinder.readRaw`: gets a raw value from the RPiSoC, which is representative of how many microseconds the rangers echo pin was held high. It will trigger the range by sending a short pulse, the length defined upon construction of the object. The result will be measured on the desired signal pin, and stop measuring when a timeout is reached
+	* :meth:`digital.rangeFinder.readRaw`: gets a raw value from the PiSoC, which is representative of how many microseconds the rangers echo pin was held high. It will trigger the range by sending a short pulse, the length defined upon construction of the object. The result will be measured on the desired signal pin, and stop measuring when a timeout is reached
 	* :meth:`digital.rangeFinder.readMeters`: Uses readRaw to get a raw time value in microseconds, and then calculates the distance between the ranger and the pinged object in meters
 	* :meth:`digital.rangeFinder.readCentimeters`: Uses readRaw to get a raw time value in microseconds, and then calculates the distance between the ranger and the pinged object in centimeters
 	* :meth:`digital.rangeFinder.readInches`: Uses readRaw to get a raw time value, and then calculates the distance between the ranger and the pinged object in Inches
 	* :meth:`digital.rangeFinder.setDelay`: Sets the length of the trigger pulse, in microseconds, which will be used to tell the device to send out a ping. This is handled in __init__, so it should only be called under unique circumstances.
-	* :meth:`digital.rangeFinder.setTimeout`: Sets the timeout length in microseconds. If the RPiSoC is still waiting for a completed response after this amount of time, it will stop counting and immediately return the result. This is handled in __init__, so it should only be called under unique circumstances.
+	* :meth:`digital.rangeFinder.setTimeout`: Sets the timeout length in microseconds. If the PiSoC is still waiting for a completed response after this amount of time, it will stop counting and immediately return the result. This is handled in __init__, so it should only be called under unique circumstances.
 
 
 New to v1.2.3
 *************
 
-In the RPiSoC code
+In the PiSoC code
 
 - Included custom component for NeoPixel (or general WS2812 strip light) control. Output is on Port 6, pin 0 (required by the shield). 
 - This means that the first PWM output, which was on P6[0], had to be moved to Port 0 Pin 2
@@ -77,22 +92,22 @@ In :ref:`module digital.py <digital-module-label>`
 
 New to v1.2.2
 *************
-In the RPiSoC code
+In the PiSoC code
 
 - USBUART (Serial) support has been added, allowing for use of the board through PC interfaces
 	
-In :ref:`module rpisoc.py <rpisoc-module-label>`
+In :ref:`module pisoc.py <pisoc-module-label>`
 
-- Added class *SERIAL()* which will open a Windows COM Port, or Linux or OS X Serial Port for communication with the RPiSoC over any baud rate
+- Added class *SERIAL()* which will open a Windows COM Port, or Linux or OS X Serial Port for communication with the PiSoC over any baud rate
 	* It is chosen from the application layer by:
 		
 	.. code-block:: python
 	
-		RPiSoC(port)
+		PiSoC(port)
 	
 New to v1.2.1
 *************
-This was a largely structural change to the RPiSoC firmware. It redesigned the data structures in place for handling of device requests. 
+This was a largely structural change to the PiSoC firmware. It redesigned the data structures in place for handling of device requests. 
 
 - A bit-field struct is now used as the global data vessel, which will contain all needed data for any request made
 - An additional layer of abstraction was added to the firmware, which should simplify the process of expansion for new developers
@@ -103,9 +118,9 @@ This was a largely structural change to the RPiSoC firmware. It redesigned the d
 
 New to v1.2.0
 *************
-In the RPiSoC code:
+In the PiSoC code:
 
-- Added a way for the RPiSoC to scan its generated source to determine
+- Added a way for the PiSoC to scan its generated source to determine
 	* What GPIO were being used
 	* How many PWMs, analog pins, and capsense buttons are being used
 	* If there existed one or more VDACs, IDACs, Delsig ADCs, SAR ADCs, or Wave DACs
@@ -118,9 +133,9 @@ In the RPiSoC code:
 - Added support for 6 CapSense buttons, located on Port 4, pins 0-5, with P4[6] needing a ~2.2nF Cmod
 - Made a skeleton for UART support, but haven't yet completed the implementation
 
-In :class:`rpisoc.RPiSoC`:
+In :class:`pisoc.PiSoC`:
 
-- Added the ability to determine what is in the RPiSoC firmare during the construction of the object.
+- Added the ability to determine what is in the PiSoC firmare during the construction of the object.
 - Added a DEBUG feature, which when set to *True* will print warnings and other diagnostic information to the terminal during run time
 
 In :ref:`module analog.py <analog-module-label>`
@@ -136,12 +151,12 @@ In :class:`digital.Servo`
 
 In all classes
 
-- Removed hard coded constraints, dependent on the version of the API, and replaced them with references to the data collected at construction of the RPiSoC object.
-	* For instance, instead of raising an exception when you ask to initialize an analog pin not in range(10), as it was previously, I will raise an exception when trying to initialize an analog pin not in range(RPiSoC.ANALOG_IN_NUM), where RPiSoC.ANALOG_IN_NUM is the number of analog inputs which were discovered when the RPiSoC class was constructed. This makes the API more portable and easier to version.
+- Removed hard coded constraints, dependent on the version of the API, and replaced them with references to the data collected at construction of the PiSoC object.
+	* For instance, instead of raising an exception when you ask to initialize an analog pin not in range(10), as it was previously, I will raise an exception when trying to initialize an analog pin not in range(PiSoC.ANALOG_IN_NUM), where PiSoC.ANALOG_IN_NUM is the number of analog inputs which were discovered when the PiSoC class was constructed. This makes the API more portable and easier to version.
 
-In :class:`rpisoc.SPI` and :class:`rpisoc.I2C`
+In :class:`pisoc.SPI` and :class:`pisoc.I2C`
 
-- Provided an optional second argument to the *receiveData()* method, which will accept a delay, in seconds, to be called between the write operation and read operation. This is to be used by advanced users expanding the API. If a feature they implement requires a highly complex operation to be executed on the RPiSoC, the Python may have to wait a small amount of time between the request and the response. Otherwise, a garbage response will be returned by the method.
+- Provided an optional second argument to the *receiveData()* method, which will accept a delay, in seconds, to be called between the write operation and read operation. This is to be used by advanced users expanding the API. If a feature they implement requires a highly complex operation to be executed on the PiSoC, the Python may have to wait a small amount of time between the request and the response. Otherwise, a garbage response will be returned by the method.
 
 Version 1.1
 +++++++++++
@@ -149,7 +164,7 @@ This version provides the Pi with a lot more functionality, and use of the API i
 
 New to v1.1.2
 *************
-In the RPiSoC code
+In the PiSoC code
 
 - Removed the second SAR ADC and replaced it with a sequenced ADC, with 10 analog inputs. This allows for simplified use of analog pins, and gives 10 more.
 - Removed Port 6 as a GPIO register so that more analog pins could be added
@@ -157,7 +172,7 @@ In the RPiSoC code
 - Changed the structure of the GPIO functionality enumeration. I concatenated all of the seperate GPIO registers into one register, and changed the packing and unpacking process of each transfer to contain the port, pin, command, and value to be written if applicable. 
 - Added the ability to change drive modes to each GPIO at run time.
 
-In :ref:`module rpisoc.py <rpisoc-module-label>`
+In :ref:`module pisoc.py <pisoc-module-label>`
 
 - Fixed the import structure so that both smbus and spidev aren't needed. This means you don't have to configure the Pi for I2C if you only intend to use SPI, or vice versa. 
 
@@ -181,16 +196,16 @@ New to V1.1.1
 *************
 Code structure
 
-- *communication.py* was removed and merged with :ref:`module rpisoc.py <rpisoc-module-label>` to simplify the overall structure.	
+- *communication.py* was removed and merged with :ref:`module pisoc.py <pisoc-module-label>` to simplify the overall structure.	
 
-In :class:`rpisoc.SPI`
+In :class:`pisoc.SPI`
 
 - Further minimized latency inherent to each SPI transfer. 
-- :meth:`rpisoc.SPI.cleanup` will now reset any global data tracked within the RPiSoC class, in case :meth:`rpisoc.SPI.cleanup` is not called at termination
+- :meth:`pisoc.SPI.cleanup` will now reset any global data tracked within the PiSoC class, in case :meth:`pisoc.SPI.cleanup` is not called at termination
 
-In :class:`rpisoc.I2C`
+In :class:`pisoc.I2C`
 
-- :meth:`rpisoc.I2C.cleanup`  method will now reset any global data tracked within the RPiSoC class, in case :meth:`rpisoc.I2C.cleanup`  is not called at termination 
+- :meth:`pisoc.I2C.cleanup`  method will now reset any global data tracked within the PiSoC class, in case :meth:`pisoc.I2C.cleanup`  is not called at termination 
 
 In :class:`analog.VDAC`
 
@@ -203,10 +218,10 @@ In :class:`analog.IDAC`
 
 New to V1.1.0
 *************
-In the RPiSoC code
+In the PiSoC code
 
 - Added I2C support
-- Added the ability to software reset the RPiSoC through the Raspberry Pi
+- Added the ability to software reset the PiSoC through the Raspberry Pi
 - Removed unneeded delays, speeding up the init process
 - changed which bootloader is used
 - clocked the PWM's seperately, such that they aren't all sharing the same clock; they are only sharing their clock with one other PWM instead of 7, as was the case in *V1.0.0*
@@ -224,9 +239,9 @@ In :class:`digital.PWM`
 - Added :meth:`digital.PWM.SetFrequency` which provides the ability to modify the actual wave frequency of the PWM, between 0.006 Hz and 2.4MHz, without affecting the duty cycle too profoundly. 
 - Added :meth:`digital.PWM.GetFrequency` method which will return the actual frequency of the PWM wave
 
-In :class:`rpisoc.RPiSoC`
+In :class:`pisoc.PiSoC`
 
-- Added class attributes to the RPiSoC indicate whether a register address is already in use. So if the user attempts to initialize an object that is already in use, a warning will be issued.
+- Added class attributes to the PiSoC indicate whether a register address is already in use. So if the user attempts to initialize an object that is already in use, a warning will be issued.
 
 In :class:`analog.ADC`
 
@@ -253,7 +268,7 @@ In :ref:`module digital.py <digital-module-label>`
 
 Version 1.0
 +++++++++++
-The public release of the API. It exposes, most fundamentally, the following functionality to the Raspberry Pi through the RPiSoC
+The public release of the API. It exposes, most fundamentally, the following functionality to the Raspberry Pi through the PiSoC
 
 	- 8 PWM channels
 	- 20 digital outputs
@@ -264,4 +279,4 @@ The public release of the API. It exposes, most fundamentally, the following fun
 	- 1 16-bit Delta Sigma ADC
 	- 2 12-bit SAR ADC's
 
-Communication to the RPiSoC requires use of SPI. No other communication protocol is yet supported, and the VDAC's and IDAC's are currently untested. 
+Communication to the PiSoC requires use of SPI. No other communication protocol is yet supported, and the VDAC's and IDAC's are currently untested. 

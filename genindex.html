@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Index &mdash; RPiSoC Python API 1.2.5 documentation</title>
+    <title>Index &mdash; PiSoC Python API 2.0.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -15,7 +15,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.2.5',
+        VERSION:     '2.0.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="RPiSoC Python API 1.2.5 documentation" href="index.html" /> 
+    <link rel="top" title="PiSoC Python API 2.0.0 documentation" href="index.html" /> 
   </head>
   <body>
     <div class="related">
@@ -34,7 +34,7 @@
         <li class="right" style="margin-right: 10px">
           <a href="#" title="General Index"
              accesskey="I">index</a></li>
-        <li><a href="index.html">RPiSoC Python API 1.2.5 documentation</a> &raquo;</li> 
+        <li><a href="index.html">PiSoC Python API 2.0.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -51,6 +51,7 @@
  | <a href="#A"><strong>A</strong></a>
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
+ | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#L"><strong>L</strong></a>
@@ -59,6 +60,7 @@
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
  | <a href="#V"><strong>V</strong></a>
  | <a href="#W"><strong>W</strong></a>
  
@@ -67,7 +69,7 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="code_rpisoc.html#rpisoc.RPiSoC.__new__">__new__() (rpisoc.RPiSoC static method)</a>
+  <dt><a href="code_pisoc.html#pisoc.PiSoC.__new__">__new__() (pisoc.PiSoC static method)</a>
   </dt>
 
   </dl></td>
@@ -83,7 +85,7 @@
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="code_analog.html#analog.analogPin">analogPin (class in analog)</a>
+  <dt><a href="code_analog.html#analog.AnalogPin">AnalogPin (class in analog)</a>
   </dt>
 
   </dl></td>
@@ -97,23 +99,27 @@
   </dt>
 
       
-  <dt><a href="code_digital.html#digital.Servo.changeAngles">changeAngles() (digital.Servo method)</a>
+  <dt><a href="code_digital.html#digital.Servo.ChangeAngles">ChangeAngles() (digital.Servo method)</a>
   </dt>
 
       
-  <dt><a href="code_rpisoc.html#rpisoc.I2C.cleanup">cleanup() (rpisoc.I2C method)</a>
+  <dt><a href="code_pisoc.html#pisoc.UART.cleanup">cleanup() (pisoc.UART method)</a>
   </dt>
 
       <dd><dl>
         
-  <dt><a href="code_rpisoc.html#rpisoc.SERIAL.cleanup">(rpisoc.SERIAL method)</a>
-  </dt>
-
-        
-  <dt><a href="code_rpisoc.html#rpisoc.SPI.cleanup">(rpisoc.SPI method)</a>
+  <dt><a href="code_pisoc.html#pisoc.USB_UART.cleanup">(pisoc.USB_UART method)</a>
   </dt>
 
       </dl></dd>
+      
+  <dt><a href="code_digital.html#digital.NeoPixelShield.Clear">Clear() (digital.NeoPixelShield method)</a>
+  </dt>
+
+      
+  <dt><a href="code_digital.html#digital.NeoPixelShield.ClearColumn">ClearColumn() (digital.NeoPixelShield method)</a>
+  </dt>
+
       
   <dt><a href="code_digital.html#digital.PWM.ClearFIFO">ClearFIFO() (digital.PWM method)</a>
   </dt>
@@ -121,11 +127,19 @@
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="code_rpisoc.html#rpisoc.ClosedPortException">ClosedPortException (class in rpisoc)</a>
+  <dt><a href="code_digital.html#digital.NeoPixelShield.ClearPixel">ClearPixel() (digital.NeoPixelShield method)</a>
   </dt>
 
       
-  <dt><a href="code_digital.html#digital.digitalPin.Configure">Configure() (digital.digitalPin method)</a>
+  <dt><a href="code_digital.html#digital.NeoPixelShield.ClearRow">ClearRow() (digital.NeoPixelShield method)</a>
+  </dt>
+
+      
+  <dt><a href="code_pisoc.html#pisoc.ClosedPortException">ClosedPortException (class in pisoc)</a>
+  </dt>
+
+      
+  <dt><a href="code_digital.html#digital.DigitalPin.Configure">Configure() (digital.DigitalPin method)</a>
   </dt>
 
       
@@ -139,15 +153,11 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="code_digital.html#digital.digitalPin">digitalPin (class in digital)</a>
+  <dt><a href="code_digital.html#digital.DigitalPin">DigitalPin (class in digital)</a>
   </dt>
 
       
-  <dt><a href="code_digital.html#digital.NeoPixelShield.Dim">Dim() (digital.NeoPixelShield method)</a>
-  </dt>
-
-      
-  <dt><a href="code_rpisoc.html#rpisoc.SERIAL.disconnect">disconnect() (rpisoc.SERIAL method)</a>
+  <dt><a href="code_pisoc.html#pisoc.USB_UART.disconnect">disconnect() (pisoc.USB_UART method)</a>
   </dt>
 
   </dl></td>
@@ -163,11 +173,33 @@
   </dl></td>
 </tr></table>
 
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="code_digital.html#digital.NeoPixelShield.Fill">Fill() (digital.NeoPixelShield method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="code_analog.html#analog.WaveDAC.GenerateWave">GenerateWave() (analog.WaveDAC method)</a>
+  </dt>
+
+      
+  <dt><a href="code_digital.html#digital.DigitalPin.get_gpio_bitmap">get_gpio_bitmap() (digital.DigitalPin method)</a>
+  </dt>
+
+      
+  <dt><a href="code_digital.html#digital.DigitalPin.get_port_state">get_port_state() (digital.DigitalPin method)</a>
+  </dt>
+
+      
+  <dt><a href="code_analog.html#analog.CapSense.get_register">get_register() (analog.CapSense method)</a>
   </dt>
 
       
@@ -178,12 +210,12 @@
   <dt><a href="code_digital.html#digital.PWM.GetClocks">GetClocks() (digital.PWM method)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="code_digital.html#digital.PWM.GetDutyCycle">GetDutyCycle() (digital.PWM method)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="code_analog.html#analog.WaveDAC.GetFrequency">GetFrequency() (analog.WaveDAC method)</a>
   </dt>
@@ -193,13 +225,31 @@
   <dt><a href="code_digital.html#digital.PWM.GetFrequency">(digital.PWM method)</a>
   </dt>
 
+        
+  <dt><a href="code_digital.html#digital.Tone.GetFrequency">(digital.Tone method)</a>
+  </dt>
+
       </dl></dd>
       
   <dt><a href="code_digital.html#digital.PWM.GetMIDI">GetMIDI() (digital.PWM method)</a>
   </dt>
 
+      <dd><dl>
+        
+  <dt><a href="code_digital.html#digital.Tone.GetMIDI">(digital.Tone method)</a>
+  </dt>
+
+      </dl></dd>
       
   <dt><a href="code_analog.html#analog.ADC.GetResult">GetResult() (analog.ADC method)</a>
+  </dt>
+
+      
+  <dt><a href="code_digital.html#digital.Tone.GetVelocity">GetVelocity() (digital.Tone method)</a>
+  </dt>
+
+      
+  <dt><a href="code_digital.html#digital.Tone.GetVolume">GetVolume() (digital.Tone method)</a>
   </dt>
 
   </dl></td>
@@ -209,7 +259,7 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="code_rpisoc.html#rpisoc.I2C">I2C (class in rpisoc)</a>
+  <dt><a href="code_pisoc.html#pisoc.I2C">I2C (class in pisoc)</a>
   </dt>
 
       
@@ -217,51 +267,55 @@
   </dt>
 
       
-  <dt><a href="code_rpisoc.html#rpisoc.SERIAL.isConnected">isConnected() (rpisoc.SERIAL method)</a>
+  <dt><a href="code_pisoc.html#pisoc.USB_UART.is_connected">is_connected() (pisoc.USB_UART method)</a>
   </dt>
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="code_analog.html#analog.ADC.IsEndConversion">IsEndConversion() (analog.ADC method)</a>
-  </dt>
-
-      
-  <dt><a href="code_analog.html#analog.ADC.isRunning">isRunning() (analog.ADC method)</a>
+  <dt><a href="code_analog.html#analog.ADC.is_running">is_running() (analog.ADC method)</a>
   </dt>
 
       <dd><dl>
         
-  <dt><a href="code_analog.html#analog.CapSense.isRunning">(analog.CapSense method)</a>
+  <dt><a href="code_analog.html#analog.CapSense.is_running">(analog.CapSense method)</a>
   </dt>
 
         
-  <dt><a href="code_analog.html#analog.IDAC.isRunning">(analog.IDAC method)</a>
+  <dt><a href="code_analog.html#analog.IDAC.is_running">(analog.IDAC method)</a>
   </dt>
 
         
-  <dt><a href="code_analog.html#analog.VDAC.isRunning">(analog.VDAC method)</a>
+  <dt><a href="code_analog.html#analog.VDAC.is_running">(analog.VDAC method)</a>
   </dt>
 
         
-  <dt><a href="code_analog.html#analog.WaveDAC.isRunning">(analog.WaveDAC method)</a>
+  <dt><a href="code_analog.html#analog.WaveDAC.is_running">(analog.WaveDAC method)</a>
   </dt>
 
         
-  <dt><a href="code_digital.html#digital.NeoPixelShield.isRunning">(digital.NeoPixelShield method)</a>
+  <dt><a href="code_digital.html#digital.NeoPixelShield.is_running">(digital.NeoPixelShield method)</a>
   </dt>
 
         
-  <dt><a href="code_digital.html#digital.PWM.isRunning">(digital.PWM method)</a>
+  <dt><a href="code_digital.html#digital.PWM.is_running">(digital.PWM method)</a>
   </dt>
 
         
-  <dt><a href="code_digital.html#digital.Servo.isRunning">(digital.Servo method)</a>
+  <dt><a href="code_digital.html#digital.Servo.is_running">(digital.Servo method)</a>
+  </dt>
+
+        
+  <dt><a href="code_digital.html#digital.Tone.is_running">(digital.Tone method)</a>
   </dt>
 
       </dl></dd>
       
-  <dt><a href="code_analog.html#analog.CapSense.isTouched">isTouched() (analog.CapSense method)</a>
+  <dt><a href="code_analog.html#analog.CapSense.is_touched">is_touched() (analog.CapSense method)</a>
+  </dt>
+
+      
+  <dt><a href="code_analog.html#analog.ADC.IsEndConversion">IsEndConversion() (analog.ADC method)</a>
   </dt>
 
   </dl></td>
@@ -271,7 +325,7 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="code_rpisoc.html#rpisoc.LostConnection">LostConnection (class in rpisoc)</a>
+  <dt><a href="code_pisoc.html#pisoc.LostConnection">LostConnection (class in pisoc)</a>
   </dt>
 
   </dl></td>
@@ -291,19 +345,13 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="code_rpisoc.html#rpisoc.I2C.PrepareData">PrepareData() (rpisoc.I2C method)</a>
+  <dt><a href="code_pisoc.html#pisoc.PiSoC">PiSoC (class in pisoc)</a>
   </dt>
 
-      <dd><dl>
-        
-  <dt><a href="code_rpisoc.html#rpisoc.SERIAL.PrepareData">(rpisoc.SERIAL method)</a>
+      
+  <dt><a href="code_pisoc.html#pisoc.PrepareData">PrepareData() (in module pisoc)</a>
   </dt>
 
-        
-  <dt><a href="code_rpisoc.html#rpisoc.SPI.PrepareData">(rpisoc.SPI method)</a>
-  </dt>
-
-      </dl></dd>
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
@@ -317,7 +365,7 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="code_digital.html#digital.rangeFinder">rangeFinder (class in digital)</a>
+  <dt><a href="code_digital.html#digital.RangeFinder">RangeFinder (class in digital)</a>
   </dt>
 
       
@@ -326,15 +374,15 @@
 
       <dd><dl>
         
+  <dt><a href="code_analog.html#analog.AnalogPin.Read">(analog.AnalogPin method)</a>
+  </dt>
+
+        
   <dt><a href="code_analog.html#analog.CapSense.Read">(analog.CapSense method)</a>
   </dt>
 
         
-  <dt><a href="code_analog.html#analog.analogPin.Read">(analog.analogPin method)</a>
-  </dt>
-
-        
-  <dt><a href="code_digital.html#digital.digitalPin.Read">(digital.digitalPin method)</a>
+  <dt><a href="code_digital.html#digital.DigitalPin.Read">(digital.DigitalPin method)</a>
   </dt>
 
       </dl></dd>
@@ -343,7 +391,7 @@
   </dt>
 
       
-  <dt><a href="code_digital.html#digital.rangeFinder.readCentimeters">readCentimeters() (digital.rangeFinder method)</a>
+  <dt><a href="code_digital.html#digital.RangeFinder.ReadCentimeters">ReadCentimeters() (digital.RangeFinder method)</a>
   </dt>
 
       
@@ -351,61 +399,57 @@
   </dt>
 
       
-  <dt><a href="code_digital.html#digital.rangeFinder.readInches">readInches() (digital.rangeFinder method)</a>
+  <dt><a href="code_digital.html#digital.RangeFinder.ReadInches">ReadInches() (digital.RangeFinder method)</a>
   </dt>
 
       
-  <dt><a href="code_digital.html#digital.rangeFinder.readMeters">readMeters() (digital.rangeFinder method)</a>
-  </dt>
-
-      
-  <dt><a href="code_digital.html#digital.PWM.ReadPeriod">ReadPeriod() (digital.PWM method)</a>
+  <dt><a href="code_digital.html#digital.RangeFinder.ReadMeters">ReadMeters() (digital.RangeFinder method)</a>
   </dt>
 
   </dl></td>
   <td style="width: 33%" valign="top"><dl>
       
+  <dt><a href="code_digital.html#digital.PWM.ReadPeriod">ReadPeriod() (digital.PWM method)</a>
+  </dt>
+
+      
   <dt><a href="code_digital.html#digital.Servo.ReadPulse">ReadPulse() (digital.Servo method)</a>
   </dt>
 
       
-  <dt><a href="code_analog.html#analog.CapSense.readRaw">readRaw() (analog.CapSense method)</a>
+  <dt><a href="code_analog.html#analog.CapSense.ReadRaw">ReadRaw() (analog.CapSense method)</a>
   </dt>
 
       <dd><dl>
         
-  <dt><a href="code_digital.html#digital.rangeFinder.readRaw">(digital.rangeFinder method)</a>
+  <dt><a href="code_digital.html#digital.RangeFinder.ReadRaw">(digital.RangeFinder method)</a>
   </dt>
 
       </dl></dd>
       
-  <dt><a href="code_analog.html#analog.analogPin.ReadVolts">ReadVolts() (analog.analogPin method)</a>
+  <dt><a href="code_analog.html#analog.AnalogPin.ReadVolts">ReadVolts() (analog.AnalogPin method)</a>
   </dt>
 
       
-  <dt><a href="code_rpisoc.html#rpisoc.I2C.receiveData">receiveData() (rpisoc.I2C method)</a>
+  <dt><a href="code_pisoc.html#pisoc.I2C.receive_data">receive_data() (pisoc.I2C method)</a>
   </dt>
 
       <dd><dl>
         
-  <dt><a href="code_rpisoc.html#rpisoc.SERIAL.receiveData">(rpisoc.SERIAL method)</a>
+  <dt><a href="code_pisoc.html#pisoc.UART.receive_data">(pisoc.UART method)</a>
   </dt>
 
         
-  <dt><a href="code_rpisoc.html#rpisoc.SPI.receiveData">(rpisoc.SPI method)</a>
+  <dt><a href="code_pisoc.html#pisoc.USB_UART.receive_data">(pisoc.USB_UART method)</a>
   </dt>
 
       </dl></dd>
       
-  <dt><a href="code_rpisoc.html#rpisoc.SERIAL.reconnect">reconnect() (rpisoc.SERIAL method)</a>
+  <dt><a href="code_pisoc.html#pisoc.USB_UART.reconnect">reconnect() (pisoc.USB_UART method)</a>
   </dt>
 
       
-  <dt><a href="code_digital.html#digital.NeoPixelShield.RGB_toHex">RGB_toHex() (digital.NeoPixelShield method)</a>
-  </dt>
-
-      
-  <dt><a href="code_rpisoc.html#rpisoc.RPiSoC">RPiSoC (class in rpisoc)</a>
+  <dt><a href="code_digital.html#digital.NeoPixelShield.RGB_to_hex">RGB_to_hex() (digital.NeoPixelShield method)</a>
   </dt>
 
   </dl></td>
@@ -415,33 +459,29 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="code_rpisoc.html#rpisoc.I2C.sendData">sendData() (rpisoc.I2C method)</a>
+  <dt><a href="code_pisoc.html#pisoc.I2C.send_data">send_data() (pisoc.I2C method)</a>
   </dt>
 
       <dd><dl>
         
-  <dt><a href="code_rpisoc.html#rpisoc.SERIAL.sendData">(rpisoc.SERIAL method)</a>
+  <dt><a href="code_pisoc.html#pisoc.UART.send_data">(pisoc.UART method)</a>
   </dt>
 
         
-  <dt><a href="code_rpisoc.html#rpisoc.SPI.sendData">(rpisoc.SPI method)</a>
+  <dt><a href="code_pisoc.html#pisoc.USB_UART.send_data">(pisoc.USB_UART method)</a>
   </dt>
 
       </dl></dd>
-      
-  <dt><a href="code_rpisoc.html#rpisoc.SERIAL">SERIAL (class in rpisoc)</a>
-  </dt>
-
       
   <dt><a href="code_digital.html#digital.Servo">Servo (class in digital)</a>
   </dt>
 
       
-  <dt><a href="code_analog.html#analog.WaveDAC.setAmplitude">setAmplitude() (analog.WaveDAC method)</a>
+  <dt><a href="code_digital.html#digital.Servo.SetAngle">SetAngle() (digital.Servo method)</a>
   </dt>
 
       
-  <dt><a href="code_digital.html#digital.Servo.SetAngle">SetAngle() (digital.Servo method)</a>
+  <dt><a href="code_digital.html#digital.NeoPixelShield.SetBrightness">SetBrightness() (digital.NeoPixelShield method)</a>
   </dt>
 
       
@@ -461,11 +501,7 @@
   </dt>
 
       
-  <dt><a href="code_analog.html#analog.WaveDAC.setdcBias">setdcBias() (analog.WaveDAC method)</a>
-  </dt>
-
-      
-  <dt><a href="code_digital.html#digital.rangeFinder.setDelay">setDelay() (digital.rangeFinder method)</a>
+  <dt><a href="code_digital.html#digital.RangeFinder.SetDelay">SetDelay() (digital.RangeFinder method)</a>
   </dt>
 
       
@@ -481,6 +517,10 @@
   <dt><a href="code_digital.html#digital.PWM.SetFrequency">(digital.PWM method)</a>
   </dt>
 
+        
+  <dt><a href="code_digital.html#digital.Tone.SetFrequency">(digital.Tone method)</a>
+  </dt>
+
       </dl></dd>
       
   <dt><a href="code_analog.html#analog.ADC.SetGain">SetGain() (analog.ADC method)</a>
@@ -490,13 +530,23 @@
   <dt><a href="code_digital.html#digital.PWM.SetMIDI">SetMIDI() (digital.PWM method)</a>
   </dt>
 
+      <dd><dl>
+        
+  <dt><a href="code_digital.html#digital.Tone.SetMIDI">(digital.Tone method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="code_digital.html#digital.Tone.SetNote">SetNote() (digital.Tone method)</a>
+  </dt>
+
       
   <dt><a href="code_analog.html#analog.ADC.SetOffset">SetOffset() (analog.ADC method)</a>
   </dt>
 
       <dd><dl>
         
-  <dt><a href="code_analog.html#analog.analogPin.SetOffset">(analog.analogPin method)</a>
+  <dt><a href="code_analog.html#analog.AnalogPin.SetOffset">(analog.AnalogPin method)</a>
   </dt>
 
       </dl></dd>
@@ -504,12 +554,12 @@
   <dt><a href="code_digital.html#digital.NeoPixelShield.SetPixel">SetPixel() (digital.NeoPixelShield method)</a>
   </dt>
 
-  </dl></td>
-  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="code_analog.html#analog.IDAC.SetPolarity">SetPolarity() (analog.IDAC method)</a>
   </dt>
 
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
       
   <dt><a href="code_digital.html#digital.Servo.SetPulse">SetPulse() (digital.Servo method)</a>
   </dt>
@@ -530,7 +580,7 @@
 
       <dd><dl>
         
-  <dt><a href="code_analog.html#analog.analogPin.SetResolution">(analog.analogPin method)</a>
+  <dt><a href="code_analog.html#analog.AnalogPin.SetResolution">(analog.AnalogPin method)</a>
   </dt>
 
       </dl></dd>
@@ -549,7 +599,7 @@
 
       </dl></dd>
       
-  <dt><a href="code_digital.html#digital.rangeFinder.setTimeout">setTimeout() (digital.rangeFinder method)</a>
+  <dt><a href="code_digital.html#digital.RangeFinder.SetTimeout">SetTimeout() (digital.RangeFinder method)</a>
   </dt>
 
       
@@ -567,7 +617,15 @@
 
       </dl></dd>
       
+  <dt><a href="code_digital.html#digital.Tone.SetVelocity">SetVelocity() (digital.Tone method)</a>
+  </dt>
+
+      
   <dt><a href="code_analog.html#analog.VDAC.SetVoltage">SetVoltage() (analog.VDAC method)</a>
+  </dt>
+
+      
+  <dt><a href="code_digital.html#digital.Tone.SetVolume">SetVolume() (digital.Tone method)</a>
   </dt>
 
       
@@ -595,11 +653,11 @@
   <dt><a href="code_digital.html#digital.PWM.Sleep">(digital.PWM method)</a>
   </dt>
 
-      </dl></dd>
-      
-  <dt><a href="code_rpisoc.html#rpisoc.SPI">SPI (class in rpisoc)</a>
+        
+  <dt><a href="code_digital.html#digital.Tone.Sleep">(digital.Tone method)</a>
   </dt>
 
+      </dl></dd>
       
   <dt><a href="code_analog.html#analog.ADC.Start">Start() (analog.ADC method)</a>
   </dt>
@@ -631,6 +689,10 @@
 
         
   <dt><a href="code_digital.html#digital.Servo.Start">(digital.Servo method)</a>
+  </dt>
+
+        
+  <dt><a href="code_digital.html#digital.Tone.Start">(digital.Tone method)</a>
   </dt>
 
       </dl></dd>
@@ -675,6 +737,10 @@
   <dt><a href="code_digital.html#digital.Servo.Stop">(digital.Servo method)</a>
   </dt>
 
+        
+  <dt><a href="code_digital.html#digital.Tone.Stop">(digital.Tone method)</a>
+  </dt>
+
       </dl></dd>
       
   <dt><a href="code_analog.html#analog.WaveDAC.StopClock">StopClock() (analog.WaveDAC method)</a>
@@ -695,7 +761,33 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%" valign="top"><dl>
       
-  <dt><a href="code_digital.html#digital.digitalPin.Toggle">Toggle() (digital.digitalPin method)</a>
+  <dt><a href="code_pisoc.html#pisoc.Test_Read">Test_Read() (in module pisoc)</a>
+  </dt>
+
+      
+  <dt><a href="code_digital.html#digital.DigitalPin.Toggle">Toggle() (digital.DigitalPin method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="code_digital.html#digital.Tone">Tone (class in digital)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="code_pisoc.html#pisoc.UART">UART (class in pisoc)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="code_pisoc.html#pisoc.USB_UART">USB_UART (class in pisoc)</a>
   </dt>
 
   </dl></td>
@@ -739,13 +831,17 @@
   <dt><a href="code_digital.html#digital.PWM.Wakeup">(digital.PWM method)</a>
   </dt>
 
+        
+  <dt><a href="code_digital.html#digital.Tone.Wakeup">(digital.Tone method)</a>
+  </dt>
+
       </dl></dd>
       
   <dt><a href="code_analog.html#analog.WaveDAC">WaveDAC (class in analog)</a>
   </dt>
 
       
-  <dt><a href="code_digital.html#digital.digitalPin.Write">Write() (digital.digitalPin method)</a>
+  <dt><a href="code_digital.html#digital.DigitalPin.Write">Write() (digital.DigitalPin method)</a>
   </dt>
 
   </dl></td>
@@ -797,12 +893,12 @@
         <li class="right" style="margin-right: 10px">
           <a href="#" title="General Index"
              >index</a></li>
-        <li><a href="index.html">RPiSoC Python API 1.2.5 documentation</a> &raquo;</li> 
+        <li><a href="index.html">PiSoC Python API 2.0.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2015, EmbeditElectronics.
-      Last updated on Jan 22, 2015.
+        &copy; Copyright 2016, EmbeditElectronics.
+      Last updated on May 03, 2016.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

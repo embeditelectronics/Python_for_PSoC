@@ -6,21 +6,21 @@ Here are a few example projects to show just how easy the API is to use.
 
 Blinky!
 +++++++
-The "hello world" of physical computing. Just connect your RPiSoC and watch it go! Output is on the on-board LED
+The "hello world" of physical computing. Just connect your PiSoC and watch it go! Output is on the on-board LED
 
 .. code-block:: python
 	:linenos:
 	:emphasize-lines: 4, 7, 9
 	
-	from rpisoc import *
-	RPiSoC('SERIAL')
+	from pisoc import *
+	PiSoC('SERIAL')
 	
 	blinky = digitalPin(12,0,'OUT')
 	try:
 		while True:
 			blinky.Toggle()
 	except KeyboardInterrupt:
-		RPiSoC.commChannel.cleanup()
+		PiSoC.commChannel.cleanup()
 
 Voltmeter
 +++++++++
@@ -40,8 +40,8 @@ You can confirm the accuracy with a Voltmeter.
 	:linenos:
 	:emphasize-lines: 4, 5, 6, 10, 14
 
-	from rpisoc import * 
-	RPiSoC('SERIAL') 
+	from pisoc import * 
+	PiSoC('SERIAL') 
 
 	voltmeter  = analogPin(0)
 	out_3v3 = digitalPin(5,0,'OUT') 
@@ -53,7 +53,7 @@ You can confirm the accuracy with a Voltmeter.
 			print('VOLTAGE:    %.3f' %Voltage)
 			time.sleep(.1)
 	except KeyboardInterrupt:
-		RPiSoC.commChannel.cleanup()
+		PiSoC.commChannel.cleanup()
 
 
 Theremin using PWM and Ultrasonic Range Finding
@@ -61,17 +61,17 @@ Theremin using PWM and Ultrasonic Range Finding
 This will demonstrate some basic use of Ultrasonic Range Finding and tone generation with :class:`digital.rangeFinder` and :class:`digital.PWM`
 
 To set this program up, you will want to connect your Ultrasonic Range Finders echo Pin to P12[0], and it's trigger pin to P12[1].
-Also be sure to provide power and ground to the Range Finder from the RPiSoC.
+Also be sure to provide power and ground to the Range Finder from the PiSoC.
 
-Then, connect one end of a piezo buzzer to the RPiSoC's ground, and the other end to P6[1]
+Then, connect one end of a piezo buzzer to the PiSoC's ground, and the other end to P6[1]
 Run this code on the platform of your choosing, and make some noise!
 
 .. code-block:: python
 	:linenos:
 	:emphasize-lines: 4, 5, 6, 7, 9, 11
 	
-	from rpisoc import *
-	RPiSoC('SERIAL')
+	from pisoc import *
+	PiSoC('SERIAL')
 	try:
 		ranger = rangeFinder([12,0], [12,1])
 		piezo = PWM(1)
@@ -80,7 +80,7 @@ Run this code on the platform of your choosing, and make some noise!
 		while True:
 			piezo.SetFrequency(ranger.readRaw())
 	except KeyboardInterrupt:
-		RPiSoC.commChannel.cleanup()
+		PiSoC.commChannel.cleanup()
 		
 Play with some fruit!
 +++++++++++++++++++++
@@ -92,8 +92,8 @@ Simply connect any kind of fruit (or anything conductive at all) to P4[0], and w
 	:linenos:
 	:emphasize-lines: 4, 5, 6, 9, 10, 11,13
 
-	from rpisoc import *
-	RPiSoC('SERIAL')
+	from pisoc import *
+	PiSoC('SERIAL')
 	
 	touch = CapSense(0, THRESHOLD = 4) #raise or lower the threshold depenging on results!
 	touch.Start()
@@ -104,7 +104,7 @@ Simply connect any kind of fruit (or anything conductive at all) to P4[0], and w
 				output.Write(1)
 			output.Write(0)
 	except KeyboardInterrupt:
-		RPiSoC.commChannel.cleanup()
+		PiSoC.commChannel.cleanup()
 	
 Comprehensive usage of  digital inputs and outputs
 ++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -127,12 +127,12 @@ correlate with the LEDs (if wired in the way noted above). Check it out!
 	:linenos:
 	:emphasize-lines: 5, 6, 11, 14, 18, 21, 25
 
-	from rpisoc import *
+	from pisoc import *
 	import os
-	RPiSoC('SERIAL')
-
-	My_outputs = [digitalPin(12,0,'OUT'), digitalPin(12,1,'OUT'), digitalPin(5,0,'OUT'), digitalPin(5,1,'OUT')]
-	My_inputs = [digitalPin(4,0,'IN'), digitalPin(4,1,'IN'), digitalPin(5,4,'IN'), digitalPin(5,5,'IN')]
+	PiSoC('SERIAL')
+	
+	My_outputs = [digitalPin(12, x, 'OUT') for x in range(4)]
+	M_inputs = [digitalPin(2, x, 'IN') for x in range(4)]
 
 	try: 
 		while True:
@@ -151,7 +151,7 @@ correlate with the LEDs (if wired in the way noted above). Check it out!
 				time.sleep(1)
 
 	except KeyboardInterrupt:
-		RPiSoC.commChannel.cleanup()
+		PiSoC.commChannel.cleanup()
 
 
 Function Generator!
@@ -163,14 +163,14 @@ the configuration details.
 
 Once it receives these values, it will stop the current wave, load the new configuration, and restart the wave to the users specifications!
 
-To see the desired functionality, connect P0[0] to an Oscilliscope(or to another RPiSoC with the Oscilliscope program running!)
+To see the desired functionality, connect P0[0] to an Oscilliscope(or to another PiSoC with the Oscilliscope program running!)
 
 .. code-block:: python
 	:linenos:
 	:emphasize-lines: 4, 5, 15, 16, 17, 19, 20, 21, 24
 
-	from rpisoc import *
-	RPiSoC('SERIAL')
+	from pisoc import *
+	PiSoC('SERIAL')
 
 	My_Wave = WaveDAC()
 	My_Wave.Start() #Starts the default wave
@@ -192,7 +192,7 @@ To see the desired functionality, connect P0[0] to an Oscilliscope(or to another
 			My_Wave.Start() #Restarts the waveDAC with the new wave loaded
 
 	except KeyboardInterrupt:
-		RPiSoC.commChannel.cleanup()
+		PiSoC.commChannel.cleanup()
 
 Servo Controller
 ++++++++++++++++
@@ -203,14 +203,14 @@ This will use voltage readings from a joystick (or potentiometers), to move two 
 To make this work, connect your servomotor signal wires to P6[1] and P6[2]
 Then connect the analog outputs of your joystick (or potentiometers) to P3[0] and P3[1]
 
-Also, make sure your joystick or potentiometer are powered by the RPiSoC, and your servomotors are powered externally, but share a ground connection with the RPiSoC.
+Also, make sure your joystick or potentiometer are powered by the PiSoC, and your servomotors are powered externally, but share a ground connection with the PiSoC.
 
 .. code-block:: python
 	:linenos:
 	:emphasize-lines: 5, 6, 8, 9, 13, 14, 16
 
-	from rpisoc import *
-	RPiSoC('SERIAL')
+	from pisoc import *
+	PiSoC('SERIAL')
 
 	#normally max_angle is 180, but you can change the scale to be whatever is best for the project
 	Pan = Servo(1, max_angle = 5) 	# I chose 5 because the joysticks can output up to 5 Volts 
@@ -224,19 +224,19 @@ Also, make sure your joystick or potentiometer are powered by the RPiSoC, and yo
 			Pan.SetAngle(x_axis.ReadVolts()) #set each servo position to the voltage reading
 			Tilt.SetAngle(y_axis.ReadVolts())
 	except KeyboardInterrupt:
-		RPiSoC.commChannel.cleanup()
+		PiSoC.commChannel.cleanup()
 
 NeoPixels
 +++++++++
 This is just a quick example of some fun with :class:`digital.NeoPixelShield`
-Simply connect your NeoPixel Shield to the Arduino headers of your RPiSoC, and you're ready to go!
+Simply connect your NeoPixel Shield to the Arduino headers of your PiSoC, and you're ready to go!
 
 .. code-block:: python
 	:linenos:
 	:emphasize-lines: 5, 6, 7, 8, 12, 19
 
-	from rpisoc import *
-	RPiSoC('SERIAL', DEBUG = True)
+	from pisoc import *
+	PiSoC('SERIAL', DEBUG = True)
 
 	try:
 		pixels = NeoPixelShield()
@@ -257,7 +257,7 @@ Simply connect your NeoPixel Shield to the Arduino headers of your RPiSoC, and y
 				time.sleep(0.01) #so you can see the animation happening
 		
 	except KeyboardInterrupt:
-		RPiSoC.commChannel.cleanup()
+		PiSoC.commChannel.cleanup()
 
 
 .. codeauthor:: Brian Bradley <embedit@embeditelectronics.com>

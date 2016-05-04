@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Example Projects! &mdash; RPiSoC Python API 1.2.5 documentation</title>
+    <title>Example Projects! &mdash; PiSoC Python API 2.0.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.2.5',
+        VERSION:     '2.0.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,9 +24,9 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="RPiSoC Python API 1.2.5 documentation" href="index.html" />
+    <link rel="top" title="PiSoC Python API 2.0.0 documentation" href="index.html" />
     <link rel="next" title="Revision History" href="revision_history.html" />
-    <link rel="prev" title="analog.py" href="code_analog.html" /> 
+    <link rel="prev" title="pisoc.py" href="code_pisoc.html" /> 
   </head>
   <body>
     <div class="related">
@@ -39,9 +39,9 @@
           <a href="revision_history.html" title="Revision History"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="code_analog.html" title="analog.py"
+          <a href="code_pisoc.html" title="pisoc.py"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.2.5 documentation</a> &raquo;</li> 
+        <li><a href="index.html">PiSoC Python API 2.0.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -58,7 +58,7 @@
 </ul>
 <div class="section" id="blinky">
 <h2>Blinky!<a class="headerlink" href="#blinky" title="Permalink to this headline">¶</a></h2>
-<p>The &#8220;hello world&#8221; of physical computing. Just connect your RPiSoC and watch it go! Output is on the on-board LED</p>
+<p>The &#8220;hello world&#8221; of physical computing. Just connect your PiSoC and watch it go! Output is on the on-board LED</p>
 <div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -67,21 +67,21 @@
 6
 7
 8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SERIAL&#39;</span><span class="p">)</span>
+9</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pisoc</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">PiSoC</span><span class="p">(</span><span class="s">&#39;SERIAL&#39;</span><span class="p">)</span>
 
 <span class="hll"><span class="n">blinky</span> <span class="o">=</span> <span class="n">digitalPin</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s">&#39;OUT&#39;</span><span class="p">)</span>
 </span><span class="k">try</span><span class="p">:</span>
         <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
 <span class="hll">                <span class="n">blinky</span><span class="o">.</span><span class="n">Toggle</span><span class="p">()</span>
 </span><span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-<span class="hll">        <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+<span class="hll">        <span class="n">PiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
 </span></pre></div>
 </td></tr></table></div>
 </div>
 <div class="section" id="voltmeter">
 <h2>Voltmeter<a class="headerlink" href="#voltmeter" title="Permalink to this headline">¶</a></h2>
-<p>This program demonstrates basic usage of <a class="reference internal" href="code_analog.html#analog.analogPin" title="analog.analogPin"><tt class="xref py py-class docutils literal"><span class="pre">analog.analogPin</span></tt></a></p>
+<p>This program demonstrates basic usage of <tt class="xref py py-class docutils literal"><span class="pre">analog.analogPin</span></tt></p>
 <p>The program will output the voltage of whatever is connected to P3[0] every .1
 seconds.</p>
 <p>Note that P5[0], which is a 3.3V pin (slightly higher when powering with the Pi)
@@ -102,8 +102,8 @@ You can confirm the accuracy with a Voltmeter.</p>
 11
 12
 13
-14</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SERIAL&#39;</span><span class="p">)</span>
+14</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pisoc</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">PiSoC</span><span class="p">(</span><span class="s">&#39;SERIAL&#39;</span><span class="p">)</span>
 
 <span class="hll"><span class="n">voltmeter</span>  <span class="o">=</span> <span class="n">analogPin</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </span><span class="hll"><span class="n">out_3v3</span> <span class="o">=</span> <span class="n">digitalPin</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s">&#39;OUT&#39;</span><span class="p">)</span>
@@ -115,16 +115,16 @@ You can confirm the accuracy with a Voltmeter.</p>
 </span>                <span class="k">print</span><span class="p">(</span><span class="s">&#39;VOLTAGE:    </span><span class="si">%.3f</span><span class="s">&#39;</span> <span class="o">%</span><span class="n">Voltage</span><span class="p">)</span>
                 <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="o">.</span><span class="mi">1</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-<span class="hll">        <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+<span class="hll">        <span class="n">PiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
 </span></pre></div>
 </td></tr></table></div>
 </div>
 <div class="section" id="theremin-using-pwm-and-ultrasonic-range-finding">
 <h2>Theremin using PWM and Ultrasonic Range Finding<a class="headerlink" href="#theremin-using-pwm-and-ultrasonic-range-finding" title="Permalink to this headline">¶</a></h2>
-<p>This will demonstrate some basic use of Ultrasonic Range Finding and tone generation with <a class="reference internal" href="code_digital.html#digital.rangeFinder" title="digital.rangeFinder"><tt class="xref py py-class docutils literal"><span class="pre">digital.rangeFinder</span></tt></a> and <a class="reference internal" href="code_digital.html#digital.PWM" title="digital.PWM"><tt class="xref py py-class docutils literal"><span class="pre">digital.PWM</span></tt></a></p>
+<p>This will demonstrate some basic use of Ultrasonic Range Finding and tone generation with <tt class="xref py py-class docutils literal"><span class="pre">digital.rangeFinder</span></tt> and <a class="reference internal" href="code_digital.html#digital.PWM" title="digital.PWM"><tt class="xref py py-class docutils literal"><span class="pre">digital.PWM</span></tt></a></p>
 <p>To set this program up, you will want to connect your Ultrasonic Range Finders echo Pin to P12[0], and it&#8217;s trigger pin to P12[1].
-Also be sure to provide power and ground to the Range Finder from the RPiSoC.</p>
-<p>Then, connect one end of a piezo buzzer to the RPiSoC&#8217;s ground, and the other end to P6[1]
+Also be sure to provide power and ground to the Range Finder from the PiSoC.</p>
+<p>Then, connect one end of a piezo buzzer to the PiSoC&#8217;s ground, and the other end to P6[1]
 Run this code on the platform of your choosing, and make some noise!</p>
 <div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -136,8 +136,8 @@ Run this code on the platform of your choosing, and make some noise!</p>
  8
  9
 10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SERIAL&#39;</span><span class="p">)</span>
+11</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pisoc</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">PiSoC</span><span class="p">(</span><span class="s">&#39;SERIAL&#39;</span><span class="p">)</span>
 <span class="k">try</span><span class="p">:</span>
 <span class="hll">        <span class="n">ranger</span> <span class="o">=</span> <span class="n">rangeFinder</span><span class="p">([</span><span class="mi">12</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
 </span><span class="hll">        <span class="n">piezo</span> <span class="o">=</span> <span class="n">PWM</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -146,7 +146,7 @@ Run this code on the platform of your choosing, and make some noise!</p>
 </span>        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
 <span class="hll">                <span class="n">piezo</span><span class="o">.</span><span class="n">SetFrequency</span><span class="p">(</span><span class="n">ranger</span><span class="o">.</span><span class="n">readRaw</span><span class="p">())</span>
 </span><span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-<span class="hll">        <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+<span class="hll">        <span class="n">PiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
 </span></pre></div>
 </td></tr></table></div>
 </div>
@@ -166,8 +166,8 @@ Run this code on the platform of your choosing, and make some noise!</p>
 10
 11
 12
-13</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SERIAL&#39;</span><span class="p">)</span>
+13</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pisoc</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">PiSoC</span><span class="p">(</span><span class="s">&#39;SERIAL&#39;</span><span class="p">)</span>
 
 <span class="hll"><span class="n">touch</span> <span class="o">=</span> <span class="n">CapSense</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">THRESHOLD</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span> <span class="c">#raise or lower the threshold depenging on results!</span>
 </span><span class="hll"><span class="n">touch</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
@@ -178,13 +178,13 @@ Run this code on the platform of your choosing, and make some noise!</p>
 </span><span class="hll">                        <span class="n">output</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </span><span class="hll">                <span class="n">output</span><span class="o">.</span><span class="n">Write</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </span><span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-<span class="hll">        <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+<span class="hll">        <span class="n">PiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
 </span></pre></div>
 </td></tr></table></div>
 </div>
 <div class="section" id="comprehensive-usage-of-digital-inputs-and-outputs">
 <h2>Comprehensive usage of  digital inputs and outputs<a class="headerlink" href="#comprehensive-usage-of-digital-inputs-and-outputs" title="Permalink to this headline">¶</a></h2>
-<p>This gives a little bit of a deeper look into the GPIO using <a class="reference internal" href="code_digital.html#digital.digitalPin" title="digital.digitalPin"><tt class="xref py py-class docutils literal"><span class="pre">digital.digitalPin</span></tt></a></p>
+<p>This gives a little bit of a deeper look into the GPIO using <tt class="xref py py-class docutils literal"><span class="pre">digital.digitalPin</span></tt></p>
 <p>To set this demo up, wire P12[0], P12[1], P5[0], and P5[1] to LEDs in series
 with a resistor. Also wire the outputs to one of the initialized inputs, in the following way:
 - wire P12[0] to P4[0]
@@ -219,12 +219,12 @@ correlate with the LEDs (if wired in the way noted above). Check it out!</p>
 22
 23
 24
-25</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span>
+25</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pisoc</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SERIAL&#39;</span><span class="p">)</span>
+<span class="n">PiSoC</span><span class="p">(</span><span class="s">&#39;SERIAL&#39;</span><span class="p">)</span>
 
-<span class="hll"><span class="n">My_outputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">digitalPin</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s">&#39;OUT&#39;</span><span class="p">),</span> <span class="n">digitalPin</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s">&#39;OUT&#39;</span><span class="p">),</span> <span class="n">digitalPin</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s">&#39;OUT&#39;</span><span class="p">),</span> <span class="n">digitalPin</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s">&#39;OUT&#39;</span><span class="p">)]</span>
-</span><span class="hll"><span class="n">My_inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">digitalPin</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s">&#39;IN&#39;</span><span class="p">),</span> <span class="n">digitalPin</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s">&#39;IN&#39;</span><span class="p">),</span> <span class="n">digitalPin</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="s">&#39;IN&#39;</span><span class="p">),</span> <span class="n">digitalPin</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="s">&#39;IN&#39;</span><span class="p">)]</span>
+<span class="hll"><span class="n">My_outputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">digitalPin</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="s">&#39;OUT&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
+</span><span class="hll"><span class="n">M_inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">digitalPin</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="s">&#39;IN&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
 </span>
 <span class="k">try</span><span class="p">:</span>
         <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
@@ -243,7 +243,7 @@ correlate with the LEDs (if wired in the way noted above). Check it out!</p>
 </span>                        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-<span class="hll">        <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+<span class="hll">        <span class="n">PiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
 </span></pre></div>
 </td></tr></table></div>
 </div>
@@ -253,7 +253,7 @@ correlate with the LEDs (if wired in the way noted above). Check it out!</p>
 <p>It will begin by initializing a WaveDAC object and generating it&#8217;s default wave, which happens to be a 4V 2.5kHz Sine wave, with no DC Bias. It will then wait for the user to choose to generate a new wave, and ask for
 the configuration details.</p>
 <p>Once it receives these values, it will stop the current wave, load the new configuration, and restart the wave to the users specifications!</p>
-<p>To see the desired functionality, connect P0[0] to an Oscilliscope(or to another RPiSoC with the Oscilliscope program running!)</p>
+<p>To see the desired functionality, connect P0[0] to an Oscilliscope(or to another PiSoC with the Oscilliscope program running!)</p>
 <div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -277,8 +277,8 @@ the configuration details.</p>
 21
 22
 23
-24</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SERIAL&#39;</span><span class="p">)</span>
+24</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pisoc</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">PiSoC</span><span class="p">(</span><span class="s">&#39;SERIAL&#39;</span><span class="p">)</span>
 
 <span class="hll"><span class="n">My_Wave</span> <span class="o">=</span> <span class="n">WaveDAC</span><span class="p">()</span>
 </span><span class="hll"><span class="n">My_Wave</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span> <span class="c">#Starts the default wave</span>
@@ -300,7 +300,7 @@ the configuration details.</p>
 </span><span class="hll">                <span class="n">My_Wave</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span> <span class="c">#Restarts the waveDAC with the new wave loaded</span>
 </span>
 <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-<span class="hll">        <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+<span class="hll">        <span class="n">PiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
 </span></pre></div>
 </td></tr></table></div>
 </div>
@@ -310,7 +310,7 @@ the configuration details.</p>
 <p>This will use voltage readings from a joystick (or potentiometers), to move two servomotors, possibly connected to a pan-tilt bracket like the one for our face tracker</p>
 <p>To make this work, connect your servomotor signal wires to P6[1] and P6[2]
 Then connect the analog outputs of your joystick (or potentiometers) to P3[0] and P3[1]</p>
-<p>Also, make sure your joystick or potentiometer are powered by the RPiSoC, and your servomotors are powered externally, but share a ground connection with the RPiSoC.</p>
+<p>Also, make sure your joystick or potentiometer are powered by the PiSoC, and your servomotors are powered externally, but share a ground connection with the PiSoC.</p>
 <div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -326,8 +326,8 @@ Then connect the analog outputs of your joystick (or potentiometers) to P3[0] an
 13
 14
 15
-16</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SERIAL&#39;</span><span class="p">)</span>
+16</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pisoc</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">PiSoC</span><span class="p">(</span><span class="s">&#39;SERIAL&#39;</span><span class="p">)</span>
 
 <span class="c">#normally max_angle is 180, but you can change the scale to be whatever is best for the project</span>
 <span class="hll"><span class="n">Pan</span> <span class="o">=</span> <span class="n">Servo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_angle</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>   <span class="c"># I chose 5 because the joysticks can output up to 5 Volts</span>
@@ -341,14 +341,14 @@ Then connect the analog outputs of your joystick (or potentiometers) to P3[0] an
 <span class="hll">                <span class="n">Pan</span><span class="o">.</span><span class="n">SetAngle</span><span class="p">(</span><span class="n">x_axis</span><span class="o">.</span><span class="n">ReadVolts</span><span class="p">())</span> <span class="c">#set each servo position to the voltage reading</span>
 </span><span class="hll">                <span class="n">Tilt</span><span class="o">.</span><span class="n">SetAngle</span><span class="p">(</span><span class="n">y_axis</span><span class="o">.</span><span class="n">ReadVolts</span><span class="p">())</span>
 </span><span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-<span class="hll">        <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+<span class="hll">        <span class="n">PiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
 </span></pre></div>
 </td></tr></table></div>
 </div>
 <div class="section" id="neopixels">
 <h2>NeoPixels<a class="headerlink" href="#neopixels" title="Permalink to this headline">¶</a></h2>
 <p>This is just a quick example of some fun with <a class="reference internal" href="code_digital.html#digital.NeoPixelShield" title="digital.NeoPixelShield"><tt class="xref py py-class docutils literal"><span class="pre">digital.NeoPixelShield</span></tt></a>
-Simply connect your NeoPixel Shield to the Arduino headers of your RPiSoC, and you&#8217;re ready to go!</p>
+Simply connect your NeoPixel Shield to the Arduino headers of your PiSoC, and you&#8217;re ready to go!</p>
 <div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -371,8 +371,8 @@ Simply connect your NeoPixel Shield to the Arduino headers of your RPiSoC, and y
 20
 21
 22
-23</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">rpisoc</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="n">RPiSoC</span><span class="p">(</span><span class="s">&#39;SERIAL&#39;</span><span class="p">,</span> <span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+23</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">pisoc</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">PiSoC</span><span class="p">(</span><span class="s">&#39;SERIAL&#39;</span><span class="p">,</span> <span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
 
 <span class="k">try</span><span class="p">:</span>
 <span class="hll">        <span class="n">pixels</span> <span class="o">=</span> <span class="n">NeoPixelShield</span><span class="p">()</span>
@@ -393,7 +393,7 @@ Simply connect your NeoPixel Shield to the Arduino headers of your RPiSoC, and y
 </span>                        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span> <span class="c">#so you can see the animation happening</span>
 
 <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-        <span class="n">RPiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+        <span class="n">PiSoC</span><span class="o">.</span><span class="n">commChannel</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
 <p><em>Code author: Brian Bradley &lt;<a class="reference external" href="mailto:embedit&#37;&#52;&#48;embeditelectronics&#46;com">embedit<span>&#64;</span>embeditelectronics<span>&#46;</span>com</a>&gt;</em></p>
@@ -426,8 +426,8 @@ Simply connect your NeoPixel Shield to the Arduino headers of your RPiSoC, and y
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="code_analog.html"
-                        title="previous chapter">analog.py</a></p>
+  <p class="topless"><a href="code_pisoc.html"
+                        title="previous chapter">pisoc.py</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="revision_history.html"
                         title="next chapter">Revision History</a></p>
@@ -463,14 +463,14 @@ Simply connect your NeoPixel Shield to the Arduino headers of your RPiSoC, and y
           <a href="revision_history.html" title="Revision History"
              >next</a> |</li>
         <li class="right" >
-          <a href="code_analog.html" title="analog.py"
+          <a href="code_pisoc.html" title="pisoc.py"
              >previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.2.5 documentation</a> &raquo;</li> 
+        <li><a href="index.html">PiSoC Python API 2.0.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2015, EmbeditElectronics.
-      Last updated on Jan 22, 2015.
+        &copy; Copyright 2016, EmbeditElectronics.
+      Last updated on May 03, 2016.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

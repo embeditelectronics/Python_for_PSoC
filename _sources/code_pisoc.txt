@@ -1,0 +1,60 @@
+.. _pisoc-module-label:
+
+pisoc.py
++++++++++
+This is the highest level module import for the PiSoC API, which the user should import into their scripts for full use of it. It is used to keep records of some globally used variables between all classes. 
+
+It is also used to send data to, and receive data from the PiSoC using 
+a user chosen communication protocol.
+
+.. note::
+
+	Most of the classes and functions described in this section have little use to most users. 
+	They generally will only be useful when implementing new functionality in the firmware.
+
+At the beginning of each script, insert the following
+two lines::
+
+	>>> from pisoc import * #This will handle dependencies
+	>>> PiSoC('PC', log_level = 'info') #for PC
+	>>> PiSoC('PI', log_level = 'info') #for PI
+		
+PiSoC parent class
+-------------------
+.. currentmodule:: pisoc
+.. autoclass:: PiSoC
+   :members:
+   :special-members:
+   :exclude-members: __dict__,__weakref__
+
+USB communication (USB UART)
+----------------------------
+.. currentmodule:: pisoc
+.. autoclass:: USB_UART
+   :members:
+
+UART communication
+------------------
+.. currentmodule:: pisoc
+.. autoclass:: UART
+   :members:
+
+I2C communication
+------------------
+.. currentmodule:: pisoc
+.. autoclass:: I2C
+   :members:
+
+Exceptions
+----------
+.. currentmodule:: pisoc
+.. autoclass:: LostConnection
+
+.. currentmodule:: pisoc
+.. autoclass:: ClosedPortException
+
+Special Functions
+-----------------
+
+.. autofunction:: Test_Read
+.. autofunction:: PrepareData

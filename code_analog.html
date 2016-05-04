@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>analog.py &mdash; RPiSoC Python API 1.2.5 documentation</title>
+    <title>analog.py &mdash; PiSoC Python API 2.0.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.2.5',
+        VERSION:     '2.0.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,9 +24,9 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="RPiSoC Python API 1.2.5 documentation" href="index.html" />
+    <link rel="top" title="PiSoC Python API 2.0.0 documentation" href="index.html" />
     <link rel="up" title="API modules" href="code.html" />
-    <link rel="next" title="Example Projects!" href="examples.html" />
+    <link rel="next" title="pisoc.py" href="code_pisoc.html" />
     <link rel="prev" title="digital.py" href="code_digital.html" /> 
   </head>
   <body>
@@ -37,12 +37,12 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="examples.html" title="Example Projects!"
+          <a href="code_pisoc.html" title="pisoc.py"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="code_digital.html" title="digital.py"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.2.5 documentation</a> &raquo;</li>
+        <li><a href="index.html">PiSoC Python API 2.0.0 documentation</a> &raquo;</li>
           <li><a href="code.html" accesskey="U">API modules</a> &raquo;</li> 
       </ul>
     </div>  
@@ -54,89 +54,94 @@
             
   <div class="section" id="analog-py">
 <span id="analog-module-label"></span><h1>analog.py<a class="headerlink" href="#analog-py" title="Permalink to this headline">¶</a></h1>
-<p>The analog functionality currently supported by the RPiSoC API</p>
+<p>The analog functionality currently supported by the PiSoC API</p>
 <div class="section" id="analog-input-pins">
 <span id="analog-input-label"></span><h2>Analog Input Pins<a class="headerlink" href="#analog-input-pins" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
-<dt id="analog.analogPin">
-<em class="property">class </em><tt class="descclassname">analog.</tt><tt class="descname">analogPin</tt><big>(</big><em>PIN</em><big>)</big><a class="headerlink" href="#analog.analogPin" title="Permalink to this definition">¶</a></dt>
+<dt id="analog.AnalogPin">
+<em class="property">class </em><tt class="descclassname">analog.</tt><tt class="descname">AnalogPin</tt><big>(</big><em>pin</em><big>)</big><a class="headerlink" href="#analog.AnalogPin" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Class:</th><td class="field-body"><p class="first">Provides functionality for use of the general purpose analog input pins exposed on the RPiSoC</p>
+<tr class="field-odd field"><th class="field-name">Class:</th><td class="field-body"><p class="first">Provides functionality for use of the general purpose analog input pins exposed on the PiSoC</p>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"><p class="first">Define an analogPin object in the following way:</p>
-<div class="last highlight-python"><div class="highlight"><pre><span class="n">My_analog_pin</span> <span class="o">=</span> <span class="n">analogPin</span><span class="p">(</span><span class="n">PIN</span><span class="p">)</span>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"><p class="first">Define an AnalogPin object in the following way:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">My_analog_pin</span> <span class="o">=</span> <span class="n">AnalogPin</span><span class="p">(</span><span class="n">pin</span><span class="p">)</span>
 </pre></div>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">__init__</th>
-</tr>
-</thead>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Constructs and initializes an analogPin object for general purpose analog input</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">__init__</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><strong>int</strong>   <em>PIN</em></td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Constructs and initializes an AnalogPin object for general purpose analog input</td>
 </tr>
-<tr class="row-even"><td><em>PIN</em></td>
-<td><dl class="first last docutils">
-<dt>The analog pin number - This directly corresponds to the pins connected to your sequenced SAR ADC, where 0 is the top pin</dt>
-<dd><ul class="first last simple">
-<li>The default version (V1.2) comes with 8 CapSense pins, and so 0-7 are valid arguments</li>
-<li>For the default version, <em>PIN</em> <em>0-7</em> are relative to Port 3. So <em>PIN</em> = 0 an analog pin on Port 3 Pin 0 (P3[0]), and <em>PIN</em> = 7 is on Port 3 Pin 7 (P3[7])</li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pin</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; <p>The analog pin number - This directly corresponds to the pins connected to your sequenced SAR ADC, where 0 is the top pin</p>
+<ul class="simple">
+<li>V2.0 of the PiSoC firmware has <em>10</em> analog pins available, and so valid arguments are <em>0</em>-<em>9</em>.</li>
+<li>The default version assigns Port 3 pins <em>0</em>-<em>7</em> as AnalogPins <em>0</em>-<em>7</em>, respectively. pin <em>8</em> and <em>9</em> are on P0[4] and P0[5], respectively.</li>
 </ul>
-</dd>
-</dl>
 </td>
 </tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
-<dt id="analog.analogPin.Read">
-<tt class="descname">Read</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.analogPin.Read" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Read</th>
-</tr>
-</thead>
+<dt id="analog.AnalogPin.Read">
+<tt class="descname">Read</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.AnalogPin.Read" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Reads the calculated digital value after analog to digital conversion</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">Read</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Reads the calculated digital value after analog to digital conversion</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td><strong>int</strong> <em>counts</em></td>
-</tr>
-<tr class="row-odd"><td><em>counts</em></td>
-<td><ul class="first last simple">
-<li>Digital value after an A/D conversion</li>
-<li>The voltage which is represented by this value will depend on the resolution set by <a class="reference internal" href="#analog.analogPin.SetResolution" title="analog.analogPin.SetResolution"><tt class="xref py py-meth docutils literal"><span class="pre">SetResolution()</span></tt></a></li>
-<li>Default resolution is 12, so <span class="math">\(V = 5.0*\frac{counts}{2^{12} - 1}\)</span></li>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Digital value after an A/D conversion<ul class="simple">
+<li>The size of this value and the voltage which is represented by it will depend on the resolution set (or not set) by <a class="reference internal" href="#analog.AnalogPin.SetResolution" title="analog.AnalogPin.SetResolution"><tt class="xref py py-meth docutils literal"><span class="pre">SetResolution()</span></tt></a></li>
+<li>Default resolution is 12 (<a class="reference internal" href="#analog.AnalogPin.SetResolution" title="analog.AnalogPin.SetResolution"><tt class="xref py py-meth docutils literal"><span class="pre">SetResolution()</span></tt></a> never called), so <span class="math">\(Voltage = 5.0*\frac{counts}{2^{12} - 1}\)</span></li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="analog.AnalogPin.ReadVolts">
+<tt class="descname">ReadVolts</tt><big>(</big><em>precision=2</em>, <em>counts=None</em><big>)</big><a class="headerlink" href="#analog.AnalogPin.ReadVolts" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body"><p class="first">ReadVolts</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Reads the specified analog pin and converts that digital reading to a voltage in Volts, or converts a given count value to Volts if one is provided</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>precision</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Optional parameter. The number of decimal points to be included in the returned result. Defaults to 2.</li>
+<li><strong>counts</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Optional parameter. If given, the provided count value will be converted to a voltage 
+according to <span class="math">\(Voltage = 5.0*\frac{counts - offset}{2^{n} - 1}\)</span>, where n is the ADC resolution in bits
+and <em>offset</em> is optionally set with <a class="reference internal" href="#analog.AnalogPin.SetOffset" title="analog.AnalogPin.SetOffset"><tt class="xref py py-meth docutils literal"><span class="pre">SetOffset()</span></tt></a> (defaults to <em>0</em> otherwise)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A floating point number representative of an analog voltage taken with respect to PiSoC ground.</p>
 </td>
 </tr>
 </tbody>
@@ -144,134 +149,38 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="analog.analogPin.ReadVolts">
-<tt class="descname">ReadVolts</tt><big>(</big><em>PRECISION=2</em>, <em>COUNTS=None</em><big>)</big><a class="headerlink" href="#analog.analogPin.ReadVolts" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">ReadVolts</th>
-</tr>
-</thead>
+<dt id="analog.AnalogPin.SetOffset">
+<tt class="descname">SetOffset</tt><big>(</big><em>counts</em><big>)</big><a class="headerlink" href="#analog.AnalogPin.SetOffset" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Reads the specified analog pin and converts that digital reading to a voltage in Volts, or converts a given count value to Volts</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">SetOffset</td>
 </tr>
-<tr class="row-odd"><td><em>Optional</em>
-<em>Parameters</em></td>
-<td><ul class="first last simple">
-<li><strong>int</strong>    <em>PRECISION</em></li>
-<li><strong>int</strong>    <em>COUNTS</em></li>
-</ul>
-</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Sets an offset on the ADC which is used for the voltage conversion. It will subtract the given offset before making the conversion</td>
 </tr>
-<tr class="row-even"><td><em>PRECISION</em></td>
-<td><dl class="first last docutils">
-<dt>The number of decimal points to be included in the returned result</dt>
-<dd><ul class="first last simple">
-<li>Defaults to 2 if no parameter is given</li>
-</ul>
-</dd>
-</dl>
-</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>counts</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Digital value which will be subtracted from any digital result before its conversion to a voltage takes place</td>
 </tr>
-<tr class="row-odd"><td><em>COUNTS</em></td>
-<td><dl class="first last docutils">
-<dt>The count value which should be converted to an analog voltage</dt>
-<dd><ul class="first last simple">
-<li>Only provide this parameter if you only want to convert the given count value, but not get a new one. No data request will be sent to the RPiSoC if this argument is provided</li>
-<li>If no parameter is provided, this method will get a digital value from the RPiSoC, and then convert it</li>
-</ul>
-</dd>
-</dl>
-</td>
-</tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td><strong>float</strong> volts</td>
-</tr>
-<tr class="row-odd"><td><em>volts</em></td>
-<td>The converted digital value into a representative analog voltage.</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
 <dl class="method">
-<dt id="analog.analogPin.SetOffset">
-<tt class="descname">SetOffset</tt><big>(</big><em>counts</em><big>)</big><a class="headerlink" href="#analog.analogPin.SetOffset" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">SetOffset</th>
-</tr>
-</thead>
+<dt id="analog.AnalogPin.SetResolution">
+<tt class="descname">SetResolution</tt><big>(</big><em>resolution</em><big>)</big><a class="headerlink" href="#analog.AnalogPin.SetResolution" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Sets an offset on the ADC which is used for the voltage conversion. It will subtract the given offset before making the conversion</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">SetResolution</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><strong>int</strong>   <em>counts</em></td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">This function sets the resolution of ALL AnalogPin objects. The resolution is defaulted to 12, so this method is only needed if this needs to be changed</td>
 </tr>
-<tr class="row-even"><td><em>counts</em></td>
-<td><dl class="first last docutils">
-<dt>Digital value which will be subtracted from any digital result before its conversion to a voltage takes place</dt>
-<dd><ul class="first last simple">
-<li>For example, if a digital value of 255 is to be converted to a voltage, and the offset has been provided by this method at any point as 10, the result will be the conversion of 245 instead of 255</li>
-</ul>
-</dd>
-</dl>
-</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>resolution</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; An integer value, in bits, that represents the new resolution of the SAR ADC. Valid arguments are <em>8</em>, <em>10</em>, and <em>12</em></td>
 </tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="analog.analogPin.SetResolution">
-<tt class="descname">SetResolution</tt><big>(</big><em>resolution</em><big>)</big><a class="headerlink" href="#analog.analogPin.SetResolution" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">SetResolution</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td><ul class="first last simple">
-<li>This function sets the resolution of ALL analogPin objects.</li>
-<li>The resolution is defaulted to 12, so this method is only needed if this needs to be changed</li>
-</ul>
-</td>
-</tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><strong>int</strong>   <em>resolution</em></td>
-</tr>
-<tr class="row-even"><td><em>resolution</em></td>
-<td><dl class="first last docutils">
-<dt>An integer value, in bits, that represents the new resolution of the SAR ADC</dt>
-<dd><ul class="first last simple">
-<li>Valid arguments are <em>8, 10, or 12</em> only</li>
-</ul>
-</dd>
-</dl>
-</td>
-</tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -284,122 +193,97 @@
 <h2>Capacitive Sensing (CapSense)<a class="headerlink" href="#capacitive-sensing-capsense" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="analog.CapSense">
-<em class="property">class </em><tt class="descclassname">analog.</tt><tt class="descname">CapSense</tt><big>(</big><em>PIN</em>, <em>THRESHOLD=0</em><big>)</big><a class="headerlink" href="#analog.CapSense" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">analog.</tt><tt class="descname">CapSense</tt><big>(</big><em>pin</em>, <em>threshold=6</em><big>)</big><a class="headerlink" href="#analog.CapSense" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Class:</th><td class="field-body"><p class="first">Provides functionality for use of CapSense buttons on the RPiSoC</p>
+<tr class="field-odd field"><th class="field-name">Class:</th><td class="field-body"><p class="first">Provides functionality for use of CapSense buttons on the PiSoC</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"><p class="first">Define a CapSense object in the following way:</p>
-<div class="last highlight-python"><div class="highlight"><pre><span class="n">CapSense</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<div class="last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">button</span> <span class="o">=</span> <span class="n">CapSense</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">__init__</th>
-</tr>
-</thead>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Initializes a Capsense object for use as a touch sensor</td>
-</tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><ul class="first last simple">
-<li><strong>list</strong>   <em>PIN</em></li>
-</ul>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body"><p class="first">__init__</p>
 </td>
 </tr>
-<tr class="row-even"><td><em>Optional</em>
-<em>Parameters</em></td>
-<td><ul class="first last simple">
-<li><strong>list</strong>   <em>THRESHOLD</em></li>
-</ul>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Initializes a Capsense object for use as a touch sensor</p>
 </td>
 </tr>
-<tr class="row-odd"><td><em>PIN</em></td>
-<td><dl class="first last docutils">
-<dt>The capsense pin number. PIN n directly corresponds to the pin which you assign to Capsense_BTN_N in your rpisoc firmware</dt>
-<dd><ul class="first last simple">
-<li>The default version (V1.2) comes with 8 CapSense pins, and so 0-7 are valid arguments</li>
-<li>The default version has CapSense pins 0-5 on Port 4, pins 0-5. <em>PIN</em> 6 is on P0[5] and <em>PIN</em> 7 is on P0[6]</li>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>pin</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; <p>The capsense pin number. pin n directly corresponds to the pin which is assigned to Capsense_BTN_N in the pisoc firmware</p>
+<ul>
+<li>V2.0 of the firmware uses 8 CapSense buttons, so valid arguments are <em>0</em> - <em>7</em></li>
+<li>pins <em>0-6</em> exist on Port 4 pins 0-6, respectively. pin 7 exists on P0[6]</li>
 </ul>
-</dd>
-</dl>
-</td>
-</tr>
-<tr class="row-even"><td><em>THRESHOLD</em></td>
-<td><dl class="first last docutils">
-<dt>The number of counts, between 0 and 255, which will be added to your calibrated baseline value to determine if a button has been touched</dt>
-<dd><ul class="first last simple">
-<li>By default, this argument is 0, which means there is no <em>THRESHOLD</em> being used</li>
-<li>0 means that the baseline value itself will be used as a comparison value. Generally, baseline + THRESHOLD is used</li>
-<li>The threshold may need to be high if the button data is noisy. Try printing the results of <a class="reference internal" href="#analog.CapSense.readRaw" title="analog.CapSense.readRaw"><tt class="xref py py-meth docutils literal"><span class="pre">readRaw()</span></tt></a> to get an understanding of the output behavior as you touch the button, this will help
-determine a suitable value</li>
-</ul>
-</dd>
-</dl>
-</td>
-</tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
-</tr>
-<tr class="row-even"><td><strong>Notes</strong></td>
-<td><ul class="first last">
-<li><dl class="first docutils">
-<dt><em>THRESHOLD</em> is only needed if using <a class="reference internal" href="#analog.CapSense.isTouched" title="analog.CapSense.isTouched"><tt class="xref py py-meth docutils literal"><span class="pre">isTouched()</span></tt></a> to read sensors, which is the suggested method. <a class="reference internal" href="#analog.CapSense.Read" title="analog.CapSense.Read"><tt class="xref py py-meth docutils literal"><span class="pre">Read()</span></tt></a> is only valid when SmartSense is used in your PSoC Creator firmware</dt>
-<dd><ul class="first last simple">
-<li>The default version uses no tuning method, because the calibration is manually handled seperately</li>
-</ul>
-</dd>
-</dl>
 </li>
-<li><p class="first">If SmartSense is used as a tuning method in your PSoC Creator software, for instance if you want to implement sliding capability, you will need to connect a 2.2 nF capacitor to P4[6]</p>
+<li><strong>threshold</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; <p>Optional parameter. The number of counts, between 0 and 255, that any touch reading must exceed above the calculated baseline for a touch to be processed.</p>
+<ul>
+<li>By default this value is 6. This tends to be sufficient for most use cases.</li>
+<li>If the sensor used is hard to characterize, a higher threshold may be needed for fewer errors.</li>
+<li>A lower threshold can give some proximity detection</li>
+</ul>
 </li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
 </td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><strong>threshold</strong> is only needed for <a class="reference internal" href="#analog.CapSense.is_touched" title="analog.CapSense.is_touched"><tt class="xref py py-meth docutils literal"><span class="pre">is_touched()</span></tt></a> (the suggested reading method). 
+<a class="reference internal" href="#analog.CapSense.Read" title="analog.CapSense.Read"><tt class="xref py py-meth docutils literal"><span class="pre">Read()</span></tt></a> is only valid when SmartSense is enabled in firmware, which by default it is not.</p>
+</div>
 <dl class="method">
 <dt id="analog.CapSense.Read">
 <tt class="descname">Read</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.CapSense.Read" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Read</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td><ul class="first last simple">
-<li>Determines the state of the capsense button, as determined by PSoC SmartSensing. This will need to be calibrated in PSoC Creator for optimal results</li>
-<li>Use <a class="reference internal" href="#analog.CapSense.isTouched" title="analog.CapSense.isTouched"><tt class="xref py py-meth docutils literal"><span class="pre">isTouched()</span></tt></a> for more general application</li>
-</ul>
-</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">Read</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Determines the state of the capsense button, as determined by PSoC SmartSensing. This will need to be calibrated in PSoC Creator for optimal results. 
+Use <a class="reference internal" href="#analog.CapSense.is_touched" title="analog.CapSense.is_touched"><tt class="xref py py-meth docutils literal"><span class="pre">is_touched()</span></tt></a> for more general application</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td><strong>bool</strong> <em>state</em></td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A boolean (True or False) value when the output is determined to be touched or not touched, respectively.</td>
 </tr>
-<tr class="row-odd"><td><em>state</em></td>
-<td>A True or False value when the output is determined to be touched or not touched, respectively</td>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This functionality has been deprecated since version 1.2 because the implementation was slow. It will only work if the firmware will support it. It has since been replaced by <a class="reference internal" href="#analog.CapSense.is_touched" title="analog.CapSense.is_touched"><tt class="xref py py-meth docutils literal"><span class="pre">is_touched()</span></tt></a> but it is maintained as a seperate function for legacy purposes.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="analog.CapSense.ReadRaw">
+<tt class="descname">ReadRaw</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.CapSense.ReadRaw" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">ReadRaw</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Gives an 8-bit raw value from the capsense raw data array, which represents capacitance detection and is thus correlated with touch data.
+Use this to calibrate touch buttons by deciding an approriate <em>threshold</em> as described in <tt class="xref py py-meth docutils literal"><span class="pre">__init__()</span></tt></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">The raw value on the capsense button, which can be used to characterize the nature of a touch event</td>
 </tr>
 </tbody>
 </table>
@@ -408,216 +292,139 @@ determine a suitable value</li>
 <dl class="method">
 <dt id="analog.CapSense.Sleep">
 <tt class="descname">Sleep</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.CapSense.Sleep" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Sleep</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Prepares the component for the device entering a low-power mode. Disables Active mode power template bits of the sub components used within CapSense, saves nonretention registers, and resets all sensors to
-an inactive state</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">Sleep</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Prepares the component for the device entering a low-power mode. Disables Active mode power template bits of the sub components used within CapSense, saves nonretention registers, and resets all sensors to
+an inactive state.</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
-</tr>
-<tr class="row-odd"><td><strong>Side Effects</strong></td>
-<td>This will affect <em>all</em> CapSense sensors, use it only if this is your intention</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This will affect functionality of <em>all</em> CapSense sensors, use it only if this is intended.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="analog.CapSense.Start">
 <tt class="descname">Start</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.CapSense.Start" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Start</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td><ul class="first last simple">
-<li>Initializes registers and enables active mode power template bits of the subcomponents used within CapSense</li>
-<li>Establishes a CapSense baseline, which is used as a comparison value in <a class="reference internal" href="#analog.CapSense.isTouched" title="analog.CapSense.isTouched"><tt class="xref py py-meth docutils literal"><span class="pre">isTouched()</span></tt></a></li>
-<li>The button should not be touched when this method is called, otherwise the baseline value will be calibrated with a touched value. It will only set the baseline if it sees two identical readings in a row</li>
-</ul>
-</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">Start</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Initializes registers and enables active mode power template bits of the subcomponents used within CapSense. Also establishes a CapSense baseline, which is used as a comparison value in <a class="reference internal" href="#analog.CapSense.is_touched" title="analog.CapSense.is_touched"><tt class="xref py py-meth docutils literal"><span class="pre">is_touched()</span></tt></a></td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If the sensor is touched when this method is called, the sensor will be calibrated to a touched value. This may or may not be desireable based on application.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="analog.CapSense.Stop">
 <tt class="descname">Stop</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.CapSense.Stop" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Stop</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Disables component interrupts, and calls CapSense_ClearSensors() to reset all sensors to an inactive state</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">Stop</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Disables component interrupts, and calls CapSense_ClearSensors() to reset all sensors to an inactive state</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
-</tr>
-<tr class="row-odd"><td><strong>Side Effects</strong></td>
-<td>This will affect <em>all</em> CapSense sensors, use it only if this is your intention</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This will affect functionality of <em>all</em> CapSense sensors, use it only if this is intended.</p>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="analog.CapSense.Wakeup">
 <tt class="descname">Wakeup</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.CapSense.Wakeup" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Wakeup</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Restores CapSense configuration and nonretention register values after the device wake from a low power mode sleep mode</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">Wakeup</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Restores CapSense configuration and nonretention register values after the device wake from a low power mode sleep mode</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
-<tr class="row-odd"><td><strong>Side Effects</strong></td>
-<td>This will affect <em>all</em> CapSense sensors, use it only if this is your intention</td>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This will affect functionality of <em>all</em> CapSense sensors, use it only if this is intended.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="analog.CapSense.get_register">
+<tt class="descname">get_register</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.CapSense.get_register" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">get_register</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Calculates a touched event for all enabled CapSense sensors, and returns the result as a single 8-bit hexadecimal value containing the state of each sensor.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">8-bit hexadceimal value where the binary representation contains the state information for each pin. 
+The n-th bit of this value will be <em>1</em> if pin n is touched, or <em>0</em> if pin n is not touched. Bit-0 is the LSB of the returned result.</td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
 <dl class="method">
-<dt id="analog.CapSense.isRunning">
-<tt class="descname">isRunning</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.CapSense.isRunning" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">isRunning</th>
-</tr>
-</thead>
+<dt id="analog.CapSense.is_running">
+<tt class="descname">is_running</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.CapSense.is_running" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Checks to see if the CapSense component and all subcomponents are currently operational</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">is_running</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Checks to see if the CapSense component and all subcomponents are currently operational</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td><strong>bool</strong> <em>__running</em></td>
-</tr>
-<tr class="row-odd"><td><em>__running</em></td>
-<td>A private boolean variable which evaluates to <em>True</em> if CapSense is active, or <em>False</em> if it is not</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A boolean variable which evaluates to <em>True</em> if CapSense is active, or <em>False</em> if it is not</td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
 <dl class="method">
-<dt id="analog.CapSense.isTouched">
-<tt class="descname">isTouched</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.CapSense.isTouched" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">isTouched</th>
-</tr>
-</thead>
+<dt id="analog.CapSense.is_touched">
+<tt class="descname">is_touched</tt><big>(</big><em>bitmap=None</em><big>)</big><a class="headerlink" href="#analog.CapSense.is_touched" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Uses the calibrated baseline and provided threshold value to determine if the requested CapSense button is being touched. This is the suggested method for touch detection.</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">is_touched</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Uses the calibrated baseline and provided threshold value to determine if the requested CapSense button is being touched. This is the suggested method for touch detection.</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td><strong>bool</strong> <em>state</em></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>bitmap</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; An optional input, which when provided will be used to decide if the sensor has been touched instead of asking the PiSoC.
+It is a hexadecimal value which represents the state of all capsense sensors, as returned by <a class="reference internal" href="#analog.CapSense.get_register" title="analog.CapSense.get_register"><tt class="xref py py-meth docutils literal"><span class="pre">get_register()</span></tt></a>. 
+Providing a bitmap to this function simply abstracts the bit manipulation required to decode that result.</td>
 </tr>
-<tr class="row-odd"><td><em>state</em></td>
-<td>A True or False value when the output is determined to be touched or not touched, respectively</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="analog.CapSense.readRaw">
-<tt class="descname">readRaw</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.CapSense.readRaw" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">readRaw</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td><ul class="first last simple">
-<li>Gives an 8-bit raw value from the capsense raw data array, which represents capacitance detection and is thus correlated with touch data</li>
-<li>This is used to generate a baseline in <a class="reference internal" href="#analog.CapSense.Start" title="analog.CapSense.Start"><tt class="xref py py-meth docutils literal"><span class="pre">Start()</span></tt></a></li>
-<li>Use this to calibrate touch buttons by deciding an approriate <em>THRESHOLD</em> as described in <tt class="xref py py-meth docutils literal"><span class="pre">__init__()</span></tt></li>
-</ul>
-</td>
-</tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
-</tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td><strong>int</strong> <em>val</em></td>
-</tr>
-<tr class="row-odd"><td><em>state</em></td>
-<td>The raw value on the capsense button, which can be used to determine a touch event</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">A boolean (True or False) value when the output is determined to be touched or not touched, respectively</td>
 </tr>
 </tbody>
 </table>
@@ -628,7 +435,7 @@ an inactive state</td>
 </div>
 <div class="section" id="adcs-advanced">
 <h2>ADCs (advanced)<a class="headerlink" href="#adcs-advanced" title="Permalink to this headline">¶</a></h2>
-<p>Use these for fine control of your analog input. For general analog input needs, <a class="reference internal" href="#analog.analogPin" title="analog.analogPin"><tt class="xref py py-class docutils literal"><span class="pre">analogPin</span></tt></a> is almost always sufficient</p>
+<p>Use these for fine control of your analog input. For general analog input needs, <tt class="xref py py-class docutils literal"><span class="pre">analogPin</span></tt> is almost always sufficient</p>
 <dl class="class">
 <dt id="analog.ADC">
 <em class="property">class </em><tt class="descclassname">analog.</tt><tt class="descname">ADC</tt><big>(</big><em>c_type</em><big>)</big><a class="headerlink" href="#analog.ADC" title="Permalink to this definition">¶</a></dt>
@@ -637,83 +444,55 @@ an inactive state</td>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Class:</th><td class="field-body"><p class="first">The ADC class provides functionality for using the Delta Sigma ADC and two
-Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
+Succesive Approximation ADC&#8217;s on the PiSoC.</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"><p class="first">Define ADC objects in the following way:</p>
-<div class="last highlight-python"><div class="highlight"><pre><span class="n">My_DELSIG</span>    <span class="o">=</span> <span class="n">ADC</span><span class="p">(</span><span class="s">&#39;DELSIG&#39;</span><span class="p">)</span>
-<span class="n">My_SAR</span>       <span class="o">=</span> <span class="n">ADC</span><span class="p">(</span><span class="s">&#39;SAR0&#39;</span><span class="p">)</span>
-<span class="n">My_other_SAR</span> <span class="o">=</span> <span class="n">ADC</span><span class="p">(</span><span class="s">&#39;SAR1&#39;</span><span class="p">)</span>
+<div class="last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">My_DELSIG</span>    <span class="o">=</span> <span class="n">ADC</span><span class="p">(</span><span class="s">&#39;DELSIG&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">My_SAR</span>       <span class="o">=</span> <span class="n">ADC</span><span class="p">(</span><span class="s">&#39;SAR0&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">My_other_SAR</span> <span class="o">=</span> <span class="n">ADC</span><span class="p">(</span><span class="s">&#39;SAR1&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">__init__</th>
-</tr>
-</thead>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Constructs and initializes an ADC object for use of a SAR or DELSIG ADC</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">__init__</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><strong>string</strong>   <em>c_type</em></td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Constructs and initializes an ADC object for use of a SAR or DELSIG ADC</td>
 </tr>
-<tr class="row-even"><td><em>c_type</em></td>
-<td><dl class="first last docutils">
-<dt>The type of ADC to be used. Valid arguments are:</dt>
-<dd><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>c_type</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; <p>Specifies the type of ADC to be used. Valid arguments are:</p>
+<ul class="simple">
 <li>&#8216;DELSIG&#8217;- This is for the Delta sigma ADC, which has resolution up to 20 bits, but a slower conversion rate</li>
-<li>&#8216;SAR0&#8217; or &#8216;SAR1&#8217; - These are for the two Successive Approximation ADCs, which has resolution of 8, 10, or 12 bits, but with a very fast conversion rate</li>
+<li>&#8216;SAR0&#8217; or &#8216;SAR1&#8217; - These are for the as many as two Successive Approximation ADCs, which has resolution of 8, 10, or 12 bits, but with a very fast conversion rate</li>
 </ul>
-</dd>
-</dl>
 </td>
 </tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
-</tr>
-<tr class="row-even"><td><strong>Note</strong></td>
-<td>None of the ADCs are included by default in V1.2, so this class will be unavailable. You are able to add them by simply placing them in your schematic on your RPiSoC program and reprogramming the board</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
 <dt id="analog.ADC.CountsTo_Volts">
 <tt class="descname">CountsTo_Volts</tt><big>(</big><em>counts</em><big>)</big><a class="headerlink" href="#analog.ADC.CountsTo_Volts" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">CountsTo_Volts</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Converts the ADC output to a Voltage, taking into account any set gains or offsets</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">CountsTo_Volts</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><strong>int</strong>   <em>counts</em></td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Converts the ADC output to a Voltage, taking into account any set gains or offsets</td>
 </tr>
-<tr class="row-even"><td><em>counts</em></td>
-<td>Digital value to be converted to it&#8217;s analog equivalent</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>counts</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Digital value to be converted to it&#8217;s analog equivalent (voltage in Volts)</td>
 </tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td><strong>float</strong> volts</td>
-</tr>
-<tr class="row-even"><td><em>volts</em></td>
-<td>The resulting voltage after conversion of <em>counts</em></td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Floating point value representative of converted voltage</td>
 </tr>
 </tbody>
 </table>
@@ -722,28 +501,15 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.ADC.GetResult">
 <tt class="descname">GetResult</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.ADC.GetResult" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">GetResult</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Gets the result of a conversion which has been completed. <a class="reference internal" href="#analog.ADC.StartConvert" title="analog.ADC.StartConvert"><tt class="xref py py-meth docutils literal"><span class="pre">StartConvert()</span></tt></a> must be called prior to this function, and <a class="reference internal" href="#analog.ADC.StopConvert" title="analog.ADC.StopConvert"><tt class="xref py py-meth docutils literal"><span class="pre">StopConvert()</span></tt></a> must be called after</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">GetResult</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Gets the result of a conversion which has been completed. <a class="reference internal" href="#analog.ADC.StartConvert" title="analog.ADC.StartConvert"><tt class="xref py py-meth docutils literal"><span class="pre">StartConvert()</span></tt></a> must be called prior to this function, and <a class="reference internal" href="#analog.ADC.StopConvert" title="analog.ADC.StopConvert"><tt class="xref py py-meth docutils literal"><span class="pre">StopConvert()</span></tt></a> must be called after</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td><strong>int</strong> <em>counts</em></td>
-</tr>
-<tr class="row-odd"><td><em>counts</em></td>
-<td>Digital value which represents the result of the most recent AD conversion</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Digital value which represents the result of the most recent AD conversion</td>
 </tr>
 </tbody>
 </table>
@@ -752,32 +518,15 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.ADC.IsEndConversion">
 <tt class="descname">IsEndConversion</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.ADC.IsEndConversion" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">IsEndConversion</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Checks to see if the ADC is done converting</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">IsEndConversion</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Checks to see if the ADC is done converting</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td><strong>int</strong> <em>counts</em></td>
-</tr>
-<tr class="row-odd"><td><em>counts</em></td>
-<td><ul class="first last simple">
-<li>Digital value which represents the result of the most recent AD conversion, if it is complete</li>
-<li><em>0</em>  if conversions are not complete</li>
-</ul>
-</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Boolean value (True/False) that will evaluate True if the most recent conversion is complete, otherwise False.</td>
 </tr>
 </tbody>
 </table>
@@ -786,28 +535,15 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.ADC.Read">
 <tt class="descname">Read</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.ADC.Read" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Read</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Simplifies the reading process by starting conversion, waiting for conversion to complete, stopping conversion, and returing the result, when called. It is only valid for the <em>DELSIG</em></td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">Read</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Simplifies the reading process by starting conversion, waiting for conversion to complete, stopping conversion, and returing the result, when called.</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td><strong>int</strong> <em>counts</em></td>
-</tr>
-<tr class="row-odd"><td><em>counts</em></td>
-<td>Digital value which represents the result of the most recent AD conversion</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Digital value which represents the result of the most recent AD conversion</td>
 </tr>
 </tbody>
 </table>
@@ -816,108 +552,64 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.ADC.SetBufferGain">
 <tt class="descname">SetBufferGain</tt><big>(</big><em>gain</em><big>)</big><a class="headerlink" href="#analog.ADC.SetBufferGain" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">SetBufferGain</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Sets the input buffer gain</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">SetBufferGain</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><strong>int</strong>   <em>gain</em></td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Sets the input buffer gain</td>
 </tr>
-<tr class="row-even"><td><em>gain</em></td>
-<td><dl class="first last docutils">
-<dt>The number by which the ADC output will be multiplied after conversion</dt>
-<dd><ul class="first last simple">
-<li>Valid arguments are <em>1, 2, 4,</em> or <em>8</em></li>
-</ul>
-</dd>
-</dl>
-</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>gain</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; The number by which the ADC output will be multiplied after conversion . 
+Valid arguments are <em>1, 2, 4,</em> or <em>8</em></td>
 </tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
-</tr>
-<tr class="row-even"><td><strong>Side Effects</strong></td>
-<td>Increasing the gain will lower the buffer bandwidth</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Increasing the gain will lower the buffer bandwidth. This method is only available for the Delta-Sigma ADC; use with a SAR ADC will raise a <em>ValueError</em></p>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="analog.ADC.SetGain">
 <tt class="descname">SetGain</tt><big>(</big><em>gain</em><big>)</big><a class="headerlink" href="#analog.ADC.SetGain" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">SetGain</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Sets the ADC <em>gain</em> in counts per volt, which will be applied before voltage conversion</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">SetGain</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><strong>int</strong>   <em>gain</em></td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Sets the ADC gain in counts per volt, which will be applied before voltage conversion</td>
 </tr>
-<tr class="row-even"><td><em>gain</em></td>
-<td>Output gain in counts per volt to be applied before conversion</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>gain</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Output gain in counts per volt to be applied before conversion.</td>
 </tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
-</tr>
-<tr class="row-even"><td><strong>Warning</strong></td>
-<td><em>gain</em> is set by default by the reference and input range settings. It should only be used to further calibrate the ADC with a known input or if an external reference is used</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last"><em>gain</em> is set by default by the reference and input range settings. It should only be used to further calibrate the ADC with a known input or if an external reference is used</p>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="analog.ADC.SetOffset">
 <tt class="descname">SetOffset</tt><big>(</big><em>offset</em><big>)</big><a class="headerlink" href="#analog.ADC.SetOffset" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">SetOffset</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Sets an offset on the ADC which is used for the voltage conversion. It will subtract the given offset before making the conversion</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">SetOffset</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><strong>int</strong>   <em>counts</em></td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Sets an offset on the ADC which is used for the voltage conversion. It will subtract the given offset before making the conversion</td>
 </tr>
-<tr class="row-even"><td><em>counts</em></td>
-<td><dl class="first last docutils">
-<dt>Digital value which will be subtracted from any digital result before its conversion to a voltage takes place</dt>
-<dd><ul class="first last simple">
-<li>For example, if a digital value of 255 is to be converted to a voltage, and the offset has been provided by this method at any point as 10, the result will be the conversion of 245 instead of 255</li>
-</ul>
-</dd>
-</dl>
-</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>offset</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Digital value which will be subtracted from any digital result before its conversion to a voltage takes place</td>
 </tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -926,73 +618,40 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.ADC.SetResolution">
 <tt class="descname">SetResolution</tt><big>(</big><em>resolution</em><big>)</big><a class="headerlink" href="#analog.ADC.SetResolution" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">SetResolution</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td><ul class="first last simple">
-<li>This function sets the resolution of the SAR ADCs only. This method is unavailable for the DELSIG ADC</li>
-<li>The resolution is defaulted to 12, so this method is only needed if this needs to be changed</li>
-</ul>
-</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">SetResolution</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><strong>int</strong>   <em>resolution</em></td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">This function sets the resolution of the SAR ADCs only. This method is unavailable for the DELSIG ADC. 
+The resolution is defaulted to 12, so this method is only needed if this needs to be changed</td>
 </tr>
-<tr class="row-even"><td><em>resolution</em></td>
-<td><dl class="first last docutils">
-<dt>An integer value, in bits, that represents the new resolution of the SAR ADC</dt>
-<dd><ul class="first last simple">
-<li>Valid arguments are <em>8, 10, or 12</em> only</li>
-</ul>
-</dd>
-</dl>
-</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>resolution</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; An integer value, in bits, that represents the new resolution of the SAR ADC. Valid arguments are <em>8, 10, or 12</em> only</td>
 </tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
-</tr>
-<tr class="row-even"><td><strong>Side Effects</strong></td>
-<td><ul class="first last simple">
-<li>The ADC resolution cannot be changed during a conversion cycle. The recommended bestpractice is to stop conversions with <a class="reference internal" href="#analog.ADC.Stop" title="analog.ADC.Stop"><tt class="xref py py-meth docutils literal"><span class="pre">Stop()</span></tt></a> before changint the resolution, and then restarting with <a class="reference internal" href="#analog.ADC.Start" title="analog.ADC.Start"><tt class="xref py py-meth docutils literal"><span class="pre">Start()</span></tt></a></li>
-<li>If you call <a class="reference internal" href="#analog.ADC.SetResolution" title="analog.ADC.SetResolution"><tt class="xref py py-meth docutils literal"><span class="pre">SetResolution()</span></tt></a> during a conversion, the resolution will not change until the current conversion is complete, and data will not be available in the new resolution for another 6+resolution clock cycles</li>
-</ul>
-</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The ADC resolution cannot be changed during a conversion cycle. The recommended bestpractice is to stop conversions with <a class="reference internal" href="#analog.ADC.Stop" title="analog.ADC.Stop"><tt class="xref py py-meth docutils literal"><span class="pre">Stop()</span></tt></a> before changing the resolution, and then restarting with <a class="reference internal" href="#analog.ADC.Start" title="analog.ADC.Start"><tt class="xref py py-meth docutils literal"><span class="pre">Start()</span></tt></a>
+If you call <a class="reference internal" href="#analog.ADC.SetResolution" title="analog.ADC.SetResolution"><tt class="xref py py-meth docutils literal"><span class="pre">SetResolution()</span></tt></a> during a conversion, the resolution will not change until the current conversion is complete, and data will not be available in the new resolution for another 6+resolution clock cycles</p>
+</div>
 </dd></dl>
 
 <dl class="method">
 <dt id="analog.ADC.Sleep">
 <tt class="descname">Sleep</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.ADC.Sleep" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Sleep</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Checks to see if the component is enabled, then it stops the ADC and saves the current configuration for later use</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">Sleep</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Checks to see if the component is enabled, then it stops the ADC and saves the current configuration for later use</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -1001,25 +660,16 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.ADC.Start">
 <tt class="descname">Start</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.ADC.Start" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Start</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Sets the initVar variable on the RPiSoC, calls the ADC_Init() function, and then calls the ADC_Enable() function. This function configures and powers up the ADC, but does not start conversions</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">Start</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Sets the initVar variable on the PiSoC, calls the ADC_Init() function, and then calls the ADC_Enable() function. 
+This function configures and powers up the ADC, but does not start conversions</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -1028,25 +678,16 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.ADC.StartConvert">
 <tt class="descname">StartConvert</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.ADC.StartConvert" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">StartConvert</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Forces the ADC to initialize a conversion. This is handled internally for the Delsig ADC, using the <a class="reference internal" href="#analog.ADC.Read" title="analog.ADC.Read"><tt class="xref py py-meth docutils literal"><span class="pre">Read()</span></tt></a> function, but it is kept seperate for the SAR. However, It can also be used for the Delsig</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">StartConvert</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Forces the ADC to initialize a conversion. This is handled internally for the Delsig ADC, using the <a class="reference internal" href="#analog.ADC.Read" title="analog.ADC.Read"><tt class="xref py py-meth docutils literal"><span class="pre">Read()</span></tt></a> function, but it is kept seperate for the SAR. 
+However, It can also be used for the Delsig</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -1055,25 +696,15 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.ADC.Stop">
 <tt class="descname">Stop</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.ADC.Stop" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Stop</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Disables and powers down the ADC</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">Stop</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Disables and powers down the ADC</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -1082,25 +713,16 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.ADC.StopConvert">
 <tt class="descname">StopConvert</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.ADC.StopConvert" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">StopConvert</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Forces the ADC to end conversion. This is handled internally for the Delsig ADC, using the <a class="reference internal" href="#analog.ADC.Read" title="analog.ADC.Read"><tt class="xref py py-meth docutils literal"><span class="pre">Read()</span></tt></a> function, but it is kept seperate for the SAR. However, It can also be used for the Delsig</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">StopConvert</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Forces the ADC to end conversion. This is handled internally for the Delsig ADC, using the <a class="reference internal" href="#analog.ADC.Read" title="analog.ADC.Read"><tt class="xref py py-meth docutils literal"><span class="pre">Read()</span></tt></a> function, but it is kept seperate for the SAR. 
+However, It can also be used for the Delsig</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -1109,55 +731,32 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.ADC.Wakeup">
 <tt class="descname">Wakeup</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.ADC.Wakeup" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Wakeup</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Restores and enables the most recently saved configuration of the ADC</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">Wakeup</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Restores and enables the most recently saved configuration of the ADC</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
 <dl class="method">
-<dt id="analog.ADC.isRunning">
-<tt class="descname">isRunning</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.ADC.isRunning" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">isRunning</th>
-</tr>
-</thead>
+<dt id="analog.ADC.is_running">
+<tt class="descname">is_running</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.ADC.is_running" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Checks to see if the ADC component and all subcomponents are currently operational</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">is_running</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Checks to see if the ADC component and all subcomponents are currently operational</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td><strong>bool</strong> <em>__running</em></td>
-</tr>
-<tr class="row-odd"><td><em>__running</em></td>
-<td>A private boolean variable which evaluates to <em>True</em> if the ADC is active, or <em>False</em> if it is not                                                                                                            `</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A boolean variable which evaluates to <em>True</em> if the ADC is active, or <em>False</em> if it is not</td>
 </tr>
 </tbody>
 </table>
@@ -1178,87 +777,55 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Class:</th><td class="field-body"><p class="first">The VDAC class provides functionality for using the VDAC&#8217;s available on the RPiSoC.</p>
+<tr class="field-odd field"><th class="field-name">Class:</th><td class="field-body"><p class="first">The VDAC class provides functionality for using the VDAC&#8217;s available on the PiSoC.</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"><p class="first">Define VDAC objects in the following way:</p>
-<div class="last highlight-python"><div class="highlight"><pre><span class="n">My_VDAC</span>       <span class="o">=</span> <span class="n">VDAC</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">My_other_VDAC</span> <span class="o">=</span> <span class="n">VDAC</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">My_VDAC</span>       <span class="o">=</span> <span class="n">VDAC</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">My_other_VDAC</span> <span class="o">=</span> <span class="n">VDAC</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </td>
 </tr>
-</tbody>
-</table>
-<table border="1" class="docutils">
-<colgroup>
-<col width="11%" />
-<col width="89%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">__init__</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Constructs and initializes a VDAC object</td>
-</tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><ul class="first last simple">
-<li><strong>int</strong>      <em>channel</em></li>
-</ul>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body"><p class="first">__init__</p>
 </td>
 </tr>
-<tr class="row-even"><td><em>channel</em></td>
-<td><dl class="first last docutils">
-<dt>Determines which IDAC is to be utilized</dt>
-<dd><ul class="first last simple">
-<li><em>0</em> for the first VDAC; output is on P0[1] by default</li>
-<li><em>1</em> for the second VDAC; not available by default</li>
-</ul>
-</dd>
-</dl>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Constructs and initializes a VDAC object</p>
 </td>
 </tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>channel</strong> &#8211; Determines which VDAC is to be utilized. <em>0</em> for the first VDAC, output is on P0[1]. Second VDAC not available by default.</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
 <dt id="analog.VDAC.SetRange">
-<tt class="descname">SetRange</tt><big>(</big><em>Range</em><big>)</big><a class="headerlink" href="#analog.VDAC.SetRange" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="11%" />
-<col width="89%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">SetRange</th>
-</tr>
-</thead>
+<tt class="descname">SetRange</tt><big>(</big><em>mode</em><big>)</big><a class="headerlink" href="#analog.VDAC.SetRange" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Sets the full scale range for the VDAC</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">SetRange</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><strong>string</strong>      <em>Range</em></td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Sets the full scale range for the VDAC</td>
 </tr>
-<tr class="row-even"><td><em>Range</em></td>
-<td><dl class="first last docutils">
-<dt>Choices are <em>HIGH</em> or <em>LOW</em></dt>
-<dd><ul class="first last simple">
-<li><em>HIGH</em>: Sets full scale range to <strong>4.080V</strong></li>
-<li><em>LOW</em>: Sets full scale range to <strong>1.020V</strong></li>
-</ul>
-</dd>
-</dl>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mode</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; <p>Choices are <em>0</em> or <em>1</em></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">0:</th><td class="field-body">Sets full scale range to <strong>4.080 V</strong></td>
+</tr>
+<tr class="field-even field"><th class="field-name">1:</th><td class="field-body">Sets full scale range to <strong>1.020 V</strong></td>
+</tr>
+</tbody>
+</table>
 </td>
 </tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -1267,36 +834,17 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.VDAC.SetSpeed">
 <tt class="descname">SetSpeed</tt><big>(</big><em>speed</em><big>)</big><a class="headerlink" href="#analog.VDAC.SetSpeed" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="11%" />
-<col width="89%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">SetSpeed</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Sets the DAC speed, and consequently the power level</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">SetSpeed</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><strong>string</strong>      <em>speed</em></td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Sets the DAC speed, and consequently the power level</td>
 </tr>
-<tr class="row-even"><td><em>speed</em></td>
-<td><dl class="first last docutils">
-<dt><em>HIGH</em> or <em>LOW</em> for high speed or low speed, respectively</dt>
-<dd><ul class="first last simple">
-<li><em>HIGH</em> speed puts the DAC in high power mode</li>
-<li><em>LOW</em> speed puts the DAC in low power mode</li>
-</ul>
-</dd>
-</dl>
-</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>speed</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; <em>HIGH</em> or <em>LOW</em> for high speed or low speed, respectively</td>
 </tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -1305,37 +853,23 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.VDAC.SetValue">
 <tt class="descname">SetValue</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#analog.VDAC.SetValue" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="11%" />
-<col width="89%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">SetValue</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Sets a digital value to be converted into an analog voltage and output by the VDAC</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">SetValue</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><strong>int</strong>      <em>value</em></td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Sets a digital value to be converted into an analog voltage and output by the VDAC</td>
 </tr>
-<tr class="row-even"><td><em>value</em></td>
-<td><dl class="first last docutils">
-<dt>Digital number between <em>0</em> and <em>255</em></dt>
-<dd><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; <p>Value between <em>0</em> and <em>255</em></p>
+<ul class="simple">
 <li>A value of 0 will correspond to an output of the lowest possible voltage output</li>
 <li>A value of 255 will output the full scale value, as selected with <a class="reference internal" href="#analog.VDAC.SetRange" title="analog.VDAC.SetRange"><tt class="xref py py-meth docutils literal"><span class="pre">SetRange()</span></tt></a></li>
 <li>All values between <em>0</em> and <em>255</em> are linearized according to the full scale range</li>
 </ul>
-</dd>
-</dl>
 </td>
 </tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -1344,28 +878,17 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.VDAC.SetVoltage">
 <tt class="descname">SetVoltage</tt><big>(</big><em>volts</em><big>)</big><a class="headerlink" href="#analog.VDAC.SetVoltage" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="11%" />
-<col width="89%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">SetVoltage</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Sets a voltage in Volts to be output on the specified VDAC</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">SetVoltage</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><strong>float</strong>      <em>volts</em></td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Sets a voltage in Volts to be output on the specified VDAC</td>
 </tr>
-<tr class="row-even"><td><em>amps</em></td>
-<td>A number between 0 and the full scale range, as selected by  <a class="reference internal" href="#analog.VDAC.SetRange" title="analog.VDAC.SetRange"><tt class="xref py py-meth docutils literal"><span class="pre">SetRange()</span></tt></a>. This will be converted to an analog voltage and output.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>volts</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; A number between 0 and the full scale range, as selected by  <a class="reference internal" href="#analog.VDAC.SetRange" title="analog.VDAC.SetRange"><tt class="xref py py-meth docutils literal"><span class="pre">SetRange()</span></tt></a>. This will be converted to an analog voltage and output.</td>
 </tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -1374,25 +897,15 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.VDAC.Sleep">
 <tt class="descname">Sleep</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.VDAC.Sleep" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Sleep</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Checks to see if the component is enabled, then it stops the VDAC and saves the current configuration for later use</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">Sleep</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Checks to see if the component is enabled, then it stops the VDAC and saves the current configuration for later use</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -1401,25 +914,15 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.VDAC.Start">
 <tt class="descname">Start</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.VDAC.Start" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Start</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Enables and powers up the VDAC</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">Start</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Enables and powers up the VDAC</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -1428,25 +931,15 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.VDAC.Stop">
 <tt class="descname">Stop</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.VDAC.Stop" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Stop</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Powers down VDAC to lowest power state and disables output</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">Stop</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Powers down VDAC to lowest power state and disables output</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -1455,55 +948,32 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.VDAC.Wakeup">
 <tt class="descname">Wakeup</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.VDAC.Wakeup" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Wakeup</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Restores and enables the most recently saved configuration of the VDAC</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">Wakeup</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Restores and enables the most recently saved configuration of the VDAC</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
 <dl class="method">
-<dt id="analog.VDAC.isRunning">
-<tt class="descname">isRunning</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.VDAC.isRunning" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">isRunning</th>
-</tr>
-</thead>
+<dt id="analog.VDAC.is_running">
+<tt class="descname">is_running</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.VDAC.is_running" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Checks to see if the DAC component and all subcomponents are currently operational</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">is_running</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Checks to see if the DAC component and all subcomponents are currently operational</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td><strong>bool</strong> <em>__running</em></td>
-</tr>
-<tr class="row-odd"><td><em>__running</em></td>
-<td>A private boolean variable which evaluates to <em>True</em> if the DAC is active, or <em>False</em> if it is not                                                                                                            `</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A boolean variable which evaluates to <em>True</em> if the DAC is active, or <em>False</em> if it is not</td>
 </tr>
 </tbody>
 </table>
@@ -1521,79 +991,49 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Class:</th><td class="field-body"><p class="first">The IDAC class provides functionality for using the IDAC&#8217;s available on the RPiSoC.</p>
+<tr class="field-odd field"><th class="field-name">Class:</th><td class="field-body"><p class="first">The IDAC class provides functionality for using the IDAC&#8217;s available on the PiSoC.</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"><p class="first">Define IDAC objects in the following way:</p>
-<div class="last highlight-python"><div class="highlight"><pre><span class="n">My_IDAC</span>       <span class="o">=</span> <span class="n">IDAC</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">My_other_IDAC</span> <span class="o">=</span> <span class="n">IDAC</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class="last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">My_IDAC</span>       <span class="o">=</span> <span class="n">IDAC</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">My_other_IDAC</span> <span class="o">=</span> <span class="n">IDAC</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
-<table border="1" class="docutils">
-<colgroup>
-<col width="11%" />
-<col width="89%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">__init__</th>
-</tr>
-</thead>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Constructs and initializes an IDAC object</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">__init__</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><ul class="first last simple">
-<li><strong>int</strong>      <em>channel</em></li>
-</ul>
-</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Constructs and initializes an IDAC object</td>
 </tr>
-<tr class="row-even"><td><em>channel</em></td>
-<td><dl class="first last docutils">
-<dt>Determines which IDAC is to be utilized</dt>
-<dd><ul class="first last simple">
-<li><em>0</em> for the first IDAC; output is on P0[7] by default</li>
-<li><em>1</em> for the second IDAC; not available by default</li>
-</ul>
-</dd>
-</dl>
-</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>channel</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Determines which IDAC is to be utilized. V2.0 only exposes channel 0 by default - output on P0[7]</td>
 </tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
 <dt id="analog.IDAC.SetCurrent">
-<tt class="descname">SetCurrent</tt><big>(</big><em>amps</em><big>)</big><a class="headerlink" href="#analog.IDAC.SetCurrent" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="11%" />
-<col width="89%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">SetCurrent</th>
-</tr>
-</thead>
+<tt class="descname">SetCurrent</tt><big>(</big><em>m_amps</em><big>)</big><a class="headerlink" href="#analog.IDAC.SetCurrent" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Sets a current in milliamps to be output on the specified IDAC</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">SetCurrent</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><strong>float</strong>      <em>amps</em></td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Sets a current in milliamps to be output on the specified IDAC</td>
 </tr>
-<tr class="row-even"><td><em>amps</em></td>
-<td>A number between 0 and the full scale range, as selected by <a class="reference internal" href="#analog.IDAC.SetRange" title="analog.IDAC.SetRange"><tt class="xref py py-meth docutils literal"><span class="pre">SetRange()</span></tt></a>. This will be converted to an analog current and output.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>m_amps</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; A number between 0 and the full scale range (in milliamps), as selected by <a class="reference internal" href="#analog.IDAC.SetRange" title="analog.IDAC.SetRange"><tt class="xref py py-meth docutils literal"><span class="pre">SetRange()</span></tt></a>. This will be converted to an analog current and output from the IDAC.</td>
 </tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -1602,28 +1042,17 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.IDAC.SetPolarity">
 <tt class="descname">SetPolarity</tt><big>(</big><em>polarity</em><big>)</big><a class="headerlink" href="#analog.IDAC.SetPolarity" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="11%" />
-<col width="89%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">SetPolarity</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Sets the DAC output polarity</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">SetPolarity</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><strong>string</strong>      <em>polarity</em></td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Sets the DAC output polarity</td>
 </tr>
-<tr class="row-even"><td><em>polarity</em></td>
-<td><em>SOURCE</em> or <em>SINK</em></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>polarity</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; String argument which should be <em>SOURCE</em> or <em>SINK</em></td>
 </tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -1632,37 +1061,30 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.IDAC.SetRange">
 <tt class="descname">SetRange</tt><big>(</big><em>mode</em><big>)</big><a class="headerlink" href="#analog.IDAC.SetRange" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="11%" />
-<col width="89%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">SetRange</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Sets the full scale range for the IDAC</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">SetRange</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><strong>int</strong>      <em>mode</em></td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Sets the full scale range for the IDAC</td>
 </tr>
-<tr class="row-even"><td><em>mode</em></td>
-<td><dl class="first last docutils">
-<dt>Choices are <em>0, 1,</em> or <em>2</em></dt>
-<dd><ul class="first last simple">
-<li><em>0</em>: Sets full scale range to <strong>31.875 uA</strong></li>
-<li><em>1</em>: Sets full scale range to <strong>255 uA</strong></li>
-<li><em>2</em>: Sets full scale range to <strong>2.04 mA</strong></li>
-</ul>
-</dd>
-</dl>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>mode</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; <p>Choices are <em>0</em>, <em>1</em>, and <em>2</em></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">0:</th><td class="field-body">Sets full scale range to <strong>31.875 uA</strong></td>
+</tr>
+<tr class="field-even field"><th class="field-name">1:</th><td class="field-body">Sets full scale range to <strong>255 uA</strong></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">2:</th><td class="field-body">Sets full scale range to <strong>2.04 mA</strong></td>
+</tr>
+</tbody>
+</table>
 </td>
 </tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -1671,36 +1093,17 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.IDAC.SetSpeed">
 <tt class="descname">SetSpeed</tt><big>(</big><em>speed</em><big>)</big><a class="headerlink" href="#analog.IDAC.SetSpeed" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="11%" />
-<col width="89%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">SetSpeed</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Sets the DAC speed, and consequently the power level</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">SetSpeed</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><strong>string</strong>      <em>speed</em></td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Sets the DAC speed, and consequently the power level</td>
 </tr>
-<tr class="row-even"><td><em>speed</em></td>
-<td><dl class="first last docutils">
-<dt><em>HIGH</em> or <em>LOW</em> for high speed or low speed, respectively</dt>
-<dd><ul class="first last simple">
-<li><em>HIGH</em> speed puts the DAC in high power mode</li>
-<li><em>LOW</em> speed puts the DAC in low power mode</li>
-</ul>
-</dd>
-</dl>
-</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>speed</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; <em>HIGH</em> or <em>LOW</em> for high speed or low speed, respectively</td>
 </tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -1709,37 +1112,23 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.IDAC.SetValue">
 <tt class="descname">SetValue</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#analog.IDAC.SetValue" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="11%" />
-<col width="89%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">SetValue</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Sets a digital value to be converted into an analog current and output by the IDAC</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">SetValue</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><strong>int</strong>      <em>value</em></td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Sets a digital value to be converted into an analog current and output by the IDAC</td>
 </tr>
-<tr class="row-even"><td><em>value</em></td>
-<td><dl class="first last docutils">
-<dt>Digital number between <em>0</em> and <em>255</em></dt>
-<dd><ul class="first last simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; <p>Value between <em>0</em> and <em>255</em></p>
+<ul class="simple">
 <li>A value of 0 will correspond to an output of the lowest possible current output</li>
 <li>A value of 255 will output the full scale value, as selected with <a class="reference internal" href="#analog.IDAC.SetRange" title="analog.IDAC.SetRange"><tt class="xref py py-meth docutils literal"><span class="pre">SetRange()</span></tt></a></li>
 <li>All values between <em>0</em> and <em>255</em> are linearized according to the full scale range</li>
 </ul>
-</dd>
-</dl>
 </td>
 </tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -1748,25 +1137,15 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.IDAC.Sleep">
 <tt class="descname">Sleep</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.IDAC.Sleep" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Sleep</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Checks to see if the component is enabled, then it stops the DAC and saves the current configuration for later use</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">Sleep</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Checks to see if the component is enabled, then it stops the DAC and saves the current configuration for later use</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -1775,25 +1154,15 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.IDAC.Start">
 <tt class="descname">Start</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.IDAC.Start" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Start</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Sets the initVar variable on the RPiSoC, calls the IDAC8_Init() function and then calls the IDAC8_Enable() function. Enables and powers up the IDAC</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">Start</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Sets the initVar variable on the PiSoC, calls the IDAC8_Init() function and then calls the IDAC8_Enable() function. Enables and powers up the IDAC</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -1802,25 +1171,15 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.IDAC.Stop">
 <tt class="descname">Stop</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.IDAC.Stop" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Stop</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Powers down IDAC to lowest power state and disables output</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">Stop</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Powers down IDAC to lowest power state and disables output</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -1829,55 +1188,32 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.IDAC.Wakeup">
 <tt class="descname">Wakeup</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.IDAC.Wakeup" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Wakeup</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Restores and enables the most recently saved configuration of the DAC</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">Wakeup</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Restores and enables the most recently saved configuration of the DAC</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
 <dl class="method">
-<dt id="analog.IDAC.isRunning">
-<tt class="descname">isRunning</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.IDAC.isRunning" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">isRunning</th>
-</tr>
-</thead>
+<dt id="analog.IDAC.is_running">
+<tt class="descname">is_running</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.IDAC.is_running" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Checks to see if the DAC component and all subcomponents are currently operational</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">is_running</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Checks to see if the DAC component and all subcomponents are currently operational</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td><strong>bool</strong> <em>__running</em></td>
-</tr>
-<tr class="row-odd"><td><em>__running</em></td>
-<td>A private boolean variable which evaluates to <em>True</em> if the DAC is active, or <em>False</em> if it is not                                                                                                            `</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A boolean variable which evaluates to <em>True</em> if the DAC is active, or <em>False</em> if it is not</td>
 </tr>
 </tbody>
 </table>
@@ -1895,79 +1231,48 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Class:</th><td class="field-body"><p class="first">The WaveDAC class provides functionality for using the WaveDAC available on the RPiSoC.</p>
+<tr class="field-odd field"><th class="field-name">Class:</th><td class="field-body"><p class="first">The WaveDAC class provides functionality for using the WaveDAC available on the PiSoC.</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"><p class="first">Define WaveDAC objects in the following way:</p>
-<div class="last highlight-python"><div class="highlight"><pre><span class="n">My_Wave</span> <span class="o">=</span> <span class="n">WaveDAC</span><span class="p">()</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">My_Wave</span> <span class="o">=</span> <span class="n">WaveDAC</span><span class="p">()</span>
 </pre></div>
 </div>
 </td>
 </tr>
-</tbody>
-</table>
-<table border="1" class="docutils">
-<colgroup>
-<col width="11%" />
-<col width="89%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">__init__</th>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body"><p class="first">__init__</p>
+</td>
 </tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Constructs and initializes an WaveDAC object</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Constructs and initializes an WaveDAC object</p>
+</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
-</tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
 </tr>
 </tbody>
 </table>
 <dl class="method">
 <dt id="analog.WaveDAC.GenerateWave">
-<tt class="descname">GenerateWave</tt><big>(</big><em>waveType</em><big>)</big><a class="headerlink" href="#analog.WaveDAC.GenerateWave" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="11%" />
-<col width="89%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">GenerateWave</th>
-</tr>
-</thead>
+<tt class="descname">GenerateWave</tt><big>(</big><em>waveType</em>, <em>amplitude=4.0</em>, <em>dc_bias=0.0</em><big>)</big><a class="headerlink" href="#analog.WaveDAC.GenerateWave" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td><ul class="first last simple">
-<li>Provides functionality for generating a specific waveform</li>
-<li>It uses the class attributes <em>amplitude</em> and <em>dcB,</em> which define the waveforms peak voltage and the DC Bias, respectively</li>
-<li><em>amplitude</em> and <em>dcB</em> are defaulted to 4V amplitude and 0V DC Bias, unless modifed by using <a class="reference internal" href="#analog.WaveDAC.setAmplitude" title="analog.WaveDAC.setAmplitude"><tt class="xref py py-meth docutils literal"><span class="pre">setAmplitude()</span></tt></a> and <a class="reference internal" href="#analog.WaveDAC.setdcBias" title="analog.WaveDAC.setdcBias"><tt class="xref py py-meth docutils literal"><span class="pre">setdcBias()</span></tt></a></li>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body"><p class="first">Provides functionality for generating a specific waveform</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Provides functionality for generating a specific waveform</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>waveType</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; The output behavior of the WaveDAC, Valid choices are: <em>SINE, SQUARE, TRIANGLE,</em> or <em>SAWTOOTH</em></li>
+<li><strong>amplitude</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; Determines how the output waveform is scaled. Output will be such that this value is the maximum, with everything else being linearly related.</li>
+<li><strong>dc_bias</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; A voltage that will be added to each value (DC portion). If this causes values to exceed 255, they will clip at 4V.</li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><strong>string</strong>      <em>waveType</em></td>
-</tr>
-<tr class="row-even"><td><em>waveType</em></td>
-<td><dl class="first last docutils">
-<dt>The output behavior of the WaveDAC, Valid choices are:</dt>
-<dd><ul class="first last simple">
-<li><em>SINE, SQUARE, TRIANGLE,</em> or <em>SAWTOOTH</em></li>
-</ul>
-</dd>
-</dl>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
 </td>
-</tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
-</tr>
-<tr class="row-even"><td><strong>Note</strong></td>
-<td><em>V1.3</em> intends to introduce inputting custom waveforms</td>
 </tr>
 </tbody>
 </table>
@@ -1976,28 +1281,15 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.WaveDAC.GetFrequency">
 <tt class="descname">GetFrequency</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.WaveDAC.GetFrequency" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">GetFrequency</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Calculates the actual wave frequency based on the most recently confirmed clock divider value</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">GetFrequency</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Calculates the actual wave frequency based on the most recently confirmed clock divider value</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td><strong>float</strong>  <em>freq</em></td>
-</tr>
-<tr class="row-odd"><td><em>freq</em></td>
-<td>The <em>actual</em> frequency of the wave, <em>not</em> a requested frequency</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">(float) The <em>actual</em> frequency of the wave, <em>not</em> a requested frequency</td>
 </tr>
 </tbody>
 </table>
@@ -2006,35 +1298,17 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.WaveDAC.SetFrequency">
 <tt class="descname">SetFrequency</tt><big>(</big><em>frequency</em><big>)</big><a class="headerlink" href="#analog.WaveDAC.SetFrequency" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="11%" />
-<col width="89%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">SetFrequency</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Sets an approximate frequency by using an appropriate clock divider so that the resulting wave is as close to the desired frequency as possible</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">SetFrequency</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><strong>float</strong>      <em>frequency</em></td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Sets an approximate frequency by using an appropriate clock divider so that the resulting wave is as close to the desired frequency as possible</td>
 </tr>
-<tr class="row-even"><td><em>frequency</em></td>
-<td><dl class="first last docutils">
-<dt>A frequency in Hz that will be representative of the output wave rate</dt>
-<dd><ul class="first last simple">
-<li>Valid range is between 0.46 and 2500</li>
-</ul>
-</dd>
-</dl>
-</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>frequency</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; A frequency in Hz that will be representative of the output wave rate (Valid range is between 0.46 and 2500)</td>
 </tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -2043,36 +1317,17 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.WaveDAC.SetSpeed">
 <tt class="descname">SetSpeed</tt><big>(</big><em>speed</em><big>)</big><a class="headerlink" href="#analog.WaveDAC.SetSpeed" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="11%" />
-<col width="89%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">SetSpeed</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Sets the DAC speed to one of the defined settings</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">SetSpeed</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><strong>string</strong>      <em>speed</em></td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Dets the DAC speed to one of the defined settings</td>
 </tr>
-<tr class="row-even"><td><em>speed</em></td>
-<td><dl class="first last docutils">
-<dt><em>HIGH</em> or <em>LOW</em> for high speed or low speed, respectively</dt>
-<dd><ul class="first last simple">
-<li><em>HIGH:</em> Highest power and fastest slew rate</li>
-<li><em>LOW:</em> Lowest active power and slowest slew rate</li>
-</ul>
-</dd>
-</dl>
-</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>speed</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; <em>HIGH</em> or <em>LOW</em> for high speed or low speed, respectively</td>
 </tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -2081,31 +1336,17 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.WaveDAC.SetValue">
 <tt class="descname">SetValue</tt><big>(</big><em>val</em><big>)</big><a class="headerlink" href="#analog.WaveDAC.SetValue" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="11%" />
-<col width="89%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">SetValue</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Sets a digital value to be converted into a voltage and output by the WaveDAC.</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">SetValue</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><strong>int</strong>      <em>val</em></td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Sets a digital value to be converted into a voltage and output by the WaveDAC.</td>
 </tr>
-<tr class="row-even"><td><em>val</em></td>
-<td>Digital number between <em>0</em> and <em>255</em></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>val</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Value between <em>0</em> and <em>255</em></td>
 </tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
-</tr>
-<tr class="row-even"><td><strong>Warning</strong></td>
-<td>The WaveDAC should be stopped before using this function</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -2114,25 +1355,15 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.WaveDAC.Sleep">
 <tt class="descname">Sleep</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.WaveDAC.Sleep" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Sleep</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Checks to see if the component is enabled, then it stops the DAC and saves the current configuration for later use</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">Sleep</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Checks to see if the component is enabled, then it stops the DAC and saves the current configuration for later use</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -2141,25 +1372,15 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.WaveDAC.Start">
 <tt class="descname">Start</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.WaveDAC.Start" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Start</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Performs all of the required initialization for the component and enables power to the block</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">Start</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Performs all of the required initialization for the component and enables power to the block</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -2168,25 +1389,15 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.WaveDAC.StartClock">
 <tt class="descname">StartClock</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.WaveDAC.StartClock" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">StartClock</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Restarts the WaveDAC clock after it has been stopped</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">StartClock</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Restarts the WaveDAC clock after it has been stopped</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -2195,25 +1406,15 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.WaveDAC.Stop">
 <tt class="descname">Stop</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.WaveDAC.Stop" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Stop</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Powers down the WaveDAC to its lowest power state and disables output</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">Stop</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Powers down the WaveDAC to its lowest power state and disables output</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -2222,25 +1423,15 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.WaveDAC.StopClock">
 <tt class="descname">StopClock</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.WaveDAC.StopClock" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">StopClock</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Stops the WaveDAC clock so that a value can be set without interference by the clock</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">StopClock</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Stops the WaveDAC clock so that a value can be set without interference by the clock</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
@@ -2249,121 +1440,32 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
 <dl class="method">
 <dt id="analog.WaveDAC.Wakeup">
 <tt class="descname">Wakeup</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.WaveDAC.Wakeup" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">Wakeup</th>
-</tr>
-</thead>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Restores and enables the most recently saved configuration of the DAC</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">Wakeup</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Restores and enables the most recently saved configuration of the DAC</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td>No return</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
 <dl class="method">
-<dt id="analog.WaveDAC.isRunning">
-<tt class="descname">isRunning</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.WaveDAC.isRunning" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="8%" />
-<col width="92%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">isRunning</th>
-</tr>
-</thead>
+<dt id="analog.WaveDAC.is_running">
+<tt class="descname">is_running</tt><big>(</big><big>)</big><a class="headerlink" href="#analog.WaveDAC.is_running" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
 <tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Checks to see if the DAC component and all subcomponents are currently operational</td>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">is_running</td>
 </tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td>None</td>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Checks to see if the DAC component and all subcomponents are currently operational</td>
 </tr>
-<tr class="row-even"><td><strong>Returns</strong></td>
-<td><strong>bool</strong> <em>__running</em></td>
-</tr>
-<tr class="row-odd"><td><em>__running</em></td>
-<td>A private boolean variable which evaluates to <em>True</em> if the DAC is active, or <em>False</em> if it is not                                                                                                            `</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="analog.WaveDAC.setAmplitude">
-<tt class="descname">setAmplitude</tt><big>(</big><em>amplitude</em><big>)</big><a class="headerlink" href="#analog.WaveDAC.setAmplitude" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="11%" />
-<col width="89%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">setAmplitude</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Modifies the class attribute associated with peak voltage of a generated wave</td>
-</tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><strong>float</strong>      <em>amplitude</em></td>
-</tr>
-<tr class="row-even"><td><em>amplitude</em></td>
-<td>A peak amplitude, in Volts, between <em>0</em> and <em>4.08</em></td>
-</tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
-</tr>
-<tr class="row-even"><td><strong>Warning</strong></td>
-<td>This method will become deprecated in <em>V1.3.</em> There will be an alternate way of accomplishing this</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="analog.WaveDAC.setdcBias">
-<tt class="descname">setdcBias</tt><big>(</big><em>dcBias</em><big>)</big><a class="headerlink" href="#analog.WaveDAC.setdcBias" title="Permalink to this definition">¶</a></dt>
-<dd><table border="1" class="docutils">
-<colgroup>
-<col width="11%" />
-<col width="89%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Method</th>
-<th class="head">setdcBias</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><strong>Description</strong></td>
-<td>Modifies the class attribute associated with DC Bias of a generated wave</td>
-</tr>
-<tr class="row-odd"><td><strong>Parameters</strong></td>
-<td><strong>float</strong>      <em>dcBias</em></td>
-</tr>
-<tr class="row-even"><td><em>dcBias</em></td>
-<td>A DC bias, in Volts, between <em>0</em> and <em>4.08</em></td>
-</tr>
-<tr class="row-odd"><td><strong>Returns</strong></td>
-<td>No return</td>
-</tr>
-<tr class="row-even"><td><strong>Warning</strong></td>
-<td>This method will become deprecated in <em>V1.3.</em> There will be an alternate way of accomplishing this</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A boolean variable which evaluates to <em>True</em> if the DAC is active, or <em>False</em> if it is not</td>
 </tr>
 </tbody>
 </table>
@@ -2404,8 +1506,8 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
   <p class="topless"><a href="code_digital.html"
                         title="previous chapter">digital.py</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="examples.html"
-                        title="next chapter">Example Projects!</a></p>
+  <p class="topless"><a href="code_pisoc.html"
+                        title="next chapter">pisoc.py</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/code_analog.txt"
@@ -2435,18 +1537,18 @@ Succesive Approximation ADC&#8217;s on the RPiSoC.</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="examples.html" title="Example Projects!"
+          <a href="code_pisoc.html" title="pisoc.py"
              >next</a> |</li>
         <li class="right" >
           <a href="code_digital.html" title="digital.py"
              >previous</a> |</li>
-        <li><a href="index.html">RPiSoC Python API 1.2.5 documentation</a> &raquo;</li>
+        <li><a href="index.html">PiSoC Python API 2.0.0 documentation</a> &raquo;</li>
           <li><a href="code.html" >API modules</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2015, EmbeditElectronics.
-      Last updated on Jan 22, 2015.
+        &copy; Copyright 2016, EmbeditElectronics.
+      Last updated on May 03, 2016.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>

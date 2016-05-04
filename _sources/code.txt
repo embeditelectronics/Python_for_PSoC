@@ -1,13 +1,13 @@
 API modules
 ===========
-Here is a quick look at what is under the hood of the RPiSoC Python API, as of version |version|
+Here is a quick look at what is under the hood of the PiSoC Python API, as of version |version|
 
 .. toctree::
    :maxdepth: 2
 
-   code_rpisoc
    code_digital
    code_analog
+   code_pisoc
 
 
 .. codeauthor:: Brian Bradley <embedit@embeditelectronics.com>

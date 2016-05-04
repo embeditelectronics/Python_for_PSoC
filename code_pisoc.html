@@ -1,0 +1,666 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pisoc.py &mdash; PiSoC Python API 2.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="PiSoC Python API 2.0.0 documentation" href="index.html" />
+    <link rel="up" title="API modules" href="code.html" />
+    <link rel="next" title="Example Projects!" href="examples.html" />
+    <link rel="prev" title="analog.py" href="code_analog.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="examples.html" title="Example Projects!"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="code_analog.html" title="analog.py"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">PiSoC Python API 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="code.html" accesskey="U">API modules</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="pisoc-py">
+<span id="pisoc-module-label"></span><h1>pisoc.py<a class="headerlink" href="#pisoc-py" title="Permalink to this headline">¶</a></h1>
+<p>This is the highest level module import for the PiSoC API, which the user should import into their scripts for full use of it. It is used to keep records of some globally used variables between all classes.</p>
+<p>It is also used to send data to, and receive data from the PiSoC using
+a user chosen communication protocol.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Most of the classes and functions described in this section have little use to most users.
+They generally will only be useful when implementing new functionality in the firmware.</p>
+</div>
+<p>At the beginning of each script, insert the following
+two lines:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pisoc</span> <span class="kn">import</span> <span class="o">*</span> <span class="c">#This will handle dependencies</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">PiSoC</span><span class="p">(</span><span class="s">&#39;PC&#39;</span><span class="p">,</span> <span class="n">log_level</span> <span class="o">=</span> <span class="s">&#39;info&#39;</span><span class="p">)</span> <span class="c">#for PC</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">PiSoC</span><span class="p">(</span><span class="s">&#39;PI&#39;</span><span class="p">,</span> <span class="n">log_level</span> <span class="o">=</span> <span class="s">&#39;info&#39;</span><span class="p">)</span> <span class="c">#for PI</span>
+</pre></div>
+</div>
+<div class="section" id="pisoc-parent-class">
+<h2>PiSoC parent class<a class="headerlink" href="#pisoc-parent-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pisoc.PiSoC">
+<em class="property">class </em><tt class="descclassname">pisoc.</tt><tt class="descname">PiSoC</tt><a class="headerlink" href="#pisoc.PiSoC" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Class:</th><td class="field-body"><p class="first">This class is used to define the register locations of each component on the
+PiSoC, it defines which communication protocol will be utilized by the
+API, and it collects compiled data from the PiSoC. The class is not to be assigned to an object; it only needs to be called so
+that addresses can be defined, compiled data on the PiSoC can be verified, and so that the communication protocol can
+be initialized.</p>
+<p>Optionally, one can construct the object with a logging parameter, as described in the <a class="reference internal" href="#pisoc.PiSoC.__new__" title="pisoc.PiSoC.__new__"><tt class="xref py py-meth docutils literal"><span class="pre">__new__()</span></tt></a> description, which will print diagnostic information to the terminal.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pisoc</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">PiSoC</span><span class="p">(</span><span class="s">&#39;USB&#39;</span><span class="p">,</span> <span class="n">log_level</span> <span class="o">=</span> <span class="s">&#39;info&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="last line-block">
+<div class="line"><br /></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="staticmethod">
+<dt id="pisoc.PiSoC.__new__">
+<em class="property">static </em><tt class="descname">__new__</tt><big>(</big><em>protocol='UART'</em>, <em>com_port='/dev/ttyAMA0'</em>, <em>baud=9600</em>, <em>log_level=None</em><big>)</big><a class="headerlink" href="#pisoc.PiSoC.__new__" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body"><p class="first">__new__</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Constructs the PiSoC object. It will decide the communication protocol to be utilized by the API and it will attempt to learn what components are available on the PiSoC</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>protocol</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; Describes how the PiSoC will communicate with the host device. For simplicity, one can choose &#8220;PC&#8221; or &#8220;PI&#8221; so that the generic protocols for those devices will be chosen. 
+The explicit protocol can be specified as &#8220;USB&#8221; or &#8220;UART&#8221; as well, for the standard API. With updated firmware, &#8220;I2C&#8221; and &#8220;SPI&#8221; will be valid choices.</li>
+<li><strong>com_port</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; Optional parameter used to specify a com port for UART, if required. Defaults to &#8220;/dev/ttyAMA0&#8221;</li>
+<li><strong>baud</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Baud rate to be used for USB UART. Defaults to 9600, but any standard rate is accepted.</li>
+<li><strong>log_level</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; <p>Determines what messages will be printed to the console when possible.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">debug:</th><td class="field-body">All messages will be printed.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">info:</th><td class="field-body">All messages except &#8220;debug&#8221; level messages will be printed.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">warn:</th><td class="field-body">Only warnings and error messages will be printed</td>
+</tr>
+<tr class="field-even field"><th class="field-name">error:</th><td class="field-body">Only error messages will be printed</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="usb-communication-usb-uart">
+<h2>USB communication (USB UART)<a class="headerlink" href="#usb-communication-usb-uart" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pisoc.USB_UART">
+<em class="property">class </em><tt class="descclassname">pisoc.</tt><tt class="descname">USB_UART</tt><big>(</big><em>baudr=9600</em><big>)</big><a class="headerlink" href="#pisoc.USB_UART" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Class:</th><td class="field-body">Provides a serial (USB UART) interface for communicating with the PiSoC</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body">pyserial 2.7 must be available to use this class</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">__init__</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Constructs and initializes a USB_UART object. This is the default protocol for PC use. No serial port should need to be provided, as long as the drivers are properly installed. This function should find the PiSoC automatically.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>baud</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Baud rate to be used. Defaults to 9600, but can be any standard baud rate. (<span class="math">\(9600 * 2^n\)</span>). The Port may need to be configured for higher baud rates on some operating systems (Windows), or the OS may not honor the request.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pisoc.USB_UART.cleanup">
+<tt class="descname">cleanup</tt><big>(</big><big>)</big><a class="headerlink" href="#pisoc.USB_UART.cleanup" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">cleanup</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Forces a software reset on the PiSoC and then closes and cleans up the serial port</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pisoc.USB_UART.disconnect">
+<tt class="descname">disconnect</tt><big>(</big><big>)</big><a class="headerlink" href="#pisoc.USB_UART.disconnect" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">disconnect</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Forces a clean disconnection from the PiSoC, if it is connected.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pisoc.USB_UART.is_connected">
+<tt class="descname">is_connected</tt><big>(</big><big>)</big><a class="headerlink" href="#pisoc.USB_UART.is_connected" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">is_connected</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Checks to see if the serial port is open, and that it is connected to a PiSoC</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Boolean value (True/False) indicating whether the PiSoC is connected or disconnected, respectively.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pisoc.USB_UART.receive_data">
+<tt class="descname">receive_data</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#pisoc.USB_UART.receive_data" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body"><p class="first">receive_data</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Called when a returned value is desired from the PiSoC. It will send a command, and then wait for a response. If the response appears valid, it will be unpacked and returned, otherwise debug messages will be logged indicating possible errors.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>args</strong> (<a class="reference external" href="https://docs.python.org/2/tutorial/controlflow.html#unpacking-argument-lists">unpacked iterable</a>) &#8211; a variable length of data to be transferred to the PiSoC (limited to 1 byte per element and a maximum of 55 bytes). This will contain data required for various commands on the PiSoC.</li>
+<li><strong>Hformat</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a>) &#8211; list of indices of args that should be formatted as unsigned short, independent of their length. Defaults to [2], as this is generally required.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Unpacked data from the PiSoC, indicating the returned value.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#pisoc.ClosedPortException" title="pisoc.ClosedPortException"><tt class="xref py py-class docutils literal"><span class="pre">ClosedPortException</span></tt></a></li>
+<li><a class="reference internal" href="#pisoc.LostConnection" title="pisoc.LostConnection"><tt class="xref py py-class docutils literal"><span class="pre">LostConnection</span></tt></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pisoc.USB_UART.reconnect">
+<tt class="descname">reconnect</tt><big>(</big><big>)</big><a class="headerlink" href="#pisoc.USB_UART.reconnect" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">reconnect</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Used to reestablish a connection to the PiSoC after it has been lost</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Boolean value (True/False) indicating whether the reconnection was successful or unsuccessful, respectively.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pisoc.USB_UART.send_data">
+<tt class="descname">send_data</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#pisoc.USB_UART.send_data" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body"><p class="first">send_data</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Sends data to the PiSoC, without requiring a return value. It will wait to be sure the provided arguments produce a valid command on the PiSoC, and return an error code if not.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>Hformat</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a>) &#8211; list of indices of args that should be formatted as unsigned short, independent of their length. Defaults to [2], as this is generally required.</li>
+<li><strong>args</strong> (<a class="reference external" href="https://docs.python.org/2/tutorial/controlflow.html#unpacking-argument-lists">unpacked iterable</a>) &#8211; a variable length of data to be transferred to the PiSoC (limited to 1 byte per element and a maximum of 55 bytes). This will contain data required for various commands on the PiSoC.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">None</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="#pisoc.ClosedPortException" title="pisoc.ClosedPortException"><tt class="xref py py-class docutils literal"><span class="pre">ClosedPortException</span></tt></a></li>
+<li><a class="reference internal" href="#pisoc.LostConnection" title="pisoc.LostConnection"><tt class="xref py py-class docutils literal"><span class="pre">LostConnection</span></tt></a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="uart-communication">
+<h2>UART communication<a class="headerlink" href="#uart-communication" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pisoc.UART">
+<em class="property">class </em><tt class="descclassname">pisoc.</tt><tt class="descname">UART</tt><big>(</big><em>com='/dev/ttyAMA0'</em>, <em>baudr=115200</em><big>)</big><a class="headerlink" href="#pisoc.UART" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body"><p class="first">__init__</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Constructs and initializes a UART object. This is the default protocol for Raspberry Pi use.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>com</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; Serial port to be used for communication. Defaults to /dev/ttyAMA0</li>
+<li><strong>baud</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; Baud rate to be used. Defaults to 115200, which is required for use with the default firmware. This can be changed, but will only work desireably with adjusted firmware.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pisoc.UART.cleanup">
+<tt class="descname">cleanup</tt><big>(</big><big>)</big><a class="headerlink" href="#pisoc.UART.cleanup" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body">cleanup</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Forces a software reset on the PiSoC and then closes and cleans up the serial port</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pisoc.UART.receive_data">
+<tt class="descname">receive_data</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#pisoc.UART.receive_data" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body"><p class="first">receive_data</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Called when a returned value is desired from the PiSoC. It will send a command, and then wait for a response. If the response appears valid, it will be unpacked and returned, otherwise debug messages will be logged indicating possible errors.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>args</strong> (<a class="reference external" href="https://docs.python.org/2/tutorial/controlflow.html#unpacking-argument-lists">unpacked iterable</a>) &#8211; a variable length of data to be transferred to the PiSoC (limited to 1 byte per element and a maximum of 55 bytes). This will contain data required for various commands on the PiSoC.</li>
+<li><strong>Hformat</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a>) &#8211; list of indices of args that should be formatted as unsigned short, independent of their length. Defaults to [2], as this is generally required.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Unpacked data from the PiSoC, indicating the returned value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pisoc.UART.send_data">
+<tt class="descname">send_data</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#pisoc.UART.send_data" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body"><p class="first">send_data</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Sends data to the PiSoC, without requiring a return value. It will wait to be sure the provided arguments produce a valid command on the PiSoC, and return an error code if not.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>args</strong> (<a class="reference external" href="https://docs.python.org/2/tutorial/controlflow.html#unpacking-argument-lists">unpacked iterable</a>) &#8211; a variable length of data to be transferred to the PiSoC (limited to 1 byte per element and a maximum of 55 bytes). This will contain data required for various commands on the PiSoC.</li>
+<li><strong>Hformat</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a>) &#8211; list of indices of args that should be formatted as unsigned short, independent of their length. Defaults to [2], as this is generally required.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="i2c-communication">
+<h2>I2C communication<a class="headerlink" href="#i2c-communication" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pisoc.I2C">
+<em class="property">class </em><tt class="descclassname">pisoc.</tt><tt class="descname">I2C</tt><big>(</big><em>addr=7</em>, <em>bus=1</em><big>)</big><a class="headerlink" href="#pisoc.I2C" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body"><p class="first">__init__</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Constructs and initializes an I2C object. This is the default protocol for the Raspberry Pi 3 to use.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>addr</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; 7-bit I2C address for the PiSoC.</li>
+<li><strong>bus</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; I2C bus to communicate over. Defaults to 1 for the Raspberry Pi.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="pisoc.I2C.receive_data">
+<tt class="descname">receive_data</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#pisoc.I2C.receive_data" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body"><p class="first">receive_data</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Called when a returned value is desired from the PiSoC. It will send a command, and then wait for a response. If the response appears valid, it will be unpacked and returned, otherwise debug messages will be logged indicating possible errors.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>args</strong> (<a class="reference external" href="https://docs.python.org/2/tutorial/controlflow.html#unpacking-argument-lists">unpacked iterable</a>) &#8211; a variable length of data to be transferred to the PiSoC (limited to 1 byte per element and a maximum of 55 bytes). This will contain data required for various commands on the PiSoC.</li>
+<li><strong>Hformat</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a>) &#8211; list of indices of args that should be formatted as unsigned short, independent of their length. Defaults to [2], as this is generally required.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Unpacked data from the PiSoC, indicating the returned value.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="pisoc.I2C.send_data">
+<tt class="descname">send_data</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#pisoc.I2C.send_data" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Method:</th><td class="field-body"><p class="first">send_data</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Sends data to the PiSoC, without requiring a return value. It will wait to be sure the provided arguments produce a valid command on the PiSoC, and return an error code if not.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>args</strong> (<a class="reference external" href="https://docs.python.org/2/tutorial/controlflow.html#unpacking-argument-lists">unpacked iterable</a>) &#8211; a variable length of data to be transferred to the PiSoC (limited to 1 byte per element and a maximum of 55 bytes). This will contain data required for various commands on the PiSoC.</li>
+<li><strong>Hformat</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a>) &#8211; list of indices of args that should be formatted as unsigned short, independent of their length. Defaults to [2], as this is generally required.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="exceptions">
+<h2>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pisoc.LostConnection">
+<em class="property">class </em><tt class="descclassname">pisoc.</tt><tt class="descname">LostConnection</tt><a class="headerlink" href="#pisoc.LostConnection" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Exception:</th><td class="field-body">LostConnection</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Raised when connection to the PiSoC is lost</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="pisoc.ClosedPortException">
+<em class="property">class </em><tt class="descclassname">pisoc.</tt><tt class="descname">ClosedPortException</tt><a class="headerlink" href="#pisoc.ClosedPortException" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Exception:</th><td class="field-body">ClosedPortException</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body">Raised when a write or read attempt is being made on a closed port</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="special-functions">
+<h2>Special Functions<a class="headerlink" href="#special-functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pisoc.Test_Read">
+<tt class="descclassname">pisoc.</tt><tt class="descname">Test_Read</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#pisoc.Test_Read" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Function:</th><td class="field-body"><p class="first">Test_Read</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Used to test data transfer between devices. It will take a generic list of data, and echo back a piece of that data at the specified location.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>args</strong> (<a class="reference external" href="https://docs.python.org/2/tutorial/controlflow.html#unpacking-argument-lists">unpacked iterable</a>) &#8211; a variable length of data to be transferred to the PiSoC (limited to 1 byte per element and a maximum of 55 bytes).</li>
+<li><strong>index</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; the index of <em>args</em> containing the element that should be echoed back. Defaults to 0.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The data returned from the PiSoC; if transmission of <em>args</em> was successful, the return value should be args[index].</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><div class="first highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pisoc</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">PiSoC</span><span class="p">(</span><span class="s">&#39;PC&#39;</span><span class="p">,</span> <span class="n">log_level</span> <span class="o">=</span> <span class="s">&#39;info&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Test_Read</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+<div class="last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">Test_Read</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">8</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pisoc.PrepareData">
+<tt class="descclassname">pisoc.</tt><tt class="descname">PrepareData</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#pisoc.PrepareData" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Function:</th><td class="field-body"><p class="first">PrepareData</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Description:</th><td class="field-body"><p class="first">Used internally to format unpacked arguments into a character buffer for transfer to the PiSoC in the expected format.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>args</strong> (<a class="reference external" href="https://docs.python.org/2/tutorial/controlflow.html#unpacking-argument-lists">unpacked iterable</a>) &#8211; Ordered list of data to be sent to the pisoc.</li>
+<li><strong>Hformat</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#list" title="(in Python v2.7)"><em>list</em></a>) &#8211; list of indices of args that should be formatted as unsigned short, independent of their length. Defaults to [2], as this is generally required.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">character buffer to be sent to the PiSoC sequentially.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/Embedit_flat.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pisoc.py</a><ul>
+<li><a class="reference internal" href="#pisoc-parent-class">PiSoC parent class</a></li>
+<li><a class="reference internal" href="#usb-communication-usb-uart">USB communication (USB UART)</a></li>
+<li><a class="reference internal" href="#uart-communication">UART communication</a></li>
+<li><a class="reference internal" href="#i2c-communication">I2C communication</a></li>
+<li><a class="reference internal" href="#exceptions">Exceptions</a></li>
+<li><a class="reference internal" href="#special-functions">Special Functions</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="code_analog.html"
+                        title="previous chapter">analog.py</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="examples.html"
+                        title="next chapter">Example Projects!</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/code_pisoc.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="examples.html" title="Example Projects!"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="code_analog.html" title="analog.py"
+             >previous</a> |</li>
+        <li><a href="index.html">PiSoC Python API 2.0.0 documentation</a> &raquo;</li>
+          <li><a href="code.html" >API modules</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2016, EmbeditElectronics.
+      Last updated on May 03, 2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

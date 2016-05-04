@@ -2,13 +2,13 @@
 
 digital.py
 ++++++++++
-The digital functionality currently supported by the RPiSoC Python API
+The digital functionality currently supported by the PiSoC Python API
 
 
 Digital Input and Output
 ------------------------
 .. currentmodule:: digital
-.. autoclass:: digitalPin
+.. autoclass:: DigitalPin
    :members:
 
 PWM
@@ -23,6 +23,12 @@ Servo Motors
 .. autoclass:: Servo
    :members:
 
+Musical Tones
+-------------
+.. currentmodule:: digital
+.. autoclass:: Tone
+   :members:
+
 NeoPixels
 ---------
 .. currentmodule:: digital
@@ -33,5 +39,5 @@ NeoPixels
 Ultrasonic Range Finding
 ------------------------
 .. currentmodule:: digital
-.. autoclass:: rangeFinder
+.. autoclass:: RangeFinder
    :members:

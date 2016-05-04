@@ -1,9 +1,9 @@
-.. RPiSoC Python API documentation master file, created by
+.. PiSoC Python API documentation master file, created by
    sphinx-quickstart on Mon Aug 04 18:16:20 2014.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to the RPiSoC Python API documentation!
+Welcome to the PiSoC Python API documentation!
 ===============================================
 This API brings the PSoC to Python, and the Raspberry Pi!
 

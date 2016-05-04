@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Welcome to the PiSoC Python API documentation! &mdash; PiSoC Python API 1.2.5 documentation</title>
+    <title>Welcome to the PiSoC Python API documentation! &mdash; PiSoC Python API 2.0.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.2.5',
+        VERSION:     '2.0.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="PiSoC Python API 1.2.5 documentation" href="#" />
+    <link rel="top" title="PiSoC Python API 2.0.0 documentation" href="#" />
     <link rel="next" title="Getting Started" href="getting_started.html" /> 
   </head>
   <body>
@@ -37,7 +37,7 @@
         <li class="right" >
           <a href="getting_started.html" title="Getting Started"
              accesskey="N">next</a> |</li>
-        <li><a href="#">PiSoC Python API 1.2.5 documentation</a> &raquo;</li> 
+        <li><a href="#">PiSoC Python API 2.0.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -46,45 +46,36 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="welcome-to-the-rpisoc-python-api-documentation">
-<h1>Welcome to the PiSoC Python API documentation!<a class="headerlink" href="#welcome-to-the-rpisoc-python-api-documentation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="welcome-to-the-pisoc-python-api-documentation">
+<h1>Welcome to the PiSoC Python API documentation!<a class="headerlink" href="#welcome-to-the-pisoc-python-api-documentation" title="Permalink to this headline">¶</a></h1>
 <p>This API brings the PSoC to Python, and the Raspberry Pi!</p>
-<p>The latest version of the API is 1.2</p>
+<p>The latest version of the API is 2.0</p>
 <div class="section" id="contents">
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#using-the-rpisoc">Using the PiSoC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#program-your-rpisoc">Program your PiSoC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#using-the-rpisoc-with-the-raspberry-pi">Using the PiSoC with the Raspberry Pi</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#using-the-pisoc">Using the PiSoC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#program-your-pisoc">Program your PiSoC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#using-the-pisoc-with-the-raspberry-pi">Using the PiSoC with the Raspberry Pi</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="getting_started.html#download-the-python-source">Download the Python source</a></li>
-<li class="toctree-l3"><a class="reference internal" href="getting_started.html#configure-spi-and-download-spidev">Configure SPI and download spidev</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#configure-uart">Configure UART</a></li>
 <li class="toctree-l3"><a class="reference internal" href="getting_started.html#configure-i2c-and-download-smbus">Configure I2C and download smbus</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#using-the-rpisoc-with-your-computer">Using the PiSoC with your computer!</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html#using-the-pisoc-with-your-computer">Using the PiSoC with your computer!</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="getting_started.html#windows-installation">Windows Installation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="getting_started.html#linux-installation">Linux Installation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="getting_started.html#using-the-api">Using the API</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started.html#changing-communication-protocol-used-by-the-api">Changing communication protocol used by the API</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="code.html">API modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="code_rpisoc.html">rpisoc.py</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="code_rpisoc.html#rpisoc-parent-class">PiSoC parent class</a></li>
-<li class="toctree-l3"><a class="reference internal" href="code_rpisoc.html#usb-communication">USB communication</a></li>
-<li class="toctree-l3"><a class="reference internal" href="code_rpisoc.html#spi-communication">SPI communication</a></li>
-<li class="toctree-l3"><a class="reference internal" href="code_rpisoc.html#i2c-communication">I2C communication</a></li>
-<li class="toctree-l3"><a class="reference internal" href="code_rpisoc.html#exceptions">Exceptions</a></li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="code_digital.html">digital.py</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="code_digital.html#digital-input-and-output">Digital Input and Output</a></li>
 <li class="toctree-l3"><a class="reference internal" href="code_digital.html#pwm">PWM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="code_digital.html#servo-motors">Servo Motors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="code_digital.html#musical-tones">Musical Tones</a></li>
 <li class="toctree-l3"><a class="reference internal" href="code_digital.html#neopixels">NeoPixels</a></li>
 <li class="toctree-l3"><a class="reference internal" href="code_digital.html#ultrasonic-range-finding">Ultrasonic Range Finding</a></li>
 </ul>
@@ -94,6 +85,15 @@
 <li class="toctree-l3"><a class="reference internal" href="code_analog.html#capacitive-sensing-capsense">Capacitive Sensing (CapSense)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="code_analog.html#adcs-advanced">ADCs (advanced)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="code_analog.html#analog-output">Analog Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="code_pisoc.html">pisoc.py</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="code_pisoc.html#pisoc-parent-class">PiSoC parent class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="code_pisoc.html#usb-communication-usb-uart">USB communication (USB UART)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="code_pisoc.html#uart-communication">UART communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="code_pisoc.html#i2c-communication">I2C communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="code_pisoc.html#exceptions">Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="code_pisoc.html#special-functions">Special Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -110,7 +110,10 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="revision_history.html">Revision History</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="revision_history.html#version-2-0">Version 2.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="revision_history.html#version-1-2">Version 1.2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="revision_history.html#new-to-v1-2-7">New to v1.2.7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="revision_history.html#new-to-v1-2-6">New to v1.2.6</a></li>
 <li class="toctree-l3"><a class="reference internal" href="revision_history.html#new-to-v1-2-5">New to v1.2.5</a></li>
 <li class="toctree-l3"><a class="reference internal" href="revision_history.html#new-to-v1-2-4">New to v1.2.4</a></li>
 <li class="toctree-l3"><a class="reference internal" href="revision_history.html#new-to-v1-2-3">New to v1.2.3</a></li>
@@ -168,7 +171,7 @@
             </a></p>
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Welcome to the RPiSoC Python API documentation!</a><ul>
+<li><a class="reference internal" href="#">Welcome to the PiSoC Python API documentation!</a><ul>
 <li><a class="reference internal" href="#contents">Contents</a></li>
 </ul>
 </li>
@@ -210,12 +213,12 @@
         <li class="right" >
           <a href="getting_started.html" title="Getting Started"
              >next</a> |</li>
-        <li><a href="#">PiSoC Python API 1.2.5 documentation</a> &raquo;</li> 
+        <li><a href="#">PiSoC Python API 2.0.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2015, EmbeditElectronics.
-      Last updated on Jan 22, 2015.
+        &copy; Copyright 2016, EmbeditElectronics.
+      Last updated on May 03, 2016.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
     </div>
   </body>
