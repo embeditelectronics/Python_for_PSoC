@@ -1,27 +1,20 @@
-from rpisoc import *
-RPiSoC('SERIAL', DEBUG = True)
+from pisoc import *
+from time import sleep
+PiSoC('PC')
 
-try:
-    pixels = NeoPixelShield()
-    pixels.Start()
-    pixels.Dim(1)
-    colors = [pixels.Green, pixels.Yellow, pixels.Orange, pixels.Red, pixels.Purple, pixels.Blue, pixels.PowderBlue, pixels.White]
-    for color in colors:
-        pixels.Fill(color)
-        time.sleep(1)
-    pixels.Fill(pixels.Black)
-    while True:
+pixels = NeoPixelShield()
+pixels.Start()
+pixels.SetBrightness(3)
+colors = [pixels.Green, pixels.Yellow, pixels.Orange, pixels.Red, pixels.Purple, pixels.Blue, pixels.PowderBlue, pixels.White]
+while True:
         for column in range(8):
-            for row in range(5):
-                pixels.SetPixel(row, column, colors[column])
-            time.sleep(0.01) #so you can see the animation happening
+                for row in range(5):
+                        pixels.SetPixel(row, column, colors[column])
+                sleep(0.01) #so you can see the animation happening
 
-        time.sleep(0.25)
+        sleep(0.25)
 
         for column in reversed(range(1,8)):
-            for row in range(5):
-                pixels.SetPixel(row, column, 0)
-            time.sleep(0.01) #so you can see the animation happening
-
-except KeyboardInterrupt:
-     RPiSoC.commChannel.cleanup()
+                for row in range(5):
+                        pixels.SetPixel(row, column, 0)
+                sleep(0.01) #so you can see the animation happening

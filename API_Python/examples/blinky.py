@@ -1,11 +1,9 @@
-from rpisoc import *
-RPiSoC('SERIAL', DEBUG = True)
+from pisoc import *
+from time import sleep
+PiSoC("PC")
 
-blinky = digitalPin(12,0,'OUT')
+blinky = DigitalPin(12, 0, 'output')
 
-try:
-    while True:
-        blinky.Toggle()
-	time.sleep(0.5)
-except KeyboardInterrupt:
-    RPiSoC.commChannel.cleanup()
+while True:
+	blinky.Toggle()
+	sleep(1)
