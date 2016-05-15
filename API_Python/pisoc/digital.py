@@ -1034,6 +1034,7 @@ class Servo:
             self.servo_PWM.WritePeriod(60000)
             self.servo_PWM.WriteCompare(4500)
 
+
     def __repr__(self):
         return "Servo(channel=%s, min_pulse=%s, max_pulse=%s, min_angle=%s, max_angle=%s)"%(self.channel, self.min_pulse, self.max_pulse, self.min_angle, self.max_angle)
 
@@ -1071,6 +1072,7 @@ class Servo:
         self.min_angle = float(min_angle)
         self.max_angle = float(max_angle)
         self.angle_range = float(max_angle-min_angle)
+
 
     def SetPulse(self, pulse_ms):
         """
@@ -1413,7 +1415,7 @@ class RangeFinder(object):
 
         """
         cmd = 0x00
-        while (time.time() - self.time_since_last_poll)<self.poll_period:
+        while not self.is_ready():
             pass
         self.time_since_last_poll = time.time()
         reading = PiSoC.commChannel.receive_data(self.address, cmd, self.packed_dat, delay = 0.05)
@@ -1422,6 +1424,8 @@ class RangeFinder(object):
             logging.error("Timeout occured waiting for signal pin to be asserted; verify connection.")
         return reading
 
+    def is_ready(self):
+        return not (time.time() - self.time_since_last_poll)<self.poll_period
     def ReadMeters(self, sound = 343.0, precision = 2):
         """
         :Method:
@@ -2337,13 +2341,15 @@ class Tone:
             logging.warning("octave must be less than or equal to nine. Setting to nine.")
             octave = 9
         midi = octave*12
-        if type(note)!= type(str()):
-            raise TypeError('note argument must be a string')
-        if note.find('#') >-1:
-            midi+=1
-            note = ''.join([n.capitalize() for n in note if n.capitalize() in self.__note_LUT])
-        else:
-            note = note.capitalize()
+        try:
+            if note.find('#') >-1:
+                midi+=1
+                note = ''.join([n.capitalize() for n in note if n.capitalize() in self.__note_LUT])
+            else:
+                note = note.capitalize()
+        except:
+                raise TypeError("%r is an invalid input type (%s) for note."%(n, type(n)))
+
         midi+=self.__note_LUT[note]
         self.SetMIDI(midi)
 

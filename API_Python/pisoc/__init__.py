@@ -871,7 +871,7 @@ class USB_UART(object):
             if self.ser.isOpen():
                 self.ser.close()
         time.sleep(.1)
-        search_passed = self.find_device
+        search_passed = self.find_device()
         if not search_passed:
             logging.error('Could not find PiSoC')
             self.pisoc_available = False
