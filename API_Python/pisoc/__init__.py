@@ -6,44 +6,18 @@ This program is the highest level module for the PiSoC API, which the user shoul
 import into their scripts for full use of the API.
 """
 __author__ = 'Brian Bradley'
-__version__ = '2.0.0'
+__version__ = '2.0.1'
 
 import time
 import platform
+import re
+import os
 import struct
 import logging
 
-__import_count = 0
-
-try:
-    import spidev
-except ImportError:
-    __import_count += 1
-
-try:
-    import smbus
-except ImportError:
-    __import_count+=1
-
-try:
-    import serial
-except ImportError:
-    __import_count+=1
-
-try:
-    __os_list = platform.platform()
-    if __os_list.find('Windows')!=-1:
-        import serial.tools.list_ports_windows as lp
-    elif __os_list.find('Linux')!=-1:
-        import serial.tools.list_ports_linux as lp
-    else:
-        import serial.tools.list_ports_osx as lp
-except ImportError:
-    pass
 
 
-if __import_count == 3:
-     raise ImportError('No communication libraries found! You need either spidev, smbus, or serial libraries available for import to use this API!')
+
 
 class PiSoC(object):
     """
@@ -157,7 +131,7 @@ class PiSoC(object):
                                     None    : logging.CRITICAL #There are no messages with a critical level, so no messages will be displayed if no level is specified.
                                 }
 
-    def __new__ (self, protocol = "UART", com_port = '/dev/ttyAMA0', baud = 9600, log_level = None):
+    def __new__ (self, protocol = None, com_port = '/dev/ttyAMA0', baud = 9600, log_level = None):
         """
         :Method: __new__
 
@@ -192,8 +166,35 @@ class PiSoC(object):
         logging.basicConfig(level=self.log_level_lut[log_level],
                             format='%(message)s')
         self.PWM_clks_copy  = dict((k,v) for k,v in PiSoC.PWM_clks.items())
-        logging.debug('Creating commChannel attribute..')
-        if protocol == 'I2C':
+        
+        backend = {
+			"Model B Revision 1.0" : lambda: UART(),
+            "Model B Revision 2.0" : lambda: UART(),
+            "Model A": lambda: UART(),
+            "Model B Revision 2.0": lambda: UART(),
+            "Model B+": lambda: UART(),
+            "Compute Module": lambda: I2C(),
+            "Model A+": lambda: UART(), 
+            "Pi 2 Model B": lambda: UART(),
+            "PiZero": lambda: UART(),
+			"Pi3 Model B" : lambda: I2C(),
+            "Unknown": lambda: I2C(),
+            "unresolved": lambda: I2C(),
+            "PC": lambda: USB_UART()
+		}
+        if protocol is None: #Lets try an autodetect...
+            plat = None
+            if platform.platform().find("Linux") >=0: #We are on linux... Is it a pi?
+                if os.uname()[4][:3] == 'arm': #probably a pi
+                    plat = get_pi_version()
+                    if plat is None: #oh no! Maybe another SBC?
+                        logging.warning("Problem resolving platform. Type of device not clear. Choosing I2C as backend for arm SBC.")
+                        plat = "unresolved"
+            if plat is None:
+                plat = "PC"
+                    
+            self.commChannel = backend[plat]()
+        elif protocol == 'I2C':
             self.commChannel = I2C()
         elif protocol == 'SPI':
             raise ValueError('SPI is not currently an officially supported protocol')
@@ -210,7 +211,44 @@ class PiSoC(object):
             raise ValueError('Invalid Communication Protocol selected: Choose "I2C" "SPI" or provide a valid COM port for Serial communication')
         logging.debug('commChannel attribute created')
         build_info()
+        
 
+def get_pi_version():
+	pi_versions = {
+		"0002" : "Model B Revision 1.0",
+		"0003" : "Model B Revision 1.0",
+		"0004" : "Model B Revision 2.0",
+		"0005" : "Model B Revision 2.0",	
+		"0006" : "Model B Revision 2.0",
+		"0007" : "Model A",
+		"0008" : "Model A",
+		"0009" : "Model A",
+		"000d" : "Model B Revision 2.0",
+		"000e" : "Model B Revision 2.0",
+		"000f" : "Model B Revision 2.0",
+		"0010" : "Model B+",
+		"0011" : "Compute Module",
+		"0012" : "Model A+",
+		"a01041" : "Pi 2 Model B",
+		"a21041" : "Pi 2 Model B",
+		"900092" : "PiZero",
+		"a02082" : "Pi3 Model B",
+		"a22082" : "Pi3 Model B",
+	}
+	with open('/proc/cpuinfo', 'r') as cpuinfo:
+		info = cpuinfo.read()
+	soc = re.search('^Hardware\s+:\s+(\w+)$', info,flags=re.MULTILINE | re.IGNORECASE)
+	rev = re.search('^Revision\s+:\s+(\w+)$', info,flags=re.MULTILINE | re.IGNORECASE)
+	if not soc: #Not a Pi
+		return None
+	if soc.group(1).find("BCM") < 0: #Not a Pi
+		return None
+	if not rev: #What are the odds... Still not a pi. 
+		return None
+	model = pi_versions.get(rev.group(1), "Unknown") #default of Unknown indicates it is likely a pi, but an unknown revision.
+
+	return model
+	
 def PrepareData(*args, **kwargs):
     """
     :Function: PrepareData
@@ -505,9 +543,14 @@ class UART(object):
 
         :returns: None
         """
+        try:
+            self.serial = __import__("serial")
+        except ImportError:
+            raise ImportError("UART backend needs pyserial installed for serial port access.")
+            
         self.com = com
         self.baudr = baudr
-        self.ser = serial.Serial(self.com, self.baudr)        
+        self.ser = self.serial.Serial(self.com, self.baudr)        
 
     def send_data(self, *args, **kwargs):
         """
@@ -587,17 +630,20 @@ class UART(object):
         self.ser.close()
 
 class I2C(object):
-    
-    def __init__(self, addr = 0x08):
-        """
-        """
-        self.addr = addr
-        self.bus = smbus.SMBus(1) 
-        time.sleep(0.1)
 
+        
+    def __init__(self, addr = 0x07):
+		
+        try:
+		    self.smbus = __import__('smbus')
+        except:
+		    raise ImportError("Need python-smbus for i2c backend for pisoc.")
+        self.addr = addr
+        self.bus = self.smbus.SMBus(1) 
+        
+        time.sleep(0.1)
+        
     def send_data(self, *args, **kwargs):
-        """
-        """
         Hfmt = kwargs.get('Hformat', [2])
         data = PrepareData(*args, Hformat = Hfmt)[2:]
         
@@ -674,6 +720,8 @@ class USB_UART(object):
 
         pyserial 2.7 must be available to use this class
     """
+
+    
     def __init__(self, baudr = 9600):
         """
         :Method: __init__
@@ -686,6 +734,22 @@ class USB_UART(object):
         :returns: None
 
         """
+        try:
+			self.serial = __import__("serial")
+        except ImportError:
+			raise ImportError("Need pyserial version 2.7 to use a USBUART backend")
+			
+        try:
+			plat = platform.platform()
+			if plat.find('Windows')!=-1:
+				self.lp = __import__ ("serial.tools.list_ports_windows")
+			elif plat.find('Linux')!=-1:
+				self.lp = __import__ ("serial.tools.list_ports_linux")
+			else:
+				self.lp = __import__ ("serial.tools.list_ports_osx")
+        except ImportError:
+			raise ImportError("Using wrong version of pyserial.")
+		
         self.baudr = baudr
         self.read_timeout = 2
         search_passed = self.find_device()
@@ -698,7 +762,7 @@ class USB_UART(object):
             if not hasattr(self, 'ser'):
                 logging.debug('No existing serial object found... Creating')
                 try:
-                    self.ser = serial.Serial(self.com, self.baudr, timeout = 4, writeTimeout = 4)
+                    self.ser = self.serial.Serial(self.com, self.baudr, timeout = 4, writeTimeout = 4)
                 except:
                     logging.error("It looks like the port we need is already in use by another program...")
                     raise RuntimeError("It looks like the port we need is already in use by another program...")
@@ -708,7 +772,7 @@ class USB_UART(object):
                 if self.ser.isOpen():
                     logging.debug('Serial object already opened. Reconnecting')
                     self.ser.close()
-                self.ser = serial.Serial(self.com, self.baudr, timeout = 4, writeTimeout = 4)
+                self.ser = self.serial.Serial(self.com, self.baudr, timeout = 4, writeTimeout = 4)
                 time.sleep(0.1)
             if not self.ser.isOpen():
                 logging.debug('Port is not open. Attempting to force it open...')
@@ -781,7 +845,7 @@ class USB_UART(object):
                 except:
                     self.ser.close()
                     raise ClosedPortException("Can't open port for read/write")
-        except serial.SerialException:
+        except self.serial.SerialException:
             self.ser.close()
             raise LostConnection("Lost connection trying to write to device..")
 
@@ -852,7 +916,7 @@ class USB_UART(object):
                 except:
                     self.ser.close()
                     raise ClosedPortException("Can't open port for read/write")
-        except serial.SerialException:
+        except self.serial.SerialException:
             self.ser.close()
             raise LostConnection("Lost connection trying to read from device..")
 
@@ -880,7 +944,7 @@ class USB_UART(object):
             self.pisoc_available = True
             logging.debug('trying to init serial object on %s'%self.com)
             if not hasattr(self, 'ser'):
-                self.ser = serial.Serial(self.com, self.baudr, timeout = 4, writeTimeout = 4)
+                self.ser = self.serial.Serial(self.com, self.baudr, timeout = 4, writeTimeout = 4)
                 return True
             else:
                 logging.debug('Cleaning buffers...')
@@ -895,7 +959,7 @@ class USB_UART(object):
                     self.ser.close()
                     logging.debug('Closed.')
                 logging.debug('Reestablishing connection..')
-                self.ser = serial.Serial(self.com, self.baudr, timeout = 4, writeTimeout = 4)
+                self.ser = self.serial.Serial(self.com, self.baudr, timeout = 4, writeTimeout = 4)
                 logging.debug('Connection requested. Validating...')
                 if not self.ser.isOpen():
                     logging.debug('Failed to reopen device... Attempting to force open')
@@ -910,7 +974,7 @@ class USB_UART(object):
                 build_info()
                 return True
     def find_device(self):
-        for port, desc, hwid in sorted(lp.comports()):
+        for port, desc, hwid in sorted(self.lp.comports()):
             if hwid.find('VID:PID=') !=-1:
                 vidpid = hwid.split('VID:PID=')[1].split(' ')[0]
             else:
