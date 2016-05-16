@@ -1,5 +1,5 @@
 from pisoc import *
-PiSoC('PC')
+PiSoC()
 
 touch = CapSense(0, threshold = 6) #raise or lower the threshold depenging on results!
 touch.Start()

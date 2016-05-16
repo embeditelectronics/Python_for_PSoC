@@ -1,5 +1,5 @@
 from pisoc import *
-PiSoC('PC', log_level = 'info')
+PiSoC( log_level = 'info')
 
 
 get_bin = lambda x, n: x >= 0 and str(bin(x))[2:].zfill(n) or "-" + str(bin(x))[3:].zfill(n)

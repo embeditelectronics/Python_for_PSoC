@@ -1,6 +1,6 @@
 from pisoc import *
 from time import sleep
-PiSoC('PC')
+PiSoC()
 
 My_outputs = [DigitalPin(12, x, 'output') for x in range(4)]
 My_inputs = [DigitalPin(6, x, 'pull_down') for x in range(4)]

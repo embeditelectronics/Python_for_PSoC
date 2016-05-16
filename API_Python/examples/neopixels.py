@@ -1,6 +1,6 @@
 from pisoc import *
 from time import sleep
-PiSoC('PC')
+PiSoC()
 
 pixels = NeoPixelShield()
 pixels.Start()

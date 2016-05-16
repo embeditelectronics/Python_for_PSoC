@@ -1,28 +1,11 @@
 from pisoc import *
 import time
 import random
-PiSoC('PC', log_level = 'debug')
-#PiSoC("UART", com_port = "/dev/ttyAMA0", log_level = 'debug')
+PiSoC(log_level = 'debug')
 TRIES = 100
 wrong = 0
 total_len = 0
 t0 = time.time()
-'''
-for i in range(TRIES):
-	rand_len = int(random.random()*28)+1
-	rand_dat = [int(random.random()*255) for i in range(rand_len)]
-	rand_index = int(random.random()*(len(rand_dat) - 1))
-	result = Test_Read(*rand_dat, index = rand_index)
-	#print 'sent %s\n asked for %s back\n got %s\n'%(rand_dat, rand_dat[rand_index], result)
-	if result!=rand_dat[rand_index]:
-		wrong+=1
-	total_len+=rand_len+1
-tf = time.time()
-print ('%s percent accurate'%round(100.0*((TRIES-wrong)/float(TRIES))), 2)
-print('%s bytes transfered in %s seconds'%(total_len, round(tf-t0, 2)))
-raw_input("Done")
-
-'''
 max_len = 28
 tries = 0
 wrong = 0

@@ -1,5 +1,5 @@
 from pisoc import *
-PiSoC('PC')
+PiSoC()
 
 ranger = RangeFinder([12,1], [12,2])
 piezo = PWM(1)
