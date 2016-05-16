@@ -14,6 +14,7 @@ import re
 import os
 import struct
 import logging
+import importlib
 
 
 
@@ -739,17 +740,23 @@ class USB_UART(object):
         except ImportError:
 			raise ImportError("Need pyserial version 2.7 to use a USBUART backend")
 			
+        print "test"
+
         try:
-			plat = platform.platform()
-			if plat.find('Windows')!=-1:
-				self.lp = __import__ ("serial.tools.list_ports_windows")
-			elif plat.find('Linux')!=-1:
-				self.lp = __import__ ("serial.tools.list_ports_linux")
-			else:
-				self.lp = __import__ ("serial.tools.list_ports_osx")
+            plat = platform.platform()
+            if plat.find('Windows')!=-1:
+                self.lp = importlib.import_module("serial.tools.list_ports_windows")
+            elif plat.find('Linux')!=-1:
+                self.lp = importlib.import_module("serial.tools.list_ports_linux")
+            else:
+                self.lp = importlib.import_module("serial.tools.list_ports_osx")
         except ImportError:
-			raise ImportError("Using wrong version of pyserial.")
-		
+            raise ImportError("Using wrong version of pyserial.")
+        
+
+        except ImportError:
+            raise ImportError("Using wrong version of pyserial")
+       
         self.baudr = baudr
         self.read_timeout = 2
         search_passed = self.find_device()
