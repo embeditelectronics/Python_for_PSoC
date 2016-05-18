@@ -56,7 +56,7 @@ print 'Transferred %s bytes in %s seconds. (%s kbps)'%(total, round(t_delta, 2),
 
 raw_input("Range Finding Tests: Connect a 4-pin Ultrasonic range finder with:\n\r\tSignal pin  = P12[1]\n\r\tTrigger pin = P12[2]\n\n\rPress Enter to continue and then Ctrl+C to quit\n\r")
 try:
-	ranger = RangeFinder([12, 1], trigger = [12, 2], timeout_us= 50000, poll_frequency = 50)
+	ranger = RangeFinder(DigitalPin(12, 1), DigitalPin(12, 2), timeout_us= 50000, poll_frequency = 50)
 	while True:
 		t0 = time.time()
 		ranger.ReadInches()
@@ -92,7 +92,7 @@ except KeyboardInterrupt:
 raw_input("\n\rVDAC + AnalogPin Tests. Connect P0[1] to P3[0] to see the VDAC output echoed on the analog input\n\n\rPress Enter to continue and then Ctrl+C to quit\n\r")
 try:
 	Vdac = VDAC(0)
-        Vdac.Start()
+	Vdac.Start()
 	Vdac.SetRange('HIGH')
 
 	test = AnalogPin(0)
@@ -104,6 +104,8 @@ try:
 			time.sleep(0.1)
 except KeyboardInterrupt:
 	Vdac.Stop()
+except ValueError:
+	print "No VDAC in schematic"
 
 raw_input("\n\rServo Tests. Connect servo motors to P2[0:1]\n\n\rPress Enter to continue and then Ctrl+C to quit\n\r")	
 try:

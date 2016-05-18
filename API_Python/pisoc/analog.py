@@ -4,7 +4,7 @@ of the PiSoC.
 """
 
 __author__ = 'Brian Bradley'
-__version__ = '2.0.0'
+__version__ = '2.0.1'
 
 from pisoc import *
 from time import sleep

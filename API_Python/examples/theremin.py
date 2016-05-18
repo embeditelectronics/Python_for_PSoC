@@ -1,9 +1,9 @@
 from pisoc import *
-PiSoC()
+PiSoC(log_level = 'info')
 
-ranger = RangeFinder([12,1], [12,2])
-piezo = PWM(1)
+ranger = RangeFinder(DigitalPin(12, 1), DigitalPin(12, 2))
+piezo = Tone(1)
 piezo.Start()
-piezo.SetDutyCycle(50) #Max volume
+piezo.SetVolume(10) #Max volume
 while True:
-        piezo.SetFrequency(ranger.readRaw())
+        piezo.SetFrequency(ranger.ReadRaw())

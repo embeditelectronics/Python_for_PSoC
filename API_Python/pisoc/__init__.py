@@ -739,8 +739,6 @@ class USB_UART(object):
 			self.serial = __import__("serial")
         except ImportError:
 			raise ImportError("Need pyserial version 2.7 to use a USBUART backend")
-			
-        print "test"
 
         try:
             plat = platform.platform()

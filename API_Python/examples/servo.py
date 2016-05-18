@@ -1,5 +1,5 @@
 from pisoc import *
-PiSoC()
+PiSoC(log_level = 'info')
 
 #normally max_angle is 180, but you can change the scale to be whatever is best for the project
 Pan = Servo(0, max_angle = 5)   # I chose 5 because the joysticks can output up to 5 Volts

@@ -1,6 +1,6 @@
 from pisoc import *
 from time import sleep
-PiSoC()
+PiSoC(log_level = 'info')
 
 blinky = DigitalPin(12, 0, 'output')
 

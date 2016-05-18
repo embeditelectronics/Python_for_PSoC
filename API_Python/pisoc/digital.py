@@ -1,5 +1,5 @@
 __author__ = 'Brian Bradley'
-__version__ = '2.0.0'
+__version__ = '2.0.1'
 
 from pisoc import *
 from math import log
@@ -75,12 +75,14 @@ class DigitalPin(object):
 
 
         if int(port) not in PiSoC.GPIO.keys():
-            raise ValueError('Invalid PORT: Port numbers found on PiSoC are ', PiSoC.GPIO.keys())
+            msg  = 'Invalid port: Port numbers found on PiSoC are %s'%", ".join( str(c) for c in PiSoC.GPIO.keys() )
+            raise ValueError(msg) 
         else:
             self.port = int(port)
 
         if int(pin) not in PiSoC.GPIO[self.port]:
-            raise ValueError('Invalid PIN: the second argument should be the pin number relative to the desired port. Valid entries on this port are ', PiSoC.GPIO[self.port])
+            msg = 'Invalid pin: the second argument should be the pin number relative to the desired port. Valid entries on this port are %s'%", ".join(str(c) for c in PiSoC.GPIO[self.port])
+            raise ValueError(msg)
         else:
             self.pin = int(pin)
 
@@ -255,9 +257,31 @@ class DigitalPin(object):
             The nth bit will give the state of the nth pin on this port. Bit 0 is the LSB and Bit 7 is the MSB. 
             This result can be provided to the instance method :meth:`Read` as a bitmap to abstract the calculation of True/False.
 
+        .. note::
+
+            Firmware bug in V2.0.0 prevents this from being calculated on the PiSoC directly. It is instead calculated in Python from the result of :meth:`pisoc.digital.DigitalPin.get_gpio_bitmap`
+
         """
-        cmd = 0x05
-        return PiSoC.commChannel.receive_data(self.address, cmd, self.port<<4)
+        #cmd = 0x05 TODO. Firmware bug appears to make this not work. Workaround is to derive port state from gpio_bitmap
+        #return PiSoC.commChannel.receive_data(self.address, cmd, self.port<<4)
+
+
+        bitmap = self.get_gpio_bitmap()
+
+        i = 0
+        j = 0
+        result = 0
+        for _port in sorted(PiSoC.GPIO):
+            for _pin in PiSoC.GPIO[_port]:
+                if _port == self.port:
+                    result |= ((bitmap >> i) << j)
+                    j+=1
+                i+=1
+
+        return result
+
+
+
     def get_gpio_bitmap(self):
         """
         :Method:
@@ -548,6 +572,10 @@ class PWM(object):
 
             None
 
+        .. warning::
+
+            This function no longer has an effect since V1.2
+
         """
         cmd = 0x18
         PiSoC.commChannel.send_data(self.address, cmd)
@@ -771,7 +799,7 @@ class PWM(object):
 
         err_chk_strt = True
         div_cur = self.GetClockDivider()
-        while abs(error)>max_error: #this algorithm is terrible and obfuscated. Todo: Make this algorithm not terrible and not obfuscated.
+        while abs(error)>max_error: #this algorithm is terrible and obfuscated. It is bad and I should feel bad. Todo: Make this algorithm not terrible and not obfuscated.
             if err_chk_strt:
                 logging.warning('Could not acheive desired frequency within 5% tolerance without editing the clock rate. This change will affect any PWM channels sharing this clock.')
                 clock_rate = int(freq*self.max_num + (self.min_clk - freq*self.max_num)*(freq*self.max_num<self.min_clk) - (freq*self.max_num>self.max_clk)*(freq*self.max_num - self.max_clk))
@@ -951,7 +979,7 @@ class PWM(object):
         self.cmp = int(self.period * ((duty_cycle)/100.0) + 0.5)
         self.WriteCompare(self.cmp)
 
-class Servo:
+class Servo(object):
     """
         :Class:
             This class provides tools for easy manipulation of standard Servo Motors using PWM.
@@ -1251,15 +1279,15 @@ class RangeFinder(object):
 
         :param signal: 
 
-            A list constructed as *[port, pin]* which defines which exact pin will be used to communicate with the rangers signal/echo pin  
+            A DigitalPin object which defines which exact pin will be used to communicate with the rangers signal/echo pin  
 
-        :type signal: list
+        :type signal: DigitalPin
 
-        :param trigger: A list constructed as *[port, pin]* which defines which exact pin will be used to communicate with the rangers trigger pin
+        :param trigger: A DigitalPin object which defines which exact pin will be used to communicate with the rangers trigger pin
 
             * By default, if no argument is provided, it will assume the trigger pin is the same as the echo pin; this is true for 3-pin devices and so no argument is needed 
 
-        :type trigger: list
+        :type trigger: DigitalPin
 
         :param delay_us: 
 
@@ -1292,28 +1320,17 @@ class RangeFinder(object):
 
         """
 
+
+        self.signal_pin = signal.pin
+        self.signal_port = signal.port
+
         if trigger == None:
-            trigger = signal[:]
-
-        if int(signal[0]) not in PiSoC.GPIO.keys():
-            raise ValueError('Invalid PORT for signal: Port numbers found on PiSoC are ', PiSoC.GPIO.keys())
+            self.trigger_port = signal.port
+            self.trigger_pin = signal.pin
         else:
-             self.signal_port = signal[0]
-
-        if int(signal[1]) not in PiSoC.GPIO[self.signal_port]:
-            raise ValueError('Invalid PIN for signal: the second argument should be the pin number relative to the desired port. Valid entries on this port are ', PiSoC.GPIO[self.sigport])
-        else:
-            self.signal_pin= signal[1]
-
-        if int(trigger[0]) not in PiSoC.GPIO.keys():
-            raise ValueError('Invalid PORT for trigger: Port numbers found on PiSoC are ', PiSoC.GPIO.keys())
-        else:
-             self.trigger_port = trigger[0]
-
-        if int(trigger[1]) not in PiSoC.GPIO[self.trigger_port]:
-            raise ValueError('Invalid PIN for trigger: the second argument should be the pin number relative to the desired port. Valid entries on this port are ', PiSoC.GPIO[self.trigport])
-        else:
-            self.trigger_pin = trigger[1]
+            self.trigger_port = trigger.port
+            self.trigger_pin = trigger.pin
+            
 
         self.address = PiSoC.RANGE_FINDER
         self.delay_us = delay_us
@@ -1520,7 +1537,6 @@ class RangeFinder(object):
             The distance, in inches, between the ultrasonic ranger and the pinged object
         """
         self.inches = round(self.ReadCentimeters(sound, precision = 9)/2.54, precision)
-        logging.debug("%s, %s, %s, %s"%(self.raw, self.centimeters, self.meters, self.inches))
         return self.inches
 class NeoPixelShield(object):
     """
@@ -2136,7 +2152,7 @@ class NeoPixelShield(object):
         self.Fill(self.Black)
 
 
-class Tone:
+class Tone(object):
     """
         :Class:
             The Tone class provides an easy way to integrate musical tones into your programs by setting Notes or frequencies which can be played through a piezo buzzer.
