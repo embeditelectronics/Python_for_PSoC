@@ -180,8 +180,7 @@ class PiSoC(object):
             "PiZero": lambda: UART(),
 			"Pi3 Model B" : lambda: I2C(),
             "Unknown": lambda: I2C(),
-            "unresolved": lambda: I2C(),
-            "PC": lambda: USB_UART()
+            "unresolved": lambda: I2C()
 		}
         if protocol is None: #Lets try an autodetect...
             plat = None
@@ -191,10 +190,14 @@ class PiSoC(object):
                     if plat is None: #oh no! Maybe another SBC?
                         logging.warning("Problem resolving platform. Type of device not clear. Choosing I2C as backend for arm SBC.")
                         plat = "unresolved"
-            if plat is None:
-                plat = "PC"
-                    
-            self.commChannel = backend[plat]()
+            if plat is None: #Likely on a PC of some sort...
+                self.commChannel = USB_UART(baud)
+                while not self.commChannel.pisoc_available:
+                    time.sleep(1)
+                    logging.error("Can't connect. Trying again...")
+                    self.commChannel.reconnect()
+            else:
+                self.commChannel = backend[plat]()
         elif protocol == 'I2C':
             self.commChannel = I2C()
         elif protocol == 'SPI':
